@@ -1,5 +1,6 @@
 # site files
-./frontend/site
-./backend/site
-./personald/site
-./book/site
+frontend/site
+backend/site
+personal/site
+leetcode/site
+book/site
