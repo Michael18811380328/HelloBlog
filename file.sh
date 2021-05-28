@@ -35,6 +35,8 @@ echo "personal end------"
 echo -e "\n\n"
 sleep 2
 
+# todo dir leetcode
+
 # dir backend
 echo "backend start------"
 ls ./backend/docs/nodejs | while read line

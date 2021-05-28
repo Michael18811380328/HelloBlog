@@ -32,6 +32,9 @@ function build() {
     cd book && mkdocs build
     sleep 5
 
+    cd ../leetcode && mkdocs build 
+    sleep 15
+
     cd ../frontend && mkdocs build 
     sleep 15
 
