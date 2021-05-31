@@ -55,10 +55,6 @@ markdown_extensions:
 
 # Page tree
 nav:
-    - About:
-        - '关于我': 'about/README.md'
-        - '学习日志': 'about/log.md'
-        - '文档结构': 'index.md'
     - 算法:
         - '00-练习之前，你需要了解的': 'algre/00-练习之前，你需要了解的.md'
         - '01-反转链表': 'algre/01-反转链表.md'

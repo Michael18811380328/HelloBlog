@@ -110,4 +110,8 @@ nav:
         - 'flask网易云课堂笔记.md': 'python/flask网易云课堂笔记.md'
         - 'pandas 常见问题.md': 'python/pandas 常见问题.md'
         - '搭建python3开发环境.md': 'python/搭建python3开发环境.md'
-        
+    - ruby:
+        - 'install-ruby.md': 'ruby/install-ruby.md'
+        - 'jekyll-basic.md': 'ruby/jekyll-basic.md'
+        - 'jekyll-install.md': 'ruby/jekyll-install.md'
+        - 'ruby-readme.md': 'ruby/ruby-readme.md'

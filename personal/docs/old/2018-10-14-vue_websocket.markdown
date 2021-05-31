@@ -19,33 +19,46 @@ SockJS实现webSocket通信有很多例子，比如用jq实现的，也有用vue
 <img src="https://00feng00.github.io/img/ws.png">
 ## 简介
 <b>WebSocket:</b>
-WebSocket 是 HTML5 开始提供的一种在单个 TCP 连接上进行全双工通讯的协议。<br />
-WebSocket 使得客户端和服务器之间的数据交换变得更加简单，允许服务端主动向客户端推送数据。<br />
-在 WebSocket API 中，浏览器和服务器只需要完成一次握手，两者之间就直接可以创建持久性的连接，并进行双向数据传输。<br />
-<b>SockJS:</b><br />
+WebSocket 是 HTML5 开始提供的一种在单个 TCP 连接上进行全双工通讯的协议。
+
+WebSocket 使得客户端和服务器之间的数据交换变得更加简单，允许服务端主动向客户端推送数据。
+
+在 WebSocket API 中，浏览器和服务器只需要完成一次握手，两者之间就直接可以创建持久性的连接，并进行双向数据传输。
+
+<b>SockJS:</b>
+
 SockJS是一个浏览器JavaScript库，它提供了一个类似于网络的对象。SockJS提供了一个连贯的、跨浏览器的Javascript API，它在浏览器和web服务器之间创建了一个低延迟、全双工、跨域通信通道。
 ## 使用SockJS的原因
-一些浏览器中缺少对WebSocket的支持,因此，回退选项是必要的，而Spring框架提供了基于SockJS协议的透明的回退选项。<br />
-SockJS的一大好处在于提供了浏览器兼容性。优先使用原生WebSocket，如果在不支持websocket的浏览器中，会自动降为轮询的方式。 <br />
-除此之外，spring也对socketJS提供了支持。<br />
+一些浏览器中缺少对WebSocket的支持,因此，回退选项是必要的，而Spring框架提供了基于SockJS协议的透明的回退选项。
+
+SockJS的一大好处在于提供了浏览器兼容性。优先使用原生WebSocket，如果在不支持websocket的浏览器中，会自动降为轮询的方式。 
+
+除此之外，spring也对socketJS提供了支持。
+
 如果代码中添加了withSockJS()如下，服务器也会自动降级为轮询。
 ```
 registry.addEndpoint("/coordination").withSockJS();
 ```
 ## 代码实现
-<b>服务端：</b><br />
-可以到github看代码 [SockJS-node-server](https://github.com/sockjs/sockjs-node) <br />
-<b>客户端：</b><br />
-1、安装stompjs<br />
+<b>服务端：</b>
+
+可以到github看代码 [SockJS-node-server](https://github.com/sockjs/sockjs-node) 
+
+<b>客户端：</b>
+
+1、安装stompjs
+
 ```
 npm install stompjs
 npm install --save net
 ```
-2、安装sockjs<br />
+2、安装sockjs
+
 ```
 npm install sockjs
 ```
-3、代码实现<br />
+3、代码实现
+
 ```
 // 引入模块
 import SockJS from  'sockjs-client'

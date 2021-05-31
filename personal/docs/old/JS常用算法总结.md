@@ -1,21 +1,3 @@
----
-layout:     post
-title:      "JS常用算法总结"
-subtitle:   "冒泡排序、快排顺序、选择排序、插入排序、归并排序"
-date:       2018-09-11 12:00:00
-author:     "ZeFeng"
-header-img: "img/post-bg-2015.jpg"
-catalog: true
-tags:
-    - 算法
----
-
-> “Yeah It's on. ”
-
-
-## 前言
-
-ZeFeng 的 Blog 就这么开通了。
 ## 正文
 下面是前端比较常用的八个算法demo
 
