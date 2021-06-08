@@ -128,7 +128,6 @@ nav:
         - 'react 中通过ref获取高阶（HOC）子组件实例的解决方案.md': 'react/react 中通过ref获取高阶（HOC）子组件实例的解决方案.md'
         - 'react 项目结构及编码规范.md': 'react/react 项目结构及编码规范.md'
         - 'react+graphql实现github dashboard.md': 'react/react+graphql实现github dashboard.md'
-        - 'react-all': 'react/react-all'
         - 'react-lazy-load.md': 'react/react-lazy-load.md'
         - 'react-mentions-en.md': 'react/react-mentions-en.md'
         - 'react-motion.md': 'react/react-motion.md'
