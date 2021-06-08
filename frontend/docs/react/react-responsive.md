@@ -1,4 +1,4 @@
-# react-responsive
+## react-responsive
 
 You can use this jsx tag rather media query in css. 
 
@@ -12,7 +12,7 @@ npm install react-responsive --save
 basic use
 
 ~~~jsx
-import MediaQuery from 'react-responsive';
+import MediaQuery form 'react-responsive';
 
 const Example = () => (
   <div>
@@ -27,10 +27,8 @@ const Example = () => (
 
 // 1224 means 1224px
 const Example2 = () => (
-  <MediaQuery minDeviceWidth={1224}>
-  </MediaQuery>
-  <MediaQuery maxDeviceWidth={1224}>
-  </MediaQuery>
+  <MediaQuery minDeviceWidth={1224}></MediaQuery>
+  <MediaQuery maxDeviceWidth={1224}></MediaQuery>
 );
 ~~~
 

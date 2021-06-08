@@ -11,8 +11,7 @@ console.log(delete window.age); //在IE<9时抛出错误，在其他浏览器中
 console.log(delete window.color); //在IE>9时抛出错误，在其他浏览器中返回true
 ```
 
-使用 var 语句添加的window属性有一个名为[[Configurable]]的特性，这个特性的值被设置为 
-false，所以无法通过delete删除。
+使用 var 语句添加的window属性有一个名为[[Configurable]]的特性，这个特性的值被设置为 false，所以无法通过delete删除。
 
 另外，尝试访问未声明的变量会抛出错误，但是通过查询window对象，可以知道某个可能未声明的变量是否存在。
 
@@ -44,19 +43,26 @@ clearInterval(intervalID);
 #### 系统对话框
 
 alert(),confirm(),prompt() 
+
 这三个方法打开的对话框都是同步和模态的。也就是说，显示这些对话框的时候代码会停止执行。
+
+通常不会直接使用这三个API，而是用过 toaster 等温和的提示，这样不会阻断当前代码执行。
 
 #### location对象
 
-location.replace()这个方法只接受一个参数，即要导航到的URL,结果会导致浏览器位置的改变，但是不会生成浏览记录。 
-location.reload()如果不传递任何参数，页面就会以最有效的方式重新加载。也就是说，如果页面自上次请求以来并没有改变过，页面就会从浏览器缓存中重新加载。如果要强制从服务器重新加载。需要输入参数true。
+location.replace() 这个方法只接受一个参数，即要导航到的URL,结果会导致浏览器位置的改变，但是不会生成浏览记录。 
 
-navigator对象
-screen对象
+location.reload() 如果不传递任何参数，页面就会以最有效的方式重新加载。也就是说，如果页面自上次请求以来并没有改变过，页面就会从浏览器缓存中重新加载。如果要强制从服务器重新加载。需要输入参数true。
+
+#### navigator对象
+
+#### screen对象
 
 #### history对象
 
 history.go(-1)//后退一页
+
 history.go(+1)//前进一页
 
 history.go("baidu.com")//返回到历史记录中包含该字符串的第一个位置
+

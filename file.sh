@@ -6,6 +6,7 @@
 #     # 根据实际子目录确定这里的格式
 # done
 
+# todo change file
 
 # dir: book
 echo "book start------"
@@ -62,7 +63,7 @@ sleep 2
 
 # frontend array and loop
 echo "frontend start------"
-my_array=('' 'about' 'algre' 'git' 'interview' 'javascript' 'netease' 'project' 'react' 'typescript')
+my_array=('' 'about' 'git' 'javascript' 'netease' 'project' 'react' 'typescript')
 # len=${#my_array[*]} 
 for i in {0..9}
 do
