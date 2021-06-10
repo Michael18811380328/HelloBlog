@@ -76,7 +76,9 @@ addEventListener(event, function, useCapture);
 早期ie浏览器具有兼容性问题；
 
 API
+
 exec();
+
 exec() 方法用于检索字符串中的正则表达式的匹配。
 
 重要事项：如果在一个字符串中完成了一次模式匹配之后要开始检索新的字符串，就必须手动地把 lastIndex 属性重置为 0。
