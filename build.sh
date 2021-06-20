@@ -21,7 +21,7 @@ function builddir() {
     echo "build start------"
     # 表示第一个参数
     cd $1 && mkdocs build
-    sleep 10
+    sleep 3
     echo "build end------"
 }
 

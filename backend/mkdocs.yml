@@ -104,6 +104,7 @@ nav:
         - '深入MySQL数据库.md': 'backend-sql/深入MySQL数据库.md'
         - '阿里云MySQL入门.md': 'backend-sql/阿里云MySQL入门.md'
         - '数据库概念.md': 'backend-sql/数据库概念.md'
+        - 'mysql-python': 'backend-sql/Mac pip install mysql-python unsuccessful.md'
     - python:
         - 'django 常见问题.md': 'python/django 常见问题.md'
         - 'flask-basic.md': 'python/flask-basic.md'
