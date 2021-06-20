@@ -35,6 +35,7 @@ extra:
 # Page tree
 nav:
     - 人生思考:
+        - '说明': 'index.md'
         - '40退休.md': 'other/40退休.md'
         - 'JS 数据结构.md': 'other/JS 数据结构.md'
         - 'Poor-and-busy.md': 'other/Poor-and-busy.md'
