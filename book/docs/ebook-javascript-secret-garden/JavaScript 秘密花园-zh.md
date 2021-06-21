@@ -1,5 +1,9 @@
 # JavaScript 秘密花园
 
+原始链接
+
+http://bonsaiden.github.io/JavaScript-Garden/
+
 ## 对象
 
 ### 对象使用和属性
