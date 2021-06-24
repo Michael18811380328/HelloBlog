@@ -9,6 +9,11 @@ docs_dir: ./docs
 
 theme:
     name: material
+    highlightjs: true
+    hljs_languages:
+        - yaml
+        - bash
+        - javascript
     palette:
         primary: "blue"
 

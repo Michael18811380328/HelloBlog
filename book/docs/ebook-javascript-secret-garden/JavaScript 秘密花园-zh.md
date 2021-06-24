@@ -1,5 +1,9 @@
 # JavaScript 秘密花园
 
+原始链接
+
+http://bonsaiden.github.io/JavaScript-Garden/
+
 ## 对象
 
 ### 对象使用和属性
@@ -47,12 +51,12 @@ var bar = {test: 12};
 有两种方式来访问对象的属性，点操作符或者中括号操作符。
 
 ```
-var foo = {name: 'kitten'}
-foo.name; // kitten
-foo['name']; // kitten
+var foo = {name: 'michael'}
+foo.name; // michael
+foo['name']; // michael
 
 var get = 'name';
-foo[get]; // kitten
+foo[get]; // michael
 
 foo.1234; // SyntaxError
 foo['1234']; // works
@@ -87,6 +91,8 @@ for(var i in obj) {
 ```
 
 上面的输出结果有 `bar undefined` 和 `foo null` - 只有 `baz` 被真正的删除了，所以从输出结果中消失。
+
+delete 操作符类似直接删除指针；undefined 或者 null 类似对象的指针指向空。
 
 ### 属性名的语法
 
