@@ -1,15 +1,6 @@
----
-layout: post
-title:  "Editor.js"
-date:   2019-04-11 17:59:11 +0800
-categories: jekyll update
----
-
-# Editor.js
+## Editor.js 快速入门
 
 Editor.js 是一个在线富文本编辑器 官网链接：https://editorjs.io/
-
-## Editor.js 快速入门
 
 1. 导入编辑器库 Install Editor.js 
 2. 编辑器初始化 Configure and initialise the Editor

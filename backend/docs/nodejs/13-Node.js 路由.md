@@ -28,7 +28,24 @@ http://localhost:8888/start?foo=bar&hello=world
 
 ## server.js 文件代码：
 
-var http = require("http"); var url = require("url");  function start() {  function onRequest(request, response) {    var pathname = url.parse(request.url).pathname;    console.log("Request for " + pathname + " received.");    response.writeHead(200, {"Content-Type": "text/plain"});    response.write("Hello World");    response.end();  }   http.createServer(onRequest).listen(8888);  console.log("Server has started."); }  exports.start = start;
+~~~js
+var http = require("http");
+var url = require("url");
+function start() {
+    function onRequest(request, response) {
+        var pathname = url.parse(request.url).pathname;
+        console.log("Request for " + pathname + " received.");
+        response.writeHead(200, {
+            "Content-Type": "text/plain"
+        });
+        response.write("Hello World");
+        response.end();
+    }
+    http.createServer(onRequest).listen(8888);
+    console.log("Server has started.");
+}
+exports.start = start;
+~~~
 
 好了，我们的应用现在可以通过请求的 URL 路径来区别不同请求了--这使我们得以使用路由（还未完成）来将请求以 URL 路径为基准映射到处理程序上。
 
@@ -38,7 +55,12 @@ var http = require("http"); var url = require("url");  function start() {  funct
 
 ## router.js 文件代码：
 
-function route(pathname) {  console.log("About to route a request for " + pathname); }  exports.route = route;
+~~~js
+function route(pathname) {
+    console.log("About to route a request for " + pathname);
+}
+exports.route = route;
+~~~
 
 如你所见，这段代码什么也没干，不过对于现在来说这是应该的。在添加更多的逻辑以前，我们先来看看如何把路由和服务器整合起来。
 
@@ -48,23 +70,45 @@ function route(pathname) {  console.log("About to route a request for " + pathna
 
 ## server.js 文件代码：
 
-var http = require("http"); var url = require("url");  function start(route) {  function onRequest(request, response) {    var pathname = url.parse(request.url).pathname;    console.log("Request for " + pathname + " received.");     route(pathname);     response.writeHead(200, {"Content-Type": "text/plain"});    response.write("Hello World");    response.end();  }   http.createServer(onRequest).listen(8888);  console.log("Server has started."); }  exports.start = start;
+~~~js
+var http = require("http");
+var url = require("url");
+function start(route) {
+    function onRequest(request, response) {
+        var pathname = url.parse(request.url).pathname;
+        console.log("Request for " + pathname + " received.");
+        route(pathname);
+        response.writeHead(200, {
+            "Content-Type": "text/plain"
+        });
+        response.write("Hello World");
+        response.end();
+    }
+    http.createServer(onRequest).listen(8888);
+    console.log("Server has started.");
+}
+exports.start = start;
+~~~
 
 同时，我们会相应扩展 index.js，使得路由函数可以被注入到服务器中：
 
 ## index.js 文件代码：
 
-var server = require("./server"); var router = require("./router");  server.start(router.route);
+~~~js
+var server = require("./server");
+var router = require("./router");
+server.start(router.route);
+~~~
 
 在这里，我们传递的函数依旧什么也没做。
 
 如果现在启动应用（node index.js，始终记得这个命令行），随后请求一个URL，你将会看到应用输出相应的信息，这表明我们的HTTP服务器已经在使用路由模块了，并会将请求的路径传递给路由：
 
-```
+```bash
 $ node index.js
 Server has started.
 ```
 
 以上输出已经去掉了比较烦人的 /favicon.ico 请求相关的部分。
 
-浏览器访问 **http://127.0.0.1:8888/**，输出结果如下：
+浏览器访问 **http://127.0.0.1:8888/**

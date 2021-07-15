@@ -1,6 +1,20 @@
-# Node.js Stream(流)
+# 10-Node.js Stream(流)-20210714
 
 Stream 是一个抽象接口，Node 中有很多对象实现了这个接口。例如，对http 服务器发起请求的request 对象就是一个 Stream，还有stdout（标准输出）。
+
+笔记：Stream 主要用于文件读写的操作，是 fs 模块的方法。支持：
+
+读取文件（文件变成字符串，fs.createReadStream('string')）
+
+写入文件（字符串写入文件, fs.createWriteStream('filename')）
+
+管道操作（把一个文件内容获取，然后写入另一个文件，(fs.createReadStream('filename')).pipe(fs.createWriteStream)）
+
+链式操作（压缩解压缩，获取一个文件内容，压缩，写入另一个文件），增加一个管道 pipe(zlib.createGunzip())
+
+
+
+本教程会为大家介绍常用的流操作。
 
 Node.js，Stream 有四种流类型：
 
@@ -16,10 +30,6 @@ Node.js，Stream 有四种流类型：
 - **error** - 在接收和写入过程中发生错误时触发。
 - **finish** - 所有数据已被写入到底层系统时触发。
 
-本教程会为大家介绍常用的流操作。
-
-------
-
 ## 从流中读取数据
 
 创建 input.txt 文件，内容如下：
@@ -30,7 +40,7 @@ Node.js，Stream 有四种流类型：
 
 创建 main.js 文件, 代码如下：
 
-```
+```js
 var fs = require("fs");
 var data = '';
 
@@ -63,13 +73,13 @@ console.log("程序执行完毕");
 菜鸟教程官网地址：www.runoob.com
 ```
 
-------
+
 
 ## 写入流
 
 创建 main.js 文件, 代码如下：
 
-```
+```js
 var fs = require("fs");
 var data = '菜鸟教程官网地址：www.runoob.com';
 
@@ -109,7 +119,7 @@ $ cat output.txt
 菜鸟教程官网地址：www.runoob.com
 ```
 
-------
+
 
 ## 管道流
 
@@ -123,16 +133,9 @@ $ cat output.txt
 
 以下实例我们通过读取一个文件内容并将内容写入到另外一个文件中。
 
-设置 input.txt 文件内容如下：
-
-```
-菜鸟教程官网地址：www.runoob.com
-管道流操作实例
-```
-
 创建 main.js 文件, 代码如下：
 
-```
+```js
 var fs = require("fs");
 
 // 创建一个可读流
@@ -163,7 +166,7 @@ $ cat output.txt
 管道流操作实例
 ```
 
-------
+
 
 ## 链式流
 
@@ -173,7 +176,7 @@ $ cat output.txt
 
 创建 compress.js 文件, 代码如下：
 
-```
+```js
 var fs = require("fs");
 var zlib = require('zlib');
 
@@ -196,7 +199,7 @@ $ node compress.js
 
 接下来，让我们来解压该文件，创建 decompress.js 文件，代码如下：
 
-```
+```js
 var fs = require("fs");
 var zlib = require('zlib');
 

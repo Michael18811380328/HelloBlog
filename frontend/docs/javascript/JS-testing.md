@@ -1,13 +1,4 @@
----
-layout: post
-title:  "JavaScript testing"
-date:   2019-04-20 17:59:11 +0800
-categories: jekyll update
----
-
 # JavaScript测试
-
-## 概述
 
 Web应用程序越来越复杂，这意味着有更多的可能出错。测试是帮助我们提高代码质量、降低错误的最好方法和工具之一。
 

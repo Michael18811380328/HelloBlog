@@ -1,4 +1,4 @@
-# Node.js 回调函数
+# 06-Node.js 回调函数-20210711
 
 Node.js 异步编程的直接体现就是回调。
 
@@ -10,12 +10,10 @@ Node.js 异步编程的直接体现就是回调。
 
 回调函数一般作为函数的最后一个参数出现：
 
-```
+```js
 function foo1(name, age, callback) { }
 function foo2(value, callback1, callback2) { }
 ```
-
-------
 
 ## 阻塞代码实例
 
@@ -27,7 +25,7 @@ Michael loves nodeJS
 
 创建 main.js 文件, 代码如下：
 
-```
+```js
 var fs = require("fs");
 
 var data = fs.readFileSync('input.txt');
@@ -45,7 +43,7 @@ Michael loves nodeJS
 程序执行结束!
 ```
 
-------
+
 
 ## 非阻塞代码实例
 
@@ -57,7 +55,7 @@ Michael loves nodeJS
 
 创建 main.js 文件, 代码如下：
 
-```
+```js
 var fs = require("fs");
 
 fs.readFile('input.txt', function (err, data) {

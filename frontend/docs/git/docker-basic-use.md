@@ -18,6 +18,7 @@ docker-compose up
 # 可以从 YML 文件配置中创建并启动所有服务
 
 docker-machine
+# 可以创建查看虚拟机（详见 https://www.runoob.com/docker/docker-machine.html）当前没有用到
 ~~~
 
 运行一个镜像（如果没有就会联网安装）
@@ -40,11 +41,16 @@ docker run --detach --publish=80:80 --name=webserver nginx
 
 ~~~bash
 docker ps
+
 # 等价于
 docker container ls
 ~~~
 
 停止容器
+
+删除已有容器
+
+删除已有镜像
 
 ~~~bash
 docker container stop webserver
@@ -52,7 +58,7 @@ docker container rm webserver
 docker image rm nginx
 ~~~
 
-删除已有容器和镜像操作
+因为 docker 镜像会定期更新，所以本地开发需要根据镜像发布，然后定期更新镜像操作
 
 ~~~bash
 # 查看当前的镜像的ID(公司的，helloworld nginx)

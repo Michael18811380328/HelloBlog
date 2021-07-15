@@ -1,10 +1,3 @@
----
-layout: post
-title:  "JS translation"
-date:   2019-04-13 17:59:11 +0800
-categories: jekyll update
----
-
 # JS实现翻译的多种方案
 
 1、language.js 库
@@ -25,8 +18,6 @@ $(function(){
   script.type="text/javascript";
   script.src="js/translate.js";
   document.getElementsByTagName('head')[0].appendChild(script);
-  
-
   var value = sessionStorage.getItem("language");
   document.onreadystatechange = function () {
     if (document.readyState == 'complete') {

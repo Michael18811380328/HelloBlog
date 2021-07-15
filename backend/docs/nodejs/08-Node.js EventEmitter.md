@@ -1,35 +1,39 @@
-# Node.js EventEmitter
+# 08-Node.js EventEmitter-20210711
 
 Node.js 所有的异步 I/O 操作在完成时都会发送一个事件到事件队列。
 
 Node.js 里面的许多对象都会分发事件：一个 net.Server 对象会在每次有新连接时触发一个事件， 一个 fs.readStream 对象会在文件被打开的时候触发一个事件。 所有这些产生事件的对象都是 events.EventEmitter 的实例。
 
-------
-
 ## EventEmitter 类
 
-events 模块只提供了一个对象： events.EventEmitter。EventEmitter 的核心就是事件触发与事件监听器功能的封装。
+events 模块只提供了一个对象： events.EventEmitter。EventEmitter 的核心就是==事件触发与事件监听器功能==的封装。
 
 你可以通过require("events");来访问该模块。
 
-```
+```js
 // 引入 events 模块
 var events = require('events');
 // 创建 eventEmitter 对象
 var eventEmitter = new events.EventEmitter();
 ```
 
-EventEmitter 对象如果在实例化时发生错误，会触发 error 事件。当添加新的监听器时，newListener 事件会触发，当监听器被移除时，removeListener 事件被触发。
+EventEmitter 对象如果在实例化时发生错误，会触发 error 事件。
+
+当添加新的监听器时，newListener 事件会触发。
+
+当监听器被移除时，removeListener 事件被触发。
 
 下面我们用一个简单的例子说明 EventEmitter 的用法：
 
-```
+```js
 //event.js 文件
 var EventEmitter = require('events').EventEmitter; 
 var event = new EventEmitter(); 
+
 event.on('some_event', function() { 
     console.log('some_event 事件触发'); 
 }); 
+
 setTimeout(function() { 
     event.emit('some_event'); 
 }, 1000); 
@@ -44,22 +48,28 @@ $ node event.js
 some_event 事件触发
 ```
 
-EventEmitter 的每个事件由一个事件名和若干个参数组成，事件名是一个字符串，通常表达一定的语义。对于每个事件，EventEmitter 支持 若干个事件监听器。
+EventEmitter 的每个事件由一个事件名和若干个参数组成，事件名是一个字符串，通常表达一定的语义。
+
+对于每个事件，EventEmitter 支持 ==若干个事件监听器==。
 
 当事件触发时，注册到这个事件的事件监听器被依次调用，事件参数作为回调函数参数传递。
 
 让我们以下面的例子解释这个过程：
 
-```
+```js
 //event.js 文件
 var events = require('events'); 
+
 var emitter = new events.EventEmitter(); 
+
 emitter.on('someEvent', function(arg1, arg2) { 
     console.log('listener1', arg1, arg2); 
 }); 
+
 emitter.on('someEvent', function(arg1, arg2) { 
     console.log('listener2', arg1, arg2); 
 }); 
+
 emitter.emit('someEvent', 'arg1 参数', 'arg2 参数'); 
 ```
 
@@ -77,10 +87,12 @@ listener2 arg1 参数 arg2 参数
 
 EventEmitter 提供了多个属性，如 **on** 和 **emit**。**on** 函数用于绑定事件函数，**emit** 属性用于触发一个事件。接下来我们来具体看下 EventEmitter 的属性介绍。
 
+(emit，发出发射，类似 fire)
+
 ### 方法
 
 | 序号 | 方法 & 描述                                                  |
-| :--- | :----------------------------------------------------------- |
+| :--- | :----- |
 | 1    | **addListener(event, listener)** 为指定事件添加一个监听器到监听器数组的尾部。 |
 | 2    | **on(event, listener)** 为指定事件注册一个监听器，接受一个字符串 event 和一个回调函数。`server.on('connection', function (stream) {  console.log('someone connected!'); });` |
 | 3    | **once(event, listener)** 为指定事件注册一个单次监听器，即 监听器最多只会触发一次，触发后立刻解除该监听器。`server.once('connection', function (stream) {  console.log('Ah, we have our first user!'); });` |
@@ -93,18 +105,17 @@ EventEmitter 提供了多个属性，如 **on** 和 **emit**。**on** 函数用�
 ### 类方法
 
 | 序号 | 方法 & 描述                                                  |
-| :--- | :----------------------------------------------------------- |
+| :--- | :----- |
 | 1    | **listenerCount(emitter, event)** 返回指定事件的监听器数量。 |
 
-```
-events.EventEmitter.listenerCount(emitter, eventName) //已废弃，不推荐
+```js
 events.emitter.listenerCount(eventName) //推荐
 ```
 
 ### 事件
 
 | 序号 | 事件 & 描述                                                  |
-| :--- | :----------------------------------------------------------- |
+| :--- | :----- |
 | 1    | **newListener** **event** - 字符串，事件名称**listener** - 处理事件函数该事件在添加新监听器时被触发。 |
 | 2    | **removeListener** **event** - 字符串，事件名称**listener** - 处理事件函数从指定监听器数组中删除一个监听器。需要注意的是，此操作将会改变处于被删监听器之后的那些监听器的索引。 |
 
@@ -114,7 +125,7 @@ events.emitter.listenerCount(eventName) //推荐
 
 创建 main.js 文件，代码如下：
 
-```
+```js
 var events = require('events');
 var eventEmitter = new events.EventEmitter();
 
@@ -166,7 +177,7 @@ listener1 不再受监听。
 程序执行完毕。
 ```
 
-------
+
 
 ## error 事件
 
@@ -176,7 +187,7 @@ EventEmitter 定义了一个特殊的事件 error，它包含了错误的语义�
 
 我们一般要为会触发 error 事件的对象设置监听器，避免遇到错误后整个程序崩溃。例如：
 
-```
+```js
 var events = require('events'); 
 var emitter = new events.EventEmitter(); 
 emitter.emit('error'); 
@@ -184,7 +195,7 @@ emitter.emit('error');
 
 运行时会显示以下错误：
 
-```
+```bash
 node.js:201 
 throw e; // process.nextTick error, or 'error' event on first tick 
 ^ 
@@ -199,7 +210,7 @@ at Array.0 (module.js:479:10)
 at EventEmitter._tickCallback (node.js:192:40) 
 ```
 
-------
+
 
 ## 继承 EventEmitter
 

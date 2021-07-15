@@ -1,4 +1,4 @@
-# 02-Node.js 安装配置（ok）
+# 02-Node.js 安装配置-20210711
 
 本章节我们将向大家介绍在 Windows 和 Linux 上安装 Node.js 的方法。
 
@@ -6,13 +6,9 @@
 
 Node.js 安装包及源码下载地址为：https://nodejs.org/en/download/。
 
-![nodejs_download](https://www.runoob.com/wp-content/uploads/2014/03/download-page.jpg)
-
 你可以根据不同平台系统选择你需要的 Node.js 安装包。
 
 **注意：**Linux 上安装 Node.js 需要安装 Python 2.6 或 2.7 ，不建议安装 Python 3.0 以上版本。
-
-------
 
 ## Linux 上安装 Node.js
 
@@ -20,17 +16,17 @@ Node.js 安装包及源码下载地址为：https://nodejs.org/en/download/。
 
 Node 官网已经把 linux 下载版本更改为已编译好的版本了，我们可以直接下载解压后使用：
 
-```
-# wget https://nodejs.org/dist/v10.9.0/node-v10.9.0-linux-x64.tar.xz    // 下载
-# tar xf  node-v10.9.0-linux-x64.tar.xz       // 解压
-# cd node-v10.9.0-linux-x64/                  // 进入解压目录
-# ./bin/node -v                               // 执行node命令 查看版本
+```bash
+wget https://nodejs.org/dist/v10.9.0/node-v10.9.0-linux-x64.tar.xz    // 下载
+tar xf node-v10.9.0-linux-x64.tar.xz       // 解压
+cd node-v10.9.0-linux-x64/                  // 进入解压目录
+./bin/node -v                               // 执行node命令 查看版本
 v10.9.0
 ```
 
 解压文件的 bin 目录底下包含了 node、npm 等命令，我们可以使用 ln 命令来设置软连接：
 
-```
+```bash
 ln -s /usr/software/nodejs/bin/npm   /usr/local/bin/ 
 ln -s /usr/software/nodejs/bin/node   /usr/local/bin/
 ```
@@ -41,22 +37,20 @@ ln -s /usr/software/nodejs/bin/node   /usr/local/bin/
 
 在 Github 上获取 Node.js 源码：
 
-
-
-```
+```bash
 $ sudo git clone https://github.com/nodejs/node.git
 Cloning into 'node'...
 ```
 
 修改目录权限：
 
-```
+```bash
 $ sudo chmod -R 755 node
 ```
 
 使用 **./configure** 创建编译文件，并按照：
 
-```
+```bash
 $ cd node
 $ sudo ./configure
 $ sudo make
@@ -65,7 +59,7 @@ $ sudo make install
 
 查看 node 版本：
 
-```
+```bash
 $ node --version
 v0.10.25
 ```
@@ -139,7 +133,7 @@ npm模块安装路径
 
 **注：**Nodejs 官网提供了编译好的 Linux 二进制包，你也可以下载下来直接应用。
 
-------
+
 
 ## Mac OS 上安装
 
@@ -191,5 +185,7 @@ n
 # 现在本机安装三个版本，通过键盘选择使用的版本
 node/8.16.0
 node/12.18.4
+node/14.16.1
 node/15.9.0
 ~~~
+

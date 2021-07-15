@@ -1,4 +1,4 @@
-# Node.js模块系统
+# 11-Node.js模块系统-20210714
 
 为了让Node.js的文件可以相互调用，Node.js提供了一个简单的模块系统。
 
@@ -8,7 +8,7 @@
 
 在 Node.js 中，创建一个模块非常简单，如下我们创建一个 **main.js** 文件，代码如下:
 
-```
+```js
 var hello = require('./hello');
 hello.world();
 ```
@@ -19,7 +19,7 @@ Node.js 提供了 exports 和 require 两个对象，其中 exports 是模块公
 
 接下来我们就来创建 hello.js 文件，代码如下：
 
-```
+```js
 exports.world = function() {
   console.log('Hello World');
 }
@@ -29,7 +29,7 @@ exports.world = function() {
 
 有时候我们只是想把一个对象封装到模块中，格式如下：
 
-```
+```js
 module.exports = function() {
   // ...
 }
@@ -37,7 +37,7 @@ module.exports = function() {
 
 例如:
 
-```
+```js
 //hello.js 
 function Hello() { 
     var name; 
@@ -53,7 +53,7 @@ module.exports = Hello;
 
 这样就可以直接获得这个对象了：
 
-```
+```js
 //main.js 
 var Hello = require('./hello'); 
 hello = new Hello(); 
@@ -63,13 +63,13 @@ hello.sayHello();
 
 模块接口的唯一变化是使用 module.exports = Hello 代替了exports.world = function(){}。 在外部引用该模块时，其接口对象就是要输出的 Hello 对象本身，而不是原先的 exports。
 
-------
+
 
 ## 服务端的模块放在哪里
 
 也许你已经注意到，我们已经在代码中使用了模块了。像这样：
 
-```
+```js
 var http = require("http");
 
 ...
@@ -110,7 +110,7 @@ require方法接受以下几种参数的传递：
 
 在路径 Y 下执行 require(X) 语句执行顺序：
 
-```
+```js
 1. 如果 X 是内置模块
    a. 返回内置模块
    b. 停止执行
@@ -163,38 +163,24 @@ NODE_MODULES_PATHS(START)
 >
 > 如果要对外暴露属性或方法，就用 **exports** 就行，要暴露对象(类似class，包含了很多属性和方法)，就用 **module.exports**。
 
- [Node.js Stream](https://www.runoob.com/nodejs/nodejs-stream.html)
+## 笔记
 
-[Node.js 函数](https://www.runoob.com/nodejs/nodejs-function.html) 
+不建议同时使用 exports 和 module.exports。
 
-## 1 篇笔记 写笔记
+如果先使用 exports 对外暴露属性或方法，再使用 module.exports 暴露对象，会使得 exports 上暴露的属性或者方法失效。
 
-1. 
+原因在于，exports 仅仅是 module.exports 的一个引用。在 nodejs 中，是这么设计 require 函数的：
 
-     mapbar_front
+```js
+function require(...){
+  var module = {exports: {}};
 
-    619***632@qq.com
-
-   30
-
-   不建议同时使用 exports 和 module.exports。
-
-   如果先使用 exports 对外暴露属性或方法，再使用 module.exports 暴露对象，会使得 exports 上暴露的属性或者方法失效。
-
-   原因在于，exports 仅仅是 module.exports 的一个引用。在 nodejs 中，是这么设计 require 函数的：
-
-   ```
-   function require(...){
-     var module = {exports: {}};
-   
-     ((module, exports) => {
-       function myfn () {}
-       // 这个myfn就是我们自己的代码
-       exports.myfn = myfn; // 这里是在原本的对象上添加了一个myfn方法。
-       module.exports = myfn;// 这个直接把当初的对象进行覆盖。
-     })(module,module.exports)
-     return module.exports;
-   }
-   ```
-
-   [mapbar_front](javascript:;)  mapbar_front 619***632@qq.com2个月前 (02-09)
+  ((module, exports) => {
+    function myfn () {}
+    // 这个myfn就是我们自己的代码
+    exports.myfn = myfn; // 这里是在原本的对象上添加了一个myfn方法。
+    module.exports = myfn;// 这个直接把当初的对象进行覆盖。
+  })(module,module.exports)
+  return module.exports;
+}
+```

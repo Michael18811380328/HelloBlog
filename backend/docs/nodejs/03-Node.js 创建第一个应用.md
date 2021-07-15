@@ -1,4 +1,4 @@
-# 03-Node.js 创建第一个应用(OK)
+# 03-Node.js 创建第一个应用-20210711
 
 使用 Node.js 时，我们不仅仅在实现一个应用，同时还实现了整个 HTTP 服务器。事实上，我们的 Web 应用以及对应的 Web 服务器基本上是一样的。
 
@@ -7,8 +7,6 @@
 1. 引入 required 模块：我们可以使用 require 指令来载入 Node.js 模块。
 2. 创建服务器：服务器可以监听客户端的请求，类似于 Apache 、Nginx 等 HTTP 服务器。
 3. 接收请求与响应请求：服务器很容易创建，客户端可以使用浏览器或终端发送 HTTP 请求，服务器接收请求后返回响应数据。
-
-------
 
 ## 创建 Node.js 应用
 
@@ -30,12 +28,10 @@ var http = require("http");
 var http = require('http');
 
 http.createServer(function (request, response) {
-
     // 发送 HTTP 头部 
     // HTTP 状态值: 200 : OK
     // 内容类型: text/plain
     response.writeHead(200, {'Content-Type': 'text/plain'});
-
     // 发送响应数据 "Hello World"
     response.end('Hello World\n');
 }).listen(8888);
@@ -54,8 +50,6 @@ Server running at http://127.0.0.1:8888/
 ```
 
 接下来，打开浏览器访问 http://127.0.0.1:8888/，你会看到一个写着 "Hello World"的网页。
-
-![img](https://www.runoob.com/wp-content/uploads/2014/03/nodejs-helloworld.jpg)
 
 **分析Node.js 的 HTTP 服务器：**
 

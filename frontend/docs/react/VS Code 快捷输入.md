@@ -594,3 +594,4 @@ export default WrappedComponent => {
   return hocComponent
 }
 ~~~
+

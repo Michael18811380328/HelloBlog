@@ -1,4 +1,4 @@
-# Node.js REPL(交互式解释器)
+# 05-Node.js REPL(交互式解释器)-20210711
 
 Node.js REPL(Read Eval Print Loop:交互式解释器) 表示一个电脑的环境，类似 Window 系统的终端或 Unix/Linux shell，我们可以在终端中输入命令，并接收系统的响应。
 
@@ -15,7 +15,7 @@ Node 的交互式解释器可以很好的调试 Javascript 代码。
 
 接下来让我们在 Node.js REPL 的命令行窗口中执行简单的数学运算：
 
-```
+```bash
 $ node
 > 1 +4
 5
@@ -27,7 +27,6 @@ $ node
 3
 > 1 + ( 2 * 3 ) - 4
 3
->
 ```
 
 ### 使用变量
@@ -38,7 +37,7 @@ $ node
 
 使用 **var** 关键字的变量可以使用 console.log() 来输出变量。
 
-```
+```bash
 $ node
 > x = 10
 10
@@ -55,9 +54,7 @@ undefined
 
 Node REPL 支持输入多行表达式，这就有点类似 JavaScript。接下来让我们来执行一个 do-while 循环：
 
-
-
-```
+```bash
 $ node
 > var x = 0
 undefined
@@ -80,7 +77,7 @@ undefined
 
 你可以使用下划线(_)获取上一个表达式的运算结果：
 
-```
+```bash
 $ node
 > var x = 10
 undefined
@@ -96,8 +93,6 @@ undefined
 >
 ```
 
-------
-
 ## REPL 命令
 
 - **ctrl + c** - 退出当前终端。
@@ -111,4 +106,3 @@ undefined
 - **.save \*filename\*** - 保存当前的 Node REPL 会话到指定文件
 - **.load \*filename\*** - 载入当前 Node REPL 会话的文件内容。
 
-------

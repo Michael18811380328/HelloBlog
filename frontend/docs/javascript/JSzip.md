@@ -40,3 +40,4 @@ zip.generateAsync({type:"blob"}).then(function(content) {
 ~~~
 
 这样就可以将浏览器中的文本（文件）保存成zip格式存储到本地了。
+
