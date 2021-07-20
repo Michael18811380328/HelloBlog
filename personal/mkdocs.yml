@@ -62,8 +62,10 @@ extra:
 # Page tree
 nav:
     - About:        
-        - '说明': 'index.md'
+        - '博客介绍': 'index.md'
+        - '发布日志': 'changelog.md'
         - '学习日志': 'log.md'
+        - '博客 mkdocs 配置说明': 'mkdocs.md'
     - 其他日志存档:
         - 'JS-cache.md': 'old/JS-cache.md'
         - 'JS-main-algre.md': 'old/JS-main-algre.md'

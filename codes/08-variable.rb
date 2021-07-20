@@ -53,7 +53,6 @@ cust1 = Custom.new("123", "michale", "7th rd")
 cust1.display()
 cust1.total()
 
-
 # 伪变量：特殊的变量，不能赋值
 # self 当前方法的接收器对象
 # true

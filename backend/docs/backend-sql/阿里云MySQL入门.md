@@ -1,4 +1,4 @@
-# MySQL 数据库入门学习
+# MySQL 数据库入门学习-2021-07-23
 
 阿里云大学 链接地址：https://edu.aliyun.com/course/153/lesson/list
 
@@ -9,7 +9,7 @@ mysql 数据库的简单介绍，安装配置MYSQL，基本的SQL命令。
 SQL：一种编程语言，strcutured query language 结构化的查询语言，主要用于数据库中的增删改查
 
 ~~~mysql
-select * from tb
+select * from db
 ~~~
 
 MySQL 关系型数据库，是数据库的一种（其他的Oracle）。MYSQL是开源数据库。
@@ -73,8 +73,10 @@ GUI
 这个是因为/usr/local/bin目录下缺失mysql导致，只需要一下方法建立软链接，即可以解决：
 把mysql安装目录，比如MYSQLPATH/bin/mysql，映射到/usr/local/bin目录下： 
 
-\# cd /usr/local/bin
-\# ln -fs /MYSQLPATH/bin/mysql mysql
+~~~bash
+cd /usr/local/bin
+ln -fs /MYSQLPATH/bin/mysql mysql
+~~~
 
 还有其它常用命令mysqladmin、mysqldump等不可用时候都可按用此方法解决。
 注：其中MYSQLPATH是mysql的实际安装路径（MAC 默认路径 /usr/local/mysql/bin/mysql）
@@ -91,7 +93,7 @@ Mac 的文件路径是 /usr/local/mysql/my.cof 默认的配置文件是空的
 
 可以配置字符集，缓存大小等
 
-~~~txt
+~~~mysql
 [client]
 default-character-set=utf8
 # 添加字符集，避免乱码
@@ -188,7 +190,7 @@ describe account;
 create database Michael;
 use Michael;
 show tables;
-CREATE TABLE gc(...);
+CREATE TABLE gc(key text);
 describe gc;
 drop table gc;
 ~~~

@@ -35,12 +35,12 @@ class Converter
 
     # puts command 执行命令
     %x[ #{shell_command} ]
-  end  
+  end
 end
 
 # Be careful not to use spaces.
 # 这里设置输入和输出文件的目录：注意文件路径不要使用空格
-input  = File.join(APP_ROOT, 'media', 'Circle.mov')
+input = File.join(APP_ROOT, 'media', 'Circle.mov')
 output = File.join(APP_ROOT, 'media', 'Circle.gif')
 
 Converter.new(input, output)

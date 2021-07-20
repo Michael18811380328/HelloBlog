@@ -11,16 +11,13 @@
 7. 散列(哈希) hash
 8. 图 graph
 
-
-
 这部分内容需要不断复习，核心代码自己抄三次，需要默写关键逻辑
 
 参考书
 
-《学习JavaScript数据结构与算法》巴西人
+《学习JavaScript数据结构与算法》巴西 格罗纳（Loiane Groner）
 
 《实用数据结构》清华大学林小茶写（C语言）
-
 
 
 ## 第一章 概述
@@ -1128,6 +1125,7 @@ function fibonacci(n) {
   if (n === 1 || n === 2) return 1;
   return fibonacci(n - 1) + fibonacci(n - 2);
 }
+
 // 非递归写法
 function fib(num) {
   let result = 1;
@@ -1143,19 +1141,41 @@ function fib(num) {
 
 递归代码量很少，更容易理解；难点是边界条件和开始条件。
 
+### 迭代
+
+函数的递归可能占用大量内存。每次进行递归，都需要临时存储父函数的计算结果，在某些情况下会造成内存问题，可以使用迭代法解决。
+
+递归类似 DFS，迭代类似 BFS。迭代使用一个临时的栈存储当时的结果，每次执行一次计算后，判断当前结果是否满足条件。
+
+递归和迭代可以互相转换。
+
+~~~js
+let stack = [];
+while (stack.length > 0) {
+  let curr = stack.pop();
+  let result = fn(curr);
+  if (result) {
+    stack.push(result);
+  }
+}
+~~~
+
 ### 动态规划
 
 分而治之：把一个复杂的问题分解成很多无关联的小问题（例如接雨水）。
 
 动态规划：把一个复杂的问题分解成很多关联的小问题（识别子问题和边界条件）下面是典型问题
 
-~~~markdown
 - 背包问题:给出一组项目，各自有值和容量，目标是找出总值最大的项目的集合。这个 问题的限制是，总容量必须小于等于“背包”的容量。
+
 - 最长公共子序列:找出一组序列的最长公共子序列(可由另一序列删除元素但不改变余 下元素的顺序而得到)。
+
 - 矩阵链相乘:给出一系列矩阵，目标是找到这些矩阵相乘的最高效办法(计算次数尽可 能少)。相乘操作不会进行，解决方案是找到这些矩阵各自相乘的顺序。
+
 - 硬币找零:给出面额为d1...dn的一定数量的硬币和要找零的钱数，找出有多少种找零的 方法。
+
 - 图的全源最短路径:对所有顶点对(u, v)，找出从顶点u到顶点v的最短路径。
-~~~
+
 
 ### 最少硬币找零算法
 
@@ -1244,8 +1264,7 @@ function index(arr, target) {
 常见的算法复杂度的计算
 
 
-
-最后列出算法比赛的网站
+### 算法比赛网站
 
 - UVa Online Judge(http://uva.onlinejudge.org/):这个网站包含了世界各大赛事的题目， 包括由IBM赞助的ACM国际大学生程序竞赛 ICPC 
 
@@ -1253,18 +1272,18 @@ function index(arr, target) {
 
   持用更多语言解题(包括JavaScript)。 
 
--   Coder Byte(http://coderbyte.com/):这个网站包含了74个可以用JavaScript解答的题目(简 
+-  Coder Byte(http://coderbyte.com/):这个网站包含了74个可以用JavaScript解答的题目(简 
 
   单、中等难度和非常困难)。 
 
--   Project Euler(https://projecteuler.net/):这个网站包含了一系列数学/计算机的编程题目。 
+-  Project Euler(https://projecteuler.net/):这个网站包含了一系列数学/计算机的编程题目。 
 
   你所要做的就是输入那些题目的答案，不过我们可以用算法来找到正确的解答。 Hacker Rank(https://www.hackerrank.com):这个网站包含了263个挑战，分为16个类别 
 
   (可以应用本书中的算法和更多其他算法)。它也支持JavaScript和其他语言。 
 
--   Code Chef(http://www.codechef.com/):这个网站包含一些题目，并会举办在线比赛。 
+-  Code Chef(http://www.codechef.com/):这个网站包含一些题目，并会举办在线比赛。 
 
--   Top Coder(http://www.topcoder.com/):此网站会举办算法联赛，这些联赛通常由NASA、 
+-  Top Coder(http://www.topcoder.com/):此网站会举办算法联赛，这些联赛通常由NASA、 
 
   Google、Yahoo!、Amazon和Facebook这样的公司赞助。参加其中一些赛事，你可以获得 到赞助公司工作的机会，而参与另一些赛事会赢得奖金。这个网站也提供很棒的解题和 算法教程。 

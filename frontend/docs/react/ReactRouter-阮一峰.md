@@ -1,6 +1,6 @@
 # 阮一峰 React Router 教程
 
-本文介绍 React 体系的一个重要部分：路由库[`React-Router`](https://github.com/reactjs/react-router)。它是官方维护的，事实上也是唯一可选的路由库。它通过管理 URL，实现组件的切换和状态的变化，开发复杂的应用几乎肯定会用到。
+本文介绍 React 体系的一个重要部分：路由库 [React-Router](https://github.com/reactjs/react-router)。它是官方维护的，事实上也是唯一可选的路由库。它通过管理 URL，实现组件的切换和状态的变化，开发复杂的应用几乎肯定会用到。
 
 另外，我没有准备示例库，因为官方的[示例库](https://github.com/reactjs/react-router-tutorial/tree/master/lessons)非常棒，由浅入深，分成14步，每一步都有详细的代码解释。我强烈建议你先跟着做一遍，然后再看下面的API讲解。
 

@@ -292,4 +292,3 @@ const props = {};
 
 ReactDOM.render(<ExampleApp {...props} />, document.getElementById('main'))
 ~~~
-

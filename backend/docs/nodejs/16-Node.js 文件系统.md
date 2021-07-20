@@ -1,12 +1,12 @@
-# Node.js 文件系统
+# 16-Node.js 文件系统-20210721
 
 Node.js 提供一组类似 UNIX（POSIX）标准的文件操作API。 Node 导入文件系统模块(fs)语法如下所示：
 
-```
+```js
 var fs = require("fs")
 ```
 
-------
+
 
 ## 异步和同步
 
@@ -27,15 +27,15 @@ Node.js 文件系统（fs 模块）模块中的方法均有异步和同步版本
 
 创建 file.js 文件, 代码如下：
 
-```
+```js
 var fs = require("fs");
 
 // 异步读取
 fs.readFile('input.txt', function (err, data) {
-   if (err) {
-       return console.error(err);
-   }
-   console.log("异步读取: " + data.toString());
+  if (err) {
+    return console.error(err);
+  }
+  console.log("异步读取: " + data.toString());
 });
 
 // 同步读取
@@ -59,7 +59,7 @@ $ node file.js
 
 接下来，让我们来具体了解下 Node.js 文件系统的方法。
 
-------
+
 
 ## 打开文件
 
@@ -67,7 +67,7 @@ $ node file.js
 
 以下为在异步模式下打开文件的语法格式：
 
-```
+```js
 fs.open(path, flags[, mode], callback)
 ```
 
@@ -83,7 +83,7 @@ fs.open(path, flags[, mode], callback)
 flags 参数可以是以下值：
 
 | Flag | 描述                                                   |
-| :--- | :----------------------------------------------------- |
+| :--- | :----- |
 | r    | 以读取模式打开文件。如果文件不存在抛出异常。           |
 | r+   | 以读写模式打开文件。如果文件不存在抛出异常。           |
 | rs   | 以同步的方式读取文件。                                 |
@@ -101,15 +101,15 @@ flags 参数可以是以下值：
 
 接下来我们创建 file.js 文件，并打开 input.txt 文件进行读写，代码如下所示：
 
-```
+```js
 var fs = require("fs");
 
 // 异步打开文件
 console.log("准备打开文件！");
 fs.open('input.txt', 'r+', function(err, fd) {
-   if (err) {
-       return console.error(err);
-   }
+  if (err) {
+    return console.error(err);
+  }
   console.log("文件打开成功！");     
 });
 ```
@@ -122,7 +122,7 @@ $ node file.js
 文件打开成功！
 ```
 
-------
+
 
 ## 获取文件信息
 
@@ -143,18 +143,18 @@ fs.stat(path, callback)
 
 fs.stat(path)执行后，会将stats类的实例返回给其回调函数。可以通过stats类中的提供方法判断文件的相关属性。例如判断是否为文件：
 
-```
+```js
 var fs = require('fs');
 
 fs.stat('/Users/liuht/code/itbilu/demo/fs.js', function (err, stats) {
-    console.log(stats.isFile());         //true
+  console.log(stats.isFile());         //true
 })
 ```
 
 stats类中的方法有：
 
 | 方法                      | 描述                                                         |
-| :------------------------ | :----------------------------------------------------------- |
+| : | :----- |
 | stats.isFile()            | 如果是文件返回 true，否则返回 false。                        |
 | stats.isDirectory()       | 如果是目录返回 true，否则返回 false。                        |
 | stats.isBlockDevice()     | 如果是块设备返回 true，否则返回 false。                      |
@@ -167,7 +167,7 @@ stats类中的方法有：
 
 接下来我们创建 file.js 文件，代码如下所示：
 
-```
+```js
 var fs = require("fs");
 
 console.log("准备打开文件！");
@@ -207,7 +207,7 @@ $ node file.js
 是否为目录(isDirectory) ? false
 ```
 
-------
+
 
 ## 写入文件
 
@@ -215,7 +215,7 @@ $ node file.js
 
 以下为异步模式下写入文件的语法格式：
 
-```
+```js
 fs.writeFile(file, data[, options], callback)
 ```
 
@@ -234,7 +234,7 @@ writeFile 直接打开文件默认是 **w** 模式，所以如果文件存在，
 
 接下来我们创建 file.js 文件，代码如下所示：
 
-```
+```js
 var fs = require("fs");
 
 console.log("准备写入文件");
@@ -243,7 +243,7 @@ fs.writeFile('input.txt', '我是通 过fs.writeFile 写入文件的内容',  fu
        return console.error(err);
    }
    console.log("数据写入成功！");
-   console.log("--------我是分割线-------------")
+   console.log("--我是分割线-")
    console.log("读取写入的数据！");
    fs.readFile('input.txt', function (err, data) {
       if (err) {
@@ -260,12 +260,12 @@ fs.writeFile('input.txt', '我是通 过fs.writeFile 写入文件的内容',  fu
 $ node file.js 
 准备写入文件
 数据写入成功！
---------我是分割线-------------
+--我是分割线-
 读取写入的数据！
 异步读取文件数据: 我是通 过fs.writeFile 写入文件的内容
 ```
 
-------
+
 
 ## 读取文件
 
@@ -300,28 +300,29 @@ input.txt 文件内容为：
 
 接下来我们创建 file.js 文件，代码如下所示：
 
-```
+```js
 var fs = require("fs");
 var buf = new Buffer.alloc(1024);
 
 console.log("准备打开已存在的文件！");
+
 fs.open('input.txt', 'r+', function(err, fd) {
-   if (err) {
-       return console.error(err);
-   }
-   console.log("文件打开成功！");
-   console.log("准备读取文件：");
-   fs.read(fd, buf, 0, buf.length, 0, function(err, bytes){
-      if (err){
-         console.log(err);
-      }
-      console.log(bytes + "  字节被读取");
-      
-      // 仅输出读取的字节
-      if(bytes > 0){
-         console.log(buf.slice(0, bytes).toString());
-      }
-   });
+  if (err) {
+    return console.error(err);
+  }
+  console.log("文件打开成功！");
+  console.log("准备读取文件：");
+  fs.read(fd, buf, 0, buf.length, 0, function(err, bytes){
+    if (err){
+      console.log(err);
+    }
+    console.log(bytes + "  字节被读取");
+
+    // 仅输出读取的字节
+    if(bytes > 0){
+      console.log(buf.slice(0, bytes).toString());
+    }
+  });
 });
 ```
 
@@ -336,7 +337,7 @@ $ node file.js
 菜鸟教程官网地址：www.runoob.com
 ```
 
-------
+
 
 ## 关闭文件
 
@@ -367,7 +368,7 @@ input.txt 文件内容为：
 
 接下来我们创建 file.js 文件，代码如下所示：
 
-```
+```js
 var fs = require("fs");
 var buf = new Buffer.alloc(1024);
 
@@ -410,7 +411,7 @@ $ node file.js
 文件关闭成功
 ```
 
-------
+
 
 ## 截取文件
 
@@ -496,7 +497,7 @@ site:www.r
 文件关闭成功
 ```
 
-------
+
 
 ## 删除文件
 
@@ -547,7 +548,7 @@ $ node file.js
 
 再去查看 input.txt 文件，发现已经不存在了。
 
-------
+
 
 ## 创建目录
 
@@ -601,7 +602,7 @@ fs.mkdir('/tmp/a/apple', { recursive: true }, (err) => {
 });
 ```
 
-------
+
 
 ## 读取目录
 
@@ -649,7 +650,7 @@ test
 test.txt
 ```
 
-------
+
 
 ## 删除目录
 
@@ -701,14 +702,14 @@ $ node file.js
 ……
 ```
 
-------
+
 
 ## 文件模块方法参考手册
 
 以下为 Node.js 文件模块相同的方法列表：
 
 | 序号 | 方法 & 描述                                                  |
-| :--- | :----------------------------------------------------------- |
+| :--- | :----- |
 | 1    | **fs.rename(oldPath, newPath, callback)** 异步 rename().回调函数没有参数，但可能抛出异常。 |
 | 2    | **fs.ftruncate(fd, len, callback)** 异步 ftruncate().回调函数没有参数，但可能抛出异常。 |
 | 3    | **fs.ftruncateSync(fd, len)** 同步 ftruncate()               |

@@ -1,32 +1,33 @@
-# Node.js 常用工具
+# 15-Node.js 常用工具-20210720
 
 util 是一个Node.js 核心模块，提供常用函数的集合，用于弥补核心 JavaScript 的功能 过于精简的不足。
 
 使用方法如下：
 
-```
+```js
 const util = require('util');
 ```
 
-------
+
 
 ## util.callbackify
 
 **util.callbackify(original)** 将 `async` 异步函数（或者一个返回值为 `Promise` 的函数）转换成遵循异常优先的回调风格的函数，例如将 `(err, value) => ...` 回调作为最后一个参数。 在回调函数中，第一个参数为拒绝的原因（如果 `Promise` 解决，则为 `null`），第二个参数则是解决的值。
 
-## 实例
 
-**const** util = require('util');
+```js
+const util = require('util');
 
-async **function** fn() {
- **return** 'hello world';
+async function fn() {
+ return 'hello world';
 }
-**const** callbackFunction = util.callbackify(fn);
+const callbackFunction = util.callbackify(fn);
 
 callbackFunction((err, ret) => {
- **if** (err) **throw** err;
+ if (err) throw err;
  console.log(ret);
 });
+```
 
 以上代码输出结果为：
 
@@ -38,7 +39,7 @@ hello world
 
 null 在回调函数中作为一个参数有其特殊的意义，如果回调函数的首个参数为 Promise 拒绝的原因且带有返回值，且值可以转换成布尔值 false，这个值会被封装在 Error 对象里，可以通过属性 reason 获取。
 
-```
+```js
 function fn() {
   return Promise.reject(null);
 }
@@ -52,36 +53,45 @@ callbackFunction((err, ret) => {
 
 original 为 async 异步函数。该函数返回传统回调函数。
 
-------
+
 
 ## util.inherits
 
 **util.inherits(constructor, superConstructor)** 是一个实现对象间原型继承的函数。
 
-JavaScript 的面向对象特性是基于原型的，与常见的基于类的不同。JavaScript 没有提供对象继承的语言级别特性，而是通过原型复制来实现的。
+JavaScript 的面向对象特性是基于原型的，与常见的基于类的不同（Es6已经实现继承类）。
+
+JavaScript 没有提供对象继承的语言级别特性，而是通过原型复制来实现的。
 
 在这里我们只介绍 util.inherits 的用法，示例如下：
 
-```
+```js
 var util = require('util'); 
+
 function Base() { 
-    this.name = 'base'; 
-    this.base = 1991; 
-    this.sayHello = function() { 
+  this.name = 'base'; 
+  this.base = 1991; 
+  this.sayHello = function() { 
     console.log('Hello ' + this.name); 
-    }; 
+  }; 
 } 
+
 Base.prototype.showName = function() { 
-    console.log(this.name);
+  console.log(this.name);
 }; 
+
 function Sub() { 
-    this.name = 'sub'; 
-} 
+  this.name = 'sub'; 
+}
+
 util.inherits(Sub, Base); 
+
 var objBase = new Base(); 
+
 objBase.showName(); 
 objBase.sayHello(); 
 console.log(objBase); 
+
 var objSub = new Sub(); 
 objSub.showName(); 
 //objSub.sayHello(); 
@@ -90,7 +100,7 @@ console.log(objSub);
 
 我们定义了一个基础对象 Base 和一个继承自 Base 的 Sub，Base 有三个在构造函数内定义的属性和一个原型中定义的函数，通过util.inherits 实现继承。运行结果如下：
 
-```
+```js
 base 
 Hello base 
 { name: 'base', base: 1991, sayHello: [Function] } 
@@ -98,11 +108,11 @@ sub
 { name: 'sub' }
 ```
 
-**注意：**Sub 仅仅继承了Base 在原型中定义的函数，而构造函数内部创造的 base 属 性和 sayHello 函数都没有被 Sub 继承。
+**注意：**Sub 仅仅继承了Base 在原型中定义的函数，而构造函数内部创造的 base 属性和 sayHello 函数都没有被 Sub 继承。
 
 同时，在原型中定义的属性不会被 console.log 作 为对象的属性输出。如果我们去掉 objSub.sayHello(); 这行的注释，将会看到：
 
-```
+```bash
 node.js:201 
 throw e; // process.nextTick error, or 'error' event on first tick 
 ^ 
@@ -116,7 +126,7 @@ at Array.0 (module.js:479:10)
 at EventEmitter._tickCallback (node.js:192:40) 
 ```
 
-------
+
 
 ## util.inspect
 
@@ -128,14 +138,16 @@ depth 表示最大递归的层数，如果对象很复杂，你可以指定层�
 
 特别要指出的是，util.inspect 并不会简单地直接把对象转换为字符串，即使该对 象定义了 toString 方法也不会调用。
 
-```
+```js
 var util = require('util'); 
+
 function Person() { 
-    this.name = 'byvoid'; 
-    this.toString = function() { 
+  this.name = 'byvoid'; 
+  this.toString = function() { 
     return this.name; 
-    }; 
-} 
+  }; 
+}
+
 var obj = new Person(); 
 console.log(util.inspect(obj)); 
 console.log(util.inspect(obj, true)); 
@@ -143,7 +155,7 @@ console.log(util.inspect(obj, true));
 
 运行结果是：
 
-```
+```js
 Person { name: 'byvoid', toString: [Function] }
 Person {
   name: 'byvoid',
@@ -156,13 +168,13 @@ Person {
      [prototype]: { [constructor]: [Circular] } } }
 ```
 
-------
+
 
 ## util.isArray(object)
 
 如果给定的参数 "object" 是一个数组返回 true，否则返回 false。
 
-```
+```js
 var util = require('util');
 
 util.isArray([])
@@ -173,13 +185,13 @@ util.isArray({})
   // false
 ```
 
-------
+
 
 ## util.isRegExp(object)
 
 如果给定的参数 "object" 是一个正则表达式返回true，否则返回false。
 
-```
+```js
 var util = require('util');
 
 util.isRegExp(/some regexp/)
@@ -190,13 +202,13 @@ util.isRegExp({})
   // false
 ```
 
-------
+
 
 ## util.isDate(object)
 
 如果给定的参数 "object" 是一个日期返回true，否则返回false。
 
-```
+```js
 var util = require('util');
 
 util.isDate(new Date())
@@ -209,57 +221,4 @@ util.isDate({})
 
 更多详情可以访问 [http://nodejs.org/api/util.html](https://nodejs.org/api/util.html) 了解详细内容。
 
- [Node.js 全局对象](https://www.runoob.com/nodejs/nodejs-global-object.html)
 
-[Node.js 文件系统](https://www.runoob.com/nodejs/nodejs-fs.html) 
-
-## 1 篇笔记 写笔记
-
-1. 
-
-     qwq
-
-    106***4150@qq.com
-
-   20
-
-   **util.inhrits()** 可以继承原型方法（node 版本 V10.8.0）。
-
-   ```
-   let util = require('util');
-   function Base() {
-           this.name = 'name';
-           this.base = 1995;
-           this.sayHello = function() {
-                   console.log('hello ' + this.name);
-           }
-   }
-   
-   Base.prototype.showName = function() {
-           console.log(this.name);
-   }
-   
-   function sub() {
-           this.name = 'sub';
-   }
-   
-   util.inherits(sub, Base);
-   
-   let baseObj = new Base();
-   console.log(baseObj);
-   baseObj.showName();
-   
-   let subObj = new sub();
-   console.log(subObj);
-   console.log(subObj.name);
-   subObj.showName();
-   ```
-
-   运行结果：
-
-   ```
-   Base { name: 'name', base: 1995, sayHello: [Function] }
-   name
-   sub { name: 'sub' }
-   sub
-   ```

@@ -1,8 +1,12 @@
-# Mac pip install mysql-python
+# Mac pip install mysql-python-2021-07-23
 
-Mac pip install mysql-python unsuccessfulI nstalled MySQL and Workbench from website. I have a django project whose requirements.txt:
+## 问题描述
 
-```
+Mac pip install mysql-python unsuccessfulI installed MySQL and Workbench from website.
+
+I have a django project whose requirements.txt:
+
+```python
 Django==1.11.12
 djangorestframework==3.8.2
 django-cors-headers==2.2.0
@@ -18,7 +22,7 @@ pydot==1.2.4
 
 When I run
 
-```
+```bash
 pip install -r requirements.txt
 ```
 
@@ -30,7 +34,7 @@ PATH=$PATH:/usr/local/mysql/bin
 
 It now throws
 
-```
+```bash
     _mysql.c:44:10: fatal error: 'my_config.h' file not found
     #include "my_config.h"
              ^~~~~~~~~~~~~
@@ -45,32 +49,34 @@ Why is this happening?
 
 UPDATE: following bellow solution threw:
 
-```
+```bash
 Collecting MySQL-python
-  Using cached https://files.pythonhosted.org/packages/a5/e9/51b544da85a36a68debe7a7091f068d802fc515a3a202652828c73453cad/MySQL-python-1.2.5.zip
-    Complete output from command python setup.py egg_info:
-    Traceback (most recent call last):
-      File "<string>", line 1, in <module>
-      File "/private/var/folders/ql/_w2_rlvs2351pdcnzhn04sf40000gn/T/pip-install-X6b4rU/MySQL-python/setup.py", line 17, in <module>
-        metadata, options = get_config()
-      File "setup_posix.py", line 53, in get_config
-        libraries = [ dequote(i[2:]) for i in libs if i.startswith(compiler_flag("l")) ]
-      File "setup_posix.py", line 8, in dequote
-        if s[0] in "\"'" and s[0] == s[-1]:
-    IndexError: string index out of range
+Using cached https://files.pythonhosted.org/packages/a5/e9/51b544da85a36a68debe7a7091f068d802fc515a3a202652828c73453cad/MySQL-python-1.2.5.zip
+Complete output from command python setup.py egg_info:
+Traceback (most recent call last):
+File "<string>", line 1, in <module>
+File "/private/var/folders/ql/_w2_rlvs2351pdcnzhn04sf40000gn/T/pip-install-X6b4rU/MySQL-python/setup.py", line 17, in <module>
+metadata, options = get_config()
+File "setup_posix.py", line 53, in get_config
+libraries = [ dequote(i[2:]) for i in libs if i.startswith(compiler_flag("l")) ]
+File "setup_posix.py", line 8, in dequote
+if s[0] in "\"'" and s[0] == s[-1]:
+IndexError: string index out of range
 ```
 
-第一种
+## 问题解决
+
+第一种方法
 
 Please, try:
 
-```
+```bash
 CFLAGS=-Qunused-arguments CPPFLAGS=-Qunused-arguments pip install -r requirements.txt
 ```
 
 If it does not work: First install **mysql-connector-c**
 
-```
+```bash
 brew install mysql-connector-c 
 pip install MySQL-python
 ```
@@ -116,9 +122,7 @@ should be helpful.
 
 
 
-第二种
-
-26
+第二种方法
 
 Installing of an older version of the MySQL worked for me:
 

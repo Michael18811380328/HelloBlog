@@ -1,10 +1,8 @@
-# Node.js 全局对象
+# 14-Node.js 全局对象-20210719
 
 JavaScript 中有一个特殊的对象，称为全局对象（Global Object），它及其所有属性都可以在程序的任何地方访问，即全局变量。
 
-在浏览器 JavaScript 中，通常 window 是全局对象， 而 Node.js 中的全局对象是 global，所有全局变量（除了 global 本身以外）都是 global 对象的属性。
-
-
+浏览器中 window 是全局对象， 而 Node.js 中的全局对象是 global，所有全局变量（除了 global 本身以外）都是 global 对象的属性。
 
 在 Node.js 我们可以直接访问到 global 的属性，而不需要在应用中包含它。
 
@@ -18,7 +16,9 @@ global 最根本的作用是作为全局变量的宿主。按照 ECMAScript 的�
 - 全局对象的属性；
 - 看隐式定义的变量（未定义直接赋值的变量）。
 
-当你定义一个全局变量时，这个变量同时也会成为全局对象的属性，反之亦然。需要注 意的是，在 Node.js 中你不可能在最外层定义变量，因为所有用户代码都是属于当前模块的， 而模块本身不是最外层上下文。
+当你定义一个全局变量时，这个变量同时也会成为全局对象的属性，反之亦然。
+
+需要注意的是，在 Node.js 中你不可能在最外层定义变量，因为所有用户代码都是属于当前模块的， 而模块本身不是最外层上下文。
 
 **注意：** 最好不要使用 var 定义变量以避免引入全局变量，因为全局变量会污染命名空间，提高代码的耦合风险。
 
@@ -26,11 +26,9 @@ global 最根本的作用是作为全局变量的宿主。按照 ECMAScript 的�
 
 ## __filename
 
-**__filename** 表示当前正在执行的脚本的文件名。它将输出文件所在位置的绝对路径，且和命令行参数所指定的文件名不一定相同。 如果在模块中，返回的值是模块文件的路径。
+**__filename** 表示当前正在执行的脚本的文件名。它将输出文件所在位置的绝对路径，且和命令行参数所指定的文件名不一定相同。 如果在模块中，返回的值是模块文件的路径。如果直接在命令行中输入，那么会报错 `Uncaught ReferenceError: __filename is not defined`
 
-
-
-### 实例
+实例
 
 创建文件 main.js ，代码如下所示：
 
@@ -43,7 +41,7 @@ console.log( __filename );
 
 ```
 $ node main.js
-/web/com/runoob/nodejs/main.js
+/Users/seafile/Desktop/index.js
 ```
 
 
@@ -52,7 +50,7 @@ $ node main.js
 
 **__dirname** 表示当前执行脚本所在的目录。
 
-### 实例
+实例
 
 创建文件 main.js ，代码如下所示：
 
@@ -65,7 +63,7 @@ console.log( __dirname );
 
 ```
 $ node main.js
-/web/com/runoob/nodejs
+/Users/seafile/Desktop
 ```
 
 
@@ -76,11 +74,11 @@ $ node main.js
 
 返回一个代表定时器的句柄值。
 
-### 实例
+实例
 
 创建文件 main.js ，代码如下所示：
 
-```
+```js
 function printHello(){
    console.log( "Hello, World!");
 }
@@ -101,11 +99,11 @@ Hello, World!
 
 **clearTimeout( t )** 全局函数用于停止一个之前通过 setTimeout() 创建的定时器。 参数 **t** 是通过 setTimeout() 函数创建的定时器。
 
-### 实例
+实例
 
 创建文件 main.js ，代码如下所示：
 
-```
+```js
 function printHello(){
    console.log( "Hello, World!");
 }
@@ -128,17 +126,17 @@ $ node main.js
 
 **setInterval(cb, ms)** 全局函数在指定的毫秒(ms)数后执行指定函数(cb)。
 
-返回一个代表定时器的句柄值。可以使用 **clearInterval(t)** 函数来清除定时器。
+返回一个代表定时器的句柄值（数值）。可以使用 **clearInterval(t)** 函数来清除定时器。
 
 setInterval() 方法会不停地调用函数，直到 clearInterval() 被调用或窗口被关闭。
 
-### 实例
+实例
 
 创建文件 main.js ，代码如下所示：
 
-```
+```js
 function printHello(){
-   console.log( "Hello, World!");
+   console.log("Hello, World!");
 }
 // 两秒后执行以上函数
 setInterval(printHello, 2000);
@@ -220,11 +218,11 @@ at Array.0 (module.js:479:10)
 at EventEmitter._tickCallback (node.js:192:40)
 ```
 
-### 实例
+实例
 
 创建文件 main.js ，代码如下所示：
 
-```
+```js
 console.info("程序开始执行：");
 
 var counter = 10;
@@ -249,8 +247,6 @@ $ node main.js
 程序执行完毕
 ```
 
-
-
 ## process
 
 process 是一个全局变量，即 global 对象的属性。
@@ -264,18 +260,16 @@ process 是一个全局变量，即 global 对象的属性。
 | 3    | **uncaughtException** 当一个异常冒泡回到事件循环，触发这个事件。如果给异常添加了监视器，默认的操作（打印堆栈跟踪信息并退出）就不会发生。 |
 | 4    | **Signal 事件** 当进程接收到信号时就触发。信号列表详见标准的 POSIX 信号名，如 SIGINT、SIGUSR1 等。 |
 
-### 实例
+实例
 
 创建文件 main.js ，代码如下所示：
 
-```
+```js
 process.on('exit', function(code) {
-
   // 以下代码永远不会执行
   setTimeout(function() {
     console.log("该代码不会执行");
   }, 0);
-  
   console.log('退出码为:', code);
 });
 console.log("程序执行结束");
@@ -331,11 +325,11 @@ Process 提供了很多有用的属性，便于我们更好的控制系统的交
 | 15    | **platform** 运行程序所在的平台系统 'darwin', 'freebsd', 'linux', 'sunos' 或 'win32' |
 | 16    | **mainModule** require.main 的备选方法。不同点，如果主模块在运行时改变，require.main可能会继续返回老的模块。可以认为，这两者引用了同一个模块。 |
 
-### 实例
+实例
 
 创建文件 main.js ，代码如下所示：
 
-```
+```js
 // 输出到终端
 process.stdout.write("Hello World!" + "\n");
 
@@ -347,14 +341,13 @@ process.argv.forEach(function(val, index, array) {
 // 获取执行路径
 console.log(process.execPath);
 
-
 // 平台信息
 console.log(process.platform);
 ```
 
 执行 main.js 文件，代码如下所示:
 
-```
+```bash
 $ node main.js
 Hello World!
 0: node
@@ -387,11 +380,11 @@ Process 提供了很多有用的方法，便于我们更好的控制系统的交
 | 16   | **uptime()** 返回 Node 已经运行的秒数。                      |
 | 17   | **hrtime()** 返回当前进程的高分辨时间，形式为 [seconds, nanoseconds]数组。它是相对于过去的任意事件。该值与日期无关，因此不受时钟漂移的影响。主要用途是可以通过精确的时间间隔，来衡量程序的性能。 你可以将之前的结果传递给当前的 process.hrtime() ，会返回两者间的时间差，用来基准和测量时间间隔。 |
 
-### 实例
+实例
 
 创建文件 main.js ，代码如下所示：
 
-```
+```js
 // 输出当前目录
 console.log('当前目录: ' + process.cwd());
 
