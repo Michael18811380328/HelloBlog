@@ -47,12 +47,8 @@ npm run build
 
 通过安装 [`terser-brunch`](https://github.com/brunch/terser-brunch) 插件，来获得最高效的 Brunch 生产构建：
 
-```
-# 如果你使用 npm
+```bash
 npm install --save-dev terser-brunch
-
-# 如果你使用 Yarn
-yarn add --dev terser-brunch
 ```
 
 接着，在 `build` 命令后添加 `-p` 参数，以创建生产构建：
@@ -67,12 +63,8 @@ brunch build -p
 
 为了最高效的生产构建，需要安装一些插件：
 
-```
-# 如果你使用 npm
+```bash
 npm install --save-dev envify terser uglifyify
-
-# 如果你使用 Yarn
-yarn add --dev envify terser uglifyify
 ```
 
 为了创建生产构建，确保你添加了以下转换器 **（顺序很重要）**：
@@ -83,7 +75,7 @@ yarn add --dev envify terser uglifyify
 
 举个例子：
 
-```
+```bash
 browserify ./index.js \
   -g [ envify --NODE_ENV production ] \
   -g uglifyify \
@@ -96,12 +88,8 @@ browserify ./index.js \
 
 为了最高效的 Rollup 生产构建，需要安装一些插件：
 
-```
-# 如果你使用 npm
+```bash
 npm install --save-dev rollup-plugin-commonjs rollup-plugin-replace rollup-plugin-terser
-
-# 如果你使用 Yarn
-yarn add --dev rollup-plugin-commonjs rollup-plugin-replace rollup-plugin-terser
 ```
 
 为了创建生产构建，确保你添加了以下插件 **（顺序很重要）**：
@@ -110,7 +98,7 @@ yarn add --dev rollup-plugin-commonjs rollup-plugin-replace rollup-plugin-terser
 - [`commonjs`](https://github.com/rollup/rollup-plugin-commonjs) 插件用于支持 CommonJS。
 - [`terser`](https://github.com/TrySound/rollup-plugin-terser) 插件用于压缩并生成最终的产物。
 
-```
+```js
 plugins: [
   // ...
   require('rollup-plugin-replace')({
@@ -191,7 +179,7 @@ module.exports = {
 
 [react-window](https://react-window.now.sh/) 和 [react-virtualized](https://bvaughn.github.io/react-virtualized/) 是热门的虚拟滚动库。 它们提供了多种可复用的组件，用于展示列表、网格和表格数据。 如果你想要一些针对你的应用做定制优化，你也可以创建你自己的虚拟滚动组件，就像 [Twitter 所做的](https://medium.com/@paularmstrong/twitter-lite-and-high-performance-react-progressive-web-apps-at-scale-d28a00e780a3)。
 
-## 避免调停
+## 减少渲染次数
 
 React 构建并维护了一套内部的 UI 渲染描述。它包含了来自你的组件返回的 React 元素。该描述使得 React 避免创建 DOM 节点以及没有必要的节点访问，因为 DOM 操作相对于 JavaScript 对象操作更慢。虽然有时候它被称为“虚拟 DOM”，但是它在 React Native 中拥有相同的工作原理。
 

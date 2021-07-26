@@ -1,19 +1,12 @@
 #!/bin/bash
 
 function usage() {
-    echo
     echo "    Michael An's Blog builder"
-    echo
     echo "    It runs mkdocs build on the code and build markdown docs to HTML files"
-    echo
     echo "    To build while file:"
-    echo
     echo "      ./build.sh"
-    echo
     echo "    To check a directory:"
-    echo
     echo "      ./build.sh xxx"
-    echo
 }
 
 # 编译某个文件夹
@@ -28,25 +21,18 @@ function builddir() {
 # 编译全部的文件夹
 function build() {
     echo "build start------"
-
     cd book && mkdocs build
     sleep 5
-
     cd ../leetcode && mkdocs build 
     sleep 15
-
     cd ../frontend && mkdocs build 
     sleep 15
-
     cd ../backend && mkdocs build
     sleep 15
-
     cd ../personal && mkdocs build
     sleep 10
-
     echo "build end------"
     echo -e "\n\n"
-    
     exit 1
 }
 
@@ -72,8 +58,6 @@ fi
 # 如果传参数量大于1，那么返回错误
 if [[ $# > 1 ]]; then
     echo "Your input is error"
-    echo
     echo "please use './build.sh -h' to get help."
-    echo
     exit 1
 fi
