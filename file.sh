@@ -80,7 +80,7 @@ sleep 2
 # frontend
 # array and loop
 echo "frontend start------"
-my_array=('' 'about' 'git' 'javascript' 'netease' 'project' 'react' 'typescript')
+my_array=('' 'about' 'ant-design' 'git' 'javascript' 'netease' 'react' 'typescript')
 # len=${#my_array[*]} 
 for i in {0..9}
 do
@@ -97,29 +97,16 @@ ls ./frontend/docs/react/react-all/中文文档全部 | while read line
 do
   echo "- '$line': 'react/react-all/中文文档全部/$line'"
 done
+
 ls ./frontend/docs/react/react-all/英文文档 | while read line
 do
   echo "- '$line': 'react/react-all/英文文档/$line'"
 done
+
 ls ./frontend/docs/react/react-all/react-dnd | while read line
 do
   echo "- '$line': 'react/react-all/react-dnd/$line'"
 done
-
-# 还有下面几个目录未覆盖，未来处理
-# - react/react-all/中文文档/2-10 状态提升.md
-# - react/react-all/中文文档/2-11 组合 vs 继承.md
-# - react/react-all/中文文档/2-12 React 哲学.md
-# - react/react-all/中文文档/2-4 组件 & Props.md
-# - react/react-all/中文文档/2-5 State & 生命周期.md
-# - react/react-all/中文文档/2-6 事件处理.md
-# - react/react-all/中文文档/2-7 条件渲染.md
-# - react/react-all/中文文档/2-8 列表 & Keys.md
-# - react/react-all/中文文档/2-9 表单.md
-# - react/react-all/中文文档/readme.md
-# - react/react-all/视频教程-传智播客/React入门.md
-# - react/react-all/视频教程-技术胖/React 视频教程.md
-# - react/react-all/视频教程-技术胖/demo/README.md 
 
 echo "frontend end------"
 echo -e "\n\n"

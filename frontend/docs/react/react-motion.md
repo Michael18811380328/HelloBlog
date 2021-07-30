@@ -1,4 +1,4 @@
-## react-motion
+# react-motion
 
 这是一个react框架下面的动画库，可以做简单的动画
 
@@ -11,8 +11,6 @@ https://www.npmjs.com/package/react-motion
 实例
 
 https://juejin.im/post/5b48061551882519790c77f3
-
-实例
 
 ~~~jsx
 import React, { Component } from 'react';

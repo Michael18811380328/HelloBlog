@@ -185,11 +185,6 @@ I found some informations: The basic knowledge(JS basic grammar) is more importa
 - [x] remove C and Java codes from this repo. 
 - [x] move VUE to another Repo(special for VUE) 
 - [x] review codes in 2018，then put them into learn folder. (Sig and eme)
-  - [x] 2018-08（2019-09 1th week）
-  - [x] 2018-09（2019-09 2th week）
-  - [x] 2018-10（2019-09 2th week）
-  - [x] 2018-11（2019-09 3th week）
-  - [x] 2018-12（2019-09 3th week）
 - [x] move makefile and babel into another repo(webpack-babel)，remove src folder and dist folder.
 
 ### 2019.10
@@ -197,17 +192,8 @@ I found some informations: The basic knowledge(JS basic grammar) is more importa
 There are less than 100 days left in 2019. Don't leave any regrets these days.
 
 - [x] Delete all VUE and python codes
-- [x] Data structure
-  - [x] Pre 60 page (1th)
-  - [x] 60-80 (1th)
-  - [x] 80-100 (1th)
-  - [x] 100-120 (2th)
-  - [x] 120-140 (2th)
-  - [x] 140-160 (3th)
+- [x] JS Data structure
 - [x] review codes in 2019
-  - [x] 2019-01(3th)
-  - [x] 2019-02(4th)
-  - [x] 2019-03(4th)
 
 ### 2019.11 
 
@@ -274,3 +260,4 @@ learn leetcode basic methods(sort, search) review basic data structure(array, ob
 ### 2021.04
 
 - react-redux
+

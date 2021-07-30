@@ -54,7 +54,7 @@ handleClick = () => {
 }
 ```
 
-这样每次改变都会产生一个新的数组，也就可以 `render` 了。这里有一个矛盾的地方，如果没有 `items.pop();` 操作，每次 `items` 数据并没有变，但还是 `render` 了，这不就很操蛋么？呵呵，数据都不变，你 `setState` 干嘛？
+这样每次改变都会产生一个新的数组，也就可以 `render` 了。
 
 ### 不变数据使用一个引用
 
@@ -172,7 +172,7 @@ render() {
 
 如果 `PureComponent` 里有 `shouldComponentUpdate` 函数的话，直接使用 `shouldComponentUpdate` 的结果作为是否更新的依据，没有 `shouldComponentUpdate` 函数的话，才会去判断是不是 `PureComponent` ，是的话再去做 `shallowEqual` 浅比较。
 
-```
+```js
 // 这个变量用来控制组件是否需要更新
 var shouldUpdate = true;
 // inst 是组件实例
@@ -188,7 +188,7 @@ if (inst.shouldComponentUpdate) {
 
 ### 老版本兼容写法
 
-```
+```js
 import React { PureComponent, Component } from 'react';
 
 class Foo extends (PureComponent || Component) {
@@ -201,3 +201,4 @@ class Foo extends (PureComponent || Component) {
 ## 总结
 
 `PureComponent` 真正起作用的，只是在一些纯展示组件上，复杂组件用了也没关系，反正 `shallowEqual` 那一关就过不了，不过记得 `props` 和 `state` 不能使用同一个引用哦。
+

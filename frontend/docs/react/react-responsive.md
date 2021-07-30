@@ -1,4 +1,4 @@
-## react-responsive
+# react-responsive
 
 You can use this jsx tag rather media query in css. 
 

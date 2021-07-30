@@ -1,10 +1,10 @@
 # [使用nodejs连接mysql数据库实现增删改查](https://www.cnblogs.com/easth/p/nodejs_mysql.html)
 
- 
+## 准备工作
 
 首先要有数据库 使用xampp 或者 phpstudy 可以傻瓜式安装
 
-新建一个项目文件夹 之后在这个目录下初始化package.json (npm init)
+新建一个项目文件夹 之后在这个目录下初始化 package.json
 
 先在项目中安装mysql 和 express ,这个项目里使用express
 
@@ -15,6 +15,8 @@ cnpm install mysql express --save
 ![img](https://img2018.cnblogs.com/blog/1735056/201907/1735056-20190709175635143-1172982713.png)
 
 已经安装好mysql和express
+
+## 初始化服务器
 
 接下来创建app.js
 
@@ -38,7 +40,7 @@ cnpm install mysql express --save
 
 ------
 
-创建数据库
+## 创建数据库
 
 在一个路由里写sql语句 使用db.query来执行sql语句 db.query()方法有两个参数 ,第一个参数是要执行的语句 第二个参数是个回调函数 回调函数里可以接收错误信息,也有执行后回来的信息 依然是错误优先
 
@@ -60,7 +62,7 @@ cnpm install mysql express --save
 
 ------
 
-创建表
+## 创建表
 
 也是在一个路由里写sql语句
 
@@ -84,6 +86,8 @@ cnpm install mysql express --save
 
 ![img](https://note.youdao.com/yws/public/resource/b500a3998fa32f6f3fb2e8831e145259/xmlnote/WEBRESOURCE3894393aee4ae1b21153e71d95860e03/19695)
 
+## 插入内容
+
 接下来往数据库这个表里插入内容
 
 插入内容 还是在一个路由里操作
@@ -102,7 +106,9 @@ cnpm install mysql express --save
 
 数据库里也有了这一条数据
 
-查询内容 查询posts表中所有数据
+## 查询内容
+
+查询posts表中所有数据
 
 ![img](https://note.youdao.com/yws/public/resource/b500a3998fa32f6f3fb2e8831e145259/xmlnote/WEBRESOURCE757eabdb0e582d6db6bd54910216fd64/19711)
 
@@ -140,7 +146,7 @@ cnpm install mysql express --save
 
 页面中显示了查询到的单条数据 
 
-更新内容
+## 更新内容
 
 更新的是某一条内容 所以还用传参数 需要注意的是 要更新的newTitle是字符串 所以写sql语句的时候需要使用单引号 引起来 ,如果是数值就不用了.
 
@@ -156,7 +162,7 @@ cnpm install mysql express --save
 
 有变化了 
 
-删除内容
+## 删除内容
 
 还是在一个路由里写方法 传来要删除的参数
 
@@ -175,11 +181,5 @@ cnpm install mysql express --save
 ------
 
 至此 使用nodejs+express 连接mysql数据库 增删改查 已经全部实现
-
- 
-
-对应demo链接:
-
-http://note.youdao.com/noteshare?id=7c4348713a5b07f47d959b4bc32915b9
 
  

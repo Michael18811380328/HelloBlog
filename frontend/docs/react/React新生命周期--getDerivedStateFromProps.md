@@ -58,19 +58,18 @@ static getDerivedStateFromProps(nextProps, prevState) {
 ```js
 // 组件接收一个type参数
 static propTypes = {
-    type: PropTypes.number
+  type: PropTypes.number
 }
 
 // 组件还具有自己的状态来渲染列表
 class List extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            list: [],
-            type: 0,
-        }
+  constructor(props) {
+    super(props);
+    this.state = {
+      list: [],
+      type: 0,
     }
+  }
 }
 ```
 
@@ -84,15 +83,15 @@ class List extends React.Component {
 
 ```tsx
 static getDerivedStateFromProps(nextProps, prevState) {
-    const {type} = nextProps;
-    // type可能由props驱动，也可能由state驱动，这样判断会导致state驱动的type被回滚
-    if (type !== prevState.type) {
-        return {
-            type,
-        };
-    }
-    // 否则，对于state不进行任何操作
-    return null;
+  const {type} = nextProps;
+  // type可能由props驱动，也可能由state驱动，这样判断会导致state驱动的type被回滚
+  if (type !== prevState.type) {
+    return {
+      type,
+    };
+  }
+  // 否则，对于state不进行任何操作
+  return null;
 }
 ```
 
@@ -103,25 +102,25 @@ static getDerivedStateFromProps(nextProps, prevState) {
 
 ```tsx
 constructor(props) {
-    super(props);
-    this.state = {
-        type: 0,
-        props,
-    }
+  super(props);
+  this.state = {
+    type: 0,
+    props,
+  }
 }
 static getDerivedStateFromProps(nextProps, prevState) {
-    const {type, props} = nextProps;
-    // 这段代码可能看起来非常混乱，这个props可以被当做缓存，仅用作判断
-    if (type !== props.type) {
-        return {
-            type,
-            props: {
-                type,
-            },
-        };
-    }
-    // 否则，对于state不进行任何操作
-    return null;
+  const {type, props} = nextProps;
+  // 这段代码可能看起来非常混乱，这个props可以被当做缓存，仅用作判断
+  if (type !== props.type) {
+    return {
+      type,
+      props: {
+        type,
+      },
+    };
+  }
+  // 否则，对于state不进行任何操作
+  return null;
 }
 ```
 
@@ -135,13 +134,13 @@ static getDerivedStateFromProps(nextProps, prevState) {
 
 ```go
 componentWillReceiveProps(nextProps) {
-    if (props.type !== nextProps.type) {
-        // 在这里进行异步操作或者更新状态
-        this.setState({
-            type: props.type,
-        });
-        this._doAsyncOperation();
-    }
+  if (props.type !== nextProps.type) {
+    // 在这里进行异步操作或者更新状态
+    this.setState({
+      type: props.type,
+    });
+    this._doAsyncOperation();
+  }
 }
 ```
 
@@ -164,16 +163,16 @@ componentWillReceiveProps(nextProps) {
 ```csharp
 // 在getDerivedStateFromProps中进行state的改变
 static getDerivedStateFromProps(nextProps, prevState) {
-    if (nextProps.type !== prevState.type) {
-        return {
-            type: nextProps.type,
-        };
-    }
-    return null;
+  if (nextProps.type !== prevState.type) {
+    return {
+      type: nextProps.type,
+    };
+  }
+  return null;
 }
 // 在componentDidUpdate中进行异步操作，驱动数据的变化
 componentDidUpdate() {
-    this._loadAsyncData({...this.state});
+  this._loadAsyncData({...this.state});
 }
 ```
 
@@ -182,3 +181,4 @@ componentDidUpdate() {
 以上是本期开发过程中使用新的生命周期函数的时候遇到的一点小问题和一些相关思考。react为了防止部分开发者滥用生命周期，可谓非常尽心尽力了。既然你用不好，我就干脆不让你用。一个静态的生命周期函数可以让状态的修改更加规范和合理。
 
 至于为什么全文没有提到`getSnapshotBeforeUpdate`，因为自己并没有用到#诚实脸。简单看了一下，这个函数返回一个update之前的快照，并且传入到`componentDidUpdate`中，组件更新前后的状态都可以在`componentDidUpdate`中获取了。一些需要在组件更新完成之后进行的操作所需要的数据，就可以不需要挂载到`state`或者是cache下来了。比如[官方例子](https://links.jianshu.com/go?to=https%3A%2F%2Flink.juejin.im%3Ftarget%3Dhttps%3A%2F%2Freact.docschina.org%2Fdocs%2Freact-component.html%23getsnapshotbeforeupdate)中所举例的保留更新之前的页面滚动距离，以便在组件update完成之后恢复其滚动位置。也是一个非常方便的周期函数。
+

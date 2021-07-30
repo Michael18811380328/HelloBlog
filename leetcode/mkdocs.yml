@@ -56,6 +56,7 @@ markdown_extensions:
 # Page tree
 nav:
     - 算法:
+        - '说明': 'index.md'
         - '00-练习之前，你需要了解的': 'algre/00-练习之前，你需要了解的.md'
         - '01-反转链表': 'algre/01-反转链表.md'
         - '02-环形链表': 'algre/02-环形链表.md'

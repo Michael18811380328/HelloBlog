@@ -116,6 +116,8 @@ sudo /Library/StartupItems/MySQLCOM/MYSQLCOM restart
 
  Warning: Changing a readonly file
 
+12345678
+
 
 
 ## 04 数据库操作
