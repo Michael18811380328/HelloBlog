@@ -1,8 +1,4 @@
----
-order: 1
-chinese: 颜色
-english: Color
----
+## color
 
 ### 定义／Definition
 

@@ -1,70 +1,89 @@
-## 开发说明
+# 开发说明
 
-1、建议开启 python 3虚拟环境
+## 初始化环境
+
+博客基于 python 的 mkdocs 构建工具，所以需要 python3 环境。
+
+创建并初始 python3 虚拟环境，安装依赖
 
 ```bash
 source ./VirtualEnv/py3-env/bin/activate
+pip install -r requirements.txt
 ```
 
-2、在虚拟环境内部，切换到子项目文件夹下面（mkdocs.yml）
+在虚拟环境内部，切换到项目文件夹下面
 
-3、编辑文档
+## 半自动生成目录
 
-如果改动文件名，或者增删文件，需要更新目录结构
+在 bash 下执行
 
-4、开启本地服务器。测试正常后，编译HTML界面
+~~~bash
+./file.sh
+~~~
+
+可以自动生成不同子项目的目录
+
+然后手动拷贝到不同子项目的 mkdock.yml 文件中（需要改进）
+
+## 自动编译博客
+
+在 bash 下执行
 
 ~~~bash
 ./build.sh
 ~~~
 
-5、切换到根目录，使用 http-server 再次测试一下编译后整体界面效果。
+等待1分钟，博客都从 md 编译成 HTML 文件。如果界面提示错误，根据错误信息修改配置文件（通常是某文件找不到等）
 
-6、执行 move.sh 迁移脚本，迁移编译后的文件到 View 仓库，然后 push 到 github 上面，即可显示编译后的界面。
+## 自动迁移博客
 
-注：如果执行脚本是，提示没有权限，那么需要更改脚本执行的权限，chmod 755 ./build.sh （mac）
+在 bash 下执行
 
-## 快速建立目录(yml)
+~~~bash
+./move.sh
+~~~
 
-1、读取目录
+将编译的博客，迁移到发布的代码仓库中。
 
-```bash
-cd ./book/docs
-# 如果有子目录，那么不能使用这个命令，这里需要优化
-ls -a >> res.md
-```
+可以使用 http-server 查看整体界面效果。
 
-2、执行脚本，转换成需要的格式
-
-```bash
-cd ../../
-./file.sh >> res2.md
-```
-
-脚本内部含义：逐行读取文件，并且读取到屏幕上面
-
-todo: 直接把转换后的格式写入到 mkdocs.yml 中
-
-```bash
-#!/bin/bash
-cat ./book/docs/res.md | while read line
-do
-  echo "- '$line': '/docs/$line'"
-done
-```
-
-3、将 res2.md 复制到 mkdocs 中，调整格式和缩进
-
-4、清理临时文件
-
+最后可以使用 git 上线或者发布到自己的服务器
 
 ## 报错处理
 
-执行 pip install mkdocs 报错
+1、执行 source ./VirtualEnv/py3-env/bin/activate 报错
 
+如果没有虚拟环境 virtualEnv，可以先本地安装。详情参考
+
+virtual 官方英文文档：https://virtualenv.pypa.io/en/latest/
+
+廖雪峰中文文档：https://www.liaoxuefeng.com/wiki/1016959663602400/1019273143120480
+
+或者安装其他 python 虚拟环境
+
+---
+
+2、执行 pip install 报错
+
+```bash
 command "python setup.py egg_info" failed with error code 1 in /private/tmp/p
+```
 
-注意：不要直接在 Mac 上面安装，需要设置虚拟环境，然后在虚拟环境中安装比较好，这样不同的项目不会互相影响。
+尽量不要在宿主机直接安装，在虚拟环境中安装比较好，这样不同的项目不会互相影响。
+
+---
+
+3、执行 bash 脚本报错
+
+注：如果执行脚本提示没有权限，那么需要更改脚本执行的权限。
+
+~~~bash
+chmod 755 ./build.sh
+~~~
+
+不同脚本文件的功能和注意事项，详见文件内部注释。
+
+
 
 
 ## 参考文档

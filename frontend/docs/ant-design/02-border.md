@@ -1,8 +1,4 @@
----
-order: 2
-chinese: 边线
-english: Border
----
+## Border
 
 ### 定义／Definition
 

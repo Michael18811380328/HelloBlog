@@ -18,28 +18,3 @@
 [CSDN](https://blog.csdn.net/weixin_41697143)
 
 [stackoverflow](https://stackoverflow.com/users/14245047/michael-an)
-
-## 其他项目
-
-我的其他项目还在 coding 中，基本成型后我会逐步开源。
-
-[小游戏开发](https://github.com/Michael18811380328/game)
-
-[Javasccript](https://github.com/Michael18811380328/HelloJS)
-
-[Python](https://github.com/Michael18811380328/HelloPython)
-
-[Typescript](https://github.com/Michael18811380328/HelloTs)
-
-[VUE](https://github.com/Michael18811380328/HelloVUE)
-
-
-## 博客构建
-
-博客开发文档 [mkdocs.org](https://mkdocs.org)
-
-### 常用命令
-
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-

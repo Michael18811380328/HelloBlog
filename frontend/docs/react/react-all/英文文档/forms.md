@@ -10,7 +10,7 @@
 
 在React中，`<textarea>`会用`value`属性来代替。这样的话，表单中的`<textarea>` 非常类似于使用单行输入的表单：
 
-```javascript{4-6,12-14,26}
+```javascript
 class EssayForm extends React.Component {
   constructor(props) {
     super(props);
@@ -62,7 +62,7 @@ class EssayForm extends React.Component {
 
 请注意，Coconut选项最初由于`selected`属性是被选中的。在React中，并不使用之前的`selected`属性，而在根`select`标签上用`value`属性来表示选中项。这在受控组件中更为方便，因为你只需要在一个地方来更新组件。例如：
 
-```javascript{4,10-12,24}
+```javascript
 class FlavorForm extends React.Component {
   constructor(props) {
     super(props);
@@ -100,8 +100,6 @@ class FlavorForm extends React.Component {
 }
 ```
 
-[在 CodePen 上尝试。](https://codepen.io/gaearon/pen/JbbEzX?editors=0010)
-
 总之，`<input type="text">`, `<textarea>`, 和 `<select>` 都十分类似 - 他们都通过传入一个`value`属性来实现对组件的控制。
 
 ## file input 标签
@@ -120,7 +118,7 @@ class FlavorForm extends React.Component {
 
 例如:
 
-```javascript{15,18,28,37}
+```javascript
 class Reservation extends React.Component {
   constructor(props) {
     super(props);
@@ -167,8 +165,6 @@ class Reservation extends React.Component {
   }
 }
 ```
-
-[在 CodePen 上尝试。](https://codepen.io/gaearon/pen/wgedvV?editors=0010)
 
 注意我们如何使用ES6当中的[计算属性名](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Object_initializer#Computed_property_names)语法来更新与给定输入名称相对应的状态键：
 
