@@ -60,6 +60,8 @@ nav:
         - '学习日志': 'about/log.md'
         - '文档结构': 'index.md'
     - Javascript:
+        - '前端项目结构': 'javascript/前端项目结构.md'
+        - '通用组件': 'javascript/通用组件.md'
         - 'ES6 迭代器与生成器': 'javascript/ES6 迭代器与生成器.md'
         - 'ES6-阮一峰': 'javascript/ES6-阮一峰.md'
         - 'ES6newFeature': 'javascript/ES6newFeature.md'
@@ -156,7 +158,6 @@ nav:
     - 工程化:
         - 'BUG-Auto packing the repository in background for optimum performance.md': 'git/BUG-Auto packing the repository in background for optimum performance.md'
         - 'Translation.md': 'git/Translation.md'
-        - 'docker-basic-use.md': 'git/docker-basic-use.md'
         - 'markdown-new-style.md': 'git/markdown-new-style.md'
     - 课程笔记:
         - '00-目录.md': 'netease/00-目录.md'
