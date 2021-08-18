@@ -59,8 +59,11 @@ nav:
         - '关于我': 'about/README.md'
         - '学习日志': 'about/log.md'
         - '文档结构': 'index.md'
+
+        
     - Javascript:
         - '前端项目结构': 'javascript/前端项目结构.md'
+        - 'js判断字符串中是否包含某个字符串': 'javascript/js判断字符串中是否包含某个字符串.md'
         - '通用组件': 'javascript/通用组件.md'
         - 'ES6 迭代器与生成器': 'javascript/ES6 迭代器与生成器.md'
         - 'ES6-阮一峰': 'javascript/ES6-阮一峰.md'
