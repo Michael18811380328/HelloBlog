@@ -14,7 +14,7 @@ function builddir() {
     echo "build start------"
     # 表示第一个参数
     cd $1 && mkdocs build
-    sleep 3
+    sleep 1
     echo "build end------"
 }
 
@@ -22,15 +22,15 @@ function builddir() {
 function build() {
     echo "build start------"
     cd book && mkdocs build
-    sleep 5
+    sleep 1
     cd ../leetcode && mkdocs build 
-    sleep 15
+    sleep 1
     cd ../frontend && mkdocs build 
-    sleep 15
+    sleep 1
     cd ../backend && mkdocs build
-    sleep 15
+    sleep 1
     cd ../personal && mkdocs build
-    sleep 10
+    sleep 1
     echo "build end------"
     echo -e "\n\n"
     exit 1
