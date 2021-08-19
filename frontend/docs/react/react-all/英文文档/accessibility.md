@@ -75,8 +75,6 @@ React完全支持构建可访问性的页面， 通常通过使用标准的 HTML
 
 键盘焦点涉及DOM中被键盘选中用于接受输入的当前元素。我们可以在每一处地方看见如下图所示的类似的焦点边框：
 
-<img src="/images/docs/keyboard-focus.png" alt="Blue keyboard focus outline around a selected link." />
-
 仅能使用CSS来移除这一边框，若你要用其他边框来替换他，例如可以设置`outline: 0`。
 
 ### 定位到期望内容的机制
@@ -99,7 +97,7 @@ Skiplinks 或 Skip Navigation Links 隐藏在导航链接中，仅当用户用�
 
 Mozilla开发者网络可以查看并描述了我们如何构建[键盘导航的JavaScript工具](https://developer.mozilla.org/en-US/docs/Web/Accessibility/Keyboard-navigable_JavaScript_widgets)。
 
-为在React中设置焦点，我们可使用[Refs to Components](refs-and-the-dom.html)。
+为在React中设置焦点，我们可使用[Refs to Components。
 
 为使用它，我们先在组件类的JSX中创建一个元素的ref：
 

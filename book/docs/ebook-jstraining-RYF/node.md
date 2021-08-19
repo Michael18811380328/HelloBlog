@@ -21,7 +21,7 @@ Node 开发前端脚本的好处：
 
 ### 练习：Node 的简单应用
 
-进入`demos/simple-app-demo`目录，参考[《操作指南》](../demos/README.md#simple-app)，自己动手在 Node 里面，编写并编译一个前端脚本。
+进入`demos/simple-app-demo`目录，自己动手在 Node 里面，编写并编译一个前端脚本。
 
 ~~~bash
 npm init -y
@@ -42,9 +42,6 @@ npm run build
 ~~~
 
 可以把一个JS文件打包成一个bundle文件，然后在HTML中引用，就可以使用打包后的JS文件
-
-
-
 
 
 ## REST API
@@ -110,10 +107,7 @@ DELETE /v1/stores/1234
 
 ### 练习：REST API
 
-打开`demos/rest-api-demo`，按照[《操作指南》](../demos/README.md#rest-api)，熟悉 REST API 的基本用法。
-
-
-
+打开`demos/rest-api-demo`，熟悉 REST API 的基本用法。
 
 
 ## Express
@@ -122,7 +116,7 @@ Express 是最常用的 Node 框架，用来搭建 Web 应用。
 
 ### 课堂练习：Express 搭建 Web 应用
 
-进入`demos/express-demo`目录，按照[《操作指南》](../demos/README.md#express)，学习使用 Express 搭建 Web 应用。
+进入`demos/express-demo`目录，学习使用 Express 搭建 Web 应用。
 
 ---
 

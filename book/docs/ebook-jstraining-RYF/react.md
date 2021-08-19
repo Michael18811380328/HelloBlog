@@ -6,8 +6,6 @@ React 是目前最热门的前端框架。
 - 现在最好的社区支持和生态圈
 - 大量的第三方工具
 
-![](./images/react-logo.png)
-
 ---
 
 ## React 的优点
@@ -74,7 +72,7 @@ Babel 用来在浏览器转换 JSX 语法，如果服务器已经转好了，浏
 
 ### 课堂练习：JSX 语法
 
-浏览器打开`demos/jsx-demo/index.html`，按照[《操作说明》](../demos/README.md#jsx)，完成练习。
+浏览器打开`demos/jsx-demo/index.html`，完成练习。
 
 ```jsx
 ReactDOM.render(
@@ -91,7 +89,7 @@ ReactDOM.render(
 
 React 允许用户定义自己的组件，插入网页。
 
-浏览器打开`demos/react-component-demo/index1.html`，按照[《操作说明》](../demos/README.md#react-组件语法)，仔细查看源码。
+浏览器打开`demos/react-component-demo/index1.html`，仔细查看源码。
 
 ```jsx
 class MyTitle extends React.Component {
@@ -114,7 +112,7 @@ ReactDOM.render(
 
 组件可以从外部传入参数，内部使用`this.props`获取参数。
 
-打开`demos/react-component-demo/index2.html`，按照[《操作说明》](../demos/README.md#react-组件的参数)，完成练习。
+打开`demos/react-component-demo/index2.html`，完成练习。
 
 ```jsx
 class MyTitle extends React.Component {
@@ -134,9 +132,7 @@ class MyTitle extends React.Component {
 
 组件往往会有内部状态，使用`this.state`表示。
 
-浏览器打开`demos/react-component-demo/index3.html`，按照[《操作说明》](../demos/README.md#react-组件的状态)，仔细查看源码。
-
-![](./images/react-component-state.png)
+浏览器打开`demos/react-component-demo/index3.html`，仔细查看源码。
 
 ---
 
@@ -144,11 +140,9 @@ class MyTitle extends React.Component {
 
 ### 课堂练习：React 组件实战
 
-浏览器打开`demos/react-component-demo/index4.html`，按照[《操作说明》](../demos/README.md#react-组件实战)，完成练习。
+浏览器打开`demos/react-component-demo/index4.html`，完成练习。
 
 ---
-
-
 
 ## 组件的生命周期
 
@@ -176,7 +170,7 @@ componentDidMount() {
 }
 ```
 
-打开`demos/react-lifecycle-demo/index.html`，按照[《操作说明》](../demos/README.md#react-组件的生命周期)，完成练习。
+打开`demos/react-lifecycle-demo/index.html`，完成练习。
 
 ---
 
@@ -188,15 +182,13 @@ React 的一大优势，就是网上有很多已经写好的组件库，可以�
 
 React-Bootstrap：https://react-bootstrap.github.io/
 
-![](./images/react-bootstrap.png)
-
 ---
 
 ### 示例：ReCharts
 
 ReCharts 是一个 React 图表组件库。http://recharts.org/
 
-浏览器打开`demos/recharts-demo/index.html`，按照[《操作说明》](../demos/README.md#recharts)，仔细查看源码，体会 JSX 语法对表达复杂组件的优势。
+浏览器打开`demos/recharts-demo/index.html，仔细查看源码，体会 JSX 语法对表达复杂组件的优势。
 
 ```html
 <LineChart width={1000} height={400} data={data}>
@@ -290,8 +282,6 @@ React 同步状态的基本方法：找到通信双方最近的共同父组件�
 
 Facebook 提出 Flux 架构的概念，被认为是 React 应用的标准架构。
 
-![](./images/flow.png)
-
 最大特点：数据单向流动。与 MVVM 的数据双向绑定，形成鲜明对比。
 
 ---
@@ -352,7 +342,7 @@ person.name = "李四";
 
 ### 示例：MobX
 
-进入`demos/mobx-demo`目录，按照[《操作说明》](../demos/README.md#mobx)，理解 MobX 框架。
+进入`demos/mobx-demo`目录，，理解 MobX 框架。
 
 ---
 
@@ -383,21 +373,12 @@ Redux 的核心概念
 - 用户在 UI 上发出`action`。
 - `reducer`函数接收`action`，然后根据当前的`state`，计算出新的`state`。
 
-![](./images/redux-architecture.png)
-
-
-
-![](./images/architecture-redux.png)
-
 Redux 层保存所有状态，React 组件拿到状态以后，渲染出 HTML 代码。
-
-
-
 
 
 ### 示例：Redux
 
-进入`demos/redux-demo`目录，按照[《操作说明》](../demos/README.md#redux)，理解 Redux 框架。
+进入`demos/redux-demo`目录，理解 Redux 框架。
 
 ---
 

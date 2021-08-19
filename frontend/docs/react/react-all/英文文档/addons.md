@@ -1,35 +1,29 @@
----
-id: addons
-title: Add-Ons
-permalink: docs/addons.html
----
-
 > Note:
 >
 > `React.addons` entry point is deprecated as of React v15.5. The add-ons have moved to separate modules, and some of them have been deprecated.
 
 The React add-ons are a collection of useful utility modules for building React apps. **These should be considered experimental** and tend to change more often than the core.
 
-- [`createFragment`](create-fragment.html), to create a set of externally-keyed children.
+- [`createFragment`], to create a set of externally-keyed children.
 
 The add-ons below are in the development (unminified) version of React only:
 
-- [`Perf`](perf.html), a performance profiling tool for finding optimization opportunities.
-- [`ReactTestUtils`](test-utils.html), simple helpers for writing test cases.
+- [`Perf`], a performance profiling tool for finding optimization opportunities.
+- [`ReactTestUtils`], simple helpers for writing test cases.
 
 ### Legacy Add-ons
 
 The add-ons below are considered legacy and their use is discouraged. They will keep working in observable future, but there is no further development.
 
-- [`PureRenderMixin`](pure-render-mixin.html). Use [`React.PureComponent`](/docs/react-api.html#reactpurecomponent) instead.
-- [`shallowCompare`](shallow-compare.html), a helper function that performs a shallow comparison for props and state in a component to decide if a component should update. We recommend using [`React.PureComponent`](/docs/react-api.html#reactpurecomponent) instead.
-- [`update`](update.html). Use [`kolodny/immutability-helper`](https://github.com/kolodny/immutability-helper) instead.
-- [`ReactDOMFactories`](dom-factories.html), pre-configured DOM factories to make React easier to use without JSX.
+- [`PureRenderMixin`]. Use [`React.PureComponent`] instead.
+- [`shallowCompare`], a helper function that performs a shallow comparison for props and state in a component to decide if a component should update. We recommend using [`React.PureComponent`] instead.
+- [`update`]. Use [`kolodny/immutability-helper`](https://github.com/kolodny/immutability-helper) instead.
+- [`ReactDOMFactories`], pre-configured DOM factories to make React easier to use without JSX.
 
 ### Deprecated Add-ons
 
-- [`LinkedStateMixin`](two-way-binding-helpers.html) has been deprecated.
-- [`TransitionGroup` and `CSSTransitionGroup`](animation.html) have been deprecated in favor of [their drop-in replacements](https://github.com/reactjs/react-transition-group/tree/v1-stable).
+- [`LinkedStateMixin`] has been deprecated.
+- [`TransitionGroup` and `CSSTransitionGroup`] have been deprecated in favor of [their drop-in replacements](https://github.com/reactjs/react-transition-group/tree/v1-stable).
 
 ## Using React with Add-ons
 

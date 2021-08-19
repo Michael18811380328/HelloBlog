@@ -1,8 +1,4 @@
----
-id: cross-origin-errors
-title: Cross-origin Errors
-permalink: docs/cross-origin-errors.html
----
+Cross-origin Errors
 
 > Note:
 >
@@ -23,8 +19,6 @@ When loading React (or other libraries that might throw errors) from a CDN, add 
 ```
 
 Also ensure the CDN responds with the `Access-Control-Allow-Origin: *` HTTP header:
-
-![Access-Control-Allow-Origin: *](../images/docs/cdn-cors-header.png)
 
 ### Webpack
 

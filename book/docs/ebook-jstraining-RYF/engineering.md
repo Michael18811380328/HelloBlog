@@ -33,16 +33,10 @@ Continuous integration（简称 CI）：
 - 发现风格错误
 - 自动纠正错误
 
-![](./images/eslint.png)
-
----
 
 ### 课堂练习：ESLint 的用法
 
-进入`demos/eslint-demo`目录，按照[《操作指南》](../demos/README.md#eslint)，完成练习。
-
-
-
+进入`demos/eslint-demo`目录，按照《操作指南》，完成练习。
 
 
 ## 为什么写测试？
@@ -93,13 +87,9 @@ Web 应用越来越复杂，意味着更可能出错。测试是提高代码质�
 
 Mocha 是目前最常用的测试框架。
 
-![](./images/mocha.png)
-
----
-
 ### 课堂练习：Mocha 的用法
 
-进入`demos/mocha-demo`目录，按照[《操作指南》](../demos/README.md#mocha)，练习写单元测试。
+进入`demos/mocha-demo`目录，按照《操作指南》，练习写单元测试。
 
 ---
 
@@ -134,7 +124,7 @@ Mocha 是目前最常用的测试框架。
 
 #### 示例：Nightmare
 
-打开`demos/nightmare-demo/`，按照[《操作说明》](../demos/README.md#nightmare)，完成操作。
+打开`demos/nightmare-demo/`，按照《操作说明》，完成操作。
 
 ---
 
@@ -157,8 +147,6 @@ Mocha 是目前最常用的测试框架。
 
 ---
 
-
-
 ## 持续集成服务平台
 
 代码合并进主干以后，就可以进行==自动构建和发布==了。
@@ -166,11 +154,3 @@ Mocha 是目前最常用的测试框架。
 网上有很多 PaaS 平台，提供持续集成服务。
 
 Travis CI 就是其中最著名的一个，==它可以根据你提供的脚本，自动完成构建和发布==。
-
-![](./images/travis-ci.png)
-
----
-
-### 课堂练习：Travis CI
-
-按照[《操作说明》](../demos/README.md#travis-ci)，完成练习。

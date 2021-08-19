@@ -66,9 +66,8 @@ nav:
         - '发布日志': 'changelog.md'
         - '学习日志': 'log.md'
         - '博客 mkdocs 配置说明': 'mkdocs.md'
-        - '开源项目说明': 'github-projects.md '
+        - '项目说明': 'github-projects.md'
     - 其他日志存档:
-        - 'algorithm-sort.md': 'old/algorithm-sort.md'
         - 'alibaba-ice.md': 'old/alibaba-ice.md'
         - 'alibaba-open-source-instructions.md': 'old/alibaba-open-source-instructions.md'
         - 'browser-sync.md': 'old/browser-sync.md'

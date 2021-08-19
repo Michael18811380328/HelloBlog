@@ -97,7 +97,7 @@ nav:
         - '使用nodejs连接mysql数据库实现增删改查': 'nodejs/使用nodejs连接mysql数据库实现增删改查.md'
         - '廖雪峰 NodeJS': 'nodejs/廖雪峰 NodeJS.md'
         - '命令行的nodeJS': 'nodejs/命令行的nodeJS.md'
-        - '谈谈Node中的常见概念': 'nodejs/谈谈Node中的常见概念.md '
+        - '谈谈Node中的常见概念': 'nodejs/谈谈Node中的常见概念.md'
     - SQL:
         - 'Mac安装MySQLdb（python-mysql）模块.md': 'backend-sql/Mac安装MySQLdb（python-mysql）模块.md'
         - 'Python操作 MySQL数据库.md': 'backend-sql/Python操作 MySQL数据库.md'
@@ -120,7 +120,6 @@ nav:
         - 'flask网易云课堂笔记.md': 'python/flask网易云课堂笔记.md'
         - 'matplotlib.md': 'python/matplotlib.md'
         - 'numpy.md': 'python/numpy.md'
-        - 'pandas 常见问题.md': 'python/pandas 常见问题.md'
         - 'pandas.md': 'python/pandas.md'
         - 'seaborn.md': 'python/seaborn.md'
         - '黑马-python-basic.md': 'python/黑马-python-basic.md'

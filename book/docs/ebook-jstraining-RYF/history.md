@@ -7,8 +7,6 @@
 - 前端：针对浏览器的开发，代码在浏览器运行
 - 后端：针对服务器的开发，代码在服务器运行
 
-![](./images/frontend.png)
-
 ---
 
 ## 前后端不分的时代
@@ -34,8 +32,6 @@
 ---
 
 以 PHP 框架 Laravel 为例。
-
-![](./images/laravel-mvc.png)
 
 ---
 
@@ -86,7 +82,6 @@ Ajax 技术诞生，改变了一切。
 
 Ajax 技术促成了 Web 2.0 的诞生。
 
-![](./images/web20.gif)
 
 - Web 1.0：静态网页，纯内容展示
 - Web 2.0：动态网页，富交互，前端数据处理
@@ -105,7 +100,6 @@ Ajax 技术促成了 Web 2.0 的诞生。
 
 - 2010年，Backbone.js
 
-![](./images/backbone.png)
 
 ---
 
@@ -116,7 +110,6 @@ Backbone 将前端代码分成两个基本部分。
 - Model：管理数据
 - View：数据的展现
 
-![](./images/backbone-model-view.png)
 
 ---
 
@@ -150,7 +143,6 @@ var AppView = Backbone.View.extend({
 
 通过 URL 切换视图，这就是 Router（路由）的作用。以 Backbone 为例。
 
-![](./images/backbone-routing.png)
 
 ---
 
@@ -176,12 +168,6 @@ App.Router = Backbone.Router.extend({
 
 打开`demos/backbone-demo/index.html`，按照[《操作说明》](../demos/README.md#backbone)，查看示例。
 
-![](./images/backbone-demo.png)
-
----
-
-
-
 
 
 ## MVVM 模式
@@ -193,10 +179,6 @@ App.Router = Backbone.Router.extend({
 - View-Model：简化的 Controller，唯一作用就是为 View 提供处理好的数据，不含其他逻辑。
 
 本质：view 绑定 view-model，视图与数据模型强耦合。数据的变化实时反映在 view 上，不需要手动处理。
-
-![](./images/mvvm.png)
-
----
 
 
 
@@ -220,11 +202,9 @@ App.Router = Backbone.Router.extend({
 
 传统的架构
 
-![](./images/architecture-old.png)
 
 单页应用的架构
 
-![](./images/architecture-new.png)
 
 多了一个前端 MVC 层
 
@@ -236,7 +216,6 @@ Google 公司推出的 Angular 是最流行的 MVVM 前端框架。
 
 它的风格属于 HTML 语言的增强，核心概念是双向绑定。
 
-![](./images/angular.png)
 
 ---
 
@@ -244,7 +223,6 @@ Google 公司推出的 Angular 是最流行的 MVVM 前端框架。
 
 浏览器打开`demos/angular-demo/index.html`，可以看到一个输入框。
 
-![](./images/angular-demo.png)
 
 ---
 
@@ -272,7 +250,6 @@ Vue.js 是现在很热门的一种前端 MVVM 框架。
 
 它的基本思想与 Angular 类似，但是用法更简单，而且引入了响应式编程的概念。
 
-![](./images/vue-logo.png)
 
 ---
 
@@ -280,9 +257,8 @@ Vue.js 是现在很热门的一种前端 MVVM 框架。
 
 Vue 的模板与数据，是双向绑定的。
 
-打开`demos/vue-demo/index1.html`，按照[《操作说明》](../demos/README.md#vue)，查看示例。
+打开`demos/vue-demo/index1.html`
 
-![](./images/vue-demo.png)
 
 ---
 
@@ -337,9 +313,6 @@ var journal = new Vue({
 
 ==Node = JavaScript + 操作系统 API==
 
-![](./images/node-logo.png)
-
----
 
 ## Node 的意义
 
