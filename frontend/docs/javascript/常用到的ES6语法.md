@@ -469,3 +469,60 @@ console.log(arr2.copyWithin(3, 1, 2))
 ```
 
 ES6中类class、Promise与异步编程、代理（Proxy）和反射（Reflection）API，这几块内容比较复杂，以后有机会再详细写。
+
+其他
+
+1. 对象扩展
+
+Object.defineProperty 对象的扩展
+
+~~~js
+Object.defineProperty(data,'b',{
+    value:5,
+    //b的属性值5
+    writable:false,
+    //属性只读
+    configurable:true,
+    // 其他属性是否可变（总开关，false关）
+    enumberable:true,
+    //是否正在for-in中遍历出来，或者爱Object.keys中列举出来
+    set(newValue){
+        console.log('setValue');
+        b = newValue;
+    },
+    get(){
+        console.log('getValue');
+        return b;
+    }
+});
+
+data.b = 10;
+console.log(data.b); //5
+~~~
+
+2. Promise
+
+~~~js
+    //ES5
+    setTimeout(function(){
+        console.log('promise');
+    });
+    
+    //ES6
+    let wait = new Promise((resolve,reject) => {
+        setTimeout(resolve,1000);
+    }).then(() => {
+        console.log('promise');
+    });
+
+    // wait100 函数返回一个 Promise，在1s后执行 resolve 函数
+    let wait100 = () => new Promise((resolve,reject) => {
+        setTimeout(resolve, 1000);
+    });
+    wait100().then(() => {
+        console.log("promise");
+        return wait100();
+    }).then(() => {
+        console.log("hi test");
+    });
+~~~

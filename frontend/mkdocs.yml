@@ -72,7 +72,6 @@ nav:
         - 'JS 性能优化': 'javascript/JS 性能优化.md'
         - 'JS-testing': 'javascript/JS-testing.md'
         - 'editor-js': 'javascript/editor-js.md'
-        - 'es6': 'javascript/es6.md'
         - '常用到的ES6语法': 'javascript/常用到的ES6语法.md'
         - '前端英语单词': 'javascript/前端英语单词.md'
         - 'JSzip': 'javascript/JSzip.md'
