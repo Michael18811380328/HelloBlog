@@ -36,40 +36,30 @@ npx babel --watch src --out-dir . --presets react-app/prod
 
 CLI选择：SPA选择 create-react-app，服务端使用 Next.js，静态网站 Gatsby
 
-[Create React App](https://github.com/facebookincubator/create-react-app) 是一个用于**学习 React** 的舒适环境，也是用 React 创建**新的[单页](https://zh-hans.reactjs.org/docs/glossary.html#single-page-application)应用**的最佳方式。
+[Create React App](https://github.com/facebookincubator/create-react-app) 是一个用于学习 React 的舒适环境，也是用 React 创建新的[单页](https://zh-hans.reactjs.org/docs/glossary.html#single-page-application)应用的最佳方式。目前只用到浏览器工程化工具，注意配置文件。
 
 ~~~bash
 npx create-react-app my-app
-cd my-app
 npm start
 npm run build
 ~~~
 
-[Next.js](https://nextjs.org/) 是一个流行的、轻量级的框架，用于配合 React 打造**静态化和服务端渲染应用**。它包括开箱即用的**样式和路由方案**，并且假定你使用 [Node.js](https://nodejs.org/) 作为服务器环境。
+[Next.js](https://nextjs.org/) 是一个流行的、轻量级的框架，用于配合 React 打造静态化和服务端渲染应用。它包括开箱即用的样式和路由方案，并且假定你使用 [Node.js](https://nodejs.org/) 作为服务器环境。
 
-[Gatsby](https://www.gatsbyjs.org/) 是用 React 创建**静态网站**的最佳方式。它让你能使用 React 组件，但输出预渲染的 HTML 和 CSS 以保证最快的加载速度。
+[Gatsby](https://www.gatsbyjs.org/) 是用 React 创建静态网站的最佳方式。它让你能使用 React 组件，但输出预渲染的 HTML 和 CSS 以保证最快的加载速度。
 
-目前只用到第一种工程化工具
-
-注意配置文件
 
 ### CDN 链接
 
 ~~~html
-<script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
-<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
 <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
 <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
 ~~~
 
-### 发布渠道
-
-这里主要介绍不同的版本，与React框架开发人员相关，与使用React的人无关。
-
 ## 核心概念
 
-1. Hello World：`ReactDOM.render(<span>hello</span>, document.getElementbById('#root'))`
-2. JSX 简介: js+HTML JSX包裹一个括号，避免JS代码末尾自动加分号造成错误
+1. Hello World：`ReactDOM.render(jsx, document.getElementbById('#root'))`
+2. JSX 简介: js+HTML，JSX包裹一个括号，避免JS代码末尾自动加分号造成错误
 3. 元素渲染：React DOM 会将元素和它的子元素与它们之前的状态进行比较，并只会进行必要的更新来使 DOM 达到预期的状态。尽管每一秒我们都会新建一个描述整个 UI 树的元素，React DOM 只会更新实际改变了的内容。
 4. 组件 & Props
 5. State & 生命周期
@@ -94,7 +84,7 @@ Fragments
 高阶组件
 与第三方库协同
 深入 JSX
-10、性能优化
+性能优化
 
 Portals
 Profiler
