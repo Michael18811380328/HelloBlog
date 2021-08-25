@@ -10,7 +10,7 @@
 
 # dir: book
 echo "book start------"
-my_array=('' 'book-JS-The-good-parts' 'ebook-JS-basic' 'ebook-javascript-secret-garden' 'ebook-kaikeba-frontend' 'other' 'book-JS-primer-code-design' 'ebook-JSES6-RYF' 'ebook-jstraining-RYF' 'ebook-netease-senior-frontend')
+my_array=('' 'book-JS-The-good-parts' 'ebook-JS-basic' 'ebook-javascript-secret-garden' 'ebook-kaikeba-frontend' 'other' 'book-JS-primer-code-design' 'ebook-JSES6-RYF' 'ebook-jstraining-RYF' 'ebook-netease-senior-frontend' 'third-part-lib')
 # len=${#my_array[*]} 
 for i in {0..10}
 do
