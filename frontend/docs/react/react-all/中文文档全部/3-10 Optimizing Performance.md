@@ -187,7 +187,7 @@ React 构建并维护了一套内部的 UI 渲染描述。它包含了来自你�
 
 即使 React 只更新改变了的 DOM 节点，重新渲染仍然花费了一些时间。在大部分情况下它并不是问题，不过如果它已经慢到让人注意了，你可以通过覆盖生命周期方法 `shouldComponentUpdate` 来进行提速。该方法会在重新渲染前被触发。其默认实现总是返回 `true`，让 React 执行更新：
 
-```jsx
+```js
 shouldComponentUpdate(nextProps, nextState) {
   return true;
 }
@@ -215,7 +215,7 @@ shouldComponentUpdate(nextProps, nextState) {
 
 如果你的组件只有当 `props.color` 或者 `state.count` 的值改变才需要更新时，你可以使用 `shouldComponentUpdate` 来进行检查：
 
-```jsx
+```js
 class CounterButton extends React.Component {
   constructor(props) {
     super(props);
@@ -246,7 +246,7 @@ class CounterButton extends React.Component {
 
 在这段代码中，`shouldComponentUpdate` 仅检查了 `props.color` 或 `state.count` 是否改变。如果这些值没有改变，那么这个组件不会更新。如果你的组件更复杂一些，你可以使用类似“浅比较”的模式来检查 `props` 和 `state` 中所有的字段，以此来决定是否组件需要更新。React 已经提供了一位好帮手来帮你实现这种常见的模式 - 你只要继承 `React.PureComponent` 就行了。所以这段代码可以改成以下这种更简洁的形式：
 
-```jsx
+```js
 class CounterButton extends React.PureComponent {
   constructor(props) {
     super(props);
@@ -267,7 +267,7 @@ class CounterButton extends React.PureComponent {
 
 大部分情况下，你可以使用 `React.PureComponent` 来代替手写 `shouldComponentUpdate`。但它只进行浅比较，所以当 props 或者 state 某种程度是可变的话，浅比较会有遗漏，那你就不能使用它了。当数据结构很复杂时，情况会变得麻烦。例如，你想要一个 `ListOfWords` 组件来渲染一组用逗号分开的单词。它有一个叫做 `WordAdder` 的父组件，该组件允许你点击一个按钮来添加一个单词到列表中。以下代码*并不*正确：
 
-```jsx
+```js
 class ListOfWords extends React.PureComponent {
   render() {
     return <div>{this.props.words.join(',')}</div>;
@@ -307,7 +307,7 @@ class WordAdder extends React.Component {
 
 避免该问题最简单的方式是避免更改你正用于 props 或 state 的值。例如，上面 `handleClick` 方法可以用 `concat` 重写：
 
-```jsx
+```js
 handleClick() {
   this.setState(state => ({
     words: state.words.concat(['marklar'])
@@ -317,7 +317,7 @@ handleClick() {
 
 ES6 数组支持[扩展运算符](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_operator)，这让代码写起来更方便了。如果你在使用 Create React App，该语法已经默认支持了。
 
-```jsx
+```js
 handleClick() {
   this.setState(state => ({
     words: [...state.words, 'marklar'],
@@ -327,7 +327,7 @@ handleClick() {
 
 你可以用类似的方式改写代码来避免可变对象的产生。例如，我们有一个叫做 `colormap` 的对象。我们希望写一个方法来将 `colormap.right` 设置为 `'blue'`。我们可以这么写：
 
-```jsx
+```js
 function updateColorMap(colormap) {
   colormap.right = 'blue';
 }
@@ -335,7 +335,7 @@ function updateColorMap(colormap) {
 
 为了不改变原本的对象，我们可以使用 [Object.assign](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign) 方法：
 
-```jsx
+```js
 function updateColorMap(colormap) {
   return Object.assign({}, colormap, {right: 'blue'});
 }
@@ -345,7 +345,7 @@ function updateColorMap(colormap) {
 
 这里有一个 JavaScript 的提案，旨在添加[对象扩展属性](https://github.com/sebmarkbage/ecmascript-rest-spread)以使得更新不可变对象变得更方便：
 
-```jsx
+```js
 function updateColorMap(colormap) {
   return {...colormap, right: 'blue'};
 }

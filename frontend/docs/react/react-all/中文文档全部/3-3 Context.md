@@ -25,7 +25,7 @@ Context 提供了一个无需为每层组件手动添加 props，就能在组件
 
 Context 设计目的是为了共享那些对于一个组件树而言是“全局”的数据，例如当前认证的用户、主题或首选语言。举个例子，在下面的代码中，我们通过一个 “theme” 属性手动调整一个按钮组件的样式：
 
-```jsx
+```js
 class App extends React.Component {
   render() {
     return <Toolbar theme="dark" />;
@@ -52,7 +52,7 @@ class ThemedButton extends React.Component {
 
 使用 context, 我们可以避免通过中间元素传递 props：
 
-```jsx
+```js
 // Context 可以让我们无须明确地传遍每一个组件，就能将值深入传递进组件树。
 // 为当前的 theme 创建一个 context（“light”为默认值）。
 
@@ -100,7 +100,7 @@ Context 主要应用场景在于*很多*不同层级的组件需要访问同样�
 
 比如，考虑这样一个 `Page` 组件，它层层向下传递 `user` 和 `avatarSize` 属性，从而深度嵌套的 `Link` 和 `Avatar` 组件可以读取到这些属性：
 
-```jsx
+```js
 <Page user={user} avatarSize={avatarSize} />
 // ... 渲染出 ...
 <PageLayout user={user} avatarSize={avatarSize} />
@@ -116,7 +116,7 @@ Context 主要应用场景在于*很多*不同层级的组件需要访问同样�
 
 一种**无需 context** 的解决方案是[将 `Avatar` 组件自身传递下去](https://zh-hans.reactjs.org/docs/composition-vs-inheritance.html#containment)，因而中间组件无需知道 `user` 或者 `avatarSize` 等 props：
 
-```jsx
+```js
 function Page(props) {
   const user = props.user;
   const userLink = (
@@ -145,7 +145,7 @@ function Page(props) {
 
 而且你的组件并不限制于接收单个子组件。你可能会传递多个子组件，甚至会为这些子组件（children）封装多个单独的“接口（slots）”，[正如这里的文档所列举的](https://zh-hans.reactjs.org/docs/composition-vs-inheritance.html#containment)
 
-```jsx
+```js
 function Page(props) {
   const user = props.user;
   const content = <Feed user={user} />;
@@ -185,7 +185,7 @@ const MyContext = React.createContext(defaultValue);
 
 ### `Context.Provider`
 
-```jsx
+```js
 <MyContext.Provider value={/* 某个值 */}>
 ```
 
@@ -203,7 +203,7 @@ Provider 接收一个 `value` 属性，传递给消费组件。一个 Provider �
 
 ### `Class.contextType`
 
-```jsx
+```js
 class MyClass extends React.Component {
   componentDidMount() {
     let value = this.context;
@@ -245,7 +245,7 @@ class MyClass extends React.Component {
 
 ### `Context.Consumer`
 
-```jsx
+```js
 <MyContext.Consumer>
   {value => /* 基于 context 值进行渲染*/}
 </MyContext.Consumer>
@@ -265,7 +265,7 @@ context 对象接受一个名为 `displayName` 的 property，类型为字符串
 
 示例，下述组件在 DevTools 中将显示为 MyDisplayName：
 
-```jsx
+```js
 const MyContext = React.createContext(/* some value */);
 MyContext.displayName = 'MyDisplayName';
 <MyContext.Provider> // "MyDisplayName.Provider" 在 DevTools 中
@@ -317,7 +317,7 @@ export default ThemedButton;
 
 **app.js**
 
-```jsx
+```js
 import {ThemeContext, themes} from './theme-context';
 import ThemedButton from './themed-button';
 
@@ -374,7 +374,7 @@ ReactDOM.render(<App />, document.root);
 
 **theme-context.js**
 
-```jsx
+```js
 // 确保传递给 createContext 的默认值数据结构是调用的组件（consumers）所能匹配的！
 export const ThemeContext = React.createContext({
   theme: themes.dark,  
@@ -386,7 +386,7 @@ export const ThemeContext = React.createContext({
 
 **theme-toggler-button.js**
 
-```jsx
+```js
 import {ThemeContext} from './theme-context';
 
 function ThemeTogglerButton() {
@@ -408,7 +408,7 @@ export default ThemeTogglerButton;
 
 **app.js**
 
-```jsx
+```js
 import {ThemeContext, themes} from './theme-context';
 import ThemeTogglerButton from './theme-toggler-button';
 
@@ -458,7 +458,7 @@ ReactDOM.render(<App />, document.root);
 
 为了确保 context 快速进行重渲染，React 需要使每一个 consumers 组件的 context 在组件树中成为一个单独的节点。
 
-```jsx
+```js
 // Theme context，默认的 theme 是 “light” 值
 const ThemeContext = React.createContext('light');
 
@@ -500,7 +500,7 @@ function Content() {
 
 因为 context 会使用参考标识（reference identity）来决定何时进行渲染，这里可能会有一些陷阱，当 provider 的父组件进行重渲染时，可能会在 consumers 组件中触发意外的渲染。举个例子，当每一次 Provider 重渲染时，以下的代码会重渲染所有下面的 consumers 组件，因为 `value` 属性总是被赋值为新的对象：
 
-```jsx
+```js
 class App extends React.Component {
   render() {
     return (
@@ -513,7 +513,7 @@ class App extends React.Component {
 
 为了防止这种情况，将 value 状态提升到父节点的 state 里：
 
-```jsx
+```js
 class App extends React.Component {
   constructor(props) {
     super(props);

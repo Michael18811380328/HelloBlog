@@ -85,7 +85,7 @@ Tooltip.propTypes = {
 }
 ~~~
 
-~~~jsx
+~~~js
 let delay = {show: 100, hide: 300};
 
 return(
@@ -95,7 +95,7 @@ return(
 
 ## Layout Components (Container, Row, Col)
 
-```jsx
+```js
 import React from 'react';
 import { Container, Row, Col } from 'reactstrap';
 
@@ -144,7 +144,7 @@ export default class Example extends React.Component {
 
 #### Container Properties
 
-```jsx
+```js
 Container.propTypes = {
   fluid:  PropTypes.bool
   // applies .container-fluid class
@@ -153,7 +153,7 @@ Container.propTypes = {
 
 #### Row Properties
 
-```jsx
+```js
 Row.propTypes = {
   noGutters: PropTypes.bool,
   // see https://reactstrap.github.io/components/form Form Grid with Form Row
@@ -163,7 +163,7 @@ Row.propTypes = {
 
 #### Col Properties
 
-```jsx
+```js
 const stringOrNumberProp = PropTypes.oneOfType([PropTypes.number, PropTypes.string]);
 const columnProps = PropTypes.oneOfType([
   PropTypes.string,
@@ -215,7 +215,7 @@ Alert.propTypes = {
 }
 ```
 
-```jsx
+```js
 import React from 'react';
 import { Alert } from 'reactstrap';
 
@@ -248,7 +248,7 @@ export default AlertExample;
 
 ## demo
 
-~~~jsx
+~~~js
 ReactModal.setAppElement('#main');
 
 class ExampleApp extends React.Component {

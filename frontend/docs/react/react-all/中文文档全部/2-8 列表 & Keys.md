@@ -16,11 +16,11 @@ console.log(doubled);
 
 ### 渲染多个组件
 
-你可以通过使用`{}`在JSX内构建一个[元素集合](https://react.docschina.org/docs/introducing-jsx.html#JSX%E5%B5%8C%E5%A5%97)
+你可以通过使用`{}`在JSX内构建一个[元素集合](https://react.docschina.org/docs/introducing-js.html#JSX%E5%B5%8C%E5%A5%97)
 
 下面，我们使用Javascript中的[`map()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)方法遍历`numbers`数组。对数组中的每个元素返回`<li>`标签，最后我们得到一个数组`listItems`
 
-```jsx
+```js
 const numbers = [1, 2, 3, 4, 5];
 const listItems = numbers.map((number) =>
   <li>{number}</li>
@@ -29,7 +29,7 @@ const listItems = numbers.map((number) =>
 
 我们把整个`listItems`插入到`ul`元素中，然后[渲染进DOM](https://react.docschina.org/docs/rendering-elements.html#%E5%B0%86%E5%85%83%E7%B4%A0%E6%B8%B2%E6%9F%93%E5%88%B0DOM%E4%B8%AD):
 
-```jsx
+```js
 ReactDOM.render(
   <ul>{listItems}</ul>,
   document.getElementById('root')
@@ -42,7 +42,7 @@ ReactDOM.render(
 
 我们可以把前面的例子重构成一个组件。这个组件接收`numbers`数组作为参数，输出一个无序列表。
 
-```jsx
+```js
 function NumberList(props) {
   const numbers = props.numbers;
   const listItems = numbers.map((number) =>
@@ -64,7 +64,7 @@ ReactDOM.render(
 
 让我们来给每个列表元素分配一个 `key` 来解决上面的那个警告：
 
-```jsx
+```js
 function NumberList(props) {
   const numbers = props.numbers;
   const listItems = numbers.map((number) =>
@@ -88,7 +88,7 @@ ReactDOM.render(
 
 Keys可以在DOM中的某些元素被增加或删除的时候,帮助React识别哪些元素发生了变化。因此你应当给数组中的每一个元素赋予一个确定的标识。
 
-```jsx
+```js
 const numbers = [1, 2, 3, 4, 5];
 const listItems = numbers.map((number) =>
   <li key={number.toString()}>
@@ -99,7 +99,7 @@ const listItems = numbers.map((number) =>
 
 一个元素的key最好是这个元素在列表中拥有的一个独一无二的字符串。通常，我们使用来自数据的id作为元素的key:
 
-```jsx
+```js
 const todoItems = todos.map((todo) =>
   <li key={todo.id}>
     {todo.text}
@@ -109,7 +109,7 @@ const todoItems = todos.map((todo) =>
 
 当元素没有确定的id时，你可以使用他的序列号索引index作为key
 
-```jsx
+```js
 const todoItems = todos.map((todo, index) =>
   // Only do this if items have no stable IDs
   <li key={index}>
@@ -128,7 +128,7 @@ const todoItems = todos.map((todo, index) =>
 
 **错误的示范**
 
-```jsx
+```js
 function ListItem(props) {
   const value = props.value;
   return (
@@ -161,7 +161,7 @@ ReactDOM.render(
 
 **key的正确使用方式**
 
-```jsx
+```js
 function ListItem(props) {
   // 对啦！这里不需要指定key:
   return <li>{props.value}</li>;
@@ -189,7 +189,7 @@ ReactDOM.render(
 
 数组元素中使用的key在其兄弟之间应该是独一无二的。然而，它们不需要是全局唯一的。当我们生成两个不同的数组时，我们可以使用相同的键
 
-```jsx
+```js
 function Blog(props) {
   const sidebar = (
     <ul>
@@ -227,7 +227,7 @@ ReactDOM.render(
 
 key会作为给React的提示，但不会传递给你的组件。如果您的组件中需要使用和`key`相同的值，请将其作为属性传递：
 
-```jsx
+```js
 const content = posts.map((post) =>
   <Post
     key={post.id}
@@ -238,11 +238,11 @@ const content = posts.map((post) =>
 
 上面例子中，`Post`组件可以读出`props.id`，但是不能读出`props.key`
 
-### 在jsx中嵌入map()
+### 在js中嵌入map()
 
 在上面的例子中，我们声明了一个单独的`listItems`变量并将其包含在JSX中
 
-```jsx
+```js
 function NumberList(props) {
   const numbers = props.numbers;
   const listItems = numbers.map((number) =>
@@ -256,9 +256,9 @@ function NumberList(props) {
 }
 ```
 
-JSX允许在大括号中[嵌入任何表达式](https://react.docschina.org/docs/introduction-jsx.html%EF%BC%83JSX%E5%B5%8C%E5%A5%97)，所以我们可以在`map()`中这样使用：
+JSX允许在大括号中[嵌入任何表达式](https://react.docschina.org/docs/introduction-js.html%EF%BC%83JSX%E5%B5%8C%E5%A5%97)，所以我们可以在`map()`中这样使用：
 
-```jsx
+```js
 function NumberList(props) {
   const numbers = props.numbers;
   return (

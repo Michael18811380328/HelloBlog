@@ -4,7 +4,7 @@
 
 请参考[前一章节](https://zh-hans.reactjs.org/docs/rendering-elements.html#updating-the-rendered-element)中时钟的例子。在[元素渲染](https://zh-hans.reactjs.org/docs/rendering-elements.html#rendering-an-element-into-the-dom)章节中，我们只了解了一种更新 UI 界面的方法。通过调用 `ReactDOM.render()` 来修改我们想要渲染的元素：
 
-```jsx
+```js
 function tick() {
   const element = (
     <div>
@@ -22,7 +22,7 @@ setInterval(tick, 1000);
 
 我们可以从封装时钟的外观开始：
 
-```jsx
+```js
 function Clock(props) {
   return (
     <div>      
@@ -43,7 +43,7 @@ setInterval(tick, 1000);
 
 理想情况下，我们希望只编写一次代码，便可以让 `Clock` 组件自我更新：
 
-```jsx
+```js
 ReactDOM.render(
   <Clock />,  document.getElementById('root')
 );
@@ -63,7 +63,7 @@ State 与 props 类似，但是 state 是私有的，并且完全受控于当前
 4. 在 `render()` 方法中使用 `this.props` 替换 `props`。
 5. 删除剩余的空函数声明。
 
-```jsx
+```js
 class Clock extends React.Component {
   render() {
     return (
@@ -86,7 +86,7 @@ class Clock extends React.Component {
 
 1. 把 `render()` 方法中的 `this.props.date` 替换成 `this.state.date` ：
 
-```jsx
+```js
 class Clock extends React.Component {
   render() {
     return (
@@ -101,7 +101,7 @@ class Clock extends React.Component {
 
 1. 添加一个 [class 构造函数](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes#Constructor)，然后在该函数中为 `this.state` 赋初值：
 
-```jsx
+```js
 class Clock extends React.Component {
   constructor(props) {
     super(props);
@@ -123,7 +123,7 @@ class Clock extends React.Component {
 
 通过以下方式将 `props` 传递到父类的构造函数中：
 
-```jsx
+```js
   constructor(props) {
     super(props);    
     this.state = {date: new Date()};
@@ -134,7 +134,7 @@ Class 组件应该始终使用 `props` 参数来调用父类的构造函数。
 
 1. 移除 `` 元素中的 `date` 属性：
 
-```jsx
+```js
 ReactDOM.render(
   <Clock />,  document.getElementById('root')
 );
@@ -144,7 +144,7 @@ ReactDOM.render(
 
 代码如下：
 
-```jsx
+```js
 class Clock extends React.Component {
   constructor(props) {    
     super(props);    
@@ -179,7 +179,7 @@ ReactDOM.render(
 
 我们可以为 class 组件声明一些特殊的方法，当组件挂载或卸载时就会去执行这些方法：
 
-```jsx
+```js
 class Clock extends React.Component {
   constructor(props) {
     super(props);
@@ -203,7 +203,7 @@ class Clock extends React.Component {
 
 `componentDidMount()` 方法会在组件已经被渲染到 DOM 中后运行，所以，最好在这里设置计时器：
 
-```jsx
+```js
 componentDidMount() {
   this.timerID = setInterval(() => {
     this.tick() 
@@ -217,7 +217,7 @@ componentDidMount() {
 
 我们会在 `componentWillUnmount()` 生命周期方法中清除计时器：
 
-```jsx
+```js
   componentWillUnmount() {
     clearInterval(this.timerID);
   }
@@ -227,7 +227,7 @@ componentDidMount() {
 
 使用 `this.setState()` 来时刻更新组件 state：
 
-```jsx
+```js
 class Clock extends React.Component {
   constructor(props) {
     super(props);
@@ -373,13 +373,13 @@ this.setState(function(state, props) {
 
 组件可以选择把它的 state 作为 props 向下传递到它的子组件中：
 
-```jsx
+```js
 <h2>It is {this.state.date.toLocaleTimeString()}.</h2>
 ```
 
 这对于自定义组件同样适用：
 
-```jsx
+```js
 <FormattedDate date={this.state.date} />
 ```
 
@@ -397,7 +397,7 @@ function FormattedDate(props) {
 
 为了证明每个组件都是真正独立的，我们可以创建一个渲染三个 `Clock` 的 `App` 组件：
 
-```jsx
+```js
 function App() {
   return (
     <div>

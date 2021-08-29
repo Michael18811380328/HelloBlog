@@ -10,13 +10,13 @@ npm install react-transition-group --save
 
 组件中引入CSSTransition模块：
 
-```jsx
+```js
 import { CSSTransition } from 'react-transition-group'
 ```
 
 将CSSTransition标签包裹在需要实现动画效果的元素外，然后进行相关属性的配置：
 
-```jsx
+```js
 constructor(props){
   super(props);
   this.state = {
@@ -84,7 +84,7 @@ render() {
 
 如果页面上一组dom都需要添加动画效果时我们需要在最外面再加一个TransitionGroup
 
-```jsx
+```js
 import React, { Component, Fragment } from 'react';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import './style.css';
@@ -211,7 +211,7 @@ The Transition component lets you describe a transition from one component state
 
 By default the `Transition` component does not alter the behavior of the component it renders, it only tracks "enter" and "exit" states for the components. It's up to you to give meaning and effect to those states. For example we can add styles to a component when it enters or exits:
 
-```jsx
+```js
 import { Transition } from 'react-transition-group';
 
 const duration = 300;
@@ -251,7 +251,7 @@ There are 4 main states a Transition can be in:
 
 Transition state is toggled via the `in` prop. When `true` the component begins the "Enter" stage. During this stage, the component will shift from its current transition state, to `'entering'` for the duration of the transition and then to the `'entered'` stage once it's complete. Let's take the following example (we'll use the [useState](https://reactjs.org/docs/hooks-reference.html#usestate) hook):
 
-```jsx
+```js
 function App() {
   const [inProp, setInProp] = useState(false);
   return (
@@ -279,7 +279,7 @@ When `in` is `false` the same thing happens except the state moves from `'exitin
 
 A `function` child can be used instead of a React element. This function is called with the current transition status (`'entering'`, `'entered'`, `'exiting'`, `'exited'`), which can be used to apply context specific props to a component.
 
-```jsx
+```js
 <Transition in={this.state.in} timeout={150}>
   {state => (
     <MyComponent className={`fade fade-${state}`} />
@@ -347,13 +347,13 @@ The duration of the transition, in milliseconds. Required unless `addEndListener
 
 You may specify a single timeout for all transitions:
 
-```jsx
+```js
 timeout={500}
 ```
 
 or individually:
 
-```jsx
+```js
 timeout={{
  appear: 500,
  enter: 300,
@@ -371,7 +371,7 @@ type: `number | { enter?: number, exit?: number, appear?: number }`
 
 Add a custom transition end trigger. Called with the transitioning DOM node and a `done` callback. Allows for more fine grained transition end logic. **Note:** Timeouts are still used as a fallback if provided.
 
-```jsx
+```js
 addEndListener={(node, done) => {
   // use the css transitionend event to mark the finish of a transition
   node.addEventListener('transitionend', done, false);
@@ -436,7 +436,7 @@ A transition component inspired by the excellent [ng-animate](http://www.nganima
 
 `CSSTransition` applies a pair of class names during the `appear`, `enter`, and `exit` states of the transition. The first class is applied and then a second `*-active` class in order to activate the CSS transition. After the transition, matching `*-done` class names are applied to persist the transition state.
 
-```jsx
+```js
 function App() {
   const [inProp, setInProp] = useState(false);
   return (
@@ -567,7 +567,7 @@ A transition component inspired by the [vue transition modes](https://vuejs.org/
 
 If the `out-in` mode is selected, the `SwitchTransition` waits until the old child leaves and then inserts a new child. If the `in-out` mode is selected, the `SwitchTransition` inserts a new child first, waits for the new child to enter and then removes the old child
 
-```jsx
+```js
 function App() {
  const [state, setState] = useState(false);
  return (

@@ -32,20 +32,20 @@ React 是目前最热门的前端框架。
 
 React 使用 JSX 语法，JavaScript 代码中可以写 HTML 代码。
 
-```jsx
+```js
 let myTitle = <h1>Hello, world!</h1>;
 ```
 
 （1）JSX 语法的最外层，只能有一个节点。
 
-```jsx
+```js
 // 错误
 let myTitle = <p>Hello</p><p>World</p>;
 ```
 
 （2）JSX 语法中可以插入 JavaScript 代码，使用大括号。
 
-```jsx
+```js
 let myTitle = <p>{'Hello ' + 'World'}</p>
 ```
 
@@ -72,9 +72,9 @@ Babel 用来在浏览器转换 JSX 语法，如果服务器已经转好了，浏
 
 ### 课堂练习：JSX 语法
 
-浏览器打开`demos/jsx-demo/index.html`，完成练习。
+浏览器打开`demos/js-demo/index.html`，完成练习。
 
-```jsx
+```js
 ReactDOM.render(
   <span>Hello World!</span>,
   document.getElementById('example')
@@ -91,7 +91,7 @@ React 允许用户定义自己的组件，插入网页。
 
 浏览器打开`demos/react-component-demo/index1.html`，仔细查看源码。
 
-```jsx
+```js
 class MyTitle extends React.Component {
   render() {
     return <h1>Hello World</h1>;
@@ -114,7 +114,7 @@ ReactDOM.render(
 
 打开`demos/react-component-demo/index2.html`，完成练习。
 
-```jsx
+```js
 class MyTitle extends React.Component {
   render() {
     return <h1 style={{color: this.props.color}}>Hello World</h1>;
@@ -163,7 +163,7 @@ React 为组件的不同生命阶段，提供了近十个钩子方法。
 
 组件可以通过 Ajax 请求，从服务器获取数据。Ajax 请求一般在`componentDidMount`方法里面发出。
 
-```jsx
+```js
 componentDidMount() {
   const url = '...';
   $.getJSON(url).done().fail();
@@ -216,7 +216,7 @@ view = f(state)
 
 React 的本质是将图形界面（GUI）函数化。
 
-```jsx
+```js
 const person = {
   name: "michael",
   age: 31
@@ -324,7 +324,7 @@ MobX 的核心是观察者模式。
 
 ### MobX 例子
 
-```jsx
+```js
 const { observable } = mobx;
 const { observer } = mobxReact;
 
@@ -350,7 +350,7 @@ UI 层是观察者，Store 是被观察者。
 
 Store 所有的属性，分成两大类：直接被观察的属性和自动计算出来的属性。
 
-```jsx
+```js
 class Store {
   @observable name = 'Bartek';
   @computed get decorated() {
@@ -385,7 +385,7 @@ Redux 层保存所有状态，React 组件拿到状态以后，渲染出 HTML �
 - Redux 将组件分成 UI 组件和容器组件两类。
 - UI 组件是纯组件，不包含 state 和生命周期方法，不涉及组件的行为，只涉及组件的外观。
 
-```jsx
+```js
 <div className="index">
   <p>{this.props.text}</p>
   <input
@@ -403,7 +403,7 @@ Redux 层保存所有状态，React 组件拿到状态以后，渲染出 HTML �
 - 负责订阅 Store，将 Store 的数据处理以后，再通过参数传给 UI 组件。
 - 用户给出配置以后，由 Redux 生成。
 
-```jsx
+```js
 // MyComponent 是纯的 UI 组件
 const App = connect(
   mapStateToProps,
@@ -428,7 +428,7 @@ const App = connect(
 
 `reducer`是一个纯函数，用来接收`action`，算出新的`state`。
 
-```jsx
+```js
 function reducer(state, action) {
   switch (action.type) {
     case 'change':
@@ -445,7 +445,7 @@ function reducer(state, action) {
 - `Store`由 Redux 提供的`createStore`方法生成，该方法接受`reducer`作为参数。
 - 为了把`Store`传入组件，必须使用 Redux 提供的`Provider`组件在应用的最外面，包裹一层。
 
-```jsx
+```js
 const store = createStore(reducer);
 
 ReactDOM.render(

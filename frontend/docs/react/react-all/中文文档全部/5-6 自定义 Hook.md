@@ -6,7 +6,7 @@
 
 在我们学习[使用 Effect Hook](https://zh-hans.reactjs.org/docs/hooks-effect.html#example-using-hooks-1) 时，我们已经见过这个聊天程序中的组件，该组件用于显示好友的在线状态：
 
-```jsx
+```js
 import React, { useState, useEffect } from 'react';
 
 function FriendStatus(props) {
@@ -29,7 +29,7 @@ function FriendStatus(props) {
 
 现在我们假设聊天应用中有一个联系人列表，当用户在线时需要把名字设置为绿色。我们可以把上面类似的逻辑复制并粘贴到 `FriendListItem` 组件中来，但这并不是理想的解决方案：
 
-```jsx
+```js
 import React, { useState, useEffect } from 'react';
 
 function FriendListItem(props) {
@@ -52,7 +52,7 @@ function FriendListItem(props) {
 
 **自定义 Hook 是一个函数，其名称以 “`use`” 开头，函数内部可以调用其他的 Hook。** 例如，下面的 `useFriendStatus` 是我们第一个自定义的 Hook:
 
-```jsx
+```js
 import { useState, useEffect } from 'react';
 
 function useFriendStatus(friendID) {  
@@ -79,7 +79,7 @@ function useFriendStatus(friendID) {
 
 此处 `useFriendStatus` 的 Hook 目的是订阅某个好友的在线状态。这就是我们需要将 `friendID` 作为参数，并返回这位好友的在线状态的原因。
 
-```jsx
+```js
 function useFriendStatus(friendID) {
   const [isOnline, setIsOnline] = useState(null);
 
@@ -97,7 +97,7 @@ function useFriendStatus(friendID) {
 
 现在我们已经把这个逻辑提取到 `useFriendStatus` 的自定义 Hook 中，然后就可以*使用它了：*
 
-```jsx
+```js
 function FriendStatus(props) {
   const isOnline = useFriendStatus(props.friend.id);
   if (isOnline === null) {
@@ -129,7 +129,7 @@ function FriendListItem(props) {
 
 我们将使用聊天程序中的另一个组件来说明这一点。这是一个聊天消息接收者的选择器，它会显示当前选定的好友是否在线:
 
-```jsx
+```js
 const friendList = [
   { id: 1, name: 'Phoebe' },
   { id: 2, name: 'Rachel' },
@@ -159,7 +159,7 @@ function ChatRecipientPicker() {
 
 由于 `useState` 为我们提供了 `recipientID` 状态变量的最新值，因此我们可以将它作为参数传递给自定义的 `useFriendStatus` Hook：
 
-```jsx
+```js
   const [recipientID, setRecipientID] = useState(1);
   const isRecipientOnline = useFriendStatus(recipientID);
 ```
@@ -174,7 +174,7 @@ function ChatRecipientPicker() {
 
 例如，有个复杂的组件，其中包含了大量以特殊的方式来管理的内部状态。`useState` 并不会使得集中更新逻辑变得容易，因此你可能更愿意使用 [redux](http://redux.js.org/) 中的 reducer 来编写。
 
-```jsx
+```js
 function todosReducer(state, action) {
   switch (action.type) {
     case 'add':
@@ -193,7 +193,7 @@ Reducers 非常便于单独测试，且易于扩展，以表达复杂的更新�
 
 那么，为什么我们不编写一个 `useReducer` 的 Hook，使用 reducer 的方式来管理组件的内部 state 呢？其简化版本可能如下所示：
 
-```jsx
+```js
 function useReducer(reducer, initialState) {
   const [state, setState] = useState(initialState);
 
@@ -208,7 +208,7 @@ function useReducer(reducer, initialState) {
 
 在组件中使用它，让 reducer 驱动它管理 state：
 
-```jsx
+```js
 function Todos() {
   const [todos, dispatch] = useReducer(todosReducer, []);
   function handleAddClick(text) {

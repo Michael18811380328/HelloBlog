@@ -2,7 +2,7 @@
 
 Effect Hook 可以让你在函数组件中执行副作用操作
 
-```jsx
+```js
 import React, { useState, useEffect } from 'react';
 
 function Example() {
@@ -45,7 +45,7 @@ function Example() {
 
 这就是为什么在 React class 中，我们把副作用操作放到 `componentDidMount` 和 `componentDidUpdate` 函数中。回到示例中，这是一个 React 计数器的 class 组件。它在 React 对 DOM 进行操作之后，立即更新了 document 的 title 属性
 
-```jsx
+```js
 class Example extends React.Component {
   constructor(props) {
     super(props);
@@ -85,7 +85,7 @@ class Example extends React.Component {
 
 我们在本章节开始时已经看到了这个示例，但让我们再仔细观察它：
 
-```jsx
+```js
 import React, { useState, useEffect } from 'react';
 
 function Example() {
@@ -116,7 +116,7 @@ function Example() {
 
 现在我们已经对 effect 有了大致了解，下面这些代码应该不难看懂了：
 
-```jsx
+```js
 function Example() {
   const [count, setCount] = useState(0);
 
@@ -142,7 +142,7 @@ function Example() {
 
 在 React class 中，你通常会在 `componentDidMount` 中设置订阅，并在 `componentWillUnmount` 中清除它。例如，假设我们有一个 `ChatAPI` 模块，它允许我们订阅好友的在线状态。以下是我们如何使用 class 订阅和显示该状态：
 
-```jsx
+```js
 class FriendStatus extends React.Component {
   constructor(props) {
     super(props);
@@ -191,7 +191,7 @@ class FriendStatus extends React.Component {
 
 你可能认为需要单独的 effect 来执行清除操作。但由于添加和删除订阅的代码的紧密性，所以 `useEffect` 的设计是在同一个地方执行。如果你的 effect 返回一个函数，React 将会在执行清除操作时调用它：
 
-```jsx
+```js
 import React, { useState, useEffect } from 'react';
 
 function FriendStatus(props) {
@@ -227,7 +227,7 @@ function FriendStatus(props) {
 
 了解了 `useEffect` 可以在组件渲染后实现各种不同的副作用。有些副作用可能需要清除，所以需要返回一个函数：
 
-```jsx
+```js
 useEffect(() => {
   function handleStatusChange(status) {
     setIsOnline(status.isOnline);
@@ -242,7 +242,7 @@ useEffect(() => {
 
 其他的 effect 可能不必清除，所以不需要返回。
 
-```jsx
+```js
 useEffect(() => {
   document.title = `You clicked ${count} times`;
 });
@@ -258,7 +258,7 @@ effect Hook 使用同一个 API 来满足这两种情况。
 
 使用 Hook 其中一个[目的](https://zh-hans.reactjs.org/docs/hooks-intro.html#complex-components-become-hard-to-understand)就是要解决 class 中生命周期函数经常包含不相关的逻辑，但又把相关逻辑分离到了几个不同方法中的问题。下述代码是将前述示例中的计数器和好友在线状态指示器逻辑组合在一起的组件：
 
-```jsx
+```js
 class FriendStatusWithCounter extends React.Component {
   constructor(props) {
     super(props);
@@ -297,7 +297,7 @@ class FriendStatusWithCounter extends React.Component {
 
 那么 Hook 如何解决这个问题呢？就像[你可以使用多个 *state* 的 Hook](https://zh-hans.reactjs.org/docs/hooks-state.html#tip-using-multiple-state-variables) 一样，你也可以使用多个 effect。这会将不相关逻辑分离到不同的 effect 中：
 
-```jsx
+```js
 function FriendStatusWithCounter(props) {
   
   const [count, setCount] = useState(0);
@@ -327,7 +327,7 @@ function FriendStatusWithCounter(props) {
 
 在[本章节开始时](https://zh-hans.reactjs.org/docs/hooks-effect.html#example-using-classes-1)，我们介绍了一个用于显示好友是否在线的 `FriendStatus` 组件。从 class 中 props 读取 `friend.id`，然后在组件挂载后订阅好友的状态，并在卸载组件的时候取消订阅：
 
-```jsx
+```js
 componentDidMount() {
   ChatAPI.subscribeToFriendStatus(
     this.props.friend.id,
@@ -347,7 +347,7 @@ componentWillUnmount() {
 
 在 class 组件中，我们需要添加 `componentDidUpdate` 来解决这个问题：
 
-```jsx
+```js
   componentDidMount() {
     ChatAPI.subscribeToFriendStatus(
       this.props.friend.id,
@@ -380,7 +380,7 @@ componentWillUnmount() {
 
 现在看一下使用 Hook 的版本：
 
-```jsx
+```js
 function FriendStatus(props) {
   // ...
   useEffect(() => {
@@ -396,7 +396,7 @@ function FriendStatus(props) {
 
 并不需要特定的代码来处理更新逻辑，因为 `useEffect` *默认*就会处理。它会在调用一个新的 effect 之前对前一个 effect 进行清理。为了说明这一点，下面按时间列出一个可能会产生的订阅和取消订阅操作调用序列：
 
-```jsx
+```js
 // Mount with { friend: { id: 100 } } props
 ChatAPI.subscribeToFriendStatus(100, handleStatusChange);     // 运行第一个 effect
 
@@ -418,7 +418,7 @@ ChatAPI.unsubscribeFromFriendStatus(300, handleStatusChange); // 清除最后一
 
 在某些情况下，每次渲染后都执行清理或者执行 effect 可能会导致性能问题。在 class 组件中，我们可以通过在 `componentDidUpdate` 中添加对 `prevProps` 或 `prevState` 的比较逻辑解决：
 
-```jsx
+```js
 componentDidUpdate(prevProps, prevState) {
   if (prevState.count !== this.state.count) {
     document.title = `You clicked ${this.state.count} times`;
@@ -428,7 +428,7 @@ componentDidUpdate(prevProps, prevState) {
 
 这是很常见的需求，所以它被内置到了 `useEffect` 的 Hook API 中。如果某些特定值在两次重渲染之间没有发生变化，你可以通知 React **跳过**对 effect 的调用，只要传递数组作为 `useEffect` 的第二个可选参数即可：
 
-```jsx
+```js
 useEffect(() => {
   document.title = `You clicked ${count} times`;
 }, [count]); // 仅在 count 更改时更新
@@ -440,7 +440,7 @@ useEffect(() => {
 
 对于有清除操作的 effect 同样适用：
 
-```jsx
+```js
 useEffect(() => {
   function handleStatusChange(status) {
     setIsOnline(status.isOnline);

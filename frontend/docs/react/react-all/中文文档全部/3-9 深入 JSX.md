@@ -10,7 +10,7 @@
 
 会编译为：
 
-```jsx
+```js
 React.createElement(
   MyButton,
   {color: 'blue', shadowSize: 2},
@@ -26,7 +26,7 @@ React.createElement(
 
 会编译为:
 
-```jsx
+```js
 React.createElement(
   'div',
   {className: 'sidebar'}
@@ -49,7 +49,7 @@ JSX 标签的第一部分指定了 React 元素的类型。
 
 例如，在如下代码中，虽然 `React` 和 `CustomButton` 并没有被直接使用，但还是需要导入：
 
-```jsx
+```js
 import React from 'react';
 import CustomButton from './CustomButton';
 
@@ -65,7 +65,7 @@ function WarningButton() {
 
 在 JSX 中，你也可以使用点语法来引用一个 React 组件。当你在一个模块中导出许多 React 组件时，这会非常方便。例如，如果 `MyComponents.DatePicker` 是一个组件，你可以在 JSX 中直接使用：
 
-```jsx
+```js
 import React from 'react';
 
 const MyComponents = {
@@ -87,7 +87,7 @@ function BlueDatePicker() {
 
 例如，以下的代码将无法按照预期运行：
 
-```jsx
+```js
 import React from 'react';
 
 // 错误！组件应该以大写字母开头：
@@ -104,7 +104,7 @@ function HelloWorld() {
 
 要解决这个问题，我们需要重命名 `hello` 为 `Hello`，同时在 JSX 中使用 `<Hello />` ：
 
-```jsx
+```js
 import React from 'react';
 
 // 正确！组件需要以大写字母开头：
@@ -123,7 +123,7 @@ function HelloWorld() {
 
 你不能将通用表达式作为 React 元素类型。如果你想通过通用表达式来（动态）决定元素类型，你需要首先将它赋值给大写字母开头的变量。这通常用于根据 prop 来渲染不同组件的情况下:
 
-```jsx
+```js
 import React from 'react';
 import { PhotoStory, VideoStory } from './stories';
 
@@ -140,7 +140,7 @@ function Story(props) {
 
 要解决这个问题, 需要首先将类型赋值给一个大写字母开头的变量：
 
-```jsx
+```js
 import React from 'react';
 import { PhotoStory, VideoStory } from './stories';
 
@@ -172,7 +172,7 @@ function Story(props) {
 
 `if` 语句以及 `for` 循环不是 JavaScript 表达式，所以不能在 JSX 中直接使用。但是，你可以用在 JSX 以外的代码中。比如：
 
-```jsx
+```js
 function NumberDescriber(props) {
   let description;
   if (props.number % 2 == 0) {    
@@ -188,7 +188,7 @@ function NumberDescriber(props) {
 
 你可以将字符串字面量赋值给 prop. 如下两个 JSX 表达式是等价的：
 
-```jsx
+```js
 <MyComponent message="hello world" />
 <MyComponent message={'hello world'} />
 ```
@@ -223,7 +223,7 @@ function NumberDescriber(props) {
 
 (对于复杂的props,这样可以简化属性，或者直接传一个对象过去，在子组件中再解构出需要的数据)
 
-```jsx
+```js
 function App1() {
   return <Greeting firstName="Ben" lastName="Hector" />;
 }
@@ -238,7 +238,7 @@ function App2() {
 
 (现在项目中很多中间组件，没有用到props，只是传递，需要这样优化代码)
 
-```jsx
+```js
 const Button = props => {
   const { kind, ...other } = props;  
   const className = kind === "primary" ? "PrimaryButton" : "SecondaryButton";
@@ -323,7 +323,7 @@ JSX 会移除行首尾的空格以及空行。与标签相邻的空行均会被�
 
 React 组件也能够返回存储在数组中的一组元素：
 
-```jsx
+```js
 render() {
   // 不需要用额外的元素包裹列表元素！
   return [
@@ -347,7 +347,7 @@ JavaScript 表达式可以被包裹在 `{}` 中作为子元素。例如，以下
 
 这对于展示任意长度的列表非常有用。例如，渲染 HTML 列表：
 
-```jsx
+```js
 function Item(props) {
   return <li>{props.message}</li>;}
 
@@ -363,7 +363,7 @@ function TodoList() {
 
 JavaScript 表达式也可以和其他类型的子元素组合。这种做法可以方便地替代模板字符串：
 
-```jsx
+```js
 function Hello(props) {
   return <div>Hello {props.addressee}!</div>;
 }
@@ -373,7 +373,7 @@ function Hello(props) {
 
 通常，JSX 中的 JavaScript 表达式将会被计算为字符串、React 元素或者是列表。不过，`props.children` 和其他 prop 一样，它可以传递任意类型的数据，而不仅仅是 React 已知的可渲染类型。例如，如果你有一个自定义组件，你可以把回调函数作为 `props.children` 进行传递：
 
-```jsx
+```js
 // 调用子元素回调 numTimes 次，来重复生成组件
 function Repeat(props) {
   let items = [];

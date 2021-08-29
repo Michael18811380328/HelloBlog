@@ -6,7 +6,7 @@
 
 I have
 
-```jsx
+```js
 var TestApp = React.createClass({
   
   getComponent: function(){
@@ -31,7 +31,7 @@ I want to color the background of the ==clicked list element==. How can I do thi
 
 Something like
 
-```jsx
+```js
 $('li').on('click', function(){
   $(this).css({'background-color': '#ccc'});
 });
@@ -45,7 +45,7 @@ $('li').on('click', function(){
 
 Why not just:
 
-```jsx
+```js
 onItemClick: function (event) {
   event.currentTarget.style.backgroundColor = '#ccc';
 },
@@ -63,7 +63,7 @@ onItemClick: function (event) {
 
 And if you want to be more React-ive about it, you might want to set the selected item as ==state== of its containing React component, then reference that state to determine the item's color within `render`:
 
-```jsx
+```js
 onItemClick: function (event) {
   this.setState({
     selectedItem: event.currentTarget.dataset.id
@@ -92,7 +92,7 @@ Of course, you'd want to put those into a loop, and you need to make the `li.on`
 
 Two ways I can think of are
 
-```jsx
+```js
 var TestApp = React.createClass({
   getComponent: function(index) {
     $(this.getDOMNode()).find('li:nth-child(' + index + ')').css({
@@ -116,7 +116,7 @@ React.renderComponent(<TestApp /> , document.getElementById('soln1'));
 
 This is my personal favorite.
 
-```jsx
+```js
 var ListItem = React.createClass({
   getInitialState: function() {
     return {
@@ -171,7 +171,7 @@ I hope this helps.
 
 Here is how you define a *react onClick event handler*, which was answering the question title... using es6 syntax
 
-```jsx
+```js
 import React, { Component } from 'react';
 
 export default class Test extends Component {
@@ -194,7 +194,7 @@ export default class Test extends Component {
 
 Use ECMA2015. Arrow functions make "this" a lot more intuitive.
 
-```jsx
+```js
 import React from 'react';
 
 class TestApp extends React.Component {

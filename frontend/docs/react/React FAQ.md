@@ -4,14 +4,14 @@
 
 现在很多代码在render阶段设置箭头函数处理，这样不利于性能，应当避免这种写法。
 
-~~~jsx
+~~~js
 <button onClick={this.handleClick.bind(this)}></button>
 <button onClick={() => this.handleClick()}></button>
 ~~~
 
 注意：在绑定事件时，如果使用箭头函数，后面需要加上括号；否则不能加上括号，会直接调用函数。
 
-~~~jsx
+~~~js
 <button onClick={this.handleClick()}></button>
 // 这样在渲染过程函数直接执行
 ~~~
@@ -24,7 +24,7 @@
 
 方法一：通过箭头函数传递参数
 
-~~~jsx
+~~~js
 {this.state.array.map((item, index) => {
   return (
     <Fragment>
@@ -38,7 +38,7 @@
 
 方法二：通过data属性传递参数；这种情况对于 PureComponent 可能产生性能问题
 
-~~~jsx
+~~~js
 <span data-test={item} onClick={this.handleClick}></span>
 
 handleClick = (event) => {
@@ -66,7 +66,7 @@ lodash库
 
 节流是阻止函数在给定时间内被多次调用。下面这个例子会阻止“click”事件每秒钟的多次调用。
 
-~~~jsx
+~~~js
 import throttle from 'lodash.throttle';
 
 class LoadMoreButton extends React.Component {
@@ -92,7 +92,7 @@ class LoadMoreButton extends React.Component {
 
 防抖确保函数上次执行后的一段时间内，不会再次执行。当必须进行一些昂贵的计算来响应快速派发的事件时（比如鼠标滚动或键盘事件时），防抖是非常有用的。下面这个例子以250ms的延迟来改变文本输入。
 
-~~~jsx
+~~~js
 import debounce from 'lodash.debounce';
 
 class Searchbox extends React.Component {

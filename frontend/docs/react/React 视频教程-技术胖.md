@@ -101,7 +101,7 @@ PWA 移动端网页：首次加载可以显示界面，然后第二次如果没�
 
 入口文件 index.js
 
-~~~jsx
+~~~js
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
@@ -111,7 +111,7 @@ ReactDOM.render(<App/>, document.getElementById('wrapper'));
 
 App.js
 
-~~~jsx
+~~~js
 import React, { Component, Fragment } from 'react';
 class App extends Component{
   render() {
@@ -121,9 +121,9 @@ class App extends Component{
 export default APP;
 ~~~
 
-### JSX
+### js
 
-~~~jsx
+~~~js
 import React, { Component, Fragment } from 'react';
 return (
   <div className="top-bar">
@@ -135,10 +135,10 @@ return (
 let child1 = React.createElement('div', null, 'test123');
 let parent = React.createElement('div', { className: 'top-bar' }, child1);
 // 第一个表示创建的标签，第二个是类名，第三个是内部的节点
-// 直接使用JSX就可以代替上面的写法(这是JSX的本质，使用JS创建HTML)
+// 直接使用js就可以代替上面的写法(这是js的本质，使用JS创建HTML)
 ~~~
 
-JSX 中
+js 中
 
 注释 {/*  */}
 

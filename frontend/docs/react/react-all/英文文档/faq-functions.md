@@ -9,7 +9,7 @@ category: FAQ
 ### 如何将事件处理程序（比如onClick）传递给组件？
 可以将事件处理程序和其他函数作为props传递给子组件：
 
-```jsx
+```js
 <button onClick={this.handleClick}>
 ```
 
@@ -21,7 +21,7 @@ category: FAQ
 
 #### 在Constructor中绑定（ES2015）
 
-```jsx
+```js
 class Foo extends Component {
   constructor(props) {
     super(props);
@@ -37,7 +37,7 @@ class Foo extends Component {
 ```
 #### 类属性（第三阶段提案）
 
-```jsx
+```js
 class Foo extends Component {
   // Note: this syntax is experimental and not standardized yet.
   handleClick = () => {
@@ -50,7 +50,7 @@ class Foo extends Component {
 ```
 #### 在Render中使用bind绑定
 
-```jsx
+```js
 class Foo extends Component {
   handleClick() {
     console.log('Click happened');
@@ -66,7 +66,7 @@ class Foo extends Component {
 
 #### 在Render中使用箭头函数
 
-```jsx
+```js
 class Foo extends Component {
   handleClick() {
     console.log('Click happened');
@@ -108,7 +108,7 @@ method();
 
 确保每次将函数传递给组件时没有调用它：
 
-```jsx
+```js
 render() {
   // Wrong: handleClick is called instead of passed as a reference!
   return <button onClick={this.handleClick()}>Click Me</button>
@@ -117,7 +117,7 @@ render() {
 
 而是仅仅传递了函数本身（不加括号）：
 
-```jsx
+```js
 render() {
   // Correct: handleClick is passed as a reference!
   return <button onClick={this.handleClick}>Click Me</button>
@@ -128,19 +128,19 @@ render() {
 
 可以使用箭头函数包裹事件处理程序，并传递参数：
 
-```jsx
+```js
 <button onClick={() => this.handleClick(id)} />
 ```
 
 以上代码和调用`.bind`是相同的：
 
-```jsx
+```js
 <button onClick={this.handleClick.bind(this, id)} />
 ```
 
 #### 示例：通过箭头函数传递参数
 
-```jsx
+```js
 const A = 65 // ASCII character code
 
 class Alphabet extends React.Component {
@@ -176,7 +176,7 @@ class Alphabet extends React.Component {
 
 同样的，也可以使用DOM API来存储事件处理程序需要的数据。如果需要优化大量元素或使用依赖于`React.PureComponent`相等性检查的渲染树，请考虑使用此方法。
 
-```jsx
+```js
 const A = 65 // ASCII character code
 
 class Alphabet extends React.Component {
@@ -229,7 +229,7 @@ class Alphabet extends React.Component {
 #### Throttle（节流）
 节流是阻止函数在给定时间内被多次调用。下面这个例子会阻止“click”事件每秒钟的多次调用。
 
-```jsx
+```js
 import throttle from 'lodash.throttle';
 
 class LoadMoreButton extends React.Component {
@@ -256,7 +256,7 @@ class LoadMoreButton extends React.Component {
 #### Debounce（防抖）
 防抖确保函数上次执行后的一段时间内，不会再次执行。当必须进行一些昂贵的计算来响应快速派发的事件时（比如鼠标滚动或键盘事件时），防抖是非常有用的。下面这个例子以250ms的延迟来改变文本输入。
 
-```jsx
+```js
 import debounce from 'lodash.debounce';
 
 class Searchbox extends React.Component {
@@ -301,7 +301,7 @@ class Searchbox extends React.Component {
 >
 > 使用这个方法时只能获取帧中最后发布的值。也可以在[`MDN`](https://developer.mozilla.org/en-US/docs/Web/Events/scroll)中看优化的示例。
 
-```jsx
+```js
 import rafSchedule from 'raf-schd';
 
 class ScrollListener extends React.Component {

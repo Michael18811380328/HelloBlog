@@ -28,7 +28,7 @@ Refs 提供了一种方式，允许我们访问 DOM 节点或在 render 方法�
 
 Refs 是使用 `React.createRef()` 创建的，并通过 `ref` 属性附加到 React 元素。在构造组件时，通常将 Refs 分配给实例属性，以便可以在整个组件中引用它们。
 
-```jsx
+```js
 class MyComponent extends React.Component {
   constructor(props) {
     super(props);
@@ -45,7 +45,7 @@ class MyComponent extends React.Component {
 
 当 ref 被传递给 `render` 中的元素时，对该节点的引用可以在 ref 的 `current` 属性中被访问。
 
-```jsx
+```js
 const node = this.myRef.current;
 ```
 
@@ -61,7 +61,7 @@ ref 的值根据节点的类型而有所不同：
 
 以下代码使用 `ref` 去存储 DOM 节点的引用：
 
-```jsx
+```js
 class CustomTextInput extends React.Component {
   constructor(props) {
     super(props);
@@ -103,7 +103,7 @@ React 会在组件挂载时给 `current` 属性传入 DOM 元素，并在组件�
 
 如果我们想包装上面的 `CustomTextInput`，来模拟它挂载之后立即被点击的操作，我们可以使用 ref 来获取这个自定义的 input 组件并手动调用它的 `focusTextInput` 方法：
 
-```jsx
+```js
 class AutoFocusTextInput extends React.Component {
   constructor(props) {
     super(props);
@@ -124,7 +124,7 @@ class AutoFocusTextInput extends React.Component {
 
 请注意，这仅在 `CustomTextInput` 声明为 class 时才有效：
 
-```jsx
+```js
 class CustomTextInput extends React.Component {  // ...
 }
 ```
@@ -133,7 +133,7 @@ class CustomTextInput extends React.Component {  // ...
 
 默认情况下，**你不能在函数组件上使用 `ref` 属性**，因为它们没有实例：
 
-```jsx
+```js
 function MyFunctionComponent() {  
   return <input />;
 }
@@ -157,7 +157,7 @@ class Parent extends React.Component {
 
 不管怎样，你可以**在函数组件内部使用 `ref` 属性**，只要它指向一个 DOM 元素或 class 组件：
 
-```jsx
+```js
 function CustomTextInput(props) {
   // 这里必须声明 textInput，这样 ref 才可以引用它  
   const textInput = useRef(null);
@@ -200,7 +200,7 @@ React 也支持另一种设置 refs 的方式，称为“回调 refs”。它能
 
 下面的例子描述了一个通用的范例：使用 `ref` 回调函数，在实例的属性中存储对 DOM 节点的引用。
 
-```jsx
+```js
 class CustomTextInput extends React.Component {
   constructor(props) {
     super(props);
@@ -246,7 +246,7 @@ React 将在组件挂载时，会调用 `ref` 回调函数并传入 DOM 元素�
 
 你可以在组件间传递回调形式的 refs，就像你可以传递通过 `React.createRef()` 创建的对象 refs 一样。
 
-```jsx
+```js
 function CustomTextInput(props) {
   return (
     <div>

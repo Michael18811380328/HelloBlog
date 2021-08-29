@@ -6,7 +6,7 @@
 
 A hook to use the current component as a drag-source.
 
-```jsx
+```js
 import { useDrag } from 'react-dnd'
 
 function DraggableComponent(props) {
@@ -53,7 +53,7 @@ function DraggableComponent(props) {
 
 A hook to use the current component as a drop target.
 
-```jsx
+```js
 import { useDrop } from 'react-dnd'
 
 function myDropTarget(props) {
@@ -89,7 +89,7 @@ function myDropTarget(props) {
 
 A hook to use the current component as a drag-layer.
 
-```jsx
+```js
 import { useDragLayer } from 'react-dnd'
 
 function DragLayerComponent(props) {
@@ -114,7 +114,7 @@ The DndProvider component provides React-DnD capabilities to your application. T
 
 ### Usage
 
-```jsx
+```js
 import Backend from 'react-dnd-html5-backend'
 import { DndProvider } from 'react-dnd'
 
@@ -141,7 +141,7 @@ A Component to render an HTML Image element as a disconnected drag preview.
 
 ### Usage
 
-```jsx
+```js
 import { DragSource, DragPreviewImage } from 'react-dnd'
 
 function DraggableHouse({ connectDragSource, connectDragPreview }) {
