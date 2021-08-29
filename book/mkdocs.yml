@@ -134,7 +134,6 @@ nav:
     - 前端工程化笔记:
         - 'README': 'ebook-jstraining-RYF/README.md'
         - 'engineering': 'ebook-jstraining-RYF/engineering.md'
-        - 'history': 'ebook-jstraining-RYF/history.md'
         - 'node': 'ebook-jstraining-RYF/node.md'
         - 'preparation': 'ebook-jstraining-RYF/preparation.md'
         - 'react': 'ebook-jstraining-RYF/react.md'
@@ -168,8 +167,6 @@ nav:
         - '25-编程风格': 'ebook-JSES6-RYF/25-编程风格.md'
 
     - Javascript 高级教程:
-      - '08-window': 'book-JS-primer-code-design/08-window.md'
-      - '10-nodes': 'book-JS-primer-code-design/10-nodes.md'
       - '11-choose': 'book-JS-primer-code-design/11-choose.md'
       - '22-高级用法': 'book-JS-primer-code-design/22-高级用法.md'
       - '24-最佳实践': 'book-JS-primer-code-design/24-最佳实践.md'
