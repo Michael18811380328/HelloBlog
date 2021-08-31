@@ -43,8 +43,6 @@ django 3.0.2 需要 python3 的环境，我本地默认是 python2 的虚拟环�
 
 然后可以顺利安装：
 
-下面插入图片：
-
 ## 参考网址
 
 https://stackoverflow.com/questions/60027430/no-matching-distribution-found-for-django-3-0-on-ubuntu-16-04

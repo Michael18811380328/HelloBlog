@@ -20,7 +20,7 @@ let a = head.next;
 let b = head.next.next;
 while (a.next) {
   a = a.next;
-  b = b.next;next;
+  b = b.next.next;
 }
 // 需要预处理next下一个节点是否存在等
 ~~~
@@ -54,7 +54,7 @@ function fn(files) {
 
 #### 4 常见的web攻击
 
-- XSS：cross site scripting 跨站脚本共计；有漏洞的网站运行攻击者的脚本命令。可以利用虚假表单获取个人信息。利用 JS 获取用户的cookie值。被害者在不知情的情况下，帮助攻击者发送恶意请求（显示伪造的文章或者图片，显示伪造的网页登录情况）。例子：被攻击的A网站中，通过URL传值，获取登录用户名。那么攻击者在URL中设置自己的攻击脚本，获取cookie等信息。`localhost:3000/?id=<script>alert('1')</script>` 进一步执行远程脚本 `localhost:3000/?id=<script src="http://www.baidu.com/index.js"></script>` 获取信息。
+- XSS：cross site scripting 跨站脚本攻击；有漏洞的网站运行攻击者的脚本命令。可以利用虚假表单获取个人信息。利用 JS 获取用户的cookie值。被害者在不知情的情况下，帮助攻击者发送恶意请求（显示伪造的文章或者图片，显示伪造的网页登录情况）。例子：被攻击的A网站中，通过URL传值，获取登录用户名。那么攻击者在URL中设置自己的攻击脚本，获取cookie等信息。`localhost:3000/?id=<script>alert('1')</script>` 进一步执行远程脚本 `localhost:3000/?id=<script src="http://www.baidu.com/index.js"></script>` 获取信息。
 - CSRF、点击劫持、OS注入、请求劫持、DDOS
 - SQL注入：用户在提交数据时（用户名密码），可能把非法的用户名（例如某一段SQL语句）提交到服务器。服务器在查找数据库时，`select * from db where username is XXX ` 把非法的SQL执行，造成数据损失等。避免方法：永远不要相信用户的输入；对用户的输入进行校验和转换；不要使用超级管理员权限执行某些操作等。
 
@@ -94,9 +94,9 @@ this.timer = setInterval(() => {
 clearInterval(this.timer);
 ~~~
 
-这样写，JS 实际执行的间隔，和浏览器渲染重拍的时间不一定完全吻合，性能可能不好。
+这样写，JS 实际执行的间隔，和浏览器渲染重排的时间不一定完全吻合，性能可能不好。
 
-所以我们引入了 rquuestAnimationFrame，这样可以让JS执行的时间和浏览器渲染的时间一致，性能增加。
+所以我们引入了 requestAnimationFrame，这样可以让JS执行的时间和浏览器渲染的时间一致，性能增加。
 
 ~~~js
 function fn() {
@@ -156,10 +156,6 @@ class AnimationFrame {
 }
 ~~~
 
-
-
-
-
 #### 10 raf 库
 
 requestAnimationFrame 的 polyfill（简化操作，处理浏览器兼容性）
@@ -177,8 +173,6 @@ var handle = raf(callback);
 handle();
 raf.cancel(handle);
 ~~~
-
-
 
 #### 11 跨域与 window.postMessage()
 
@@ -223,7 +217,7 @@ window.addEventListener('message', (e) => {
 
 可以直接使用CSS媒体查询 perfers-color-scheme 判断当前用户是否将系统的主体色设置成暗色或者亮色。属性：light dart no-perference 偏好。
 
-~~~ css
+~~~css
 @media (perfers-color-scheme: light) {
   body {
     background-color: white;

@@ -1,12 +1,12 @@
 # Mac 搭建 python3 开发环境
 
+2021-08-30
+
 ## 问题描述
 
 我本地需要运行一个 Django3 的项目，Django3 需要 python3 的开发环境，我的 MAC 上默认安装 python 2.7.10 版本，所以需要新建一个 python3 的开发环境。
 
-因为其他项目会使用 python2 的开发环境。为了避免项目互相干扰，我使用 virtualenv 搭建 python3 开发环境。
-
-
+因为其他项目会使用 python2 的开发环境。为了避免项目互相干扰，我使用 virtualenv 分别搭建 py2 和 py3 的开发环境。
 
 ## 安装python3
 
@@ -24,9 +24,7 @@ make && make altinstall
 
 安装其它版本的python可从官网下载： https://www.python.org/
 
-安装完成后，可以在终端输入 python3 验证安装是否成功，图片如下（我本地安装的3.7.0版本）
-
-
+安装完成后，可以在终端输入 python3 验证安装是否成功（我本地安装的3.7.0版本）
 
 ## 搭建python3开发环境
 
@@ -41,7 +39,7 @@ pip install virtualenv
 注意：这里 python3.7 对应你安装的版本（3.4或者3.7）
 
 ```bash
-virtualenv -p /usr/local/bin/python3.7 你的虚拟环境的名称（例如，py37-michael-blog-env）
+virtualenv -p /usr/local/bin/python3.7 # 你的虚拟环境的名称（例如，py37-michael-blog-env）
 ```
 
 执行上述命令后，会在当前目录创建虚拟环境文件夹（py37-michael-blog-env）。
@@ -54,8 +52,6 @@ source py37-michael-blog-env/bin/activate
 
 进行相关开发（pip install -r requirements）等等
 
-加入图片
-
 4、退出虚拟环境 
 
 ```bash
@@ -63,3 +59,4 @@ deactivate   　　　　　　
 ```
 
 再次进入项目时，只需要执行3-4步骤即可（激活-开发-退出虚拟环境）
+

@@ -1,16 +1,18 @@
-# [Detect mobile devices with Django and Python 3](https://stackoverflow.com/questions/42273319/detect-mobile-devices-with-django-and-python-3)
+# Detect mobile devices with Django and Python 3
 
+2021-08-30
 
+原文链接：https://stackoverflow.com/questions/42273319/detect-mobile-devices-with-django-and-python-3
 
-14
+在 Django 和 python3 如何监测移动端设备？解决：使用库 django user agents 或者直接正则表达式判断用户代理。
 
-5
+## 问题
 
 I am struggling to find an easy way to detect if the request comes from a mobile device in my Django views.
 
 I am trying to implement something like this:
 
-```
+```python
 #views.py
 
 def myfunction(request):
@@ -38,27 +40,17 @@ And in `mytemplate.html`:
 {% endif %}
 ```
 
-Everywhere I checked (for instance [here](https://stackoverflow.com/questions/2321172/detect-mobile-browser-not-just-iphone-in-python-view) or [here](https://stackoverflow.com/questions/164427/change-django-templates-based-on-user-agent)), [minidetector](http://code.google.com/p/minidetector/) is recommended. I have installed different versions: `pip install minidetector`, `pip install minidetector2`, as well as directly a couple of github repositories, but none of them are compatible with Python 3.
+Everywhere I checked (for instance [here](https://stackoverflow.com/questions/2321172/detect-mobile-browser-not-just-iphone-in-python-view) or [here](https://stackoverflow.com/questions/164427/change-django-templates-based-on-user-agent)), [minidetector](http://code.google.com/p/minidetector/) is recommended. I have installed different versions: `pip install minidetector`, `pip install minidetector2`, as well as directly a couple of github repositories, but none of them are compatible with Python 3. 在 python 2 中可以使用上面两个库
 
 So here my question: Is there any version/fork of minidetector that is compatible with Python 3? If not, what are the alternatives?
 
-
-
-
-
-23
-
-
-
-
-
-
+## 解决
 
 [Django User Agents](https://github.com/selwin/django-user_agents) package is compatible with Python 3.
 
-Follow the installation instructions in the link provided above and then you can use it as follows:
+使用 django user agents 包可以解决这个问题（中间件）
 
-```
+```python
 def my_view(request):
 
     # Let's assume that the visitor uses an iPhone...
@@ -97,17 +89,15 @@ However, note that the middleware class has changed in Django 1.10. So if you ar
 
 
 
-
-
-11
-
-
+## 解决
 
 I found an alternative way, starting from [this answer](https://stackoverflow.com/a/3487254/5802289).
 
 By adding an additional function into `views.py`:
 
-```
+直接使用正则表达式验证 request 
+
+```python
 import re
 
 def mobile(request):
