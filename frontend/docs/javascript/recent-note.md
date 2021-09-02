@@ -1,4 +1,16 @@
-## 笔记
+# 笔记
+
+#### 1、flex 和 inline-flex 
+
+类似 block 和 inline-block，前缀的 inline 是相对于父盒子而言，是行内元素还是块级元素。flex 都表示内部是伸缩盒子。
+
+Inline-flex 存在的问题：如果不同子盒子的高度不同（例如有的有文字，有的没有文字），都设置了 inline-flex 那么整理的高度就不一定对齐。解决方法：vertical-align: middle 设置到父元素上面（具体应用：移动端链接列对齐）
+
+Flex 细节参考：
+
+https://www.ruanyifeng.com/blog/2015/07/flex-grammar.html
+
+https://www.ruanyifeng.com/blog/2015/07/flex-examples.html
 
 
 #### 2、双指针算法
@@ -73,6 +85,30 @@ HTMLescape: function(html) {
 
 然后把生成的HTML，使用 `<a href="://www.baidu.com"> + str + </a>` 包起来，这样就避免了XSS
 
+
+#### 5 exec 
+
+获取一个字符串中满足条件的全部子字符串（exec） reg.exec(str) 这里的 reg 需要先设置好，不能每次新建
+
+如果有满足的结果，那么继续循环查看下一个；否则返回 null
+
+~~~js
+var str = "我今年25岁明年26岁后年27岁千年24岁";
+var reg=/\d+/g;
+var tmp;
+while(tmp = reg.exec(str)){
+  console.log(tmp[0])
+}
+~~~
+
+一共有6种方法（看字符串中是否有指定的子字符串）具体看另一篇笔记（判断字符串中是否包含某个字符串）
+
+- str.indexOf() return index
+- str.includes() return boolean
+- str.search(str) return index
+- str.match(str) return array or null
+- reg.test(str) return boolean
+- reg.exec(str) return arrat or null
 
 
 #### Django

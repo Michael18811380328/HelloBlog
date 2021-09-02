@@ -1,4 +1,4 @@
-## 02 定值主题
+# 02 定值主题
 
 antd-mobile 设计规范上支持一定程度的样式定制，以满足业务和品牌上多样化的视觉需求，包括但不限于主色、圆角、边框和部分组件的视觉定制。
 
@@ -21,7 +21,7 @@ antd-mobile 的样式使用了 [Less](http://lesscss.org/) 作为开发语言，
 - 首先，你的项目里需要包含如下依赖 `babel-plugin-import less less-loader style-loader css-loader` 。
 
 ```bash
-  npm install --save-dev babel-plugin-import less less-loader style-loader css-loader
+npm install --save-dev babel-plugin-import less less-loader style-loader css-loader
 ```
 
 - 配置 babel-plugin-import 确保加载 antd-mobile less 文件

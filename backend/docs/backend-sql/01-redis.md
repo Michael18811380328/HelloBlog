@@ -1,5 +1,7 @@
 # Redis 概况
 
+2021-08-31
+
 ### mysql 哪些情况下不适用？
 
 1、当大量请求时（高并发，分布式集群），mysql 可能挡不住大量的并发请求，造成响应延迟或者宕机
@@ -24,6 +26,41 @@ Redis和MongoDB是当前使用最广泛的NoSQL，而就Redis技术而言，它�
 
 - 存储 缓存 用的数据；
 - 需要高速读/写的场合使用它快速读/写；
+
+### Redis 下载安装
+
+从官网下载安装包（https://redis.io/download），或者使用 wget 命令下载
+
+Download, extract and compile Redis with:
+
+```bash
+$ wget https://download.redis.io/releases/redis-6.2.5.tar.gz
+$ tar xzf redis-6.2.5.tar.gz
+$ cd redis-6.2.5
+$ make
+```
+
+The binaries that are now compiled are available in the `src` directory. Run Redis with:
+
+```bash
+$ src/redis-server
+```
+
+You can interact with Redis using the built-in client:
+
+```bash
+$ src/redis-cli
+redis> set foo bar
+OK
+redis> get foo
+"bar"
+```
+
+注1：mac 需要在 usr/local 目录下进行解压安装，需要 sudo 命令
+
+注2：如果 make 执行报错 xcrun: error: invalid active developer path (/Library/Developer/CommandLineTools), missing xcrun at: /Library/Developer/CommandLineTools/usr/bin/xcrun，说明缺少 XCode软件，在终端执行 xcode-select --install 并安装（Xcode很大，内存限制暂时没有装）
+
+也可以在 docker 内部安装 redis: https://hub.docker.com/_/redis/
 
 ### nodeJS 和 Redis 的连接
 

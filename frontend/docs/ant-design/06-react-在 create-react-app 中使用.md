@@ -1,4 +1,6 @@
-## 01 cra 中使用
+# 01 create-react-app 中使用 ant-design
+
+2021-08-31
 
 [create-react-app](https://github.com/facebookincubator/create-react-app) 是业界最优秀的 React 相关应用开发工具之一，本文档尝试以此工具来使用 antd-mobile 组件。
 
@@ -6,15 +8,10 @@
 
 ```bash
 $ npm install -g create-react-app
-
-# 注意：工具会自动初始化一个脚手架并安装 React 项目的各种必要依赖，如果在过程中出现网络问题，请尝试配置代理或使用其他 npm registry。
 $ create-react-app my-app
-
 $ cd my-app
 $ npm start
 ```
-
-打开 http://localhost:3000/ 访问你的应用。
 
 ### 引入 antd-mobile
 
