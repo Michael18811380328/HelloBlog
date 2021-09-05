@@ -23,9 +23,9 @@ function build() {
     echo "build start------"
     cd book && mkdocs build
     sleep 1
-    cd ../leetcode && mkdocs build 
+    cd ../leetcode && mkdocs build
     sleep 1
-    cd ../frontend && mkdocs build 
+    cd ../frontend && mkdocs build
     sleep 1
     cd ../backend && mkdocs build
     sleep 1

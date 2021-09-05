@@ -62,10 +62,6 @@ React 元素都是[immutable 不可变](https://en.wikipedia.org/wiki/Immutable_
 
 React DOM 首先会比较元素内容先后的不同，而在渲染过程中只会更新改变了的部分。
 
-你可以使用浏览器的开发者工具来检查一下[之前的例子](http://codepen.io/gaearon/pen/gwoJZk?editors=0010)。
-
-![DOM inspector showing granular updates](../images/docs/granular-dom-updates.gif)
-
 即便我们每秒都创建了一个描述整个UI树的新元素，React DOM 也只会更新渲染文本节点中发生变化的内容。
 
 根据我们以往的经验，将界面视为一个个特定时刻的固定内容（就像一帧一帧的动画），而不是随时处于变化之中（而不是处于变化中的一整段动画），将会有利于我们理清开发思路，减少各种bug。

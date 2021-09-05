@@ -1,12 +1,4 @@
----
-id: thinking-in-react
-title: React 理念
-permalink: docs/thinking-in-react.html
-redirect_from:
-  - 'blog/2013/11/05/thinking-in-react.html'
-  - 'docs/thinking-in-react-zh-CN.html'
-prev: composition-vs-inheritance.html
----
+## React 理念
 
 在我们的理念中，React 最初的目的是使用 JavaScript 创建大型的，快速响应的网络应用。它在我们的 Facebook 和 Instagram 中已经实践的非常好了。
 
@@ -15,8 +7,6 @@ React的众多优点之一是它让你在编写代码的时候同时也在思考
 ## 从模拟页面开始
 
 想象我们已经有一个 JSON 接口和一个设计师给我们的原型图。原型图像下面这样：
-
-![Mockup](../images/blog/thinking-in-react-mock.png)
 
 我们的 JSON 接口返回类似下面的数据：
 
@@ -39,7 +29,6 @@ React的众多优点之一是它让你在编写代码的时候同时也在思考
 
 既然你经常向用户展示 JSON 数据模型，你会发现，如果你的模型构建正确，你的 UI (以及你的组件结构)会被很好的映射。这是因为 UI 和数据模型往往遵循着相同的*信息架构*，这意味着将 UI 划分成组件的工作往往是很容易的。只要把它划分成能准确表示你数据模型的一部分的组件就可以。
 
-![Component diagram](../images/blog/thinking-in-react-components.png)
 
 在这里你会看到，我们的简单应用中有5个组件。我们把每个组件展示的数据用斜体表示。
 

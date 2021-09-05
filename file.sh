@@ -80,7 +80,7 @@ sleep 2
 # frontend
 # array and loop
 echo "frontend start------"
-my_array=('' 'about' 'ant-design' 'git' 'javascript' 'netease' 'react' 'typescript' 'third-part-lib')
+my_array=('' 'about' 'ant-design' 'git' 'javascript' 'react' 'typescript' 'third-part-lib')
 # len=${#my_array[*]} 
 for i in {0..9}
 do
