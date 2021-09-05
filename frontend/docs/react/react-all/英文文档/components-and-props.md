@@ -76,8 +76,6 @@ ReactDOM.render(
 );
 ```
 
-[在 CodePen 上试试。](http://codepen.io/gaearon/pen/YGYmEG?editors=0010)
-
 我们来回顾一下在这个例子中发生了什么：
 
 1. 我们对`<Welcome name="Sara" />`元素调用了`ReactDOM.render()`方法。
@@ -118,8 +116,6 @@ ReactDOM.render(
 );
 ```
 
-[在 CodePen 上试试。](http://codepen.io/gaearon/pen/KgQKPr?editors=0010)
-
 通常，一个新的React应用程序的顶部是一个`App`组件。但是，如果要将React集成到现有应用程序中，则可以从下而上使用像`Button`这样的小组件作为开始，并逐渐运用到视图层的顶部。
 
 >**警告:**
@@ -155,9 +151,6 @@ function Comment(props) {
   );
 }
 ```
-
-[在 CodePen 上试试。](http://codepen.io/gaearon/pen/VKQwEo?editors=0010)
-
 这个组件接收`author`(对象)、`text`(字符串)、以及`date`(Date对象)作为props，用来描述一个社交媒体网站上的评论。
 
 这个组件由于嵌套，变得难以被修改，可复用的部分也难以被复用。所以让我们从这个组件中提取出一些小组件。
@@ -234,8 +227,6 @@ function Comment(props) {
   );
 }
 ```
-
-[在 CodePen 上试试。](http://codepen.io/gaearon/pen/rrJNJY?editors=0010)
 
 提取组件一开始看起来像是一项单调乏味的工作，但是在大型应用中，构建可复用的组件完全是值得的。当你的UI中有一部分重复使用了好几次（比如，`Button`、`Panel`、`Avatar`），或者其自身就足够复杂（比如，`App`、`FeedStory`、`Comment`），类似这些都是抽象成一个可复用组件的绝佳选择，这也是一个比较好的做法。
 

@@ -46,8 +46,6 @@ ReactDOM.render(
 );
 ```
 
-[在 CodePen 上试试。](http://codepen.io/gaearon/pen/PGEjdG?editors=0010)
-
 我们书写 JSX 的时候一般都会带上换行和缩进，这样可以增强代码的可读性。与此同时，我们同样推荐在 JSX 代码的外面扩上一个小括号，这样可以防止 [分号自动插入](http://stackoverflow.com/q/2846283) 的 bug。
 
 ### JSX 本身其实也是一种表达式

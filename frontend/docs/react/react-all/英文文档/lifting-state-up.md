@@ -56,7 +56,6 @@ class Calculator extends React.Component {
 }
 ```
 
-[在 CodePen 上试试。](http://codepen.io/valscion/pen/VpZJRZ?editors=0010)
 
 ## 添加第二个输入框
 
@@ -109,9 +108,6 @@ class Calculator extends React.Component {
   }
 }
 ```
-
-[在 CodePen 上试试。](http://codepen.io/valscion/pen/GWKbao?editors=0010)
-
 
 我们现在有了两个输入框，但是当你在其中一个输入时，另一个并不会更新。这显然是不符合我们的需求的。
 

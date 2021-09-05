@@ -27,7 +27,7 @@ Redis和MongoDB是当前使用最广泛的NoSQL，而就Redis技术而言，它�
 - 存储 缓存 用的数据；
 - 需要高速读/写的场合使用它快速读/写；
 
-### Redis 下载安装
+### Redis 下载安装到宿主机
 
 从官网下载安装包（https://redis.io/download），或者使用 wget 命令下载
 
@@ -60,7 +60,23 @@ redis> get foo
 
 注2：如果 make 执行报错 xcrun: error: invalid active developer path (/Library/Developer/CommandLineTools), missing xcrun at: /Library/Developer/CommandLineTools/usr/bin/xcrun，说明缺少 XCode软件，在终端执行 xcode-select --install 并安装（Xcode很大，内存限制暂时没有装）
 
-也可以在 docker 内部安装 redis: https://hub.docker.com/_/redis/
+目前 mac 没有 Xcode，无法执行 make 命令，所以在 docker 中安装测试
+
+### Redis 下载安装到docker
+
+参考链接：https://www.runoob.com/docker/docker-install-redis.html
+
+1、查看镜像 `docker search redis`
+
+2、拉取镜像 `docker pull redis:latest` 需要1分钟。拉取镜像后，运行 `docker images` 查看是否下载
+
+3、创建容器 `docker run -itd --name test-Michael-redis --port 6379:6379 redis` 这里自定义了容器的名称，端口映射到 6379，运行 `docker ps` 检查容器是否创建好
+
+4、进入容器 `docker exec -it test-Michael-redis bash`
+
+5、进入 redis，执行 `redis-cli` 进入内部，可以使用 set get 获取数据（也可以通过可视化的TablePlus进行操作，注意端口号，具体使用参考：https://blog.csdn.net/weixin_41697143/article/details/119904196）
+
+6、使用 exit 退出容器，`docker stop docker-container-ID` 关闭当前容器
 
 ### nodeJS 和 Redis 的连接
 

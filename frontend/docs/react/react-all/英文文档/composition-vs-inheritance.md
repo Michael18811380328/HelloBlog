@@ -44,8 +44,6 @@ function WelcomeDialog() {
 }
 ```
 
-[在 CodePen 上试试。](http://codepen.io/gaearon/pen/ozqNOV?editors=0010)
-
 `<FancyBorder>` JSX 标签内的任何内容都将通过 `children` 属性传入 `FancyBorder`。由于 `FancyBorder` 在一个 `<div>` 内渲染了 `{props.children}`，所以被传递的所有元素都会出现在最终输出中。
 
 虽然不太常见，但有时你可能需要在组件中有多个入口，这种情况下你可以使用自己约定的属性而不是 `children`：
@@ -77,8 +75,6 @@ function App() {
 }
 ```
 
-[在 CodePen 上试试。](http://codepen.io/gaearon/pen/gwZOJp?editors=0010)
-
 类似 `<Contacts />` 和 `<Chat />` 这样的 React 元素都是对象，所以你可以像任何其他元素一样传递它们。
 
 ## 特殊实例
@@ -109,8 +105,6 @@ function WelcomeDialog() {
   );
 }
 ```
-
-[在 CodePen 上试试。](http://codepen.io/gaearon/pen/kkEaOZ?editors=0010)
 
 组合对于定义为类的组件同样适用：
 
@@ -159,8 +153,6 @@ class SignUpDialog extends React.Component {
   }
 }
 ```
-
-[在 CodePen 上试试。](http://codepen.io/gaearon/pen/gwZbYa?editors=0010)
 
 ## 那么继承呢？
 

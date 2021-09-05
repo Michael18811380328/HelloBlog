@@ -1,5 +1,19 @@
 # 笔记
 
+==学习要把不会的学会，学懂，而不是把会的重复100遍==
+
+#### 0 思考：复杂问题的思维方式：
+
+自己传统的思维方式，通常是线性的，想要一步到位的思维方式，面对复杂问题，不可能直接求解
+
+（从小的思维方式，主要是线性思路，或者分治思路（二分思路），近期学会了回溯思路，滑动窗口思路）递推思路不多（动态规划思路）
+
+很多问题，类似傅里叶变换，需要时间转换到频率，积分后，再转换成时间，才能计算出结果。
+
+所以，复杂问题要理清思路，逐步推理，使用茶壶算法（动态规划的递推公式），这样才能实现。
+
+平时多练习逻辑思维（逻辑与现实经济等）
+
 #### 1、flex 和 inline-flex 
 
 类似 block 和 inline-block，前缀的 inline 是相对于父盒子而言，是行内元素还是块级元素。flex 都表示内部是伸缩盒子。
@@ -93,7 +107,7 @@ HTMLescape: function(html) {
 如果有满足的结果，那么继续循环查看下一个；否则返回 null
 
 ~~~js
-var str = "我今年25岁明年26岁后年27岁千年24岁";
+var str = "我今年25岁明年26岁后年27岁前年24岁";
 var reg=/\d+/g;
 var tmp;
 while(tmp = reg.exec(str)){
@@ -108,14 +122,26 @@ while(tmp = reg.exec(str)){
 - str.search(str) return index
 - str.match(str) return array or null
 - reg.test(str) return boolean
-- reg.exec(str) return arrat or null
+- reg.exec(str) return array or null
 
 
-#### Django
+#### 6 Django
 
 django模板样式：在开发模式下，直接通过 import 可以导入 CSS 文件。在生产环境下，会把相互的依赖关系分别打包，然后Django后端模板中需要插入对应的JS和CSS文件。这个本地开发测试不出来。（本地环境下正常，在线环境下面不正常的情况）
 
+本地环境下面，只显示项目的CSS，可能在生产环境下，项目中的CSS可能和第三方库的CSS冲突（类名冲突）
 
+#### 7 pointer-events 和点击穿透
+
+有时候，我们会遇到界面中多个图层重叠的问题，下面图层绑定函数，上面的图层显示 UI 效果。我们希望点击事件，可以穿透上层 DIV 然后触发下层 DIV 的函数。
+
+那么可以设置 'pointer-events: none' 表示上层的点击事件是无效的。
+
+还可以避免 hover visited 的效果（我们想改变一个链接的显示状况，避免出现 visited 后的蓝色边框）
+
+其他的属性主要用在 svg 上面
+
+详情参考：https://developer.mozilla.org/zh-CN/docs/Web/CSS/pointer-events
 
 #### 9 requestAnimationFrame
 
@@ -325,9 +351,11 @@ ssh 用于登录远程主机，命令是 `用户名@远程主机的ip`，本地�
 
 （需要测试不在一个局域网下的主机是否可以远程登录）
 
-man 命令（manual）可以查看一个命令的帮助文档： man git （git manual 文档）
-
 尝试使用联想电脑连接无线，然后开启服务器；使用mac链接手机热点，看能否SSH正常登录一下——SSH 需要在同一个局域网中进行处理。现在报错 22 端口没有开放，稍后继续尝试；两台电脑需要预先设置支持远程登录。
+
+
+
+man 命令（manual）可以查看一个命令的帮助文档： man git （git manual 文档）
 
 
 
@@ -604,6 +632,27 @@ var fn = (nums, target) => {
     dp [i] = tmp;
   }
   return dp[target];
+}
+~~~
+
+动态规划处理最大子序和（给定一个数组，求最大自序和）
+
+1. 一个数组最大的自序和，那么等于每一个项结尾的自序和的最大值
+
+maxList = [max1, max2, max3,,, maxn];
+Math.max(...maxList)
+
+2. 每一个项为结尾的最大自序和，可能是当前的 nums[i] 或者是 f(n - 1) + nums[i]
+
+~~~js
+function fn(nums) {
+  let tmp = 0;
+  let maxList = [];
+  for (let i = 0; i < nums.length; i++) {
+    tmp = Math.max(tmp + nums[i], nums[i]);
+    maxList.push(tmp);
+  }
+  return Math.max(...maxList);
 }
 ~~~
 

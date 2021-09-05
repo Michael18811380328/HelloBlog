@@ -41,7 +41,6 @@ ReactDOM.render(
 );
 ```
 
-[在 CodePen 上试试。](https://codepen.io/gaearon/pen/ZpVxNq?editors=0011)
 
 此示例根据 `isLoggedIn` 的值渲染不同的问候语。
 
@@ -115,7 +114,6 @@ ReactDOM.render(
 );
 ```
 
-[在 CodePen 上试试。](https://codepen.io/gaearon/pen/QKzAgB?editors=0010)
 
 声明变量并使用 `if` 语句是条件渲染组件的不错的方式，但有时你也想使用更简洁的语法，在 JSX 中有如下几种方法。
 
@@ -143,8 +141,6 @@ ReactDOM.render(
   document.getElementById('root')
 );
 ```
-
-[在 CodePen 上试试。](https://codepen.io/gaearon/pen/ozJddz?editors=0010)
 
 之所以能这样做，是因为在 JavaScript 中，`true && expression` 总是返回 `expression`，而 `false && expression` 总是返回 `false`。
 
@@ -236,6 +232,5 @@ ReactDOM.render(
 );
 ```
 
-[在 CodePen 上试试。](https://codepen.io/gaearon/pen/Xjoqwm?editors=0010)
 
 组件的 `render` 方法返回 `null` 并不会影响该组件生命周期方法的回调。例如，`componentWillUpdate` 和 `componentDidUpdate` 依然可以被调用。

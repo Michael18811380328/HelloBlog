@@ -42,8 +42,6 @@ ReactDOM.render(
 );
 ```
 
-[在 CodePen 上试试。](https://codepen.io/gaearon/pen/GjPyQr?editors=0011)
-
 这段代码生成了一个1到5的数字列表
 
 ### 基础列表组件
@@ -94,14 +92,11 @@ ReactDOM.render(
   document.getElementById('root')
 );
 ```
-
-[在 CodePen 上试试。](https://codepen.io/gaearon/pen/jrXYRR?editors=0011)
-
 ## Keys
 
 Keys可以在DOM中的某些元素被增加或删除的时候帮助React识别哪些元素发生了变化。因此你应当给数组中的每一个元素赋予一个确定的标识。
 
-```js{3}
+```js
 const numbers = [1, 2, 3, 4, 5];
 const listItems = numbers.map((number) =>
   <li key={number.toString()}>
@@ -111,7 +106,7 @@ const listItems = numbers.map((number) =>
 ```
 一个元素的key最好是这个元素在列表中拥有的一个独一无二的字符串。通常，我们使用来自数据的id作为元素的key:
 
-```js{2}
+```js
 const todoItems = todos.map((todo) =>
   <li key={todo.id}>
     {todo.text}
@@ -121,7 +116,7 @@ const todoItems = todos.map((todo) =>
 
 当元素没有确定的id时，你可以使用他的序列号索引index作为key
 
-```js{2,3}
+```js
 const todoItems = todos.map((todo, index) =>
   // Only do this if items have no stable IDs
   <li key={index}>
@@ -175,7 +170,7 @@ ReactDOM.render(
 
 **key的正确使用方式**
 
-```javascript{2,3,9,10}
+```javascript
 function ListItem(props) {
   // 对啦！这里不需要指定key:
   return <li>{props.value}</li>;
@@ -202,15 +197,13 @@ ReactDOM.render(
 );
 ```
 
-[在 CodePen 上试试。](https://codepen.io/rthor/pen/QKzJKG?editors=0010)
-
 当你在`map()`方法的内部调用元素时，你最好随时记得为每一个元素加上一个独一无二的`key`。
 
 ### 元素的key在他的兄弟元素之间应该唯一
 
 数组元素中使用的key在其兄弟之间应该是独一无二的。然而，它们不需要是全局唯一的。当我们生成两个不同的数组时，我们可以使用相同的键
 
-```js{2,5,11,12,19,21}
+```js
 function Blog(props) {
   const sidebar = (
     <ul>
@@ -246,11 +239,9 @@ ReactDOM.render(
 );
 ```
 
-[在 CodePen 上试试。](https://codepen.io/gaearon/pen/NRZYGN?editors=0010)
-
 key会作为给React的提示，但不会传递给你的组件。如果您的组件中需要使用和`key`相同的值，请将其作为属性传递：
 
-```js{3,4}
+```js
 const content = posts.map((post) =>
   <Post
     key={post.id}
@@ -265,7 +256,7 @@ const content = posts.map((post) =>
 
 在上面的例子中，我们声明了一个单独的`listItems`变量并将其包含在JSX中
 
-```js{3-6}
+```js
 function NumberList(props) {
   const numbers = props.numbers;
   const listItems = numbers.map((number) =>
@@ -282,7 +273,7 @@ function NumberList(props) {
 
 JSX允许在大括号中[嵌入任何表达式](/docs/introduction-jsx.html＃JSX嵌套)，所以我们可以在`map()`中这样使用：
 
-```js{5-8}
+```js
 function NumberList(props) {
   const numbers = props.numbers;
   return (
@@ -295,7 +286,5 @@ function NumberList(props) {
   );
 }
 ```
-
-[在 CodePen 上试试。](https://codepen.io/gaearon/pen/BLvYrB?editors=0010)
 
 这么做有时可以使你的代码更清晰，但有时这种风格也会被滥用。就像在JavaScript中一样，何时需要为了可读性提取出一个变量，这完全取决于你。但请记住，如果一个`map()`嵌套了太多层级，那可能就是你[提取出组件](/docs/components-and-props.html#提取组件)的一个好时机。

@@ -37,7 +37,6 @@ const element = <h1>Hello, world</h1>;
 
 `embed:rendering-elements/render-an-element.js`
 
-[在 CodePen 上试试。](http://codepen.io/gaearon/pen/rrpgNB?editors=1010)
 
 页面上会展示出 "Hello World" 字样。
 
@@ -50,8 +49,6 @@ React 元素都是[immutable 不可变](https://en.wikipedia.org/wiki/Immutable_
 来看一下这个计时器的例子:
 
 `embed:rendering-elements/update-rendered-element.js`
-
-[在 CodePen 上试试。](http://codepen.io/gaearon/pen/gwoJZk?editors=0010)
 
 这个示例通过 [`setInterval()`](https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setInterval) 方法，每秒钟调用一次 `ReactDOM.render()`.
 
