@@ -143,6 +143,14 @@ django模板样式：在开发模式下，直接通过 import 可以导入 CSS �
 
 详情参考：https://developer.mozilla.org/zh-CN/docs/Web/CSS/pointer-events
 
+#### 8 团队中的问题以及解决方法
+
+一个子项目中，不同子项目互相干扰，冲突的解决办法
+
+- 整体上：制定统一的规范（接口规范，UI规范等）
+- 不同的子项目使用不同的前缀（CSS，公共组件）
+- 不同的同事水平不一样，那么按照中等的水平作为整体的标准（react hook- typescript等）
+
 #### 9 requestAnimationFrame
 
 为什么使用：默认的动画使用 setInterval 处理，然后浏览器渲染的频率是 60 次每秒，所以代码如下。
