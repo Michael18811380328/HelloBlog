@@ -76,8 +76,6 @@ function fn(files) {
 }
 ~~~
 
-
-
 #### 4 常见的web攻击
 
 - XSS：cross site scripting 跨站脚本攻击；有漏洞的网站运行攻击者的脚本命令。可以利用虚假表单获取个人信息。利用 JS 获取用户的cookie值。被害者在不知情的情况下，帮助攻击者发送恶意请求（显示伪造的文章或者图片，显示伪造的网页登录情况）。例子：被攻击的A网站中，通过URL传值，获取登录用户名。那么攻击者在URL中设置自己的攻击脚本，获取cookie等信息。`localhost:3000/?id=<script>alert('1')</script>` 进一步执行远程脚本 `localhost:3000/?id=<script src="http://www.baidu.com/index.js"></script>` 获取信息。
@@ -276,12 +274,15 @@ window.addEventListener('message', (e) => {
 4、CORS (cross origin resource share 跨域资源共享) 需要前端请求加入参数，后端配置 Access-Control-Allow-Origin 
 
 
+#### 12 移动端真机调试
+
+真机和电脑连接，打开 USB 调试模式，打开最新版本的谷歌浏览器。
+
+电脑上打开谷歌浏览器，访问 chrome://inspect/#devices，即可进行基本的调试功能。
 
 #### 13 扩展运算符复制数组
 
 扩展运算符可以复制数组或者对象。如果数组的每一项是引用类型，那么不会深复制，只会复制指向数组的指针。所以不能使用扩展运算符对数组或者对象进行深拷贝（深拷贝最好使用 deepcopy）。
-
-
 
 #### 14 HTML 设置夜间模式
 
@@ -335,12 +336,7 @@ https://developer.mozilla.org/zh-CN/docs/Web/API/Window/matchMedia
 
 lodash 的主要目的是封装了对象和数组的一些方法，主要功能和原生方法一致。类似于 Jquery 操作 DOM，lodash 操作 object array。主要适应于 ES3 的代码。在 ES6 中，API已经实现了很多方法。所以一般情况不需要使用这个库。主要使用的地方就是 throttle 节流函数，deepcopy 深复制对象等。可以不需要求数组的差集，数组均分等操作。
 
-
-
-其他：
-
-如果一个状态不是常用的状态，那么不需要把状态直接传递到底层组件，可以传递一个函数，底层组件增删改查获取属性。
-
+其他：如果一个状态不是常用的状态，那么不需要把状态直接传递到底层组件，可以传递一个函数，底层组件增删改查获取属性。
 
 
 #### 16 ssh
