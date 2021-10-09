@@ -53,16 +53,6 @@ extra_javascript:
 #   search:
 #     language: 'jp'
 
-# test
-extra:
-  social:
-    - type: 'github'
-      link: 'https://github.com/Michael18811380328'
-    - type: 'stackoverflow'
-      link: 'https://stackoverflow.com/users/14245047/michael-an'
-    - type: 'CSDN'
-      link: 'https://blog.csdn.net/weixin_41697143'
-
 # Page tree
 nav:
     - 人生思考:
