@@ -53,6 +53,16 @@ extra_javascript:
 #   search:
 #     language: 'jp'
 
+# test
+extra:
+  social:
+    - type: 'github'
+      link: 'https://github.com/Michael18811380328'
+    - type: 'stackoverflow'
+      link: 'https://stackoverflow.com/users/14245047/michael-an'
+    - type: 'CSDN'
+      link: 'https://blog.csdn.net/weixin_41697143'
+
 # Page tree
 nav:
     - 人生思考:
@@ -131,6 +141,10 @@ nav:
         - '04 数据结构与算法': 'ebook-kaikeba-frontend/04 数据结构与算法.md'
         - '05 面试题': 'ebook-kaikeba-frontend/05 面试题.md'
         - '06 面试技巧': 'ebook-kaikeba-frontend/06 面试技巧.md'
+        - '07 项目课': 'ebook-kaikeba-frontend/07 项目课.md'
+        - '08-React预习笔记': 'ebook-kaikeba-frontend/08-React预习笔记.md'
+        - '09-React面试题': 'ebook-kaikeba-frontend/09-React面试题.md'
+        - '10-React组件化': 'ebook-kaikeba-frontend/10-React组件化.md'
 
     - 前端工程化笔记:
         - 'README': 'ebook-jstraining-RYF/README.md'

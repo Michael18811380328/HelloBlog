@@ -14,6 +14,8 @@
 
 平时多练习逻辑思维（逻辑与现实经济等）
 
+
+
 #### 1、flex 和 inline-flex 
 
 类似 block 和 inline-block，前缀的 inline 是相对于父盒子而言，是行内元素还是块级元素。flex 都表示内部是伸缩盒子。
@@ -25,6 +27,7 @@ Flex 细节参考：
 https://www.ruanyifeng.com/blog/2015/07/flex-grammar.html
 
 https://www.ruanyifeng.com/blog/2015/07/flex-examples.html
+
 
 
 #### 2、双指针算法
@@ -51,6 +54,8 @@ while (a.next) {
 // 需要预处理next下一个节点是否存在等
 ~~~
 
+
+
 #### 3 FileReader
 
 ~~~js
@@ -74,7 +79,11 @@ function fn(files) {
     }
   }
 }
+
+// 大文件分片上传的三种方法，详见开课吧项目笔记
 ~~~
+
+
 
 #### 4 常见的web攻击
 
@@ -96,6 +105,7 @@ HTMLescape: function(html) {
 ~~~
 
 然后把生成的HTML，使用 `<a href="://www.baidu.com"> + str + </a>` 包起来，这样就避免了XSS
+
 
 
 #### 5 exec 
@@ -123,11 +133,14 @@ while(tmp = reg.exec(str)){
 - reg.exec(str) return array or null
 
 
+
 #### 6 Django
 
 django模板样式：在开发模式下，直接通过 import 可以导入 CSS 文件。在生产环境下，会把相互的依赖关系分别打包，然后Django后端模板中需要插入对应的JS和CSS文件。这个本地开发测试不出来。（本地环境下正常，在线环境下面不正常的情况）
 
 本地环境下面，只显示项目的CSS，可能在生产环境下，项目中的CSS可能和第三方库的CSS冲突（类名冲突）
+
+
 
 #### 7 pointer-events 和点击穿透
 
@@ -141,6 +154,8 @@ django模板样式：在开发模式下，直接通过 import 可以导入 CSS �
 
 详情参考：https://developer.mozilla.org/zh-CN/docs/Web/CSS/pointer-events
 
+
+
 #### 8 团队中的问题以及解决方法
 
 一个子项目中，不同子项目互相干扰，冲突的解决办法
@@ -148,6 +163,8 @@ django模板样式：在开发模式下，直接通过 import 可以导入 CSS �
 - 整体上：制定统一的规范（接口规范，UI规范等）
 - 不同的子项目使用不同的前缀（CSS，公共组件）
 - 不同的同事水平不一样，那么按照中等的水平作为整体的标准（react hook- typescript等）
+
+
 
 #### 9 requestAnimationFrame
 
@@ -274,15 +291,21 @@ window.addEventListener('message', (e) => {
 4、CORS (cross origin resource share 跨域资源共享) 需要前端请求加入参数，后端配置 Access-Control-Allow-Origin 
 
 
+
 #### 12 移动端真机调试
 
 真机和电脑连接，打开 USB 调试模式，打开最新版本的谷歌浏览器。
 
 电脑上打开谷歌浏览器，访问 chrome://inspect/#devices，即可进行基本的调试功能。
 
+如果不能使用，可以断开连接，重新开启手机的开发者 USB 调试模式。
+
+
+
 #### 13 扩展运算符复制数组
 
 扩展运算符可以复制数组或者对象。如果数组的每一项是引用类型，那么不会深复制，只会复制指向数组的指针。所以不能使用扩展运算符对数组或者对象进行深拷贝（深拷贝最好使用 deepcopy）。
+
 
 #### 14 HTML 设置夜间模式
 
@@ -339,6 +362,7 @@ lodash 的主要目的是封装了对象和数组的一些方法，主要功能�
 其他：如果一个状态不是常用的状态，那么不需要把状态直接传递到底层组件，可以传递一个函数，底层组件增删改查获取属性。
 
 
+
 #### 16 ssh
 
 ssh 用于登录远程主机，命令是 `用户名@远程主机的ip`，本地使用虚拟机测试，流程如下（这个适合虚拟机和宿主机的通信）
@@ -364,7 +388,8 @@ man 命令（manual）可以查看一个命令的帮助文档： man git （git 
 笔记：input file 上传后，应该清空一个 input 的值(input.value = '')，这样再次上传同名文件是正常的。
 
 
-#### stringify 函数
+
+#### 17 stringify 函数
 
 作用：把JS对象或者数组，转换成JSON格式
 
@@ -376,7 +401,7 @@ JSON.stringify(value[, replacer[, space]])
 
 
 
-#### parseInt  函数
+#### 18 parseInt  函数
 
 parseInt(number, index) 
 
@@ -388,7 +413,7 @@ parseInt(number, index)
 
 
 
-#### 序列解包
+#### 19 Python序列解包
 
 序列解包是 python3 的语法糖，可以批量进行复制或者解包
 
@@ -443,7 +468,7 @@ git 命名规范——自己提交时注意
 
 
 
-### chmod
+#### 20 chmod
 
 change mode :用户对文件的权限的命令
 
@@ -474,7 +499,7 @@ cd book && mkdocs build
 
 
 
-#### 代码组件重构
+#### 21 代码组件重构
 
 原因：一个组件功能低耦合高内聚。如果一个组件功能繁杂，代码量很大，不便于管理，那么应该进行重构。
 
@@ -494,7 +519,7 @@ cd book && mkdocs build
 
 
 
-#### 发包之前检查
+#### 22 发包之前检查
 
 1、自动检查：运行单元测试（集成测试）如果有；运行代码检查（eslint 可选）
 
@@ -506,7 +531,7 @@ cd book && mkdocs build
 
 
 
-#### 前端请求注意
+#### 23 前端请求注意
 
 - 请求成功：不应该直接使用 res.data 的内容，避免后端更改返回值。最好先通过 Modal 新建一个返回对象，规范一下返回的情况。
 - 请求失败：处理各种错误（界面提示）提示的消息应该和真实错误一致；不能都归结为网络错误或者不存在，只要是前端可以识别的错误，都不要使用 errorBoundary 来捕获错误。
@@ -520,7 +545,7 @@ cd book && mkdocs build
 
 
 
-#### review 代码流程
+#### 24 review 代码流程
 
 1. 自动化测试通过（单元测试通过，格式检查通过）
 2. 浏览器界面打开，使用过程中，操作正常，控制台无报错
@@ -531,7 +556,7 @@ cd book && mkdocs build
 
 
 
-#### 有序数组转换成等高的二叉搜索树
+#### 25 有序数组转换成等高的二叉搜索树
 
 等高的二叉搜索树，那么根节点必然是数组中中位数。数组已经排序，那么使用递归的思路直接将排序的有序数组转换成二叉搜索树，基本思路如下：
 
@@ -558,9 +583,44 @@ function transArrayToBST (arr) {
 
 
 
+#### 26 textarea 的高度自动变化
+
+- 默认加载时，设置高度是固定的（100px）然后溢出不显示
+- 点击编辑后，根据内容设置高度，然后设置溢出显示滚动条，这样方便编辑
+
+缺陷：点击编辑后，外部整体的高度会被撑开，可能有其他的问题
+
+
+
+#### 27 谷歌浏览器版本
+
+这里是全部的谷歌浏览器版本，用于排查某一个版本的问题
+
+2011-2020 主要版本：https://sourceforge.net/projects/osxportableapps/files/Chromium/
+
+https://www.applex.net/downloads/google-chrome-for-mac.25/history
+
+http://www.chromium.org/getting-involved/dev-channel
+
+
+
+#### 28 Windows 微信版本问题
+
+微信全部版本及发布时间：https://weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_faq_list&head=true
+
+早期版本中（3.0.0及之前）微信内核是 chrome 53 不支持很多 ES6 的语法，所以需要兼容
+
+最新版本中（3.3.5及之后）微信内核变化后，支持 ES6 语法（不支持开发者工具，不确定内核的具体版本号）
+
+3.0.0 之间到 3.3.5 之后的版本，没有逐一测试兼容性
+
+早期版本的调试步骤参考：https://www.yuque.com/wuchendi/fe/winwechat 具体需要下载一个 dev 的包，然后可以打开调试台
+
+
+
 ### 学会的
 
-#### 1、array.reduce
+#### 1 array.reduce
 
 reduce() 方法接收一个函数作为累加器，数组中的每个值（从左到右）开始缩减，最终计算为一个值。reduce() 可以作为一个高阶函数，用于函数的 compose。
 
@@ -603,6 +663,8 @@ for (let i = start; i < end; i++) {
 备注：如果要求全部样本中没有重复的对象，尽量避免使用 array.includes 判断 tmp 中是否存在另一个元素，这样算法复杂度较差。最好使用对象索引判断一下，减少复杂度。
 
 应用：大部分排列组合问题、硬币找零问题（不能使用贪心算法）
+
+
 
 #### 6 动态规划小结（初级）
 
@@ -661,6 +723,8 @@ function fn(nums) {
 }
 ~~~
 
+
+
 #### 8 polyfill 作用
 
 polyfill 英文翻译：垫片；计算机中指的是"补丁"
@@ -671,6 +735,8 @@ polyfill 英文翻译：垫片；计算机中指的是"补丁"
 
 补丁使用方法：手动、半自动、全自动。1、手动：根据需求，安装对应的第三方库（Object.assign = require('object-assign')）不利于维护。2、半自动：根据webpack覆盖率：preset-env 根据预设的环境打补丁（https://github.com/browserslist/browserslist）在配置文件中设置 corejs和targets版本，即可打包对应版本的代码。3、自动：polyfill.io 这个库可以根据浏览器的 UA 自动判断不同版本的代码并处理  https://polyfill.io/v3/ 。chrome 会不处理，IE 会转换。参考链接：https://zhuanlan.zhihu.com/p/71640183
 
+
+
 #### 7 React
 
 Props 和 子组件更新：如果一个子组件的 state 是父组件的 props 计算出来，那么当父组件的 props 变化后，子组件必须更改 state。否则界面无法更改成最新的状态。
@@ -678,6 +744,8 @@ Props 和 子组件更新：如果一个子组件的 state 是父组件的 props
 setState 在react合成事件(onClick)和JS代码中是异步的；在原生JS事件（addeventListener）和定时器中是同步的、第一个参数可以是对象，或者是一个函数（返回新的state对象）。
 
 componentDidUpdate 阶段，React 组件重新渲染，但是真实 DOM 的 redraw 还没有完成，所以更改 top 不会产生动画。设置CSS无效。解决：setTimeout 后，DOM 主线程的 redraw 已经执行完，新增的行真实 DOM 已经渲染到界面上，更改 top 值，render tree 重新生成，动画效果可以显示（其他CSS样式类似）。行排序动画遇到这个坑（在 componentDidUpdate 阶段设置 top ，动画无效）参考：https://blog.csdn.net/huangpin815/article/details/80023480
+
+
 
 #### 16 git cherry-pick 
 
