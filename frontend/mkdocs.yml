@@ -60,8 +60,16 @@ nav:
         - '关于我': 'about/README.md'
         - '学习日志': 'about/log.md'
         - '文档结构': 'index.md'
+
+    - 笔记:
+        - '算法笔记': 'note/algre-note.md'
+        - '前端笔记': 'note/frontend-note.md'
+        - '其他笔记': 'note/other-note.md'
+        - '编程思考笔记': 'note/think-note.md'
+
     - Javascript:
-        - '近期笔记': 'javascript/recent-note.md'
+
+        - '内存泄漏': 'javascript/内存泄漏.md'
         - 'web-worker': 'javascript/web-worker.md'
         - 'CommonJS-AMD-CMD': 'javascript/CommonJS-AMD-CMD.md'
         - '前端项目结构': 'javascript/前端项目结构.md'
@@ -81,6 +89,7 @@ nav:
         - 'localstorage': 'javascript/localstorage.md'
         - '前端常用工具': 'javascript/前端常用工具.md'
         - '前端监控理论': 'javascript/前端监控理论.md'
+
     - 常用第三方库:
         - '000-目录': 'third-part-lib/000-dir.md'
         - '001-anv-g2': 'third-part-lib/001-anv-g2.md'
@@ -139,6 +148,8 @@ nav:
         - '040-babel-preset-react': 'third-part-lib/040-babel-preset-react.md'
         - '290-lodash': 'third-part-lib/290-lodash.md'
         - '291-jszip': 'third-part-lib/291-jszip.md'
+        - '292-react-is': 'third-part-lib/292-react-is.md'
+        
     - AntDesign:
         - '01-color': 'ant-design/01-color.md'
         - '02-border': 'ant-design/02-border.md'
@@ -221,7 +232,9 @@ nav:
     - 工程化:
         - 'BUG-Auto packing the repository in background for optimum performance': 'git/BUG-Auto packing the repository in background for optimum performance.md'
         - 'Translation': 'git/Translation.md'
-        - 'markdown-new-style': 'git/markdown-new-style.md'    
+        - 'markdown-new-style': 'git/markdown-new-style.md'
+        - '腾讯如何有效地进行代码Review': 'git/腾讯如何有效地进行代码Review.md'
+
     - React 官方文档:
         - 'readme': 'react/react-all/中文文档全部/readme.md'
         - '0 目录': 'react/react-all/中文文档全部/0 目录.md'
@@ -290,6 +303,7 @@ nav:
         - '7-6 项目文件结构': 'react/react-all/中文文档全部/7-6 项目文件结构.md'
         - '7-7 Virtual DOM 及内核': 'react/react-all/中文文档全部/7-7 Virtual DOM 及内核.md'
 
+      - React 英文官方文档:
         - 'accessibility': 'react/react-all/英文文档/accessibility.md'
         - 'add-react-to-a-new-app': 'react/react-all/英文文档/add-react-to-a-new-app.md'
         - 'add-react-to-an-existing-app': 'react/react-all/英文文档/add-react-to-an-existing-app.md'
