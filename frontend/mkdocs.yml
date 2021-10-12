@@ -234,11 +234,9 @@ nav:
         - 'Translation': 'git/Translation.md'
         - 'markdown-new-style': 'git/markdown-new-style.md'
         - '腾讯如何有效地进行代码Review': 'git/腾讯如何有效地进行代码Review.md'
-
-    - React 官方文档:
+    - react官方文档:
         - 'readme': 'react/react-all/中文文档全部/readme.md'
         - '0 目录': 'react/react-all/中文文档全部/0 目录.md'
-
         - '2-4 组件 & Props': 'react/react-all/中文文档全部/2-4 组件 & Props.md'
         - '2-5 State & 生命周期': 'react/react-all/中文文档全部/2-5 State & 生命周期.md'
         - '2-6 事件处理': 'react/react-all/中文文档全部/2-6 事件处理.md'
@@ -247,7 +245,6 @@ nav:
         - '2-9 表单': 'react/react-all/中文文档全部/2-9 表单.md'
         - '2-11 组合 vs 继承': 'react/react-all/中文文档全部/2-11 组合 vs 继承.md'
         - '2-12 React 哲学': 'react/react-all/中文文档全部/2-12 React 哲学.md'
-
         - '3-1 无障碍辅助功能': 'react/react-all/中文文档全部/3-1 无障碍辅助功能.md'
         - '3-2 代码打包分割': 'react/react-all/中文文档全部/3-2 代码打包分割.md'
         - '3-3 Context': 'react/react-all/中文文档全部/3-3 Context.md'
@@ -303,7 +300,6 @@ nav:
         - '7-6 项目文件结构': 'react/react-all/中文文档全部/7-6 项目文件结构.md'
         - '7-7 Virtual DOM 及内核': 'react/react-all/中文文档全部/7-7 Virtual DOM 及内核.md'
 
-      - React 英文官方文档:
         - 'accessibility': 'react/react-all/英文文档/accessibility.md'
         - 'add-react-to-a-new-app': 'react/react-all/英文文档/add-react-to-a-new-app.md'
         - 'add-react-to-an-existing-app': 'react/react-all/英文文档/add-react-to-an-existing-app.md'
