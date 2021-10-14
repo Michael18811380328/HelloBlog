@@ -111,13 +111,13 @@ set.add(2);
 function Set() {
   
   // 并集
-  this.unionSet = (set) => {
+  this.unionSet = (otherSet) => {
     let unionSet = new Set();
     let values = this.values();
     for (let i = 0; i < values.length; i++) {
       unionSet.add(values[i]);
     }
-    values = set.values();
+    values = otherSet.values();
     for (let j = 0; j < values.length; j++) {
       unionSet.add(values[j]);
     }
