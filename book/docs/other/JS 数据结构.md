@@ -891,6 +891,8 @@ function ArrayList() {
 
 下面是五个排序算法，由差变好
 
+PS：算法实际性能需要根据具体问题判断，在《啊哈算法》中介绍到，如果数组元素范围较小，数据重复较多，那么桶排序的性能优于快速排序的性能。
+
 #### 1 冒泡排序法
 
 ~~~js
@@ -972,7 +974,7 @@ insertSort = () => {
 }
   // 前三个性能不好，后面两个排序可以用在实际工作中
   // 上面的代码把一部分变量定义的函数内部开始位置，不定义在循环内部，这样可以节省内存。
-  ~~~
+~~~
 
 #### 4 并归排序
 
@@ -1266,24 +1268,16 @@ function index(arr, target) {
 
 ### 算法比赛网站
 
-- UVa Online Judge(http://uva.onlinejudge.org/):这个网站包含了世界各大赛事的题目， 包括由IBM赞助的ACM国际大学生程序竞赛 ICPC 
+- UVa Online Judge(http://uva.onlinejudge.org/)  这个网站包含了世界各大赛事的题目， 包括由IBM赞助的ACM国际大学生程序竞赛 ICPC 
 
-- Sphere Online Judge(http://www.spoj.com/): 这个网站和UVa Online Judge差不多，但支 
+- Sphere Online Judge(http://www.spoj.com/)  这个网站和UVa Online Judge差不多，但支持用更多语言解题(包括JavaScript)。 
 
-  持用更多语言解题(包括JavaScript)。 
+- CoderByte(http://coderbyte.com/)  这个网站包含了74个可以用JavaScript解答的题目(简 单、中等难度和非常困难)。 
 
--  Coder Byte(http://coderbyte.com/):这个网站包含了74个可以用JavaScript解答的题目(简 
+-  Project Euler(https://projecteuler.net/)  这个网站包含了一系列数学/计算机的编程题目。你所要做的就是输入那些题目的答案，不过我们可以用算法来找到正确的解答。 
 
-  单、中等难度和非常困难)。 
+-  Hacker Rank(https://www.hackerrank.com)  这个网站包含了263个挑战，分为16个类别 (可以应用本书中的算法和更多其他算法)。它也支持JavaScript和其他语言。 
 
--  Project Euler(https://projecteuler.net/):这个网站包含了一系列数学/计算机的编程题目。 
+-  Code Chef(http://www.codechef.com/)  这个网站包含一些题目，并会举办在线比赛。 
 
-  你所要做的就是输入那些题目的答案，不过我们可以用算法来找到正确的解答。 Hacker Rank(https://www.hackerrank.com):这个网站包含了263个挑战，分为16个类别 
-
-  (可以应用本书中的算法和更多其他算法)。它也支持JavaScript和其他语言。 
-
--  Code Chef(http://www.codechef.com/):这个网站包含一些题目，并会举办在线比赛。 
-
--  Top Coder(http://www.topcoder.com/):此网站会举办算法联赛，这些联赛通常由NASA、 
-
-  Google、Yahoo!、Amazon和Facebook这样的公司赞助。参加其中一些赛事，你可以获得 到赞助公司工作的机会，而参与另一些赛事会赢得奖金。这个网站也提供很棒的解题和 算法教程。 
+-  Top Coder(http://www.topcoder.com/)  此网站会举办算法联赛，这些联赛通常由NASA、 Google、Yahoo!、Amazon和Facebook这样的公司赞助。参加其中一些赛事，你可以获得 到赞助公司工作的机会，而参与另一些赛事会赢得奖金。这个网站也提供很棒的解题和 算法教程。 
