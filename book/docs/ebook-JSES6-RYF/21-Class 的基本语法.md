@@ -4,13 +4,14 @@
 
 ### 类
 
-JavaScript 语言中，生成实例对象的传统方法是通过构造函数。
+JavaScript ES5 中，通过构造函数生成实例对象。
 
 ```javascript
 function Point(x, y) {
   this.x = x;
   this.y = y;
 }
+
 Point.prototype.toString = function () {
   return {this.x, this.y};
 }
@@ -42,7 +43,7 @@ class Point {
 
 - 定义“类”的方法的时候，前面不需要加上`function`这个关键字，直接把函数定义放进去了就可以了。
 
-- ==方法之间不需要逗号分隔，加了会报错==。
+- ===方法之间不需要逗号分隔，加了会报错===。
 
 
 
