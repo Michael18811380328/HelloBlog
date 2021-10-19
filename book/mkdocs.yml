@@ -102,6 +102,9 @@ nav:
         - '08-React预习笔记': 'ebook-kaikeba-frontend/08-React预习笔记.md'
         - '09-React面试题': 'ebook-kaikeba-frontend/09-React面试题.md'
         - '10-React组件化': 'ebook-kaikeba-frontend/10-React组件化.md'
+        - '11-自动化测试': 'ebook-kaikeba-frontend/11-自动化测试.md'
+        - '12-webpack-01': 'ebook-kaikeba-frontend/12-webpack-01.md'
+        - '13-webpack-02': 'ebook-kaikeba-frontend/13-webpack-02.md'        
 
     - 阮一峰前端工程化笔记:
         - 'README': 'ebook-jstraining-RYF/README.md'
@@ -139,19 +142,19 @@ nav:
         - '25-编程风格': 'ebook-JSES6-RYF/25-编程风格.md'
 
     - Javascript 红宝书高级教程:
-      - '11-choose': 'book-JS-primer-code-design/11-choose.md'
-      - '22-高级用法': 'book-JS-primer-code-design/22-高级用法.md'
-      - '24-最佳实践': 'book-JS-primer-code-design/24-最佳实践.md'
-      - 'readme': 'book-JS-primer-code-design/readme.md'
+        - '11-choose': 'book-JS-primer-code-design/11-choose.md'
+        - '22-高级用法': 'book-JS-primer-code-design/22-高级用法.md'
+        - '24-最佳实践': 'book-JS-primer-code-design/24-最佳实践.md'
+        - 'readme': 'book-JS-primer-code-design/readme.md'
 
     - 其他技术笔记:
-      - 'JS-the-good-parts': 'book-JS-The-good-parts/JS-the-good-parts.md'
-      - 'curry-function': 'book-JS-The-good-parts/curry-function.md'
-      - 'JavaScript 秘密花园': 'ebook-javascript-secret-garden/JavaScript 秘密花园-zh.md'
-      - '代码整洁之道': 'other/代码整洁之道 读书笔记.md'
-      - '数据结构基础': 'other/data structure basic.md'
-      - 'JS 数据结构': 'other/JS 数据结构.md'
-      - 'leanpub-auto-the-road-to-ecmascript-6': 'other/leanpub-auto-the-road-to-ecmascript-6.md'
+        - 'JS-the-good-parts': 'book-JS-The-good-parts/JS-the-good-parts.md'
+        - 'curry-function': 'book-JS-The-good-parts/curry-function.md'
+        - 'JavaScript 秘密花园': 'ebook-javascript-secret-garden/JavaScript 秘密花园-zh.md'
+        - '代码整洁之道': 'other/代码整洁之道 读书笔记.md'
+        - '数据结构基础': 'other/data structure basic.md'
+        - 'JS 数据结构': 'other/JS 数据结构.md'
+        - 'leanpub-auto-the-road-to-ecmascript-6': 'other/leanpub-auto-the-road-to-ecmascript-6.md'
 
     - 人生思考:
         - '说明': 'index.md'

@@ -2,7 +2,7 @@
 
 ==学习要把不会的学会，学懂，而不是把会的重复100遍==
 
-- [x] HTMLtoCanvas 第三方库学习；canvas.toDataUrl('image/png', 1.0)  配置：allowTaint taintTest allowCORS 等
+- [x] HTMLtoCanvas 第三方库学习；canvas.toDataUrl('image/png', 1.0)  配置：allowTaint taintTest allowCORS 等。主要使用场景：统计中 canvas 导出生成 PNG，主页看板娘的 canvas 拍照显示成 png 的功能。
 
 - [x] react 中强制更新组件，this.forceUpdate() 尽量避免使用，最好使用 state 或者 props 数据驱动更新
 
@@ -20,8 +20,11 @@ var fs = require('fs');
 var readFile = function (fileName){
   return new Promise(function (resolve, reject){
     fs.readFile(fileName, function(error, data){
-      if (error) reject(error);
-      resolve(data);
+      if (error) {
+        reject(error);
+      } else {
+        resolve(data);
+      }
     });
   });
 };
@@ -34,9 +37,9 @@ var asyncReadFile = async function (){
 ~~~
 
 
-循环中使用异步韩式，有两种方法
+循环中使用异步方式，有两种方法
 
-第一个：改成 for 循环，内部使用 async await 实现。
+第一个：改成 for 循环，内部使用 async await 实现——这个方式更好
 
 ~~~js
 async function dbFuc(db) {
@@ -69,6 +72,8 @@ async function dbFuc(db) {
 
 参考链接：http://www.ruanyifeng.com/blog/2015/05/async.html
 
+
+
 #### 1 flex 和 inline-flex 
 
 类似 block 和 inline-block，前缀的 inline 是相对于父盒子而言，是行内元素还是块级元素。flex 都表示内部是伸缩盒子。
@@ -85,34 +90,53 @@ https://www.ruanyifeng.com/blog/2015/07/flex-examples.html
 
 #### 3 FileReader
 
+普通文件上传
+
 ~~~js
 function fn(files) {
   if (files.length) {
-    let file = files[0];
-    let reader = new FileReader();
-    if (/.txt/.test(file.type)) {
-      // txt file
-      reader.onload = function() {
-        console.log(this.result);
+    // 优化：如果上传多文件，可以使用循环上传（上传多文件 input multiple 有一部分浏览器不支持，移动端和打开的APP有关）
+    for (let file of files) {
+      let reader = new FileReader();
+      // 不同类型的文件，使用不同的编码上传（readAsText, readAsDataURL）
+      // 通常根据文件名后缀判断文件类型，更严格的方法是根据文件开头的编码判断（文件后缀和真实文件类型可能不一样）
+      if (/.txt/.test(file.type)) {
+        // txt file
+        reader.onload = function() {
+          console.log(this.result);
+        }
+        reader.readAsText(file);
       }
-      reader.readAsText(file);
-    }
-    else if (/.png/.test(file.type)) {
-      // image file
-      reader.onload = function() {
-        console.log('success');
+      else if (/.png/.test(file.type)) {
+        // image file
+        reader.onload = function() {
+          console.log('success');
+        }
+        reader.readAsDataURL(file);
       }
-      reader.readAsDataURL(file);
-    }
+    }    
   }
 }
-
-// 大文件分片上传的三种方法，详见开课吧项目笔记
 ~~~
 
+大文件分片上传（详见开课吧项目笔记）思路
+
+- 先把 file 异步读取到(fs.readAs)
+
+- 然后切片成 chunks (files.slice(current, current + chunkLength))
+- 然后前端生成一个 hash (三种方法，idle，布隆过滤器) 不熟悉，再看一下文档
+- 然后 chunks.map() 给每一个分片name加上hash，调用APU并上传。根据上传的chunks数量，设置进度条。
+- 上传后，需要后端协同处理（根据文件的 hash 确定文件唯一性，然后根据 chunk 的 index，把多个文件片段合并并存储）
+
+其他情况思路：
+
+- 很多小文件上传（目前没有好办法，尝试压缩，本地用JSZip 或者gzip等格式）；
+- 网络很差（经常中断）前端后端需要查询是否某个片段已经上传，来确定是否重新上传等
+- 拖拽文件上传，复制粘贴上传（需要调用前端的事件获取文件）
 
 
-#### 5 exec 
+
+#### 5 exec
 
 获取一个字符串中满足条件的全部子字符串（exec） reg.exec(str) 这里的 reg 需要先设置好，不能每次新建
 
