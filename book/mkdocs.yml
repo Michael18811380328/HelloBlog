@@ -104,7 +104,8 @@ nav:
         - '10-React组件化': 'ebook-kaikeba-frontend/10-React组件化.md'
         - '11-自动化测试': 'ebook-kaikeba-frontend/11-自动化测试.md'
         - '12-webpack-01': 'ebook-kaikeba-frontend/12-webpack-01.md'
-        - '13-webpack-02': 'ebook-kaikeba-frontend/13-webpack-02.md'        
+        - '13-webpack-02': 'ebook-kaikeba-frontend/13-webpack-02.md'
+        - '14-webpack-03': 'ebook-kaikeba-frontend/14-webpack-03.md'
 
     - 阮一峰前端工程化笔记:
         - 'README': 'ebook-jstraining-RYF/README.md'
