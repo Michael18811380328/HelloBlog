@@ -48,6 +48,7 @@ markdown_extensions:
 
 extra_javascript:
     - 'js/baidu-statistics.js'
+    - 'js/history.js'
 
 # extra:
 #   search:

@@ -53,6 +53,7 @@ extra:
 
 extra_javascript:
     - 'js/baidu-statistics.js'
+    - 'js/history.js'
 
 # Page tree
 nav:
