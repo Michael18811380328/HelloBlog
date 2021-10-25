@@ -25,6 +25,7 @@ theme:
 
 extra_javascript:
     - 'js/baidu-statistics.js'
+    - 'js/history.js'
 
 markdown_extensions:
   - admonition
