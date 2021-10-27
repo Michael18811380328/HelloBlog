@@ -53,8 +53,18 @@ markdown_extensions:
   - pymdownx.tasklist
   - pymdownx.tilde
 
+# minify: https://github.com/byrnereese/mkdocs-minify-plugin
 plugins:
-  - search # necessary for search to work
+  - search
+  - minify:
+      minify_html: true
+      minify_js: true
+      minify_css: true
+      htmlmin_opts:
+          remove_comments: true
+      js_files:
+          - /js/history.js
+          - /js/baidu-statistics.js
 
 extra:
   search:

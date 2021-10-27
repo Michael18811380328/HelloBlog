@@ -47,8 +47,18 @@ markdown_extensions:
   - pymdownx.tasklist
   - pymdownx.tilde
 
-# plugins:
-#   - search # necessary for search to work
+# minify: https://github.com/byrnereese/mkdocs-minify-plugin
+plugins:
+  - search
+  - minify:
+      minify_html: true
+      minify_js: true
+      minify_css: true
+      htmlmin_opts:
+          remove_comments: true
+      js_files:
+          - /js/history.js
+          - /js/baidu-statistics.js
 
 # extra:
 #   search:
@@ -112,5 +122,6 @@ nav:
         - '16 字节面试.md': 'interview/16 字节面试.md'
         - '17 菜鸟教程面试.md': 'interview/17 菜鸟教程面试.md'
         - '18 前端日常开发必背知识点.md': 'interview/18 前端日常开发必背知识点.md'
-        - '19 知乎面试.md': 'interview/19 知乎面试.md'
+        - '19 知乎面试1.md': 'interview/19 知乎面试1.md'
+        - '19 知乎面试2.md': 'interview/19 知乎面试2.md'
         - '20 搜狗前端面试题.md': 'interview/20 搜狗前端面试题.md'
