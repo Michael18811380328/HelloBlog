@@ -18,19 +18,33 @@ function builddir() {
     echo "build end------"
 }
 
+function beforebuild() {
+    cp -r js frontend/docs/js
+    cp -r js backend/docs/js 
+    cp -r js book/docs/js 
+    cp -r js personal/docs/js 
+    cp -r js leetcode/docs/js
+}
+
+function afterbuild() {
+    rm -rf frontend/docs/js
+    rm -rf backend/docs/js 
+    rm -rf book/docs/js 
+    rm -rf personal/docs/js 
+    rm -rf leetcode/docs/js
+}
+
 # 编译全部的文件夹
 function build() {
+    beforebuild;
     echo "build start------"
     cd book && mkdocs build
-    sleep 1
     cd ../leetcode && mkdocs build
-    sleep 1
     cd ../frontend && mkdocs build
-    sleep 1
     cd ../backend && mkdocs build
-    sleep 1
     cd ../personal && mkdocs build
-    sleep 1
+    cd ../
+    afterbuild;
     echo "build end------"
     echo -e "\n\n"
     exit 1
