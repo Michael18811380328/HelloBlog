@@ -45,9 +45,9 @@ pip install -r requirements.txt
 
 将编译的博客，迁移到发布的代码仓库中。
 
-可以使用 http-server 查看整体界面效果。
+使用 http-server 查看整体界面效果。
 
-最后可以使用 git 上线或者发布到自己的服务器
+使用 git 上线或者发布到自己的服务器
 
 ## 报错处理
 

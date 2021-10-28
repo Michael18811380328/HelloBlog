@@ -78,7 +78,7 @@ function logProps(WrappedComponent) {
 }
 ```
 
-“logProps” HOC 透传（pass through）所有 `props` 到其包裹的组件，所以渲染结果将是相同的。例如：我们可以使用该 HOC 记录所有传递到 “fancy button” 组件的 props：
+“logProps” HOC 透传（pass through）所有 `props` 到其包裹的组件，所以渲染结果将是相同的。例如：使用该 HOC 记录所有传递到 “fancy button” 组件的 props：
 
 ```jsx
 class FancyButton extends React.Component {
@@ -113,7 +113,7 @@ const ref = React.createRef();
 />;
 ```
 
-幸运的是，我们可以使用 `React.forwardRef` API 明确地将 refs 转发到内部的 `FancyButton` 组件。`React.forwardRef` 接受一个渲染函数，其接收 `props` 和 `ref` 参数并返回一个 React 节点。例如：
+幸运的是，使用 `React.forwardRef` API 明确地将 refs 转发到内部的 `FancyButton` 组件。`React.forwardRef` 接受一个渲染函数，其接收 `props` 和 `ref` 参数并返回一个 React 节点。例如：
 
 ```jsx
 function logProps(Component) {

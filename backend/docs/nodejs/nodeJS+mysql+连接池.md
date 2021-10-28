@@ -102,7 +102,7 @@ connection.destroy();
 
 **node + mysql 实现数据库连接池**
 
-在mysql模块中，我们可以使用 createPool方法来创建连接池，使用方法如下所示：
+在mysql模块中，使用 createPool方法来创建连接池，使用方法如下所示：
 
 ```
 var pool = mysql.createPool(options);
@@ -115,7 +115,7 @@ options 参数是一个对象，该对象中有很多属性配置，该对象的
 
 **queueLimit:** 用于指定允许挂起的最大连接数，如果挂起的连接数超过该数值，就会立即抛出一个错误，默认属性值为0.代表不允许被挂起的最大连接数。
 
-在如上建立连接后，我们可以使用 getConnection 方法从连接池中获取一个连接。该方法使用如下所示：
+在如上建立连接后，使用 getConnection 方法从连接池中获取一个连接。该方法使用如下所示：
 
 ```
 pool.getConnection(callback);
@@ -132,13 +132,13 @@ function(err, connection) {
 err： 该参数是指操作失败时的错误对象。
 connection: 该值为一个对象，代表获取到的连接对象。当连接失败时，该值为undefined。
 
-当连接不需要使用的时候，我们可以使用该连接对象的 release 方法来归还到连接池中。该方法使用如下：
+当连接不需要使用的时候，使用该连接对象的 release 方法来归还到连接池中。该方法使用如下：
 
 ```
 connection.release();
 ```
 
-当连接不需要使用且需要从连接池中移除的时候，我们可以使用destory方法，该方法使用如下所示：
+当连接不需要使用且需要从连接池中移除的时候，使用destory方法，该方法使用如下所示：
 
 ```
 connection.destory();

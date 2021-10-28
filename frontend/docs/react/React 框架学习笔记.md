@@ -363,7 +363,7 @@ npm instal...
 
 [React中获取元素位置](https://blog.csdn.net/weixin_41697143/article/details/82810451)
 
-React框架使用虚拟DOM代替真实的DOM来优化性能，使用props和state进行属性传递。所以说在react中直接获取DOM元素的位置是不合理的（不利于性能）。那么我们可以使用下面的API：
+React框架使用虚拟DOM代替真实的DOM来优化性能，使用props和state进行属性传递。所以说在react中直接获取DOM元素的位置是不合理的（不利于性能）。那么使用下面的API：
 
 document.documentElement.getBoundingClientRect
 

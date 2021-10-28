@@ -339,7 +339,7 @@ function updateColorMap(colormap) {
 }
 ```
 
-想要实现代码而不污染原始对象，我们可以使用[Object.assign](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign)方法：
+想要实现代码而不污染原始对象，使用[Object.assign](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign)方法：
 
 ```js
 function updateColorMap(colormap) {

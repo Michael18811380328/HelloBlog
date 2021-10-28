@@ -246,7 +246,7 @@ Executioner.propTypes = {
 }
 ```
 
-这会使控制台打印出一条消息，部分的开发者将会把它忽视。相反的，我们可以使用在 `render` 里面使用 `React.Children.only`
+这会使控制台打印出一条消息，部分的开发者将会把它忽视。相反的，使用在 `render` 里面使用 `React.Children.only`
 
 ```dart
 class Executioner extends React.Component {

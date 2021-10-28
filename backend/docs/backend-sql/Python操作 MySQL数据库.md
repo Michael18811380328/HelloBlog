@@ -160,7 +160,7 @@ Database version : 5.0.45
 
 ## 创建数据库表
 
-如果数据库连接存在我们可以使用execute()方法来为数据库创建表，如下所示创建表EMPLOYEE：
+如果数据库连接存在，使用execute()方法来为数据库创建表，如下所示创建表EMPLOYEE：
 
 ```python 
 #!/usr/bin/python

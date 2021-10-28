@@ -212,7 +212,7 @@ $ node express_demo3.js
 
 ## GET 方法
 
-以下实例演示了在表单中通过 GET 方法提交两个参数，我们可以使用 server.js 文件内的 process_get 路由器来处理输入：
+以下实例演示了在表单中通过 GET 方法提交两个参数，使用 server.js 文件内的 process_get 路由器来处理输入：
 
 ## index.html 文件代码：
 
@@ -246,7 +246,7 @@ node server.js
 
 ## POST 方法
 
-以下实例演示了在表单中通过 POST 方法提交两个参数，我们可以使用 server.js 文件内的 process_post 路由器来处理输入：
+以下实例演示了在表单中通过 POST 方法提交两个参数，使用 server.js 文件内的 process_post 路由器来处理输入：
 
 ## index.html 文件代码：
 
@@ -311,7 +311,7 @@ $ node server.js
 
 ## Cookie 管理
 
-我们可以使用中间件向 Node.js 服务器发送 cookie 信息，以下代码输出了客户端发送的 cookie 信息：
+使用中间件向 Node.js 服务器发送 cookie 信息，以下代码输出了客户端发送的 cookie 信息：
 
 ## express_cookie.js 文件代码：
 ```js

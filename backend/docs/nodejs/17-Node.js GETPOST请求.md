@@ -34,7 +34,7 @@ http.createServer(function(req, res) {
 
 ### 获取 URL 的参数
 
-我们可以使用 url.parse 方法来解析 URL 中的参数，代码如下：
+使用 url.parse 方法来解析 URL 中的参数，代码如下：
 
 ## 实例
 

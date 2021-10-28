@@ -8,7 +8,7 @@ Node.js是一个事件驱动I/O服务端JavaScript环境，基于Google的V8引�
 
 ## 使用的版本
 
-我们可以使用以下命令来查看当前的 Node 版本：
+使用以下命令来查看当前的 Node 版本：
 
 ```
 $ node -v

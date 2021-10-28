@@ -314,7 +314,7 @@ select * from account where id in (value1, value2...);
 select * from account where id in (select id from oldAccount where id  < 10);
 ~~~
 
-从一个集合中选择另一个集合（选择的可以使字符串范围，是数值范围的扩大）
+从一个集合中选择另一个集合（选择可以是字符串范围，是数值范围的扩大）
 
 between 数值范围（连续）
 

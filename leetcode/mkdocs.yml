@@ -83,7 +83,6 @@ nav:
         - '11-二叉树.md': 'algre/11-二叉树.md'
         - '2021-10-14-分治算法.md': 'algre/2021-10-14-分治算法.md'
         - '2021-10-14-原地算法.md': 'algre/2021-10-14-原地算法.md'
-        - 'K-means.md': 'algre/K-means.md'
         - 'K-means聚类算法.md': 'algre/K-means聚类算法.md'
         - 'LeetCode刷题方法.md': 'algre/LeetCode刷题方法.md'
         - 'data structure basic.md': 'algre/data structure basic.md'

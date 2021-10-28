@@ -26,18 +26,20 @@ $ cnpm install mongodb
 
 ## 创建连接
 
+~~~js
 var MongoClient = require('mongodb').MongoClient; var url = "mongodb://localhost:27017/runoob";  MongoClient.connect(url, { useNewUrlParser: true }, function(err, db) {  if (err) throw err;  console.log("数据库已创建!");  db.close(); });
+~~~
 
-------
-
-## 创建集合
-
-我们可以使用 createCollection() 方法来创建集合：
 
 ## 创建集合
 
+使用 createCollection() 方法来创建集合：
+
+## 创建集合
+
+~~~js
 var MongoClient = require('mongodb').MongoClient; var url = 'mongodb://localhost:27017/runoob'; MongoClient.connect(url, { useNewUrlParser: true }, function (err, db) {    if (err) throw err;    console.log('数据库已创建');    var dbase = db.db("runoob");    dbase.createCollection('site', function (err, res) {        if (err) throw err;        console.log("创建集合!");        db.close();    }); });
-
+~~~
 ------
 
 ## 数据库操作( CURD )
@@ -50,8 +52,9 @@ var MongoClient = require('mongodb').MongoClient; var url = 'mongodb://localhost
 
 ## 插入一条数据
 
+~~~js
 var MongoClient = require('mongodb').MongoClient; var url = "mongodb://localhost:27017/";  MongoClient.connect(url, { useNewUrlParser: true }, function(err, db) {    if (err) throw err;    var dbo = db.db("runoob");    var myobj = { name: "菜鸟教程", url: "www.runoob" };    dbo.collection("site").insertOne(myobj, function(err, res) {        if (err) throw err;        console.log("文档插入成功");        db.close();    }); });
-
+~~~
 执行以下命令输出就结果为：
 
 ```
@@ -77,8 +80,9 @@ site                     # 自动创建了 site 集合（数据表）
 
 ## 插入多条数据
 
+~~~js
 var MongoClient = require('mongodb').MongoClient; var url = "mongodb://localhost:27017/";  MongoClient.connect(url, { useNewUrlParser: true }, function(err, db) {    if (err) throw err;    var dbo = db.db("runoob");    var myobj =  [        { name: '菜鸟工具', url: 'https://c.runoob.com', type: 'cn'},        { name: 'Google', url: 'https://www.google.com', type: 'en'},        { name: 'Facebook', url: 'https://www.google.com', type: 'en'}       ];    dbo.collection("site").insertMany(myobj, function(err, res) {        if (err) throw err;        console.log("插入的文档数量为: " + res.insertedCount);        db.close();    }); });
-
+~~~
 res.insertedCount 为插入的条数。
 
 ### 查询数据
@@ -87,14 +91,16 @@ res.insertedCount 为插入的条数。
 
 ## find()
 
+~~~js
 var MongoClient = require('mongodb').MongoClient; var url = "mongodb://localhost:27017/";  MongoClient.connect(url, { useNewUrlParser: true }, function(err, db) {    if (err) throw err;    var dbo = db.db("runoob");    dbo.collection("site"). find({}).toArray(function(err, result) { // 返回集合中所有数据        if (err) throw err;        console.log(result);        db.close();    }); });
-
+~~~
 以下实例检索 name 为 "菜鸟教程" 的实例：
 
 ## 查询指定条件的数据
 
+~~~js
 var MongoClient = require('mongodb').MongoClient; var url = "mongodb://localhost:27017/";  MongoClient.connect(url, { useNewUrlParser: true }, function(err, db) {    if (err) throw err;    var dbo = db.db("runoob");     var whereStr = {"name":'菜鸟教程'};  // 查询条件    dbo.collection("site").find(whereStr).toArray(function(err, result) {        if (err) throw err;        console.log(result);        db.close();    }); });
-
+~~~
 执行以下命令输出就结果为：
 
 ```
@@ -108,9 +114,9 @@ var MongoClient = require('mongodb').MongoClient; var url = "mongodb://localhost
 我们也可以对数据库的数据进行修改，以下实例将 name 为 "菜鸟教程" 的 url 改为 https://www.runoob.com：
 
 ## 更新一条数据
-
+~~~js
 var MongoClient = require('mongodb').MongoClient; var url = "mongodb://localhost:27017/";  MongoClient.connect(url, { useNewUrlParser: true }, function(err, db) {    if (err) throw err;    var dbo = db.db("runoob");    var whereStr = {"name":'菜鸟教程'};  // 查询条件    var updateStr = {$set: { "url" : "https://www.runoob.com" }};    dbo.collection("site").updateOne(whereStr, updateStr, function(err, res) {        if (err) throw err;        console.log("文档更新成功");        db.close();    }); });
-
+~~~
 执行成功后，进入 mongo 管理工具查看数据已修改：
 
 ```
@@ -125,9 +131,9 @@ var MongoClient = require('mongodb').MongoClient; var url = "mongodb://localhost
 如果要更新所有符合条的文档数据可以使用 **updateMany()**：
 
 ## 更新多条数据
-
+~~~js
 var MongoClient = require('mongodb').MongoClient; var url = "mongodb://localhost:27017/";  MongoClient.connect(url, { useNewUrlParser: true }, function(err, db) {    if (err) throw err;    var dbo = db.db("runoob");    var whereStr = {"type":'en'};  // 查询条件    var updateStr = {$set: { "url" : "https://www.runoob.com" }};    dbo.collection("site").updateMany(whereStr, updateStr, function(err, res) {        if (err) throw err;         console.log(res.result.nModified + " 条文档被更新");        db.close();    }); });
-
+~~~
 result.nModified 为更新的条数。
 
 ### 删除数据
@@ -135,9 +141,9 @@ result.nModified 为更新的条数。
 以下实例将 name 为 "菜鸟教程" 的数据删除 :
 
 ## 删除一条数据
-
+~~~js
 var MongoClient = require('mongodb').MongoClient; var url = "mongodb://localhost:27017/";  MongoClient.connect(url, { useNewUrlParser: true }, function(err, db) {    if (err) throw err;    var dbo = db.db("runoob");    var whereStr = {"name":'菜鸟教程'};  // 查询条件    dbo.collection("site").deleteOne(whereStr, function(err, obj) {        if (err) throw err;        console.log("文档删除成功");        db.close();    }); });
-
+~~~
 执行成功后，进入 mongo 管理工具查看数据已删除：
 
 ```
@@ -150,9 +156,9 @@ var MongoClient = require('mongodb').MongoClient; var url = "mongodb://localhost
 以下实例将 type 为 en 的所有数据删除 :
 
 ## 删除多条数据
-
+~~~js
 var MongoClient = require('mongodb').MongoClient; var url = "mongodb://localhost:27017/";  MongoClient.connect(url, { useNewUrlParser: true }, function(err, db) {    if (err) throw err;    var dbo = db.db("runoob");    var whereStr = { type: "en" };  // 查询条件    dbo.collection("site").deleteMany(whereStr, function(err, obj) {        if (err) throw err;        console.log(obj.result.n + " 条文档被删除");        db.close();    }); });
-
+~~~
 obj.result.n 删除的条数。
 
 ### 排序
@@ -169,26 +175,26 @@ obj.result.n 删除的条数。
 按 type 升序排列:
 
 ## 排序
-
+~~~js
 var MongoClient = require('mongodb').MongoClient; var url = "mongodb://localhost:27017/";  MongoClient.connect(url, { useNewUrlParser: true }, function(err, db) {    if (err) throw err;    var dbo = db.db("runoob");    var mysort = { type: 1 };    dbo.collection("site").find().sort(mysort).toArray(function(err, result) {        if (err) throw err;        console.log(result);        db.close();    }); });
-
+~~~
 ### 查询分页
 
 如果要设置指定的返回条数可以使用 **limit()** 方法，该方法只接受一个参数，指定了返回的条数。
 
 ## limit()：读取两条数据
-
+~~~js
 var MongoClient = require('mongodb').MongoClient; var url = "mongodb://localhost:27017/";  MongoClient.connect(url, { useNewUrlParser: true }, function(err, db) {    if (err) throw err;    var dbo = db.db("runoob");    dbo.collection("site").find().limit(2).toArray(function(err, result) {        if (err) throw err;        console.log(result);        db.close();  }); });
-
+~~~
 如果要指定跳过的条数，可以使用 **skip()** 方法。
 
 ## skip(): 跳过前面两条数据，读取两条数据
-
+~~~js
 var MongoClient = require('mongodb').MongoClient; var url = "mongodb://localhost:27017/";  MongoClient.connect(url, { useNewUrlParser: true }, function(err, db) {    if (err) throw err;    var dbo = db.db("runoob");    dbo.collection("site").find().skip(2).limit(2).toArray(function(err, result) {        if (err) throw err;        console.log(result);        db.close();  }); });
-
+~~~
 ### 连接操作
 
-mongoDB 不是一个关系型数据库，但我们可以使用 **$lookup** 来实现左连接。
+mongoDB 不是一个关系型数据库，但使用 **$lookup** 来实现左连接。
 
 例如我们有两个集合数据分别为：
 
@@ -211,13 +217,14 @@ mongoDB 不是一个关系型数据库，但我们可以使用 **$lookup** 来�
 ```
 
 ## $lookup 实现左连接
-
+~~~js
 var MongoClient = require('mongodb').MongoClient; var url = "mongodb://127.0.0.1:27017/";  MongoClient.connect(url, { useNewUrlParser: true }, function(err, db) {  if (err) throw err;  var dbo = db.db("runoob");  dbo.collection('orders').aggregate([    { $lookup:       {         from: 'products',            // 右集合         localField: 'product_id',    // 左集合 join 字段         foreignField: '_id',         // 右集合 join 字段         as: 'orderdetails'           // 新生成字段（类型array）       }     }    ]).toArray(function(err, res) {    if (err) throw err;    console.log(JSON.stringify(res));    db.close();  }); });
-
+~~~
 ### 删除集合
 
-我们可以使用 **drop()** 方法来删除集合：
+使用 **drop()** 方法来删除集合：
 
 ## drop()
-
+~~~js
 var MongoClient = require('mongodb').MongoClient; var url = "mongodb://localhost:27017/";  MongoClient.connect(url, { useNewUrlParser: true }, function(err, db) {    if (err) throw err;    var dbo = db.db("runoob");    // 删除 test 集合    dbo.collection("test").drop(function(err, delOK) {  // 执行成功 delOK 返回 true，否则返回 false        if (err) throw err;        if (delOK) console.log("集合已删除");        db.close();    }); });
+~~~

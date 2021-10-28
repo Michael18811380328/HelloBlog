@@ -75,7 +75,7 @@ Node.js 的项目运行：
 $ node index.js command_line_arguments
 ```
 
-使用 JXcore 编译后，我们可以使用以下命令来执行生成的 jx 二进制文件：
+使用 JXcore 编译后，使用以下命令来执行生成的 jx 二进制文件：
 
 ```
 $ jx index.jx command_line_arguments

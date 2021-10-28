@@ -81,6 +81,7 @@ nav:
         - 'Mac pip install mysql-python unsuccessful.md': 'backend-sql/Mac pip install mysql-python unsuccessful.md'
         - 'Mac安装MySQLdb（python-mysql）模块.md': 'backend-sql/Mac安装MySQLdb（python-mysql）模块.md'
     - NodeJS:
+        # 菜鸟教程官方博客
         - '01-Node.js 教程': 'nodejs/01-Node.js 教程.md'
         - '02-Node.js 安装配置': 'nodejs/02-Node.js 安装配置.md'
         - '03-Node.js 创建第一个应用': 'nodejs/03-Node.js 创建第一个应用.md'
@@ -106,7 +107,8 @@ nav:
         - '23-Node.js JXcore 打包': 'nodejs/23-Node.js JXcore 打包.md'
         - '24-Node.js 连接 MySQL': 'nodejs/24-Node.js 连接 MySQL.md'
         - '25-Node.js 连接 MongoDB': 'nodejs/25-Node.js 连接 MongoDB.md'
-        - 'Node 下 LDAP 实现': 'nodejs/Node 下 LDAP 实现.md'
+        # 其他博客
+        - 'Node-LDAP.md': 'nodejs/Node-LDAP.md'
         - 'Node.js-fs文档': 'nodejs/Node.js-fs文档.md'
         - 'Node.js-path': 'nodejs/Node.js-path.md'
         - 'Node.js-全局变量': 'nodejs/Node.js-全局变量.md'

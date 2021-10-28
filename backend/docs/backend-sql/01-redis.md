@@ -74,7 +74,7 @@ redis> get foo
 
 4、进入容器 `docker exec -it test-Michael-redis bash`
 
-5、进入 redis，执行 `redis-cli` 进入内部，可以使用 set get 获取数据（也可以通过可视化的TablePlus进行操作，注意端口号，具体使用参考：https://blog.csdn.net/weixin_41697143/article/details/119904196）
+5、进入 redis，执行 `redis-cli` 进入内部，使用 set get 获取数据（也可以通过可视化的TablePlus进行操作，注意端口号，具体使用参考：https://blog.csdn.net/weixin_41697143/article/details/119904196）
 
 6、使用 exit 退出容器，`docker stop docker-container-ID` 关闭当前容器
 

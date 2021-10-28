@@ -130,7 +130,7 @@ React 的数据流很明显，让你可以很轻松的了解你的程序是如�
 
 在当前版本的示例中，如果你试图键入或选中复选框，你会发现 React 会忽略你的输入。这是故意的，因为我们把 `input` 的 `value` 属性设置为一直等于从 `FilterableProductTable` 传入的 `state`.
 
-让我们想想我们想要做什么。我们想确保每当用户更改表单时，我们更新状态来反应用户输入。因为组件应该只更新自己的状态， `FilterableProductTable` 会将一个回调函数传递给 `SearchBar` ，每当应该更新状态时，它就会触发。我们可以使用输入上的 `onChange` 事件来调用它。`FilterableProductTable` 传入的回调函数会调用 `setState()`，这时应用程序会被更新。
+让我们想想我们想要做什么。我们想确保每当用户更改表单时，我们更新状态来反应用户输入。因为组件应该只更新自己的状态， `FilterableProductTable` 会将一个回调函数传递给 `SearchBar` ，每当应该更新状态时，它就会触发。使用输入上的 `onChange` 事件来调用它。`FilterableProductTable` 传入的回调函数会调用 `setState()`，这时应用程序会被更新。
 
 虽然这听起来很复杂，但它只是几行代码的问题。而且，你可以清楚地看出你的应用中数据是如何流动的。
 

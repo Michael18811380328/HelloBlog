@@ -42,7 +42,7 @@ npm init
 
 ## 安装依赖项
 
-现在我们可以使用`npm install`命令来安装包。 首先全局安装TypeScript和Gulp。 （如果你正在使用Unix系统，你可能需要使用 `sudo`命令来启动`npm install`命令行。）
+现在使用`npm install`命令来安装包。 首先全局安装TypeScript和Gulp。 （如果你正在使用Unix系统，你可能需要使用 `sudo`命令来启动`npm install`命令行。）
 
 ```
 npm install -g gulp-cli
@@ -230,7 +230,7 @@ gulp.task("default", ["copy-html"], function () {
 
 # Watchify，Babel和Uglify
 
-现在代码已经用Browserify和tsify捆绑在一起了，我们可以使用Browserify插件为构建添加一些特性。
+现在代码已经用Browserify和tsify捆绑在一起了，使用Browserify插件为构建添加一些特性。
 
 - Watchify启动Gulp并保持运行状态，当你保存文件时自动编译。 帮你进入到编辑-保存-刷新浏览器的循环中。
 - Babel是个十分灵活的编译器，将ES2015及以上版本的代码转换成ES5和ES3。 你可以添加大量自定义的TypeScript目前不支持的转换器。
@@ -350,7 +350,7 @@ gulp.task("default", ["copy-html"], function () {
 });
 ```
 
-注意`uglify`只是调用了自己—`buffer`和`sourcemaps`的调用是用于确保sourcemaps可以工作。 这些调用让我们可以使用单独的sourcemap文件，而不是之前的内嵌的sourcemaps。 你现在可以执行 `gulp`来检查`bundle.js`是否被压缩了：
+注意`uglify`只是调用了自己—`buffer`和`sourcemaps`的调用是用于确保sourcemaps可以工作。 这些调用让使用单独的sourcemap文件，而不是之前的内嵌的sourcemaps。 你现在可以执行 `gulp`来检查`bundle.js`是否被压缩了：
 
 ```
 gulp

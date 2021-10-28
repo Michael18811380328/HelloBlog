@@ -24,7 +24,7 @@ cd node-v10.9.0-linux-x64/                  // 进入解压目录
 v10.9.0
 ```
 
-解压文件的 bin 目录底下包含了 node、npm 等命令，我们可以使用 ln 命令来设置软连接：
+解压文件的 bin 目录底下包含了 node、npm 等命令，使用 ln 命令来设置软连接：
 
 ```bash
 ln -s /usr/software/nodejs/bin/npm   /usr/local/bin/ 
@@ -160,7 +160,7 @@ npm模块安装路径
 
   在 MAC 上安装使用 **brew install nvm**, 其中 brew 是 Homebrew。
 
-  安装 nvm 后可能会出现 **zsh: command not found: nvm**，我们可以使用以下命令来安装：
+  安装 nvm 后可能会出现 **zsh: command not found: nvm**，使用以下命令来安装：
 
   ```bash
   curl -o- [https://raw.githubusercontent.com/creationix/nvm/v0.25.4/install.sh](https://raw.githubusercontent.com/creationix/nvm/v0.25.4/install.sh) | bash [[ -s $HOME/.nvm/nvm.sh ]] && . $HOME/.nvm/nvm.sh

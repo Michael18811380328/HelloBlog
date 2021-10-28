@@ -140,14 +140,14 @@ main - main 字段指定了程序的主入口文件，require('moduleName') 就�
 keywords - 关键字
 
 卸载模块
-我们可以使用以下命令来卸载 Node.js 模块。
+使用以下命令来卸载 Node.js 模块。
 
 $ npm uninstall express
 卸载后，你可以到 /node_modules/ 目录下查看包是否还存在，或者使用以下命令查看：
 
 $ npm ls
 更新模块
-我们可以使用以下命令更新模块：
+使用以下命令更新模块：
 
 $ npm update express
 搜索模块
@@ -156,7 +156,7 @@ $ npm update express
 $ npm search express
 
 创建模块
-创建模块，package.json 文件是必不可少的。我们可以使用 NPM 生成 package.json 文件，生成的文件包含了基本的结果。
+创建模块，package.json 文件是必不可少的。使用 NPM 生成 package.json 文件，生成的文件包含了基本的结果。
 
 ```bash
 $ npm init
@@ -194,7 +194,7 @@ Is this ok? (yes) yes
 
 以上的信息，你需要根据你自己的情况输入。在最后输入 "yes" 后会生成 package.json 文件。
 
-接下来我们可以使用以下命令在 npm 资源库中注册用户（使用邮箱注册）：
+接下来使用以下命令在 npm 资源库中注册用户（使用邮箱注册）：
 
 $ npm adduser
 Username: mcmohd
