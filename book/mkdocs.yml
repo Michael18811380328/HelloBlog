@@ -119,6 +119,8 @@ nav:
         - '14-webpack-03': 'ebook-kaikeba-frontend/14-webpack-03.md'
         - '15-webpack优化笔记': 'ebook-kaikeba-frontend/15-webpack优化笔记.md'
         - '16-webpack优化官方': 'ebook-kaikeba-frontend/16-webpack优化官方.md'
+        - '17-webpack-05': 'ebook-kaikeba-frontend/17-webpack-05.md'
+        - '18-webpack-06': 'ebook-kaikeba-frontend/18-webpack-06.md'
 
     - 阮一峰前端工程化笔记:
         - 'README': 'ebook-jstraining-RYF/README.md'
