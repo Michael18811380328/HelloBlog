@@ -79,7 +79,7 @@ nav:
         - '编程思考笔记': 'note/think-note.md'
 
     - Javascript:
-
+        - 'iframe': 'javascript/iframe.md'
         - '内存泄漏': 'javascript/内存泄漏.md'
         - 'web-worker': 'javascript/web-worker.md'
         - 'CommonJS-AMD-CMD': 'javascript/CommonJS-AMD-CMD.md'
@@ -244,7 +244,11 @@ nav:
         - 'BUG-Auto packing the repository in background for optimum performance': 'git/BUG-Auto packing the repository in background for optimum performance.md'
         - 'Translation': 'git/Translation.md'
         - 'markdown-new-style': 'git/markdown-new-style.md'
-        - '腾讯如何有效地进行代码Review': 'git/腾讯如何有效地进行代码Review.md'
+        - 'Mkdocs-github-blog': 'git/Mkdocs-github-blog.md'
+        - 'Mkdocs-guide': 'git/Mkdocs-guide.md'
+        - 'Mkdocs-mac-env': 'git/Mkdocs-mac-env.md'
+        - 'Tencent-review-code': 'git/Tencent-review-code.md'
+        
     - react官方文档:
         - 'readme': 'react/react-all/中文文档全部/readme.md'
         - '0 目录': 'react/react-all/中文文档全部/0 目录.md'

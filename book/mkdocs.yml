@@ -124,6 +124,7 @@ nav:
 
     - 阮一峰前端工程化笔记:
         - 'README': 'ebook-jstraining-RYF/README.md'
+        - 'history': 'ebook-jstraining-RYF/history.md'
         - 'engineering': 'ebook-jstraining-RYF/engineering.md'
         - 'node': 'ebook-jstraining-RYF/node.md'
         - 'preparation': 'ebook-jstraining-RYF/preparation.md'
@@ -164,6 +165,7 @@ nav:
         - 'readme': 'book-JS-primer-code-design/readme.md'
 
     - 其他技术笔记:
+        - '说明': 'index.md'
         - 'JS-the-good-parts': 'book-JS-The-good-parts/JS-the-good-parts.md'
         - 'curry-function': 'book-JS-The-good-parts/curry-function.md'
         - 'JavaScript 秘密花园': 'ebook-javascript-secret-garden/JavaScript 秘密花园-zh.md'
@@ -171,41 +173,4 @@ nav:
         - '数据结构基础': 'other/data structure basic.md'
         - 'JS 数据结构': 'other/JS 数据结构.md'
         - 'leanpub-auto-the-road-to-ecmascript-6': 'other/leanpub-auto-the-road-to-ecmascript-6.md'
-
-    - 人生思考:
-        - '说明': 'index.md'
-        - 'index': 'other/index.md'
-        - '40退休': 'other/40退休.md'
-        - 'Reflections on Pre-Tirement': 'other/Reflections on Pre-Tirement.md'
-        - 'b计划': 'other/b计划.md'
-        - '熵增': 'other/熵增.md'
-        - '个人选择': 'other/个人选择.md'
-        - '人生真相': 'other/人生真相.md'
         - '其他书单': 'other/其他书单.md'
-        - '丹尼斯与Unix': 'other/丹尼斯与Unix.md'
-        - '詹宏志读书': 'other/詹宏志读书.md'
-        - '骡子和人生': 'other/骡子和人生.md'
-        - '如何变得强大': 'other/如何变得强大.md'
-        - '专业教育的兴起': 'other/专业教育的兴起.md'
-        - '硕士学位的贬值': 'other/硕士学位的贬值.md'
-        - '任正非的管理思想': 'other/任正非的管理思想.md'
-        - '技术和稳定的工作': 'other/技术和稳定的工作.md'
-        - '大学教育和网络文凭': 'other/大学教育和网络文凭.md'
-        - '思维导图到深度学习': 'other/思维导图到深度学习.md'
-        - '工业文明对于社会的冲击': 'other/工业文明对于社会的冲击.md'
-        - '正态分布和对数正态分布': 'other/正态分布和对数正态分布.md'
-
-    - 金融理财:
-        - '小狗钱钱': 'other/小狗钱钱.md'
-        - 'Poor-and-busy': 'other/Poor-and-busy.md'
-        - 'The art of Execution 执行力的艺术': 'other/The art of Execution 执行力的艺术.md'
-        - 'Who Wants to Be a Millionaire': 'other/Who Wants to Be a Millionaire.md'
-        - '中国经济的转变': 'other/中国经济的转变.md'
-        - '中国的房价会怎么收场': 'other/中国的房价会怎么收场.md'
-        - '基金从基础到实践.md': 'economy/基金从基础到实践.md'
-        - '基金投资法.md': 'economy/基金投资法.md'
-        - '宏观经济学习.md': 'economy/宏观经济学习.md'
-        - '人人都能懂的宏观经济.md': 'economy/人人都能懂的宏观经济.md'
-        - '四个财富水池.md': 'economy/四个财富水池.md'
-        - '股市入门.md': 'economy/股市入门.md'
-        - '股市入门2.md': 'economy/股市入门2.md'

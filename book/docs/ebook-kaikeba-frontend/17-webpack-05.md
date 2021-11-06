@@ -226,3 +226,62 @@ optimization: {
   concatenateModules: true,
 }
 ~~~
+
+
+
+### 优化实例
+
+优化前的时间消耗
+
+~~~js
+ SMP  ⏱  
+General output time took 48.86 secs
+
+ SMP  ⏱  Plugins
+TerserPlugin took 0.249 secs
+
+ SMP  ⏱  Loaders
+babel-loader took 39.008 secs
+modules with no loaders took 35.55 secs
+css-loader took 18.89 secs
+url-loader took 3.008 secs
+style-loader, and css-loader took 0.101 secs
+
+Hash: 4bc99a3d86b94b976911
+Version: webpack 4.29.6
+Time: 48862ms
+Built at: 2021/11/01 上午10:27:27
+~~~
+
+打包时间为 48s
+
+可以发现主要的耗时在 babel-loader css-loader 
+
+
+
+优化后，使用多线程打包（从 49 优化到 41秒，可能是电脑性能，或者只优化了一部分代码，一部分 with no loaders）
+
+~~~js
+ SMP  ⏱  
+General output time took 40.76 secs
+
+ SMP  ⏱  Plugins
+HappyPlugin took 0.148 secs
+TerserPlugin took 0.143 secs
+
+ SMP  ⏱  Loaders
+happypack took 36.9 secs
+modules with no loaders took 20.73 secs
+css-loader took 0.914 secs
+url-loader took 0.799 secs
+
+Hash: 4bc99a3d86b94b976911
+Version: webpack 4.29.6
+Time: 40908ms
+Built at: 2021/11/01 上午10:42:14
+~~~
+
+使用硬件加速后，可能和已有的插件冲突，反而时间更长了，所以不使用这个插件
+
+https://www.npmjs.com/package/hard-source-webpack-plugin
+

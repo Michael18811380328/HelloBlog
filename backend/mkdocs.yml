@@ -71,6 +71,7 @@ nav:
     - 网络:
         - 'socket-io': 'backend-sql/socket-io.md'
         - 'web-socket': 'backend-sql/websocket.md'
+        - '单点登录SSO.md': 'backend-sql/单点登录SSO.md'
     - 数据库:
         - 'redis.md': 'backend-sql/01-redis.md'
         - 'Python操作 MySQL数据库.md': 'backend-sql/Python操作 MySQL数据库.md'
@@ -80,6 +81,7 @@ nav:
         - '数据库概念.md': 'backend-sql/数据库概念.md'
         - 'Mac pip install mysql-python unsuccessful.md': 'backend-sql/Mac pip install mysql-python unsuccessful.md'
         - 'Mac安装MySQLdb（python-mysql）模块.md': 'backend-sql/Mac安装MySQLdb（python-mysql）模块.md'
+
     - NodeJS:
         # 菜鸟教程官方博客
         - '01-Node.js 教程': 'nodejs/01-Node.js 教程.md'
@@ -117,7 +119,7 @@ nav:
         - 'node-debug': 'nodejs/node-debug.md'
         - 'nodeJS 基础教程': 'nodejs/nodeJS 基础教程.md'
         - 'nodeJS+mysql+连接池': 'nodejs/nodeJS+mysql+连接池.md'
-        - 'nodejs api学习：fs.createReadStreame()': 'nodejs/nodejs api学习：fs.createReadStreame().md'
+        - 'fs.createReadStreame': 'nodejs/fs.createReadStreame.md'
         - 'node定时器': 'nodejs/node定时器.md'
         - '使用nodejs连接mysql数据库实现增删改查': 'nodejs/使用nodejs连接mysql数据库实现增删改查.md'
         - '廖雪峰 NodeJS': 'nodejs/廖雪峰 NodeJS.md'

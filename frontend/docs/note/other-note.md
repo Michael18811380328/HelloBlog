@@ -151,6 +151,99 @@ echo "build start------"
 cd book && mkdocs build
 ~~~
 
+#### 3 tree
+
+tree 命令可以显示显示当前项目的结构，通过参数设置不同的效果。
+
+~~~bash
+# 显示英文名称
+tree
+
+# 显示中文名称（-N）
+tree -N
+
+# 显示全部文件（隐藏文件）
+tree -a
+
+# 过滤隐藏文件夹
+tree -I "node_modules"
+
+# 支持管道符和正则匹配
+tree -I "node_modules|cache|test_*"
+
+# 只看两级目录
+tree -L 2
+
+# 把当前目录下文件中文形式输出，并过滤图片文件，输出到 md 文件中
+tree -N -I "*.svg|*.png|*.jpg|*.gif|*.xmind" > tree-res.md
+~~~
+
+全部配置
+
+> -a 显示所有文件和目录。
+> -A 使用ASNI绘图字符显示树状图而非以ASCII字符组合。
+> -C 在文件和目录清单加上色彩，便于区分各种类型。
+> -d 显示目录名称而非内容。
+> -D 列出文件或目录的更改时间。
+> -f 在每个文件或目录之前，显示完整的相对路径名称。
+> -F 在执行文件，目录，Socket，符号连接，管道名称名称，各自加上"*","/","=","@","|"号。
+> -g 列出文件或目录的所属群组名称，没有对应的名称时，则显示群组识别码。
+> -i 不以阶梯状列出文件或目录名称。
+> -I 不显示符合范本样式的文件或目录名称。
+> -l 如遇到性质为符号连接的目录，直接列出该连接所指向的原始目录。
+> -n 不在文件和目录清单加上色彩。
+> -N 直接列出文件和目录名称，包括控制字符。
+> -p 列出权限标示。
+> -P 只显示符合范本样式的文件或目录名称。
+> -q 用"?"号取代控制字符，列出文件和目录名称。
+> -s 列出文件或目录大小。
+> -t 用文件和目录的更改时间排序。
+> -u 列出文件或目录的拥有者名称，没有对应的名称时，则显示用户识别码。
+> -x 将范围局限在现行的文件系统中，若指定目录下的某些子目录，其存放于另一个文件系统上，则将该子目录予以排除在寻找范围外。
+
+英文配置
+
+> usage: tree [-adfghilnpqrstuvxACDFNS] [-H baseHREF] [-T title ] [-L level [-R]]
+> [-P pattern] [-I pattern] [-o filename] [--version] [--help] [--inodes]
+> [--device] [--noreport] [--nolinks] [--dirsfirst] [--charset charset]
+> [--filelimit #] [<directory list>]
+> -a      All files are listed.
+> -d      List directories only.
+> -l      Follow symbolic links like directories.
+> -f      Print the full path prefix for each file.
+> -i      Don't print indentation lines.
+> -q      Print non-printable characters as '?'.
+> -N      Print non-printable characters as is.
+> -p      Print the protections for each file.
+> -u      Displays file owner or UID number.
+> -g      Displays file group owner or GID number.
+> -s      Print the size in bytes of each file.
+> -h      Print the size in a more human readable way.
+> -D      Print the date of last modification.
+> -F      Appends '/', '=', '*', or '|' as per ls -F.
+> -v      Sort files alphanumerically by version.
+> -r      Sort files in reverse alphanumeric order.
+> -t      Sort files by last modification time.
+> -x      Stay on current filesystem only.
+> -L level   Descend only level directories deep.
+> -A      Print ANSI lines graphic indentation lines.
+> -S      Print with ASCII graphics indentation lines.
+> -n      Turn colorization off always (-C overrides).
+> -C      Turn colorization on always.
+> -P pattern  List only those files that match the pattern given.
+> -I pattern  Do not list files that match the given pattern.
+> -H baseHREF  Prints out HTML format with baseHREF as top directory.
+> -T string   Replace the default HTML title and H1 header with string.
+> -R      Rerun tree when max dir level reached.
+> -o file    Output to file instead of stdout.
+> --inodes   Print inode number of each file.
+> --device   Print device ID number to which each file belongs.
+> --noreport  Turn off file/directory count at end of tree listing.
+> --nolinks   Turn off hyperlinks in HTML output.
+> --dirsfirst  List directories before files.
+> --charset X  Use charset X for HTML and indentation line output.
+> --filelimit # Do not descend dirs with more than # files in them. 
+
 
 
 ## GIT
@@ -199,4 +292,14 @@ git cherry-pick A-hash B-hash # 把两个hash之间的全部Commits放到master�
 - commit 命名：每次commit，要标准和准确的描述做了什么，改了什么，删除了什么，新增了什么
 - 分支命名：version/1.2.3（大版本分支），feature/login（新增特性分支简写feat）person/michael-an/bugfix-editor（个人分支）special/firefox-debug（特殊分支）前面是大类-后面是功能说明 hotfix（紧急修复分支）
 - tag只能适用用稳定的版本
+
+#### 3 安卓手机连接苹果电脑传文件
+
+点击链接下载
+
+android file transfer
+
+然后连接安卓手机即可显示对应的文件
+
+https://dl.google.com/dl/androidjumper/mtp/current/androidfiletransfer.dmg
 

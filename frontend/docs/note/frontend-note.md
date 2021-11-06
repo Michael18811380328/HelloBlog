@@ -8,7 +8,7 @@
 
 
 
-####  0 循环中异步函数
+####  1 循环中异步函数
 
 循环 forEach map 中，如果有异步函数，需要异步函数的结果，怎么实现？
 
@@ -74,7 +74,7 @@ async function dbFuc(db) {
 
 
 
-#### 1 flex 和 inline-flex 
+#### 2 flex 和 inline-flex 
 
 类似 block 和 inline-block，前缀的 inline 是相对于父盒子而言，是行内元素还是块级元素。flex 都表示内部是伸缩盒子。
 
@@ -164,7 +164,7 @@ while(tmp = reg.exec(str)){
 
 
 
-#### 7 pointer-events 和点击穿透
+#### 5 pointer-events 和点击穿透
 
 有时候，我们会遇到界面中多个图层重叠的问题，下面图层绑定函数，上面的图层显示 UI 效果。我们希望点击事件，可以穿透上层 DIV 然后触发下层 DIV 的函数。
 
@@ -440,6 +440,81 @@ http://www.chromium.org/getting-involved/dev-channel
 
 
 
+#### 29 arguments.callee 使用
+
+使用转转反侧法计算两个数的最大公约数时，看到这样一个代码
+
+~~~js
+function gcd(a, b) {
+    if (a % b === 0) {
+        return b;
+    }
+    return arguments.callee(b, a % b);
+}
+console.log(gcd(28, 12)); // 4
+console.log(gcd(7890, 123456)); // 6
+console.log(gcd(5, 13)); // 1 （公约数为1说明两数互质）
+~~~
+
+其中 arguments.callee 不会经常使用，这个属性未来可能废弃，查询资料如下：
+
+Arguments 表示函数的参数。arguments 有一个属性 cellee 表示函数参数的指针（指向当前的函数）那么这样写相当于递归调用函数。这样写的好处：如果函数名变化后，函数内部的代码不需要改动（arguments.callee）。
+
+例子：
+
+我们使用这个优化一下斐波那契函数：
+
+原函数递归调用
+
+~~~js
+function factorial(num){    
+  if (num <= 1) {         
+    return 1;     
+  } else {         
+    return num * factorial(num-1)     
+  } 
+}
+~~~
+
+使用 arguemnts.callee 的函数
+~~~js
+function factorial(num){    
+  if (num <=1) {         
+    return 1;     
+  } else {         
+    return num * arguments.callee(num-1);
+  } 
+}
+~~~
+
+#### 30 react-dnd 的问题
+
+使用 react-dnd 时，如果一个父组件的状态改变，那么下面的子组件会全部改变，不会走 react 生命周期函数中更新的部分。
+
+这样就造成一些问题：例如 web 项目文件夹，点击菜单，会造成整个文件夹组件全部重新渲染，图片会出现闪动。
+
+react-dnd 使用了高阶组件，可能在 render 时，重新计算了组件，那么势必会去掉原来的组件，并使用新的组件，这样原来的组件自然不会走 componentWillMount 等生命周期函数。
+
+未来使用时，需要注意拖拽内容尽可能少，内部不要有图片或者其他请求的部分，减少性能损耗。
+
+
+
+#### 31 浏览器自动跳转问题
+
+总结一下这个问题的解决过程
+
+因为页面跳转，默认想到的是 JS window.open 或者 HTML A 标签，然后产品报错误导了方向，恰好近期改动了这部分JS代码
+1、首先产品反馈，这个是 ”链接公式-rollup-添加“fx公式引用的（单选类型）“ 把自己绕到了链接公式 roolup 这部分功能，一直排查是否是 JS 的问题。
+2、测试不同的浏览器，都会自动刷新。排除浏览器的兼容性问题。然后通过 console.log 保留日志分析，这个数据基本正常。
+3、开始判断是用户行为，还是 JS 逻辑问题。设置一个定时器，自动更改 JS 代码，然后不出错。证明 JS 链接公式没问题，主要问题在用户点击。
+4、逐步排查点击事件，然后不是当前组件，而是内部的选择器组件中的问题。把点击事件的默认行为改掉，就不出错了。但是内部的选择是公共组件，其他使用公共组件的地方是正常的，最好不改动公共组件。
+5、找到使用这个组件的地方，外部为了样式，加了一个 Form，然后点击事件触发了表单提交，页面就刷新了。
+6、更改：把 Form 改成 DIV 就不会跳转了。其他的情况也可能是这个问题。
+
+
+
+
+
 ### 学会的
 
 #### 1 array.reduce
@@ -464,7 +539,7 @@ console.log(arr.reduce(fn, 0)); // 15，原始数组不改变
 
 
 
-#### 8 polyfill 作用
+#### 2 polyfill 作用
 
 polyfill 英文翻译：垫片；计算机中指的是"补丁"
 

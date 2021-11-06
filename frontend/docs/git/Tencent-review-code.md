@@ -1,5 +1,7 @@
 # 如何有效地进行代码 Review
 
+2021-11-03
+
 腾讯技术工程：
 
 https://www.zhihu.com/org/teng-xun-ji-zhu-gong-cheng
@@ -207,3 +209,4 @@ Review 代码既是帮助提高代码质量的过程，也是 Reviewer 提高自
 Reviewer 也不需要去关注自己的“产出”，并不是一定要提出一堆问题才是好的代码 Review，Author 代码写得很棒也是很正常的，如果从你的角度觉得代码没问题，大胆给个 LGTM 甚至是 Approve。
 
 **更多干货尽在[腾讯技术](https://www.zhihu.com/org/teng-xun-ji-zhu-gong-cheng)，官方微信交流群已建立，交流讨论可加：Journeylife1900（备注腾讯技术） 。**
+
