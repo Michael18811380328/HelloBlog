@@ -27,8 +27,6 @@ var http = require('http');
 
 以下是演示一个最基本的 HTTP 服务器架构(使用 8080 端口)，创建 server.js 文件，代码如下所示：
 
-## 实例
-
 ~~~js
 var http = require('http');
 var fs = require('fs');
@@ -88,8 +86,6 @@ Request for /index.html received.     #  客户端请求信息
 
 Node 创建 Web 客户端需要引入 http 模块，创建 client.js 文件，代码如下所示：
 
-## 实例
-
 ~~~js
 var http = require('http');
 // 用于请求的选项
@@ -140,3 +136,4 @@ $ node  client.js
 Server running at http://127.0.0.1:8080/
 Request for /index.html received.   # 客户端请求信息
 ```
+

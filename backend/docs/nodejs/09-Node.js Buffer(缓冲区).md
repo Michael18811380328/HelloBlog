@@ -167,8 +167,6 @@ abcde
 
 ## 将 Buffer 转换为 JSON 对象
 
-### 语法
-
 将 Node Buffer 转换为 JSON 对象的函数语法格式如下：
 
 ```
@@ -177,11 +175,9 @@ buf.toJSON()
 
 当字符串化一个 Buffer 实例时，[JSON.stringify()](https://www.runoob.com/js/javascript-json-stringify.html) 会隐式地调用该 **toJSON()**。
 
-### 返回值
-
 返回 JSON 对象。
 
-### 实例
+实例
 
 ```js
 const buf = Buffer.from([0x1, 0x2, 0x3, 0x4, 0x5]);

@@ -224,13 +224,7 @@
 
 # fs（文件系统）[#](http://nodejs.cn/api/fs.html#fs_file_system)
 
-[中英对照](http://nodejs.cn/api/fs/file_system.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/file_system.md)
-
-
-
 [稳定性: 2](http://nodejs.cn/api/documentation.html#documentation_stability_index) - 稳定
-
-
 
 `fs` 模块提供了一个 API，用于以模仿标准 POSIX 函数的方式与文件系统进行交互。
 
@@ -314,8 +308,6 @@ Error: EISDIR: illegal operation on a directory, read
 
 ## 文件路径[#](http://nodejs.cn/api/fs.html#fs_file_paths)
 
-[中英对照](http://nodejs.cn/api/fs/file_paths.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/file_paths.md)
-
 大多数 `fs` 操作接受的文件路径可以指定为字符串、[`Buffer`](http://nodejs.cn/s/FApxjh)、或使用 `file:` 协议的 [`URL`](http://nodejs.cn/s/5dwq7G) 对象。
 
 字符串形式的路径被解析为标识绝对或相对文件名的 UTF-8 字符序列。 相对路径将相对于 `process.cwd()` 指定的当前工作目录进行解析。
@@ -360,10 +352,6 @@ fs.open(Buffer.from('/open/some/file.txt'), 'r', (err, fd) => {
 在 Windows 上，Node.js 遵循每个驱动器工作目录的概念。 当使用没有反斜杠的驱动器路径时，可以观察到此行为。 例如， `fs.readdirSync('c:\\')` 可能会返回与 `fs.readdirSync('c:')` 不同的结果。 有关详细信息，参阅[此 MSDN 页面](http://nodejs.cn/s/qMc4eE)。
 
 ### URL 对象的支持[#](http://nodejs.cn/api/fs.html#fs_url_object_support)
-
-[中英对照](http://nodejs.cn/api/fs/url_object_support.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/url_object_support.md)
-
-新增于: v7.6.0
 
 对于大多数 `fs` 模块的函数， `path` 或 `filename` 参数可以传入 WHATWG [`URL`](http://nodejs.cn/s/5dwq7G) 对象。 仅支持使用 `file:` 协议的 [`URL`](http://nodejs.cn/s/5dwq7G) 对象。
 
@@ -442,8 +430,6 @@ fs.readFileSync(new URL('file:///C:/path/%5c'));
 
 ## 文件描述符[#](http://nodejs.cn/api/fs.html#fs_file_descriptors)
 
-[中英对照](http://nodejs.cn/api/fs/file_descriptors.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/file_descriptors.md)
-
 在 POSIX 系统上，对于每个进程，内核都维护着一张当前打开着的文件和资源的表格。 每个打开的文件都分配了一个称为文件描述符的简单的数字标识符。 在系统层，所有文件系统操作都使用这些文件描述符来标识和跟踪每个特定的文件。 Windows 系统使用了一个虽然不同但概念上类似的机制来跟踪资源。 为了简化用户的工作，Node.js 抽象出操作系统之间的特定差异，并为所有打开的文件分配一个数字型的文件描述符。
 
 `fs.open()` 方法用于分配新的文件描述符。 一旦被分配，则文件描述符可用于从文件读取数据、向文件写入数据、或请求关于文件的信息。
@@ -467,15 +453,9 @@ fs.open('/open/some/file.txt', 'r', (err, fd) => {
 
 ## 线程池的使用[#](http://nodejs.cn/api/fs.html#fs_threadpool_usage)
 
-[中英对照](http://nodejs.cn/api/fs/threadpool_usage.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/threadpool_usage.md)
-
 所有的文件系统 API，除了 `fs.FSWatcher()` 和那些显式同步的之外，都使用 libuv 的线程池，这对某些应用程序可能会产生意外和负面的性能影响。 有关更多信息，参阅 [`UV_THREADPOOL_SIZE`](http://nodejs.cn/s/6DjmgS) 文档。
 
 ## fs.Dir 类[#](http://nodejs.cn/api/fs.html#fs_class_fs_dir)
-
-[中英对照](http://nodejs.cn/api/fs/class_fs_dir.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/class_fs_dir.md)
-
-新增于: v12.12.0
 
 代表目录流的类。
 
@@ -495,10 +475,6 @@ print('./').catch(console.error);
 
 ### dir.close()[#](http://nodejs.cn/api/fs.html#fs_dir_close)
 
-[中英对照](http://nodejs.cn/api/fs/dir_close.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/dir_close.md)
-
-新增于: v12.12.0
-
 - 返回: [](http://nodejs.cn/s/ri1kj8)
 
 异步地关闭目录的底层资源句柄。 随后的读取将会导致错误。
@@ -506,10 +482,6 @@ print('./').catch(console.error);
 返回一个 `Promise`，将会在关闭资源之后被解决。
 
 ### dir.close(callback)[#](http://nodejs.cn/api/fs.html#fs_dir_close_callback)
-
-[中英对照](http://nodejs.cn/api/fs/dir_close_callback.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/dir_close_callback.md)
-
-新增于: v12.12.0
 
 - `callback` [](http://nodejs.cn/s/ceTQa6)
   - `err` [](http://nodejs.cn/s/qZ873x)
@@ -520,27 +492,15 @@ print('./').catch(console.error);
 
 ### dir.closeSync()[#](http://nodejs.cn/api/fs.html#fs_dir_closesync)
 
-[中英对照](http://nodejs.cn/api/fs/dir_closesync.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/dir_closesync.md)
-
-新增于: v12.12.0
-
 同步地关闭目录的底层资源句柄。 随后的读取将会导致错误。
 
 ### dir.path[#](http://nodejs.cn/api/fs.html#fs_dir_path)
-
-[中英对照](http://nodejs.cn/api/fs/dir_path.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/dir_path.md)
-
-新增于: v12.12.0
 
 - [](http://nodejs.cn/s/9Tw2bK)
 
 此目录的只读路径，与提供给 [`fs.opendir()`](http://nodejs.cn/s/zomk1H)、[`fs.opendirSync()`](http://nodejs.cn/s/V6ipxZ) 或 [`fsPromises.opendir()`](http://nodejs.cn/s/wUZTwT) 的一样。
 
 ### dir.read()[#](http://nodejs.cn/api/fs.html#fs_dir_read)
-
-[中英对照](http://nodejs.cn/api/fs/dir_read.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/dir_read.md)
-
-新增于: v12.12.0
 
 - 返回: [](http://nodejs.cn/s/ri1kj8) 包含 [](http://nodejs.cn/s/mNLVJ7) | [](http://nodejs.cn/s/334hvC)。
 
@@ -553,8 +513,6 @@ print('./').catch(console.error);
 ### dir.read(callback)[#](http://nodejs.cn/api/fs.html#fs_dir_read_callback)
 
 [中英对照](http://nodejs.cn/api/fs/dir_read_callback.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/dir_read_callback.md)
-
-新增于: v12.12.0
 
 - `callback` [](http://nodejs.cn/s/ceTQa6)
   - `err` [](http://nodejs.cn/s/qZ873x)
@@ -570,8 +528,6 @@ print('./').catch(console.error);
 
 [中英对照](http://nodejs.cn/api/fs/dir_readsync.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/dir_readsync.md)
 
-新增于: v12.12.0
-
 - 返回: [](http://nodejs.cn/s/mNLVJ7) | [](http://nodejs.cn/s/334hvC)
 
 通过 [`readdir(3)`](http://nodejs.cn/s/QvrbKw) 同步地读取下一个目录项作为 [`fs.Dirent`](http://nodejs.cn/s/mNLVJ7)。
@@ -583,8 +539,6 @@ print('./').catch(console.error);
 ### dir[Symbol.asyncIterator]()[#](http://nodejs.cn/api/fs.html#fs_dir_symbol_asynciterator)
 
 [中英对照](http://nodejs.cn/api/fs/dir_symbol_asynciterator.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/dir_symbol_asynciterator.md)
-
-新增于: v12.12.0
 
 - 返回: [](http://nodejs.cn/s/mNLVJ7) 的 [](http://nodejs.cn/s/HnG4ws)
 
@@ -600,8 +554,6 @@ print('./').catch(console.error);
 
 [中英对照](http://nodejs.cn/api/fs/class_fs_dirent.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/class_fs_dirent.md)
 
-新增于: v10.10.0
-
 目录项的表示形式，通过从 [`fs.Dir`](http://nodejs.cn/s/PrNiRv) 中读取而返回。
 
 此外，当使用 `withFileTypes` 选项设置为 `true` 调用 [`fs.readdir()`](http://nodejs.cn/s/Yvf5n5) 或 [`fs.readdirSync()`](http://nodejs.cn/s/Frjypi) 时，生成的数组将会填充 `fs.Dirent` 对象，而不是字符串或 `Buffer`。
@@ -609,8 +561,6 @@ print('./').catch(console.error);
 ### dirent.isBlockDevice()[#](http://nodejs.cn/api/fs.html#fs_dirent_isblockdevice)
 
 [中英对照](http://nodejs.cn/api/fs/dirent_isblockdevice.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/dirent_isblockdevice.md)
-
-新增于: v10.10.0
 
 - 返回: [](http://nodejs.cn/s/jFbvuT)
 
@@ -620,8 +570,6 @@ print('./').catch(console.error);
 
 [中英对照](http://nodejs.cn/api/fs/dirent_ischaracterdevice.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/dirent_ischaracterdevice.md)
 
-新增于: v10.10.0
-
 - 返回: [](http://nodejs.cn/s/jFbvuT)
 
 如果 `fs.Dirent` 对象描述字符设备，则返回 `true`。
@@ -629,8 +577,6 @@ print('./').catch(console.error);
 ### dirent.isDirectory()[#](http://nodejs.cn/api/fs.html#fs_dirent_isdirectory)
 
 [中英对照](http://nodejs.cn/api/fs/dirent_isdirectory.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/dirent_isdirectory.md)
-
-新增于: v10.10.0
 
 - 返回: [](http://nodejs.cn/s/jFbvuT)
 
@@ -640,8 +586,6 @@ print('./').catch(console.error);
 
 [中英对照](http://nodejs.cn/api/fs/dirent_isfifo.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/dirent_isfifo.md)
 
-新增于: v10.10.0
-
 - 返回: [](http://nodejs.cn/s/jFbvuT)
 
 如果 `fs.Dirent` 对象描述先进先出（FIFO）管道，则返回 `true`。
@@ -649,8 +593,6 @@ print('./').catch(console.error);
 ### dirent.isFile()[#](http://nodejs.cn/api/fs.html#fs_dirent_isfile)
 
 [中英对照](http://nodejs.cn/api/fs/dirent_isfile.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/dirent_isfile.md)
-
-新增于: v10.10.0
 
 - 返回: [](http://nodejs.cn/s/jFbvuT)
 
@@ -660,8 +602,6 @@ print('./').catch(console.error);
 
 [中英对照](http://nodejs.cn/api/fs/dirent_issocket.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/dirent_issocket.md)
 
-新增于: v10.10.0
-
 - 返回: [](http://nodejs.cn/s/jFbvuT)
 
 如果 `fs.Dirent` 对象描述套接字，则返回 `true`。
@@ -669,8 +609,6 @@ print('./').catch(console.error);
 ### dirent.isSymbolicLink()[#](http://nodejs.cn/api/fs.html#fs_dirent_issymboliclink)
 
 [中英对照](http://nodejs.cn/api/fs/dirent_issymboliclink.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/dirent_issymboliclink.md)
-
-新增于: v10.10.0
 
 - 返回: [](http://nodejs.cn/s/jFbvuT)
 
@@ -680,8 +618,6 @@ print('./').catch(console.error);
 
 [中英对照](http://nodejs.cn/api/fs/dirent_name.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/dirent_name.md)
 
-新增于: v10.10.0
-
 - [](http://nodejs.cn/s/9Tw2bK) | [](http://nodejs.cn/s/6x1hD3)
 
 `fs.Dirent` 对象指向的文件名。 此值的类型取决于传递给 [`fs.readdir()`](http://nodejs.cn/s/Yvf5n5) 或 [`fs.readdirSync()`](http://nodejs.cn/s/Frjypi) 的 `options.encoding`。
@@ -689,8 +625,6 @@ print('./').catch(console.error);
 ## fs.FSWatcher 类[#](http://nodejs.cn/api/fs.html#fs_class_fs_fswatcher)
 
 [中英对照](http://nodejs.cn/api/fs/class_fs_fswatcher.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/class_fs_fswatcher.md)
-
-新增于: v0.5.8
 
 - 继承自 [](http://nodejs.cn/s/pGAddE)
 
@@ -701,8 +635,6 @@ print('./').catch(console.error);
 ### 'change' 事件[#](http://nodejs.cn/api/fs.html#fs_event_change)
 
 [中英对照](http://nodejs.cn/api/fs/event_change.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/event_change.md)
-
-新增于: v0.5.8
 
 - `eventType` [](http://nodejs.cn/s/9Tw2bK) 已发生的更改事件的类型。
 - `filename` [](http://nodejs.cn/s/9Tw2bK) | [](http://nodejs.cn/s/6x1hD3) 更改的文件名（如果相关或可用）。
@@ -725,15 +657,11 @@ fs.watch('./tmp', { encoding: 'buffer' }, (eventType, filename) => {
 
 [中英对照](http://nodejs.cn/api/fs/event_close.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/event_close.md)
 
-新增于: v10.0.0
-
 当监视器停止监视更改时触发。 关闭的 `fs.FSWatcher` 对象在事件处理函数中不再可用。
 
 ### 'error' 事件[#](http://nodejs.cn/api/fs.html#fs_event_error)
 
 [中英对照](http://nodejs.cn/api/fs/event_error.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/event_error.md)
-
-新增于: v0.5.8
 
 - `error` [](http://nodejs.cn/s/qZ873x)
 
@@ -743,15 +671,11 @@ fs.watch('./tmp', { encoding: 'buffer' }, (eventType, filename) => {
 
 [中英对照](http://nodejs.cn/api/fs/watcher_close.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/watcher_close.md)
 
-新增于: v0.5.8
-
 给定的 `fs.FSWatcher` 停止监视更改。 一旦停止，则 `fs.FSWatcher` 对象将不再可用。
 
 ## fs.ReadStream 类[#](http://nodejs.cn/api/fs.html#fs_class_fs_readstream)
 
 [中英对照](http://nodejs.cn/api/fs/class_fs_readstream.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/class_fs_readstream.md)
-
-新增于: v0.1.93
 
 - 继承自: [](http://nodejs.cn/s/YuDKX1)
 
@@ -761,15 +685,11 @@ fs.watch('./tmp', { encoding: 'buffer' }, (eventType, filename) => {
 
 [中英对照](http://nodejs.cn/api/fs/event_close_1.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/event_close_1.md)
 
-新增于: v0.1.93
-
 当 `fs.ReadStream` 的底层文件描述符已关闭时触发。
 
 ### 'open' 事件[#](http://nodejs.cn/api/fs.html#fs_event_open)
 
 [中英对照](http://nodejs.cn/api/fs/event_open.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/event_open.md)
-
-新增于: v0.1.93
 
 - `fd` [](http://nodejs.cn/s/SXbo1v) `ReadStream` 使用的整数型文件描述符。
 
@@ -779,8 +699,6 @@ fs.watch('./tmp', { encoding: 'buffer' }, (eventType, filename) => {
 
 [中英对照](http://nodejs.cn/api/fs/event_ready.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/event_ready.md)
 
-新增于: v9.11.0
-
 当 `fs.ReadStream` 准备好使用时触发。
 
 `'open'` 事件之后立即触发。
@@ -788,8 +706,6 @@ fs.watch('./tmp', { encoding: 'buffer' }, (eventType, filename) => {
 ### readStream.bytesRead[#](http://nodejs.cn/api/fs.html#fs_readstream_bytesread)
 
 [中英对照](http://nodejs.cn/api/fs/readstream_bytesread.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/readstream_bytesread.md)
-
-新增于: v6.4.0
 
 - [](http://nodejs.cn/s/SXbo1v)
 
@@ -799,8 +715,6 @@ fs.watch('./tmp', { encoding: 'buffer' }, (eventType, filename) => {
 
 [中英对照](http://nodejs.cn/api/fs/readstream_path.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/readstream_path.md)
 
-新增于: v0.1.93
-
 - [](http://nodejs.cn/s/9Tw2bK) | [](http://nodejs.cn/s/6x1hD3)
 
 流正在读取的文件的路径，由 `fs.createReadStream()` 的第一个参数指定。 如果 `path` 传入字符串，则 `readStream.path` 将是字符串。 如果 `path` 传入 `Buffer`，则 `readStream.path` 将是 `Buffer`。
@@ -808,8 +722,6 @@ fs.watch('./tmp', { encoding: 'buffer' }, (eventType, filename) => {
 ### readStream.pending[#](http://nodejs.cn/api/fs.html#fs_readstream_pending)
 
 [中英对照](http://nodejs.cn/api/fs/readstream_pending.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/readstream_pending.md)
-
-新增于: v11.2.0
 
 - [](http://nodejs.cn/s/jFbvuT)
 
@@ -879,8 +791,6 @@ BigIntStats {
 
 [中英对照](http://nodejs.cn/api/fs/stats_isblockdevice.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/stats_isblockdevice.md)
 
-新增于: v0.1.10
-
 - 返回: [](http://nodejs.cn/s/jFbvuT)
 
 如果 `fs.Stats` 对象描述块设备，则返回 `true`。
@@ -888,8 +798,6 @@ BigIntStats {
 ### stats.isCharacterDevice()[#](http://nodejs.cn/api/fs.html#fs_stats_ischaracterdevice)
 
 [中英对照](http://nodejs.cn/api/fs/stats_ischaracterdevice.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/stats_ischaracterdevice.md)
-
-新增于: v0.1.10
 
 - 返回: [](http://nodejs.cn/s/jFbvuT)
 
@@ -899,8 +807,6 @@ BigIntStats {
 
 [中英对照](http://nodejs.cn/api/fs/stats_isdirectory.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/stats_isdirectory.md)
 
-新增于: v0.1.10
-
 - 返回: [](http://nodejs.cn/s/jFbvuT)
 
 如果 `fs.Stats` 对象描述文件系统目录，则返回 `true`。
@@ -908,8 +814,6 @@ BigIntStats {
 ### stats.isFIFO()[#](http://nodejs.cn/api/fs.html#fs_stats_isfifo)
 
 [中英对照](http://nodejs.cn/api/fs/stats_isfifo.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/stats_isfifo.md)
-
-新增于: v0.1.10
 
 - 返回: [](http://nodejs.cn/s/jFbvuT)
 
@@ -919,8 +823,6 @@ BigIntStats {
 
 [中英对照](http://nodejs.cn/api/fs/stats_isfile.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/stats_isfile.md)
 
-新增于: v0.1.10
-
 - 返回: [](http://nodejs.cn/s/jFbvuT)
 
 如果 `fs.Stats` 对象描述常规文件，则返回 `true`。
@@ -929,8 +831,6 @@ BigIntStats {
 
 [中英对照](http://nodejs.cn/api/fs/stats_issocket.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/stats_issocket.md)
 
-新增于: v0.1.10
-
 - 返回: [](http://nodejs.cn/s/jFbvuT)
 
 如果 `fs.Stats` 对象描述套接字，则返回 `true`。
@@ -938,8 +838,6 @@ BigIntStats {
 ### stats.isSymbolicLink()[#](http://nodejs.cn/api/fs.html#fs_stats_issymboliclink)
 
 [中英对照](http://nodejs.cn/api/fs/stats_issymboliclink.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/stats_issymboliclink.md)
-
-新增于: v0.1.10
 
 - 返回: [](http://nodejs.cn/s/jFbvuT)
 
@@ -1031,8 +929,6 @@ BigIntStats {
 
 [中英对照](http://nodejs.cn/api/fs/stats_atimems.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/stats_atimems.md)
 
-新增于: v8.1.0
-
 - [](http://nodejs.cn/s/SXbo1v) | [](http://nodejs.cn/s/gJMq1y)
 
 表明上次访问此文件的时间戳，以 POSIX 纪元以来的毫秒数表示。
@@ -1040,8 +936,6 @@ BigIntStats {
 ### stats.mtimeMs[#](http://nodejs.cn/api/fs.html#fs_stats_mtimems)
 
 [中英对照](http://nodejs.cn/api/fs/stats_mtimems.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/stats_mtimems.md)
-
-新增于: v8.1.0
 
 - [](http://nodejs.cn/s/SXbo1v) | [](http://nodejs.cn/s/gJMq1y)
 
@@ -1051,8 +945,6 @@ BigIntStats {
 
 [中英对照](http://nodejs.cn/api/fs/stats_ctimems.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/stats_ctimems.md)
 
-新增于: v8.1.0
-
 - [](http://nodejs.cn/s/SXbo1v) | [](http://nodejs.cn/s/gJMq1y)
 
 表明上次更改文件状态的时间戳，以 POSIX 纪元以来的毫秒数表示。
@@ -1060,8 +952,6 @@ BigIntStats {
 ### stats.birthtimeMs[#](http://nodejs.cn/api/fs.html#fs_stats_birthtimems)
 
 [中英对照](http://nodejs.cn/api/fs/stats_birthtimems.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/stats_birthtimems.md)
-
-新增于: v8.1.0
 
 - [](http://nodejs.cn/s/SXbo1v) | [](http://nodejs.cn/s/gJMq1y)
 
@@ -1071,8 +961,6 @@ BigIntStats {
 
 暂无中英对照[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/stats_atimens.md)
 
-新增于: v12.10.0
-
 - [](http://nodejs.cn/s/gJMq1y)
 
 Only present when `bigint: true` is passed into the method that generates the object. The timestamp indicating the last time this file was accessed expressed in nanoseconds since the POSIX Epoch.
@@ -1080,8 +968,6 @@ Only present when `bigint: true` is passed into the method that generates the ob
 ### stats.mtimeNs[#](http://nodejs.cn/api/fs.html#fs_stats_mtimens)
 
 暂无中英对照[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/stats_mtimens.md)
-
-新增于: v12.10.0
 
 - [](http://nodejs.cn/s/gJMq1y)
 
@@ -1091,8 +977,6 @@ Only present when `bigint: true` is passed into the method that generates the ob
 
 暂无中英对照[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/stats_ctimens.md)
 
-新增于: v12.10.0
-
 - [](http://nodejs.cn/s/gJMq1y)
 
 Only present when `bigint: true` is passed into the method that generates the object. The timestamp indicating the last time the file status was changed expressed in nanoseconds since the POSIX Epoch.
@@ -1100,8 +984,6 @@ Only present when `bigint: true` is passed into the method that generates the ob
 ### stats.birthtimeNs[#](http://nodejs.cn/api/fs.html#fs_stats_birthtimens)
 
 暂无中英对照[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/stats_birthtimens.md)
-
-新增于: v12.10.0
 
 - [](http://nodejs.cn/s/gJMq1y)
 
@@ -1111,8 +993,6 @@ Only present when `bigint: true` is passed into the method that generates the ob
 
 [中英对照](http://nodejs.cn/api/fs/stats_atime.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/stats_atime.md)
 
-新增于: v0.11.13
-
 - [](http://nodejs.cn/s/A9TMoa)
 
 表明上次访问此文件的时间戳。
@@ -1120,8 +1000,6 @@ Only present when `bigint: true` is passed into the method that generates the ob
 ### stats.mtime[#](http://nodejs.cn/api/fs.html#fs_stats_mtime)
 
 [中英对照](http://nodejs.cn/api/fs/stats_mtime.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/stats_mtime.md)
-
-新增于: v0.11.13
 
 - [](http://nodejs.cn/s/A9TMoa)
 
@@ -1131,8 +1009,6 @@ Only present when `bigint: true` is passed into the method that generates the ob
 
 [中英对照](http://nodejs.cn/api/fs/stats_ctime.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/stats_ctime.md)
 
-新增于: v0.11.13
-
 - [](http://nodejs.cn/s/A9TMoa)
 
 表明上次更改文件状态的时间戳。
@@ -1140,8 +1016,6 @@ Only present when `bigint: true` is passed into the method that generates the ob
 ### stats.birthtime[#](http://nodejs.cn/api/fs.html#fs_stats_birthtime)
 
 [中英对照](http://nodejs.cn/api/fs/stats_birthtime.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/stats_birthtime.md)
-
-新增于: v0.11.13
 
 - [](http://nodejs.cn/s/A9TMoa)
 
@@ -1170,23 +1044,17 @@ stat 对象中的时间具有以下语义：
 
 [中英对照](http://nodejs.cn/api/fs/class_fs_writestream.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/class_fs_writestream.md)
 
-新增于: v0.1.93
-
 - 继承自 [](http://nodejs.cn/s/9JUnJ8)
 
 ### 'close' 事件[#](http://nodejs.cn/api/fs.html#fs_event_close_2)
 
 [中英对照](http://nodejs.cn/api/fs/event_close_2.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/event_close_2.md)
 
-新增于: v0.1.93
-
 当 `WriteStream` 的底层文件描述符已关闭时触发。
 
 ### 'open' 事件[#](http://nodejs.cn/api/fs.html#fs_event_open_1)
 
 [中英对照](http://nodejs.cn/api/fs/event_open_1.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/event_open_1.md)
-
-新增于: v0.1.93
 
 - `fd` [](http://nodejs.cn/s/SXbo1v) `WriteStream` 使用的整数型文件描述符。
 
@@ -1196,8 +1064,6 @@ stat 对象中的时间具有以下语义：
 
 [中英对照](http://nodejs.cn/api/fs/event_ready_1.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/event_ready_1.md)
 
-新增于: v9.11.0
-
 当 `fs.WriteStream` 准备好使用时触发。
 
 `'open'` 事件之后立即触发。
@@ -1206,23 +1072,17 @@ stat 对象中的时间具有以下语义：
 
 [中英对照](http://nodejs.cn/api/fs/writestream_byteswritten.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/writestream_byteswritten.md)
 
-新增于: v0.4.7
-
 到目前为止写入的字节数。 不包括仍在排队等待写入的数据。
 
 ### writeStream.path[#](http://nodejs.cn/api/fs.html#fs_writestream_path)
 
 [中英对照](http://nodejs.cn/api/fs/writestream_path.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/writestream_path.md)
 
-新增于: v0.1.93
-
 流正在写入的文件的路径，由 [`fs.createWriteStream()`](http://nodejs.cn/s/VdSJQa) 的第一个参数指定。 如果 `path` 传入字符串，则 `writeStream.path` 将是字符串。 如果 `path` 传入 `Buffer`，则 `writeStream.path` 将是 `Buffer`。
 
 ### writeStream.pending[#](http://nodejs.cn/api/fs.html#fs_writestream_pending)
 
 [中英对照](http://nodejs.cn/api/fs/writestream_pending.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/writestream_pending.md)
-
-新增于: v11.2.0
 
 - [](http://nodejs.cn/s/jFbvuT)
 
@@ -1584,8 +1444,6 @@ fs.chmod('my_file.txt', 0o775, (err) => {
 
 [中英对照](http://nodejs.cn/api/fs/fs_closesync_fd.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/fs_closesync_fd.md)
 
-新增于: v0.1.21
-
 - `fd` [](http://nodejs.cn/s/SXbo1v)
 
 同步的 [`close(2)`](http://nodejs.cn/s/vCJCMG)。返回 `undefined`。
@@ -1601,8 +1459,6 @@ fs.chmod('my_file.txt', 0o775, (err) => {
 ## fs.copyFile(src, dest[, flags], callback)[#](http://nodejs.cn/api/fs.html#fs_fs_copyfile_src_dest_flags_callback)
 
 [中英对照](http://nodejs.cn/api/fs/fs_copyfile_src_dest_flags_callback.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/fs_copyfile_src_dest_flags_callback.md)
-
-新增于: v8.5.0
 
 - `src` [](http://nodejs.cn/s/9Tw2bK) | [](http://nodejs.cn/s/6x1hD3) | [](http://nodejs.cn/s/5dwq7G) 要拷贝的源文件名。
 - `dest` [](http://nodejs.cn/s/9Tw2bK) | [](http://nodejs.cn/s/6x1hD3) | [](http://nodejs.cn/s/5dwq7G) 拷贝操作的目标文件名。
@@ -1640,8 +1496,6 @@ fs.copyFile('源文件.txt', '目标文件.txt', COPYFILE_EXCL, callback);
 ## fs.copyFileSync(src, dest[, flags])[#](http://nodejs.cn/api/fs.html#fs_fs_copyfilesync_src_dest_flags)
 
 [中英对照](http://nodejs.cn/api/fs/fs_copyfilesync_src_dest_flags.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/fs_copyfilesync_src_dest_flags.md)
-
-新增于: v8.5.0
 
 - `src` [](http://nodejs.cn/s/9Tw2bK) | [](http://nodejs.cn/s/6x1hD3) | [](http://nodejs.cn/s/5dwq7G) 要拷贝的源文件名。
 - `dest` [](http://nodejs.cn/s/9Tw2bK) | [](http://nodejs.cn/s/6x1hD3) | [](http://nodejs.cn/s/5dwq7G) 拷贝操作的目标文件名。
@@ -1760,11 +1614,7 @@ fs.createReadStream('sample.txt', { start: 90, end: 99 });
 
 版本历史
 
-
-
 [稳定性: 0](http://nodejs.cn/api/documentation.html#documentation_stability_index) - 废弃: 改为使用 [`fs.stat()`](http://nodejs.cn/s/fdrjxj) 或 [`fs.access()`](http://nodejs.cn/s/NCPsM3)。
-
-
 
 - `path` [](http://nodejs.cn/s/9Tw2bK) | [](http://nodejs.cn/s/6x1hD3) | [](http://nodejs.cn/s/5dwq7G)
 - `callback` [](http://nodejs.cn/s/ceTQa6)
@@ -1888,8 +1738,6 @@ if (fs.existsSync('/etc/passwd')) {
 
 [中英对照](http://nodejs.cn/api/fs/fs_fchmodsync_fd_mode.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/fs_fchmodsync_fd_mode.md)
 
-新增于: v0.4.7
-
 - `fd` [](http://nodejs.cn/s/SXbo1v)
 - `mode` [](http://nodejs.cn/s/SXbo1v)
 
@@ -1913,8 +1761,6 @@ if (fs.existsSync('/etc/passwd')) {
 
 [中英对照](http://nodejs.cn/api/fs/fs_fchownsync_fd_uid_gid.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/fs_fchownsync_fd_uid_gid.md)
 
-新增于: v0.4.7
-
 - `fd` [](http://nodejs.cn/s/SXbo1v)
 - `uid` [](http://nodejs.cn/s/SXbo1v)
 - `gid` [](http://nodejs.cn/s/SXbo1v)
@@ -1936,8 +1782,6 @@ if (fs.existsSync('/etc/passwd')) {
 ## fs.fdatasyncSync(fd)[#](http://nodejs.cn/api/fs.html#fs_fs_fdatasyncsync_fd)
 
 [中英对照](http://nodejs.cn/api/fs/fs_fdatasyncsync_fd.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/fs_fdatasyncsync_fd.md)
-
-新增于: v0.1.96
 
 - `fd` [](http://nodejs.cn/s/SXbo1v)
 
@@ -1986,8 +1830,6 @@ if (fs.existsSync('/etc/passwd')) {
 ## fs.fsyncSync(fd)[#](http://nodejs.cn/api/fs.html#fs_fs_fsyncsync_fd)
 
 [中英对照](http://nodejs.cn/api/fs/fs_fsyncsync_fd.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/fs_fsyncsync_fd.md)
-
-新增于: v0.1.96
 
 - `fd` [](http://nodejs.cn/s/SXbo1v)
 
@@ -2048,8 +1890,6 @@ fs.ftruncate(fd, 10, (err) => {
 ## fs.ftruncateSync(fd[, len])[#](http://nodejs.cn/api/fs.html#fs_fs_ftruncatesync_fd_len)
 
 [中英对照](http://nodejs.cn/api/fs/fs_ftruncatesync_fd_len.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/fs_ftruncatesync_fd_len.md)
-
-新增于: v0.8.6
 
 - `fd` [](http://nodejs.cn/s/SXbo1v)
 - `len` [](http://nodejs.cn/s/SXbo1v) **默认值:** `0`。
@@ -2296,8 +2136,6 @@ fs.mkdtemp(`${tmpDir}${sep}`, (err, folder) => {
 
 [中英对照](http://nodejs.cn/api/fs/fs_mkdtempsync_prefix_options.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/fs_mkdtempsync_prefix_options.md)
 
-新增于: v5.10.0
-
 - `prefix` [](http://nodejs.cn/s/9Tw2bK)
 - `options` [](http://nodejs.cn/s/9Tw2bK) | [](http://nodejs.cn/s/jzn6Ao)
   - `encoding` [](http://nodejs.cn/s/9Tw2bK) **默认值:** `'utf8'`。
@@ -2336,8 +2174,6 @@ fs.mkdtemp(`${tmpDir}${sep}`, (err, folder) => {
 
 [中英对照](http://nodejs.cn/api/fs/fs_opendir_path_options_callback.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/fs_opendir_path_options_callback.md)
 
-新增于: v12.12.0
-
 - `path` [](http://nodejs.cn/s/9Tw2bK) | [](http://nodejs.cn/s/6x1hD3) | [](http://nodejs.cn/s/5dwq7G)
 - `options` [](http://nodejs.cn/s/jzn6Ao)
   - `encoding` [](http://nodejs.cn/s/9Tw2bK) | [](http://nodejs.cn/s/334hvC) **默认值:** `'utf8'`。
@@ -2354,8 +2190,6 @@ fs.mkdtemp(`${tmpDir}${sep}`, (err, folder) => {
 ## fs.opendirSync(path[, options])[#](http://nodejs.cn/api/fs.html#fs_fs_opendirsync_path_options)
 
 [中英对照](http://nodejs.cn/api/fs/fs_opendirsync_path_options.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/fs_opendirsync_path_options.md)
-
-新增于: v12.12.0
 
 - `path` [](http://nodejs.cn/s/9Tw2bK) | [](http://nodejs.cn/s/6x1hD3) | [](http://nodejs.cn/s/5dwq7G)
 - `options` [](http://nodejs.cn/s/jzn6Ao)
@@ -2620,8 +2454,6 @@ fs.readFileSync('<目录>'); // => <data>
 
 [中英对照](http://nodejs.cn/api/fs/fs_realpath_native_path_options_callback.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/fs_realpath_native_path_options_callback.md)
 
-新增于: v9.2.0
-
 - `path` [](http://nodejs.cn/s/9Tw2bK) | [](http://nodejs.cn/s/6x1hD3) | [](http://nodejs.cn/s/5dwq7G)
 - `options` [](http://nodejs.cn/s/9Tw2bK) | [](http://nodejs.cn/s/jzn6Ao)
   - `encoding` [](http://nodejs.cn/s/9Tw2bK) **默认值:** `'utf8'`。
@@ -2657,8 +2489,6 @@ fs.readFileSync('<目录>'); // => <data>
 ## fs.realpathSync.native(path[, options])[#](http://nodejs.cn/api/fs.html#fs_fs_realpathsync_native_path_options)
 
 [中英对照](http://nodejs.cn/api/fs/fs_realpathsync_native_path_options.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/fs_realpathsync_native_path_options.md)
-
-新增于: v9.2.0
 
 - `path` [](http://nodejs.cn/s/9Tw2bK) | [](http://nodejs.cn/s/6x1hD3) | [](http://nodejs.cn/s/5dwq7G)
 - `options` [](http://nodejs.cn/s/9Tw2bK) | [](http://nodejs.cn/s/jzn6Ao)
@@ -2712,11 +2542,7 @@ fs.rename('旧文件.txt', '新文件.txt', (err) => {
 
 版本历史
 
-
-
 [稳定性: 1](http://nodejs.cn/api/documentation.html#documentation_stability_index) - 递归的删除是实验性的。
-
-
 
 - `path` [](http://nodejs.cn/s/9Tw2bK) | [](http://nodejs.cn/s/6x1hD3) | [](http://nodejs.cn/s/5dwq7G)
 - `options` [](http://nodejs.cn/s/jzn6Ao)
@@ -2736,11 +2562,7 @@ fs.rename('旧文件.txt', '新文件.txt', (err) => {
 
 版本历史
 
-
-
 [稳定性: 1](http://nodejs.cn/api/documentation.html#documentation_stability_index) - 递归的删除是实验性的。
-
-
 
 - `path` [](http://nodejs.cn/s/9Tw2bK) | [](http://nodejs.cn/s/6x1hD3) | [](http://nodejs.cn/s/5dwq7G)
 - `options` [](http://nodejs.cn/s/jzn6Ao)
@@ -2918,8 +2740,6 @@ example/
 
 [中英对照](http://nodejs.cn/api/fs/fs_truncatesync_path_len.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/fs_truncatesync_path_len.md)
 
-新增于: v0.8.6
-
 - `path` [](http://nodejs.cn/s/9Tw2bK) | [](http://nodejs.cn/s/6x1hD3) | [](http://nodejs.cn/s/5dwq7G)
 - `len` [](http://nodejs.cn/s/SXbo1v) **默认值:** `0`。
 
@@ -2964,8 +2784,6 @@ fs.unlink('path/file.txt', (err) => {
 ## fs.unwatchFile(filename[, listener])[#](http://nodejs.cn/api/fs.html#fs_fs_unwatchfile_filename_listener)
 
 [中英对照](http://nodejs.cn/api/fs/fs_unwatchfile_filename_listener.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/fs_unwatchfile_filename_listener.md)
-
-新增于: v0.1.31
 
 - `filename` [](http://nodejs.cn/s/9Tw2bK) | [](http://nodejs.cn/s/6x1hD3) | [](http://nodejs.cn/s/5dwq7G)
 - `listener` [](http://nodejs.cn/s/ceTQa6) 可选的，之前使用 `fs.watchFile()` 绑定的监听器。
@@ -3289,8 +3107,6 @@ fs.write(fd, Buffer.from(data, options.encoding), callback);
 
 [中英对照](http://nodejs.cn/api/fs/fs_writev_fd_buffers_position_callback.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/fs_writev_fd_buffers_position_callback.md)
 
-新增于: v12.9.0
-
 - `fd` [](http://nodejs.cn/s/SXbo1v)
 - `buffers` [](http://nodejs.cn/s/Xiwgzs)
 - `position` [](http://nodejs.cn/s/SXbo1v)
@@ -3315,8 +3131,6 @@ fs.write(fd, Buffer.from(data, options.encoding), callback);
 
 [中英对照](http://nodejs.cn/api/fs/fs_writevsync_fd_buffers_position.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/fs_writevsync_fd_buffers_position.md)
 
-新增于: v12.9.0
-
 - `fd` [](http://nodejs.cn/s/SXbo1v)
 - `buffers` [](http://nodejs.cn/s/Xiwgzs)
 - `position` [](http://nodejs.cn/s/SXbo1v)
@@ -3334,8 +3148,6 @@ fs.write(fd, Buffer.from(data, options.encoding), callback);
 
 [中英对照](http://nodejs.cn/api/fs/class_filehandle.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/class_filehandle.md)
 
-新增于: v10.0.0
-
 `FileHandle` 对象是数字文件描述符的包装器。 `FileHandle` 的实例与数字文件描述符的不同之处在于它们提供了一个面向对象的 API 来处理文件。
 
 如果没有使用 `filehandle.close()` 方法关闭 `FileHandle`，则它可能会自动关闭文件描述符并触发进程警告，从而有助于防止内存泄漏。 请不要在代码中依赖此行为，因为它不可靠，且你的文件可能无法关闭。 相反，应该始终显式的关闭 `FileHandles`。 Node.js 将来可能会改变这种行为。
@@ -3347,8 +3159,6 @@ fs.write(fd, Buffer.from(data, options.encoding), callback);
 #### filehandle.appendFile(data, options)[#](http://nodejs.cn/api/fs.html#fs_filehandle_appendfile_data_options)
 
 [中英对照](http://nodejs.cn/api/fs/filehandle_appendfile_data_options.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/filehandle_appendfile_data_options.md)
-
-新增于: v10.0.0
 
 - `data` [](http://nodejs.cn/s/9Tw2bK) | [](http://nodejs.cn/s/6x1hD3)
 - `options` [](http://nodejs.cn/s/jzn6Ao) | [](http://nodejs.cn/s/9Tw2bK)
@@ -3367,8 +3177,6 @@ fs.write(fd, Buffer.from(data, options.encoding), callback);
 
 [中英对照](http://nodejs.cn/api/fs/filehandle_chmod_mode.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/filehandle_chmod_mode.md)
 
-新增于: v10.0.0
-
 - `mode` [](http://nodejs.cn/s/SXbo1v)
 - 返回: [](http://nodejs.cn/s/ri1kj8)
 
@@ -3377,8 +3185,6 @@ fs.write(fd, Buffer.from(data, options.encoding), callback);
 #### filehandle.chown(uid, gid)[#](http://nodejs.cn/api/fs.html#fs_filehandle_chown_uid_gid)
 
 [中英对照](http://nodejs.cn/api/fs/filehandle_chown_uid_gid.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/filehandle_chown_uid_gid.md)
-
-新增于: v10.0.0
 
 - `uid` [](http://nodejs.cn/s/SXbo1v)
 - `gid` [](http://nodejs.cn/s/SXbo1v)
@@ -3389,8 +3195,6 @@ fs.write(fd, Buffer.from(data, options.encoding), callback);
 #### filehandle.close()[#](http://nodejs.cn/api/fs.html#fs_filehandle_close)
 
 [中英对照](http://nodejs.cn/api/fs/filehandle_close.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/filehandle_close.md)
-
-新增于: v10.0.0
 
 - 返回: [](http://nodejs.cn/s/ri1kj8) 如果底层的文件描述符被关闭则 `Promise` 将会被解决，如果关闭时发生错误则将 `Promise` 将会被拒绝。 关闭文件描述符。
 
@@ -3411,8 +3215,6 @@ async function openAndClose() {
 
 [中英对照](http://nodejs.cn/api/fs/filehandle_datasync.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/filehandle_datasync.md)
 
-新增于: v10.0.0
-
 - 返回: [](http://nodejs.cn/s/ri1kj8)
 
 异步的 [`fdatasync(2)`](http://nodejs.cn/s/AEp6fv)。 `Promise` 将会在成功时解决，且不带参数。
@@ -3421,15 +3223,11 @@ async function openAndClose() {
 
 [中英对照](http://nodejs.cn/api/fs/filehandle_fd.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/filehandle_fd.md)
 
-新增于: v10.0.0
-
 - [](http://nodejs.cn/s/SXbo1v) 由 `FileHandle` 对象管理的数字文件描述符。
 
 #### filehandle.read(buffer, offset, length, position)[#](http://nodejs.cn/api/fs.html#fs_filehandle_read_buffer_offset_length_position)
 
 [中英对照](http://nodejs.cn/api/fs/filehandle_read_buffer_offset_length_position.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/filehandle_read_buffer_offset_length_position.md)
-
-新增于: v10.0.0
 
 - `buffer` [](http://nodejs.cn/s/6x1hD3) | [](http://nodejs.cn/s/ZbDkpm)
 - `offset` [](http://nodejs.cn/s/SXbo1v)
@@ -3452,8 +3250,6 @@ async function openAndClose() {
 #### filehandle.readFile(options)[#](http://nodejs.cn/api/fs.html#fs_filehandle_readfile_options)
 
 [中英对照](http://nodejs.cn/api/fs/filehandle_readfile_options.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/filehandle_readfile_options.md)
-
-新增于: v10.0.0
 
 - `options` [](http://nodejs.cn/s/jzn6Ao) | [](http://nodejs.cn/s/9Tw2bK)
   - `encoding` [](http://nodejs.cn/s/9Tw2bK) | [](http://nodejs.cn/s/334hvC) **默认值:** `null`
@@ -3488,8 +3284,6 @@ async function openAndClose() {
 
 [中英对照](http://nodejs.cn/api/fs/filehandle_sync.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/filehandle_sync.md)
 
-新增于: v10.0.0
-
 - 返回: [](http://nodejs.cn/s/ri1kj8)
 
 异步的 [`fsync(2)`](http://nodejs.cn/s/d4u3Ks)。 `Promise` 将会在成功时解决，且不带参数。
@@ -3497,8 +3291,6 @@ async function openAndClose() {
 #### filehandle.truncate(len)[#](http://nodejs.cn/api/fs.html#fs_filehandle_truncate_len)
 
 [中英对照](http://nodejs.cn/api/fs/filehandle_truncate_len.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/filehandle_truncate_len.md)
-
-新增于: v10.0.0
 
 - `len` [](http://nodejs.cn/s/SXbo1v) **默认值:** `0`
 - 返回: [](http://nodejs.cn/s/ri1kj8)
@@ -3565,8 +3357,6 @@ doTruncate().catch(console.error);
 
 [中英对照](http://nodejs.cn/api/fs/filehandle_utimes_atime_mtime.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/filehandle_utimes_atime_mtime.md)
 
-新增于: v10.0.0
-
 - `atime` [](http://nodejs.cn/s/SXbo1v) | [](http://nodejs.cn/s/9Tw2bK) | [](http://nodejs.cn/s/A9TMoa)
 - `mtime` [](http://nodejs.cn/s/SXbo1v) | [](http://nodejs.cn/s/9Tw2bK) | [](http://nodejs.cn/s/A9TMoa)
 - 返回: [](http://nodejs.cn/s/ri1kj8)
@@ -3578,8 +3368,6 @@ doTruncate().catch(console.error);
 #### filehandle.write(buffer[, offset[, length[, position]]])[#](http://nodejs.cn/api/fs.html#fs_filehandle_write_buffer_offset_length_position)
 
 [中英对照](http://nodejs.cn/api/fs/filehandle_write_buffer_offset_length_position.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/filehandle_write_buffer_offset_length_position.md)
-
-新增于: v10.0.0
 
 - `buffer` [](http://nodejs.cn/s/6x1hD3) | [](http://nodejs.cn/s/ZbDkpm)
 - `offset` [](http://nodejs.cn/s/SXbo1v)
@@ -3603,8 +3391,6 @@ doTruncate().catch(console.error);
 
 [中英对照](http://nodejs.cn/api/fs/filehandle_write_string_position_encoding.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/filehandle_write_string_position_encoding.md)
 
-新增于: v10.0.0
-
 - `string` [](http://nodejs.cn/s/9Tw2bK)
 - `position` [](http://nodejs.cn/s/SXbo1v)
 - `encoding` [](http://nodejs.cn/s/9Tw2bK) **默认值:** `'utf8'`。
@@ -3625,8 +3411,6 @@ doTruncate().catch(console.error);
 #### filehandle.writeFile(data, options)[#](http://nodejs.cn/api/fs.html#fs_filehandle_writefile_data_options)
 
 [中英对照](http://nodejs.cn/api/fs/filehandle_writefile_data_options.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/filehandle_writefile_data_options.md)
-
-新增于: v10.0.0
 
 - `data` [](http://nodejs.cn/s/9Tw2bK) | [](http://nodejs.cn/s/6x1hD3) | [](http://nodejs.cn/s/ZbDkpm)
 - `options` [](http://nodejs.cn/s/jzn6Ao) | [](http://nodejs.cn/s/9Tw2bK)
@@ -3651,8 +3435,6 @@ doTruncate().catch(console.error);
 
 [中英对照](http://nodejs.cn/api/fs/filehandle_writev_buffers_position.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/filehandle_writev_buffers_position.md)
 
-新增于: v12.9.0
-
 - `buffers` [](http://nodejs.cn/s/Xiwgzs)
 - `position` [](http://nodejs.cn/s/SXbo1v)
 - 返回: [](http://nodejs.cn/s/ri1kj8)
@@ -3670,8 +3452,6 @@ doTruncate().catch(console.error);
 ### fsPromises.access(path[, mode])[#](http://nodejs.cn/api/fs.html#fs_fspromises_access_path_mode)
 
 [中英对照](http://nodejs.cn/api/fs/fspromises_access_path_mode.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/fspromises_access_path_mode.md)
-
-新增于: v10.0.0
 
 - `path` [](http://nodejs.cn/s/9Tw2bK) | [](http://nodejs.cn/s/6x1hD3) | [](http://nodejs.cn/s/5dwq7G)
 - `mode` [](http://nodejs.cn/s/SXbo1v) **默认值:** `fs.constants.F_OK`。
@@ -3696,8 +3476,6 @@ fsPromises.access('/etc/passwd', fs.constants.R_OK | fs.constants.W_OK)
 
 [中英对照](http://nodejs.cn/api/fs/fspromises_appendfile_path_data_options.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/fspromises_appendfile_path_data_options.md)
 
-新增于: v10.0.0
-
 - `path` [](http://nodejs.cn/s/9Tw2bK) | [](http://nodejs.cn/s/6x1hD3) | [](http://nodejs.cn/s/5dwq7G) | [](http://nodejs.cn/s/kLdifB) 文件名或 `FileHandle`。
 - `data` [](http://nodejs.cn/s/9Tw2bK) | [](http://nodejs.cn/s/6x1hD3)
 - `options` [](http://nodejs.cn/s/jzn6Ao) | [](http://nodejs.cn/s/9Tw2bK)
@@ -3716,8 +3494,6 @@ fsPromises.access('/etc/passwd', fs.constants.R_OK | fs.constants.W_OK)
 
 [中英对照](http://nodejs.cn/api/fs/fspromises_chmod_path_mode.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/fspromises_chmod_path_mode.md)
 
-新增于: v10.0.0
-
 - `path` [](http://nodejs.cn/s/9Tw2bK) | [](http://nodejs.cn/s/6x1hD3) | [](http://nodejs.cn/s/5dwq7G)
 - `mode` [](http://nodejs.cn/s/SXbo1v)
 - 返回: [](http://nodejs.cn/s/ri1kj8)
@@ -3727,8 +3503,6 @@ fsPromises.access('/etc/passwd', fs.constants.R_OK | fs.constants.W_OK)
 ### fsPromises.chown(path, uid, gid)[#](http://nodejs.cn/api/fs.html#fs_fspromises_chown_path_uid_gid)
 
 [中英对照](http://nodejs.cn/api/fs/fspromises_chown_path_uid_gid.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/fspromises_chown_path_uid_gid.md)
-
-新增于: v10.0.0
 
 - `path` [](http://nodejs.cn/s/9Tw2bK) | [](http://nodejs.cn/s/6x1hD3) | [](http://nodejs.cn/s/5dwq7G)
 - `uid` [](http://nodejs.cn/s/SXbo1v)
@@ -3740,8 +3514,6 @@ fsPromises.access('/etc/passwd', fs.constants.R_OK | fs.constants.W_OK)
 ### fsPromises.copyFile(src, dest[, flags])[#](http://nodejs.cn/api/fs.html#fs_fspromises_copyfile_src_dest_flags)
 
 [中英对照](http://nodejs.cn/api/fs/fspromises_copyfile_src_dest_flags.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/fspromises_copyfile_src_dest_flags.md)
-
-新增于: v10.0.0
 
 - `src` [](http://nodejs.cn/s/9Tw2bK) | [](http://nodejs.cn/s/6x1hD3) | [](http://nodejs.cn/s/5dwq7G) 要拷贝的源文件名。
 - `dest` [](http://nodejs.cn/s/9Tw2bK) | [](http://nodejs.cn/s/6x1hD3) | [](http://nodejs.cn/s/5dwq7G) 拷贝操作的目标文件名。
@@ -3809,8 +3581,6 @@ fsPromises.copyFile('源文件.txt', '目标文件.txt', COPYFILE_EXCL)
 
 [中英对照](http://nodejs.cn/api/fs/fspromises_link_existingpath_newpath.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/fspromises_link_existingpath_newpath.md)
 
-新增于: v10.0.0
-
 - `existingPath` [](http://nodejs.cn/s/9Tw2bK) | [](http://nodejs.cn/s/6x1hD3) | [](http://nodejs.cn/s/5dwq7G)
 - `newPath` [](http://nodejs.cn/s/9Tw2bK) | [](http://nodejs.cn/s/6x1hD3) | [](http://nodejs.cn/s/5dwq7G)
 - 返回: [](http://nodejs.cn/s/ri1kj8)
@@ -3834,8 +3604,6 @@ fsPromises.copyFile('源文件.txt', '目标文件.txt', COPYFILE_EXCL)
 
 [中英对照](http://nodejs.cn/api/fs/fspromises_mkdir_path_options.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/fspromises_mkdir_path_options.md)
 
-新增于: v10.0.0
-
 - `path` [](http://nodejs.cn/s/9Tw2bK) | [](http://nodejs.cn/s/6x1hD3) | [](http://nodejs.cn/s/5dwq7G)
 - `options` [](http://nodejs.cn/s/jzn6Ao) | [](http://nodejs.cn/s/SXbo1v)
   - `recursive` [](http://nodejs.cn/s/jFbvuT) **默认值:** `false`。
@@ -3849,8 +3617,6 @@ fsPromises.copyFile('源文件.txt', '目标文件.txt', COPYFILE_EXCL)
 ### fsPromises.mkdtemp(prefix[, options])[#](http://nodejs.cn/api/fs.html#fs_fspromises_mkdtemp_prefix_options)
 
 [中英对照](http://nodejs.cn/api/fs/fspromises_mkdtemp_prefix_options.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/fspromises_mkdtemp_prefix_options.md)
-
-新增于: v10.0.0
 
 - `prefix` [](http://nodejs.cn/s/9Tw2bK)
 - `options` [](http://nodejs.cn/s/9Tw2bK) | [](http://nodejs.cn/s/jzn6Ao)
@@ -3888,8 +3654,6 @@ fsPromises.mkdtemp(path.join(os.tmpdir(), 'foo-'))
 ### fsPromises.opendir(path[, options])[#](http://nodejs.cn/api/fs.html#fs_fspromises_opendir_path_options)
 
 [中英对照](http://nodejs.cn/api/fs/fspromises_opendir_path_options.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/fspromises_opendir_path_options.md)
-
-新增于: v12.12.0
 
 - `path` [](http://nodejs.cn/s/9Tw2bK) | [](http://nodejs.cn/s/6x1hD3) | [](http://nodejs.cn/s/5dwq7G)
 - `options` [](http://nodejs.cn/s/jzn6Ao)
@@ -3938,8 +3702,6 @@ print('./').catch(console.error);
 
 [中英对照](http://nodejs.cn/api/fs/fspromises_readfile_path_options.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/fspromises_readfile_path_options.md)
 
-新增于: v10.0.0
-
 - `path` [](http://nodejs.cn/s/9Tw2bK) | [](http://nodejs.cn/s/6x1hD3) | [](http://nodejs.cn/s/5dwq7G) | [](http://nodejs.cn/s/kLdifB) 文件名或 `FileHandle`。
 - `options` [](http://nodejs.cn/s/jzn6Ao) | [](http://nodejs.cn/s/9Tw2bK)
   - `encoding` [](http://nodejs.cn/s/9Tw2bK) | [](http://nodejs.cn/s/334hvC) **默认值:** `null`。
@@ -3960,8 +3722,6 @@ print('./').catch(console.error);
 
 [中英对照](http://nodejs.cn/api/fs/fspromises_readlink_path_options.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/fspromises_readlink_path_options.md)
 
-新增于: v10.0.0
-
 - `path` [](http://nodejs.cn/s/9Tw2bK) | [](http://nodejs.cn/s/6x1hD3) | [](http://nodejs.cn/s/5dwq7G)
 - `options` [](http://nodejs.cn/s/9Tw2bK) | [](http://nodejs.cn/s/jzn6Ao)
   - `encoding` [](http://nodejs.cn/s/9Tw2bK) **默认值:** `'utf8'`。
@@ -3974,8 +3734,6 @@ print('./').catch(console.error);
 ### fsPromises.realpath(path[, options])[#](http://nodejs.cn/api/fs.html#fs_fspromises_realpath_path_options)
 
 [中英对照](http://nodejs.cn/api/fs/fspromises_realpath_path_options.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/fspromises_realpath_path_options.md)
-
-新增于: v10.0.0
 
 - `path` [](http://nodejs.cn/s/9Tw2bK) | [](http://nodejs.cn/s/6x1hD3) | [](http://nodejs.cn/s/5dwq7G)
 - `options` [](http://nodejs.cn/s/9Tw2bK) | [](http://nodejs.cn/s/jzn6Ao)
@@ -3994,8 +3752,6 @@ print('./').catch(console.error);
 
 [中英对照](http://nodejs.cn/api/fs/fspromises_rename_oldpath_newpath.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/fspromises_rename_oldpath_newpath.md)
 
-新增于: v10.0.0
-
 - `oldPath` [](http://nodejs.cn/s/9Tw2bK) | [](http://nodejs.cn/s/6x1hD3) | [](http://nodejs.cn/s/5dwq7G)
 - `newPath` [](http://nodejs.cn/s/9Tw2bK) | [](http://nodejs.cn/s/6x1hD3) | [](http://nodejs.cn/s/5dwq7G)
 - 返回: [](http://nodejs.cn/s/ri1kj8)
@@ -4008,11 +3764,7 @@ print('./').catch(console.error);
 
 版本历史
 
-
-
 [稳定性: 1](http://nodejs.cn/api/documentation.html#documentation_stability_index) - 递归的删除是实验性的。
-
-
 
 - `path` [](http://nodejs.cn/s/9Tw2bK) | [](http://nodejs.cn/s/6x1hD3) | [](http://nodejs.cn/s/5dwq7G)
 - `options` [](http://nodejs.cn/s/jzn6Ao)
@@ -4042,8 +3794,6 @@ print('./').catch(console.error);
 
 [中英对照](http://nodejs.cn/api/fs/fspromises_symlink_target_path_type.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/fspromises_symlink_target_path_type.md)
 
-新增于: v10.0.0
-
 - `target` [](http://nodejs.cn/s/9Tw2bK) | [](http://nodejs.cn/s/6x1hD3) | [](http://nodejs.cn/s/5dwq7G)
 - `path` [](http://nodejs.cn/s/9Tw2bK) | [](http://nodejs.cn/s/6x1hD3) | [](http://nodejs.cn/s/5dwq7G)
 - `type` [](http://nodejs.cn/s/9Tw2bK) **默认值:** `'file'`。
@@ -4057,8 +3807,6 @@ print('./').catch(console.error);
 
 [中英对照](http://nodejs.cn/api/fs/fspromises_truncate_path_len.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/fspromises_truncate_path_len.md)
 
-新增于: v10.0.0
-
 - `path` [](http://nodejs.cn/s/9Tw2bK) | [](http://nodejs.cn/s/6x1hD3) | [](http://nodejs.cn/s/5dwq7G)
 - `len` [](http://nodejs.cn/s/SXbo1v) **默认值:** `0`。
 - 返回: [](http://nodejs.cn/s/ri1kj8)
@@ -4069,8 +3817,6 @@ print('./').catch(console.error);
 
 [中英对照](http://nodejs.cn/api/fs/fspromises_unlink_path.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/fspromises_unlink_path.md)
 
-新增于: v10.0.0
-
 - `path` [](http://nodejs.cn/s/9Tw2bK) | [](http://nodejs.cn/s/6x1hD3) | [](http://nodejs.cn/s/5dwq7G)
 - 返回: [](http://nodejs.cn/s/ri1kj8)
 
@@ -4079,8 +3825,6 @@ print('./').catch(console.error);
 ### fsPromises.utimes(path, atime, mtime)[#](http://nodejs.cn/api/fs.html#fs_fspromises_utimes_path_atime_mtime)
 
 [中英对照](http://nodejs.cn/api/fs/fspromises_utimes_path_atime_mtime.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/fspromises_utimes_path_atime_mtime.md)
-
-新增于: v10.0.0
 
 - `path` [](http://nodejs.cn/s/9Tw2bK) | [](http://nodejs.cn/s/6x1hD3) | [](http://nodejs.cn/s/5dwq7G)
 - `atime` [](http://nodejs.cn/s/SXbo1v) | [](http://nodejs.cn/s/9Tw2bK) | [](http://nodejs.cn/s/A9TMoa)
@@ -4097,8 +3841,6 @@ print('./').catch(console.error);
 ### fsPromises.writeFile(file, data[, options])[#](http://nodejs.cn/api/fs.html#fs_fspromises_writefile_file_data_options)
 
 [中英对照](http://nodejs.cn/api/fs/fspromises_writefile_file_data_options.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/fs/fspromises_writefile_file_data_options.md)
-
-新增于: v10.0.0
 
 - `file` [](http://nodejs.cn/s/9Tw2bK) | [](http://nodejs.cn/s/6x1hD3) | [](http://nodejs.cn/s/5dwq7G) | [](http://nodejs.cn/s/kLdifB) 文件名或 `FileHandle`。
 - `data` [](http://nodejs.cn/s/9Tw2bK) | [](http://nodejs.cn/s/6x1hD3) | [](http://nodejs.cn/s/ZbDkpm)

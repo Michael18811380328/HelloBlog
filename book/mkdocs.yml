@@ -122,6 +122,9 @@ nav:
         - '17-webpack-05': 'ebook-kaikeba-frontend/17-webpack-05.md'
         - '18-webpack-06': 'ebook-kaikeba-frontend/18-webpack-06.md'
 
+    - 尚硅谷笔记:
+        - 'nodeJS-basic': 'ebook-upguigu-nodejs/nodeJS-basic.md'
+
     - 阮一峰前端工程化笔记:
         - 'README': 'ebook-jstraining-RYF/README.md'
         - 'history': 'ebook-jstraining-RYF/history.md'
