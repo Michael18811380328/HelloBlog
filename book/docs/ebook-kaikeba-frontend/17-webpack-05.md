@@ -99,7 +99,7 @@ splitChunks = {
     },
     default: {
       minChunks: 2,
-      proority: -20,
+      priority: -20,
       reuseExistingChunk: true,
     }
   }
@@ -166,16 +166,16 @@ Dll 是动态链接库（实际上就是缓存）
 
 dllPlugin: 用于打包出单独的 DLL 文件
 
-DllRefrencePlugin: 用于在配置文件中引入 DLLPlugin 插件打包好的 DLL 文件
+DllReferencePlugin: 用于在配置文件中引入 DLLPlugin 插件打包好的 DLL 文件
 
-webpack 通过 DllRefrencePlugin 获取 react 有哪些对应的文件，dllplugin 可以生成 dll 动态库文件。下次构建时，检查依赖，如果有对应的 dll 文件，不需要重新构建，减少构建时间。
+webpack 通过 DllReferencePlugin 获取 react 有哪些对应的文件，dll-plugin 可以生成 dll 动态库文件。下次构建时，检查依赖，如果有对应的 dll 文件，不需要重新构建，减少构建时间。
 
 ~~~js
-new webpack.DllRefrencePlugin({
+new webpack.DllReferencePlugin({
   manifest: path.resolve(__dirname, "./dll/react-manifest.json")
 }),
 new DllPlugin({
-  path: path.join(__dirname, "./dll", "[name]-nanifest.json"),
+  path: path.join(__dirname, "./dll", "[name]-manifest.json"),
   name: "react",
 }),
 ~~~
@@ -234,13 +234,13 @@ optimization: {
 优化前的时间消耗
 
 ~~~js
- SMP  ⏱  
+ SMP  
 General output time took 48.86 secs
 
- SMP  ⏱  Plugins
+ SMP  Plugins
 TerserPlugin took 0.249 secs
 
- SMP  ⏱  Loaders
+ SMP  Loaders
 babel-loader took 39.008 secs
 modules with no loaders took 35.55 secs
 css-loader took 18.89 secs
@@ -262,14 +262,14 @@ Built at: 2021/11/01 上午10:27:27
 优化后，使用多线程打包（从 49 优化到 41秒，可能是电脑性能，或者只优化了一部分代码，一部分 with no loaders）
 
 ~~~js
- SMP  ⏱  
+ SMP  
 General output time took 40.76 secs
 
- SMP  ⏱  Plugins
+ SMP  Plugins
 HappyPlugin took 0.148 secs
 TerserPlugin took 0.143 secs
 
- SMP  ⏱  Loaders
+ SMP  Loaders
 happypack took 36.9 secs
 modules with no loaders took 20.73 secs
 css-loader took 0.914 secs

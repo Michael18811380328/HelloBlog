@@ -84,7 +84,6 @@ nav:
         - 'Poor-and-busy': 'other/Poor-and-busy.md'
         - '中国经济的转变': 'other/中国经济的转变.md'
         - '中国的房价会怎么收场': 'other/中国的房价会怎么收场.md'
-
         - '基金从基础到实践.md': 'economy/基金从基础到实践.md'
         - '基金投资法.md': 'economy/基金投资法.md'
         - '宏观经济学习.md': 'economy/宏观经济学习.md'
@@ -131,3 +130,6 @@ nav:
         - '思维导图到深度学习': 'other/思维导图到深度学习.md'
         - '工业文明对于社会的冲击': 'other/工业文明对于社会的冲击.md'
         - '正态分布和对数正态分布': 'other/正态分布和对数正态分布.md'
+        - 'Interview with Ryan Dahl Creator of Node.js': 'other/Interview with Ryan Dahl Creator of Node.js.md'
+        - 'Nodejs创造者Ryan Dahl专访': 'other/Nodejs创造者Ryan Dahl专访.md'
+        
