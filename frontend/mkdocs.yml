@@ -79,27 +79,40 @@ nav:
         - '编程思考笔记': 'note/think-note.md'
 
     - Javascript:
-        - 'iframe': 'javascript/iframe.md'
-        - '内存泄漏': 'javascript/内存泄漏.md'
-        - 'web-worker': 'javascript/web-worker.md'
-        - 'CommonJS-AMD-CMD': 'javascript/CommonJS-AMD-CMD.md'
-        - '前端项目结构': 'javascript/前端项目结构.md'
-        - 'js判断字符串中是否包含某个字符串': 'javascript/js判断字符串中是否包含某个字符串.md'
-        - '通用组件': 'javascript/通用组件.md'
-        - '如何写通用组件': 'javascript/如何写通用组件.md'
-        - 'ES6 迭代器与生成器': 'javascript/ES6 迭代器与生成器.md'
-        - 'ES6-阮一峰': 'javascript/ES6-阮一峰.md'
-        - 'ES6newFeature': 'javascript/ES6newFeature.md'
-        - 'JS 性能优化': 'javascript/JS 性能优化.md'
-        - 'JS-testing': 'javascript/JS-testing.md'
-        - 'editor-js': 'javascript/editor-js.md'
-        - '常用到的ES6语法': 'javascript/常用到的ES6语法.md'
-        - '前端英语单词': 'javascript/前端英语单词.md'
-        - 'JSzip': 'javascript/JSzip.md'
-        - 'text-runner': 'javascript/text-runner.md'
-        - 'localstorage': 'javascript/localstorage.md'
-        - '前端常用工具': 'javascript/前端常用工具.md'
-        - '前端监控理论': 'javascript/前端监控理论.md'
+        - 'CommonJS-AMD-CMD.md': 'javascript/CommonJS-AMD-CMD.md'
+        - 'ES6 迭代器与生成器.md': 'javascript/ES6 迭代器与生成器.md'
+        - 'ES6-阮一峰.md': 'javascript/ES6-阮一峰.md'
+        - 'ES6newFeature.md': 'javascript/ES6newFeature.md'
+        - 'File browser.md': 'javascript/File browser.md'
+        - 'ID 问题整理': 'javascript/ID 问题整理'
+        - 'JS 性能优化.md': 'javascript/JS 性能优化.md'
+        - 'JS-testing.md': 'javascript/JS-testing.md'
+        - 'JSzip.md': 'javascript/JSzip.md'
+        - 'JS的异步操作，浏览器的多线程间的协作.md': 'javascript/JS的异步操作，浏览器的多线程间的协作.md'
+        - 'Math-trunk.md': 'javascript/Math-trunk.md'
+        - 'canvas 动态背景': 'javascript/canvas 动态背景'
+        - 'contentEditable 实现富文本编辑器.md': 'javascript/contentEditable 实现富文本编辑器.md'
+        - 'createJS': 'javascript/createJS'
+        - 'draw-apple': 'javascript/draw-apple'
+        - 'editor-js.md': 'javascript/editor-js.md'
+        - 'iframe.md': 'javascript/iframe.md'
+        - 'jsdoc': 'javascript/jsdoc'
+        - 'js双指针.md': 'javascript/js双指针.md'
+        - 'js判断字符串中是否包含某个字符串.md': 'javascript/js判断字符串中是否包含某个字符串.md'
+        - 'localstorage.md': 'javascript/localstorage.md'
+        - 'text-runner.md': 'javascript/text-runner.md'
+        - 'throttle-lodash.md': 'javascript/throttle-lodash.md'
+        - 'viewerjs.md': 'javascript/viewerjs.md'
+        - 'web-worker.md': 'javascript/web-worker.md'
+        - '常用的JS库.md': 'javascript/常用的JS库.md'
+        - '内存泄漏.md': 'javascript/内存泄漏.md'
+        - '通用组件.md': 'javascript/通用组件.md'
+        - '常用到的ES6语法.md': 'javascript/常用到的ES6语法.md'
+        - '前端常用工具.md': 'javascript/前端常用工具.md'
+        - '前端监控理论.md': 'javascript/前端监控理论.md'
+        - '前端英语单词.md': 'javascript/前端英语单词.md'
+        - '前端项目结构.md': 'javascript/前端项目结构.md'
+        - '如何写通用组件.md': 'javascript/如何写通用组件.md'
 
     - 常用第三方库:
         - '000-目录': 'third-part-lib/000-dir.md'
@@ -409,3 +422,17 @@ nav:
         - 'react-dnd-DropTarget': 'react/react-all/react-dnd/react-dnd-DropTarget.md'
         - 'react-dnd': 'react/react-all/react-dnd/react-dnd.md'
         - 'react-dnd使用手记': 'react/react-all/react-dnd/react-dnd使用手记.md'
+
+
+#   - css/Grid布局.md
+#   - css/粘性定位position-sticky.md
+#   - css/表情emoji.md
+#   - git/HTTP 教程.md
+#   - git/git-use-process.md
+#   - git/网易云-Webpack 打包工具简单使用.md
+#   - javascript/ID 问题整理/react-dom.md
+#   - javascript/createJS/readme.md
+#   - react/react-colorful.md
+#   - react/stackoverflow-Highlight text using ReactJS.md
+#   - react/阮一峰 react 系列教程.md
+#   - react/react-canvas/react-canvas 调研.md
