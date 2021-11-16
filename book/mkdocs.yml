@@ -67,7 +67,6 @@ extra_javascript:
 # Page tree
 nav:
     - 阮一峰 JS 基础:
-        - 'readme': 'ebook-JS-basic/readme.md'
         - '01-入门': 'ebook-JS-basic/01-入门.md'
         - '02-数据类型': 'ebook-JS-basic/02-数据类型.md'
         - '03-运算符': 'ebook-JS-basic/03-运算符.md'
@@ -79,6 +78,41 @@ nav:
         - '09-Event': 'ebook-JS-basic/09-Event.md'
         - '10-BOM': 'ebook-JS-basic/10-BOM.md'
         - '11-网页元素接口': 'ebook-JS-basic/11-网页元素接口.md'
+
+    - 阮一峰前端工程化笔记:
+        - 'README': 'ebook-jstraining-RYF/README.md'
+        - 'history': 'ebook-jstraining-RYF/history.md'
+        - 'engineering': 'ebook-jstraining-RYF/engineering.md'
+        - 'node': 'ebook-jstraining-RYF/node.md'
+        - 'react': 'ebook-jstraining-RYF/react.md'
+
+    - 阮一峰 ES6 语法:
+        - '说明': 'ebook-JSES6-RYF/readme.md'
+        - '01-介绍': 'ebook-JSES6-RYF/01-介绍.md'
+        - '02-变量赋值': 'ebook-JSES6-RYF/02-变量赋值.md'
+        - '03-解构赋值': 'ebook-JSES6-RYF/03-解构赋值.md'
+        - '04-字符串的扩展': 'ebook-JSES6-RYF/04-字符串的扩展.md'
+        - '05-字符串方法': 'ebook-JSES6-RYF/05-字符串方法.md'
+        - '06-正则': 'ebook-JSES6-RYF/06-正则.md'
+        - '07-数值': 'ebook-JSES6-RYF/07-数值.md'
+        - '08-函数': 'ebook-JSES6-RYF/08-函数.md'
+        - '09-数组': 'ebook-JSES6-RYF/09-数组.md'
+        - '10-对象的新增属性': 'ebook-JSES6-RYF/10-对象的新增属性.md'
+        - '11-对象的新增方法': 'ebook-JSES6-RYF/11-对象的新增方法.md'
+        - '12-Symbol': 'ebook-JSES6-RYF/12-Symbol.md'
+        - '13-Set 和 Map 数据结构': 'ebook-JSES6-RYF/13-Set 和 Map 数据结构.md'
+        - '14-Proxy': 'ebook-JSES6-RYF/14-Proxy.md'
+        - '15-Reflect': 'ebook-JSES6-RYF/15-Reflect.md'
+        - '16-Promise': 'ebook-JSES6-RYF/16-Promise.md'
+        - '17-遍历器的循环': 'ebook-JSES6-RYF/17-遍历器的循环.md'
+        - '18-Generator': 'ebook-JSES6-RYF/18-Generator.md'
+        - '19-Generator异步应用': 'ebook-JSES6-RYF/19-Generator异步应用.md'
+        - '20-async 函数': 'ebook-JSES6-RYF/20-async 函数.md'
+        - '21-Class 的基本语法': 'ebook-JSES6-RYF/21-Class 的基本语法.md'
+        - '22-Class 的继承': 'ebook-JSES6-RYF/22-Class 的继承.md'
+        - '23-Module 的语法': 'ebook-JSES6-RYF/23-Module 的语法.md'
+        - '24-Module 的加载实现': 'ebook-JSES6-RYF/24-Module 的加载实现.md'
+        - '25-编程风格': 'ebook-JSES6-RYF/25-编程风格.md'
 
     - 网易云课堂高级工程师笔记:
         - '02-v8引擎回收内存简介': 'ebook-netease-senior-frontend/02-v8引擎回收内存简介.md'
@@ -126,42 +160,6 @@ nav:
 
     - 尚硅谷笔记:
         - 'nodeJS-basic': 'ebook-upguigu-nodejs/nodeJS-basic.md'
-
-    - 阮一峰前端工程化笔记:
-        - 'README': 'ebook-jstraining-RYF/README.md'
-        - 'history': 'ebook-jstraining-RYF/history.md'
-        - 'engineering': 'ebook-jstraining-RYF/engineering.md'
-        - 'node': 'ebook-jstraining-RYF/node.md'
-        - 'preparation': 'ebook-jstraining-RYF/preparation.md'
-        - 'react': 'ebook-jstraining-RYF/react.md'
-
-    - 阮一峰 ES6 语法:
-        - '说明': 'ebook-JSES6-RYF/readme.md'
-        - '01-介绍': 'ebook-JSES6-RYF/01-介绍.md'
-        - '02-变量赋值': 'ebook-JSES6-RYF/02-变量赋值.md'
-        - '03-解构赋值': 'ebook-JSES6-RYF/03-解构赋值.md'
-        - '04-字符串的扩展': 'ebook-JSES6-RYF/04-字符串的扩展.md'
-        - '05-字符串方法': 'ebook-JSES6-RYF/05-字符串方法.md'
-        - '06-正则': 'ebook-JSES6-RYF/06-正则.md'
-        - '07-数值': 'ebook-JSES6-RYF/07-数值.md'
-        - '08-函数': 'ebook-JSES6-RYF/08-函数.md'
-        - '09-数组': 'ebook-JSES6-RYF/09-数组.md'
-        - '10-对象的新增属性': 'ebook-JSES6-RYF/10-对象的新增属性.md'
-        - '11-对象的新增方法': 'ebook-JSES6-RYF/11-对象的新增方法.md'
-        - '12-Symbol': 'ebook-JSES6-RYF/12-Symbol.md'
-        - '13-Set 和 Map 数据结构': 'ebook-JSES6-RYF/13-Set 和 Map 数据结构.md'
-        - '14-Proxy': 'ebook-JSES6-RYF/14-Proxy.md'
-        - '15-Reflect': 'ebook-JSES6-RYF/15-Reflect.md'
-        - '16-Promise': 'ebook-JSES6-RYF/16-Promise.md'
-        - '17-遍历器的循环': 'ebook-JSES6-RYF/17-遍历器的循环.md'
-        - '18-Generator': 'ebook-JSES6-RYF/18-Generator.md'
-        - '19-Generator异步应用': 'ebook-JSES6-RYF/19-Generator异步应用.md'
-        - '20-async 函数': 'ebook-JSES6-RYF/20-async 函数.md'
-        - '21-Class 的基本语法': 'ebook-JSES6-RYF/21-Class 的基本语法.md'
-        - '22-Class 的继承': 'ebook-JSES6-RYF/22-Class 的继承.md'
-        - '23-Module 的语法': 'ebook-JSES6-RYF/23-Module 的语法.md'
-        - '24-Module 的加载实现': 'ebook-JSES6-RYF/24-Module 的加载实现.md'
-        - '25-编程风格': 'ebook-JSES6-RYF/25-编程风格.md'
 
     - Javascript 红宝书高级教程:
         - '11-choose': 'book-JS-primer-code-design/11-choose.md'

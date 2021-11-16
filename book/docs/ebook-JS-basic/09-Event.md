@@ -5,23 +5,31 @@
 事件是组件间通信的方式之一，可以用来异步编程，有三个方法：
 
 ~~~js
-function handleEvent() {
-  // 事件触发函数执行
-}
-div.addEventListener('onclick', handleEvent, false);
-// 增加事件监听；第一个参数是事假类型，对大小写很敏感，第二个是事件处理函数，可以使匿名函数或者外部函数，第三个可选参数是监听事件的阶段。默认是false，表示在事件冒泡阶段监听事件；true 表示在事件捕获阶段监听。无返回值。第二个参数可以使事件处理函数，还可以是 handleEvent 的方法对象 {handleEvent: function(e){...}}。第三个参数还可以配置{once: true} 表示函数只监听一次事件，之后自动移除。一个对象上绑定不同的监听函数，那么触发按照先后顺序进行；如果绑定多个相同的监听函数，那么只触发一次。
+div.addEventListener('onclick', callback, false);
+~~~
 
+增加事件监听
+
+- 第一个参数是事件类型，大小写敏感
+- 第二个是事件处理函数，可以是匿名函数或者外部函数。
+- 第三个可选参数是监听事件的阶段。默认是false，表示在事件冒泡阶段监听事件；true 表示在事件捕获阶段监听。无返回值。第三个参数还可以配置{once: true} 表示函数只监听一次事件，之后自动移除。一个对象上绑定不同的监听函数，那么触发按照先后顺序进行；如果绑定多个相同的监听函数，那么只触发一次。
+
+~~~js
 div.removeEventListener('onclick', handleEvent, false);
+~~~
+
 移除事件监听：这里的三个参数必须相同，才能移除事件监听。
 
+~~~js
 let e = new Event('click');
 div.dispatchEvent(e);
-事件派发(触发)，创建一个事件并触发。如果不传参数会报错
 ~~~
+
+事件派发(触发)：创建一个事件并触发。如果不传参数会报错。
 
 ### 9.2 事件模型
 
-**监听函数**：事件发生后，浏览器监测到事件，触发监听函数，事件驱动编程模式（event-drived）绑定监听函数有三个方法：
+监听函数：事件发生后，浏览器监测到事件，触发监听函数，事件驱动编程模式（event-drived）绑定监听函数有三个方法：
 
 - on 行内绑定： `<div onclick={(e) => {console.log(e);}></div>` 这个在事件冒泡阶段执行（子元素先触发事件，之后冒泡到父元素），一个事件对应一个执行语句。JS和HTML混合不好。
 
@@ -36,11 +44,11 @@ div.dispatchEvent(e);
 
 监听函数内部的this指向触发事件的DOM元素，通常使用 event.target.value 获取DOM元素的值。
 
-**事件传播：**事件经历三个阶段：事件捕获阶段（上到下）事件目标阶段（底层触发）事件冒泡阶段（下到上）
+- 事件传播：事件经历三个阶段：事件捕获阶段（上到下）事件目标阶段（底层触发）事件冒泡阶段（下到上）
 
-**事件代理**：事件从下层向上层冒泡，所以可以在上层设置事件监听，统一监听下层的事件变化，如果下层的节点个数变化不会影响上层事件的监听。这样可以很方便的处理多事件，多子节点，子节点变化的情况。
+- 事件代理：事件从下层向上层冒泡，所以可以在上层设置事件监听，统一监听下层的事件变化，如果下层的节点个数变化不会影响上层事件的监听。这样可以很方便的处理多事件，多子节点，子节点变化的情况。
 
-**阻止事件冒泡**：stopPropogation，这个方法可以阻止事件传播（向上向下传播），但是不能阻止事件的触发（如果事件对应两个监听函数，第一个阻止事件冒泡，第二个函数仍然可以触发）。如果使用 stopImmediatePropogation 可以阻止后面函数的触发。
+- 阻止事件冒泡：stopPropogation，这个方法可以阻止事件传播（向上向下传播），但是不能阻止事件的触发（如果事件对应两个监听函数，第一个阻止事件冒泡，第二个函数仍然可以触发）。如果使用 stopImmediatePropogation 可以阻止后面函数的触发。
 
 ### 9.3 事件对象
 
@@ -366,9 +374,9 @@ DragEvent 具有 ==dataTransfer== 的属性，这个属性很重要！dataTransf
 
 #### 1.拖拽对象
 
-**拖拽对象**：被拖拽的对象（例如文件或者图片链接），拖拽对象经过的对象（div，拖拽对象可以放入div中）
+拖拽对象：被拖拽的对象（例如文件或者图片链接），拖拽对象经过的对象（div，拖拽对象可以放入div中）
 
-**可拖拽属性**：网页中的图片、链接、选中的文本默认可以拖动，其他元素默认不可拖动。如果在 div 内部设置 draggable = 'true' 后，这个DIV就是可以拖动的。对于 img 和 a ，这个属性默认是 true。实际中，可以设置图片或者链接是不可以拖动的。如果某元素是可以拖动的，就无法用鼠标选中内部的文本。
+可拖拽属性：网页中的图片、链接、选中的文本默认可以拖动，其他元素默认不可拖动。如果在 div 内部设置 draggable = 'true' 后，这个DIV就是可以拖动的。对于 img 和 a ，这个属性默认是 true。实际中，可以设置图片或者链接是不可以拖动的。如果某元素是可以拖动的，就无法用鼠标选中内部的文本。
 
 ~~~html
 <div draggable="true"></div>
@@ -377,7 +385,7 @@ DragEvent 具有 ==dataTransfer== 的属性，这个属性很重要！dataTransf
 
 #### 2.拖拽事件
 
-**被拖拽对象的事件**
+被拖拽对象的事件
 
 ~~~js
 dragstart: 开始拖拽，在这个事件的监听函数上，指定拖拉的数据(image)
@@ -385,7 +393,7 @@ drag: 拖拽中，几百ms触发一次
 dragend：拖拽结束(释放鼠标或者ESC) 与 dragstart 成对出现
 ~~~
 
-**推拽对象经过元素的事件** 
+推拽对象经过元素的事件 
 
 ~~~js
 dragenter：被拖拽元素进入div后，div触发一次事件；在事件监听函数中处理div是否允许 drop 事件放下拖拽的数据(默认div不允许drop事件)；
@@ -394,7 +402,7 @@ dragleave：img 离开DIV范围后触发
 drop：在目标节点DIV上释放鼠标触发，监听函数可以取出数据并处理(目标节点DIV需要预设允许drop)
 ~~~
 
-**注意**
+注意
 
 - 拖拽事件中，鼠标移动但是不会触发鼠标事件
 
@@ -477,21 +485,21 @@ let dataTransfer = new dataTransfer(); // 构造函数无参数
 
 #### 5、数据传输器的属性
 
-5.1 dataTransfer.dropEffect
+##### 5.1 dataTransfer.dropEffect
 
 ~~~js
 dataTransfer.dropEffect = 'copy' 'move' 'link' 'none';
 设置放下被拖拽节点的效果(鼠标形状改变)其他值是无效的。这个属性在 dragenter dragover 事件中监听，这个属性对于被拖拽节点是无效的，只对DIV有效果（鼠标变化）。
 ~~~
 
-5.2 dataTransfer.effectAllowed
+##### 5.2 dataTransfer.effectAllowed
 
 ~~~js
 dataTransfer.effectAllowed = 'copy' 'move' 'link' 'all' ...
 设置本次拖拉中允许的效果:这个属性与dropEffect属性是同一件事的两个方面。前者设置被拖拉的节点允许的效果，后者设置接受拖拉的区域的效果，它们往往配合使用。 这个属性在 dragstart 事件处理函数中设置。
 ~~~
 
-5.3 dataTransfer.files
+##### 5.3 dataTransfer.files
 
 dataTransfer.files 是一个 fileList 对象，可以用来拖拽文件。可以使用 FileReader 读取文件的内容
 
@@ -539,7 +547,7 @@ div.addEventListener('drop', (e) => {
 }, false);
 ~~~
 
-5.4 dataTransfer.types
+##### 5.4 dataTransfer.types
 
 这个属性是只读的数组，每一项是拖拉数据的文件类型。可以在 dragover 事件处理函数中判断文件类型，确定是否可以 drop 文件
 
@@ -562,7 +570,7 @@ if (isLink) {
 }
 ~~~
 
-5.5 dataTransfer.items
+##### 5.5 dataTransfer.items
 
 属性返回一个伪数组（伪数组是 DataTransferItemList 的实例），其中每一项是本次拖拽的一个对象（对象是DataTransferItem 的实例）。如果拖拽不包含对象，那么返回一个空对象。
 
@@ -596,7 +604,7 @@ div.addEventListener('drop', function (e) {
 
 #### 6、数据传输器的方法
 
-##### 1、setdata 用来设置拖拉事件所带有的数据
+##### 6.1 setdata 用来设置拖拉事件所带有的数据
 
 ~~~js
 e.dataTransfer.setData('text/plain', 'this is Andy');
@@ -656,7 +664,7 @@ dt.setData('text/plain', 'http://www.example.com');
 
 上面代码中，通过在同一个事件上面，存放三种类型的数据，使得拖拉事件可以在不同的对象上面，`drop`不同的值。注意，第一种格式是一个自定义格式，浏览器默认无法读取，这意味着，只有某个部署了特定代码的节点，才可能`drop`（读取到）这个数据。
 
-##### 2、DataTransfer.getData()
+##### 6.2 DataTransfer.getData()
 
 `DataTransfer.getData()`方法接受一个字符串（表示数据类型）作为参数，返回事件所带的指定类型的数据（通常是用`setData`方法添加的数据）。如果指定类型的数据不存在，则返回空字符串。通常只有`drop`事件触发后，才能取出数据。
 
@@ -674,7 +682,7 @@ function onDrop(event) {
 
 `getData`方法返回的是一个字符串，如果其中包含多项数据，就必须手动解析。
 
-```
+```js
 function doDrop(event) {
   var lines = event.dataTransfer.getData('text/uri-list').split('\n');
   for (let line of lines) {
@@ -697,7 +705,7 @@ var link = event.dataTransfer.getData('URL');
 
 下面的例子是从多种类型的数据里面取出数据。
 
-```
+```js
 function doDrop(event) {
   var types = event.dataTransfer.types;
   var supportedTypes = ['text/uri-list', 'text/plain'];
@@ -709,7 +717,7 @@ function doDrop(event) {
 }
 ```
 
-##### 3、DataTransfer.clearData()
+##### 6.3 DataTransfer.clearData()
 
 `DataTransfer.clearData()`方法接受一个字符串（表示数据类型）作为参数，删除事件所带的指定类型的数据。如果没有指定类型，则删除所有数据。如果指定类型不存在，则调用该方法不会产生任何效果。
 
@@ -731,7 +739,7 @@ event.dataTransfer.clearData('text/uri-list');
 
 下面是一个例子。
 
-```
+```js
 /* HTML 代码如下
  <div id="drag-with-image" class="dragdemo" draggable="true">
    drag me
@@ -1087,3 +1095,4 @@ ondrop：松开鼠标后，被拖动元素放入容器元素。
 oncancel
 onclose
 ~~~
+
