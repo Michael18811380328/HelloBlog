@@ -432,6 +432,34 @@ rs.pipe(ws);
 
 问题：如果读取多个文件，然后写入一个文件，怎么处理呢？
 
+~~~js
+var fs = require('fs');
+
+var rs1 = fs.createReadStream('./1.md');
+var rs2 = fs.createReadStream('./2.md');
+var ws = fs.createWriteStream('./3.md');
+
+// 创建多个可读流，然后分别写入目标文件（如果是小文件写入正常，多媒体文件没有测试）
+// 因为多媒体文件的头信息不一样，理论上不能直接拼接（可以试试拼接不同的ts流文件）
+rs1.pipe(ws);
+rs2.pipe(ws);
+~~~
+
+可以尝试写成循环实现拼接
+
+~~~js
+var fs = require('fs');
+var ws = fs.createWriteStream('./result.mp4');
+// 创建多个可读流，然后分别写入目标文件（如果是小文件写入正常，多媒体文件没有测试）
+// 因为多媒体文件的头信息不一样，理论上不能直接拼接（可以试试拼接不同的ts流文件）
+var count = 10;
+for (let i = 0; i < count; i++) {
+  var tmp = fs.createReadStream(`${i}.ts`);
+  tmp.pipe(ws);
+}
+~~~
+
+
 ## 20.fs模块的其他方法
 
 对性能有要求的时候，使用异步；如果没有要求，使用同步即可；具体看文件大小。

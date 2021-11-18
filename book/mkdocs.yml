@@ -46,6 +46,7 @@ markdown_extensions:
 # minify: https://github.com/byrnereese/mkdocs-minify-plugin
 plugins:
   - search
+    language: 'jp'
   - minify:
       minify_html: true
       minify_js: true
@@ -59,10 +60,6 @@ plugins:
 extra_javascript:
     - 'js/baidu-statistics.min.js'
     - 'js/history.min.js'
-
-# extra:
-#   search:
-#     language: 'jp'
 
 # Page tree
 nav:
@@ -87,7 +84,6 @@ nav:
         - 'react': 'ebook-jstraining-RYF/react.md'
 
     - 阮一峰 ES6 语法:
-        - '说明': 'ebook-JSES6-RYF/readme.md'
         - '01-介绍': 'ebook-JSES6-RYF/01-介绍.md'
         - '02-变量赋值': 'ebook-JSES6-RYF/02-变量赋值.md'
         - '03-解构赋值': 'ebook-JSES6-RYF/03-解构赋值.md'
@@ -113,6 +109,7 @@ nav:
         - '23-Module 的语法': 'ebook-JSES6-RYF/23-Module 的语法.md'
         - '24-Module 的加载实现': 'ebook-JSES6-RYF/24-Module 的加载实现.md'
         - '25-编程风格': 'ebook-JSES6-RYF/25-编程风格.md'
+        - 'readme': 'ebook-JSES6-RYF/readme.md'
 
     - 网易云课堂高级工程师笔记:
         - '02-v8引擎回收内存简介': 'ebook-netease-senior-frontend/02-v8引擎回收内存简介.md'
@@ -137,26 +134,26 @@ nav:
         - 'readme': 'ebook-netease-senior-frontend/readme.md'
 
     - 开课吧笔记:
-        - '01 性能优化.md': 'ebook-kaikeba-frontend/01 性能优化.md'
-        - '02 前端测试.md': 'ebook-kaikeba-frontend/02 前端测试.md'
-        - '03 设计模式.md': 'ebook-kaikeba-frontend/03 设计模式.md'
-        - '04 数据结构与算法.md': 'ebook-kaikeba-frontend/04 数据结构与算法.md'
-        - '05 面试题.md': 'ebook-kaikeba-frontend/05 面试题.md'
-        - '06 面试技巧.md': 'ebook-kaikeba-frontend/06 面试技巧.md'
-        - '07 项目课.md': 'ebook-kaikeba-frontend/07 项目课.md'
-        - '08-React预习笔记.md': 'ebook-kaikeba-frontend/08-React预习笔记.md'
-        - '09-React面试题.md': 'ebook-kaikeba-frontend/09-React面试题.md'
-        - '10-React组件化.md': 'ebook-kaikeba-frontend/10-React组件化.md'
-        - '11-自动化测试.md': 'ebook-kaikeba-frontend/11-自动化测试.md'
-        - '12-webpack-01.md': 'ebook-kaikeba-frontend/12-webpack-01.md'
-        - '13-webpack-02.md': 'ebook-kaikeba-frontend/13-webpack-02.md'
-        - '14-webpack-03.md': 'ebook-kaikeba-frontend/14-webpack-03.md'
-        - '15-webpack优化笔记.md': 'ebook-kaikeba-frontend/15-webpack优化笔记.md'
-        - '16-webpack优化官方.md': 'ebook-kaikeba-frontend/16-webpack优化官方.md'
-        - '17-webpack-05.md': 'ebook-kaikeba-frontend/17-webpack-05.md'
-        - '18-webpack-06.md': 'ebook-kaikeba-frontend/18-webpack-06.md'
-        - '19-前端安全-常见Web攻击.md': 'ebook-kaikeba-frontend/19-前端安全-常见Web攻击.md'
-        - '20-前端安全-防御手段.md': 'ebook-kaikeba-frontend/20-前端安全-防御手段.md'
+        - '01 性能优化': 'ebook-kaikeba-frontend/01 性能优化.md'
+        - '02 前端测试': 'ebook-kaikeba-frontend/02 前端测试.md'
+        - '03 设计模式': 'ebook-kaikeba-frontend/03 设计模式.md'
+        - '04 数据结构与算法': 'ebook-kaikeba-frontend/04 数据结构与算法.md'
+        - '05 面试题': 'ebook-kaikeba-frontend/05 面试题.md'
+        - '06 面试技巧': 'ebook-kaikeba-frontend/06 面试技巧.md'
+        - '07 项目课': 'ebook-kaikeba-frontend/07 项目课.md'
+        - '08-React预习笔记': 'ebook-kaikeba-frontend/08-React预习笔记.md'
+        - '09-React面试题': 'ebook-kaikeba-frontend/09-React面试题.md'
+        - '10-React组件化': 'ebook-kaikeba-frontend/10-React组件化.md'
+        - '11-自动化测试': 'ebook-kaikeba-frontend/11-自动化测试.md'
+        - '12-webpack-01': 'ebook-kaikeba-frontend/12-webpack-01.md'
+        - '13-webpack-02': 'ebook-kaikeba-frontend/13-webpack-02.md'
+        - '14-webpack-03': 'ebook-kaikeba-frontend/14-webpack-03.md'
+        - '15-webpack优化笔记': 'ebook-kaikeba-frontend/15-webpack优化笔记.md'
+        - '16-webpack优化官方': 'ebook-kaikeba-frontend/16-webpack优化官方.md'
+        - '17-webpack-05': 'ebook-kaikeba-frontend/17-webpack-05.md'
+        - '18-webpack-06': 'ebook-kaikeba-frontend/18-webpack-06.md'
+        - '19-前端安全-常见Web攻击': 'ebook-kaikeba-frontend/19-前端安全-常见Web攻击.md'
+        - '20-前端安全-防御手段': 'ebook-kaikeba-frontend/20-前端安全-防御手段.md'
 
     - 尚硅谷笔记:
         - 'nodeJS-basic': 'ebook-upguigu-nodejs/nodeJS-basic.md'
@@ -168,12 +165,12 @@ nav:
         - 'readme': 'book-JS-primer-code-design/readme.md'
 
     - 其他技术笔记:
-        - '说明': 'index.md'
+        - 'index': 'index.md'
         - 'JS-the-good-parts': 'book-JS-The-good-parts/JS-the-good-parts.md'
         - 'curry-function': 'book-JS-The-good-parts/curry-function.md'
-        - 'JavaScript 秘密花园': 'ebook-javascript-secret-garden/JavaScript 秘密花园-zh.md'
-        - '代码整洁之道': 'other/代码整洁之道 读书笔记.md'
-        - '数据结构基础': 'other/data structure basic.md'
+        - 'JavaScript 秘密花园-zh': 'ebook-javascript-secret-garden/JavaScript 秘密花园-zh.md'
         - 'JS 数据结构': 'other/JS 数据结构.md'
+        - 'data structure basic': 'other/data structure basic.md'
         - 'leanpub-auto-the-road-to-ecmascript-6': 'other/leanpub-auto-the-road-to-ecmascript-6.md'
+        - '代码整洁之道 读书笔记': 'other/代码整洁之道 读书笔记.md'
         - '其他书单': 'other/其他书单.md'
