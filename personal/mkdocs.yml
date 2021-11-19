@@ -55,7 +55,6 @@ markdown_extensions:
 
 # minify: https://github.com/byrnereese/mkdocs-minify-plugin
 plugins:
-  - search
   - minify:
       minify_html: true
       minify_js: true
@@ -79,10 +78,11 @@ nav:
         - 'log': 'log.md'
         - 'mkdocs': 'mkdocs.md'
     - 金融理财:
-        - 'Hire for slope not Y Intercept': 'economy/Hire for slope not Y Intercept.md'
         - 'My Top 10 Money Rules': 'economy/My Top 10 Money Rules.md'
         - 'The art of Execution 执行力的艺术': 'economy/The art of Execution 执行力的艺术.md'
         - 'Who Wants to Be a Millionaire': 'economy/Who Wants to Be a Millionaire.md'
+        - '中国的房价会怎么收场': 'economy/中国的房价会怎么收场.md'
+        - '中国经济的转变': 'economy/中国经济的转变.md'
         - '人人都能懂的宏观经济': 'economy/人人都能懂的宏观经济.md'
         - '四个财富水池': 'economy/四个财富水池.md'
         - '基金从基础到实践': 'economy/基金从基础到实践.md'
@@ -105,8 +105,6 @@ nav:
         - 'index': 'other/index.md'
         - '专业教育的兴起': 'other/专业教育的兴起.md'
         - '个人选择': 'other/个人选择.md'
-        - '中国的房价会怎么收场': 'other/中国的房价会怎么收场.md'
-        - '中国经济的转变': 'other/中国经济的转变.md'
         - '丹尼斯与Unix': 'other/丹尼斯与Unix.md'
         - '人生真相': 'other/人生真相.md'
         - '任正非的管理思想': 'other/任正非的管理思想.md'
@@ -115,15 +113,18 @@ nav:
         - '工业文明对于社会的冲击': 'other/工业文明对于社会的冲击.md'
         - '思维导图到深度学习': 'other/思维导图到深度学习.md'
         - '技术和稳定的工作': 'other/技术和稳定的工作.md'
-        - '正态分布和对数正态分布': 'other/正态分布和对数正态分布.md'
         - '清理Mac磁盘文件': 'other/清理Mac磁盘文件.md'
         - '熵增': 'other/熵增.md'
         - '硕士学位的贬值': 'other/硕士学位的贬值.md'
-        - '蒙特卡罗方法入门': 'other/蒙特卡罗方法入门.md'
         - '詹宏志读书': 'other/詹宏志读书.md'
         - '阿里巴巴2019技术展望': 'other/阿里巴巴2019技术展望.md'
         - '骡子和人生': 'other/骡子和人生.md'
-    - 其他日志存档:
+    - 数学算法:
+        - 'Hire for slope not Y Intercept': 'math/Hire for slope not Y Intercept.md'
+        - '期望-方差-协方差-相关系数': 'math/期望-方差-协方差-相关系数.md'
+        - '正态分布和对数正态分布': 'math/正态分布和对数正态分布.md'
+        - '蒙特卡罗方法入门': 'math/蒙特卡罗方法入门.md'
+    - 其他日志:
         - 'alibaba-ice': 'old/alibaba-ice.md'
         - 'alibaba-open-source-instructions': 'old/alibaba-open-source-instructions.md'
         - 'browser-sync': 'old/browser-sync.md'

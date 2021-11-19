@@ -44,9 +44,7 @@ markdown_extensions:
   - pymdownx.tilde
 
 # minify: https://github.com/byrnereese/mkdocs-minify-plugin
-plugins:
-  - search
-    language: 'jp'
+plugins:    
   - minify:
       minify_html: true
       minify_js: true
@@ -56,6 +54,9 @@ plugins:
       js_files:
           - /js/history.js
           - /js/baidu-statistics.js
+extra:
+  search:
+    language: 'jp'
 
 extra_javascript:
     - 'js/baidu-statistics.min.js'

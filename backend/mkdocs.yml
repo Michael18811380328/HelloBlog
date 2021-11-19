@@ -46,7 +46,6 @@ markdown_extensions:
 
 # minify: https://github.com/byrnereese/mkdocs-minify-plugin
 plugins:
-  - search
   - minify:
       minify_html: true
       minify_js: true

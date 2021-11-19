@@ -2,13 +2,15 @@
 
 ### 8.1 概念
 
-DOM（文档对象模型）作用是把网页转换成JS可以处理的对象（树状结构）。浏览器标签HTML脚本，转换成Node节点树 JS才能操作。
+DOM（文档对象模型）作用是把网页（HTML）字符串，解析成 JS 可以处理的 DOM 树。浏览器标签HTML，转换成Node节点树 JS才能操作。
 
-DOM 树最小的单位是 node 节点。浏览器提供了原生的对象 Node。实际的DOM树节点有7类，都继承自Node节点。最大的根节点是 Document， 浏览器中各种标签（span）是 Element， 每个节点具有属性 Attribute，标签内部的文本是 Text，注释是 Comment 节点。文档片段是 DocumentFragment，最后是 DocumentType 表示 doctype 标签（说明HTML的规范）
+DOM 树最小的单位是 node 节点。浏览器提供了原生的对象 Node。实际的 DOM 树节点有7类，都继承自 Node 节点。最大的根节点是 Document， 浏览器中各种标签（span）是 Element， 每个节点具有属性 Attribute，标签内部的文本是 Text，注释是 Comment 节点。文档片段是 DocumentFragment，最后是 DocumentType 表示 doctype 标签（说明HTML的规范）
 
 全部节点按照树状结构排列就是 Document DOM 树。可以使用 parentNode, firstChild, lastChild, nextSibling, previousSibling 获取任意节点。
 
 对于原生 JS 操作node是很重要的，对于React不需要直接操作node，直接使用状态驱动UI界面即可（操作界面，界面滚动动画等也需要DOM）。
+
+
 
 ### 8.2 Node API
 
@@ -137,11 +139,11 @@ node.after(div);
 node.replaceWith(newNode);
 ~~~
 
-### 8.5 Document Node
+### 8.5 Document Node （文档节点）
 
 document 表示整个文档，可以使用 window.document 或者 document 获取对象。document 继承了 Node ParentNode EventTarget 的属性和方法。下面是常用的属性和方法
 
-#### 属性
+属性
 
 常见属性
 
@@ -198,7 +200,7 @@ document.designMode //文档的编辑模式(如果'on'，界面中可编辑HTML)
 document.implemention //返回一个DOMImplemention对象，可以创建新的XML
 ~~~
 
-#### 方法
+方法
 
 ~~~js
 document.open(); 清除文档当前内容(界面会空白)，文档成为可写状态
@@ -286,11 +288,11 @@ if (document.queryCommandSupported('SelectAll')) {
 
 document.getSelection() 指向 window.getSelection()
 
-### 8.6 Element Node
+### 8.6 Element Node （元素节点）
 
 元素节点：HTML标签渲染成Node树节点就是元素节点，nodeType == 1。元素节点是多种节点的一个集合，继承了Node节点的属性和方法。
 
-#### 属性
+属性
 
 1、元素特性属性
 
@@ -367,7 +369,7 @@ element.firstElementChild element.lastElementChild
 element.nextElementSibling element.previousSibling
 ~~~
 
-#### 方法:a:
+方法
 
 ~~~js
 getAttribute('name');
@@ -408,7 +410,7 @@ element.blur()
 element.click() 模拟了一次鼠标点击，相当于click事件
 ~~~
 
-### 8.7 属性的操作
+### 8.7 属性操作
 
 元素节点具有属性集合，attributes，其他节点都是null。属性集合对应HTML中的各种属性，是一个动态的伪数组。可以通过伪数组的下标或者键，获取对应的值，每一项是键值对。（id="wrap"）
 
@@ -425,7 +427,7 @@ hasAttributes()
 removeAttribute('wrap')
 ~~~
 
-### 8.8 text Node
+### 8.8 文本节点（text node）
 
 text 节点是元素节点和属性节点的子节点，空格也是一个文本节点。
 
@@ -546,9 +548,11 @@ styleSheet.deleteRule(1) 删除1条样式表的规则
 
 界面添加样式表的方法：添加style节点或者link节点
 
-### 8.11 Mutation Observer
+### 8.11 Mutation observer
 
 #### 1、观察器定义
+
+Mutation(变化) Observer(观察者)
 
 Mutation observer API 观察器：可以监视DOM节点的变动。节点属性文本的增减可以通过这个API监测到。和Event的区别是，event是同步触发（DOM变动后就会触发事件）observer是异步触发，界面中的DOM操作全部做完后才触发这个API，而且可以避免频繁的事件触发（拖动事件可能几千次，最后在observer中只触发一次，但是event中会触发多次）总结一下具有三个特点：
 
