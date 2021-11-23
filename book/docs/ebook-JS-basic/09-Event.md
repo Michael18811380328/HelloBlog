@@ -2,13 +2,11 @@
 
 ### 9.1 事件对象
 
-事件是组件间通信的方式之一，可以用来异步编程，有三个方法：
+事件是组件间通信的方式之一，可以用来异步编程，有三个参数：
 
 ~~~js
 div.addEventListener('onclick', callback, false);
 ~~~
-
-增加事件监听
 
 - 第一个参数是事件类型，大小写敏感
 - 第二个是事件处理函数，可以是匿名函数或者外部函数。
@@ -31,9 +29,9 @@ div.dispatchEvent(e);
 
 监听函数：事件发生后，浏览器监测到事件，触发监听函数，事件驱动编程模式（event-drived）绑定监听函数有三个方法：
 
-- on 行内绑定： `<div onclick={(e) => {console.log(e);}></div>` 这个在事件冒泡阶段执行（子元素先触发事件，之后冒泡到父元素），一个事件对应一个执行语句。JS和HTML混合不好。
+- on 行内绑定： `<div onclick={(e) => {console.log(e);}></div>` 这个在事件冒泡阶段执行（子元素先触发事件，之后冒泡到父元素），一个事件对应一个执行语句。每次执行都需要生成一个对应的匿名函数，不太好。
 
-- on 节点绑定：效果和第一个相同，监听函数内容可以增多，适应于绑定事件很少代码。如果两次绑定会覆盖
+- on 节点绑定：效果和第一个相同，监听函数内容可以增多，适应于绑定事件很少代码。如果两次绑定会覆盖前一个函数。
 
   ~~~js
   window.onload = function () {...}
@@ -56,13 +54,15 @@ Event 对象（由Event构造函数创建）是原生对象，Event实例继承�
 
 ~~~js
 let e = new Event('look', {'bubbles': true, 'cancelable': false});
-// 第一个参数是事件名称(可以自定义)
-// 第二个参数是属性：可以向上冒泡，事件不可以被取消
 ~~~
+
+第一个参数是事件名称(可以自定义)
+
+第二个参数是属性：可以向上冒泡，事件不可以被取消
 
 属性
 
-~~~js
+~~~
 e.bubbles 事件是否可以冒泡(默认不会冒泡，除非显示声明)
 e.eventPhase 事件处于什么阶段(0-3) 对应没有触发、事件捕获、目标阶段、事件冒泡
 e.cancelable 返回布尔值，判断事件可以被取消，如果是false，e.preventDefault() 是无效的，对于不确定的事情可以先判断，后确定是否阻止默认事件。
@@ -81,23 +81,22 @@ e.detail 返回具体的事件信息，例如click dbclick 中，e.detail 可以
 
 实例方法
 
-~~~js
-e.preventDefault() 这个事件需要在 e.cancelable === true 下执行，可以过滤用户输入(只输入大写或者数字等)，如果用户输入数字，实际上有e的存在，可以过滤掉。
-e.stopPropogation()
-e.stopImmediatePropogation() 阻止当前事件和DOM节点绑定的其他事件冒泡
-e.composePath() 返回一个数组，事件冒泡的上层节点
-~~~
+- e.preventDefault() 这个事件需要在 e.cancelable === true 下执行，可以过滤用户输入(只输入大写或者数字等)，如果用户输入数字，实际上有e的存在，可以过滤掉。
+- e.stopPropogation()
+- e.stopImmediatePropogation() 阻止当前事件和DOM节点绑定的其他事件冒泡
+- e.composePath() 返回一个数组，事件冒泡的上层节点
+
 
 ### 9.4 鼠标事件
 
 下面的事件是 MouseEvent 的实例
 
-~~~js
+~~~
 click: 用户完成 mousedown mouseup 最后触发 click
 dbclick: mousedown mouseup click dbclick
 mousedown
 mouseup
-mousemove 注意限流
+mousemove 触发次数较多，注意限流
 mouseenter-mouseleave 进入子节点或者退出父节点不会触发事件
 mouseover-mouseout 进入子节点或者退出父节点会触发事件, mouseover 会在子节点上多次触发
 contextmenu 按下右键时(右键菜单出现前)触发
@@ -108,21 +107,22 @@ wheel 滚动鼠标
 
 用户可以使用构造函数自定义鼠标事件
 
-~~~js
+~~~
 let e = new MouseEvent(type, options);
+~~~
 
 下面是构造函数的可选属性：
-screenX, screenY, clientX, clientY,
-ctrlKey, shiftKey, altKey, metaKey（command或者window键）, 
-button(012 表示左键中键右键)
-buttons(000 001 010 100 011 代表多个按键)
-relatedTarget：节点对象，表示事件的相关节点，默认为null。mouseenter和mouseover事件时，表示鼠标刚刚离开的那个元素节点；mouseout和mouseleave事件时，表示鼠标正在进入的那个元素节点。
-~~~
+
+- screenX, screenY, clientX, clientY,
+- ctrlKey, shiftKey, altKey, metaKey（command或者window键）, 
+- button(012 表示左键中键右键)
+- buttons(000 001 010 100 011 代表多个按键)
+- relatedTarget：节点对象，表示事件的相关节点，默认为null。mouseenter和mouseover事件时，表示鼠标刚刚离开的那个元素节点；mouseout和mouseleave事件时，表示鼠标正在进入的那个元素节点。
 
 MouseEvent 实例对象的属性，除了上面的属性还具有
 
 ~~~js
-movementX, movemoveY 当前位置与上一个mousemove 事件的位置的位移
+movementX, movementY 当前位置与上一个 mousemove 事件的位置的位移
 offsetX offsetY 鼠标位置与目标节点的相对距离
 pageX, pageY 鼠标位置与界面的相对距离
 ~~~
@@ -144,11 +144,12 @@ deltaMode 是上面位移的单位，012 表示像素，行，页
 
 ### 9.5 键盘事件
 
-~~~js
 keydown keypress keyup 事件
+
 按下键后，keydown keypress (keydown keypress) 最后 keyup 功能键点击不会触发这三个事件
 
 构造函数 let e = new KeyboardEvent('type', options);
+
 key：字符串，当前按下的键，默认为空字符串。
 code：字符串，表示当前按下的键的字符串形式，默认为空字符串。
 location：整数，当前按下的键的位置，默认为0。
@@ -157,11 +158,10 @@ shiftKey：布尔值，是否按下 Shift 键，默认为false。
 altKey：布尔值，是否按下 Alt 键，默认为false。
 metaKey：布尔值，是否按下 Meta 键，默认为false。
 repeat：布尔值，是否重复按键，默认为false。
-~~~
 
 构造函数的属性同样适应于实例对象的属性
 
-~~~js
+~~~
 e.altKey, e.ctrlKey, e.metaKey, e.shiftKey
 e.code 返回当前按键的字符串形式(KeyA)
 e.key 返回按下键的名称(如果是功能键，返回键值) 属性只读
@@ -172,7 +172,7 @@ e.repeat 判断是否重复点击某个键
 实例对象的方法
 
 ~~~js
-e.getModifierState('Alt') 判断是否按下功能键
+e.getModifierState('Alt') // 判断是否按下功能键
 if (e.getModifierState('Alt')+e.getModifierState('Control')+e.getModifierState('Meta')>1) {
   // do sth
 }
@@ -180,7 +180,7 @@ if (e.getModifierState('Alt')+e.getModifierState('Control')+e.getModifierState('
 
 ### 9.6进度事件:a:
 
-外部资源异步加载时，例如 image，link，video, audio 等资源加载时触发的事件，u或者文件上传（File upload），继承了 ProgressEvent 事件接口，主要包括下面几个事件：
+外部资源异步加载时，例如 image，link，video, audio 等资源加载时触发的事件，或者文件上传（File upload），继承了 ProgressEvent 事件接口，主要包括下面几个事件：
 
 ~~~
 abort (退出)：用户主动点击退出事件
@@ -192,7 +192,9 @@ progress 加载中(不断触发)
 timeout 加载超时
 ~~~
 
-注意：如果在脚本加载前，资源已经加载，那么监听img的load事件就没有必要了。可以在事件监听前判断一下脚本是否加载。onerror 事件需要在DOM节点内部监听。
+注意：如果在脚本加载前，资源已经加载，那么监听img的load事件就没有必要了。可以在事件监听前判断一下脚本是否加载。
+
+onerror 事件需要在DOM节点内部监听。
 
 ~~~html
 <img src='wrongURL' onerror="this.style.display='none';"/>
@@ -215,14 +217,17 @@ if (!image.complete) {
 
 ~~~js
 let e = new ProgressEvent(type, options);
+~~~
+
 实例属性
 lengthComputable 表示加载总量是否可以计算，默认是false
 loaded 已加载的部分
 total 总量
 使用 e.loaded / e.total 可以计算加载的百分比
-~~~
 
 类似于其他事件，构造函数的options和实例属性相同（JS例子）。
+
+==————————————==
 
 ### 9.7 表单事件
 

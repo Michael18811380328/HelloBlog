@@ -13,8 +13,8 @@
 
 本人偶尔也会写写博客，如果有喜欢玩博客的朋友也可以一起分享交流，分享也是一种学习！
 
-[github](https://github.com/Michael18811380328)
+[github](https://github.com/Michael18811380328) 代码片段+个人博客平台
 
-[CSDN](https://blog.csdn.net/weixin_41697143)
+[CSDN](https://blog.csdn.net/weixin_41697143) 第三方博客平台（已经有几十万阅读量，以及第三方博客专家认证）
 
-[stackoverflow](https://stackoverflow.com/users/14245047/michael-an)
+[stackoverflow](https://stackoverflow.com/users/14245047/michael-an) 英文交流平台

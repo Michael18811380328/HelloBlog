@@ -6,23 +6,21 @@ Ryan Dahl: “Reducing complexity is always beneficial”
 
 ## Introduction
 
-Ryan Dahl is a software engineer and the original developer of the Node.js, and the Deno JavaScript and TypeScript runtime. We are glad to have had an opportunity to speak to Ryan about his projects, the main challenges in Deno, hear his thoughts on the future of JavaScript and TypeScript, find more about the third-party Deno ecosystem projects and discuss how he would have changed his approach to Node.js if he could travel back in time!
+Ryan Dahl is a software engineer and the original developer of the Node.js, and the Deno JavaScript and TypeScript runtime（运行时）. We are glad to have had an opportunity to speak to Ryan about his projects, the main challenges in Deno, hear his thoughts on the future of JavaScript and TypeScript, find more about the third-party Deno ecosystem projects and discuss how he would have changed his approach to Node.js if he could travel back in time（如果他能回到过去）!
 
 ### The Interview
 
-**Evrone:** Your new Deno project is quite an impact among developers. What are you doing right now most of the time?
+**Evrone:** Your new Deno project is quite an impact（相当大的影响，正常的语序是 a quite impact） among developers. What are you doing right now most of the time?
 
-**Ryan:** I'm working on Deno most of the time! Deno is actually a moderately large collection of software that comes together in the executable that we ship. We are improving the Deno runtime but we are also working on applying the underlying infrastructure in commercial projects too.
+**Ryan:** I'm working on Deno most of the time（大多数时候）! Deno is actually a moderately large collection of software（中等规模的软件集合） that comes together in the executable that we ship（我们发布的程序中）. We are improving the Deno runtime but we are also working on applying the underlying infrastructure in commercial projects too（把基础架构应用在商业项目中）.deno——A modern runtime for JavaScript and TypeScript.
 
-deno——A modern runtime for JavaScript and TypeScript.
+**Evrone:** You have hands-on（亲自动手的） experience with lots of programming languages: C, Rust, Ruby, JavaScript, TypeScript. Which one do you enjoy the most to work with?
 
-**Evrone:** You have hands-on experience with lots of programming languages: C, Rust, Ruby, JavaScript, TypeScript. Which one do you enjoy the most to work with?
+**Ryan:** I have the most fun writing Rust these days. It has a steep learning curve and is not appropriate for many problems; but for the stuff I'm working on now it's perfect. It's a much better C++. I'm convinced（确信） that I will never start a new C++ project. Rust is beautiful in its ability to express low-level machinery with such simplicity（以如此简单的方式表达低级机器语言）.
 
-**Ryan:** I have the most fun writing Rust these days. It has a steep learning curve and is not appropriate for many problems; but for the stuff I'm working on now it's perfect. It's a much better C++. I'm convinced that I will never start a new C++ project. Rust is beautiful in its ability to express low-level machinery with such simplicity.
+JavaScript has never been my favorite language - it's just the most common language - and for that reason it is a useful way to express many ideas. I don't consider TypeScript a separate language; its beauty is that it's just marked up JavaScript. TypeScript allows one to build larger, more robust（健壮的） systems in JavaScript, and I'd say it's my go-to language for small everyday tasks（日常处理琐事的常用语言）.
 
-JavaScript has never been my favorite language - it's just the most common language - and for that reason it is a useful way to express many ideas. I don't consider TypeScript a separate language; its beauty is that it's just marked up JavaScript. TypeScript allows one to build larger, more robust systems in JavaScript, and I'd say it's my go-to language for small everyday tasks.
-
-With Deno we are trying to remove a lot of the complexity inherent in transpiling TypeScript code down to JavaScript with the hope this will enable more people to utilize it.
+With Deno we are trying to remove a lot of the complexity inherent（固有的） in transpiling TypeScript code down to JavaScript with the hope this will enable more people to utilize（利用） it.（我们正在努力消除将TypeScript代码转换为JavaScript所固有的复杂性，希望这能让更多的人使用它）
 
 
 

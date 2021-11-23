@@ -1,5 +1,7 @@
 ## 第八章 DOM
 
+2021-11-22
+
 ### 8.1 概念
 
 DOM（文档对象模型）作用是把网页（HTML）字符串，解析成 JS 可以处理的 DOM 树。浏览器标签HTML，转换成Node节点树 JS才能操作。
@@ -8,7 +10,7 @@ DOM 树最小的单位是 node 节点。浏览器提供了原生的对象 Node�
 
 全部节点按照树状结构排列就是 Document DOM 树。可以使用 parentNode, firstChild, lastChild, nextSibling, previousSibling 获取任意节点。
 
-对于原生 JS 操作node是很重要的，对于React不需要直接操作node，直接使用状态驱动UI界面即可（操作界面，界面滚动动画等也需要DOM）。
+对于原生 JS 操作node是很重要的，对于React，不需要直接操作node，直接使用状态驱动UI界面即可（操作界面，界面滚动动画等也需要DOM）。
 
 
 
@@ -22,14 +24,17 @@ DOM 树最小的单位是 node 节点。浏览器提供了原生的对象 Node�
 Node.prototype.nodeType // 返回一个数值，表示节点的类型(节点属性文本对应123)
 Node.prototuype.nodeName // 返回字符串，表示节点的名称(div #text)
 Node.prototype.nodeValue // 返回一个字符串，表示节点的值(文本节点、属性节点、注释节点具有这个属性)，如果内部是空，返回null,这个值可以改变
+
 textContent // 返回当前节点和所有子节点的文本内容
 document.textContent === null 
 document.documentElement.textContent //可以获取整个文档的内容（实际上获取不全）
 
 baseURL // 返回一个绝对路径(由window.location决定),属性只读，浏览器根据这个属性计算相对路径
 ownerDocument // 返回当前节点的根节点document，document.ownerDocument === null
+
 nextSibling, previousSibling 
 //返回相邻节点(如果没有相邻节点返回null, 可能一个元素节点的相邻节点是文本节点或者注释节点)
+
 parentNode // 只有三种情况 Element, Document, DocumentFraggment
 parentElement // 父元素 element
 firstChild lastChild // 返回子元素中的第一个或者最后一个(可能是文本注释或者空)
@@ -39,48 +44,45 @@ isConnected // 当前节点是否在文档中(可能没有插入文档中)
 
 方法
 
-~~~js
-1
-document.body.appendChild(p) // 如果p是新建的DOM，直接在body后面插入。如果p是已有的DOM节点，就是把这个节点移动到body后面。返回值是插入文档的子节点。如果传入的参数是 DocumentFragment，那么插入的是全部的文档片段，返回值是空的DocumentFragment片段。
+- 1 document.body.appendChild(p) // 如果p是新建的DOM，直接在body后面插入。如果p是已有的DOM节点，就是把这个节点移动到body后面。返回值是插入文档的子节点。如果传入的参数是 DocumentFragment，那么插入的是全部的文档片段，返回值是空的DocumentFragment片段。
 
-2
-hasChildNodes //判断当前节点是否有子节点(包括所有类型的节点，不仅仅是文档节点)
-// 判断一个节点是否具有子节点的三种方法
+
+- 2 hasChildNodes 判断当前节点是否有子节点(包括所有类型的节点，不仅仅是文档节点)
+
+判断一个节点是否具有子节点的三种方法
+
+~~~js
 node.hasChildNodes()
 node.firstChild !== null
 node.childNodes && node.childNodes.length === 0
+~~~
+- 3 node.cloneNode() 克隆一个节点(参数是true、false，表示克隆自身或者克隆全部子节点)，可以克隆全部属性，但是会失去事件监听(回调函数)。克隆后的节点没有父节点，需要手动append到节点树中。如果克隆后有两个name或者ID需要改变其中的一个。
 
-3/
-node.cloneNode() 克隆一个节点(参数是true、false，表示克隆自身或者克隆全部子节点)，可以克隆全部属性，但是会失去事件监听(回调函数)。克隆后的节点没有父节点，需要手动append到节点树中。如果克隆后有两个name或者ID需要改变其中的一个。
+- 4 parentNode.insertBefore(newNode, referNode); 新节点会插入到父节点中，插入到referNode之前。返回值是插入的节点。如果第二个参数是null，就插入到最后的位置。
 
-4、
-parentNode.insertBefore(newNode, referNode); 新节点会插入到父节点中，插入到referNode之前。返回值是插入的节点。如果第二个参数是null，就插入到最后的位置。
+- 5 parentNode.removeChild(childNode) 可以移除一个节点的全部子节点
 
-5、
-parentNode.removeChild(childNode)
+~~~js
 while(element.firstChild) {
   element.removeChild(element.firstChild)
 }
-//可以移除一个节点的全部子节点
-
-6、replaceChild(newNode, oldNode)
-
-7 node.contains(childNode); 是否是当前节点、子节点、后代节点
-
-node.compareDocumentPosition(another node) 判断两个节点的相对位置(返回一个数值)
-
-isEqualNode 判断两个节点的类型属性子节点是否一致
-isSameNode 判断两个节点是否完全一致
-
-normalize 清理节点内部的文本节点(会去掉空文本节点，将相邻的文本节点合并)
-getRootNode 获取文档的根节点(类似于属性ownerDocument,方法可以使用在document自身上面)
 ~~~
+
+
+- 6 replaceChild(newNode, oldNode)
+- 7 node.contains(childNode); 是否是当前节点、子节点、后代节点
+- node.compareDocumentPosition(another node) 判断两个节点的相对位置(返回一个数值)
+- isEqualNode 判断两个节点的类型属性子节点是否一致
+- isSameNode 判断两个节点是否完全一致
+- normalize 清理节点内部的文本节点(会去掉空文本节点，将相邻的文本节点合并)
+- getRootNode 获取文档的根节点(类似于属性ownerDocument,方法可以使用在document自身上面)
+
 
 ### 8.3 节点集合 API
 
 Node 是单个节点，多个节点集合可以分为 NodeList 和 HTMLCollection，前者包括各种类型节点，后者包括HTML元素节点。
 
-#### NodeList API
+NodeList API
 
 类似于数组，Node.childNodes document.querySelectorAll() 可以获取；结果是一个伪数组，具有 length 和 forEach， for循环，但是不具有数组的其他属性方法，可以使用call，apply 方法将其转化成数组。
 
@@ -92,17 +94,20 @@ Node 是单个节点，多个节点集合可以分为 NodeList 和 HTMLCollectio
 children.forEach((item, index, children) => {
   console.log(item);
 });
+
 children.length
+
 chilfren.item(0) 返回索引位置的子节点
 
 values，keys, entries 返回的是ES6的遍历器
+
 for (let entry of children.entries()) {
   console.log(entry);
   // Array [ 1, <script> ]
 }
 ~~~
 
-#### HTMLCollection API
+HTMLCollection API
 
 不能使用forEach 遍历 document.links document.forms document.images
 
@@ -117,11 +122,13 @@ HTMLCollection.nameItem('pic')
 // <img id="pic" src="http://example.com/foo.jpg">
 ~~~
 
-### 8.4 parentNode childNode
+### 8.4 父子节点
+
+parentNode childNode
 
 拥有子节点的Node才能继承 parentNode 的属性（Element，document， DocumentFragment）
 
-~~~
+~~~js
 parentNode.children
 parentNode.firstElementNode
 parentNode.lastElementNode
@@ -139,7 +146,9 @@ node.after(div);
 node.replaceWith(newNode);
 ~~~
 
-### 8.5 Document Node （文档节点）
+### 8.5 文档节点
+
+Document Node
 
 document 表示整个文档，可以使用 window.document 或者 document 获取对象。document 继承了 Node ParentNode EventTarget 的属性和方法。下面是常用的属性和方法
 
@@ -149,9 +158,9 @@ document 表示整个文档，可以使用 window.document 或者 document 获�
 
 ~~~js
 document.default === window //返回window对象(如果不是window的document就返回null，例如 Ajax 或者 iframe 创建的document，很少用到)
-document.doctype === "<!DOCTYPE html>"
+document.doctype // 是一个对象 "<!DOCTYPE html>"
 document.doctype.name === 'html' // 返回文档类型
-document.documentElement => 返回HTML节点
+document.documentElement // 返回HTML节点
 document.body
 document.head
 document.scrollingElement =>返回当前滚动的元素
@@ -159,9 +168,11 @@ document.activeElement =>返回当前活动的元素(获取焦点的input表单�
 document.fullscreenElement.nodeName === 'VIDEO' 当前全屏的元素(如果是video，证明用户在全屏观看视频等)
 ~~~
 
+
+
 节点集合属性
 
-下面的属性返回文档的节点组合动态集合（如果内部节点变化，返回值也会随时更新）
+下面的属性返回文档的节点组合动态集合（如果内部节点变化，返回值也会随时更新）这是引用类型数据
 
 ~~~js
 document.links
@@ -191,14 +202,14 @@ document.compatMode // 兼容模式或者严格模式
 
 文档状态属性
 
-~~~js
-document.hidden // 当前界面是否最小化(或者其他tab活动)
-document.visibilityState // 文档可见状态(在渲染的哪个阶段)？结果是可见、不可见、正在渲染、已经卸载
-document.readyState // loading(加载HTML) interactive(HTML加载完毕，加载外部的图片CSS) complete(加载完毕)，状态改变会触发 readystatechange 事件，在首屏优化功能会用到这部分。
-document.cookie
-document.designMode //文档的编辑模式(如果'on'，界面中可编辑HTML)，这样对于调试界面截屏很常用
-document.implemention //返回一个DOMImplemention对象，可以创建新的XML
-~~~
+
+- document.hidden // 当前界面是否最小化(或者其他tab活动)
+- document.visibilityState // 文档可见状态(在渲染的哪个阶段)？结果是可见、不可见、正在渲染、已经卸载
+- document.readyState // loading(加载HTML) interactive(HTML加载完毕，加载外部的图片CSS) complete(加载完毕)，状态改变会触发 readystatechange 事件，在首屏优化功能会用到这部分。
+- document.cookie
+- document.designMode //文档的编辑模式(如果'on'，界面中可编辑HTML)，这样对于调试界面截屏很常用
+- document.implemention //返回一个DOMImplemention对象，可以创建新的XML
+
 
 方法
 
@@ -271,13 +282,14 @@ var nodeIterator = document.createNodeIterator(
 document.createTreeWalker() 返回一个 DOM 的子树遍历器
 ~~~
 
-在设计模式开启或者可编辑状态时，可以使用下面的几种方法执行指令.
+在设计模式开启或者可编辑状态时，可以使用下面的几种方法执行指令
+
+第一个参数是改变的命令(createLink)，第二个参数表示是否使用默认用户界面(default：false)，第三个参数是命令的具体值（url）。具体的命令很多，包括加粗、全选、删除等。这个API具有兼容性，所以可以通过后面两个API监测某个命令是否可以使用，返回值都是布尔值。
 
 ~~~js
 if (document.designMode === 'on' || node.contenteditable === true) {
   document.execCommand(command, showDefaultUI, input);
 }
-第一个参数是改变的命令(createLink)，第二个参数表示是否使用默认用户界面(default：false)，第三个参数是命令的具体值（url）。具体的命令很多，包括加粗、全选、删除等。这个API具有兼容性，所以可以通过后面两个API监测某个命令是否可以使用，返回值都是布尔值。
 if (document.queryCommandEnabled('SelectAll')) {
   // 监测浏览器是否兼容，then use this API
 }
@@ -288,9 +300,9 @@ if (document.queryCommandSupported('SelectAll')) {
 
 document.getSelection() 指向 window.getSelection()
 
-### 8.6 Element Node （元素节点）
+### 8.6 元素节点
 
-元素节点：HTML标签渲染成Node树节点就是元素节点，nodeType == 1。元素节点是多种节点的一个集合，继承了Node节点的属性和方法。
+元素节点Element Node ：HTML标签渲染成Node树节点就是元素节点，nodeType == 1。元素节点是多种节点的一个集合，继承了Node节点的属性和方法。
 
 属性
 
@@ -343,8 +355,11 @@ element.outerHTML 返回节点内部的HTML和当前节点的HTML，如果当前
 4、元素尺寸
 
 ~~~js
-element.clientHeight element.clientWidth 返回元素的高度和宽度(如果元素是行内元素，返回的是0，如果CSS中给定元素的尺寸，返回的就是固定值，否则返回界面中实际渲染的值)包括padding ,不包括border和滚动条。
-document.body.clientHeight 网页总高度；document.documentElement.clientHeight 视口高度
+element.clientHeight
+element.clientWidth 返回元素的高度和宽度(如果元素是行内元素，返回的是0，如果CSS中给定元素的尺寸，返回的就是固定值，否则返回界面中实际渲染的值)包括padding ,不包括border和滚动条。
+
+document.body.clientHeight 网页总高度
+document.documentElement.clientHeight 视口高度
 
 clientLeft clientTop 返回元素左边框和顶部边框的宽度(不包括内外边距)，返回的是整数
 
@@ -355,6 +370,7 @@ scrollLeft scrollTop 元素滚动的距离(没有滚动条的元素始终返回0
 offsetParent 获取当前元素外部的一个父元素(这个元素position不是继承的static)，所以父元素一定要相对定位(position relative，如果是继承的话，高度就计算错误了)如果元素是不可见的，或者固定定位，那么父元素是null。
 
 offsetWidth offsetHeight 表示元素的高度和宽度(包括边界和滚动条)，只读
+
 offsetLeft offsetTop 表示元素距离左侧和顶部元素的距离
 
 element.style 设置行内样式(可读写)
@@ -385,38 +401,43 @@ node.getElementsByClassName(''); 结果是动态的伪数组
 node.getElementsByTagName('')
 node.closest('div'); 返回距离当前节点的满足条件的最近的节点(包括自己)
 node.match('div') return true or false
+~~~
+
 
 事件的API
+~~~js
 node.addEventListener('click', function(){..});
 node.removeEventListener('click', function(){});
 let event = new Event('click');
 node.dispatch(event);
-
-element.scrollIntoView(true) 滚动当前元素到浏览器的可见区域，默认参数是true，表示元素的顶部和可见区域的顶部对齐，如果传入的是false，元素的底部和可见区域的底部对齐。
-
-element.getBoundingClientRect() 返回当前元素对应的矩形的坐标对象，具有 x y height width left right top bottom 表示元素相对于视口的位置。这些属性包括内边距和边框。
-
-element.getClientRects() 返回一个伪数组，就是元素对应矩形的参数的伪数组(上面对象属性构成的伪数组) height width left right top bottom 这个方法决定于行内元素是否换行，行内元素每一行的位置偏移。
-
-element.insertAdjacentElement(position, element); 相对于当前元素的指定位置，插入一个新的节点。
-
-element.insertAdjacentHTML();
-element.insertAdjacentText();
-将一段HTML或者文本插入临近的节点
-
-element.remove() 将当前节点从父节点移除
-element.focus()
-element.blur()
-element.click() 模拟了一次鼠标点击，相当于click事件
 ~~~
+
+- element.scrollIntoView(true) 滚动当前元素到浏览器的可见区域，默认参数是true，表示元素的顶部和可见区域的顶部对齐，如果传入的是false，元素的底部和可见区域的底部对齐。
+
+- element.getBoundingClientRect() 返回当前元素对应的矩形的坐标对象，具有 x y height width left right top bottom 表示元素相对于视口的位置。这些属性包括内边距和边框。
+
+- element.getClientRects() 返回一个伪数组，就是元素对应矩形的参数的伪数组(上面对象属性构成的伪数组) height width left right top bottom 这个方法决定于行内元素是否换行，行内元素每一行的位置偏移。
+
+- element.insertAdjacentElement(position, element); 相对于当前元素的指定位置，插入一个新的节点。
+
+- element.insertAdjacentHTML();
+- element.insertAdjacentText(); 将一段HTML或者文本插入临近的节点
+
+- element.remove() 将当前节点从父节点移除
+- element.focus()
+- element.blur()
+- element.click() 模拟了一次鼠标点击，相当于click事件
+
 
 ### 8.7 属性操作
 
 元素节点具有属性集合，attributes，其他节点都是null。属性集合对应HTML中的各种属性，是一个动态的伪数组。可以通过伪数组的下标或者键，获取对应的值，每一项是键值对。（id="wrap"）
 
-标准属性：例如id，class，src；非标准属性可以是用户自定义的属性(data-*)。自定义属性需要使用data-开始，这样可以通过验证。一个元素节点创建出来后就会具有标准属性。注意，JSX 中使用 HtmlFor, className 代替。
+标准属性：例如id，class，src；非标准属性可以是用户自定义的属性(data-*)。自定义属性需要使用data-开始，这样可以通过验证。
 
-API
+一个元素节点创建出来后就会具有标准属性。
+
+注意，JSX 中使用 HtmlFor, className 代替。
 
 ~~~js
 getAttribute('id')
@@ -427,9 +448,9 @@ hasAttributes()
 removeAttribute('wrap')
 ~~~
 
-### 8.8 文本节点（text node）
+### 8.8 文本节点
 
-text 节点是元素节点和属性节点的子节点，空格也是一个文本节点。
+text node节点是元素节点和属性节点的子节点，空格也是一个文本节点。
 
 属性
 
@@ -461,7 +482,9 @@ p.normalize();
 p.childNodes.length === 1
 ~~~
 
-### 8.9 DocumentFragment Node
+### 8.9 文本片段节点
+
+DocumentFragment Node
 
 文本片段节点，没有parentNode，可以存放文本片段，在这里存放文本片段的速度比直接操作DOM快速，继承自Node和parentNode节点，所以具有继承的属性。children ,firstElementChildren, lastElementChilden, childElementCount 等属性。
 
@@ -471,7 +494,7 @@ https://wangdoc.com/javascript/dom/css.html
 
 使用 JS 去操作 CSS 来更改界面样式
 
-#### 1、使用DOM操作CSS
+#### 1、DOM操作CSS
 
 直接改变DOM中的属性节点 setAttribute('style', 'color: pink;')；改变行内样式 
 
@@ -528,11 +551,15 @@ isPropertySupported('background-clip')
 
 CSS.escape('foo#foo') 使用 document.getElementById('wrap'), 如果内部字符串含有特殊字符，使用这个方法转换后可以进行茶轩；CSS.supports('width', '100px') CSS.supports('width: 100px') 可以监测当前环境是否支持这种类型的样式，第二种写法不能加入分号。
 
-#### 5、window.getComputedStyle
+#### 5、getComputedStyle
 
 前几种方法是获取静态的样式，实际上的样式是浏览器计算结果，这个API可以获取计算后的结果。
 
-let cssStyle = window.getCOmputedStyle(div, ':after') 第二个参数是可选参数，获取的对象是动态变化的实际渲染对象（只读）；可以通过点语法获取具体的样式；获取的结果是绝对的计算结果（px rgb）需要通过单个属性（font-size）而不能直接获取font的属性。
+~~~js
+let cssStyle = window.getComputedStyle(div, ':after') 
+~~~
+
+第二个参数是可选参数，获取的对象是动态变化的实际渲染对象（只读）；可以通过点语法获取具体的样式；获取的结果是绝对的计算结果（px rgb）需要通过单个属性（font-size）而不能直接获取font的属性。
 
 界面上可以用这个方法获取伪元素的实际样式
 
@@ -548,7 +575,9 @@ styleSheet.deleteRule(1) 删除1条样式表的规则
 
 界面添加样式表的方法：添加style节点或者link节点
 
-### 8.11 Mutation observer
+### 8.11 变化观察器
+
+这个在生产中没有用到过
 
 #### 1、观察器定义
 
