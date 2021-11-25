@@ -1,4 +1,6 @@
-# The art of Execution 执行力的艺术
+# The art of Execution
+
+执行力的艺术
 
 整体评价：这本书和看人，心理性格分析很相似；具体技术点说的不多。
 

@@ -74,7 +74,11 @@ nav:
         - '07-异步操作': 'ebook-JS-basic/07-异步操作.md'
         - '08-DOM': 'ebook-JS-basic/08-DOM.md'
         - '09-Event': 'ebook-JS-basic/09-Event.md'
-        - '10-BOM': 'ebook-JS-basic/10-BOM.md'
+        - '10-1-BOM': 'ebook-JS-basic/10-1-BOM.md'
+        - '10-2-同源策略': 'ebook-JS-basic/10-2-同源策略.md'
+        - '10-3-表单': 'ebook-JS-basic/10-3-表单.md'
+        - '10-4-IndexedDB': 'ebook-JS-basic/10-4-IndexedDB.md'
+        - '10-5-web-worker': 'ebook-JS-basic/10-5-web-worker.md'
         - '11-网页元素接口': 'ebook-JS-basic/11-网页元素接口.md'
     - 阮一峰 ES6 语法:
         - '01-介绍': 'ebook-JSES6-RYF/01-介绍.md'

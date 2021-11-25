@@ -1,5 +1,7 @@
 ## 第九章 事件
 
+2021-11-24 
+
 ### 9.1 事件对象
 
 事件是组件间通信的方式之一，可以用来异步编程，有三个参数：
@@ -178,7 +180,7 @@ if (e.getModifierState('Alt')+e.getModifierState('Control')+e.getModifierState('
 }
 ~~~
 
-### 9.6进度事件:a:
+### 9.6进度事件
 
 外部资源异步加载时，例如 image，link，video, audio 等资源加载时触发的事件，或者文件上传（File upload），继承了 ProgressEvent 事件接口，主要包括下面几个事件：
 
@@ -227,8 +229,6 @@ total 总量
 
 类似于其他事件，构造函数的options和实例属性相同（JS例子）。
 
-==————————————==
-
 ### 9.7 表单事件
 
 #### input
@@ -246,6 +246,7 @@ let ele = document.getElementById('#test');
 ele.addEventListener('select', (e) => {
   console.log(e.type === 'select');
 }, false);
+
 e.target.value (selectionirection selectionStart selectionEnd) 可以获取选中的文本
 ~~~
 
@@ -373,7 +374,7 @@ function onMove(e) {
 }
 ~~~
 
-### 9.9 拖拽事件:a:
+### 9.9 拖拽事件
 
 DragEvent 具有 ==dataTransfer== 的属性，这个属性很重要！dataTransfer 具有很多属性和方法
 
@@ -759,11 +760,11 @@ div.addEventListener('dragstart', function (e) {
 }, false);
 ```
 
-
+因为原生的拖拽事件比较繁琐，所以 react 中通常使用 react-dnd 实现拖拽效果（使用 dnd 高阶组件包裹，类似 redux 的传值）
 
 ### 9.10 其他事件
 
-#### 1、beforeUnload
+#### 1、beforeunload
 
 窗口、文档、各种资源卸载前触发事件，主要避免用户未提交保存表单，误操作关闭网页。
 
@@ -1047,8 +1048,9 @@ img video 在加载开始时，还会触发 onloadstart 事件
 
 7、其他
 
-~~~js
-鼠标的事件属性。
+鼠标的事件属性
+
+~~~
 onclick
 ondblclick
 onmousedown
