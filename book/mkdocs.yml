@@ -44,7 +44,8 @@ markdown_extensions:
   - pymdownx.tilde
 
 # minify: https://github.com/byrnereese/mkdocs-minify-plugin
-plugins:    
+plugins:
+  - search # necessary for search to work
   - minify:
       minify_html: true
       minify_js: true

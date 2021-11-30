@@ -411,7 +411,23 @@ parseInt(number, index)
 
 
 
+#### 19 正则表达式问题
 
+使用构造函数创建正则表达式，如果传参有特殊符号，可能报错 ’invalid-regular-expression‘
+
+解决：先把字符串中的特殊符号转义，然后创建正则表达式
+
+~~~js
+// The special symbols should not be used as wildcards in regular expressions, need to be escaped into normal symbols
+const escapeRegExp = (value) => {
+  if (typeof value !== 'string') return '';
+  return value.replace(/[.\\[\]{}()|^$?*+]/g, '\\$&');
+};
+
+let value = '[]'
+let reg = new RegExp(escapeRegExp(value), 'ig');
+console.log(reg); // /\[\]/gi
+~~~
 
 
 

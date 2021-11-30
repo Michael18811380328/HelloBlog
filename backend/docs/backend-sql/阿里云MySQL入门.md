@@ -1,4 +1,6 @@
-# MySQL 数据库入门学习-2021-07-23
+# MySQL 数据库入门学习
+
+2021-07-23
 
 阿里云大学 链接地址：https://edu.aliyun.com/course/153/lesson/list
 
@@ -58,7 +60,9 @@ mysqladmin -u root -p password 'root'
 
 CLI
 
+~~~bash
 sudo /Library/StartupItems/MySQLCOM/MYSQLCOM start | stop | restart
+~~~
 
 GUI
 
@@ -138,35 +142,29 @@ database 包括 tables 表中每一行就是一条数据；列就是不同的字
 
 #### 文本类
 
-VARCHAR(size) 长度小于255的可变长度字符串：varchar 长度小于65535字符（通常文本足够使用），长度可以改变（mqsql 5.0.3 之前表示65535字节），查询速度中等
-
-TEXT 长度中等的字符串，text 字符串长度不受限制，查询速度最慢，通常优先使用varchar
-
-LONGTEXT 长度很长的字符串
-
-CHAR：char 表示传统的字符串，字符串的长度小于255字符，长度固定，适用于较短固定长度的数据（身份证号和电话号），查询表速度最快
-
-Foreign key 外键
-
-primary key 主键
+- VARCHAR(size) 长度小于255的可变长度字符串：varchar 长度小于65535字符（通常文本足够使用），长度可以改变（mqsql 5.0.3 之前表示65535字节），查询速度中等
+- TEXT 长度中等的字符串，text 字符串长度不受限制，查询速度最慢，通常优先使用varchar
+- LONGTEXT 长度很长的字符串
+- CHAR：char 表示传统的字符串，字符串的长度小于255字符，长度固定，适用于较短固定长度的数据（身份证号和电话号），查询表速度最快
+- Foreign key 外键
+- primary key 主键
 
 在mysql中，如果把表的主键设为auto_increment类型，数据库就会自动为主键赋值。
 
 #### 日期类
 
-DATETIME 年月日时分秒
+- DATETIME 年月日时分秒
 
 #### 数值类
 
-TINYINT -128~127 或者存储布尔值
+- TINYINT -128~127 或者存储布尔值
+- INT 小数字
+- BIGINT 大数字（ID，自增长）
+- DOUBLE 浮点型（不使用FLOAT）
 
-INT 小数字
+## 06 数据库表操作
 
-BIGINT 大数字（ID，自增长）
-
-DOUBLE 浮点型（不使用FLOAT）
-
-## 06 数据表操作（table）
+创建表，删除表，描述表结构
 
 ~~~mysql
 CREATE TABLE account(
@@ -221,7 +219,7 @@ alter table 表名 change 旧列名 新列名 新的数据类型
 
 ## 08 表数据操作
 
-#### insert 插入
+### insert 插入
 
 增加（插入）表数据
 
@@ -230,7 +228,7 @@ insert into 表名 values(key1, key2, key3...)
 insert into tableName (column1, column2) values(key1, key2)
 ~~~
 
-#### select 查询
+### select 查询
 
 查询表数据
 
@@ -239,23 +237,8 @@ select * from 表名
 select 列名1, 列名2 from 表名
 ~~~
 
-#### where 筛选
 
-~~~mysql
-select * from tableName where title = 't';
-# 查询条件可以是大于小于等于不等于，或者between范围
-# 可以通过 and or 进行多元选择，括号增加优先级
-# 注意：判断相等是 = 不是两个等号
-select * from gc where name = 'Michael' and (id = 20 or id = 22);
-~~~
-
-判断 null 是特殊的，需要通过 is  is not 判断，不能通过 = != 判断
-
-~~~mysql
-select * from gc where email is null and name is not null;
-~~~
-
-#### distinct 去重
+### distinct 去重
 
 如果筛选过程中有重复的数据，那么可以加上关键字 distinct 去除重复的行。下面的查询结果中，如果name和age相同的数据有多行，那么结果中只显示一行
 
@@ -263,7 +246,7 @@ select * from gc where email is null and name is not null;
 select distinct name,age from gc;
 ~~~
 
-#### order by 排序
+### order by 排序
 
 升序或者降序
 
@@ -274,7 +257,7 @@ select * from gc order by id asc;
 select * from gc order by age asc, name desc;
 ~~~
 
-#### limit 限制
+### limit 限制
 
 使用 limit 截取查询结果（类似于splice函数）limit 第一个参数是开始的位置（默认是0，可以不选），第二个参数是截取的数量。
 
@@ -286,7 +269,7 @@ select * from gc [where name is not null] [order by id asc] limit 3, 5;
 # 第二句：limit 从index=3 开始截取，截取5条记录
 ~~~
 
-#### 组合使用 insert select
+### 组合使用 insert select
 
 可以在一个表中查询数据，select * from table， 然后把查询的结果插入到另一个表中（数据迁移会用到）
 
@@ -295,7 +278,7 @@ insert into account values(10);
 insert into account select name, age from oldAccount;
 ~~~
 
-#### update 更新
+### update 更新
 
 update tableName set columnName = newValue where XXX
 
@@ -305,9 +288,29 @@ update tableName set columnName = newValue where XXX
 update account set name = 'Tom', email = '123@qq.com' where id = 1;
 ~~~
 
-#### where 高级用法
+### where
 
-in 字符串范围（离散值）
+#### 基本用法
+
+使用 where 对搜索结果筛选
+
+~~~mysql
+select * from tableName where title = 't';
+# 查询条件可以是大于，小于，等于，不等于，或者between范围
+# 可以通过 and or 进行多元选择，括号增加优先级
+~~~
+注意：判断相等是 = 不是两个等号
+~~~mysql
+select * from gc where name = 'Michael' and (id = 20 or id = 22);
+~~~
+
+判断 null 是特殊的，需要通过 is  is not 判断，不能通过 = != 判断
+
+~~~mysql
+select * from gc where email is null and name is not null;
+~~~
+
+#### in 范围（离散）
 
 ~~~mysql
 select * from account where id in (value1, value2...);
@@ -316,13 +319,32 @@ select * from account where id in (select id from oldAccount where id  < 10);
 
 从一个集合中选择另一个集合（选择可以是字符串范围，是数值范围的扩大）
 
-between 数值范围（连续）
+#### between 范围（连续）
 
 ~~~mysql
 select * from account where id between 5 and 10;
 # 这里的选择是[5, 10]
 select * from account where id not between 5 and 10;
+~~~
 
-# Like 字符串的模糊匹配
+####  Like 字符串的模糊匹配
+
+like 字符串的模糊匹配
+
+~~~mysql
 select * from account where name like '%ab%';
 ~~~
+
+ilike 不区分大小写进行模糊匹配
+
+~~~mysql
+select * from account where name ilike '%mike%';
+~~~
+
+或者使用 lower 函数处理搜索值，也可以实现大小写不敏感
+
+~~~mysql
+select * from account where name like lower('%mike%');
+~~~
+
+这里的 %% 表示搜索结果中包含这个值

@@ -1,8 +1,12 @@
 # Jane Eyre
 
+简爱是自己入门的一本小说，情节生动，所以在此分享。早期阅读的是简化版本，难度较低，生词不超过300个。这个是完整本小说，需要一段时间阅读。
+
 ## Biography
 
-Charlotte Bront (1816-1855).—Novelist, daughter of the Rev. Patrick B., a clergyman of Irish descent and of eccentric habits who embittered the lives of his children by his peculiar theories of education. Brought up in a small parsonage close to the graveyard of a bleak, windswept village on the Yorkshire moors, and left motherless in early childhood, she was “the motherly friend and guardian of her younger sisters,” of whom two, Emily and Anne, shared, but in a less degree, her talents. After various efforts as schoolmistresses and governesses, the sisters took to literature and published a vol. of poems under the names of Currer, Ellis, and Acton Bell, which, however, fell flat. Charlotte then wrote her first novel, The Professor, which did not appear until after her death, and began Jane Eyre, which, appearing in 1847, took the public by storm. It was followed by Shirley in 1849, and Villette in 1852. In 1854 she was married to her father’s curate, the Rev. A. Nicholls, but after a short though happy married life she died in 1855. 
+Charlotte Bront (1816-1855).—Novelist（小说家）, daughter of the Rev. Patrick B., a clergyman（牧师） of Irish descent（爱尔兰血统） and of eccentric habits（古怪的习惯） who embittered（折磨） the lives of his children by his peculiar（独特的） theories（理论） of education. 
+
+Brought up（长大） in a small parsonage（牧师诸多） close to the graveyard（墓地） of a bleak（荒凉的）, windswept village on the Yorkshire moors, and left motherless in early childhood, she was “the motherly friend and guardian of her younger sisters,” of whom two, Emily and Anne, shared, but in a less degree, her talents. After various efforts as schoolmistresses and governesses, the sisters took to literature and published a vol. of poems under the names of Currer, Ellis, and Acton Bell, which, however, fell flat. Charlotte then wrote her first novel, The Professor, which did not appear until after her death, and began Jane Eyre, which, appearing in 1847, took the public by storm. It was followed by Shirley in 1849, and Villette in 1852. In 1854 she was married to her father’s curate, the Rev. A. Nicholls, but after a short though happy married life she died in 1855. 
 
 Anne B. (1820-1849) was the authoress of The Tenant of Wildfell Hall and Agnes Grey (1848). She had not the intellectual force of her sisters. The novels of Charlotte especially created a strong impression from the first, and the published of Jane Eyre gave rise to much curiosity and speculation as to its authorship. Their strength and originality have retained for them a high place in English fiction which is likely to prove permanent. There is a biography of Charlotte by Mrs. Gaskell (q.v.). 
 
