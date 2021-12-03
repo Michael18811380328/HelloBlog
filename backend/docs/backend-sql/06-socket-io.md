@@ -1,5 +1,7 @@
 # Socket.IO
 
+2021-12-02
+
 Socket.IO 是一个基于 web-socket 通信的库，可以在浏览器和服务器之间实现实时、双向和基于事件的通信。 
 
 包括：Node.js 服务器和浏览器的 Javascript 客户端库。
@@ -15,7 +17,7 @@ Socket.IO 是一个基于 web-socket 通信的库，可以在浏览器和服务�
 - 二进制流：从 1.0 开始，可以来回发送任何 blob：图像、音频、视频。
 - 文档协作：允许用户同时编辑文档并查看彼此的更改。
 
-Microsoft Office 使用，性能没问题
+Microsoft Office 使用这个库，性能上没问题
 
 
 
@@ -318,7 +320,7 @@ Here are some ideas to improve the application:
 
 You can find it on GitHub [here](https://github.com/socketio/chat-example).
 
-```
+```bash
 git clone https://github.com/socketio/chat-example.git
 ```
 

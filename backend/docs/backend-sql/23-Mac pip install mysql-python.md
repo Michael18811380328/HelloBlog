@@ -1,12 +1,16 @@
-# Mac pip install mysql-python-2021-07-23
+# Mac pip install mysql-python
+
+2021-07-23
 
 ## 问题描述
+
+mysql-python 安装失败的解决方法
 
 Mac pip install mysql-python unsuccessfulI installed MySQL and Workbench from website.
 
 I have a django project whose requirements.txt:
 
-```python
+```
 Django==1.11.12
 djangorestframework==3.8.2
 django-cors-headers==2.2.0
@@ -35,14 +39,19 @@ PATH=$PATH:/usr/local/mysql/bin
 It now throws
 
 ```bash
-    _mysql.c:44:10: fatal error: 'my_config.h' file not found
-    #include "my_config.h"
-             ^~~~~~~~~~~~~
-    1 error generated.
-    error: command 'cc' failed with exit status 1
+_mysql.c:44:10: fatal error: 'my_config.h' file not found
+#include "my_config.h"
+            ^~~~~~~~~~~~~
+1 error generated.
+error: command 'cc' failed with exit status 1
 
-    ----------------------------------------
-Command ""/Users/nitish/gitProjects/Vision Backlog/vb_env/bin/python" -u -c "import setuptools, tokenize;__file__='/private/var/folders/ql/_w2_rlvs2351pdcnzhn04sf40000gn/T/pip-install-M4ue9E/mysql-python/setup.py';f=getattr(tokenize, 'open', open)(__file__);code=f.read().replace('\r\n', '\n');f.close();exec(compile(code, __file__, 'exec'))" install --record /private/var/folders/ql/_w2_rlvs2351pdcnzhn04sf40000gn/T/pip-record-7OCzf1/install-record.txt --single-version-externally-managed --compile --install-headers "/Users/nitish/gitProjects/Vision Backlog/vb_env/include/site/python2.7/mysql-python"" failed with error code 1 in /private/var/folders/ql/_w2_rlvs2351pdcnzhn04sf40000gn/T/pip-install-M4ue9E/mysql-python/
+----------------------------------------
+Command ""/Users/nitish/gitProjects/Vision Backlog/vb_env/bin/python" -u -c "import setuptools,tokenize;
+__file__='/private/var/folders/ql/_w2_rlvs2351pdcnzhn04sf40000gn/T/pip-install-M4ue9E/mysql-python/setup.py';
+f=getattr(tokenize, 'open', open)(__file__);
+code=f.read().replace('\r\n', '\n');
+f.close();
+exec(compile(code, __file__, 'exec'))" install --record /private/var/folders/ql/_w2_rlvs2351pdcnzhn04sf40000gn/T/pip-record-7OCzf1/install-record.txt --single-version-externally-managed --compile --install-headers "/Users/nitish/gitProjects/Vision Backlog/vb_env/include/site/python2.7/mysql-python"" failed with error code 1 in /private/var/folders/ql/_w2_rlvs2351pdcnzhn04sf40000gn/T/pip-install-M4ue9E/mysql-python/
 ```
 
 Why is this happening?

@@ -1,5 +1,7 @@
 # node连接Mysql报错ER_NOT_SUPPORTED_AUTH_MODE
 
+2021-12-01
+
 https://www.cnblogs.com/jing-tian/p/11688073.html
 
 ## 报错信息

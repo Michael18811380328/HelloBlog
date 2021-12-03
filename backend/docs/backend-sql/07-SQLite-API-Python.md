@@ -1,10 +1,12 @@
 # SQLite - Python
 
+2021-12-02
+
 ## 安装
 
-SQLite3 可使用 sqlite3 模块与 Python 进行集成。sqlite3 模块是由 Gerhard Haring 编写的。它提供了一个与 PEP 249 描述的 DB-API 2.0 规范兼容的 SQL 接口。您不需要单独安装该模块，因为 Python 2.5.x 以上版本默认自带了该模块。
+SQLite3 可使用 sqlite3 模块与 Python 进行集成。sqlite3 模块是由 Gerhard Haring 编写的。它提供了一个与 PEP 249 描述的 DB-API 2.0 规范兼容的 SQL 接口。不需要单独安装该模块，因为 Python 2.5.x 以上版本默认自带了该模块。
 
-为了使用 sqlite3 模块，您首先必须创建一个表示数据库的连接对象，然后您可以有选择地创建光标对象，这将帮助您执行所有的 SQL 语句。
+为了使用 sqlite3 模块，首先必须创建一个表示数据库的连接对象，然后可以有选择地创建光标对象，可以执行所有的 SQL 语句。
 
 ## Python sqlite3 模块 API
 
@@ -37,11 +39,6 @@ SQLite3 可使用 sqlite3 模块与 Python 进行集成。sqlite3 模块是由 G
 import sqlite3
 conn = sqlite3.connect('test.db')
 print "Opened database successfully";
-
-#
-import sqlite3
-conn = sqlite3.connect('michael.db')
-print "open database successfully"
 ```
 
 在这里，您也可以把数据库名称复制为特定的名称 **:memory:**，这样就会在 RAM 中创建一个数据库。现在，让我们来运行上面的程序，在当前目录中创建我们的数据库 **test.db**。您可以根据需要改变路径。保存上面代码到 sqlite.py 文件中，并按如下所示执行。如果数据库成功创建，那么会显示下面所示的消息：
@@ -69,22 +66,6 @@ c.execute('''CREATE TABLE COMPANY
        ADDRESS        CHAR(50),
        SALARY         REAL);''')
 print "Table created successfully";
-conn.commit()
-conn.close()
-
-import sqlite3
-conn = sqlite3.connect('michael.db')
-print "OPEN database successfully"
-c = conn.cursor()
-c.execute(
-    '''CREATE	TABLE ACCOUNT
-    (ID INT PRIMARY KEY NOT NULL,
-    NAME TEXT NOT NULL,
-    AGE INT NOT NULL,
-    ADDRESS CHAR(50),
-    SALARY REAL);'''
-)
-print "create table successfully"
 conn.commit()
 conn.close()
 ```
@@ -120,14 +101,6 @@ c.execute("INSERT INTO COMPANY (ID,NAME,AGE,ADDRESS,SALARY) \
 conn.commit()
 print "Records created successfully";
 conn.close()
-
-import sqlite3
-conn = sqlite3.connect('michael.db')
-c = conn.cursor()
-print 'Open successfully'
-c.execute("INSERT INTO ACCOUNT (ID,NAME,AGE,ADDRESS,SALARY) \ VALUES(1, 'Mike', 32, NULL, 10000)")
-conn.commit()
-conn.close()
 ```
 
 上述程序执行时，它会在 COMPANY 表中创建给定记录，并会显示以下两行：
@@ -152,17 +125,6 @@ for row in cursor:
    print "NAME = ", row[1]
    print "ADDRESS = ", row[2]
    print "SALARY = ", row[3], "\n"
-conn.close()
-
-import sqlite3
-conn = sqlite3.connect('test.db')
-c = conn.cursor()
-cursor = c.execute("SELECT id, name, address, salary from ACCOUNT")
-for row in cursor:
-  print row[0]
-  print row[1]
-  print row[2]
-  print row[3]
 conn.close()
 ```
 

@@ -58,9 +58,7 @@ redis> get foo
 
 注1：mac 需要在 usr/local 目录下进行解压安装，需要 sudo 命令
 
-注2：如果 make 执行报错 xcrun: error: invalid active developer path (/Library/Developer/CommandLineTools), missing xcrun at: /Library/Developer/CommandLineTools/usr/bin/xcrun，说明缺少 XCode软件，在终端执行 xcode-select --install 并安装（Xcode很大，内存限制暂时没有装）
-
-目前 mac 没有 Xcode，无法执行 make 命令，所以在 docker 中安装测试
+注2：如果 make 执行报错 xcrun: error: invalid active developer path (/Library/Developer/CommandLineTools), missing xcrun at: /Library/Developer/CommandLineTools/usr/bin/xcrun，说明缺少 XCode软件，在终端执行 xcode-select --install 并安装。可能宿主机中可能有 redis，建议在 docker 内部安装 redis 镜像，这样不同版本不会干扰。
 
 ### Redis 下载安装到docker
 
