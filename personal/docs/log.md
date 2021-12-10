@@ -143,7 +143,7 @@ Happy Spring Festicval! The code-mirror is a useful library when we show codes i
 
 At the last day in March, I need a review about this month. There are some thoughts. 
 
-1. How to deal with new knowledge and old tect knowledge? React-Router is much better than hash-transfer. And it may save more resources. When we use <Link> tag to jump to other page, the whole page don't reload, React just repaint for the added component. The inner tag is <a>, and react-router forbid the default function of <a> tag.
+1. How to deal with new knowledge and old tect knowledge? React-Router is much better than hash-transfer. And it may save more resources. When we use `<Link>` tag to jump to other page, the whole page don't reload, React just repaint for the added component. The inner tag is `<a>`, and react-router forbid the default function of `<a>` tag.
 
 2. You shouldn't create a circle, and you should use the circle. Make our dialogs and other component more useful.
 
@@ -249,5 +249,18 @@ learn leetcode basic methods(sort, search) review basic data structure(array, ob
 - leetcode 500+
 - aha-algre（C）several sorts method and tranverse tree and graph. The pointer is a little difficult.
 
-### 2021.07
+### 2021.12
 
+Recent feelings:
+
+I have learnt computer science for about five years. I must improve my comprehensive quality so that I can stand out in the future.
+
+React vs Vue, and other various third-party libraries, such as Redux, React-Response, and feature components abound. Superset languages such as ts and less also abound. Backend frameworks range from Django and Flask for Python, Beego for Golang, PHP and Ruby for the past, Koa and egg for nodeJS. I have been in touch with a lot, but I didn't mastered it, what a pity, but I have some understanding of the basic structure logic.
+
+The more you use it, the more you know it. If you don't use it, you will forget it. So what do you learn by yourself? How to learn? In small companies, versatile talents are needed, and the frontend and backend, database, networks, including products and design, need a simple understanding. However, due to the small scale of the company, the technical depth and work are not very standardized, and there is no particularly big competition to force them to make progress, which is the limitation. In large company , you may be just a screw that gets a frontend component or function right. That's the difference between two kinds of companies.
+
+There is still a lack of comprehensive capabilities for large project architectures; I'm try it whenever I have the chance to improve myself.
+
+What about future development? The core algorithm and ECMA syntax are still fundamental, and new technologies emerge in endlessly. So closely following the technical route of big companies (such as Alibaba and Tencent) represents the future development direction and technical standards.
+
+Of course, life is not only about work, but also about future development and how to walk out of our own way in spare time.

@@ -464,6 +464,8 @@ http://www.chromium.org/getting-involved/dev-channel
 
 早期版本的调试步骤参考：https://www.yuque.com/wuchendi/fe/winwechat 具体需要下载一个 dev 的包，然后可以打开调试台
 
+最新的 windows 微信版本支持 ES6，所以不需要做兼容处理
+
 
 
 #### 29 arguments.callee 使用
@@ -538,6 +540,8 @@ react-dnd 使用了高阶组件，可能在 render 时，重新计算了组件�
 6、更改：把 Form 改成 DIV 就不会跳转了。其他的情况也可能是这个问题。
 
 
+
+TAB 实现有两种方法：HTML 设置 button 或者 input，浏览器会自动 TAB；或者设置 JS 然后通过 state 控制状态，设置 currentTab，然后设置对应的样式，这样可以记录上一次的位置。
 
 
 

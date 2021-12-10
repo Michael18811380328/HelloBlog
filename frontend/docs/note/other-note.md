@@ -23,6 +23,24 @@ HTMLescape: function(html) {
 
 开课吧笔记有两节安全的课程，可以参考
 
+#### 2 本地不同项目调试问题
+
+- 本地浏览器支持跨域操作（后端服务和前端页面不在一个端口，但是需要请求登录）：更改本地浏览器配置。可以设置 webpack 支持代理，但是设置后无效，可能和 webpack 版本有关，所以直接使用命令行打开浏览器（增加参数打开）参考：https://blog.csdn.net/qq_41541368/article/details/104035074 扩展：直接写一个脚本，电脑开机后直接命令行执行，打开对应的程序，不需要手动双击每一个程序
+
+~~~js
+open -n /Applications/Google\ Chrome.app/ --args --disable-web-security  --user-data-dir=/Users/seafile/workroom/chrome-config
+
+open /Applications/Google\ Chrome.app && open /Applications/Typora.app 
+~~~
+
+- 如果本地调试两个前端项目，一个项目需要使用另一个项目打包后的文件，可以直接写一个脚本，然后复制这个打包后的文件到另一个文件夹下面（npm link 也可以实现，但是可能存在缓存问题等等），所以写了这个联调脚本。本地联调测试脚本
+
+~~~js
+"move": "npm run prepublishOnly && mv -f /Users/seafile/Desktop/code-seafile/dtable/es /Users/seafile/workroom/dev/dtable-dev/data/dev/dtable-web/frontend/node_modules/@seafile/dtable",
+~~~
+
+
+
 
 
 ## NodeJS
