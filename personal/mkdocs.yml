@@ -96,6 +96,11 @@ nav:
         - '股市入门': 'economy/股市入门.md'
         - '致当下奋斗的青年': 'economy/致当下奋斗的青年.md'
         - '降准预期下的货币供应问题': 'economy/降准预期下的货币供应问题.md'
+        - '小狗钱钱2.md': 'economy/小狗钱钱2.md'
+        - '房价问题-恩格斯.md': 'economy/房价问题-恩格斯.md'
+        - '穷爸爸富爸爸.md': 'economy/穷爸爸富爸爸.md'
+        - '财务自由之路.md': 'economy/财务自由之路.md'
+        - '辞职创业前的十节课.md': 'economy/辞职创业前的十节课.md'
     - 人生思考:
         - '40退休': 'other/40退休.md'
         - '426 Upgrade Required 报错': 'other/426 Upgrade Required 报错.md'
@@ -125,6 +130,8 @@ nav:
         - '詹宏志读书': 'other/詹宏志读书.md'
         - '阿里巴巴2019技术展望': 'other/阿里巴巴2019技术展望.md'
         - '骡子和人生': 'other/骡子和人生.md'
+        - '保持精力充沛': 'other/保持精力充沛.md'
+        - '知乎高赞': 'other/知乎高赞.md'
     - 数学算法:
         - 'Hire for slope not Y Intercept': 'math/Hire for slope not Y Intercept.md'
         - '期望-方差-协方差-相关系数': 'math/期望-方差-协方差-相关系数.md'

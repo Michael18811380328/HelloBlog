@@ -263,6 +263,7 @@ nav:
         - 'stackoverflow-Highlight text using ReactJS': 'react/stackoverflow-Highlight text using ReactJS.md'
         - '对React children理解': 'react/对React children理解.md'
         - '阮一峰 react 系列教程': 'react/阮一峰 react 系列教程.md'
+        - 'react-useRef': 'react/hook/react-useRef.md'
     - 工程化:
         - 'BUG-Auto packing the repository in background for optimum performance': 'git/BUG-Auto packing the repository in background for optimum performance.md'
         - 'HTTP 教程': 'git/HTTP 教程.md'

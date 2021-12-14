@@ -152,6 +152,8 @@ nav:
         - '20-前端安全-防御手段': 'ebook-kaikeba-frontend/20-前端安全-防御手段.md'
     - 尚硅谷笔记:
         - 'nodeJS-basic': 'ebook-upguigu-nodejs/nodeJS-basic.md'
+    - 黑马程序员笔记:
+        - '08-第八天-nodeJS': 'ebook-heima-nodejs/08-第八天-nodeJS.md'
     - Javascript 红宝书高级教程:
         - '11-choose': 'book-JS-primer-code-design/11-choose.md'
         - '22-高级用法': 'book-JS-primer-code-design/22-高级用法.md'
@@ -168,3 +170,4 @@ nav:
         - '代码整洁之道 读书笔记': 'other/代码整洁之道 读书笔记.md'
         - '其他书单': 'other/其他书单.md'
         - 'ebook-jstraining-RYF': 'other/前端工程化笔记-阮一峰.md'
+        - 'H5C3从入门到精通': 'other/H5C3从入门到精通.md'
