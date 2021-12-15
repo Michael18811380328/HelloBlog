@@ -7,6 +7,8 @@ import toFinite from '../toFinite.js'
  * @private
  * @param {boolean} [fromRight] Specify iterating from right to left.
  * @returns {Function} Returns the new range function.
+ */
+function createRange(fromRight) {
   return (start, end, step) => {
     // Ensure the sign of `-0` is preserved.
     start = toFinite(start)
