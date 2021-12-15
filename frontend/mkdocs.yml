@@ -74,6 +74,7 @@ nav:
         - 'frontend-note': 'note/frontend-note.md'
         - 'other-note': 'note/other-note.md'
         - 'think-note': 'note/think-note.md'
+        # 提升工作效率
     - Javascript:
         - 'CommonJS-AMD-CMD': 'javascript/CommonJS-AMD-CMD.md'
         - 'ES6 迭代器与生成器': 'javascript/ES6 迭代器与生成器.md'
