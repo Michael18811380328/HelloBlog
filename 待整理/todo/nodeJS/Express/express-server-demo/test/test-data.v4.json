@@ -1,0 +1,60 @@
+{
+  "version": 3,
+  "format_version": 3,
+  "statistics": [],
+  "links": [],
+  "tables": [
+    {
+      "_id": "C7Zb",
+      "name": "Table1",
+      "rows": [
+        {
+          "_id": "RHzgGyz8Tn-dJyu8wxp8Zw"
+        }
+      ],
+      "columns": [
+        {
+          "key": "0000",
+          "name": "Name",
+          "type": "text",
+          "width": 200,
+          "editable": true,
+          "resizable": true
+        }
+      ],
+      "views": [
+        {
+          "name": "Default View",
+          "type": "table",
+          "is_locked": false,
+          "rows": [],
+          "formula_rows": {},
+          "summaries": [],
+          "filter_conjunction": "And",
+          "filters": [],
+          "sorts": [],
+          "hidden_columns": [],
+          "groupbys": [],
+          "groups": []
+        },
+        {
+          "_id": "HJ0N",
+          "name": "2344",
+          "type": "table",
+          "is_locked": false,
+          "rows": [],
+          "formula_rows": {},
+          "summaries": [],
+          "filter_conjunction": "And",
+          "sorts": [],
+          "filters": [],
+          "hidden_columns": [],
+          "groupbys": [],
+          "group_rows": [],
+          "groups": []
+        }
+      ],
+      "id_row_map": {}
+    }
+  ]
+}

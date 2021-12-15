@@ -1,0 +1,26 @@
+# dependencies
+/node_modules
+
+# dist
+/dist
+
+# config
+/config/
+
+# package-lock.json
+
+# misc
+.DS_Store
+
+# log
+*.log
+
+# pyc
+*.pyc
+
+# server.pid
+server.pid
+
+# *.sh
+index.sh
+deploy.sh

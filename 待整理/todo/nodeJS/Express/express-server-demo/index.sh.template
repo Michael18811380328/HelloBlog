@@ -1,0 +1,41 @@
+#!/bin/bash
+
+# set environment variables
+export CCNET_CONF_DIR=/data/conf
+export SEAFILE_CONF_DIR=/data/conf/seafile-data
+export PYTHONPATH=/data/dev/libsearpc:/data/dev/ccnet-pro-server/python:/data/dev/seafile-pro-server/python:$PYTHONPATH
+export LOG_DIR=/data/logs
+export DTABLE_SERVER_CONFIG=config/config.json
+export DTABLE_SERVER_LOG_LEVEL=info
+
+if ! pgrep seaf-server 2>/dev/null 1>&2; then
+    echo "please start seaf-server first";
+    exit 1;
+fi
+
+PROJDIR="/data/dev/dtable-server"
+PIDFILE="$PROJDIR/server.pid"
+
+cd $PROJDIR
+
+python bin/create_user.py &
+
+if [[ -f $PIDFILE && `cat $PIDFILE` && -e "/proc/$(cat $PIDFILE)" ]]; then
+    PID=`cat -- $PIDFILE`
+    echo "Killing processes: $PID"
+    kill $PID
+    while [[ `ps -p $PID | wc -l` != 1 ]]
+        do
+        sleep 0.5
+        done
+    echo "Done."
+    sleep 2
+else
+    pkill -9 -f "node dist/src/index.js"
+    sleep 2
+fi
+
+nohup node dist/src/index.js &>> $LOG_DIR/backend-demo.log &
+sleep 2
+echo $! > server.pid
+echo "New processes:" $!

@@ -1,0 +1,152 @@
+{
+  "version": 27,
+  "storage_version": 27,
+  "statistics": [],
+  "tables": [
+    {
+      "_tid": "0000",
+      "title": "Table1",
+      "rows": [
+        {
+          "_id": "UXqAQUUfRkCewMssIXYEVQ",
+          "0000": "123",
+          "W41P": 123
+        },
+        {
+          "_id": "RV6DsOWYRYqMwBEa-mIeow",
+          "0000": "123",
+          "W41P": 1224
+        },
+        {
+          "_id": "EM61T9QqQF2JYDHXbFvdww",
+          "0000": "123",
+          "W41P": 344
+        },
+        {
+          "_id": "CHbGs2ShQdu327Oa044DMA",
+          "0000": "123",
+          "W41P": 2345
+        }
+      ],
+      "columns": [
+        {
+          "key": "0000",
+          "name": "Name",
+          "type": "text",
+          "width": 200,
+          "editable": true,
+          "resizable": true
+        },
+        {
+          "key": "W41P",
+          "type": "number",
+          "name": "number",
+          "editable": true,
+          "width": 200,
+          "resizable": true,
+          "draggable": true,
+          "data": {
+            "format": "number"
+          }
+        },
+        {
+          "key": "NQZ2",
+          "type": "date",
+          "name": "af2",
+          "editable": true,
+          "width": 200,
+          "resizable": true,
+          "draggable": true,
+          "data": {
+            "format": "YYYY-MM-DD"
+          }
+        },
+        {
+          "key": "PTGx",
+          "type": "single-select",
+          "name": "14566",
+          "editable": true,
+          "width": 200,
+          "resizable": true,
+          "draggable": true,
+          "data": null
+        },
+        {
+          "key": "3vEy",
+          "type": "multiple-select",
+          "name": "124566",
+          "editable": true,
+          "width": 200,
+          "resizable": true,
+          "draggable": true,
+          "data": null
+        }
+      ],
+      "views": [
+        {
+          "_vid": "0000",
+          "name": "Default View",
+          "type": "table",
+          "is_locked": false,
+          "rows": [],
+          "formula_rows": [],
+          "summaries": [],
+          "filter_conjunction": "And",
+          "filters": [
+            {
+              "column_key": "0000",
+              "filter_predicate": "contains",
+              "filter_term": "",
+              "filter_term_modifier": ""
+            }
+          ],
+          "sorts": [
+            {
+              "columnKey": "0000",
+              "sortType": "up"
+            }
+          ],
+          "hidden_columns": [
+            "3vEy"
+          ],
+          "groupbys": [
+            {
+              "column_key": "0000",
+              "sort_type": "up"
+            }
+          ],
+          "groups": [],
+          "foluma_rows": []
+        },
+        {
+          "_vid": "6yK8",
+          "name": "1244",
+          "type": "table",
+          "is_locked": false,
+          "rows": [],
+          "summaries": [],
+          "filter_conjunction": "And",
+          "sorts": [
+            {
+              "columnKey": "0000",
+              "sortType": "up"
+            }
+          ],
+          "filters": [
+            {
+              "column_key": "0000",
+              "filter_predicate": "contains",
+              "filter_term": "",
+              "filter_term_modifier": ""
+            }
+          ],
+          "hidden_columns": [
+            "PTGx"
+          ],
+          "groupbys": [],
+          "group_rows": []
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+<!--pages/webpage.wxml-->
+<view class="">
+  <web-view src="https://cloud.seatable.cn/{{path}}"></web-view>
+</view>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zn-ch">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		body,h2,ul,li,img {
+			margin: 0;padding: 0;
+		}
+		body {
+			background-color: rgb(174,221,129);
+		}
+		.m0auto {
+			margin: 0 auto;
+		}
+		h2 {
+			text-align: center;
+			font-size: 36px;
+		}
+		ul{
+			margin:20px 100px;
+			border:3px solid skyblue;
+		}
+		li {
+			list-style:none;
+			display: inline-block;
+			width: 25%;
+			min-width: 150px;
+			height: 25px;
+			border:1px solid #ddd;
+			padding-left: 10px;
+			box-sizing: border-box;
+		}
+		img {
+			margin:0px auto;
+			display: block;
+			min-width: 1000px;
+			height:100%;
+		}
+	</style>
+</head>
+<body>
+	<h2 class=".m0auto">知识框架</h2>
+	<ul class=".m0auto" onclick=changeColor()></ul>
+	<img src="svg/React.svg" id="pic">
+	<script>
+		window.onload = function(){
+			// 使用cmd命令获得文件名字符串
+			var string = `JS复习3.svg
+						JS特效案例 (2).svg
+						JS第一天.svg
+						JS第三天.svg
+						JS第二天.svg
+						JS第二天复习.svg
+						JS高程.svg
+						JS高级复习.svg
+						JS高级复习2.svg
+						Object.svg
+						React.svg
+						服务器+PHP.svg
+						`;
+			var array = [];
+			array = string.trim().split('\n');
+
+			var ul = document.getElementsByTagName('ul')[0];
+
+			for(var i = 0; i < array.length; i++){
+				array[i] = array[i].trim();
+				var li = document.createElement('li');
+				li.innerHTML = array[i].replace(".svg","");
+				ul.appendChild(li);
+			}
+
+			// var wait = setTimeout(`{
+			// 	alert('welcome');
+			// 	var lis = document.getElementsByTagName('li');
+			// 	for(var i = 0 ;i < lis.length;i++){
+			// 		lis[i].addEventListener('click',function(){
+			// 			// img.src = lis[i].innerHTML;
+			// 			console.log(lis[i]);
+			// 		})
+			// 	}
+			// }`,1000);
+			// console.log(img);			
+		}
+
+		function changeColor(){
+			var lis = document.getElementsByTagName('li');
+			var img = document.getElementById('pic');
+			for(var i = 0 ;i < lis.length;i++){
+				lis[i].addEventListener('click',function(){
+					var address = 'svg/' + this.innerHTML + '.svg';
+					img.src = address;
+					this.style.backgroundColor = "yellow";
+				});
+				lis[i].addEventListener('dblclick',function(){
+					this.style.backgroundColor = "red";
+				});
+			}
+		}
+	</script>
+</body>
+</html>

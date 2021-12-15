@@ -1,0 +1,9 @@
+{
+  "host": "localhost",
+  "user": "root",
+  "password": "root",
+  "database": "dtable",
+  "port": 3306,
+  "private_key": "M@O8VWUb81YvmtWLHGB2I_V7di5-@0p(MF*GrE!sIws23F@C",
+  "dtable_web_service_url": "http://127.0.0.1:8000/"
+}

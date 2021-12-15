@@ -1,0 +1,46 @@
+{
+  "name": "backend-demo",
+  "version": "0.0.1",
+  "description": "dtable node server",
+  "main": "index.js",
+  "scripts": {
+    "clean": "rm -rf dist && mkdir dist",
+    "start": "node index.js",
+    "test-modal": "jest modal",
+    "test-api": "jest --detectOpenHandles --forceExit api",
+    "build:pkg-js": "./node_modules/.bin/babel src --out-dir dist/src",
+    "build:pkg-bin": "./node_modules/.bin/babel bin --out-dir dist/bin --copy-files",
+    "build": "npm run clean && npm run build:pkg-bin && npm run build:pkg-js"
+  },
+  "jest": {
+    "testEnvironment": "node"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.8.3",
+    "connect-multiparty": "^2.2.0",
+    "csv": "^5.3.2",
+    "dtable-store": "^0.1.15",
+    "express": "^4.16.3",
+    "jsonwebtoken": "^8.5.1",
+    "log4js": "^4.5.1",
+    "mysql": "^2.17.1",
+    "redis": "^2.8.0",
+    "request": "^2.88.0",
+    "socket.io": "^2.2.0",
+    "uuid": "^3.3.2"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.5.0",
+    "@babel/core": "^7.5.0",
+    "@babel/node": "^7.5.0",
+    "@babel/plugin-proposal-class-properties": "^7.5.0",
+    "@babel/plugin-transform-modules-commonjs": "^7.5.0",
+    "@babel/plugin-transform-runtime": "^7.8.3",
+    "@babel/preset-env": "^7.5.0",
+    "@babel/register": "^7.4.4",
+    "babel-register": "^6.26.0",
+    "form-data": "^2.5.1",
+    "jest": "^24.9.0",
+    "supertest": "^4.0.2"
+  }
+}

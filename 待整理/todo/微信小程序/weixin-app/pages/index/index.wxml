@@ -1,0 +1,97 @@
+<!--index.wxml-->
+<view class="main">
+
+  <view class="header">
+    <image class="header-logo" mode="widthFix" src="/images/seatable-logo.png" />
+  </view>
+
+  <view class="content">
+
+    <view class="py-9">
+      <view class="container">
+        <view class="row">
+          <view class="col-md">
+            <view class="mb-6 h2-md text-center">新一代在线协同表格和信息管理系统</view>
+            <text class="introduction text-center">SeaTable 是一款新型的在线协同表格和信息管理系统。它支持“文件”、“图片”、“单选项”、“协作人”、“计算公式”等丰富的数据类型。它帮助你用表格的形式来方便的组织和管理各类信息，同时又和专门的软件系统一样强大。它还可以按照你的需要进行扩展，实现数据处理的自动化和业务流程的自动化。</text>
+            <view class="text-center">
+              <button id="btn-weixin-login" class="btn-primary mt-6 mb-4" bindtap="weixinLogin">微信账号快捷登录</button>
+              <button id="btn-password-login" class="btn-primary mb-4" bindtap="passwordLogin">账号密码登录</button>
+            </view>
+          </view>
+          <view class="col-md text-center">
+            <image class="illustration-lg" mode="widthFix" src="/images/dtable-home-page.png" />
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="py-9 bg-orange-lightest">
+      <view class="container text-center">
+        <view class="h2-sm">丰富的数据类型</view>
+        <text class="introduction mb-6">除了支持文本、数字、日期这样的基本类型，还支持图片、文件、协作人、单选标签、多选标签这样的数据类型。</text>
+        <image class="illustration-lg" mode="widthFix" src="/images/rich-column-type.png" />
+      </view>
+    </view>
+
+    <view class="py-9">
+      <view class="container text-center">
+        <view class="h2-sm">多个视图</view>
+        <text class="introduction mb-6">可以对同一个表同时提供多种视图，每个视图可以有不同的过滤、排序条件，快速的在视图间切换，帮你从不同的角度来看数据。</text>
+        <image class="illustration-lg" mode="widthFix" src="/images/view.png" />
+      </view>
+    </view>
+
+    <view class="py-9 bg-orange-lightest">
+      <view class="container text-center">
+        <view class="h2-sm">表单</view>
+        <text class="introduction mb-6">通过表单你可以方便的采集数据,然后进行数据的处理和分析</text>
+        <image class="illustration-lg" mode="widthFix" src="/images/forms.png" />
+      </view>
+    </view>
+
+    <view class="py-9">
+      <view class="container text-center">
+        <view class="h2-sm">统计</view>
+        <text class="introduction mb-6">您可以将统计数据和图标添加到表中，以使数据可视化</text>
+        <image class="illustration-lg" mode="widthFix" src="/images/statistics.png" />
+      </view>
+    </view>
+
+    <view class="py-9 bg-orange-lightest">
+      <view class="container text-center">
+        <view class="h2-sm">移动端</view>
+        <text class="introduction mb-6">SeaTable 在移动端中也可以流畅的使用</text>
+        <image class="illustration-lg" mode="widthFix" src="/images/mobile-terminal.png" />
+      </view>
+    </view>
+
+    <view class="py-9">
+      <view class="container text-center">
+        <view class="h2-lg mb-8">应用场景</view>
+        <view class="row justify-content-center">
+          <view class="col-10 col-md shadow-x py-4 px-2 rounded-2x mx-1 mt-md-0">
+            <image class="illustration-sm" mode="widthFix" src="/images/project-management-icon.png" />
+            <view class="h3-sm my-2">项目管理</view>
+          </view>
+
+          <view class="col-10 col-md shadow-x py-4 px-2 rounded-2x mx-1 mt-6 mt-md-0">
+            <image class="illustration-sm" mode="widthFix" src="/images/customer-management-icon.png" />
+            <view class="h3-sm my-2">客户关系管理</view>
+          </view>
+
+          <view class="col-10 col-md shadow-x py-4 px-2 rounded-2x mx-1 mt-6 mt-md-0">
+            <image class="illustration-sm" mode="widthFix" src="/images/accounting-and-analysis-icon.png" />
+            <view class="h3-sm my-2">记账和分析</view>
+          </view>
+
+          <view class="col-10 col-md shadow-x py-4 px-2 rounded-2x mx-1 mt-6 mt-md-0">
+            <image class="illustration-sm" mode="widthFix" src="/images/customer-support-management-icon.png" />
+            <view class="h3-sm my-2">技术支持记录</view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+  </view>
+
+</view>
