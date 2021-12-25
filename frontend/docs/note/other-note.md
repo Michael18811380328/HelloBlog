@@ -23,6 +23,8 @@ HTMLescape: function(html) {
 
 开课吧笔记有两节安全的课程，可以参考
 
+
+
 #### 2 本地不同项目调试问题
 
 - 本地浏览器支持跨域操作（后端服务和前端页面不在一个端口，但是需要请求登录）：更改本地浏览器配置。可以设置 webpack 支持代理，但是设置后无效，可能和 webpack 版本有关，所以直接使用命令行打开浏览器（增加参数打开）参考：https://blog.csdn.net/qq_41541368/article/details/104035074 扩展：直接写一个脚本，电脑开机后直接命令行执行，打开对应的程序，不需要手动双击每一个程序
@@ -40,6 +42,32 @@ open /Applications/Google\ Chrome.app && open /Applications/Typora.app
 ~~~
 
 
+
+#### 3 本地调试 server 项目跨域问题
+
+问题：本地开发 dtable-web 和 dtable-server 项目时，打开表格界面，127.0.0.1:5000 端口显示跨域。
+
+思考：以往都不会出现跨域问题，近期没有改动配置。
+
+解决过程：先查看 dtable-web 和 dtable-server 的日志（dtable-server 中显示编译错误）本质上：因为在 docker 外部环境执行 npm install，dtable-server 某些第三方依赖库使用C语言编译，没有编译到 docker 内部（即使安装其他第三方库，也会影响已有的这个特殊的库）。所以造成 server 无法编译，服务不正常。nginx 反向代理服务器已经处理了跨域，但是已有服务没起来，所以界面显示的是跨域（找不到对应的服务）。
+
+最后解决：在 docker 内部删除 node_modules 然后重新 npm install 开启服务，正常使用。
+
+总结：界面的报错不一定是真实的原因，需要查看日志。nginx 需要多了解。
+
+#### 4 编辑 API 文档工具
+
+需求：给代码写文档，每一个写太费时间，需要自动化工具
+
+调研：第三方库有 jsdoc 和 jsdoc-to-markdown，可以转换成 HTML（直接部署） 或者 Markdown 的文档
+
+基本使用
+
+1、在项目中安装依赖 npm install jsdoc 或者 jsdoc-to-markdown 或者全局安装
+
+2、在 JS 代码中增加标准的注释（函数或者类注释）
+
+3、执行 jsdoc index.js 自动生成 API 文档
 
 
 
