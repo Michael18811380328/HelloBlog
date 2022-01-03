@@ -166,7 +166,7 @@ nav:
         - '290-lodash': 'third-part-lib/290-lodash.md'
         - '291-jszip': 'third-part-lib/291-jszip.md'
         - '292-react-is': 'third-part-lib/292-react-is.md'
-        - '293-react-intl-universal': '- third-part-lib/293-react-intl-universal.md'
+        - '293-react-intl-universal': 'third-part-lib/293-react-intl-universal.md'
     - AntDesign:
         - '01-color': 'ant-design/01-color.md'
         - '02-border': 'ant-design/02-border.md'
