@@ -79,6 +79,7 @@ nav:
         - 'log': 'log.md'
         - 'mkdocs': 'mkdocs.md'
         - 'thought': 'thought.md'
+        - '2021年度技术总结': '2021年度技术总结.md'
     - 金融理财:
         - 'My Top 10 Money Rules': 'economy/My Top 10 Money Rules.md'
         - 'The art of Execution 执行力的艺术': 'economy/The art of Execution 执行力的艺术.md'

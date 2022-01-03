@@ -74,7 +74,7 @@ nav:
         - 'frontend-note': 'note/frontend-note.md'
         - 'other-note': 'note/other-note.md'
         - 'think-note': 'note/think-note.md'
-        # 提升工作效率
+        - '提升工作效率': 'note/提升工作效率.md'
     - Javascript:
         - 'CommonJS-AMD-CMD': 'javascript/CommonJS-AMD-CMD.md'
         - 'ES6 迭代器与生成器': 'javascript/ES6 迭代器与生成器.md'
@@ -166,6 +166,7 @@ nav:
         - '290-lodash': 'third-part-lib/290-lodash.md'
         - '291-jszip': 'third-part-lib/291-jszip.md'
         - '292-react-is': 'third-part-lib/292-react-is.md'
+        - '293-react-intl-universal': '- third-part-lib/293-react-intl-universal.md'
     - AntDesign:
         - '01-color': 'ant-design/01-color.md'
         - '02-border': 'ant-design/02-border.md'
@@ -280,6 +281,8 @@ nav:
         - '第三方工具 LOCALFORAGE': 'git/第三方工具 LOCALFORAGE.md'
         - '网易云-Webpack 打包工具简单使用': 'git/网易云-Webpack 打包工具简单使用.md'
         - '网页性能管理详解': 'git/网页性能管理详解.md'
+        - 'enzyme 简单实践': 'git/enzyme 简单实践.md'
+        - 'npm 发布两步验证': 'git/npm 发布两步验证.md'
     - react中文官方文档:
         - '0 目录': 'react-official-zh/0 目录.md'
         - '2-11 组合 vs 继承': 'react-official-zh/2-11 组合 vs 继承.md'
