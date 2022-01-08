@@ -4,3 +4,4 @@ backend/site
 personal/site
 leetcode/site
 book/site
+.DS_Store
