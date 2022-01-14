@@ -67,7 +67,6 @@ extra_javascript:
 nav:
     - About:
         - 'README': 'about/README.md'
-        - 'log': 'about/log.md'
         - 'index': 'index.md'
     - 笔记:
         - 'algre-note': 'note/algre-note.md'

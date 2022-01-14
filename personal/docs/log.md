@@ -238,11 +238,29 @@ learn leetcode basic methods(sort, search) review basic data structure(array, ob
 
 ## 2021
 
+### 2021.01
+
+- Leetcode finished 400 issues. Learn basic aglre such as in-place, dichotomous algorithm, greedy Algorithm, dynamic programming algorithm.
+
+- Sort rows animation. Use requestAnimationFrame to generate animations.
+
+### 2021.02
+- review all paperworks and try to remember this issues.
+- resist on learning in QQ online stydy room.
+- Linked list: Reverse linked list, find the intermediate node of the linked list;
+- Stack: valid bracket string, array dimension reduction
+- Three kinds of binary tree traversal; maximum and minimum depth; nearest common ancestor; symmetric binary tree; binary tree path; binary search tree (verify binary search tree, sort array is converted into binary search tree; tree is converted into linked list; generate different binary Fork search tree) The binary search tree is not very familiar;
+- Simple understanding of front-end monitoring
 ### 2021.03
 
 - rebuild personal blog using mkdocs and seperate it into several parts
 - use some autometic method to refresh blog
 - todo: read, remember and rewrite blog soon.
+- I learned the paper interview questions once
+
+### 2021.04
+
+- react-redux
 
 ### 2021.06
 
@@ -264,3 +282,4 @@ There is still a lack of comprehensive capabilities for large project architectu
 What about future development? The core algorithm and ECMA syntax are still fundamental, and new technologies emerge in endlessly. So closely following the technical route of big companies (such as Alibaba and Tencent) represents the future development direction and technical standards.
 
 Of course, life is not only about work, but also about future development and how to walk out of our own way in spare time.
+
