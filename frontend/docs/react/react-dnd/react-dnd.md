@@ -14,13 +14,7 @@ React DnD 是一组 React 高阶组件，可以用来帮你构建复杂的拖拽
    2. 设置 spec，让组件可以响应拖拽事件
    3. 设置 collect，把拖拽过程中需要信息注入组件的 props
 
-3. 把可以接受拖拽的组件包装在 
-
-   ```
-   DropTarget
-   ```
-
-    中
+3. 把可以接受拖拽的组件包装在 `DropTarget` 中
 
    1. 设置 type
    2. 设置 spec，让组件可以响应拖拽事件
@@ -29,8 +23,6 @@ React DnD 是一组 React 高阶组件，可以用来帮你构建复杂的拖拽
 4. 完
 
 翻译成代码就是：
-
-
 
 ```js
 // 1
@@ -56,10 +48,6 @@ import { DropTarget } from 'react-dnd';
 class MyComponent2 { ... }
 export default DropTarget(types, spec, collect)(MyComponent2);
 ```
-
-
-
- 
 
 这样，MyComponent 就变得可以拖拽，而 MyComponent2 就变得可以接受拖拽了，但这并不代表 MyComponent 可以放到 MyComponent2 中！
 
