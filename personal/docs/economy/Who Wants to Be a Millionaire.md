@@ -6,21 +6,21 @@ Dear *Wall Street Daily* Reader,
 
 One million dollars is worth less and less every day…
 
-In the critically acclaimed movie series *Austin Powers*, the villain Dr. Evil cryogenically freezes himself in 1967 and wakes up 30 years later. Determined to terrorize the world, he steals a nuclear weapon and demands a payment of \$1 million from the United Nations…
+In the critically（批判性的） acclaimed（广受好评的） movie series *Austin Powers*（王牌大贱谍）, the villain（恶棍） Dr. Evil cryogenically（低温） freezes himself in 1967 and wakes up 30 years later. Determined to terrorize（恐吓） the world, he steals a nuclear weapon and demands（要求） a payment of \$1 million from the United Nations…
 
 To his surprise, leaders from around the world started to laugh at him.
 
-As his right-hand man, No. 2, pointed out in an earlier scene, “\$1 million isn’t exactly a lot of money these days.”
+As his right-hand man（得力助手）, No. 2, pointed out in an earlier scene（较早的场景）, “\$1 million isn’t exactly a lot of money these days.”
 
 It’s true. One million dollars wasn’t much in 1997. And it sure isn’t much today…
 
-Consider this… Earlier this year, someone in Maryland won the Powerball for \$731 million (and claimed a \$547 million lump sum). Jeff Bezos, the founder of Amazon (AMZN), has a net worth of \$190 billion. And Apple (AAPL) now has a market cap of \$2.2 *trillion*.
+Consider this… Earlier this year, someone in Maryland（马里兰） won the Powerball（强力球） for \$731 million (and claimed a \$547 million lump 块 sum). Jeff Bezos, the founder of Amazon (AMZN), has a net worth of \$190 billion. And Apple (AAPL) now has a market cap（市值） of \$2.2 *trillion*.
 
 Numbers keep getting bigger and bigger. And it’s also true for your retirement… Living comfortably is more expensive these days.
 
-A nest egg of \$1 million, which used to be the dream of many Americans, might not even be enough to live comfortably in your retirement. According to a 2020 survey by Charles Schwab, many folks believe they need \$1.9 million to retire.
+A nest egg（储备金） of \$1 million, which used to be the dream of many Americans, might not even be enough to live comfortably in your retirement. According to a 2020 survey by Charles Schwab, many folks believe they need \$1.9 million to retire.
 
-Fortunately, having more than \$1 million saved isn’t as daunting a task as it used to be. You just need two things… time, and a good rate of return.
+Fortunately, having more than \$1 million saved isn’t as daunting（令人生畏的） a task as it used to be. You just need two things… time, and a good rate of return.
 
 Take a look at the table below. It shows you how many years it will take you to become a millionaire based on how much you save each year and your annual rate of return.
 
@@ -32,13 +32,13 @@ Obviously, becoming a millionaire doesn’t happen overnight. Anyone who tells y
 
 Time is by far the biggest factor in planning for a successful retirement. The earlier you start saving and investing, the better.
 
-I’ve talked before about the power of compounding returns. Even if you start saving and investing just a few years earlier than your buddies, it can mean tens of thousands of extra dollars by the time you retire.
+I’ve talked before about the power of compounding returns（复利回报）. Even if you start saving and investing just a few years earlier than your buddies（伙伴）, it can mean tens of thousands of extra dollars by the time you retire.
 
-Every year of savings counts, however… even if you’re not in your 20s or 30s.
+Every year of savings counts（计数，每年的收入很重要）, however… even if you’re not in your 20s or 30s.
 
-The truth is this: *Over time, investing in the stock market will make you money*. Each year the market’s returns may vary. But returns are pretty consistent when looking at the big picture…
+The truth is this: *Over time, investing in the stock market will make you money*. Each year the market’s returns may vary. But returns are pretty consistent（连续的） when looking at the big picture…
 
-Over the past 60 years, the S&P 500 Index has returned 10.4% a year when you factor in dividends. Over the past 40 years, the average annual return is 11.8%. And over the past 20 years, the average annual return is 7.7%.
+Over the past 60 years, the S&P 500 Index has returned 10.4% a year when you factor in dividends（当你考虑股息）. Over the past 40 years, the average annual return is 11.8%. And over the past 20 years, the average annual return is 7.7%.
 
 Stocks are by far the best game in town. Savings accounts that earn barely any interest do not cut it.
 
