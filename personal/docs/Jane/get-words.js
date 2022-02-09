@@ -67,6 +67,7 @@ function getFrequence(str) {
   return arr3.join(' ');
 }
 
+// 现在只支持一个文件，未来最好遍历一下，支持目录
 // 这里写入读取文件的相对路径（）
 var filePath = './02-Chapter 2.md';
 
