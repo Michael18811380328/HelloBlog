@@ -50,7 +50,7 @@ function combine(str1, str2) {
   // var arr = str.split(' ');
   var arr3 = [];
   for (let i = 0; i < arr1.length; i++) {
-    if (arr1[i]) {
+    if (arr1[i] && arr2[i]) {
       arr3[i] = arr1[i] + ' ' + arr2[i] + '\n';
     }
   }
@@ -59,6 +59,8 @@ function combine(str1, str2) {
 
 var en_path = './result.md';
 // 中文翻译现在手动执行，未来可以看一下是否有谷歌翻译的外部API，实现全自动化
+// 翻译每次不超过5000字符，实际上可能显示不完全
+// 所以这里控制一下导出的数量
 var zh_path = './result_zh.md';
 
 // 现在基本正常
