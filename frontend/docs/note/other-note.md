@@ -55,21 +55,6 @@ open /Applications/Google\ Chrome.app && open /Applications/Typora.app
 
 总结：界面的报错不一定是真实的原因，需要查看日志。nginx 需要多了解。
 
-#### 4 编辑 API 文档工具
-
-需求：给代码写文档，每一个写太费时间，需要自动化工具
-
-调研：第三方库有 jsdoc 和 jsdoc-to-markdown，可以转换成 HTML（直接部署） 或者 Markdown 的文档
-
-基本使用
-
-1、在项目中安装依赖 npm install jsdoc 或者 jsdoc-to-markdown 或者全局安装
-
-2、在 JS 代码中增加标准的注释（函数或者类注释）
-
-3、执行 jsdoc index.js 自动生成 API 文档
-
-
 
 ## NodeJS
 
@@ -756,13 +741,10 @@ this.setState((prevState, props) => {
 });
 ```
 
-尽量创建无状态组件：内部的数据由父组件传来，自己没有state
+尽量创建无状态组件（View 和 Model 完全分离）：数据由父组件传来，自己没有state
 
 ```jsx
 class noState extends React.Component {
-  constructor(props) {
-    super(props);
-  }
 	render() {
 		return (
     	<span className={this.props.titieClass}>{this.props.title}</span>
@@ -770,7 +752,7 @@ class noState extends React.Component {
     );
   }  
 }
-//using
+
 <noState
 	title={this.state.title}
 	titltClass='no-state-test'

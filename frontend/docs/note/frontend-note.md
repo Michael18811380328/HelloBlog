@@ -1,4 +1,4 @@
-# 前端笔记
+## 前端笔记
 
 ==学习要把不会的学会，学懂，而不是把会的重复100遍==
 
@@ -8,7 +8,7 @@
 
 
 
-####  1 循环中异步函数
+###  1 循环中异步函数
 
 循环 forEach map 中，如果有异步函数，需要异步函数的结果，怎么实现？
 
@@ -74,21 +74,7 @@ async function dbFuc(db) {
 
 
 
-#### 2 flex 和 inline-flex 
-
-类似 block 和 inline-block，前缀的 inline 是相对于父盒子而言，是行内元素还是块级元素。flex 都表示内部是伸缩盒子。
-
-Inline-flex 存在的问题：如果不同子盒子的高度不同（例如有的有文字，有的没有文字），都设置了 inline-flex 那么整理的高度就不一定对齐。解决方法：vertical-align: middle 设置到父元素上面（具体应用：移动端链接列对齐）
-
-Flex 细节参考：
-
-https://www.ruanyifeng.com/blog/2015/07/flex-grammar.html
-
-https://www.ruanyifeng.com/blog/2015/07/flex-examples.html
-
-
-
-#### 3 FileReader
+### 3 FileReader
 
 普通文件上传
 
@@ -134,7 +120,7 @@ function fn(files) {
 - 网络很差（经常中断）前端后端需要查询是否某个片段已经上传，来确定是否重新上传等
 - 拖拽文件上传，复制粘贴上传（需要调用前端的事件获取文件）
 
-#### 4 高阶组件 react-dnd 传参
+### 4 高阶组件 react-dnd 传参
 
 问题描述：整体容器是可拖拽容器，每一个子元素打开菜单后，其他的不能打开菜单。
 
@@ -146,7 +132,19 @@ function fn(files) {
 
 react 中尽量使用属性（避免全部子组件渲染）；然后考虑使用 state 状态。
 
-#### 5 exec
+
+
+使用 react-dnd 时，如果一个父组件的状态改变，那么下面的子组件会全部改变，不会走 react 生命周期函数中更新的部分。
+
+这样就造成一些问题：例如 web 项目文件夹，点击菜单，会造成整个文件夹组件全部重新渲染，图片会出现闪动。
+
+react-dnd 使用了高阶组件，可能在 render 时，重新计算了组件，那么势必会去掉原来的组件，并使用新的组件，这样原来的组件自然不会走 componentWillMount 等生命周期函数。
+
+未来使用时，需要注意拖拽内容尽可能少，内部不要有图片或者其他请求的部分，减少性能损耗。
+
+
+
+### 5 exec
 
 获取一个字符串中满足条件的全部子字符串（exec） reg.exec(str) 这里的 reg 需要先设置好，不能每次新建
 
@@ -156,7 +154,7 @@ react 中尽量使用属性（避免全部子组件渲染）；然后考虑使�
 var str = "我今年25岁明年26岁后年27岁前年24岁";
 var reg=/\d+/g;
 var tmp;
-while(tmp = reg.exec(str)){
+while (tmp = reg.exec(str)) {
   console.log(tmp[0])
 }
 ~~~
@@ -174,7 +172,7 @@ while(tmp = reg.exec(str)){
 
 
 
-#### 5 pointer-events 和点击穿透
+### 5 pointer-events 和点击穿透
 
 有时候，我们会遇到界面中多个图层重叠的问题，下面图层绑定函数，上面的图层显示 UI 效果。我们希望点击事件，可以穿透上层 DIV 然后触发下层 DIV 的函数。
 
@@ -188,7 +186,7 @@ while(tmp = reg.exec(str)){
 
 
 
-#### 9 requestAnimationFrame
+### 9 requestAnimationFrame
 
 为什么使用：默认的动画使用 setInterval 处理，然后浏览器渲染的频率是 60 次每秒，所以代码如下。
 
@@ -263,7 +261,7 @@ class AnimationFrame {
 }
 ~~~
 
-#### 10 raf 库
+### 10 raf 库
 
 requestAnimationFrame 的 polyfill（简化操作，处理浏览器兼容性）
 
@@ -281,7 +279,7 @@ handle();
 raf.cancel(handle);
 ~~~
 
-#### 11 跨域与 window.postMessage()
+### 11 跨域与 window.postMessage()
 
 参考链接：https://blog.csdn.net/qq_38128179/article/details/84956552
 
@@ -314,7 +312,7 @@ window.addEventListener('message', (e) => {
 
 
 
-#### 12 移动端真机调试
+### 12 移动端真机调试
 
 真机和电脑连接，打开 USB 调试模式，打开最新版本的谷歌浏览器。
 
@@ -324,12 +322,12 @@ window.addEventListener('message', (e) => {
 
 
 
-#### 13 扩展运算符复制数组
+### 13 扩展运算符复制数组
 
 扩展运算符可以复制数组或者对象。如果数组的每一项是引用类型，那么不会深复制，只会复制指向数组的指针。所以不能使用扩展运算符对数组或者对象进行深拷贝（深拷贝最好使用 deepcopy）。
 
 
-#### 14 HTML 设置夜间模式
+### 14 HTML 设置夜间模式
 
 可以直接使用CSS媒体查询 perfers-color-scheme 判断当前用户是否将系统的主体色设置成暗色或者亮色。属性：light dart no-perference 偏好。
 
@@ -377,29 +375,29 @@ https://developer.mozilla.org/zh-CN/docs/Web/API/Window/matchMedia
 
 
 
-#### 15 lodash思考 
+### 15 lodash思考 
 
 lodash 的主要目的是封装了对象和数组的一些方法，主要功能和原生方法一致。类似于 Jquery 操作 DOM，lodash 操作 object array。主要适应于 ES3 的代码。在 ES6 中，API已经实现了很多方法。所以一般情况不需要使用这个库。主要使用的地方就是 throttle 节流函数，deepcopy 深复制对象等。可以不需要求数组的差集，数组均分等操作。
 
-其他：如果一个状态不是常用的状态，那么不需要把状态直接传递到底层组件，可以传递一个函数，底层组件增删改查获取属性。
+其他：如果一个状态不是常用的状态，那么不需要把状态直接传递到底层组件，可以传递一个函数，底层组件增删改查获取属性（或者使用 redux 的设计思路）。
 
 
 
 
 
-#### 17 stringify 函数
+### 17 stringify 函数
 
 作用：把JS对象或者数组，转换成JSON格式
 
 参数：value是必选参数，表示需要转换的对象或者数组；replacer 是可选参数，表示把对象转换成JSON的转换函数，可以选择null；space 表示JSON的缩进或者空格（数字表示空格数量，或者非数字\t）
 
-```
+```javascript
 JSON.stringify(value[, replacer[, space]])
 ```
 
 
 
-#### 18 parseInt  函数
+### 18 parseInt  函数
 
 parseInt(number, index) 
 
@@ -409,9 +407,11 @@ parseInt(number, index)
 
 如果什么也不传，那么也返回 NaN
 
+例题： `[1,2,3].map(parseInt)`，结果是 `[1, NaN, NaN]`
 
 
-#### 19 正则表达式问题
+
+### 19 正则表达式问题
 
 使用构造函数创建正则表达式，如果传参有特殊符号，可能报错 ’invalid-regular-expression‘
 
@@ -431,7 +431,7 @@ console.log(reg); // /\[\]/gi
 
 
 
-#### 26 textarea 的高度自动变化
+### 26 textarea 的高度自动变化
 
 - 默认加载时，设置高度是固定的（100px）然后溢出不显示
 - 点击编辑后，根据内容设置高度，然后设置溢出显示滚动条，这样方便编辑
@@ -440,7 +440,7 @@ console.log(reg); // /\[\]/gi
 
 
 
-#### 27 谷歌浏览器版本
+### 27 谷歌浏览器版本
 
 这里是全部的谷歌浏览器版本，用于排查某一个版本的问题
 
@@ -452,7 +452,7 @@ http://www.chromium.org/getting-involved/dev-channel
 
 
 
-#### 28 Windows 微信版本问题
+### 28 Windows 微信版本问题
 
 微信全部版本及发布时间：https://weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_faq_list&head=true
 
@@ -468,7 +468,7 @@ http://www.chromium.org/getting-involved/dev-channel
 
 
 
-#### 29 arguments.callee 使用
+### 29 arguments.callee 使用
 
 使用转转反侧法计算两个数的最大公约数时，看到这样一个代码
 
@@ -486,7 +486,7 @@ console.log(gcd(5, 13)); // 1 （公约数为1说明两数互质）
 
 其中 arguments.callee 不会经常使用，这个属性未来可能废弃，查询资料如下：
 
-Arguments 表示函数的参数。arguments 有一个属性 cellee 表示函数参数的指针（指向当前的函数）那么这样写相当于递归调用函数。这样写的好处：如果函数名变化后，函数内部的代码不需要改动（arguments.callee）。
+Arguments 表示函数的参数。arguments 有一个属性 cellee 表示函数参数的指针（指向当前的函数）那么这样写相当于递归调用函数。这样写的好处：如果函数名变化后，函数内部的代码不需要改动（arguments.callee），主要在递归调用函数中使用。
 
 例子：
 
@@ -499,7 +499,7 @@ function factorial(num){
   if (num <= 1) {         
     return 1;     
   } else {         
-    return num * factorial(num-1)     
+    return num * factorial(num - 1)     
   } 
 }
 ~~~
@@ -509,45 +509,43 @@ function factorial(num){
 function factorial(num){    
   if (num <=1) {         
     return 1;     
-  } else {         
-    return num * arguments.callee(num-1);
+  } else {
+    return num * arguments.callee(num - 1);
   } 
 }
 ~~~
 
-#### 30 react-dnd 的问题
-
-使用 react-dnd 时，如果一个父组件的状态改变，那么下面的子组件会全部改变，不会走 react 生命周期函数中更新的部分。
-
-这样就造成一些问题：例如 web 项目文件夹，点击菜单，会造成整个文件夹组件全部重新渲染，图片会出现闪动。
-
-react-dnd 使用了高阶组件，可能在 render 时，重新计算了组件，那么势必会去掉原来的组件，并使用新的组件，这样原来的组件自然不会走 componentWillMount 等生命周期函数。
-
-未来使用时，需要注意拖拽内容尽可能少，内部不要有图片或者其他请求的部分，减少性能损耗。
 
 
-
-#### 31 浏览器自动跳转问题
+### 31 浏览器自动跳转问题
 
 总结一下这个问题的解决过程
 
 因为页面跳转，默认想到的是 JS window.open 或者 HTML A 标签，然后产品报错误导了方向，恰好近期改动了这部分JS代码
+
 1、首先产品反馈，这个是 ”链接公式-rollup-添加“fx公式引用的（单选类型）“ 把自己绕到了链接公式 roolup 这部分功能，一直排查是否是 JS 的问题。
+
 2、测试不同的浏览器，都会自动刷新。排除浏览器的兼容性问题。然后通过 console.log 保留日志分析，这个数据基本正常。
+
 3、开始判断是用户行为，还是 JS 逻辑问题。设置一个定时器，自动更改 JS 代码，然后不出错。证明 JS 链接公式没问题，主要问题在用户点击。
+
 4、逐步排查点击事件，然后不是当前组件，而是内部的选择器组件中的问题。把点击事件的默认行为改掉，就不出错了。但是内部的选择是公共组件，其他使用公共组件的地方是正常的，最好不改动公共组件。
+
 5、找到使用这个组件的地方，外部为了样式，加了一个 Form，然后点击事件触发了表单提交，页面就刷新了。
+
 6、更改：把 Form 改成 DIV 就不会跳转了。其他的情况也可能是这个问题。
 
 
 
-TAB 实现有两种方法：HTML 设置 button 或者 input，浏览器会自动 TAB；或者设置 JS 然后通过 state 控制状态，设置 currentTab，然后设置对应的样式，这样可以记录上一次的位置。
+### 32 TAB 跳转实现有两种方法
+
+HTML 设置 button 或者 input，浏览器会自动 TAB；或者设置 JS 然后通过 state 控制状态，设置 currentTab，然后设置对应的样式，这样可以记录上一次的位置（这种需要把浏览器默认的 TAB 事件去掉，例如界面中还有其他的button，那么点击 Tab 还会触发按钮的交互改变）。
 
 
 
-### 学会的
+## 学会的
 
-#### 1 array.reduce
+### 1 array.reduce
 
 reduce() 方法接收一个函数作为累加器，数组中的每个值（从左到右）开始缩减，最终计算为一个值。reduce() 可以作为一个高阶函数，用于函数的 compose。
 
@@ -569,7 +567,7 @@ console.log(arr.reduce(fn, 0)); // 15，原始数组不改变
 
 
 
-#### 2 polyfill 作用
+### 2 polyfill 作用
 
 polyfill 英文翻译：垫片；计算机中指的是"补丁"
 
@@ -581,7 +579,21 @@ polyfill 英文翻译：垫片；计算机中指的是"补丁"
 
 
 
-#### 7 React
+### 3 flex 和 inline-flex 
+
+类似 block 和 inline-block，前缀的 inline 是相对于父盒子而言，是行内元素还是块级元素。flex 都表示内部是伸缩盒子。
+
+Inline-flex 存在的问题：如果不同子盒子的高度不同（例如有的有文字，有的没有文字），都设置了 inline-flex 那么整理的高度就不一定对齐。解决方法：vertical-align: middle 设置到父元素上面（具体应用：移动端链接列对齐）
+
+Flex 细节参考：
+
+https://www.ruanyifeng.com/blog/2015/07/flex-grammar.html
+
+https://www.ruanyifeng.com/blog/2015/07/flex-examples.html
+
+
+
+### 4 React
 
 Props 和 子组件更新：如果一个子组件的 state 是父组件的 props 计算出来，那么当父组件的 props 变化后，子组件必须更改 state。否则界面无法更改成最新的状态。
 
