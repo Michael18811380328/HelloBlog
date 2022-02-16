@@ -6,7 +6,7 @@ axios({
   data: {
     firstName: 'Fred',
     lastName: 'Flintstone'
-  }
+  },
 }).then(function (res) {
   console.log(res);
 }).catch(function (error) {

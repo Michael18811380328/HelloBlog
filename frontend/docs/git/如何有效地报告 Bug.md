@@ -1,10 +1,8 @@
-## 如何有效地报告 Bug
+# 如何有效地报告 Bug
 
 作者：Simon Tatham 专业的自由软件程序员
 
 翻译：Dasn
-
-[ [English](https://www.chiark.greenend.org.uk/~sgtatham/bugs.html) | [Português](https://www.chiark.greenend.org.uk/~sgtatham/bugs-br.html) | **简体中文** | [Česky](https://www.chiark.greenend.org.uk/~sgtatham/bugs-cz.html) | [Dansk](https://www.chiark.greenend.org.uk/~sgtatham/bugs-da.html) | [Deutsch](https://www.chiark.greenend.org.uk/~sgtatham/bugs-de.html) | [Español](https://www.chiark.greenend.org.uk/~sgtatham/bugs-es.html) | [Français](https://www.chiark.greenend.org.uk/~sgtatham/bugs-fr.html) | [Magyar](https://www.chiark.greenend.org.uk/~sgtatham/bugs-hu.html) | [Italiano](https://www.chiark.greenend.org.uk/~sgtatham/bugs-it.html) | [日本語](https://www.chiark.greenend.org.uk/~sgtatham/bugs-jp.html) | [Nederlands](https://www.chiark.greenend.org.uk/~sgtatham/bugs-nl.html) | [Polski](https://www.chiark.greenend.org.uk/~sgtatham/bugs-pl.html) | [Русский](https://www.chiark.greenend.org.uk/~sgtatham/bugs-ru.html) | [繁體中文](https://www.chiark.greenend.org.uk/~sgtatham/bugs-tw.html) ]
 
 ### 引言
 

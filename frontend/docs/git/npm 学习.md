@@ -105,8 +105,7 @@ babel-preset-react        | Babel preset for…    | =hzoo…          | 2017-04
 react-router-dom          | DOM bindings for…    | =mjackson…      | 2018-06-06 | 4.3.1    | react router route routing history link
 react-router              | Declarative routing… | =mjackson…      | 2018-06-06 | 4.3.1    | react router route routing history link
 react-dev-utils           | Webpack utilities…   | =fb =gaearon…   | 2018-11-01 | 6.1.1    | 
-react-redux               | Official React…      | =gaearon…       | 2018-11-10 | 5.1.1    | react reactjs hot reload hmr live edit flux redu
-react-error-overlay       | An overlay for…      | =fb =gaearon…   | 2018-11-01 | 5.1.0    | overlay syntax error red box redbox crash warnin 
+react-redux               | Official React…      | =gaearon…       | 2018-11-10 | 5.1.1    |
 ~~~
 
 ### 发布
