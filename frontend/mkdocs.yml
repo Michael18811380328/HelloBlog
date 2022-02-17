@@ -44,17 +44,18 @@ markdown_extensions:
   - pymdownx.tilde
 
 # minify: https://github.com/byrnereese/mkdocs-minify-plugin
+# use this plugin will increase build time and decrease browser render time
 plugins:
     - search # necessary for search to work
-    - minify:
-        minify_html: true
-        minify_js: true
-        minify_css: true
-        htmlmin_opts:
-            remove_comments: true
-        js_files:
-            - /js/history.js
-            - /js/baidu-statistics.js
+    # - minify:
+    #     minify_html: true
+    #     minify_js: true
+    #     minify_css: true
+    #     htmlmin_opts:
+    #         remove_comments: true
+    #     js_files:
+    #         - /js/history.js
+    #         - /js/baidu-statistics.js
 extra:
   search:
     language: 'jp'
@@ -431,3 +432,25 @@ nav:
         - 'typechecking-with-proptypes': 'react-official-en/typechecking-with-proptypes.md'
         - 'uncontrolled-components': 'react-official-en/uncontrolled-components.md'
         - 'web-components': 'react-official-en/web-components.md'
+
+        #   - ant-design/08-样式按需加载.md
+        #   - ant-design/09-组件使用.md
+        #   - css/Bilibili-模糊实现效果分析-css-filter.md
+        #   - git/如何向开源社区提问题.md
+        #   - git/如何向开源项目提交无法解答的问题.md
+        #   - git/如何有效地报告 Bug.md
+        #   - note/network-note.md
+        #   - react/react-dnd/官方英文文档/01-readme.md
+        #   - react/react-dnd/官方英文文档/02-quickstart.md
+        #   - react/react-dnd/官方英文文档/03-Overview.md
+        #   - react/react-dnd/官方英文文档/API.md
+        #   - react/react-dnd/官方英文文档/React DnD.md
+        #   - react/react-dnd/官方英文文档/Testing.md
+        #   - react/react-dnd/官方英文文档/Tutorial.md
+        #   - react/react-dnd/官方英文文档/react-dnd-DragLayer.md
+        #   - react/react-dnd/官方英文文档/react-dnd-DragSource.md
+        #   - react/react-dnd/官方英文文档/react-dnd-DropTarget.md
+        #   - third-part-lib/294-crypto-js.md
+        #   - third-part-lib/005-axios/React使用axios进行ajax操作.md
+        #   - third-part-lib/005-axios/react-axios.md
+        #   - third-part-lib/005-axios/readme.md

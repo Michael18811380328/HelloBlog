@@ -54,17 +54,18 @@ markdown_extensions:
   - pymdownx.tilde
 
 # minify: https://github.com/byrnereese/mkdocs-minify-plugin
+# use this plugin will increase build time and decrease browser render time
 plugins:
     - search # necessary for search to work
-    - minify:
-        minify_html: true
-        minify_js: true
-        minify_css: true
-        htmlmin_opts:
-            remove_comments: true
-        js_files:
-            - /js/history.js
-            - /js/baidu-statistics.js
+    # - minify:
+    #     minify_html: true
+    #     minify_js: true
+    #     minify_css: true
+    #     htmlmin_opts:
+    #         remove_comments: true
+    #     js_files:
+    #         - /js/history.js
+    #         - /js/baidu-statistics.js
 
 extra:
   search:
@@ -81,6 +82,7 @@ nav:
         - 'thought': 'thought.md'
         - '2021年度技术总结': '2021年度技术总结.md'
     - 金融理财:
+        #   - economy/2022-时事经济思考.md
         - 'My Top 10 Money Rules': 'economy/My Top 10 Money Rules.md'
         - 'The art of Execution 执行力的艺术': 'economy/The art of Execution 执行力的艺术.md'
         - 'Who Wants to Be a Millionaire': 'economy/Who Wants to Be a Millionaire.md'
@@ -102,6 +104,10 @@ nav:
         - '财务自由之路.md': 'economy/财务自由之路.md'
         - '辞职创业前的十节课.md': 'economy/辞职创业前的十节课.md'
     - 人生思考:
+        #   - other/Less is more.md
+        #   - other/Markdown语法规范.md
+        #   - other/前端如何高效的与后端协作开发.md
+        #   - other/程序员经验分享.md
         - '40退休': 'other/40退休.md'
         - '426 Upgrade Required 报错': 'other/426 Upgrade Required 报错.md'
         - 'Interview with Ryan Dahl Creator of Node.js': 'other/Interview with Ryan Dahl Creator of Node.js.md'
@@ -138,6 +144,9 @@ nav:
         - '正态分布和对数正态分布': 'math/正态分布和对数正态分布.md'
         - '蒙特卡罗方法入门': 'math/蒙特卡罗方法入门.md'
     - 课外读物:
+        - 'output': 'Jane/output.md'
+        - 'result': 'Jane/result.md'
+        - 'result_zh': 'Jane/result_zh.md'
         - 'readme': 'Jane/readme.md'
         - '00-Biography': 'Jane/00-Biography.md'
         - '00-Preface': 'Jane/00-Preface.md'
@@ -152,3 +161,11 @@ nav:
         - '09-Chapter 9': 'Jane/09-Chapter 9.md'
         - '10-Chapter 10': 'Jane/10-Chapter 10.md'
         - 'Jane Eyre': 'Jane/Jane Eyre.md'
+        #   - 技术文档的写作规范/README.md
+        #   - 技术文档的写作规范/docs/marks.md
+        #   - 技术文档的写作规范/docs/number.md
+        #   - 技术文档的写作规范/docs/paragraph.md
+        #   - 技术文档的写作规范/docs/reference.md
+        #   - 技术文档的写作规范/docs/structure.md
+        #   - 技术文档的写作规范/docs/text.md
+        #   - 技术文档的写作规范/docs/title.md

@@ -45,17 +45,18 @@ markdown_extensions:
   - pymdownx.tilde
 
 # minify: https://github.com/byrnereese/mkdocs-minify-plugin
+# use this plugin will increase build time and decrease browser render time
 plugins:
     - search # necessary for search to work
-    - minify:
-        minify_html: true
-        minify_js: true
-        minify_css: true
-        htmlmin_opts:
-            remove_comments: true
-        js_files:
-            - /js/history.js
-            - /js/baidu-statistics.js
+    # - minify:
+    #     minify_html: true
+    #     minify_js: true
+    #     minify_css: true
+    #     htmlmin_opts:
+    #         remove_comments: true
+    #     js_files:
+    #         - /js/history.js
+    #         - /js/baidu-statistics.js
 
 extra:
   search:
@@ -161,3 +162,6 @@ nav:
         - 'no-jekyll-basic': 'ruby/no-jekyll-basic.md'
         - 'no-jekyll-install': 'ruby/no-jekyll-install.md'
         - 'no-ruby-readme': 'ruby/no-ruby-readme.md'
+    - 网络:
+        - 'ddos': 'network/ddos.md'
+        - '基本网络安全': 'network/基本网络安全.md'
