@@ -12,7 +12,7 @@
 
 数组中指针用法：for循环数组，一个是当前的i，设置另一个指针pointer，这样可以指向不同的数组，进行处理
 
-快慢指针
+#### 快慢指针
 
 ~~~js
 let a = head.next;
@@ -22,6 +22,37 @@ while (a.next) {
   b = b.next.next;
 }
 // 需要预处理next下一个节点是否存在等
+~~~
+
+#### 对撞指针
+
+在一个排序数组中，找到两个数字，使得其中的和等于 target
+
+~~~js
+// 输入: numbers = [2, 7, 11, 15], target = 9
+// 输出: [1,2]
+let fn = (numbers, target) => {
+	let left = 0;
+	let right = numbers.length - 1;
+	while (left < right) {
+		let tmp = numbers[left] + numbers[right];
+		if (tmp === target) {
+			return [left, right];
+		}
+		if (tmp < target) {
+			left++;
+		}
+		if (tmp > target) {
+			right--;
+		}
+	}
+	// 不满足的情况下，返回 null
+	return null;
+}
+
+console.log(fn([2, 7, 11, 15], 9));
+console.log(fn([2, 7, 10, 11, 15], 21));
+
 ~~~
 
 ### 2 有序数组转换成等高的二叉搜索树
