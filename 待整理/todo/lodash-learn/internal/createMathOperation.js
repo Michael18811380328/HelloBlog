@@ -32,4 +32,20 @@ function createMathOperation(operator, defaultValue) {
   }
 }
 
+function createMathOperation(operator, defaultValue) {
+  return (a, b) => {
+    // 如果函数的两个参数都是 undefined，返回默认值
+    if (a === undefined && b === undefined) {
+      return defaultValue;
+    }
+    // 如果
+    if (a !== undefined && b === undefined) {
+      return a;
+    }
+    if (a === undefined && b !== undefined) {
+      return b;
+    }
+  }
+}
+
 export default createMathOperation
