@@ -32,14 +32,17 @@ React
 			state是组件的属性，当state发生变化，会重新render/this.setState
 		直接获取DOM：ref 操作数据变化
 	6.生命周期
-		Mounting:组件挂载:componentWillMount;componentDidMount
+		Mounting:组件挂载:
+			componentWillMount;
+			componentDidMount
 		Updating:组件更新
-componentWillReceiveProps(object nextProps)
-shouldComponentUpdate
-componentWillUpdate 
-componentDidUpdate
-		Unmounting:组件移除:componentWillUnmount
-			事件：ReactDOM.unmountComponentAtNode
+      componentWillReceiveProps(object nextProps)
+      shouldComponentUpdate
+      componentWillUpdate 
+      componentDidUpdate
+		Unmounting:组件移除:
+			componentWillUnmount
+		事件：ReactDOM.unmountComponentAtNode
 ~~~
 
 
