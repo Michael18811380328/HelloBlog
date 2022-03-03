@@ -73,14 +73,15 @@ extra:
 
 # Page tree
 nav:
-    - About:        
-        - 'changelog': 'changelog.md'
-        - 'github-projects': 'github-projects.md'
-        - 'index': 'index.md'
-        - 'log': 'log.md'
-        - 'mkdocs': 'mkdocs.md'
-        - 'thought': 'thought.md'
+    - About:
+        - '关于': 'index.md'
+        - '博客更新日志': 'changelog.md'
+        - '开发日志': 'log.md'
+        - '常用链接': 'useful-links.md'
+        - '个人感想': 'thought.md'
         - '2021年度技术总结': '2021年度技术总结.md'
+        - 'mkdocs 配置说明': 'mkdocs.md'
+        # 查漏补缺
     - 金融理财:
         #   - economy/2022-时事经济思考.md
         - 'My Top 10 Money Rules': 'economy/My Top 10 Money Rules.md'
