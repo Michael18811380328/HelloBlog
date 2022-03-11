@@ -160,6 +160,14 @@ nav:
         - '22-高级用法': 'book-JS-primer-code-design/22-高级用法.md'
         - '24-最佳实践': 'book-JS-primer-code-design/24-最佳实践.md'
         - 'readme': 'book-JS-primer-code-design/readme.md'
+    - 湖科大计算机网络基础:
+        - 'readme.md': 'ebook-network-basic/readme.md'
+        - '01 概述.md': 'ebook-network-basic/01 概述.md'
+        - '02 物理层.md': 'ebook-network-basic/02 物理层.md'
+        - '03 数据链路层.md': 'ebook-network-basic/03 数据链路层.md'
+        - '04 网络层.md': 'ebook-network-basic/04 网络层.md'
+        - '05 运输层.md': 'ebook-network-basic/05 运输层.md'
+        - '06 应用层.md': 'ebook-network-basic/06 应用层.md'
     - 其他技术笔记:
         - 'index': 'index.md'
         - 'JS-the-good-parts': 'book-JS-The-good-parts/JS-the-good-parts.md'
