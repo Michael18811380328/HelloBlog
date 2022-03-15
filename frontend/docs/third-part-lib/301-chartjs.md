@@ -8,6 +8,8 @@ Simple yet flexible JavaScript charting for designers & developers
 
 官网地址：https://www.chartjs.org/docs/latest/
 
+（React 中使用另一个库：https://react-chartjs-2.js.org/，两个库才能工作）
+
 ## 全部文档
 
 All the links point to the new version 3 of the lib.
