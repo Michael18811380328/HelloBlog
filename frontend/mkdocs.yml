@@ -167,6 +167,7 @@ nav:
         - '291-jszip': 'third-part-lib/291-jszip.md'
         - '292-react-is': 'third-part-lib/292-react-is.md'
         - '293-react-intl-universal': 'third-part-lib/293-react-intl-universal.md'
+        - '300-dayjs': 'third-part-lib/300-dayjs.md'
     - AntDesign:
         - '01-color': 'ant-design/01-color.md'
         - '02-border': 'ant-design/02-border.md'
