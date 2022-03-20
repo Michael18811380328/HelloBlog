@@ -83,7 +83,7 @@ nav:
         - 'mkdocs 配置说明': 'mkdocs.md'
         # 查漏补缺
     - 金融理财:
-        #   - economy/2022-时事经济思考.md
+        - '2022-时事经济思考': 'economy/2022-时事经济思考.md'
         - 'My Top 10 Money Rules': 'economy/My Top 10 Money Rules.md'
         - 'The art of Execution 执行力的艺术': 'economy/The art of Execution 执行力的艺术.md'
         - 'Who Wants to Be a Millionaire': 'economy/Who Wants to Be a Millionaire.md'
@@ -105,10 +105,10 @@ nav:
         - '财务自由之路.md': 'economy/财务自由之路.md'
         - '辞职创业前的十节课.md': 'economy/辞职创业前的十节课.md'
     - 人生思考:
-        #   - other/Less is more.md
-        #   - other/Markdown语法规范.md
-        #   - other/前端如何高效的与后端协作开发.md
-        #   - other/程序员经验分享.md
+        - 'Less is more': 'other/Less is more.md'
+        - 'Markdown语法规范': 'other/Markdown语法规范.md'
+        - '前端如何高效的与后端协作开发': other/前端如何高效的与后端协作开发.md'
+        - '程序员经验分享': 'other/程序员经验分享.md'
         - '40退休': 'other/40退休.md'
         - '426 Upgrade Required 报错': 'other/426 Upgrade Required 报错.md'
         - 'Interview with Ryan Dahl Creator of Node.js': 'other/Interview with Ryan Dahl Creator of Node.js.md'
@@ -162,11 +162,12 @@ nav:
         - '09-Chapter 9': 'Jane/09-Chapter 9.md'
         - '10-Chapter 10': 'Jane/10-Chapter 10.md'
         - 'Jane Eyre': 'Jane/Jane Eyre.md'
-        #   - 技术文档的写作规范/README.md
-        #   - 技术文档的写作规范/docs/marks.md
-        #   - 技术文档的写作规范/docs/number.md
-        #   - 技术文档的写作规范/docs/paragraph.md
-        #   - 技术文档的写作规范/docs/reference.md
-        #   - 技术文档的写作规范/docs/structure.md
-        #   - 技术文档的写作规范/docs/text.md
-        #   - 技术文档的写作规范/docs/title.md
+    - 技术文档的写作规范:
+        - 'README': '技术文档的写作规范/README.md'
+        - 'marks': '技术文档的写作规范/docs/marks.md'
+        - 'number': '技术文档的写作规范/docs/number.md'
+        - 'paragraph': '技术文档的写作规范/docs/paragraph.md'
+        - 'reference': '技术文档的写作规范/docs/reference.md'
+        - 'structure': '技术文档的写作规范/docs/structure.md'
+        - 'text': '技术文档的写作规范/docs/text.md'
+        - 'title': '技术文档的写作规范/docs/title.md'

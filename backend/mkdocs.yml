@@ -165,3 +165,5 @@ nav:
     - 网络:
         - 'ddos': 'network/ddos.md'
         - '基本网络安全': 'network/基本网络安全.md'
+        - '计算机网络基础知识': 'network/计算机网络基础知识.md'
+        - '一个 TCP 连接上面能发多少个 HTTP 请求': 'network/一个 TCP 连接上面能发多少个 HTTP 请求.md'
