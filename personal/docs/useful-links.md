@@ -36,6 +36,8 @@
 
 [diygod](https://diygod.me/message/) bilibili 视频播放器作者
 
+[钝悟](https://dunwu.github.io/) 数据库 服务器
+
 ### 学习网站
 
 [阿里云课堂](https://edu.aliyun.com/developer)
