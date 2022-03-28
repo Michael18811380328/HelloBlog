@@ -184,6 +184,46 @@ while (tmp = reg.exec(str)) {
 
 详情参考：https://developer.mozilla.org/zh-CN/docs/Web/CSS/pointer-events
 
+### 6 字符编码问题
+
+常见字符串的编码格式：ASCII 码，Unicode，UTF-8 编码，GB2312 编码，这几个的区别
+
+前端和编码相关的函数：escape() encodeURI() encodeURIComponent() 和对应的三个解密函数，区别和适应情况
+
+https://www.ruanyifeng.com/blog/2007/10/ascii_unicode_and_utf-8.html
+https://www.cnblogs.com/luckyuns/p/6396701.html
+
+四种类型编码简单理解：
+
+- ASCII 码是最早的英文和控制码对应的编码，0-127，需要记住大写A-Za-z对应的编码范围(065到090，097到122) 不支持中文
+- Unicode：因为 ASCII 无法表示各种编码，所以出现了 Unicode，大概有几万，可以代表世界上很多的语言表情符号等等，有对应的官方介绍全部的编码，也有不少的标准
+- UTF-8：是 Unicode 的一个类似子集，也有 UTF-16 UTF-32 等编码。文件声明部分会写 coding=utf-8
+- GB2313 是简体字的编码，还有繁体字等等，前端使用不多
+
+前端三个字符串转换函数和加密函数：因为浏览器 URL 中不允许某些特殊符号，所以需要把特殊符号转换成编码，例如 ; 等
+
+根据 MDN 介绍和知乎高赞：
+https://www.zhihu.com/question/21861899
+https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/escape
+
+- escape 转义字符串，不推荐使用，未来可能废弃
+- encodeURI 转义特殊字符串（不转换某些符号，例如 http:// 不转换）
+- encodeURIComponennt 转义特殊字符串（特殊符号全部转换，例如 http:// 会转换）
+- 
+具体使用：我们在发送请求时，URL 中可能有参数含有特殊符号（例如文件名用户名等用户输入）需要使用 encodeURIComponent 转义，然后拼接成 URL
+
+### 7 MVC 架构的好处
+
+MVC架构的好处：model 是数据层，View 是视图层，Controller 是控制层。
+
+在实际项目中，model 是界面中实际的数据，例如上传的图片和行的信息。view 是界面中显示的按钮和控件，以及控制这些控件的 react 状态。Controller 是接口和API。如果一个引用做到 MVC 完全分离，然后不同模块完全分离，如果需要改动某个模块，或者界面样式，或者数据层，都不会影响其他的部分。
+
+例如，我们想把界面中的按钮改成输入框，那么直接更改 View 层即可，不需要改动 Model 层。如果项目的耦合性很强，可能数据划分不是很清楚。
+
+### 8 重构 UI 组件的感想
+1、项目开始前，就应该约定各种组件的规范，后期更改很麻烦，还可能有未知的错误和问题
+2、自己写公共组件一定注意细节，这里需要多看官方组件的源代码，看看别人怎么写的。
+为什么要写自己的组件？能不能使用传参优化已有的组件，避免造轮子是最好的，也要有造轮子的能力
 
 
 ### 9 requestAnimationFrame
