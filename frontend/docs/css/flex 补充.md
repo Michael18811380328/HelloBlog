@@ -1,4 +1,4 @@
-### flex 补充学习
+# flex 补充
 
 ##### 1、flex理解
 
@@ -8,47 +8,32 @@
 
 ~~~css
 /* 父盒子中（默认主轴是横轴），每一个div的宽度都是1份 */
-flex: flex-grow flex-shrink flex-basis
-或者：|auto|initial|inherit;
+flex: flex-grow flex-shrink flex-basis |auto|initial|inherit;
 
 .main {
   display: flex;
 }
+
 .main div {
   flex: 0 1 auto;(初始值)
 }
 ~~~
 
-http://www.runoob.com/cssref/css3-pr-flex.html
-
-http://www.runoob.com/w3cnote/flex-grammar.html
-
 ~~~css
 .main {
   display: flex;
-  flex-direction: column;
-  /* 内部盒子元素的排列次序（主轴的方向）：默认是 row 一行排列 */
-  /* row row-reverse column column-reverse */	 
-  /* 这个参数通常设置成column 表示元素在竖行上进行排列 */
   
+  /* 内部盒子元素的排列次序（主轴的方向）：默认是 row 行排列 */
+  flex-direction: column; /* row row-reverse column column-reverse */	 
+  
+  /* 默认子元素不会拆行显示，no-wrap。其他参数 wrap wrap-reverse。这个参数没有设置过*/ 
   flex-wrap: wrap;
- 	/* 默认子元素不会拆行显示，no-wrap。其他参数 wrap wrap-reverse。这个参数没有设置过*/ 
-  
-  jusfify-content: center;
+ 	
   /* 子元素在主轴上的排列方式——默认是横轴 */
-  center 居中
-  flex-start 在主轴开始的位置
-  flex-end 在主轴结束的位置
-  space-between 开始和结束的两个元素贴到边缘，空隙在其中；
-  space-around 在各个元素周边均匀分布空隙
+  jusfify-content: center | flex-start | flex-end | space-between | space-around
   
-  align-item: center；
   /* 子元素在交叉轴上的排列方式——默认是纵轴 */
-  center
-  flex-start
-  flex-end
-  stretch 子元素在纵向拉伸(长度是100%)
-  baseline 子元素基线对齐(文本对齐)
+  align-item: center | flex-start | flex-end | stretch 子元素在纵向拉伸(长度是100%) | baseline 子元素基线对齐(文本对齐)  
 }
 
 .main div {
@@ -61,6 +46,7 @@ http://www.runoob.com/w3cnote/flex-grammar.html
   flex-shrink: 1;
   order: 3;
 }
+
 .main div:nth-child(3) {
   flex-grow: 3;
   flex-shrink: 2;
@@ -92,8 +78,6 @@ flex布局后，float、clear、verticle-align 会失效；
 所以，首先使用float解决，之后使用flex布局解决；特殊情况使用position：absolute解决；
 
 使用flex根据需求，看整体界面使用什么样式解决方案。
-
-
 
 ~~~html
 <!DOCTYPE html>

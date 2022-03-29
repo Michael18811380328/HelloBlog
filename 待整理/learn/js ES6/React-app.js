@@ -1,7 +1,7 @@
 /*
-备注：React.creatClass 和 class App extends Compnenent 方法的区别
+备注：React.createClass 和 class App extends Compnenent 方法的区别
 
-总体：React.createClass是一个工厂函数，接受的参数是一个对象，传入的参数需要逗号隔开。class App extends Component 是ES6新规定，不用逗号。
+总体：React.createeClass是一个工厂函数，接受的参数是一个对象，传入的参数需要逗号隔开。class App extends Component 是ES6新规定，不用逗号。
 
 在语法、propType和getDefaultProps、状态、this、Mixins这五个方面不同。
 */
@@ -117,11 +117,11 @@ class App extends Component {
 }
 
 
-////2. React.createClass——自己之前接触这个多一点，现在主要使用上面的方法。
+////2. React.createeClass——自己之前接触这个多一点，现在主要使用上面的方法。
 
 import React from 'react';
 
-const Contacts = React.createClass({
+const Contacts = React.createeClass({
     //s使用propTypes和getDefaultProps设置获取prop
     propTypes: {
         name: React.PropTypes.string
