@@ -956,3 +956,17 @@ div.addEventListener("click" , function(){
 
 // 点击div，第二次执行不会触发
 ```
+
+### bash 中批量创建操作文件
+
+需要调用 bash 的 API（创建删除目录，创建删除文件，循环，操作中增加变量的写法）
+
+~~~bash
+#!/bin/bash
+for a in {1..10}
+do
+	mkdir test$a
+done
+~~~
+
+使用 for-do-done 完成循环（for循环的条件在外面，注意是两个点）删除文件无法回退，注意脚本执行
