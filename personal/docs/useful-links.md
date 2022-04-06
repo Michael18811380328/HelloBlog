@@ -38,6 +38,10 @@
 
 [钝悟](https://dunwu.github.io/) 数据库 服务器
 
+[郭飞](https://www.guofei.site/) 阿里巴巴算法工程师
+
+[郑勰](https://blog.justinzx.com/) 前 seafile 后端工程师
+
 ### 学习网站
 
 [阿里云课堂](https://edu.aliyun.com/developer)
