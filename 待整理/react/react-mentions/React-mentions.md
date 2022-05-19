@@ -6,23 +6,15 @@
 
 ### 1、安装
 
-npm 安装
-
 ```
 npm install react-mentions --save
-```
-
-yarn 安装
-
-```
-yarn add react-mentions
 ```
 
 ### 2、导入
 
 The package exports two React components for rendering the mentions textarea:
 
-可以使用两个React组件来渲染 textarea
+可以使用两个 React 组件来渲染 textarea
 
 ```js
 import { MentionsInput, Mention } from 'react-mentions';
@@ -86,24 +78,21 @@ MentionsInput 支持下面的 props：
 
 ## 源码
 
-下面是源码链接
-
 github 链接：https://github.com/signavio/react-mentions
 
 npm 链接：https://www.npmjs.com/package/react-mentions
 
-## 思路
+## 个人思路
 
-刚开始自己手动写这个功能的思路（基于React框架）：
+刚开始自己手动写这个功能的思路（基于React框架）：参考微博的 @ 功能
 
-~~~txt
-1、捕获textarea区域的输入事件，当 event.target.keyCode 是对应的键（例如@时），打开一个下拉菜单。
+1. 捕获textarea区域的输入事件，当 event.target.keyCode 是对应的键（例如@时），打开一个下拉菜单。
 
-2、继续捕获用户输入，将当前@后面输入的字符获取到，调用后端API搜索符合条件的用户，将获取的结果数组展示到下拉菜单中。如果没有结果下拉菜单中显示”没有找到这个用户“。
+2. 继续捕获用户输入，将当前@后面输入的字符获取到，调用后端API搜索符合条件的用户，将获取的结果数组展示到下拉菜单中。如果没有结果下拉菜单中显示”没有找到这个用户“。
 
-3、如果用户继续输入，重复步骤二；如果用户点击菜单中某个选项，调用后端API将这个用户的信息发送即可，关闭下拉菜单。
+3. 如果用户继续输入，重复步骤二；如果用户点击菜单中某个选项，调用后端API将这个用户的信息发送即可，关闭下拉菜单。
 
-~~~
+问题：如果@多人，使用字符串切割关键词可能出现问题；如果用户频繁输入删除，需要大量后端请求（现在没有设置缓存）性能不佳。下面是自己的结果图（请忽略UI界面，仅展示功能）。
 
-难点：如果@多人，使用字符串切割关键词可能出现问题；如果用户频繁输入删除，需要大量后端请求（现在没有设置缓存）性能不佳。下面是自己的结果图（请忽略UI界面，仅展示功能）。
+如果用户在一段话中，鼠标点击中间部分，然后输入特殊符号，这些情况等需要处理（用户键盘交互等很多情况）
 

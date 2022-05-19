@@ -27,11 +27,11 @@ GC根：一般指全局且不会被垃圾回收的对象，比如：window、doc
 每个JavaScript进程都会有一个全局作用域，全局作用域上的引用的对象都是常驻内存的，直到进程退出内存才会自动释放。
 手动释放全局作用域上的引用的对象有两种方式：
 
-- global.foo = undefined
+- window.foo = undefined
 
 > 重新赋值改变引用
 
-- delete global.foo
+- delete window.foo
 
 > 删除对象属性
 
@@ -43,11 +43,10 @@ GC根：一般指全局且不会被垃圾回收的对象，比如：window、doc
 var closure = (function(){
     //这里是闭包的作用域
     var i = 0 // i就是自由变量
-    return function（）{
+    return function() {
         console.log(i++)
     }
 })()
-// this closure is bug; (can't console)
 ```
 
 闭包作用域会保持对自由变量的引用。上面代码的引用链就是:

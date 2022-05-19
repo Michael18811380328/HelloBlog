@@ -64,7 +64,9 @@ open /Applications/Google\ Chrome.app && open /Applications/Typora.app
 
 ~~~js
 var process = require('child_process');
+
 var command = "ls -al";
+
 process.exec(command, function(err, stdout, stderr) {
   console.log(err);
   console.log(stdout);
@@ -184,7 +186,7 @@ cd book && mkdocs build
 
 #### 3 tree
 
-tree 命令可以显示显示当前项目的结构，通过参数设置不同的效果。
+tree 命令可以显示显示当前项目的结构，通过参数设置不同的效果；其他配置用到再查
 
 ~~~bash
 # 显示英文名称
@@ -209,72 +211,6 @@ tree -L 2
 tree -N -I "*.svg|*.png|*.jpg|*.gif|*.xmind" > tree-res.md
 ~~~
 
-全部配置
-
-> -a 显示所有文件和目录。
-> -A 使用ASNI绘图字符显示树状图而非以ASCII字符组合。
-> -C 在文件和目录清单加上色彩，便于区分各种类型。
-> -d 显示目录名称而非内容。
-> -D 列出文件或目录的更改时间。
-> -f 在每个文件或目录之前，显示完整的相对路径名称。
-> -F 在执行文件，目录，Socket，符号连接，管道名称名称，各自加上"*","/","=","@","|"号。
-> -g 列出文件或目录的所属群组名称，没有对应的名称时，则显示群组识别码。
-> -i 不以阶梯状列出文件或目录名称。
-> -I 不显示符合范本样式的文件或目录名称。
-> -l 如遇到性质为符号连接的目录，直接列出该连接所指向的原始目录。
-> -n 不在文件和目录清单加上色彩。
-> -N 直接列出文件和目录名称，包括控制字符。
-> -p 列出权限标示。
-> -P 只显示符合范本样式的文件或目录名称。
-> -q 用"?"号取代控制字符，列出文件和目录名称。
-> -s 列出文件或目录大小。
-> -t 用文件和目录的更改时间排序。
-> -u 列出文件或目录的拥有者名称，没有对应的名称时，则显示用户识别码。
-> -x 将范围局限在现行的文件系统中，若指定目录下的某些子目录，其存放于另一个文件系统上，则将该子目录予以排除在寻找范围外。
-
-英文配置
-
-> usage: tree [-adfghilnpqrstuvxACDFNS] [-H baseHREF] [-T title ] [-L level [-R]]
-> [-P pattern] [-I pattern] [-o filename] [--version] [--help] [--inodes]
-> [--device] [--noreport] [--nolinks] [--dirsfirst] [--charset charset]
-> [--filelimit #] [<directory list>]
-> -a      All files are listed.
-> -d      List directories only.
-> -l      Follow symbolic links like directories.
-> -f      Print the full path prefix for each file.
-> -i      Don't print indentation lines.
-> -q      Print non-printable characters as '?'.
-> -N      Print non-printable characters as is.
-> -p      Print the protections for each file.
-> -u      Displays file owner or UID number.
-> -g      Displays file group owner or GID number.
-> -s      Print the size in bytes of each file.
-> -h      Print the size in a more human readable way.
-> -D      Print the date of last modification.
-> -F      Appends '/', '=', '*', or '|' as per ls -F.
-> -v      Sort files alphanumerically by version.
-> -r      Sort files in reverse alphanumeric order.
-> -t      Sort files by last modification time.
-> -x      Stay on current filesystem only.
-> -L level   Descend only level directories deep.
-> -A      Print ANSI lines graphic indentation lines.
-> -S      Print with ASCII graphics indentation lines.
-> -n      Turn colorization off always (-C overrides).
-> -C      Turn colorization on always.
-> -P pattern  List only those files that match the pattern given.
-> -I pattern  Do not list files that match the given pattern.
-> -H baseHREF  Prints out HTML format with baseHREF as top directory.
-> -T string   Replace the default HTML title and H1 header with string.
-> -R      Rerun tree when max dir level reached.
-> -o file    Output to file instead of stdout.
-> --inodes   Print inode number of each file.
-> --device   Print device ID number to which each file belongs.
-> --noreport  Turn off file/directory count at end of tree listing.
-> --nolinks   Turn off hyperlinks in HTML output.
-> --dirsfirst  List directories before files.
-> --charset X  Use charset X for HTML and indentation line output.
-> --filelimit # Do not descend dirs with more than # files in them. 
-
 
 
 ## GIT
@@ -291,19 +227,11 @@ git log
 查看提交日志，然后找出某一个或者某几个 hash
 
 ~~~txt
-commit 62ede8d524ba78ec3a6b427a4dc3f7cfef12dba3 (HEAD -> master, origin/master, origin/HEAD)
-Author: Michael An <2331806369@qq.com>
-Date:   Fri Feb 19 22:19:31 2021 +0800
-
-    fix color popover (#2151)
-
 commit d60da5d351f0c629ae3655afb9c07c38216a8be9
 Author: Michael An <2331806369@qq.com>
 Date:   Fri Feb 19 16:01:34 2021 +0800
 
     fix group no rows bug (#2150)
-
-commit a24fa659140b47736dc46d0000964c86e0fb9f17
 ~~~
 
 然后切换到master上面，进行 cherry-pick 摘樱桃
@@ -369,6 +297,12 @@ View 和 Presenter 是双向通信，Presenter 和 Modal 是双向通信。View 
 特点：View 和 ModalView 双向绑定，View 更改后直接体现在 ModalView 中。
 
 原始链接：http://www.ruanyifeng.com/blog/2015/02/mvcmvp_mvvm.html
+
+
+
+
+
+后面部分废弃笔记
 
 ### jquery
 
@@ -607,6 +541,8 @@ array1.forEach(function(value,index){
 });
 ~~~
 
+
+
 ### flex 布局
 
 flex布局中，怎样在一个container中放置nav栏？
@@ -689,6 +625,8 @@ git add .
 git commit -m 'update .gitignore'
 ```
 
+
+
 #### Bash 命令
 
 ```bash
@@ -761,178 +699,6 @@ class noState extends React.Component {
 ```
 
 
-
-### CSS初始化
-
-1.margin-padding 
-
-2.去掉边框img-fieldset
-
-3.去掉ol-ul默认点
-
-4.input默认，去掉边框
-
-5.a 标签下划线
-
-```css
-ul, ol {
-  list-style: none;
-  border：none;
-}
-select, input {
-	verticle-align: middle;
-}
-a {
-  text-decoration:none;
-}
-```
-
-6.body 统一的字体格式和类别：12px网页通常使用
-font:normal normal 12px "Microsoft Yahei" #4c4c4c(或者999)背景色（ie）
-
-7.清除浮动
-
-```css
-.clearfix::after {
-  content:"";
-  height:0;
-  line-height:0;
-  display:block;
-  visibility:hidden;
-  clear:both;
-}
-.clearfix {
-  zoom :1;
-}
-```
-
-根据需求直接定义样式类别；
-
-logo部分设置h1，文字使用最高权重，设置文字首行缩进-999,或者显示透明隐藏。背景图片设置logo。
-
-如果已经有psd文件，直接将需要的图层复制到新文件中，剪切周边的空白像素即可完成图片的制作。同理spirit图片也可以这样快速处理。
-
-input-text-outline:none;
-
-border-radius: 0px 5px 0px 5px;
-
-可以设置四个角的曲率，左上角开始顺时针。如果盒子没有边框，也可以设置圆角。
-外盒子和内部盒子颜色不一致时，同时设置内外border-radius.
-
-a标签的颜色不能继承
-
-verticle-align: middle;
-不是center；按照中线对齐
-
-设置盒子圆角内部凹陷？
-可以首先设置盒子外边框，在四个角分别使用四个span背景图层压住四个角，使用绝对定位进行操作。
-
-网上有完全的CSS代码实现过程。
-
-或者直接使用ps将整个圆角内凹图片做成背景图片进行设置（不同分辨率可能造成背景图片变形）。
-
-整体上难度类似于梅兰商城，比京东难度小很多。
-
-块元素和行内块元素最好不要同级（div直接与img同级，不便于排版）
-
-设计小图标有两种方式：
-
-第一种在文字之前设置一个span，设置span的宽高，之后设置背景图片（背景图片范围很小，内存小影响小）
-
-第二种直接设置文字的左边padding，设置文字模块的背景图片。这样整体上比较统一，没有新增加的tag，但是背景图片较大，如果涉及精灵图可能出现后面图标的bug。
-
-推荐第一种设置方式，操作较复杂后期不会出现bug
-
-padding和margin的实际使用：
-
-margin可能产生边界合并，大盒子设置需要注意，全局统一设置盒子的外边距是左上或者右下；
-
-padding设置需要考虑盒子模型，在content-box中会影响盒子的长宽，所以需要提前统一设置border-box。每一个单独设置太费时间。当然，这个border-box的兼容性和规范性值得考虑。
-
-如果盒子有纯背景颜色或者border，使用padding更合适；如果盒子的背景图片或者小图标等不规则情况，最好使用margin进行设置。
-
-设计开始之前统一查看不同对象的边界情况，首先做一个整体规划，想得多代码就精简。
-
-设置文字size和行高，可以设置为14px/20px，节省代码，去除图片边缘的部分
-
-```css
-img {
-  verticle-align: middle;
-}
-```
-
-
-
-### 删除文件标签
-
-1、删除文件标签两种方案对比
-
-```js
-// this.state.direntList.map((dirent) => {
-//   let fileTags = dirent.file_tags;
-//   if (fileTags) {
-//     for (let i = 0, len = fileTags.length; i < len; i++) {
-//       if (fileTags[i].repo_tag_id === deletedTagID) {
-//         fileTags.splice(i, 1);
-//         break;
-//       }
-//     }
-//     this.updateDirent(dirent, 'file_tags', fileTags);
-//   }
-// });
-
-let direntList = this.state.direntList.map(dirent => {
-  if (dirent.file_tags) {
-    let fileTags = dirent.file_tags.filter(item => {
-      return item.repo_tag_id !== deletedTagID;
-    });
-    dirent.file_tags = fileTags;
-  }
-  return dirent;
-});
-
-this.setState({direntList: direntList});
-```
-
-居中
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Document</title>
-  <style>
-    .main {
-      width: 500px;
-      height: 500px;
-      background-color: greenyellow;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      /* 块级元素水平垂直居中 */
-    }
-    .center {
-      width: 100px;
-      background-color: lightblue;
-      height: 100px;
-      line-height: 100px;
-      text-align: center;
-      /* 文本垂直居中 */
-      /* margin: 0 auto; */
-      /* vertical-align: center; */
-    }
-  </style>
-</head>
-<body>
-  <div class="main">
-    <div class="center">
-      文字居中
-    </div>
-  </div>
-</body>
-</html>
-```
 
 ### 阻止事件冒泡
 

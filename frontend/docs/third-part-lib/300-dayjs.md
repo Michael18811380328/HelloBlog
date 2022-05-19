@@ -100,3 +100,6 @@ dayjs.locale('es');
 dayjs('2022-01-01').locale('zh-cn').format('YYYY-MM-DD');
 ~~~
 
+### 注意事项
+
+实际项目中问题：如果AB项目依赖了不同版本的 react-calendar dayjs，然后 AB 引用，可能造成翻译不正确。原因是，不同版本的 dayjs 会重新创建对象，造成日期格式丢失。如果AB项目可控，最好都使用相同的稳定版本。
