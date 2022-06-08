@@ -14,12 +14,18 @@ theme:
 
 # Page tree
 nav:
-    - 'HTTP': 'HTTP.md'
-    - 'UI': 'UI.md'
-    - 'css': 'css.md'
-    - 'design': 'design.md'
-    - 'dot': 'dot.md'
-    - 'future': 'future.md'
-    - 'git': 'git.md'
-    - 'others': 'others.md'
-    - 'react': 'react.md'
+    - 关于:
+        - 'index': 'index.md'
+    - 前端:
+        - 'HTTP': 'HTTP.md'
+        - 'UI': 'UI.md'
+        - 'basic': 'basic.md'
+        - 'css': 'css.md'
+        - 'react': 'react.md'
+    - 其他: 
+        - 'design': 'design.md'
+        - 'dot': 'dot.md'
+        - 'future': 'future.md'
+        - 'git': 'git.md'
+        - 'network': 'network.md'
+        - 'others': 'others.md'
