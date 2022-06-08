@@ -1,0 +1,25 @@
+site_name: Michale An Blog
+site_author: Michael An
+site_url: https://michael18811380328.github.io/
+repo_name: Michael18811380328/Michael18811380328.github.io
+repo_url: https://github.com/Michael18811380328/Michael18811380328.github.io
+copyright: Copyright &copy; Michael An
+
+docs_dir: ./docs
+
+theme:
+    name: material
+    palette:
+        primary: "purple"
+
+# Page tree
+nav:
+    - 'HTTP': 'HTTP.md'
+    - 'UI': 'UI.md'
+    - 'css': 'css.md'
+    - 'design': 'design.md'
+    - 'dot': 'dot.md'
+    - 'future': 'future.md'
+    - 'git': 'git.md'
+    - 'others': 'others.md'
+    - 'react': 'react.md'
