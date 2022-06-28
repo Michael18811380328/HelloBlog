@@ -33,27 +33,34 @@ shallowequal(object, other);
 // → true
 ```
 
-## 其他
+## 源码
 
 ```js
 module.exports = function shallowEqual(objA, objB, compare, compareContext) {
+  
+  // 如果用户自定义了比较函数 compare，直接使用并返回
   var ret = compare ? compare.call(compareContext, objA, objB) : void 0;
 
   if (ret !== void 0) {
     return !!ret;
   }
 
+  // https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/is]
+  // 比较两个值是否相等，简单类型相等，或者复杂类型（对象）内存相等
   if (Object.is(objA, objB)) {
     return true;
   }
 
+  // 如果不是对象，不等于
   if (typeof objA !== "object" || !objA || typeof objB !== "object" || !objB) {
     return false;
   }
-
+  
+  // 获取对象的键数组
   var keysA = Object.keys(objA);
   var keysB = Object.keys(objB);
-
+  
+  // 先比较键的长度
   if (keysA.length !== keysB.length) {
     return false;
   }
@@ -61,6 +68,7 @@ module.exports = function shallowEqual(objA, objB, compare, compareContext) {
   var bHasOwnProperty = Object.prototype.hasOwnProperty.bind(objB);
 
   // Test for A's keys different from B.
+  // 判断两个对象的每一个键值对是否相等
   for (var idx = 0; idx < keysA.length; idx++) {
     var key = keysA[idx];
 

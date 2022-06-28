@@ -4,6 +4,8 @@ facebook 官方的 react 库，这个包允许你测试任意值并查看它们�
 
 This package allows you to test arbitrary values and see if they're a particular React element type.
 
+作用：如果要渲染一个未确定的组件（其他地方传的组件等），可以先判断是否是合法的组件，然后进行渲染。
+
 ## Installation
 
 ```bash
