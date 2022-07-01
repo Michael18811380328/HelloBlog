@@ -47,15 +47,15 @@ markdown_extensions:
 # use this plugin will increase build time and decrease browser render time
 plugins:
   - search # necessary for search to work
-#   - minify:
-#       minify_html: true
-#       minify_js: true
-#       minify_css: true
-#       htmlmin_opts:
-#           remove_comments: true
-#       js_files:
-#           - /js/history.js
-#           - /js/baidu-statistics.js
+  - minify:
+      minify_html: false
+      minify_js: true
+      minify_css: true
+      htmlmin_opts:
+          remove_comments: true
+      js_files:
+          - /js/history.js
+          - /js/baidu-statistics.js
 extra:
   search:
     language: 'jp'

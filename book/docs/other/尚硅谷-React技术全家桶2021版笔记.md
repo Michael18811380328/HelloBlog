@@ -4,15 +4,29 @@
 
 https://study.163.com/course/courseMain.htm?courseId=1210995818 共计126课时，2021年1月出品
 
-### 课程目的
+第一章 React 入门
+
+第二章 React 面向组件编程
+
+2.1 基本概念
+
+2.2 state
+
+2.3 props
+
+2.4 refs
+
+2.5 表单
+
+2.6 生命周期函数
+
+2.7 虚拟DOM和DIFF算法
+
+目的
 
 1. 巩固react基础知识，查漏补缺（熟悉的部分快进）
 
 2. 学习相关的库的使用
-
-
-
-## 课程目录
 
 ### 第一章 React 基础
 
@@ -115,7 +129,7 @@ JS 表达式是什么？和 JS 语句（代码）不一样
 </div>
 ~~~
 
-
+### 第二章 React 面向组件编程
 
 #### 07 组件与模块
 
@@ -129,31 +143,95 @@ JS 表达式是什么？和 JS 语句（代码）不一样
 
 
 
+#### 08 开发者工具的安装
 
-
-08 开发者工具的安装
+react 开发调试工具（Component 可以查看组件层级和 state props 等属性，Profiers 查看页面性能）
 
 profiler 记录网站的性能（加载时间）
 
 
 
+#### 09 函数式组件
+
+~~~jsx
+function Demo() {
+  console.log(this);
+  // 在函数组件中，经过babel编译后，是严格模式，所以 this 是 undefined
+  return <span></span>;
+}
+ReactDOM.render(<Demo/>, document.getElementById('root'));
+// ReactDOM.render 执行过程
+// 1. 解析第一个参数，找到组件定义 Demo（函数组件）
+// 2. 调用 Demo 函数，将返回值 虚拟 DOM 转换成真实 DOM
+// 3. 解析第二个参数，将真实DOM渲染到页面上
+~~~
 
 
-函数式组件
 
-复习类相关知识
+#### 10 ES6 类
 
-类式组件
+~~~js
+class Person {
+  constructor(name, age) {
+    this.name = name;
+    this.age = age;
+  }
+  speak = () => {
+    console.log(this.name + String(this.age));
+  }
+}
 
-对state的理解
+class Student extends Person {
+  constructor(name, age, grade) {
+    super(name, age);
+    this.grade = grade;
+  }
+  speak = () => {
+    console.log(this.name + this.age + this.grade);
+  }
+}
 
-初始化state
+const p1 = new Person('Bing', 10);
+p1.speak();
+const s1 = new Strudent("Andy", 20, 3);
+s2.speak();
+~~~
 
-react中的事件绑定
 
-类中方法中的this
 
-解决类中this指向问题
+#### 11 类式组件
+
+~~~jsx
+class MyComponent extends React.Component {
+  render() {
+    return (
+    	<span>test</span>
+    );
+  }
+}
+
+// <MyComponent />
+~~~
+
+遇到标签后，React 解析到是一个类，执行 new MyComponent 创建类的实例对象，调用 render 方法返回虚拟 DOM，然后渲染到页面上作为真实DOM节点。
+
+
+
+
+
+#### 12 对state的理解
+
+#### 13 初始化state
+
+#### 14 react中的事件绑定
+
+#### 15 类中方法中的this
+
+#### 16 解决类中this指向问题
+
+
+
+
 
 setState的使用
 
@@ -219,6 +297,11 @@ getSnapshotBeforeUpdate举例
 
 DOM的diffing算法
 
+
+## 第三章 react-cli
+
+
+
 初始化react脚手架
 
 脚手架文件介绍-public
@@ -255,6 +338,8 @@ TodoList案例-总结TodoList案例
 
 脚手架配置代理-方法2
 
+## 第四章 react ajax
+
 github搜索案例-静态组件
 
 github搜索案例-axios发送请求
@@ -264,6 +349,8 @@ github搜索案例-展示数据
 github搜索案例-完成案例
 
 消息订阅与发布技-pubsub
+
+## 第五章 react-router
 
 fetch发送请求
 
@@ -309,11 +396,18 @@ withRouter的使用
 
 BrowserRouter与HashRouter
 
+## 第六章 react-ui
+
 antd的基本使用
 
 antd样式的按需引入
 
 antd自定义主题
+
+
+
+
+## 第七章 redux
 
 redux简介
 
@@ -352,6 +446,8 @@ redux开发者工具
 最终版
 
 项目打包运行
+
+## 扩展
 
 扩展1-setState
 
