@@ -6,7 +6,7 @@
 
 配置项放在 tsconfig.json 中，主要包含下面的配置
 
-~~~json
+~~~txt
 * 有 tsconfig.json 文件的目录是一个 Typescript 项目
 * tsc 没有输入文件
 ：从当前位置往上找 tsconfig.json
@@ -46,7 +46,7 @@
 
 编译选项，指的是编译过程中，需要怎么操作
 
-~~~json
+~~~txt
 typescript 编译选项
 -- allowJs = false：js文件也编译
 -- allowUnreachableCode = false：不可能执行的代码要不要报错
