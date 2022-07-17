@@ -7,25 +7,7 @@
 1. 巩固react基础知识，查漏补缺（熟悉的部分快进）
 2. 学习相关的库的使用
 
-
-
-### 课程介绍
-
 https://study.163.com/course/courseMain.htm?courseId=1210995818 共计126课时，2021年1月出品
-
-第一章 React 入门
-
-第二章 React 面向组件编程
-
-2.1 基本概念
-
-2.5 表单
-
-2.6 生命周期函数
-
-2.7 虚拟DOM和DIFF算法
-
-
 
 ### 第一章 React 基础
 
@@ -33,7 +15,9 @@ https://study.163.com/course/courseMain.htm?courseId=1210995818 共计126课时�
 
 React 是构建用户界面的框架。
 
-前端工作包括：发送请求，处理数据，展示数据（使用DOM展现）。React 只处理展示数据（把 state 转换成 DOM）。不管前两部分发出请求（ajax）、处理数据（算法优化，过滤排序算法）、渲染界面（React 将 JS 数据渲染成 HTML 视图的库）
+前端工作包括：发送请求，处理数据，展示数据（使用DOM展现）。发出请求（ajax）、处理数据（算法优化，过滤排序算法）、渲染界面（React 将 JS 数据渲染成 HTML 视图的库）
+
+React 只处理展示数据（把 state 转换成 DOM）。不管前两部分。
 
 原生 JS 缺点：操作 DOM繁琐，性能较差（JS 直接操作 DOM，浏览器进行大量的重拍重绘）；jQuery 比较重，代码量很大；原生JS没有组件化方案，代码复用很低。
 
@@ -414,19 +398,83 @@ let a = this.inputRef.current.value;
 
 
 
-react中的事件处理
+#### 32 react中的事件处理
 
-非受控组件
+react 中通过 onClick 绑定事件（事件处理函数）：使用合成事件，不是原生事件，为了更好的兼容性。事件通过时间委托方式处理（委托给组件最外层的元素）——为了更高效（如果再底层监听事件，那么需要很多事件监听函数，在上层只需要一个事件监听函数）。可以通过 event.target 获取到触发事件的对象
 
-受控组件
+#### 33 非受控组件
 
-高阶函数-函数柯里化
+表单通过 ref 获取输入内容，就是非受控组件（用户输入过程中，react不会获取到输入的内容）切勿过度使用refs
 
-不用柯里化的写法
+使用状态提升可以处理 ref 较多的情况
+
+下面是传统表单，点击按钮后，会自动获取 username 和 password，然后提交到 action 网址中。
+
+~~~html
+<form action="www.baidu.com">
+  username: <input type="text" name="username"/>
+  password: <input type="password" name="password"/>
+  <button>login</button>
+</form>
+~~~
+
+#### 34 受控组件
+
+~~~jsx
+<input onChange={this.save("username")}/>
+<input onChange={this.save("password")}/>
+
+save = (type) => {
+  // 这里返回一个函数，就是高阶函数
+  // 首次加载时，返回这个函数。当 onChange 触发时，执行内部回调函数
+  return (event) => {
+    // console.log(event.target.value, type);
+    this.setState({
+      [type]: event.target.value
+    });
+  }
+}
+~~~
+
+#### 35 高阶函数-函数柯里化
+
+高阶函数：参数是一个函数，或者返回值是一个函数的函数，就是高阶函数（Promsise, setTimeout, reduce）
+
+函数 carry-function 柯里化：函数返回值是函数，可以继续链式调用。多次接收参数，最后统一调用。
+
+~~~js
+function sum(a) {
+  return (b) => {
+    return (c) => {
+      return a + b + c;
+    }
+  }
+}
+
+const result = sum(1)(2)(3);
+~~~
+
+#### 36 不用柯里化的写法
+
+~~~jsx
+<input onChange={e => this.save('username', e.target.value)}/>
+  
+save = (type, value) => {
+  this.setState({
+    [type]: value,
+  });
+}
+~~~
+
+#### 37 引出生命周期
+
+从节点写在组件
+
+~~~js
+ReactDOM.unmountComponentAtNode(document.getElementById('test'));
+~~~
 
 
-
-引出生命周期
 
 生命周期(旧)-组件挂载流程
 
@@ -628,3 +676,4 @@ redux开发者工具
 扩展10-ErrorBoundary
 
 组件间通信方式总结
+

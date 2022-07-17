@@ -1,5 +1,7 @@
 # Sass-Mix()函数
 
+sass 基本功能和使用参考 https://www.runoob.com/sass/sass-tutorial.html
+
 ## 问题提出
 
 在项目中需要自定义一套主题色，那么相关的组件都需要对应的主题色。目前项目使用的是 reactstrap，默认的颜色是 primary, secondary, warning, success 等颜色，和项目自定义主题色不吻合。所以需要根据主题色，定制出对应的色阶，便于使用。

@@ -509,51 +509,17 @@ textBaseline = "top/bottom/middle";
 ~~~
 
 
-
-
-
-### forEach和map方法
-
-array.map(function(value,index,arr){return 处理每个数组元素执行一次函数})
-
-把数组内的每一项都执行一次函数，返回一个新数组(对于空数组也会执行回调函数)
-
-~~~javascript
-var array = [1,2,3,4];
-var array2 = array.map(function(num,index){
-	return num*(index+1); 
-});
-console.log(array2); 
-//[1,4,9,16]
-~~~
-
-array.forEach(function(value,index,arr){遍历（列出）数组每一项，并且执行一次函数，并不会返回一个结果数组});
-
-~~~javascript
-var sum = 0;
-var array1 = [1,2,3,4,5];
-
-array1.forEach(function(value,index){
-	sum += value * (index+1);
-	//1+4+9+16+25 = 55
-	console.log(sum);
-	//依次输出1,5,14,30,55五个结果
-});
-~~~
-
-
-
 ### flex 布局
 
 flex布局中，怎样在一个container中放置nav栏？
 
-	1.在京东PC端项目中，nav部分以一个独立的div进行布局（nav栏隐藏动画）
-	
-	2.在京东移动端项目中，百分比布局，nav部分也是单独的div进行布局（左右排布使用row-col布局）
-	
-	3.在休闲帮PC端项目中，使用bootstrap框架中，有预定的nav组件（bootstrap中spa组件需要加快熟悉）
-	
-	4.在微金所移动端项目中，使用bootstrap框架，也分成两个container进行开发。
+1.在京东PC端项目中，nav部分以一个独立的div进行布局（nav栏隐藏动画）
+
+2.在京东移动端项目中，百分比布局，nav部分也是单独的div进行布局（左右排布使用row-col布局）
+
+3.在休闲帮PC端项目中，使用bootstrap框架中，有预定的nav组件（bootstrap中spa组件需要加快熟悉）
+
+4.在微金所移动端项目中，使用bootstrap框架，也分成两个container进行开发。
 
 
 
@@ -569,7 +535,7 @@ flex布局中，怎样在一个container中放置nav栏？
 
 	git config --global  user.name 'Michael An'  
 	
-	git config --global user.email "1822852997@qq.com"
+	git config --global user.email "xxx@qq.com"
 	
 	右键-options-looks 设置git外观和显示，
 
@@ -626,7 +592,6 @@ git commit -m 'update .gitignore'
 ```
 
 
-
 #### Bash 命令
 
 ```bash
@@ -661,44 +626,6 @@ ls >> readme.txt
 CLI and GUI——Command Line Interface  and Graphical user interface
 
 命令行界面（CLI）没有图形用户界面（GUI）那么方便用户操作。因为，命令行界面的软件通常需要用户记忆操作的命令，但是，由于其本身的特点，命令行界面要较图形用户界面节约计算机系统的资源。在熟记命令的前提下，使用命令行界面往往要较使用图形用户界面的操作速度要快。所以，图形用户界面的操作系统中，都保留着可选的命令行界面。
-
-
-
-### React
-
-this.setState()是异步的，也就是你调用了setState()之后，React就开始准备去更新了，中间计算会可能会有一定的延时。就是this.props和this.state更新的时候可能是异步的。
-
-```js
-// 错误案例
-this.setState({
-  value: this.state.newValue + this.props.oldValue
-});
-// 正确案例
-this.setState((prevState, props) => {
-  value: prevState.newValue + props.oldValue
-});
-```
-
-尽量创建无状态组件（View 和 Model 完全分离）：数据由父组件传来，自己没有state
-
-```jsx
-class noState extends React.Component {
-	render() {
-		return (
-    	<span className={this.props.titieClass}>{this.props.title}</span>
-      <span>{this.props.article}</span>
-    );
-  }  
-}
-
-<noState
-	title={this.state.title}
-	titltClass='no-state-test'
-	article={this.item.content}
-/>
-```
-
-
 
 ### 阻止事件冒泡
 
