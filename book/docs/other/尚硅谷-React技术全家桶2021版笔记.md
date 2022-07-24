@@ -9,6 +9,10 @@
 
 https://study.163.com/course/courseMain.htm?courseId=1210995818 共计126课时，2021年1月出品
 
+全部课程约38小时；7月24日前学了10小时。
+
+
+
 ### 第一章 React 基础
 
 #### 01 react简介
@@ -468,37 +472,80 @@ save = (type, value) => {
 
 #### 37 引出生命周期
 
-从节点写在组件
+从节点卸载组件
 
 ~~~js
 ReactDOM.unmountComponentAtNode(document.getElementById('test'));
 ~~~
 
+38 生命周期(旧)-组件挂载流程
 
+39 生命周期(旧)-setState流程
 
-生命周期(旧)-组件挂载流程
+40 生命周期(旧)-forceUpdate流程
 
-生命周期(旧)-setState流程
+41 生命周期(旧)-父组件render流程
 
-生命周期(旧)-forceUpdate流程
+42 总结生命周期(旧)
 
-生命周期(旧)-父组件render流程
+很简单
 
-总结生命周期(旧)
+#### 43 对比新旧生命周期
 
-对比新旧生命周期
+新版本不推荐使用的三个生命周期函数（ComponnentWillMount, ComponentWillReceiveProps, ComponentWillUpdate）；以及新加入的两个生命周期函数(getDerivedStateFromProps, getSnapshotBeforeUpdate) 
 
-getDerivedStateFromProps
-
-getSnapshotBeforeUpdate
-
-getSnapshotBeforeUpdate举例
-
-总结生命周期(新)
+为什么不推荐使用？过时的三个生命周期函数，经常造成误解滥用，可能造成bug。在 17版本中，可以使用，界面上提示警告。在 18 版本中异步渲染，不能直接使用这三个生命周期函数，必须加上 UNSAVE 前缀（React.lazy, React.Suspend）。
 
 
 
-DOM的diffing算法
+#### 44 getDerivedStateFromProps
+
+这个生命周期函数是 componentWillReceiveProps 的替代，用于 props 变化造成组件 state 更新的情况。
+
+这是一个静态方法，在组件render前，或者组件更新后都调用。
+
+~~~js
+static getDerivedStateFromProps(nextProps, prevState) {
+  // 对比 nextProps 和 prevState 等，返回新的 state 或者 null
+  // 这是静态方法，无法直接访问到实例对象的属性和状态（this）
+  if (nextProps.name !== prevState.name) {
+    prevState.name = nextProps.name;
+  }
+  return prevState;
+}
+~~~
+
+派生状态会造成代码冗余，尽量避免使用。ComponentWillReceiveProps 只在父组件重新渲染时触发，getDerivedStateFromProps 在每次渲染前调用（包括内部setState）。
+
+#### 45 getSnapshotBeforeUpdate
+
+
+
+
+
+#### 46 getSnapshotBeforeUpdate 举例
+
+
+
+
+
+#### 47 总结生命周期(新)
+
+初始化阶段：getDerivedStateFromProps render componentDidMount
+
+更新阶段：getDerivedStateFromProps shouldComponentUpdate render getSnapshotBeforeUpdate componentDidUpdate
+
+卸载阶段：componentWillUnmount
+
+注：getDerivedStateFromProps 在首次加载和再次更新时，都会触发。
+
+
+
+
+
+
+
+48 DOM的diffing算法
 
 
 

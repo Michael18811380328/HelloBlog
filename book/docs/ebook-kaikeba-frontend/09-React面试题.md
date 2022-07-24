@@ -12,7 +12,7 @@ Ref目的是获取原生的DOM节点，进一步获取元素的尺寸，或者�
 
 #### 创建REF
 
-推荐使用 this.refs = React.createRef() 函数创建 REF，然后通过 current 获取DOM节点。
+推荐 `this.refs = React.createRef()` 创建 REF，然后通过 current 获取DOM节点。
 
 直接使用（例子）input
 
@@ -38,7 +38,9 @@ setRef = node => {
 // <input type="text" ref={node => {this.ref = node;}>
 ~~~
 
-不推荐使用字符串 this.refs.textInput 创建 REF，有副作用。
+不推荐使用字符串 this.refs.textInput 创建 REF，大量使用有性能问题。
+
+实际项目可能三种方法都使用（有旧代码）所以三个都要会用。
 
 #### 转发REF
 
@@ -56,7 +58,7 @@ function FunctionComponent(props, ref) {
 }
 ~~~
 
-在HOC高阶函数中转发REF：包裹组件不能直接使用子组件的REF，所以需要使用 forwardRef 来转发一下，把内部的REF转发到包裹层外部的组件。使用高阶函数时，设置一个REF，this.inputRef.current 获取子组件的REF。
+在HOC高阶函数中转发REF：包裹组件不能直接使用子组件的REF，所以需要使用 forwardRef 来转发一下，把内部的REF转发到包裹层外部的组件。使用高阶函数时，设置一个REF，this.inputRef.current 获取子组件的 ref。
 
 ~~~jsx
 const hoc = WrapComponent => {
@@ -83,7 +85,7 @@ function Input(props) {
 ~~~
 
 
-总结：三种创建方式、两种转发REF的情况、一个在HOOK中使用情况（useRef）（口诀321）
+总结：三种创建方式、两种转发REF的情况、一个在HOOK中使用情况（useRef）（记忆 321）
 
 ### 3、生命周期函数
 
@@ -91,9 +93,9 @@ function Input(props) {
 
 组件挂载、更新、卸载阶段。
 
-挂载阶段：constructor 构造器、componentWilMount（不使用）、componentDidMount（发出请求，绑定事件，获取DOM节点尺寸）
+挂载阶段：constructor 构造器、componentWillMount（过时了，不使用）、componentDidMount（发出请求，绑定事件，获取DOM节点尺寸）
 
-更新阶段：shouldComponentUpdate、componentWillUpdate、componentDidUpdate、getDrivedStateFromProps、componentWillReceiveProps(不使用) 避免在其中setState
+更新阶段：shouldComponentUpdate、componentWillUpdate、componentDidUpdate、getDrivedStateFromProps、componentWillReceiveProps(过时了，不使用) 避免在其中setState
 
 卸载阶段：componentWillUnmount（解绑事件，删除定时器等）
 
