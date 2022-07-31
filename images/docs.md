@@ -6,6 +6,7 @@
 - 'dot': 'dot.md'
 - 'future': 'future.md'
 - 'git': 'git.md'
+- 'index': 'index.md'
 - 'network': 'network.md'
 - 'others': 'others.md'
 - 'react': 'react.md'

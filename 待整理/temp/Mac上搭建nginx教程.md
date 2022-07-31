@@ -1,20 +1,18 @@
-# 前端安装配置nginx服务器
+# mac 配置nginx服务器
 
-### 1.安装Homebrew
+这个默认把 nginx 安装在 mac 全局环境中（如果需要在 docker 安装 nginx，可以参考其他方法）
 
-这个工具类似于 npm，就是第三方包安装工具。我使用的 Mac 系统，在终端输入
+### 1.安装 Homebrew
+
+使用 ruby 安装 homebrew(已经安装的可以跳过)
 
 ~~~bash
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" 
 ~~~
 
-安装时间根据网络情况确定，我需要大约20分钟。其间提示输入密码,输入Mac密码,安装成功后进行下一步操作。
-
 ### 2.安装nginx
 
-我们选择依赖 Homebrew 安装nginx可以减少很多麻烦,细心的你会发现nginx安装过程中下了很多东西.
-
-只需要在终端输入
+在终端输入
 
 ~~~bash
 brew install nginx
@@ -22,13 +20,12 @@ brew install nginx
 
 ### 3.开启nginx服务器
 
-安装好了,就可以启动nginx了,终端输入 `brew services start nginx`
+安装好了,就可以启动nginx了, 终端输入 `brew services start nginx`
 
 可以直接转到浏览器输入:
 
 > http://localhost:8080
 
-如果出现上图所示,表面nginx安装并开启成功.
 
 ### 4.关闭重启nginx
 nginx 其他命令（关闭重启），把 start 替换即可
@@ -37,9 +34,6 @@ nginx 其他命令（关闭重启），把 start 替换即可
 brew services stop nginx
 brew services restart nginx
 ~~~
-
-
-
 
 ###  5.nginx配置简单说明
 
