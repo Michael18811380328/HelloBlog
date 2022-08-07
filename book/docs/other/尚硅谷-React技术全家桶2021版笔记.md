@@ -519,15 +519,39 @@ static getDerivedStateFromProps(nextProps, prevState) {
 
 #### 45 getSnapshotBeforeUpdate
 
+在渲染之前调用，可以获得 DOM 信息（例如元素滚动位置），返回值传给 componentDidUpdate 函数，用于处理滚动位置和动画。通常不使用。
 
+~~~js
+getSnapshotBeforeUpdate(prevProps, prevState) {
+  if (prevProps.list.length < this.props.list.length) {
+    const list = this.listRef.current;
+    return list.scrollHeight - list.scrollTop;
+  }
+  return null;
+}
 
-
+// 当有新消息加入时，界面滚动位置不变
+componentDidUpdate(prevProps, prevState, snapshot) {
+  if (snapshot) {
+    const list = this.listRef.current;
+    list.scrollTop = list.scrollHeight - snapshot;
+  }
+}
+~~~
 
 #### 46 getSnapshotBeforeUpdate 举例
 
+简化的案例
 
+~~~js
+getSnapshotBeforeUpdate() {
+  return this.refs.list.scrollHeight;
+}
 
-
+componentDidUpdate(preProps, preState, height) {
+  this.refs.list.scrollTop += this.refs.list.scrollHeight - height;
+}
+~~~
 
 #### 47 总结生命周期(新)
 
@@ -541,23 +565,60 @@ static getDerivedStateFromProps(nextProps, prevState) {
 
 
 
+#### 48 DOM的diffing算法
 
+对应面试题：React 中 key 的作用是什么？用来作为唯一标识，在 渲染过程中 diff 算法中，判断前后节点是否发生变化。如果Key变化了，那么直接渲染这个节点。如果 key 不变，那么递归比较这个节点内部的子节点。
 
+使用 index 作为 key 可能存在问题，所以最好使用 id 作为 Key。如果在大型列表中，列表项越多，这个性能问题就越大（重新加载一个节点，还是重新加载全部的节点）
 
-
-48 DOM的diffing算法
-
-
+如果某些列表是静态的，为了方便，也可以使用 index 作为 key。
 
 ## 第三章 react-cli
 
+#### 49 初始化react脚手架
+
+React-create-app 使用和配置
+
+#### 50 脚手架文件介绍-public
+
+favicon
+
+index.html
+
+logo.png
+
+Manifest.json 应用加壳配置文件
+
+Robots.txt 爬虫协议文件
+
+~~~html
+// 这个表示 public 文件夹的路径
+<link ref="icon" href="%PUBLIC_URL%/favicon.ico"/>
+
+// 理想视口，用于移动端网页适配
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+// 安卓移动端 TAB 背景色（兼容性不好）
+<meta name="theme-color" content="#000">
+
+<meta name="description" content="this is test" />
+
+// 苹果手机桌面快捷应用图标
+<link rel="apple-touch-icon" href="%PUBLIC%/logo192.png" />
+
+// 应用加壳规则
+<link rel="manifest" href="%PUBLIC_URL%/manifest.json">
+~~~
+
+#### 51 脚手架文件介绍-src
+
+reportWebVitals.js 页面性能分析工具
+
+React.StrictMode 这个标签并不代表严格模式，而是处理 React 语法中的提示（例如使用了过时的 ref="test" 等）这个包裹在顶层标签下面即可。
 
 
-初始化react脚手架
 
-脚手架文件介绍-public
 
-脚手架文件介绍-src
 
 一个简单的Hello组件
 
@@ -565,7 +626,23 @@ static getDerivedStateFromProps(nextProps, prevState) {
 
 vscode中react插件的安装
 
-组件化编码流程
+#### 组件化编码流程
+
+组件化拆分流程
+
+1、拆分组件：根据设计稿，思考拆分成多少部分
+
+2、静态组件拆分：设置不同静态组件，同时 mock 数据
+
+3、动态数据更新（状态属性，界面交互等）
+
+从一个旧项目重构成 raect 项目，或者新项目，最好先从细节组件，公共组件做起。
+
+拆分组件的原则：组件在界面上有明确的分界，组件有明确的名称（对应组件的功能或者位置）如果某个组件名称不合适，那么这个组件的功能和位置不合适，需要进一步拆分处理重构。
+
+这个案例很简单，不详细说了
+
+
 
 TodoList案例-静态组件
 
@@ -585,37 +662,239 @@ TodoList案例-实现底部功能
 
 TodoList案例-总结TodoList案例
 
-脚手架配置代理-方法1
 
-脚手架配置代理-方法2
+
+React 开发插件
+
+在 VScode 中加入插件，可以用快捷键搭建基本的架构
+
+#### ID 的库
+uuid 库比较大，可以使用 nanoid 产生随机的 ID，在性能要求不高的情况下可以用
+
+#### defaultChecked
+
+defaultChecked 可以初始化勾选状态，但是不支持后续 state 更改，实际工程中避免使用这个属性。实际中使用 checked = 处理选择或者不选择，还有一个半选择的图标（回去查一下）
+
+checkbox 如果获取 event.target.value 可以获取到 on 始终是这个值，无意义
+
+window.confirm 原生的弹出框，函数的返回值是用户的选择，用于简单的交互。这个会阻挡JS的执行，在不同浏览器中可能不美观，实际项目中没有使用。
+
+
+
+
+
+
 
 ## 第四章 react ajax
 
-github搜索案例-静态组件
+#### 65 脚手架配置代理-方法1
 
-github搜索案例-axios发送请求
+react 主要处理状态管理和界面渲染，没有包括网络请求功能。通常使用 axios 做网络请求（promise return ）。
 
-github搜索案例-展示数据
+~~~js
+axios.get(url).then(res => {
+  console.log(res.data);
+}, err => {
+  console.log(err);
+});
+~~~
 
-github搜索案例-完成案例
+如果本地服务端在 5000 端口，浏览器界面是 3000 端口，那么根据浏览器同源策略，会出现跨域的问题。
 
-消息订阅与发布技-pubsub
+需要一个代理服务器，把5000返回的响应，转发到3000端口上面。
+
+通常在 package.json 中设置代理，这样就能处理5000端口返回的数据了。这里表示先请求3000端口，如果没有的话找5000端口
+
+~~~json
+"proxy": "http://localhost:5000"
+~~~
+
+#### 66 脚手架配置代理-方法2
+
+实际开发中，可能有不同的服务器提供多种服务，但是前端只有一个端口，所以也需要在服务端处理跨域的问题。
+
+这个在 react 脚手架下可以这样配置，一个项目配置一次即可，不需要多次配置
+
+~~~js
+// setProxy.js 需要脚手架环境，不能改名字
+
+// 这个库已经在 cra 中包含，不需要单独安装
+const proxy = require('http-proxy-middleware'); 
+
+module.exports = function(app) {
+  app.use(
+    // 这是中间件，表示判断api1的请求，发送到 5000 端口，然后改变源，并且替换到 api1
+  	proxy('/api1', {
+      target: 'http://localhost:5000',
+      changeOrigin: true, // 服务器收到请求头中 Host 字段的值（可选）
+      pathRewrite: {'^api1': ''},
+    }),
+    // 另一个中间件，处理另一个跨域的情况
+    proxy('/api2', {
+      target: 'http://localhost:5001',
+      changeOrigin: true,
+      pathRewrite: {'^api2': ''},
+    })
+  )
+}
+// 跨域也可以在服务端使用 cors 技术实现
+~~~
+
+#### 67 github搜索案例-静态组件
+
+常用的固定的css最好放在 public 中，然后在 HTML 模板中插入
+
+组件单独的 css 可以放在 src/css 路径下，在不同组件中引入
+
+#### 68 github搜索案例-axios发送请求
+
+~~~js
+// 这是原来的写法，代码可读性较差
+axios.get(url).then(res => {
+  console.log(res.data);
+  this.setState({ data: res.data });
+}, err => {
+  console.log(err);
+});
+
+// 这样回调函数更清晰，推荐这种写法
+axios.get(url).then(
+	res => {
+    console.log(res.data);
+    this.setState({
+      data: res.data
+    });
+  },
+  err => {
+    console.log(err);
+  },
+);
+~~~
+
+#### github搜索案例-展示数据
+
+
+
+#### 70 github搜索案例-完成案例
+
+三目运算法可以嵌套使用
+
+~~~jsx
+<div>
+	{
+    isFirst ? <div>Welcome</div> :
+    isLoading ? <Loading/> :
+    isError ? <Error> :
+    <List/>
+  }
+</div>
+~~~
+
+#### 71 消息订阅与发布-pubsub
+
+Pubsub-js 是一个第三方库，publish-subscribe
+
+~~~bash
+npm install pubsub-js --save
+~~~
+
+~~~js
+import PubSub from 'pubsub-js';
+
+componentDidMount() {
+  this.token = PubSub.subscribe('delete', function(message, data){
+    console.log(message, data); 
+  });
+}
+
+componentWillUnmount() {
+  PubSub.unscribe(this.token);
+}
+
+// another component
+PubSub.publish('delete', data);
+~~~
+
+#### 72 fetch发送请求
+
+JS 底层通过 xhr 或者 fetch 发送请求。jQuery 和 axios 都是基于 xhr 发送请求。
+
+问题：老版本浏览器不支持；实际上使用不多（原生XHR书写麻烦，axios 已经封装）。
+
+fetch 关注分离：第一步先判断服务器是否连接，第二步再获取返回的数据
+
+~~~js
+fetch('/api1/search/users?q=test').then(
+	response => {
+    console.log('连接服务器成功');
+    // 这里的返回值是 Promise 所以可以使用 then 处理
+    return response.join();
+  },
+  error => {
+    console.log('连接服务器失败');
+  }
+).then(
+	response => {
+    console.log('获取数据成功')
+  },
+  error => {
+    console.log('获取数据失败')
+  },
+);
+~~~
+
+
+
+
+
+#### 73 总结github搜索案例
+
+相关知识点：
+
+1、设计状态要全面：例如一个列表，需要考虑初始的状况（欢迎词），网络请求中的状态（loading）数据加载后的状态（列表）数据为空的状态（空列表，还是渲染没有数据）。如果涉及网络请求，要考虑成功后的回调函数，失败后的回调函数，界面的提示等等。
+
+2、ES6 解构赋值的重命名
+
+~~~js
+let obj = {a: {b : 1}};
+const { a } = obj;
+const { a: { b } } = obj; // 多重对象解构赋值
+const { a: time } = obj; // 解构赋值变量重命名
+~~~
+
+3、消息订阅和发布
+
+先订阅后发布；适合任何组件传参通信；需要在卸载时取消订阅
+
+这里介绍的是第三方的订阅，实际项目中自定义的消息订阅，需要逐层传参，使用不变
+
+4、fetch 发送请求（关注分离思想）
+
+fetch 实际使用不多，了解即可，大部分情况使用 axios
+
+axios 设计基于 XHR 原理，直接返回请求的数据。fetch 是浏览器原生的，不基于 XHR，先判断是否连通，然后获取数据。
+
+~~~js
+try {
+  const res = await fetch(url); // 先判断服务器是否连通
+  const data = await response.json(); // 然后从返回的 Promise 中拿到数据
+  console.log(data);
+} catch (e) {
+  console.log(e);
+}
+~~~
 
 ## 第五章 react-router
 
-fetch发送请求
+#### 74 对SPA应用的理解
 
-总结github搜索案例
+#### 75 对路由的理解
 
-对SPA应用的理解
+#### 76 前端路由原理
 
-对路由的理解
+#### 77 路由的基本使用
 
-前端路由原理
-
-路由的基本使用
-
-路由组件与一般组件
+#### 78 路由组件与一般组件
 
 NavLink的使用
 
@@ -649,13 +928,93 @@ BrowserRouter与HashRouter
 
 
 
+
+
 ## 第六章 react-ui
 
-antd的基本使用
+常用的开源组件库：material-UI  ant-design
 
-antd样式的按需引入
+教程版本时 4.8.2，项目中使用 2.x 版本，文档和实际代码可能有差异；注意更新。
 
-antd自定义主题
+#### 94 antd的基本使用
+
+直接查阅官网，需要哪个使用哪个就行
+
+注意版本：目前项目中使用 2 版本，正式4版本已经发布，配置参数有不少差距
+
+#### 95 antd样式的按需引入
+
+我们开始引入全部的CSS文件，实际上体积比较大（60kb），性能不好，最好使用按需引入
+
+在 create-react-app 脚手架中，可以进行下面的配置
+
+~~~bash
+npm install react-app-rewired customize-cra babel-plugin-import
+~~~
+
+改写脚本命令
+
+~~~json
+"script": {
+  "start": "react-app-rewired start",
+  "build": "react-app-rewired build",
+  "test": "react-app-rewired test",
+}
+~~~
+
+增加单独的配置文件 config-overrides.js （需要 customize-cra 库，处理自定义配置）
+
+~~~js
+module.exports = function override(config, env) {
+  // 这里可以改写默认的 webpack 配置文件
+  return config;
+}
+~~~
+
+实际上改成这样
+
+~~~js
+const { override, fixBabelImports } = require('customize-cra');
+
+module.exports = override(
+	fixBabelImports('import', {
+    libraryName: 'antd',
+    libraryDirectory: 'es',
+    style: 'css',
+  })
+);
+~~~
+
+更改后，就不需要在组件内部单独引入对应的样式文件了
+
+#### 96 antd 自定义主题
+
+Ant-design 使用 less 作为样式文件，所以自定义样式，需要覆盖原来的样式文件。
+
+~~~bash
+npm install less less-loader
+~~~
+
+更改配置文件
+
+~~~js
+const { override, fixBabelImports, addLessLoader } = require('customize-cra');
+
+module.exports = override(
+	fixBabelImports('import', {
+    libraryName: 'antd',
+    libraryDirectory: 'es',
+    style: true,
+  }),
+  // 注意：这里官网配置会报错，因为 lessLoader 版本更新了，参数更改了
+  addLessLoader({
+    lessOptions: {
+      javascriptEnabled: true,
+    	modifyVars: { '@primary-color': '#fff' },
+    }
+  }),
+);
+~~~
 
 
 
@@ -699,6 +1058,8 @@ redux开发者工具
 最终版
 
 项目打包运行
+
+
 
 ## 扩展
 

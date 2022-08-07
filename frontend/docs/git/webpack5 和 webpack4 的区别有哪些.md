@@ -16,8 +16,8 @@
        minimize : true // 启动压缩
      }
   }
-复制代码
-复制代码
+
+
 ```
 
 由于 tree shaking 只支持 esmodule ，如果你打包出来的是 commonjs，此时 tree-shaking 就失效了。不过当前大家都用的是 vue，react 等框架，他们都是用 babel-loader 编译，以下配置就能够保证他一定是 esmodule
@@ -49,8 +49,8 @@ optimization: {
       }
     }) ]
  }
-复制代码
-复制代码
+
+
 ```
 
 ##### 2.webpack5
@@ -67,8 +67,8 @@ optimization: {
        minimize : true // 启动压缩
      }
   }
-复制代码
-复制代码
+
+
 ```
 
 ##### 3.js 压缩失效问题
@@ -85,8 +85,8 @@ module.exports = {
     ]
   },
 }
-复制代码
-复制代码
+
+
 ```
 
 > 此时的压缩插件 optimize-css-assets-webpack-plugin 可以配置到 plugins 里面去，也可以如图配置到到 optimization 里面。区别如下：
@@ -111,8 +111,8 @@ optimize-css-assets-webpack-plugin 导致默认的 terser-webpack-plugin 就会�
       new OptimiazeCssAssetPlugin(),
     ]
   },
-复制代码
-复制代码
+
+
 ```
 
 即便在 webpack5 中，你也要像 webpack4 中一样使用 js 压缩。
@@ -139,8 +139,8 @@ module.exports = {
     minimize: true
   }
 }
-复制代码
-复制代码
+
+
 ```
 
 此时配合 tree-shaking 你会发现打包的体积会减小很多。
@@ -159,12 +159,12 @@ module.exports = {
   export * from './getAAA.js';
   export * from './getBBB.js';
   export * from './getCCC.js';
-复制代码
-复制代码
+
+
  // 在其他文件使用 getXXX 引入
   import {getXX} from '../utils'
-复制代码
-复制代码
+
+
 ```
 
 此时，如果文件 getBBB 在外界没有用到，而 tree-shaking 又不能把它摇掉咋办？这个 getBBB 就是副作用。你或许要问 tree-shaking 为什么不能奈何他？原因就是：他在 utils/index.js 里面使用了。只能开启副作用特性。如下：
@@ -176,8 +176,8 @@ module.exports = {
   ....
   sideEffects: false
 }
-复制代码
-复制代码
+
+
 // webpack.config.js
 
 module.exports = {
@@ -187,8 +187,8 @@ module.exports = {
     sideEffects: true
   }
 }
-复制代码
-复制代码
+
+
 ```
 
 副作用开启：
@@ -215,8 +215,8 @@ plugins: [
   // 其它 plugin... 
   new HardSourceWebpackPlugin(), 
 ] }
-复制代码
-复制代码
+
+
 ```
 
 ###### 2. webpack5 缓存配置
@@ -234,8 +234,8 @@ module.exports= {
     cacheDirectory: path.join(__dirname, 'node_modules/.cac/webpack')
   }
 }
-复制代码
-复制代码
+
+
 ```
 
 > type 的可选值为： memory 使用内容缓存，filesystem 使用文件缓存。
@@ -303,8 +303,6 @@ devtool在webpack4和webpack5上也是有区别的
   module.hot.accept('需要热启动的文件',(source)=>{
      //自定义热启动
   })
-复制代码
-复制代码
 ```
 
 当前最新版的babel里面的 babel-loader已经帮我们处理的热更新失效的问题。所以不必担心，直接使用即可。
@@ -345,8 +343,8 @@ module.exports = {
     })
   ]
 }
-复制代码
-复制代码
+
+
 ```
 
 webpack5 支持的新版本里面需要配置的更加清楚。
@@ -356,3 +354,4 @@ webpack5 支持的新版本里面需要配置的更加清楚。
 链接：https://juejin.cn/post/6990869970385109005
 来源：稀土掘金
 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+
