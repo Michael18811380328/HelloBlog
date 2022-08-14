@@ -76,6 +76,8 @@ nav:
         - 'other-note': 'note/other-note.md'
         - 'think-note': 'note/think-note.md'
         - '提升工作效率': 'note/提升工作效率.md'
+        - '2021-06月笔记.md': 'note/2021-06月笔记.md'
+        - '程序员如何利用周末提高.md': 'note/程序员如何利用周末提高.md'
     - Javascript:
         - 'CommonJS-AMD-CMD': 'javascript/CommonJS-AMD-CMD.md'
         - 'ES6 迭代器与生成器': 'javascript/ES6 迭代器与生成器.md'
@@ -197,6 +199,13 @@ nav:
         - '粘性定位position-sticky': 'css/粘性定位position-sticky.md'
         - '表情emoji': 'css/表情emoji.md'
 
+    - 微信小程序:
+        - '微信小程序入门教程01-初次上手.md': 'weixin/微信小程序入门教程01-初次上手.md'
+        - '微信小程序入门教程02-页面样式.md': 'weixin/微信小程序入门教程02-页面样式.md'
+        - '微信小程序入门教程03-脚本编程.md': 'weixin/微信小程序入门教程03-脚本编程.md'
+        - '微信小程序入门教程04-API 使用.md': 'weixin/微信小程序入门教程04-API 使用.md'
+        - '微信小程序官方文档.md': 'weixin/微信小程序官方文档.md'
+
     - typescript and wechat:
         - '00-TypeScript 官方入门教程': 'typescript/00-TypeScript 官方入门教程.md'
         - '01-简介': 'typescript/01-简介.md'
@@ -282,6 +291,9 @@ nav:
         - 'stackoverflow-Highlight text using ReactJS': 'react/stackoverflow-Highlight text using ReactJS.md'
         - '对React children理解': 'react/对React children理解.md'
         - '阮一峰 react 系列教程': 'react/阮一峰 react 系列教程.md'
+        - 'React Fiber Architecture.md': 'react/React Fiber Architecture.md'
+        - 'React 常用术语含义.md': 'react/React 常用术语含义.md'
+        - '为什么说Suspense是一种巨大的突破.md': 'react/为什么说Suspense是一种巨大的突破.md'
 
     - 工程化:
         - 'BUG-Auto packing the repository in background for optimum performance': 'git/BUG-Auto packing the repository in background for optimum performance.md'
@@ -308,6 +320,8 @@ nav:
         - '第三方工具 LOCALFORAGE': 'git/第三方工具 LOCALFORAGE.md'
         - '网易云-Webpack 打包工具简单使用': 'git/网易云-Webpack 打包工具简单使用.md'
         - '网页性能管理详解': 'git/网页性能管理详解.md'
+        - 'webpack5 和 webpack4 的区别有哪些': 'git/webpack5 和 webpack4 的区别有哪些.md'
+        - '生命周期函数源码学习': 'git/生命周期函数源码学习.md'
 
     - react中文官方文档:
         - '0 学习笔记': 'react-official-zh/0 学习笔记.md'

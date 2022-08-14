@@ -166,6 +166,8 @@ nav:
         - 'readme': 'Jane/readme.md'
         - 'result': 'Jane/result.md'
         - 'result_zh': 'Jane/result_zh.md'
+        - 'dict': 'Jane/dict.md'
+        - 'react-to-test': 'Jane/react-to-test.md'
     - 技术文档的写作规范:
         - 'README': '技术文档的写作规范/README.md'
         - 'marks': '技术文档的写作规范/docs/marks.md'
@@ -175,3 +177,5 @@ nav:
         - 'structure': '技术文档的写作规范/docs/structure.md'
         - 'text': '技术文档的写作规范/docs/text.md'
         - 'title': '技术文档的写作规范/docs/title.md'
+        - '元宇宙-摘录与读后感': 'other/元宇宙-摘录与读后感.md'
+        - '制定好的计划总是坚持不下去怎么办': 'other/制定好的计划总是坚持不下去怎么办.md'

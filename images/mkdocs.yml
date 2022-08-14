@@ -25,3 +25,6 @@ nav:
         - 'dot': 'dot.md'
         - 'network': 'network.md'
         - 'others': 'others.md'
+        - 'css' : 'css.md'
+        - 'future' : 'future.md'
+        - 'git' : 'git.md'
