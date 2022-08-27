@@ -124,7 +124,9 @@ nav:
         - '命令行的nodeJS': 'nodejs/命令行的nodeJS.md'
         - '廖雪峰 NodeJS': 'nodejs/廖雪峰 NodeJS.md'
         - '谈谈Node中的常见概念': 'nodejs/谈谈Node中的常见概念.md'
-
+        - 'Koa框架': 'nodejs/Koa框架.md'
+        - 'Mysql 数据库和连接池': 'nodejs/Mysql 数据库和连接池.md'
+        - 'Node 下 LDAP 实现': 'nodejs/Node 下 LDAP 实现.md'
     - python:
         - '01-Detect mobile devices with Django and Python 3': 'python/01-Detect mobile devices with Django and Python 3.md'
         - '02-pandas': 'python/02-pandas.md'

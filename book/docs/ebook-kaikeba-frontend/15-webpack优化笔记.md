@@ -26,7 +26,7 @@ exclude: "/node_modules/",
 
 Resolve.modules 用于 webpack 在什么目录下面查找第三方模块。如果在当前的目录中没有找到，那么会向上级目录递归查找，这样相对耗时。我们可以手动设置路径。
 
-~~~json
+~~~js
 module.exports = {
   resolve: {
     modules: [path.resolve(__dirname, "./node_modules")]
@@ -40,9 +40,9 @@ module.exports = {
 
 Resolve.alias 可以将原来的路径，映射成一个直接导入路径，加快读取包的速度。
 
-react 中有两套规范的代码 cjs 和 UMD 不同的模块化的代码，我们可以指定需要的文件。
+react 中有两套规范的代码 cjs 和 umd 不同的模块化的代码，我们可以指定需要的文件。
 
-具体的例子
+例子
 
 ~~~js
 module.exports = {
@@ -56,6 +56,14 @@ module.exports = {
 ~~~
 
 主要消耗时间是 loader，这部分消耗时间较少，优化效果不明显
+
+实际项目中，如果一个叶子节点，引用另一个叶子节点，那么就是 `import xxx from '../../../../utils` 这样写，如果改动文件的相对位置，维护起来很麻烦，那么就使用 alias 进行路径简化，直接写成 `import xxx from '@/utils` 即可引入，这个组件的位置移动后，也不需要再更改这个路径
+
+可能的问题：有的项目编译时，显示 `path.resolve(__dirname, "src")` 会报错，引入的文件在 src 外部，那么可以使用 `path.resolve(process.cwd(), 'src')` 这样可以正常使用.
+
+`__dirname process.cwd()` 的区别参考 https://www.cnblogs.com/yky-iris/p/8617765.html
+
+`__dirname` 表示模块的目录名，`process.cwd()` 表示当前进程执行的路径名。这个是否和 webpack 版本相关，不确定。
 
 ### 优化 resolve.extensions 配置
 

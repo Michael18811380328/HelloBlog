@@ -34,7 +34,7 @@ Node.js可以创建线程吗？
 
 - Node.js开启服务进程例子
 
-```text
+```js
 const http = require('http');
 
 const server = http.createServer();
@@ -60,7 +60,7 @@ Javascript 就是属于单线程，程序顺序执行(这里暂且不提JS异步
 
 经典计算耗时造成线程阻塞的例子
 
-```text
+```js
 const http = require('http');
 const longComputation = () => {
   let sum = 0;
@@ -153,7 +153,7 @@ fork开启子进程解决文章起初的计算耗时造成线程阻塞。
 
 fork_app.js
 
-```text
+```js
 const http = require('http');
 const fork = require('child_process').fork;
 
@@ -186,7 +186,7 @@ fork_compute.js
 
 针对文初需要进行计算的的例子我们创建子进程拆分出来单独进行运算。
 
-```text
+```js
 const computation = () => {
     let sum = 0;
     console.info('计算开始');
@@ -214,7 +214,7 @@ process.on('message', msg => {
 
 **cluster 开启子进程Demo**
 
-```text
+```js
 const http = require('http');
 const numCPUs = require('os').cpus().length;
 const cluster = require('cluster');
@@ -316,7 +316,7 @@ IPC通信管道是如何创建的
 
 `send()`方法在将消息发送到IPC管道前，实际将消息组装成了两个对象，一个参数是hadler，另一个是message。message参数如下所示：
 
-```text
+```js
 {
     cmd:'NODE_HANDLE',
     type:'net.Server',
@@ -330,7 +330,7 @@ IPC通信管道是如何创建的
 
 以发送的TCP服务器句柄为例，子进程收到消息后的还原过程代码如下:
 
-```text
+```js
 function(message,handle,emit){
     var self = this;
     
@@ -364,7 +364,7 @@ master.js 主要处理以下逻辑：
 - 在主进程中监听了子进程的变化，如果是自杀信号重新启动一个工作进程。
 - 主进程在监听到退出消息的时候，先退出子进程在退出主进程
 
-```text
+```js
 // master.js
 const fork = require('child_process').fork;
 const cpus = require('os').cpus();
@@ -421,7 +421,7 @@ worker.js 子进程处理逻辑如下：
 - 通过 message 事件接收主进程 send 方法发送的消息
 - 监听 uncaughtException 事件，捕获未处理的异常，发送自杀信息由主进程重建进程，子进程在链接关闭之后退出
 
-```text
+```js
 // worker.js
 const http = require('http');
 const server = http.createServer((req, res) => {
@@ -464,7 +464,7 @@ process.on('uncaughtException', function (err) {
 
 pm2 指定生产环境启动一个名为 test 的 node 服务
 
-```text
+```js
 pm2 start app.js --env production --name test
 ```
 
@@ -499,7 +499,7 @@ forever 就不特殊说明了，官网地址
 
 
 
-```text
+```js
 root     20158  0.0  5.0 1251592 95396 ?       Sl   5月17   1:19 node /srv/mini-program-api/launch_pm2.js
 ```
 
@@ -515,7 +515,7 @@ root     20158  0.0  5.0 1251592 95396 ?       Sl   5月17   1:19 node /srv/mini
    但这个命令也不是总能成功–或许仍然需要先手工杀死子进程，然后再杀死父进程。
 2. kill 命令用于终止进程
 
-```text
+```js
 例如： `kill -9 [PID]`
 ```
 
@@ -534,7 +534,7 @@ root     20158  0.0  5.0 1251592 95396 ?       Sl   5月17   1:19 node /srv/mini
 
 **Node.js关于单线程的误区**
 
-```text
+```js
 const http = require('http');
 
 const server = http.createServer();
@@ -561,7 +561,7 @@ Node 中最核心的是 v8 引擎，在 Node 启动后，会创建 v8 的实例�
 
 还是上面那个例子，我们在定时器执行的同时，去读一个文件：
 
-```text
+```js
 const fs = require('fs')
 setInterval(() => {
     console.log(new Date().getTime())
@@ -573,7 +573,7 @@ fs.readFile('./index.html', () => {})
 线程数量变成了 11 个，这是因为在 Node 中有一些 IO 操作（DNS，FS）和一些 CPU 密集计算（Zlib，Crypto）会启用 Node 的线程池，而线程池默认大小为 4，因为线程数变成了 11。
 我们可以手动更改线程池默认大小：
 
-```text
+```js
 process.env.UV_THREADPOOL_SIZE = 64
 ```
 
@@ -601,7 +601,7 @@ libuv架构图
 
 先看下简单的 demo：
 
-```text
+```js
 const {
   isMainThread,
   parentPort,
