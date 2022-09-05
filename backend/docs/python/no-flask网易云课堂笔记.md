@@ -1,67 +1,81 @@
-# Flask 课程大纲
+# Flask 课程笔记
 
-知乎项目需求：可以用户注册、用户登录、搜索日志、发布日志（增删改查）、增加评论
+课程介绍：网易云课堂视频课程；2020年学习前两章并总结笔记如下（然后旧视频下架了）
 
-## 第0章 安装环境
+2022年新的课程链接：https://study.163.com/course/courseMain.htm?courseId=1004091002
+
+学习目标：熟悉 python 环境搭建和基本语法，了解 flask 的设计原理，可以做一个简单项目；有能力可以对接一个前后端项目。
+
+练习项目（知乎）：用户注册、用户登录、搜索文章、发布文章、增加评论。
+
+数据库设计：需要用户表，文章表，评论表，支持不同数据的增删改查。
+
+## 第0章 安装开发环境
 
 #### 安装 python
 
-py2.7(mac自带python2.7）直接在控制台输入 python；Windows 需要配置环境变量（python pip easy-install 设置环境变量）这里需要设置 python 的环境变量和 pip 的环境变量
+MacOS: 自带 python 2.7 开发环境，在控制台输入 python，或者 `python xxx.py` 即可执行
 
-打开计算机-属性-高级属性-设置环境变量-增加环境变量
-
-名称是 PATH 属性是文件路径 C:/Python27;C:/Python27/Scripts
-
-设置环境变量后，在cmd中可以看到python和pip的版本号
+Windows：没有 Python 环境。需要下载安装，配置环境变量（`python pip easy-install`）这里需要设置 python 的环境变量和 pip 的环境变量，打开计算机-属性-高级属性-设置环境变量-增加环境变量, 名称是 PATH 属性是文件路径 `C:/Python27;C:/Python27/Scripts`，设置环境变量后，在 cmd 中可以查看 python 和 pip 的版本号，验证安装。
 
 #### 安装虚拟环境 virtualenv
 
-所以需要python虚拟环境。不同的虚拟环境中安装不同的falsk的版本和库，两个版本会共存。虚拟环境会避免版本冲突。
+不同项目依赖的 python 版本不同，依赖第三方库不同，所以需要不同的 python 虚拟环境，虚拟环境会避免版本冲突。不同的虚拟环境中安装不同的 flask 的版本和库，相互独立不会干扰。
 
 安装虚拟环境
 
 ~~~bash
 sudo pip install virtualenv
-mkdir Test cd test
+mkdir test
+cd test
 virtualenv flask-env
 ~~~
 
-Windows激活虚拟环境
+Windows 激活虚拟环境
 
 ~~~bash
-cd falsk-dev/scripts
+cd flask-dev/scripts
 activate
-deactivate # 退出
+pip install -r dependencies.txt
+deactivate
 ~~~
 
 Mac 激活虚拟环境
 
 ~~~bash
 source ~/Virtualenv/flask-env/bin/activate
-# source path/bin/activate
-deactivate # 退出
+pip install -r dependencies.txt
+deactivate
 ~~~
 
-#### 安装flask
+#### 安装 flask
 
-falsk 版本兼容问题：教程是0.12.2 现在安装的是 1.1.1 版本；可能部分代码不兼容
+falsk 版本兼容问题：教程是 0.12.2 现在安装的是 1.1.1，版本；可能部分代码不兼容，需要实际调试
 
 ~~~bash
 source ~/Virtualenv/flask-env/bin/activate
 pip install flask
-python
+~~~
+
+测试版本号（监测安装正常）
+~~~python
 import flask
 print flask.__version__
 # 1.1.1
 ~~~
 
-现在虚拟环境和flask已经配置完毕（windows环境下）
+#### 安装 IDE
 
-## 第一章 URLs 和视图
+可以使用 pycharm https://www.jetbrains.com.cn/pycharm/ sublime Vscode 
+
+虚拟环境和 flask 已经配置完毕
+
+## 第一章 URLs 和 View(视图)
 
 ### 第一课 hello flask
 
-1. 第一次创建项目的时候，需要添加虚拟环境（在pycharm）选择虚拟环境中的python执行文件
+1. 第一次创建项目的时候，需要添加虚拟环境（在pycharm）选择虚拟环境中的 python 执行文件
+
 2. flask 代码基本结构解释
 
 ~~~python
@@ -94,17 +108,22 @@ if __name__ == '__main__':
 ### 第二课 debug 
 
 app.run(debug=True) 可以打开调试模式
+
 可以项目热加载（修改python文件才行，JS文件修改后不会热加载）；可以出现问题后在页面中看到报错详情
 
 ### 外部配置文件
 
 新建配置文件 config.py，加入大写的参数
+
 ~~~python
 DEBUG = True
 # SECRET_KEY
 ~~~
+
 在主文件中引入配置文件，使用配置
+
 main.py
+
 ~~~python
 import config
 app.config.from_object(config)
@@ -119,11 +138,13 @@ app.config.from_object(config)
 def change_page(number):
 	return 'change page to %s' % number
 ~~~
+
 参数需要放在尖括号中，视图函数中参数和原始参数相同。
 
 ### 第4课 URL反转
 
 可以在一个视图函数中，传入其他视图函数，返回对应的URL
+
 使用 url_for 内置函数
 
 用途：页面重定向；HTML中A链接
