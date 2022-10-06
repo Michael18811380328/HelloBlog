@@ -1,8 +1,10 @@
 # JavaScript 秘密花园
 
-原始链接
+原文原始链接
 
-http://bonsaiden.github.io/JavaScript-Garden/
+<http://bonsaiden.github.io/JavaScript-Garden/>
+
+原文是英文，翻译后的中文可能有一部分不准确。这里主要放自己的笔记，而不是完整的原书内容。
 
 ## 对象
 
@@ -17,33 +19,37 @@ false.toString(); // 'false'
 function Foo(){}
 Foo.bar = 1;
 Foo.bar; // 1
+
 ```
 
-一个常见的误解是数字的字面值（literal）不能当作对象使用。这是因为 JavaScript 解析器的一个错误， 它试图将*点操作符*解析为浮点数字面值的一部分。
+一个常见的误解是数字的字面值（literal）不能当作对象使用。这是因为 JavaScript 解析器的一个错误， 它试图将_点操作符_解析为浮点数字面值的一部分。
 
 ```
 2.toString(); // 出错：SyntaxError
+
 ```
 
-有很多变通方法可以让数字的字面值看起来像对象。
+有很多变通方法可以让数字的字面值看起来像对象（实际上避免这样的语法，可读性不强）。
 
 ```
 2..toString(); // 第二个点号可以正常解析
 2 .toString(); // 注意点号前面的空格
 (2).toString(); // 2先被计算
+
 ```
 
 ### 对象作为数据类型
 
-JavaScript 的对象可以作为[*哈希表*](http://en.wikipedia.org/wiki/Hashmap)使用，主要用来保存命名的键与值的对应关系。
+JavaScript 的对象可以作为_哈希表_使用，主要用来保存命名的键与值的对应关系。
 
-使用对象的字面语法 - `{}` - 可以创建一个简单对象。这个新创建的对象从 `Object.prototype` [继承](http://bonsaiden.github.io/JavaScript-Garden/zh/#object.prototype)下面，没有任何[自定义属性](http://bonsaiden.github.io/JavaScript-Garden/zh/#object.hasownproperty)。
+使用对象的字面语法 - `{}` - 可以创建一个简单对象。这个新创建的对象从 `Object.prototype` 继承下面，没有任何自定义属性。
 
 ```
 var foo = {}; // 一个空对象
 
 // 一个新对象，拥有一个值为12的自定义属性'test'
 var bar = {test: 12}; 
+
 ```
 
 ### 访问属性
@@ -60,12 +66,13 @@ foo[get]; // michael
 
 foo.1234; // SyntaxError
 foo['1234']; // works
+
 ```
 
 两种语法是等价的，但是中括号操作符在下面两种情况下依然有效
 
-- 动态设置属性
-- 属性名不是一个有效的变量名（**译者注：**比如属性名中包含空格，或者属性名是 JS 的关键词）
+* 动态设置属性
+* 属性名不是一个有效的变量名（**译者注：**比如属性名中包含空格，或者属性名是 JS 的关键词）
 
 **译者注：**在 [JSLint](http://www.jslint.com/) 语法检测工具中，点操作符是推荐做法。
 
@@ -88,6 +95,7 @@ for(var i in obj) {
         console.log(i, '' + obj[i]);
     }
 }
+
 ```
 
 上面的输出结果有 `bar undefined` 和 `foo null` - 只有 `baz` 被真正的删除了，所以从输出结果中消失。
@@ -101,21 +109,22 @@ var test = {
     'case': 'I am a keyword so I must be notated as a string',
     delete: 'I am a keyword too so me' // 出错：SyntaxError
 };
+
 ```
 
 对象的属性名可以使用字符串或者普通字符声明。但是由于 JavaScript 解析器的另一个错误设计， 上面的第二种声明方式在 ECMAScript 5 之前会抛出 `SyntaxError` 的错误。
 
-这个错误的原因是 `delete` 是 JavaScript 语言的一个*关键词*；因此为了在更低版本的 JavaScript 引擎下也能正常运行， 必须使用*字符串字面值*声明方式。
+这个错误的原因是 `delete` 是 JavaScript 语言的一个_关键词_；因此为了在更低版本的 JavaScript 引擎下也能正常运行， 必须使用_字符串字面值_声明方式（实际：不要使用关键字作为变量属性名）。
 
 ## 原型
 
-JavaScript 不包含传统的类继承模型，而是使用 *prototype* 原型模型。
+JavaScript 不包含传统的类继承模型，而是使用 _prototype_ 原型模型。
 
 虽然这经常被当作是 JavaScript 的缺点被提及，其实基于原型的继承模型比传统的类继承还要强大。 实现传统的类继承模型是很简单，但是实现 JavaScript 中的原型继承则要困难的多。 (It is for example fairly trivial to build a classic model on top of it, while the other way around is a far more difficult task.)
 
 由于 JavaScript 是唯一一个被广泛使用的基于原型继承的语言，所以理解两种继承模式的差异是需要一定时间的。
 
-第一个不同之处在于 JavaScript 使用*原型链*的继承方式。
+第一个不同之处在于 JavaScript 使用_原型链_的继承方式。
 
 **注意:** 简单的使用 `Bar.prototype = Foo.prototype` 将会导致两个对象共享**相同**的原型。 因此，改变任意一个对象的原型都会影响到另一个对象的原型，在大多数情况下这不是希望的结果。
 
@@ -146,6 +155,7 @@ test [Bar的实例]
             {method: ...};
             Object.prototype
                 {toString: ... /* etc. */};
+
 ```
 
 上面的例子中，`test` 对象从 `Bar.prototype` 和 `Foo.prototype` 继承下来；因此， 它能访问 `Foo` 的原型方法 `method`。同时，它也能够访问**那个**定义在原型上的 `Foo` 实例属性 `value`。 需要注意的是 `new Bar()` **不会**创造出一个新的 `Foo` 实例，而是 重复使用它原型上的那个实例；因此，所有的 `Bar`实例都会共享**相同**的 `value` 属性。
@@ -154,9 +164,7 @@ test [Bar的实例]
 
 ### 属性查找
 
-当查找一个对象的属性时，JavaScript 会**向上**遍历原型链，直到找到给定名称的属性为止。
-
-到查找到达原型链的顶部 - 也就是 `Object.prototype` - 但是仍然没有找到指定的属性，就会返回 [undefined](http://bonsaiden.github.io/JavaScript-Garden/zh/#core.undefined)。
+当查找一个对象的属性时，JavaScript 会**向上**遍历原型链，直到找到给定名称的属性为止。到查找到达原型链的顶部 - 也就是 `Object.prototype` - 但是仍然没有找到指定的属性，就会返回 undefined。
 
 ### 原型属性
 
@@ -165,6 +173,7 @@ test [Bar的实例]
 ```
 function Foo() {}
 Foo.prototype = 1; // 无效
+
 ```
 
 而将对象赋值给 prototype，正如上面的例子所示，将会动态的创建原型链。
@@ -179,7 +188,7 @@ Foo.prototype = 1; // 无效
 
 一个错误特性被经常使用，那就是扩展 `Object.prototype` 或者其他内置类型的原型对象。
 
-这种技术被称之为 [monkey patching](http://en.wikipedia.org/wiki/Monkey_patch) 并且会破坏*封装*。虽然它被广泛的应用到一些 JavaScript 类库中比如 [Prototype](http://prototypejs.org/), 但是我仍然不认为为内置类型添加一些*非标准*的函数是个好主意。
+这种技术被称之为 [monkey patching](http://en.wikipedia.org/wiki/Monkey_patch) 并且会破坏_封装_。虽然它被广泛的应用到一些 JavaScript 类库中比如 [Prototype](http://prototypejs.org/), 但是我仍然不认为为内置类型添加一些_非标准_的函数是个好主意。
 
 扩展内置类型的**唯一**理由是为了和新的 JavaScript 保持一致，比如 [`Array.forEach`](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/forEach)。
 
@@ -191,7 +200,7 @@ Foo.prototype = 1; // 无效
 
 ## `hasOwnProperty` 函数
 
-为了判断一个对象是否包含*自定义*属性而*不是*[原型链](http://bonsaiden.github.io/JavaScript-Garden/zh/#object.prototype)上的属性， 我们需要使用继承自 `Object.prototype` 的 `hasOwnProperty` 方法。
+为了判断一个对象是否包含_自定义_属性而_不是_[原型链](http://bonsaiden.github.io/JavaScript-Garden/zh/#object.prototype)上的属性， 我们需要使用继承自 `Object.prototype` 的 `hasOwnProperty` 方法。
 
 **注意:** 通过判断一个属性是否 `undefined` 是**不够**的。 因为一个属性可能确实存在，只不过它的值被设置为 `undefined`。
 
@@ -207,13 +216,14 @@ foo.bar; // 1
 
 foo.hasOwnProperty('bar'); // false
 foo.hasOwnProperty('goo'); // true
+
 ```
 
-只有 `hasOwnProperty` 可以给出正确和期望的结果，这在遍历对象的属性时会很有用。 **没有**其它方法可以用来排除原型链上的属性，而不是定义在对象*自身*上的属性。
+只有 `hasOwnProperty` 可以给出正确和期望的结果，这在遍历对象的属性时会很有用。 **没有**其它方法可以用来排除原型链上的属性，而不是定义在对象_自身_上的属性。
 
 ### `hasOwnProperty` 作为属性
 
-JavaScript **不会**保护 `hasOwnProperty` 被非法占用，因此如果一个对象碰巧存在这个属性， 就需要使用*外部*的 `hasOwnProperty` 函数来获取正确的结果。
+JavaScript **不会**保护 `hasOwnProperty` 被非法占用，因此如果一个对象碰巧存在这个属性， 就需要使用_外部_的 `hasOwnProperty` 函数来获取正确的结果。
 
 ```
 var foo = {
@@ -227,6 +237,7 @@ foo.hasOwnProperty('bar'); // 总是返回 false
 
 // 使用其它对象的 hasOwnProperty，并将其上下文设置为foo
 ({}).hasOwnProperty.call(foo, 'bar'); // true
+
 ```
 
 ### 结论
@@ -247,6 +258,7 @@ var foo = {moo: 2};
 for(var i in foo) {
     console.log(i); // 输出两个属性：bar 和 moo
 }
+
 ```
 
 由于不可能改变 `for in` 自身的行为，因此有必要过滤出那些不希望出现在循环体中的属性， 这可以通过 `Object.prototype` 原型上的 [`hasOwnProperty`](http://bonsaiden.github.io/JavaScript-Garden/zh/#object.hasownproperty)函数来完成。
@@ -262,6 +274,7 @@ for(var i in foo) {
         console.log(i);
     }
 }
+
 ```
 
 这个版本的代码是唯一正确的写法。由于我们使用了 `hasOwnProperty`，所以这次**只**输出 `moo`。 如果不使用 `hasOwnProperty`，则这段代码在原生对象原型（比如 `Object.prototype`）被扩展时可能会出错。
@@ -276,38 +289,42 @@ for(var i in foo) {
 
 ## 函数声明与表达式
 
-函数是JavaScript中的一等对象，这意味着可以把函数像其它值一样传递。 一个常见的用法是把*匿名函数*作为回调函数传递到异步函数中。
+函数是JavaScript中的一等对象，这意味着可以把函数像其它值一样传递。 一个常见的用法是把_匿名函数_作为回调函数传递到异步函数中。
 
 ### 函数声明
 
 ```
 function foo() {}
+
 ```
 
-上面的方法会在执行前被 [解析(hoisted)](http://bonsaiden.github.io/JavaScript-Garden/zh/#function.scopes)，因此它存在于当前上下文的*任意*一个地方， 即使在函数定义体的上面被调用也是对的。
+上面的方法会在执行前被 解析(hoisted)，因此它存在于当前上下文的_任意_一个地方， 即使在函数定义体的上面被调用也是对的。
 
 ```
 foo(); // 正常运行，因为foo在代码运行前已经被创建
 function foo() {}
+
 ```
 
 ### 函数赋值表达式
 
 ```
 var foo = function() {};
+
 ```
 
-这个例子把一个*匿名*的函数赋值给变量 `foo`。
+这个例子把一个_匿名_的函数赋值给变量 `foo`。
 
 ```
 foo; // 'undefined'
 foo(); // 出错：TypeError
 var foo = function() {};
+
 ```
 
 由于 `var` 定义了一个声明语句，对变量 `foo` 的解析是在代码运行之前，因此 `foo` 变量在代码运行时已经被定义过了。
 
-但是由于赋值语句只在运行时执行，因此在相应代码执行之前， `foo` 的值缺省为 [undefined](http://bonsaiden.github.io/JavaScript-Garden/zh/#core.undefined)。
+但是由于赋值语句只在运行时执行，因此在相应代码执行之前， `foo` 的值缺省为 undefined。
 
 ### 命名函数的赋值表达式
 
@@ -318,9 +335,10 @@ var foo = function bar() {
     bar(); // 正常运行
 }
 bar(); // 出错：ReferenceError
+
 ```
 
-`bar` 函数声明外是不可见的，这是因为我们已经把函数赋值给了 `foo`； 然而在 `bar` 内部依然可见。这是由于 JavaScript 的 [命名处理](http://bonsaiden.github.io/JavaScript-Garden/zh/#function.scopes) 所致， 函数名在函数内*总是*可见的。
+`bar` 函数声明外是不可见的，这是因为我们已经把函数赋值给了 `foo`； 然而在 `bar` 内部依然可见。这是由于 JavaScript 的 [命名处理](http://bonsaiden.github.io/JavaScript-Garden/zh/#function.scopes) 所致， 函数名在函数内_总是_可见的。
 
 **注意:**在IE8及IE8以下版本浏览器bar在外部也是可见的，是因为浏览器对命名函数赋值表达式进行了错误的解析， 解析成两个函数 `foo` 和 `bar`
 
@@ -332,9 +350,10 @@ JavaScript 有一套完全不同于其它语言的对 `this` 的处理机制。 
 
 ```
 this;
+
 ```
 
-当在全部范围内使用 `this`，它将会指向*全局*对象。
+当在全部范围内使用 `this`，它将会指向_全局_对象。
 
 **译者注：**浏览器中运行的 JavaScript 脚本，这个全局对象是 `window`。
 
@@ -342,9 +361,10 @@ this;
 
 ```
 foo();
+
 ```
 
-这里 `this` 也会指向*全局*对象。
+这里 `this` 也会指向_全局_对象。
 
 **ES5 注意:** 在严格模式下（strict mode），不存在全局变量。 这种情况下 `this` 将会是 `undefined`。
 
@@ -352,6 +372,7 @@ foo();
 
 ```
 test.foo(); 
+
 ```
 
 这个例子中，`this` 指向 `test` 对象。
@@ -360,9 +381,10 @@ test.foo();
 
 ```
 new foo(); 
+
 ```
 
-如果函数倾向于和 `new` 关键词一块使用，则我们称这个函数是 [构造函数](http://bonsaiden.github.io/JavaScript-Garden/zh/#function.constructors)。 在函数内部，`this` 指向*新创建*的对象。
+如果函数倾向于和 `new` 关键词一块使用，则我们称这个函数是 [构造函数](http://bonsaiden.github.io/JavaScript-Garden/zh/#function.constructors)。 在函数内部，`this` 指向_新创建_的对象。
 
 ### 显式的设置 `this`
 
@@ -372,11 +394,12 @@ function foo(a, b, c) {}
 var bar = {};
 foo.apply(bar, [1, 2, 3]); // 数组将会被扩展，如下所示
 foo.call(bar, 1, 2, 3); // 传递到foo的参数是：a = 1, b = 2, c = 3
+
 ```
 
 当使用 `Function.prototype` 上的 `call` 或者 `apply` 方法时，函数内的 `this` 将会被 **显式设置**为函数调用的第一个参数。
 
-因此*函数调用*的规则在上例中已经不适用了，在`foo` 函数内 `this` 被设置成了 `bar`。
+因此_函数调用_的规则在上例中已经不适用了，在`foo` 函数内 `this` 被设置成了 `bar`。
 
 **注意:** 在对象的字面声明语法中，`this` **不能**用来指向对象本身。 因此 `var obj = {me: this}` 中的 `me` 不会指向 `obj`，因为 `this` 只可能出现在上述的五种情况中。 **译者注：**这个例子中，如果是在浏览器中运行，`obj.me` 等于 `window` 对象。
 
@@ -391,6 +414,7 @@ Foo.method = function() {
     }
     test();
 }
+
 ```
 
 一个常见的误解是 `test` 中的 `this` 将会指向 `Foo` 对象，实际上**不是**这样子的。
@@ -405,6 +429,7 @@ Foo.method = function() {
     }
     test();
 }
+
 ```
 
 `that` 只是我们随意起的名字，不过这个名字被广泛的用来指向外部的 `this`对象。 在 [闭包](http://bonsaiden.github.io/JavaScript-Garden/zh/#function.closures) 一节，我们可以看到 `that` 可以作为参数传递。
@@ -416,6 +441,7 @@ Foo.method = function() {
 ```
 var test = someObject.methodTest;
 test();
+
 ```
 
 上例中，`test` 就像一个普通的函数被调用；因此，函数内的 `this` 将不再被指向到 `someObject` 对象。
@@ -430,6 +456,7 @@ function Bar() {}
 Bar.prototype = Foo.prototype;
 
 new Bar().method();
+
 ```
 
 当 `method` 被调用时，`this` 将会指向 `Bar` 的实例对象。
@@ -457,6 +484,7 @@ function Counter(start) {
 var foo = Counter(4);
 foo.increment();
 foo.get(); // 5
+
 ```
 
 这里，`Counter` 函数返回两个闭包，函数 `increment` 和函数 `get`。 这两个函数都维持着 对外部作用域 `Counter` 的引用，因此总可以访问此作用域内定义的变量 `count`.
@@ -470,9 +498,10 @@ var foo = new Counter(4);
 foo.hack = function() {
     count = 1337;
 };
+
 ```
 
-上面的代码**不会**改变定义在 `Counter` 作用域中的 `count` 变量的值，因为 `foo.hack` 没有 定义在那个**作用域**内。它将会创建或者覆盖*全局*变量 `count`。
+上面的代码**不会**改变定义在 `Counter` 作用域中的 `count` 变量的值，因为 `foo.hack` 没有 定义在那个**作用域**内。它将会创建或者覆盖_全局_变量 `count`。
 
 ### 循环中的闭包
 
@@ -484,11 +513,12 @@ for(var i = 0; i < 10; i++) {
         console.log(i);  
     }, 1000);
 }
+
 ```
 
 上面的代码不会输出数字 `0` 到 `9`，而是会输出数字 `10` 十次。
 
-当 `console.log` 被调用的时候，*匿名*函数保持对外部变量 `i` 的引用，此时 `for`循环已经结束， `i` 的值被修改成了 `10`.
+当 `console.log` 被调用的时候，_匿名_函数保持对外部变量 `i` 的引用，此时 `for`循环已经结束， `i` 的值被修改成了 `10`.
 
 为了得到想要的结果，需要在每次循环中创建变量 `i` 的**拷贝**。
 
@@ -504,6 +534,7 @@ for(var i = 0; i < 10; i++) {
         }, 1000);
     })(i);
 }
+
 ```
 
 外部的匿名函数会立即执行，并把 `i` 作为它的参数，此时函数内 `e` 变量就拥有了 `i` 的一个拷贝。
@@ -520,6 +551,7 @@ for(var i = 0; i < 10; i++) {
         }
     })(i), 1000)
 }
+
 ```
 
 ## `arguments` 对象
@@ -538,6 +570,7 @@ JavaScript 中每个函数内都能访问一个特别变量 `arguments`。这个
 
 ```
 Array.prototype.slice.call(arguments);
+
 ```
 
 这个转化比较**慢**，在性能不好的代码中**不推荐**这种做法。
@@ -553,6 +586,7 @@ function foo() {
 function bar(a, b, c) {
     // 干活
 }
+
 ```
 
 另一个技巧是同时使用 `call` 和 `apply`，创建一个快速的解绑定包装器。
@@ -571,6 +605,7 @@ Foo.method = function() {
     // 结果: Foo.prototype.method.call(this, arg1, arg2... argN)
     Function.call.apply(Foo.prototype.method, arguments);
 };
+
 ```
 
 **译者注**：上面的 `Foo.method` 函数和下面代码的效果是一样的:
@@ -580,11 +615,12 @@ Foo.method = function() {
     var args = Array.prototype.slice.call(arguments);
     Foo.prototype.method.apply(args[0], args.slice(1));
 };
+
 ```
 
 ### 自动更新
 
-`arguments` 对象为其内部属性以及函数形式参数创建 *getter* 和 *setter* 方法。
+`arguments` 对象为其内部属性以及函数形式参数创建 _getter_ 和 _setter_ 方法。
 
 因此，改变形参的值会影响到 `arguments` 对象的值，反之亦然。
 
@@ -601,15 +637,16 @@ function foo(a, b, c) {
     c; // 3
 }
 foo(1, 2, 3);
+
 ```
 
 ### 性能真相
 
 不管它是否有被使用，`arguments` 对象总会被创建，除了两个特殊情况 - 作为局部变量声明和作为形式参数。
 
-`arguments` 的 *getters* 和 *setters* 方法总会被创建；因此使用 `arguments` 对性能不会有什么影响。 除非是需要对 `arguments` 对象的属性进行多次访问。
+`arguments` 的 _getters_ 和 _setters_ 方法总会被创建；因此使用 `arguments` 对性能不会有什么影响。 除非是需要对 `arguments` 对象的属性进行多次访问。
 
-**ES5 提示:** 这些 *getters* 和 *setters* 在严格模式下（strict mode）不会被创建。
+**ES5 提示:** 这些 _getters_ 和 _setters_ 在严格模式下（strict mode）不会被创建。
 
 **译者注：**在 [MDC](https://developer.mozilla.org/en/JavaScript/Strict_mode) 中对 `strict mode` 模式下 `arguments` 的描述有助于我们的理解，请看下面代码：
 
@@ -623,6 +660,7 @@ function f(a) {
 var pair = f(17);
 console.assert(pair[0] === 42);
 console.assert(pair[1] === 17);
+
 ```
 
 然而，的确有一种情况会显著的影响现代 JavaScript 引擎的性能。这就是使用 `arguments.callee`。
@@ -638,6 +676,7 @@ function bigLoop() {
         foo(); // Would normally be inlined...
     }
 }
+
 ```
 
 上面代码中，`foo` 不再是一个单纯的内联函数 [inlining](http://en.wikipedia.org/wiki/Inlining)（**译者注**：这里指的是解析器可以做内联处理）， 因为它需要知道它自己和它的调用者。 这不仅抵消了内联函数带来的性能提升，而且破坏了封装，因此现在函数可能要依赖于特定的上下文。
@@ -664,6 +703,7 @@ Foo.prototype.test = function() {
 };
 
 var test = new Foo();
+
 ```
 
 上面代码把 `Foo` 作为构造函数调用，并设置新创建对象的 `prototype` 为 `Foo.prototype`。
@@ -684,6 +724,7 @@ function Test() {
     };
 }
 new Test(); // 返回的对象
+
 ```
 
 **译者注：**`new Bar()` 返回的是新创建的对象，而不是数字的字面值 2。 因此 `new Bar().constructor === Bar`，但是如果返回的是数字对象，结果就不同了，如下所示
@@ -693,6 +734,7 @@ function Bar() {
     return new Number(2);
 }
 new Bar().constructor === Number
+
 ```
 
 **译者注：**这里得到的 `new Test()`是函数返回的对象，而不是通过`new`关键字新创建的对象，因此：
@@ -700,6 +742,7 @@ new Bar().constructor === Number
 ```
 (new Test()).value === undefined
 (new Test()).foo === 1
+
 ```
 
 如果 `new` 被遗漏了，则函数**不会**返回新创建的对象。
@@ -709,9 +752,10 @@ function Foo() {
     this.bla = 1; // 获取设置全局参数
 }
 Foo(); // undefined
+
 ```
 
-虽然上例在有些情况下也能正常运行，但是由于 JavaScript 中 [`this`](http://bonsaiden.github.io/JavaScript-Garden/zh/#function.this) 的工作原理， 这里的 `this` 指向*全局对象*。
+虽然上例在有些情况下也能正常运行，但是由于 JavaScript 中 [`this`](http://bonsaiden.github.io/JavaScript-Garden/zh/#function.this) 的工作原理， 这里的 `this` 指向_全局对象_。
 
 ### 工厂模式
 
@@ -732,6 +776,7 @@ Bar.prototype = {
 
 new Bar();
 Bar();
+
 ```
 
 上面两种对 `Bar` 函数的调用返回的值完全相同，一个新创建的拥有 `method`属性的对象被返回， 其实这里创建了一个[闭包](http://bonsaiden.github.io/JavaScript-Garden/zh/#function.closures)。
@@ -750,6 +795,7 @@ typeof(bar1.foo); // "undefined"
 var bar2 = Bar();
 typeof(bar2.method); // "function"
 typeof(bar2.foo); // "undefined"
+
 ```
 
 ### 通过工厂模式创建新对象
@@ -773,6 +819,7 @@ function Foo() {
     }
     return obj;
 }
+
 ```
 
 虽然上面的方式比起 `new` 的调用方式不容易出错，并且可以充分利用[私有变量](http://bonsaiden.github.io/JavaScript-Garden/zh/#function.closures)带来的便利， 但是随之而来的是一些不好的地方。
@@ -787,7 +834,7 @@ function Foo() {
 
 ## 作用域与命名空间
 
-尽管 JavaScript 支持一对花括号创建的代码段，但是并不支持块级作用域； 而仅仅支持 *函数作用域*。
+尽管 JavaScript 支持一对花括号创建的代码段，但是并不支持块级作用域； 而仅仅支持 _函数作用域_。
 
 ```
 function test() { // 一个作用域
@@ -796,6 +843,7 @@ function test() { // 一个作用域
     }
     console.log(i); // 10
 }
+
 ```
 
 **注意:** 如果不是在赋值语句中，而是在 return 表达式或者函数参数中，`{...}` 将会作为代码段解析， 而不是作为对象的字面语法解析。如果考虑到 [自动分号插入](http://bonsaiden.github.io/JavaScript-Garden/zh/#core.semicolon)，这可能会导致一些不易察觉的错误。
@@ -809,9 +857,10 @@ function add(a, b) {
         a + b;
 }
 console.log(add(1, 2));
+
 ```
 
-JavaScript 中没有显式的命名空间定义，这就意味着所有对象都定义在一个*全局共享*的命名空间下面。
+JavaScript 中没有显式的命名空间定义，这就意味着所有对象都定义在一个_全局共享_的命名空间下面。
 
 每次引用一个变量，JavaScript 会向上遍历整个作用域直到找到这个变量为止。 如果到达全局作用域但是这个变量仍未找到，则会抛出 `ReferenceError`异常。
 
@@ -823,9 +872,10 @@ foo = '42';
 
 // 脚本 B
 var foo = '42'
+
 ```
 
-上面两段脚本效果**不同**。脚本 A 在*全局*作用域内定义了变量 `foo`，而脚本 B 在*当前*作用域内定义变量 `foo`。
+上面两段脚本效果**不同**。脚本 A 在_全局_作用域内定义了变量 `foo`，而脚本 B 在_当前_作用域内定义变量 `foo`。
 
 再次强调，上面的效果**完全不同**，不使用 `var` 声明变量将会导致隐式的全局变量产生。
 
@@ -838,6 +888,7 @@ function test() {
 }
 test();
 foo; // 21
+
 ```
 
 在函数 `test` 内不使用 `var` 关键字声明 `foo` 变量将会覆盖外部的同名变量。 起初这看起来并不是大问题，但是当有成千上万行代码时，不使用 `var` 声明变量将会带来难以跟踪的 BUG。
@@ -855,9 +906,10 @@ function subLoop() {
         // 干活
     }
 }
+
 ```
 
-外部循环在第一次调用 `subLoop` 之后就会终止，因为 `subLoop` 覆盖了全局变量 `i`。 在第二个 `for` 循环中使用 `var` 声明变量可以避免这种错误。 声明变量时**绝对不要**遗漏 `var` 关键字，除非这就是*期望*的影响外部作用域的行为。
+外部循环在第一次调用 `subLoop` 之后就会终止，因为 `subLoop` 覆盖了全局变量 `i`。 在第二个 `for` 循环中使用 `var` 声明变量可以避免这种错误。 声明变量时**绝对不要**遗漏 `var` 关键字，除非这就是_期望_的影响外部作用域的行为。
 
 ### 局部变量
 
@@ -877,6 +929,7 @@ function test(i) {
     bar = 4;
 }
 test(10);
+
 ```
 
 `foo` 和 `i` 是函数 `test` 内的局部变量，而对 `bar` 的赋值将会覆盖全局作用域内的同名变量。
@@ -902,6 +955,7 @@ function test(data) {
         var e = data[i];
     }
 }
+
 ```
 
 上面代码在运行之前将会被转化。JavaScript 将会把 `var` 表达式和 `function` 声明提升到当前作用域的顶部。
@@ -929,11 +983,12 @@ someValue = 42; // 赋值语句不会被提升规则（hoisting）影响
 bar = function() {};
 
 test();
+
 ```
 
 没有块级作用域不仅导致 `var` 表达式被从循环内移到外部，而且使一些 `if`表达式更难看懂。
 
-在原来代码中，`if` 表达式看起来修改了*全局变量* `goo`，实际上在提升规则被应用后，却是在修改*局部变量*。
+在原来代码中，`if` 表达式看起来修改了_全局变量_ `goo`，实际上在提升规则被应用后，却是在修改_局部变量_。
 
 如果没有提升规则（hoisting）的知识，下面的代码看起来会抛出异常 `ReferenceError`。
 
@@ -942,9 +997,10 @@ test();
 if (!SomeImportantThing) {
     var SomeImportantThing = {};
 }
+
 ```
 
-实际上，上面的代码正常运行，因为 `var` 表达式会被提升到*全局作用域*的顶部。
+实际上，上面的代码正常运行，因为 `var` 表达式会被提升到_全局作用域_的顶部。
 
 ```
 var SomeImportantThing;
@@ -955,6 +1011,7 @@ var SomeImportantThing;
 if (!SomeImportantThing) {
     SomeImportantThing = {};
 }
+
 ```
 
 **译者注：**在 Nettuts+ 网站有一篇介绍 hoisting 的[文章](http://net.tutsplus.com/tutorials/javascript-ajax/quick-tip-javascript-hoisting-explained/)，其中的代码很有启发性。
@@ -967,11 +1024,12 @@ var myvar = 'my value';
     alert(myvar); // undefined  
     var myvar = 'local value';  
 })();  
+
 ```
 
 ### 名称解析顺序
 
-JavaScript 中的所有作用域，包括*全局作用域*，都有一个特别的名称 [`this`](http://bonsaiden.github.io/JavaScript-Garden/zh/#function.this) 指向当前对象。
+JavaScript 中的所有作用域，包括_全局作用域_，都有一个特别的名称 [`this`](http://bonsaiden.github.io/JavaScript-Garden/zh/#function.this) 指向当前对象。
 
 函数作用域内也有默认的变量 [`arguments`](http://bonsaiden.github.io/JavaScript-Garden/zh/#function.arguments)，其中包含了传递到函数中的参数。
 
@@ -986,7 +1044,7 @@ JavaScript 中的所有作用域，包括*全局作用域*，都有一个特别�
 
 ### 命名空间
 
-只有一个全局作用域导致的常见错误是命名冲突。在 JavaScript中，这可以通过 *匿名包装器* 轻松解决。
+只有一个全局作用域导致的常见错误是命名冲突。在 JavaScript中，这可以通过 _匿名包装器_ 轻松解决。
 
 ```
 (function() {
@@ -997,6 +1055,7 @@ JavaScript 中的所有作用域，包括*全局作用域*，都有一个特别�
     };
 
 })(); // 立即执行此匿名函数
+
 ```
 
 匿名函数被认为是 [表达式](http://bonsaiden.github.io/JavaScript-Garden/zh/#function)；因此为了可调用性，它们首先会被执行。
@@ -1006,6 +1065,7 @@ JavaScript 中的所有作用域，包括*全局作用域*，都有一个特别�
 function() {}
 ) // 并且返回函数对象
 () // 调用上面的执行结果，也就是函数对象
+
 ```
 
 有一些其他的调用函数表达式的方法，比如下面的两种方式语法不同，但是效果一模一样。
@@ -1014,11 +1074,12 @@ function() {}
 // 另外两种方式
 +function(){}();
 (function(){}());
+
 ```
 
 ### 结论
 
-推荐使用*匿名包装器*（**译者注：**也就是自执行的匿名函数）来创建命名空间。这样不仅可以防止命名冲突， 而且有利于程序的模块化。
+推荐使用_匿名包装器_（**译者注：**也就是自执行的匿名函数）来创建命名空间。这样不仅可以防止命名冲突， 而且有利于程序的模块化。
 
 另外，使用全局变量被认为是**不好的习惯**。这样的代码容易产生错误并且维护成本较高。
 
@@ -1026,11 +1087,11 @@ function() {}
 
 ## 数组遍历与属性
 
-虽然在 JavaScript 中数组是对象，但是没有好的理由去使用 [`for in` 循环](http://bonsaiden.github.io/JavaScript-Garden/zh/#object.forinloop) 遍历数组。 相反，有一些好的理由**不去**使用 `for in` 遍历数组。
+`for in` 循环 遍历数组。 相反，有一些好的理由**不去**使用 `for in` 遍历数组。
 
-**注意:** JavaScript 中数组**不是** *关联数组*。 JavaScript 中只有[对象](http://bonsaiden.github.io/JavaScript-Garden/zh/#object.general) 来管理键值的对应关系。但是关联数组是**保持**顺序的，而对象**不是**。
+**注意:** JavaScript 中数组**不是** _关联数组_。 JavaScript 中只有对象 来管理键值的对应关系。但是关联数组是**保持**顺序的，而对象**不是**。
 
-由于 `for in` 循环会枚举原型链上的所有属性，唯一过滤这些属性的方式是使用 [`hasOwnProperty`](http://bonsaiden.github.io/JavaScript-Garden/zh/#object.hasownproperty) 函数， 因此会比普通的 `for` 循环慢上好多倍。
+由于 `for in hasOwnProperty` 函数， 因此会比普通的 `for` 循环慢上好多倍。
 
 ### 遍历
 
@@ -1038,20 +1099,22 @@ function() {}
 
 ```
 var list = [1, 2, 3, 4, 5, ...... 100000000];
-for(var i = 0, l = list.length; i < l; i++) {
+for (var i = 0, l = list.length; i < l; i++) {
     console.log(list[i]);
 }
+
 ```
 
-上面代码有一个处理，就是通过 `l = list.length` 来缓存数组的长度。
+上面代码有一个处理，就是通过 `l = list.length` 来缓存数组的长度。虽然 `length` 是数组的一个属性，但是在每次循环中访问它还是有性能开销。**可能**最新的 JavaScript 引擎在这点上做了优化，但是我们没法保证自己的代码是否运行在这些最近的引擎之上。
 
-虽然 `length` 是数组的一个属性，但是在每次循环中访问它还是有性能开销。**可能**最新的 JavaScript 引擎在这点上做了优化，但是我们没法保证自己的代码是否运行在这些最近的引擎之上。
+优化遍历的两个思路
 
-实际上，不使用缓存数组长度的方式比缓存版本要慢很多。
+* 减少遍历的长度（可以先去重，去掉不合适的数据）
+* 减少遍历内部的计算（例如，避免DOM操作）
 
 ### `length` 属性
 
-`length` 属性的 *getter* 方式会简单的返回数组的长度，而 *setter* 方式会**截断**数组。
+`length` 属性的 _getter_ 方式会简单的返回数组的长度，而 _setter_ 方式会**截断**数组。
 
 ```
 var foo = [1, 2, 3, 4, 5, 6];
@@ -1060,6 +1123,7 @@ foo; // [1, 2, 3]
 
 foo.length = 6;
 foo; // [1, 2, 3]
+
 ```
 
 **译者注：** 在 Firebug 中查看此时 `foo` 的值是： `[1, 2, 3, undefined, undefined, undefined]` 但是这个结果并不准确，如果你在 Chrome 的控制台查看 `foo` 的结果，你会发现是这样的： `[1, 2, 3]` 因为在 JavaScript 中 `undefined` 是一个变量，注意是变量不是关键字，因此上面两个结果的意义是完全不相同的。
@@ -1069,6 +1133,7 @@ foo; // [1, 2, 3]
 5 in foo; // 不管在 Firebug 或者 Chrome 都返回 false
 foo[5] = undefined;
 5 in foo; // 不管在 Firebug 或者 Chrome 都返回 true
+
 ```
 
 为 `length` 设置一个更小的值会截断数组，但是增大 `length` 属性值不会对数组产生影响。
@@ -1092,6 +1157,7 @@ new Array('3') // 结果: ['3']
 // 译者注：因此下面的代码将会使人很迷惑
 new Array(3, 4, 5); // 结果: [3, 4, 5] 
 new Array(3) // 结果: []，此数组长度为 3
+
 ```
 
 **译者注：**这里的模棱两可指的是数组的[两种构造函数语法](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array)
@@ -1104,12 +1170,14 @@ new Array(3) // 结果: []，此数组长度为 3
 var arr = new Array(3);
 arr[1]; // undefined
 1 in arr; // false, 数组还没有生成
+
 ```
 
 这种优先于设置数组长度属性的做法只在少数几种情况下有用，比如需要循环字符串，可以避免 `for` 循环的麻烦。
 
 ```
 new Array(count + 1).join(stringToRepeat);
+
 ```
 
 **译者注：** `new Array(3).join('#')` 将会返回 `##`
@@ -1128,7 +1196,7 @@ JavaScript 有两种方式判断两个值是否相等。
 
 等于操作符由两个等号组成：`==`
 
-JavaScript 是*弱类型*语言，这就意味着，等于操作符会为了比较两个值而进行**强制类型转换**。
+JavaScript 是_弱类型_语言，这就意味着，等于操作符会为了比较两个值而进行**强制类型转换**。
 
 ```
 ""           ==   "0"           // false
@@ -1140,6 +1208,7 @@ false        ==   undefined     // false
 false        ==   null          // false
 null         ==   undefined     // true
 " \t\r\n"    ==   0             // true
+
 ```
 
 上面的表格展示了强制类型转换，这也是使用 `==` 被广泛认为是不好编程习惯的主要原因， 由于它的复杂转换规则，会导致难以跟踪的问题。
@@ -1162,6 +1231,7 @@ false        ===   undefined     // false
 false        ===   null          // false
 null         ===   undefined     // false
 " \t\r\n"    ===   0             // false
+
 ```
 
 上面的结果更加清晰并有利于代码的分析。如果两个操作数类型不同就肯定不相等也有助于性能的提升。
@@ -1176,6 +1246,7 @@ new String('foo') === 'foo'; // false
 new Number(10) === 10;       // false
 var foo = {};
 foo === foo;                 // true
+
 ```
 
 这里等于操作符比较的**不是**值是否相等，而是是否属于同一个**身份**；也就是说，只有对象的同一个实例才被认为是相等的。 这有点像 Python 中的 `is` 和 C 中的指针比较。
@@ -1214,11 +1285,12 @@ new Function("")    Function   function
 new RegExp("meow")  RegExp     object (function in Nitro/V8)
 {}                  Object     object
 new Object()        Object     object
+
 ```
 
-上面表格中，*Type* 一列表示 `typeof` 操作符的运算结果。可以看到，这个值在大多数情况下都返回 "object"。
+上面表格中，_Type_ 一列表示 `typeof` 操作符的运算结果。可以看到，这个值在大多数情况下都返回 "object"。
 
-*Class* 一列表示对象的内部属性 `[[Class]]` 的值。
+_Class_ 一列表示对象的内部属性 `[[Class]]` 的值。
 
 **JavaScript 标准文档中定义:**`[[Class]]` 的值只可能是下面字符串中的一个：`Arguments`, `Array`, `Boolean`, `Date`, `Error`,`Function`, `JSON`, `Math`, `Number`, `Object`, `RegExp`, `String`.
 
@@ -1236,6 +1308,7 @@ function is(type, obj) {
 
 is('String', 'test'); // true
 is('String', new String('test')); // true
+
 ```
 
 上面例子中，`Object.prototype.toString` 方法被调用，[this](http://bonsaiden.github.io/JavaScript-Garden/zh/#function.this) 被设置为了需要获取 `[[Class]]` 值的对象。
@@ -1246,6 +1319,7 @@ is('String', new String('test')); // true
 Object.prototype.toString.call([])    // "[object Array]"
 Object.prototype.toString.call({})    // "[object Object]"
 Object.prototype.toString.call(2)    // "[object Number]"
+
 ```
 
 **ES5 提示:** 在 ECMAScript 5 中，为了方便，对 `null` 和 `undefined` 调用 `Object.prototype.toString`方法， 其返回值由 `Object` 变成了 `Null` 和 `Undefined`。
@@ -1260,12 +1334,14 @@ Object.prototype.toString.call(undefined)    // "[object Object]"
 // Firefox 4
 Object.prototype.toString.call(null)    // "[object Null]"
 Object.prototype.toString.call(undefined)    // "[object Undefined]"
+
 ```
 
 ### 测试为定义变量
 
 ```
 typeof foo !== 'undefined'
+
 ```
 
 上面代码会检测 `foo` 是否已经定义；如果没有定义而直接使用会导致 `ReferenceError` 的异常。 这是 `typeof` 唯一有用的地方。
@@ -1293,6 +1369,7 @@ new Bar() instanceof Foo; // true
 // 如果仅仅设置 Bar.prototype 为函数 Foo 本身，而不是 Foo 构造函数的一个实例
 Bar.prototype = Foo;
 new Bar() instanceof Foo; // false
+
 ```
 
 ### `instanceof` 比较内置类型
@@ -1303,6 +1380,7 @@ new String('foo') instanceof Object; // true
 
 'foo' instanceof String; // false
 'foo' instanceof Object; // false
+
 ```
 
 有一点需要注意，`instanceof` 用来比较属于不同 JavaScript 上下文的对象（比如，浏览器中不同的文档结构）时将会出错， 因为它们的构造函数不会是同一个对象。
@@ -1313,7 +1391,7 @@ new String('foo') instanceof Object; // true
 
 ## 类型转换
 
-JavaScript 是*弱类型*语言，所以会在**任何**可能的情况下应用*强制类型转换*。
+JavaScript 是_弱类型_语言，所以会在**任何**可能的情况下应用_强制类型转换_。
 
 ```
 // 下面的比较结果是：true
@@ -1328,6 +1406,7 @@ isNaN(null) == false; // null 被转换为数字 0
 // 下面的比较结果是：false
 10 == 010;
 10 == '-10';
+
 ```
 
 **ES5 提示:** 以 `0` 开头的数字字面值会被作为八进制数字解析。 而在 ECMAScript 5 严格模式下，这个特性被**移除**了。
@@ -1342,6 +1421,7 @@ isNaN(null) == false; // null 被转换为数字 0
 new Number(10) === 10;     // False, 对象与数字的比较
 Number(10) === 10;         // True, 数字与数字的比较
 new Number(10) + 0 === 10; // True, 由于隐式的类型转换
+
 ```
 
 使用内置类型 `Number` 作为构造函数将会创建一个新的 `Number` 对象， 而在不使用 `new` 关键字的 `Number` 函数更像是一个数字转换器。
@@ -1354,6 +1434,7 @@ new Number(10) + 0 === 10; // True, 由于隐式的类型转换
 
 ```
 '' + 10 === '10'; // true
+
 ```
 
 将一个值加上空字符串可以轻松转换为字符串类型。
@@ -1362,6 +1443,7 @@ new Number(10) + 0 === 10; // True, 由于隐式的类型转换
 
 ```
 +'10' === 10; // true
+
 ```
 
 使用**一元**的加号操作符，可以把字符串转换为数字。
@@ -1376,6 +1458,7 @@ parseInt('010', 10) === 10  // 用来转换为整数
 +'010.2' === 10.2
 Number('010.2') === 10.2
 parseInt('010.2', 10) === 10
+
 ```
 
 ### 转换为布尔型
@@ -1390,6 +1473,7 @@ parseInt('010.2', 10) === 10
 !!'-1'     // true
 !!{};      // true
 !!true;    // true
+
 ```
 
 # 核心
@@ -1407,6 +1491,7 @@ function test() {
 }
 test(); // 3
 foo; // 1
+
 ```
 
 但是 `eval` 只在被**直接**调用并且调用函数就是 `eval` 本身时，才在当前作用域中执行。
@@ -1421,6 +1506,7 @@ function test() {
 }
 test(); // 2
 foo; // 3
+
 ```
 
 **译者注：**上面的代码等价于在全局作用域中调用 `eval`，和下面两种写法效果一样：
@@ -1445,6 +1531,7 @@ function test() {
 }
 test(); // 2
 foo; // 3
+
 ```
 
 在**任何情况下**我们都应该避免使用 `eval` 函数。99.9% 使用 `eval` 的场景都有**不使用** `eval` 的解决方案。
@@ -1469,22 +1556,22 @@ JavaScript 有两个表示‘空’的值，其中比较有用的是 `undefined`
 
 `undefined` 是一个值为 `undefined` 的类型。
 
-这个语言也定义了一个全局变量，它的值是 `undefined`，这个变量也被称为 `undefined`。 但是这个变量**不是**一个常量，也不是一个关键字。这意味着它的*值*可以轻易被覆盖。
+这个语言也定义了一个全局变量，它的值是 `undefined`，这个变量也被称为 `undefined`。 但是这个变量**不是**一个常量，也不是一个关键字。这意味着它的_值_可以轻易被覆盖。
 
-**ES5 提示:** 在 ECMAScript 5 的严格模式下，`undefined` **不再是** *可写*的了。 但是它的名称仍然可以被隐藏，比如定义一个函数名为 `undefined`。
+**ES5 提示:** 在 ECMAScript 5 的严格模式下，`undefined` **不再是** _可写_的了。 但是它的名称仍然可以被隐藏，比如定义一个函数名为 `undefined`。
 
 下面的情况会返回 `undefined` 值：
 
-- 访问未修改的全局变量 `undefined`。
-- 由于没有定义 `return` 表达式的函数隐式返回。
-- `return` 表达式没有显式的返回任何内容。
-- 访问不存在的属性。
-- 函数参数没有被显式的传递值。
-- 任何被设置为 `undefined` 值的变量。
+* 访问未修改的全局变量 `undefined`。
+* 由于没有定义 `return` 表达式的函数隐式返回。
+* `return` 表达式没有显式的返回任何内容。
+* 访问不存在的属性。
+* 函数参数没有被显式的传递值。
+* 任何被设置为 `undefined` 值的变量。
 
 ### 处理 `undefined` 值的改变
 
-由于全局变量 `undefined` 只是保存了 `undefined` 类型实际*值*的副本， 因此对它赋新值**不会**改变类型 `undefined` 的值。
+由于全局变量 `undefined` 只是保存了 `undefined` 类型实际_值_的副本， 因此对它赋新值**不会**改变类型 `undefined` 的值。
 
 然而，为了方便其它变量和 `undefined` 做比较，我们需要事先获取类型 `undefined` 的值。
 
@@ -1496,6 +1583,7 @@ var undefined = 123;
     // 局部作用域里的 undefined 变量重新获得了 `undefined` 值
 
 })('Hello World', 42);
+
 ```
 
 另外一种达到相同目的方法是在函数内使用变量声明。
@@ -1507,6 +1595,7 @@ var undefined = 123;
     ...
 
 })('Hello World', 42);
+
 ```
 
 这里唯一的区别是，在压缩后并且函数内没有其它需要使用 `var` 声明变量的情况下，这个版本的代码会多出 4 个字节的代码。
@@ -1515,7 +1604,7 @@ var undefined = 123;
 
 ### `null` 的用处
 
-JavaScript 中的 `undefined` 的使用场景类似于其它语言中的 *null*，实际上 JavaScript 中的 `null` 是另外一种数据类型。
+JavaScript 中的 `undefined` 的使用场景类似于其它语言中的 _null_，实际上 JavaScript 中的 `null` 是另外一种数据类型。
 
 它在 JavaScript 内部有一些使用场景（比如声明原型链的终结 `Foo.prototype = null`），但是大多数情况下都可以使用 `undefined` 来代替。
 
@@ -1529,6 +1618,7 @@ JavaScript 不是一个没有分号的语言，恰恰相反上它需要分号来
 var foo = function() {
 } // 解析错误，分号丢失
 test()
+
 ```
 
 自动插入分号，解析器重新解析。
@@ -1537,9 +1627,10 @@ test()
 var foo = function() {
 }; // 没有错误，解析继续
 test()
+
 ```
 
-自动的分号插入被认为是 JavaScript 语言**最大**的设计缺陷之一，因为它*能*改变代码的行为。
+自动的分号插入被认为是 JavaScript 语言**最大**的设计缺陷之一，因为它_能_改变代码的行为。
 
 ### 工作原理
 
@@ -1571,6 +1662,7 @@ test()
 (function(window) {
     window.someLibrary = {}
 })(window)
+
 ```
 
 下面是解析器"猜测"的结果。
@@ -1600,6 +1692,7 @@ test()
 })(window)(function(window) {
     window.someLibrary = {}; // <- 插入分号
 })(window); //<- 插入分号
+
 ```
 
 **注意:** JavaScript 不能正确的处理 `return` 表达式紧跟换行符的情况， 虽然这不能算是自动分号插入的错误，但这确实是一种不希望的副作用。
@@ -1613,12 +1706,14 @@ test()
 ```
 log('testing!')
 (options.list || []).forEach(function(i) {})
+
 ```
 
 上面代码被解析器转换为一行。
 
 ```
 log('testing!')(options.list || []).forEach(function(i) {})
+
 ```
 
 `log` 函数的执行结果**极大**可能**不是**函数；这种情况下就会出现 `TypeError` 的错误，详细错误信息可能是 `undefined is not a function`。
@@ -1638,13 +1733,14 @@ log('testing!')(options.list || []).forEach(function(i) {})
 ```
 function foo() {}
 var id = setTimeout(foo, 1000); // 返回一个大于零的数字
+
 ```
 
 当 `setTimeout` 被调用时，它会返回一个 ID 标识并且计划在将来**大约** 1000 毫秒后调用 `foo` 函数。 `foo` 函数只会被执行**一次**。
 
 基于 JavaScript 引擎的计时策略，以及本质上的单线程运行方式，所以其它代码的运行可能会阻塞此线程。 因此**没法确保**函数会在 `setTimeout` 指定的时刻被调用。
 
-作为第一个参数的函数将会在*全局作用域*中执行，因此函数内的 [`this`](http://bonsaiden.github.io/JavaScript-Garden/zh/#function.this) 将会指向这个全局对象。
+作为第一个参数的函数将会在_全局作用域_中执行，因此函数内的 [`this`](http://bonsaiden.github.io/JavaScript-Garden/zh/#function.this) 将会指向这个全局对象。
 
 ```
 function Foo() {
@@ -1656,6 +1752,7 @@ function Foo() {
     setTimeout(this.method, 500);
 }
 new Foo();
+
 ```
 
 **注意:** `setTimeout` 的第一个参数是**函数对象**，一个常犯的错误是这样的 `setTimeout(foo(), 1000)`， 这里回调函数是 `foo` 的**返回值**，而**不是**`foo`本身。 大部分情况下，这是一个潜在的错误，因为如果函数返回 `undefined`，`setTimeout` 也**不会**报错。
@@ -1671,6 +1768,7 @@ function foo(){
     // 阻塞执行 1 秒
 }
 setInterval(foo, 100);
+
 ```
 
 上面代码中，`foo` 会执行一次随后被阻塞了一秒钟。
@@ -1687,6 +1785,7 @@ function foo(){
     setTimeout(foo, 100);
 }
 foo();
+
 ```
 
 这样不仅封装了 `setTimeout` 回调函数，而且阻止了调用指令的堆积，可以有更多的控制。 `foo` 函数现在可以控制是否继续执行还是终止执行。
@@ -1698,6 +1797,7 @@ foo();
 ```
 var id = setTimeout(foo, 1000);
 clearTimeout(id);
+
 ```
 
 ### 清除所有定时器
@@ -1709,6 +1809,7 @@ clearTimeout(id);
 for(var i = 1; i < 1000; i++) {
     clearTimeout(i);
 }
+
 ```
 
 可能还有些定时器不会在上面代码中被清除（**译者注：**如果定时器调用时返回的 ID 值大于 1000）， 因此我们可以事先保存所有的定时器 ID，然后一把清除。
@@ -1731,9 +1832,10 @@ function bar() {
     setTimeout('foo()', 1000);
 }
 bar();
+
 ```
 
-由于 `eval` 在这种情况下不是被[直接](http://bonsaiden.github.io/JavaScript-Garden/zh/#core.eval)调用，因此传递到 `setTimeout` 的字符串会自*全局作用域*中执行； 因此，上面的回调函数使用的不是定义在 `bar` 作用域中的局部变量 `foo`。
+由于 `eval` 在这种情况下不是被直接调用，因此传递到 `setTimeout` 的字符串会自_全局作用域_中执行； 因此，上面的回调函数使用的不是定义在 `bar` 作用域中的局部变量 `foo`。
 
 建议**不要**在调用定时器函数时，为了向回调函数传递参数而使用字符串的形式。
 
@@ -1747,12 +1849,15 @@ setTimeout('foo(1,2, 3)', 1000)
 setTimeout(function() {
     foo(1, 2, 3);
 }, 1000)
+
 ```
 
-**注意:** 虽然也可以使用这样的语法 `setTimeout(foo, 1000, 1, 2, 3)`， 但是不推荐这么做，因为在使用对象的[属性方法](http://bonsaiden.github.io/JavaScript-Garden/zh/#function.this)时可能会出错。 （**译者注：**这里说的是属性方法内，`this`的指向错误）
+**注意:** 虽然也可以使用这样的语法 `setTimeout(foo, 1000, 1, 2, 3)`， 但是不推荐这么做，因为在使用对象的属性方法时可能会出错。 （**译者注：**这里说的是属性方法内，`this`的指向错误）
 
 ### 结论
 
-**绝对不要**使用字符串作为 `setTimeout` 或者 `setInterval` 的第一个参数， 这么写的代码明显质量很差。当需要向回调函数传递参数时，可以创建一个*匿名函数*，在函数内执行真实的回调函数。
+**绝对不要**使用字符串作为 `setTimeout` 或者 `setInterval` 的第一个参数， 这么写的代码明显质量很差。当需要向回调函数传递参数时，可以创建一个_匿名函数_，在函数内执行真实的回调函数。
 
 另外，应该避免使用 `setInterval`，因为它的定时执行不会被 JavaScript 阻塞。
+
+
