@@ -160,6 +160,9 @@ nav:
         - 'no-linux-learing': 'python/no-linux-learing.md'
         - 'no-使用 Mkdocs 在 Github 上快速部署文章': 'python/no-使用 Mkdocs 在 Github 上快速部署文章.md'
         - 'python3-subporcess 子进程管理模块': 'python/python3-subporcess 子进程管理模块.md'
+        - '机器学习-Scikit-learn 基础': 'python/机器学习-Scikit-learn 基础.md'
+        - '机器学习-入门': 'python/机器学习-入门.md'
+        - '机器学习-视频笔记': 'python/机器学习-视频笔记.md'
 
     - ruby:
         - 'no-install-ruby': 'ruby/no-install-ruby.md'

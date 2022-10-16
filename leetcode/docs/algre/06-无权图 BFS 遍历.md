@@ -1,5 +1,7 @@
 #  无权图 BFS 遍历
 
+这两个题目已经做完了，关键是从题干中，分析出是无向图并求解
+
 ## 完全平方数
 
 给定正整数 n，找到若干个完全平方数（比如 1, 4, 9, 16, ...）使得它们的和等于 n。你需要让组成和的完全平方数的个数最少。
@@ -16,9 +18,7 @@
 
 这一题其实最容易想到的思路是动态规划，我们放到后面专门来拆解。实际上用队列进行图的建模，也是可以顺利地用广度优先遍历的方式解决的。
 
-
-
-看到这个图，你可能会有点懵，我稍微解释一下你就明白了。
+看到这个图（图没有找到），你可能会有点懵，我稍微解释一下你就明白了。
 
 在这个无权图中，每一个点指向的都是它可能经过的上一个节点。举例来说，对 5 而言，可能是 4 加上了1的平方转换而来，也可能是1 加上了2的平方转换而来，因此跟1和2都有联系，依次类推。
 
@@ -28,29 +28,38 @@
 
 Talk is cheap, show me your code. 我们接下来来一步步实现这个寻找的过程。
 
+这个题目的难点是，从题目中找出解决的方法，就是先遍历全部的数，然后遍历（或者DP）
+
 ## 实现
 
 接下来我们来实现第一版的代码。
 
-    /**
-     * @param {number} n
-     * @return {number}
-     */
-    var numSquares = function(n) {
-        let queue = [];
-        queue.push([n, 0]);
-        while(queue.length) {
-            let [num, step] = queue.shift();
-            for(let i = 1; ; i ++) {
-                let nextNum = num - i * i;
-                if(nextNum < 0) break;
-                // 还差最后一步就到了，直接返回 step + 1
-                if(nextNum == 0) return step + 1;
-                queue.push([nextNum, step + 1]);
-            }
-        }
-        // 最后是不需要返回另外的值的，因为 1 也是完全平方数，所有的数都能用 1 来组合
-    };
+```js
+/**
+ * @param {number} n
+ * @return {number}
+ */
+var numSquares = function(n) {
+  let queue = [];
+  queue.push([n, 0]);
+
+  while(queue.length) {
+    let [num, step] = queue.shift();
+    for (let i = 1; ; i ++) {
+      let nextNum = num - i ** 2;
+      if (nextNum < 0) {
+        break;
+      }
+      // 还差最后一步就到了，直接返回 step + 1
+      if (nextNum === 0) {
+        return step + 1;
+      }
+      queue.push([nextNum, step + 1]);
+    }
+  }
+  // 最后是不需要返回另外的值的，因为 1 也是完全平方数，所有的数都能用 1 来组合
+};
+```
 
 这个解法从功能上来讲是没有问题的，但是其中隐藏了巨大的性能问题，你可以去LeetCode去测试一下，基本是超时。
 
@@ -58,9 +67,9 @@ Talk is cheap, show me your code. 我们接下来来一步步实现这个寻找�
 
 出就出在这样一行代码:
 
-    queue.push([nextNum, step + 1]);
-
-1
+```js
+queue.push([nextNum, step + 1]);
+```
 
 只要是大于 0 的数，统统塞进队列。要知道 2 - 1 = 1， 5 - 4 = 1， 9 - 8 = 1 ......这样会重复非常多的 1, 依次类推，也会重复非常多的2,3等等等等。
 
@@ -68,26 +77,31 @@ Talk is cheap, show me your code. 我们接下来来一步步实现这个寻找�
 
 因此，我们需要对已经推入队列的数字进行标记，避免重复推入。改善代码如下:
 ~~~js
-    var numSquares = function(n) {
-        let map = new Map();
-        let queue = [];
-        queue.push([n, 0]);
-        map.set(n, true);
-        while(queue.length) {
-            let [num, step] = queue.shift();
-            for(let i = 1; ; i++) {
-                let nextNum = num - i * i;
-                if(nextNum < 0) break;
-                if(nextNum == 0) return step + 1;
-                // nextNum 未被访问过
-                if(!map.get(nextNum)){
-                    queue.push([nextNum, step + 1]);
-                    // 标记已经访问过
-                    map.set(nextNum, true);
-                }
-            }
-        }
-    };
+var numSquares = function(n) {
+  let queue = [];
+  queue.push([n, 0]);
+
+  let map = new Map();
+  map.set(n, true);
+
+  while(queue.length) {
+    let [num, step] = queue.shift();
+		
+    // 注意：这里不能写 i < num，如果 n 是 0，这里也需要能进入
+    for(let i = 1; ; i++) {
+      let nextNum = num - i ** 2;
+      if (nextNum < 0) break;
+      if (nextNum == 0) {
+        return step + 1;
+      }
+      // 去重
+      if (!map.get(nextNum)){
+        queue.push([nextNum, step + 1]);
+        map.set(nextNum, true);
+      }
+    }
+  }
+};
 ~~~
 
 ## 单词接龙
@@ -127,49 +141,66 @@ Talk is cheap, show me your code. 我们接下来来一步步实现这个寻找�
 
 ## 代码实现
 ~~~js
-    /**
+/**
      * @param {string} beginWord
      * @param {string} endWord
      * @param {string[]} wordList
      * @return {number}
      */
-    var ladderLength = function(beginWord, endWord, wordList) {
-        // 两个单词在图中是否相邻
-        const isSimilar = (a, b) => {
-            let diff = 0
-            for(let i = 0; i < a.length; i++) {
-                if(a.charAt(i) !== b.charAt(i)) diff++;
-                if(diff > 1) return false; 
-            }
-            return true;
-        }
-        let queue = [beginWord];
-        let index = wordList.indexOf(beginWord);
-        if(index !== -1) wordList.splice(index, 1);
-        let res = 2;
-        while(queue.length) {
-            let size = queue.length;
-            while(size --) {
-                let front = queue.shift();
-                for(let i = 0; i < wordList.length; i++) {
-                    if(!isSimilar(front, wordList[i]))continue;
-                    // 找到了
-                    if(wordList[i] === endWord) {
-                        return res;
-                    }
-                    else {
-                        queue.push(wordList[i]);
-                    }
-                    // wordList[i]已经成功推入，现在不需要了，删除即可
-                    // 这一步性能优化，相当关键，不然100%超时
-                    wordList.splice(i, 1);
-                    i --;
-                }
-            }
-            // 步数 +1
-            res += 1;
-        }
-        return 0;
-    };
-~~~
+var ladderLength = function(beginWord, endWord, wordList) {
+  
+  // 辅助函数：两个单词在图中是否相邻（只有一个字母不同）
+  const isSimilar = (a, b) => {
+    let diff = 0;
+    // 因为单词长度相同，所以这里直接使用A的长度即可
+    for (let i = 0; i < a.length; i++) {
+      // 可以直接使用 a[i] !== b[i]
+      if (a.charAt(i) !== b.charAt(i)) {
+        diff++;
+      }
+      if (diff > 1) {
+        return false; 
+      }
+    }
+    return true;
+  }
+  
+  // 如果词汇表中有这个单词，直接把词汇表中这个单词去掉（避免后续影响）
+  // 词汇表中没有重复，所以去掉一次就行，不需要 while 循环
+  let index = wordList.indexOf(beginWord);
+  if (index !== -1) {
+    wordList.splice(index, 1);
+  }
 
+  // beginWord -> middle -> endWord 是两步
+  let res = 2;
+  
+  let queue = [beginWord];
+
+  while (queue.length) {
+    let size = queue.length;
+    while(size--) {
+      let front = queue.shift();
+      for (let i = 0; i < wordList.length; i++) {
+        if (!isSimilar(front, wordList[i])) {
+          continue;
+        }
+        // 找到
+        if (wordList[i] === endWord) {
+          return res;
+        } else {
+          queue.push(wordList[i]);
+        }
+        // wordList[i]已经成功推入，所以需要从字典中删除，否则可能死循环
+        // 这一步性能优化，相当关键，不然100%超时
+        wordList.splice(i, 1);
+        i--;
+      }
+    }
+    // 步数 +1
+    res += 1;
+  }
+  // 如果不在字典中，返回0
+  return 0;
+};
+~~~

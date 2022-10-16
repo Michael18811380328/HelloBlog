@@ -46,6 +46,8 @@
 - 'Hire for slope not Y Intercept': 'math/Hire for slope not Y Intercept.md'
 - '期望-方差-协方差-相关系数': 'math/期望-方差-协方差-相关系数.md'
 - '正态分布和对数正态分布': 'math/正态分布和对数正态分布.md'
+- '离散数学': 'math/离散数学.md'
+- '算法基础': 'math/算法基础.md'
 - '蒙特卡罗方法入门': 'math/蒙特卡罗方法入门.md'
 - '40退休': 'other/40退休.md'
 - 'Create A Video Streaming App Features': 'other/Create A Video Streaming App Features.md'
