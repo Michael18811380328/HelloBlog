@@ -98,7 +98,6 @@
 - 'UV和PV的定义': '程序人生/UV和PV的定义.md'
 - 'Visual Studio Code 功能插件和设置': '程序人生/Visual Studio Code 功能插件和设置.md'
 - 'mkdocs': '程序人生/mkdocs.md'
-- 'useful-links': '程序人生/useful-links.md'
 - '丹尼斯与Unix': '程序人生/丹尼斯与Unix.md'
 - '产品经理日常数据分析工作': '程序人生/产品经理日常数据分析工作.md'
 - '从追赶到超越中国开源正在蜕变': '程序人生/从追赶到超越中国开源正在蜕变.md'
