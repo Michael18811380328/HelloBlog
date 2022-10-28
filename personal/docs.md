@@ -80,6 +80,7 @@
 - '詹宏志读书': 'other/詹宏志读书.md'
 - '骡子和人生': 'other/骡子和人生.md'
 - 'thought': 'thought.md'
+- '常用网站和友情链接': '常用网站和友情链接.md'
 - 'README': '技术文档的写作规范/README.md'
 - 'marks': '技术文档的写作规范/docs/marks.md'
 - 'number': '技术文档的写作规范/docs/number.md'

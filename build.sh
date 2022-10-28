@@ -44,6 +44,7 @@ function build() {
     cd ../backend && mkdocs build
     cd ../personal && mkdocs build
     cd ../images && mkdocs build
+    cd ../typescript && mkdocs build
     cd ../
     afterbuild;
     echo "build end------"

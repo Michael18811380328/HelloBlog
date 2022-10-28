@@ -352,16 +352,6 @@ nav:
         - '微信小程序入门教程03-脚本编程.md': 'weixin/微信小程序入门教程03-脚本编程.md'
         - '微信小程序入门教程04-API 使用.md': 'weixin/微信小程序入门教程04-API 使用.md'
         - '微信小程序官方文档.md': 'weixin/微信小程序官方文档.md'
-
-    - typescript and wechat:
-        - '00-TypeScript 官方入门教程': 'typescript/00-TypeScript 官方入门教程.md'
-        - '01-简介': 'typescript/01-简介.md'
-        - '02-基础': 'typescript/02-基础.md'
-        - '03-进阶': 'typescript/03-进阶.md'
-        - '04-工程化开发-测试编译': 'typescript/04-工程化开发-测试编译.md'
-        - '10-Typescript常见问题整理': 'typescript/10-Typescript常见问题整理.md'
-        - 'typescript 编译选项和配置文件': 'typescript/typescript 编译选项和配置文件.md'
-        - '网易云课堂TS入门': 'typescript/网易云课堂TS入门.md'
         - 'taro-UI 组件库说明': 'weixin/taro-UI 组件库说明.md'
         - '小程序项目的坑': 'weixin/小程序项目的坑.md'
 
