@@ -1,0 +1,72 @@
+site_name: Michale An Blog
+site_author: Michael An
+site_url: https://michael18811380328.github.io/
+repo_name: Michael18811380328/Michael18811380328.github.io
+repo_url: https://github.com/Michael18811380328/Michael18811380328.github.io
+copyright: Copyright &copy; Michael An
+
+docs_dir: ./docs
+
+# https://github.com/mkdocs/mkdocs/wiki/MkDocs-Themes
+# https://squidfunk.github.io/mkdocs-material/getting-started/
+theme:
+    name: material
+    highlightjs: true
+    hljs_languages:
+        - yaml
+        - bash
+        - javascript
+        - typescript
+    # https://squidfunk.github.io/mkdocs-material/setup/changing-the-colors/#color-scheme
+    palette:
+        primary: "lime"
+        accent: "lime"
+    analytics:
+        gtag: G-ABC123
+
+markdown_extensions:
+  - admonition
+  - codehilite:
+      guess_lang: false
+      linenums: false
+  - toc:
+      permalink: true
+  - footnotes
+  - meta
+  - def_list
+  - pymdownx.arithmatex
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_generator: !!python/name:pymdownx.emoji.to_png
+  - pymdownx.inlinehilite
+  - pymdownx.magiclink
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences
+  - pymdownx.tasklist
+  - pymdownx.tilde
+
+# minify: https://github.com/byrnereese/mkdocs-minify-plugin
+# use this plugin will increase build time and decrease browser render time
+# plugins:
+#     - search # necessary for search to work
+#     - minify:
+#         minify_html: false
+#         minify_js: true
+#         minify_css: true
+#         htmlmin_opts:
+#             remove_comments: true
+#         js_files:
+#             - /js/history.js
+#             - /js/baidu-statistics.js
+# extra:
+#   search:
+#     language: 'jp'
+
+# extra_javascript:
+#     - 'js/baidu-statistics.min.js'
+#     - 'js/history.min.js'

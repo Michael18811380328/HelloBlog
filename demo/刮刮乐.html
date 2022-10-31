@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        /* 这个根据实际图片设置尺寸 */
+        img {
+            width: 640px;
+            height: 427px;
+            position: absolute;
+            z-index: -1;
+        }
+        canvas {
+        }
+    </style>
+</head>
+
+<body>
+    <img src="https://michael18811380328.github.io/background/pub_13.jpg" alt="">
+    <!-- 根据图片尺寸设置 -->
+    <canvas id="canvas" width="640" height="427"></canvas>
+</body>
+
+
+</html>
+<script type="text/javascript">
+    // 创建 canvas 画布
+    var canvas = document.getElementById("canvas");
+    var context = canvas.getContext('2d');
+
+    // 绘制蒙层
+    context.beginPath();
+
+    // 这里设置蒙层的背景色，默认是黑色
+    context.fillStyle = '#000';
+
+    // 根据图片尺寸设置蒙层尺寸
+    context.fillRect(0, 0, 640, 427);
+
+    // 鼠标按下开刮（增加鼠标移动事件）
+    canvas.onmousedown=function(){
+        canvas.onmousemove = function(){
+            // 获取鼠标坐标
+            var x = event.clientX;
+            var y = event.clientY;
+            
+            // 设置当前画布和原来蒙层的组合
+            context.globalCompositeOperation = "destination-out";
+            // destination-out：原来的不在后来区域的部分
+            
+            // 开始绘制
+            context.beginPath();
+
+            // 画圆(圆心x 圆心y, 半径，开始弧度，结束弧度，是否逆时针)
+            // context.arc(x,y,r,sAngle,eAngle,counterclockwise)
+            context.arc(x, y, 40, 0, Math.PI * 2);
+
+            // 填充颜色
+            context.fill();
+        }
+    }
+
+    // 鼠标抬起不刮开（清空鼠标移动事件）
+    canvas.onmouseup = function() {
+        canvas.onmousemove = function() {
+        }
+    }
+
+    // 参考链接：https://zhuanlan.zhihu.com/p/81228277
+    // https://article.itxueyuan.com/BJnKL3
+</script>
+
