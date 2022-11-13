@@ -365,6 +365,8 @@ window.addEventListener('message', (e) => {
 扩展运算符可以复制数组或者对象。如果数组的每一项是引用类型，那么不会深复制，只会复制指向数组的指针。所以不能使用扩展运算符对数组或者对象进行深拷贝（深拷贝最好使用 deepcopy）。
 
 
+
+
 ### 14 HTML 设置夜间模式
 
 可以直接使用CSS媒体查询 perfers-color-scheme 判断当前用户是否将系统的主体色设置成暗色或者亮色。属性：light dart no-perference 偏好。
@@ -621,6 +623,57 @@ function B() {
 - 输入框，对话框打开后自动聚焦（如果是原生的输入框，设置ref，聚焦；如果是合成组件，直接使用组件的autofocus聚焦），点击esc关闭对话框等
 - 表单内部点击 Tab 可以进行跳转
 - 使用 title 属性，alt 属性进行标识
+
+
+
+### 36 单元测试异步操作的注意
+
+```js
+// 1 jest 单元测试中，需要导入外部配置文件并读取
+// fs 模块导入
+import fs from 'fs';
+import path from 'path';
+
+// 本地测试配置文件 json 格式
+const testPath = path.join(__dirname, '../data.json');
+const fileData = fs.readFileSync(testPath).toString();
+// 因为是 JSON 文件，需要把 string 转换成 Object 对象
+const config = JSON.parse(fileData);
+console.log(config);
+
+
+// 注意1: 如果JSON格式不正确，需要检查是否是双引号；需要把单引号改成双引号
+// 注意2：如果 JSON 中键值对中，值也是 JSON，那么需要把 JSON 中双引号进行转义，然后导入后再次 JSON.parse 处理
+
+JS 中的配置
+{
+  appConfig: '{"app_type": "universal-app", "app_theme_color": "#FF8000"}',
+  lang: "en"
+}
+
+需要改成 JSON 配置
+
+{
+  "appConfig": "{\"app_type\":\"universal-app\",\"app_theme_color\":\"#FF8000\"}",
+  "lang": "en"
+}
+
+
+// 2 jest 测试中，异步函数测试
+// 异步函数，可能是网络请求，文件导入读取，或者其他造成的
+// 可以使用 ES2020 动态引入语法 
+
+test('test import file function', () => {
+  // 这里 import 函数是异步导入，返回值是 Promise
+  import('../src/utils.js').then(module => {
+    const Utils = module.default;
+    expect(typeof Utils).toEqual('Object');
+  });
+});
+```
+如果提示语法错误，可能是 babel 不支持最新的 2020 语法，需要看一下 babel-preset-env 的版本，或者其他编译器的版本
+
+
 
 ### import 导入命令
 
