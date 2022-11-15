@@ -3,14 +3,13 @@ var fs = require('fs');
 // 自动获取 markdown 文件路径脚本（v2）
 // 因为文档频繁改动，文件名和文件夹变化多，手动维护 mkdocs.yml 太麻烦，所以写了这个脚本
 // 缺点：把结果写入单独的 md 文件中，未来尝试直接写入 mkdocs 配置文件中
+
+
+// 自动获取 markdown 文件路径脚本（v3）
+// 文件路径更改了
 var default_list = [
-  'frontend/docs',
-  'backend/docs',
-  'leetcode/docs',
-  'book/docs',
-  'personal/docs',
-  'images/docs',
-  'typescript/docs',
+  '../important/docs',
+  '../used/docs',
 ];
 
 // 如果有传参，直接使用传参；否则使用默认全部的参数
