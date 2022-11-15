@@ -5,8 +5,7 @@ var fs = require('fs');
 // 缺点：把结果写入单独的 md 文件中，未来尝试直接写入 mkdocs 配置文件中
 
 
-// 自动获取 markdown 文件路径脚本（v3）
-// 文件路径更改了
+// 自动获取 markdown 文件路径脚本（v3）文件路径更改了
 var default_list = [
   '../important/docs',
   '../used/docs',

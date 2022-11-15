@@ -19,32 +19,22 @@ function builddir() {
 }
 
 function beforebuild() {
-    cp -r js frontend/docs/js
-    cp -r js backend/docs/js 
-    cp -r js book/docs/js 
-    cp -r js personal/docs/js 
-    cp -r js leetcode/docs/js
+    cp -r js important/docs/js
+    cp -r js used/docs/js 
 }
 
 function afterbuild() {
-    rm -rf frontend/docs/js
-    rm -rf backend/docs/js 
-    rm -rf book/docs/js 
-    rm -rf personal/docs/js 
-    rm -rf leetcode/docs/js
+    rm -rf important/docs/js
+    rm -rf used/docs/js 
 }
 
 # 编译全部的文件夹
 function build() {
+    cd ../
     beforebuild;
     echo "build start------"
-    cd book && mkdocs build
-    cd ../leetcode && mkdocs build
-    cd ../frontend && mkdocs build
-    cd ../backend && mkdocs build
-    cd ../personal && mkdocs build
-    cd ../images && mkdocs build
-    cd ../typescript && mkdocs build
+    cd important && mkdocs build
+    cd ../used && mkdocs build
     cd ../
     afterbuild;
     echo "build end------"
