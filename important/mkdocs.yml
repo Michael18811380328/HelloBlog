@@ -1,0 +1,213 @@
+site_name: Michale An Blog
+site_author: Michael An
+site_url: https://michael18811380328.github.io/
+repo_name: Michael18811380328/Michael18811380328.github.io
+repo_url: https://github.com/Michael18811380328/Michael18811380328.github.io
+copyright: Copyright &copy; Michael An
+
+docs_dir: ./docs
+
+theme:
+    name: material
+    highlightjs: true
+    hljs_languages:
+        - yaml
+        - bash
+        - javascript
+        - python
+    palette:
+        primary: "orange"
+
+extra_javascript:
+    - 'js/baidu-statistics.min.js'
+    - 'js/history.min.js'
+
+markdown_extensions:
+  - admonition
+  - codehilite:
+      guess_lang: false
+      linenums: false
+  - toc:
+      permalink: true
+  - footnotes
+  - meta
+  - def_list
+  - pymdownx.arithmatex
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_generator: !!python/name:pymdownx.emoji.to_png
+  - pymdownx.inlinehilite
+  - pymdownx.magiclink
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences
+  - pymdownx.tasklist
+  - pymdownx.tilde
+
+# minify: https://github.com/byrnereese/mkdocs-minify-plugin
+# use this plugin will increase build time and decrease browser render time
+plugins:
+    - search # necessary for search to work
+    - minify:
+        minify_html: false
+        minify_js: true
+        minify_css: true
+        htmlmin_opts:
+            remove_comments: true
+        js_files:
+            - /js/history.js
+            - /js/baidu-statistics.js
+
+extra:
+  search:
+    language: 'jp'
+
+# Page tree
+nav:    
+    - About:
+        - 'index': 'index.md'
+        - 'archive-dir': 'archive-dir.md'
+        - 'changelog': 'changelog.md'
+        - 'coding-log': 'coding-log.md'
+        - 'demo-dir': 'demo-dir.md'
+
+    - 读书笔记:
+        - 'JS 数据结构': 'thoughts/JS 数据结构.md'
+        - 'algre-note': 'thoughts/algre-note.md'
+        - 'axios 请求配置参数': 'thoughts/axios 请求配置参数.md'
+        - 'frontend-note': 'thoughts/frontend-note.md'
+        - 'network-note': 'thoughts/network-note.md'
+        - 'other-note': 'thoughts/other-note.md'
+        - 'think-note': 'thoughts/think-note.md'
+        - 'thought': 'thoughts/thought.md'
+        - '产品思考-香山交流会': 'thoughts/产品思考-香山交流会.md'
+        - '产品报告': 'thoughts/产品报告.md'
+        - '前端知识交流会': 'thoughts/前端知识交流会.md'
+        - '协作人请求次数太多的解决方案': 'thoughts/协作人请求次数太多的解决方案.md'
+        - '可选链': 'thoughts/可选链.md'
+        - '常用网站和友情链接': 'thoughts/常用网站和友情链接.md'
+        - '技术报告': 'thoughts/技术报告.md'
+        - '提升工作效率': 'thoughts/提升工作效率.md'
+
+    - JS 基本功:
+        - '01-入门': 'ebook-JS-basic/01-入门.md'
+        - '02-数据类型': 'ebook-JS-basic/02-数据类型.md'
+        - '03-运算符': 'ebook-JS-basic/03-运算符.md'
+        - '04-语法专题': 'ebook-JS-basic/04-语法专题.md'
+        - '05-标准库': 'ebook-JS-basic/05-标准库.md'
+        - '06-面向对象编程': 'ebook-JS-basic/06-面向对象编程.md'
+        - '07-异步操作': 'ebook-JS-basic/07-异步操作.md'
+        - '08-DOM': 'ebook-JS-basic/08-DOM.md'
+        - '09-Event': 'ebook-JS-basic/09-Event.md'
+        - '10-1-BOM': 'ebook-JS-basic/10-1-BOM.md'
+        - '10-2-同源策略': 'ebook-JS-basic/10-2-同源策略.md'
+        - '10-3-表单': 'ebook-JS-basic/10-3-表单.md'
+        - '10-4-IndexedDB': 'ebook-JS-basic/10-4-IndexedDB.md'
+        - '10-5-web-worker': 'ebook-JS-basic/10-5-web-worker.md'
+        - '11-网页元素接口': 'ebook-JS-basic/11-网页元素接口.md'
+
+    - ES6 介绍:
+        - 'readme': 'ebook-JSES6-RYF/readme.md'
+        - '01-介绍': 'ebook-JSES6-RYF/01-介绍.md'
+        - '02-变量赋值': 'ebook-JSES6-RYF/02-变量赋值.md'
+        - '03-解构赋值': 'ebook-JSES6-RYF/03-解构赋值.md'
+        - '04-字符串的扩展': 'ebook-JSES6-RYF/04-字符串的扩展.md'
+        - '05-字符串方法': 'ebook-JSES6-RYF/05-字符串方法.md'
+        - '06-正则': 'ebook-JSES6-RYF/06-正则.md'
+        - '07-数值': 'ebook-JSES6-RYF/07-数值.md'
+        - '08-函数': 'ebook-JSES6-RYF/08-函数.md'
+        - '09-数组': 'ebook-JSES6-RYF/09-数组.md'
+        - '10-对象的新增属性': 'ebook-JSES6-RYF/10-对象的新增属性.md'
+        - '11-对象的新增方法': 'ebook-JSES6-RYF/11-对象的新增方法.md'
+        - '12-Symbol': 'ebook-JSES6-RYF/12-Symbol.md'
+        - '13-Set 和 Map 数据结构': 'ebook-JSES6-RYF/13-Set 和 Map 数据结构.md'
+        - '14-Proxy': 'ebook-JSES6-RYF/14-Proxy.md'
+        - '15-Reflect': 'ebook-JSES6-RYF/15-Reflect.md'
+        - '16-Promise': 'ebook-JSES6-RYF/16-Promise.md'
+        - '17-遍历器的循环': 'ebook-JSES6-RYF/17-遍历器的循环.md'
+        - '18-Generator': 'ebook-JSES6-RYF/18-Generator.md'
+        - '19-Generator异步应用': 'ebook-JSES6-RYF/19-Generator异步应用.md'
+        - '20-async 函数': 'ebook-JSES6-RYF/20-async 函数.md'
+        - '21-Class 的基本语法': 'ebook-JSES6-RYF/21-Class 的基本语法.md'
+        - '22-Class 的继承': 'ebook-JSES6-RYF/22-Class 的继承.md'
+        - '23-Module 的语法': 'ebook-JSES6-RYF/23-Module 的语法.md'
+        - '24-Module 的加载实现': 'ebook-JSES6-RYF/24-Module 的加载实现.md'
+        - '25-编程风格': 'ebook-JSES6-RYF/25-编程风格.md'
+
+    - 常用第三方库:
+        - '000-dir': 'third-part-lib/000-dir.md'
+        - '001-anv-g2': 'third-part-lib/001-anv-g2.md'
+        - '002-react-image-lightbox': 'third-part-lib/002-react-image-lightbox.md'
+        - '003-antd-mobile': 'third-part-lib/003-antd-mobile.md'
+        - '004-autoprefixer': 'third-part-lib/004-autoprefixer.md'
+        - '005-axios': 'third-part-lib/005-axios.md'
+        - '006-deep-copy': 'third-part-lib/006-deep-copy.md'
+        - '007-dom-helper': 'third-part-lib/007-dom-helper.md'
+        - '008-glamor': 'third-part-lib/008-glamor.md'
+        - '009-html2canvas': 'third-part-lib/009-html2canvas.md'
+        - '010-i18next': 'third-part-lib/010-i18next.md'
+        - '011-i18next-browser-languagedetector': 'third-part-lib/011-i18next-browser-languagedetector.md'
+        - '012-i18next-xhr-backend': 'third-part-lib/012-i18next-xhr-backend.md'
+        - '013-is-hotkey': 'third-part-lib/013-is-hotkey.md'
+        - '014-keymirror': 'third-part-lib/014-keymirror.md'
+        - '015-lodash-throttle': 'third-part-lib/015-lodash-throttle.md'
+        - '016-promise': 'third-part-lib/016-promise.md'
+        - '017-qrcode-react': 'third-part-lib/017-qrcode-react.md'
+        - '018-raf': 'third-part-lib/018-raf.md'
+        - '022-react-is-deprecated': 'third-part-lib/022-react-is-deprecated.md'
+        - '024-React-Sweet-Progress': 'third-part-lib/024-React-Sweet-Progress.md'
+        - '025-reactstrap': 'third-part-lib/025-reactstrap.md'
+        - '026-reselect': 'third-part-lib/026-reselect.md'
+        - '027-ron-react-autocomplete': 'third-part-lib/027-ron-react-autocomplete.md'
+        - '028-shallow-equal': 'third-part-lib/028-shallow-equal.md'
+        - '030-whatwg-fetch': 'third-part-lib/030-whatwg-fetch.md'
+        - '031-babel-cli': 'third-part-lib/031-babel-cli.md'
+        - '039-babel-preset-env': 'third-part-lib/039-babel-preset-env.md'
+        - '040-babel-preset-react': 'third-part-lib/040-babel-preset-react.md'
+        - '100-debug': 'third-part-lib/100-debug.md'
+        - '101-number-precision': 'third-part-lib/101-number-precision.md'
+        - '102-slugid': 'third-part-lib/102-slugid.md'
+        - '103-socket-io-client': 'third-part-lib/103-socket-io-client.md'
+        - '168-copy-to-clipboard': 'third-part-lib/168-copy-to-clipboard.md'
+        - '175-moment': 'third-part-lib/175-moment.md'
+        - '183-react-dnd': 'third-part-lib/183-react-dnd.md'
+        - '184-react-dnd-html5-backend': 'third-part-lib/184-react-dnd-html5-backend.md'
+        - '186-react-i18next': 'third-part-lib/186-react-i18next.md'
+        - '192-react-select': 'third-part-lib/192-react-select.md'
+        - '255-connect-multiparty': 'third-part-lib/255-connect-multiparty.md'
+        - '256-csv': 'third-part-lib/256-csv.md'
+        - '257-date-format': 'third-part-lib/257-date-format.md'
+        - '258-detect-character-encoding': 'third-part-lib/258-detect-character-encoding.md'
+        - '259-etcd3': 'third-part-lib/259-etcd3.md'
+        - '260-express': 'third-part-lib/260-express.md'
+        - '261-express-rate-limit': 'third-part-lib/261-express-rate-limit.md'
+        - '262-iconv-lite': 'third-part-lib/262-iconv-lite.md'
+        - '263-jsonwebtoken': 'third-part-lib/263-jsonwebtoken.md'
+        - '264-log4js': 'third-part-lib/264-log4js.md'
+        - '265-mysql': 'third-part-lib/265-mysql.md'
+        - '266-redis': 'third-part-lib/266-redis.md'
+        - '267-request': 'third-part-lib/267-request.md'
+        - '268-response-time': 'third-part-lib/268-response-time.md'
+        - '269-socket.io': 'third-part-lib/269-socket.io.md'
+        - '270-uuid': 'third-part-lib/270-uuid.md'
+        - '290-lodash': 'third-part-lib/290-lodash.md'
+        - '291-jszip': 'third-part-lib/291-jszip.md'
+        - '292-react-is': 'third-part-lib/292-react-is.md'
+        - '293-react-intl-universal': 'third-part-lib/293-react-intl-universal.md'
+        - '294-crypto-js': 'third-part-lib/294-crypto-js.md'
+        - '300-dayjs': 'third-part-lib/300-dayjs.md'
+        - '301-chartjs': 'third-part-lib/301-chartjs.md'
+        - '302-formik': 'third-part-lib/302-formik.md'
+        - '01-color': 'third-part-lib/ant-design/01-color.md'
+        - '02-border': 'third-part-lib/ant-design/02-border.md'
+        - '03-font': 'third-part-lib/ant-design/03-font.md'
+        - '04-unit': 'third-part-lib/ant-design/04-unit.md'
+        - '05-react-介绍': 'third-part-lib/ant-design/05-react-介绍.md'
+        - '06-react-在 create-react-app 中使用': 'third-part-lib/ant-design/06-react-在 create-react-app 中使用.md'
+        - '07-react-定制主题': 'third-part-lib/ant-design/07-react-定制主题.md'
+        - '08-样式按需加载': 'third-part-lib/ant-design/08-样式按需加载.md'
+        - '09-组件使用': 'third-part-lib/ant-design/09-组件使用.md'
