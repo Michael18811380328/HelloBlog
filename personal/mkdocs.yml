@@ -16,12 +16,7 @@ theme:
         - javascript
         - python
     palette:
-        # primary: "red"
-        # primary: "deep orange"
         primary: "orange"
-        # primary: "blue"
-        # primary: "pirple"
-        # primary: "green"
 
 extra_javascript:
     - 'js/baidu-statistics.min.js'
@@ -76,9 +71,14 @@ nav:
     - About:
         - '关于': 'index.md'
         - 'changelog': 'changelog.md'
-        - 'log': 'log.md'
         - 'thought': 'thought.md'
-        - '常用网站和友情链接': '程序人生/常用网站和友情链接.md'
+    - 笔记:
+        - 'algre-note': 'note/algre-note.md'
+        - 'frontend-note': 'note/frontend-note.md'
+        - 'network-note': 'note/network-note.md'
+        - 'other-note': 'note/other-note.md'
+        - 'think-note': 'note/think-note.md'
+        - 'log': 'log.md'
     - 金融理财:
         - '2019-时事经济思考': 'economy/2019-时事经济思考.md'
         - '2021-时事经济思考': 'economy/2021-时事经济思考.md'
@@ -134,60 +134,6 @@ nav:
         - '詹宏志读书': 'other/詹宏志读书.md'
         - '骡子和人生': 'other/骡子和人生.md'
         - 'Create A Video Streaming App Features': 'other/Create A Video Streaming App Features.md'
-    - 数学算法:
-        - '离散数学': 'math/离散数学.md'
-        - '算法基础': 'math/算法基础.md'
-        - 'Hire for slope not Y Intercept': 'math/Hire for slope not Y Intercept.md'
-        - '期望-方差-协方差-相关系数': 'math/期望-方差-协方差-相关系数.md'
-        - '正态分布和对数正态分布': 'math/正态分布和对数正态分布.md'
-        - '蒙特卡罗方法入门': 'math/蒙特卡罗方法入门.md'
-    - 课外读物:
-        - '00-Biography': 'Jane/00-Biography.md'
-        - '00-Preface': 'Jane/00-Preface.md'
-        - '01-Chapter 1': 'Jane/01-Chapter 1.md'
-        - '02-Chapter 2': 'Jane/02-Chapter 2.md'
-        - '03-Chapter 3': 'Jane/03-Chapter 3.md'
-        - '04-Chapter 4': 'Jane/04-Chapter 4.md'
-        - '05-Chapter 5': 'Jane/05-Chapter 5.md'
-        - '06-Chapter 6': 'Jane/06-Chapter 6.md'
-        - '07-Chapter 7': 'Jane/07-Chapter 7.md'
-        - '08-Chapter 8': 'Jane/08-Chapter 8.md'
-        - '09-Chapter 9': 'Jane/09-Chapter 9.md'
-        - '10-Chapter 10': 'Jane/10-Chapter 10.md'
-        - 'Jane Eyre': 'Jane/Jane Eyre.md'
-        - 'output': 'Jane/output.md'
-        - 'readme': 'Jane/readme.md'
-        - 'result': 'Jane/result.md'
-        - 'result_zh': 'Jane/result_zh.md'
-        - 'dict': 'Jane/dict.md'
-        - 'react-to-test': 'Jane/react-to-test.md'
-    - 技术文档的写作规范:
-        - 'README': '技术文档的写作规范/README.md'
-        - 'marks': '技术文档的写作规范/docs/marks.md'
-        - 'number': '技术文档的写作规范/docs/number.md'
-        - 'paragraph': '技术文档的写作规范/docs/paragraph.md'
-        - 'reference': '技术文档的写作规范/docs/reference.md'
-        - 'structure': '技术文档的写作规范/docs/structure.md'
-        - 'text': '技术文档的写作规范/docs/text.md'
-        - 'title': '技术文档的写作规范/docs/title.md'
-    - 程序人生:
-        - '2021年度技术总结': '程序人生/2021年度技术总结.md'
-        - '426 Upgrade Required 报错': '程序人生/426 Upgrade Required 报错.md'
-        - 'Markdown语法规范': '程序人生/Markdown语法规范.md'
-        - 'My guiding principles programming': '程序人生/My guiding principles after 20 years of programming.md'
-        - 'Nodejs创造者Ryan Dahl专访': '程序人生/Nodejs创造者Ryan Dahl专访.md'
-        - 'UV和PV的定义': '程序人生/UV和PV的定义.md'
-        - 'Visual Studio Code 功能插件和设置': '程序人生/Visual Studio Code 功能插件和设置.md'
-        - 'mkdocs': '程序人生/mkdocs.md'
-        - '丹尼斯与Unix': '程序人生/丹尼斯与Unix.md'
-        - '2020年 JavaScript 明星项目': '程序人生/2020年 JavaScript 明星项目.md'
-        - '2021前端会有什么新的变化？': '程序人生/2021前端会有什么新的变化？.md'
-        - '产品经理日常数据分析工作': '程序人生/产品经理日常数据分析工作.md'
-        - '从追赶到超越中国开源正在蜕变': '程序人生/从追赶到超越中国开源正在蜕变.md'
-        - '大四程序员选择去大公司还是小公司': '程序人生/大四程序员选择去大公司还是小公司.md'
-        - '本周话题：什么行业适合创业？': '程序人生/本周话题：什么行业适合创业？.md'
-        - '清理Mac磁盘文件': '程序人生/清理Mac磁盘文件.md'
-        - '程序员必读书单 1.0 -- 六年后的回顾': '程序人生/程序员必读书单 1.0 -- 六年后的回顾.md'
-        - '程序员经验分享': '程序人生/程序员经验分享.md'
-        - '阿里巴巴2019技术展望': '程序人生/阿里巴巴2019技术展望.md'
-
+        - '常用网站和友情链接': 'other/常用网站和友情链接.md'
+        - '提升工作效率': 'other/提升工作效率.md'
+        - '程序员如何利用周末提高.md': 'other/程序员如何利用周末提高.md'
