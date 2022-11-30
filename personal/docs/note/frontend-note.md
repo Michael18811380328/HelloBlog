@@ -747,6 +747,30 @@ i18n 的基础配置和使用。
 
 HTMLtoCanvas 第三方库学习；canvas.toDataUrl('image/png', 1.0)  配置：allowTaint taintTest allowCORS 等。主要使用场景：统计中 canvas 导出生成 PNG，主页看板娘的 canvas 拍照显示成 png 的功能。
 
+### 
+
+1. Axios 两个配置 baseURL 和 headers 含义
+
+2. 鲁棒性-代码或者服务在不良环境下的稳定性，如果某个上下游服务延迟，或者高并发，是否有配套方案解决这个问题？例如支付宝接口的响应时间延迟，表现在线上就是淘宝支付的商品未付款。如果判断网络情况不好，需要自动降级或者友好提示
+
+3. Es6 iteraror 迭代器，实际使用不多，主要是对可遍历对象进行循环（array, set map string 等）
+
+4. 前端刮刮乐的实现，canvas API，先创建一个矩形灰色区域，然后监听鼠标点击事件，绘制新的区域，和第一个区域求差值即可，鼠标按下后，监听鼠标移动事件。鼠标抬起后，清空鼠标移动事件。关键是 canvas 的属性和 API，实际没有使用。
+
+5. 公司项目看懂5个文件
+
+   - [x] universalAPI 这是 dtable-web 对应的接口，包括大部分API，使用 appToken。可能会继续调用 dtable-db 的接口（归档视图）。获取上传链接的三种情况：表单上传图片链接；表单上传普通背景图片链接；表格上传图片或文件链接。然后再调用上传图片即可（data parent_dir）。提交表单的五个参数（table_name page_id row_data, linked_rows, new_linked_rows）。
+
+   - [x] dtable-serverAPI 是 dtable-server 的接口，少量的API，使用 accessToken。sql 查询
+   - [x] mediator 中介模式，把 dtable-web 传递到界面的多个参数，转换成 window.dtable 便于调用
+   - [x] Mobile-common-header 移动端通用标题组件
+   - [x] Mobile-mask 移动端遮罩组件
+   - [x] 保存逻辑：表格界面中，行展开，大部分情况都是发送 OP 对行进行增删改。增加链接是直接的 API，没有支持 OP。其他界面中，行展开操作后，直接发送 API 请求，返回成功后，刷新界面的数据（表格数据多，其他界面数据少，所以性能满足）。
+
+
+
+
+
 
 
 

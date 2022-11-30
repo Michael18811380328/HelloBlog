@@ -79,6 +79,7 @@ nav:
         - 'other-note': 'note/other-note.md'
         - 'think-note': 'note/think-note.md'
         - 'log': 'log.md'
+        - '2022掘金技术大会-1P': 'note/2022掘金技术大会-1P.md'
     - 金融理财:
         - '2019-时事经济思考': 'economy/2019-时事经济思考.md'
         - '2021-时事经济思考': 'economy/2021-时事经济思考.md'
@@ -137,3 +138,7 @@ nav:
         - '常用网站和友情链接': 'other/常用网站和友情链接.md'
         - '提升工作效率': 'other/提升工作效率.md'
         - '程序员如何利用周末提高.md': 'other/程序员如何利用周末提高.md'
+        - '精读-你不知道的 javascript-上卷': 'other/精读-你不知道的 javascript-上卷.md'
+        - '精读-你不知道的javascript-中卷': 'other/精读-你不知道的javascript-中卷.md'
+        - '精读-图解HTTP': 'other/精读-图解HTTP.md'
+        - '精读-高性能javascript': 'other/精读-高性能javascript.md'

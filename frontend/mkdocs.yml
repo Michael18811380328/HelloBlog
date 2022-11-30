@@ -241,6 +241,9 @@ nav:
         - '雅虎军规': 'javascript/雅虎军规.md'
         - '面向对象设计模式': 'javascript/面向对象设计模式.md'
         - '高阶组件传值问题': 'javascript/高阶组件传值问题.md'
+        - 'ES2020 新标准': 'javascript/ES2020 新标准.md'
+        - 'video标签的poster属性图片铺满整个屏幕': 'javascript/video标签的poster属性图片铺满整个屏幕.md'
+        - '你需要知道的 javascript 的细节': 'javascript/你需要知道的 javascript 的细节.md'
 
     - 常用第三方库:
         - '000-dir': 'third-part-lib/000-dir.md'
@@ -337,6 +340,7 @@ nav:
         - '字体图标平滑显示': 'css/字体图标平滑显示.md'
         - '粘性定位position-sticky': 'css/粘性定位position-sticky.md'
         - '表情emoji': 'css/表情emoji.md'
+        - '双色图标': 'css/双色图标.md'
 
     - 微信小程序:
         - '微信小程序入门教程01-初次上手.md': 'weixin/微信小程序入门教程01-初次上手.md'
