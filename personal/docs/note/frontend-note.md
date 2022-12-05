@@ -116,6 +116,8 @@ function fn(files) {
 - 网络很差（经常中断）前端后端需要查询是否某个片段已经上传，来确定是否重新上传等（断点续传）
 - 拖拽文件上传，复制粘贴上传（需要调用前端的事件获取文件，监听 DIV 的 drag drop 事件，然后从 event 中获取文件）
 
+
+
 ### 4 高阶组件 react-dnd 传参
 
 问题描述：整体容器是可拖拽容器，每一个子元素打开菜单后，其他的不能打开菜单。
@@ -162,6 +164,70 @@ while (tmp = reg.exec(str)) {
 - reg.test(str) return boolean
 - reg.exec(str) return array or null
 
+#### 字符串查找的 6 个 API
+
+`indexOf / lastIndexOf` 返回满足的第一个或者最后一个的索引，未找到返回 -1
+
+~~~js
+// str.indexOf(str) === number
+'Hello'.indexOf('e') === 1
+'Hello'.lastIndexOf('l') === 3
+~~~
+
+`includes` 返回布尔值
+
+~~~js
+// str.includes(str) === bool
+'Hello'.includes('lo') === true
+~~~
+
+`str.search(str | regexp)` 返回满足条件的字符的索引
+
+~~~js
+// str.search(str|reg) === number
+'Hello'.search('e') === 1
+'Hello'.search(/ll/) === 2
+~~~
+
+`str.match(str | regexp)`
+
+字符串和正则的返回值不同
+
+~~~js
+'Helo Hello'.match('Hel') // ['Hel', index: 0, input: 'Helo Hello', groups: undefined]
+'Helo Hello'.match(/HEL/ig) // ['Hel', 'Hel']
+~~~
+
+`str.matchAll(str | reg)` 注意：返回值是一个迭代器，可以使用for…of…，扩展符(…)或Array.from() 处理
+
+~~~js
+const str = 'hello javascript hello css';
+console.log(Array.from(str.matchAll(/hello/g)));
+// ['hello', index: 0, input: 'hello javascript hello css', groups: undefined],
+// ['hello', index: 17, input: 'hello javascript hello css', groups: undefined],
+~~~
+
+`regexp.test(str)`
+
+~~~js
+/hel/ig.test('Hello') === true
+~~~
+
+`regexp.exec(str)`
+
+~~~js
+/hel/ig.exec('Hello') === ['Hel', index: 0, input: 'Hello', groups: undefined]
+~~~
+
+小结：
+
+indexOf lastIndexOf includes 是一组，字符串中找另一个字符串
+
+search match 是字符串的方法，可以传字符串或者正则，一个返回 index，一个返回具体的结果
+
+test 和 exec 是正则表达式的方法，返回布尔值或者具体的结果
+
+match 和 exec 返回值一致，参数和方法换位
 
 
 
@@ -177,6 +243,8 @@ while (tmp = reg.exec(str)) {
 其他的属性主要用在 svg 上面
 
 详情参考：https://developer.mozilla.org/zh-CN/docs/Web/CSS/pointer-events
+
+
 
 ### 6 字符编码问题
 
@@ -206,6 +274,8 @@ https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects
 - 
 具体使用：我们在发送请求时，URL 中可能有参数含有特殊符号（例如文件名用户名等用户输入）需要使用 encodeURIComponent 转义，然后拼接成 URL
 
+
+
 ### 7 MVC 架构的好处
 
 MVC架构的好处：model 是数据层，View 是视图层，Controller 是控制层。
@@ -214,12 +284,16 @@ MVC架构的好处：model 是数据层，View 是视图层，Controller 是控�
 
 例如，我们想把界面中的按钮改成输入框，那么直接更改 View 层即可，不需要改动 Model 层。如果项目的耦合性很强，可能数据划分不是很清楚。
 
+
+
 ### 8 重构 UI 组件的感想
+
 1、项目开始前，就应该约定各种组件的规范，后期更改很麻烦，还可能有未知的错误和问题
 
 2、自己写公共组件一定注意细节，这里需要多看官方组件的源代码，看看别人怎么写的。
 
 为什么要写自己的组件？能不能使用传参优化已有的组件，避免造轮子是最好的，也要有造轮子的能力
+
 
 
 ### 9 requestAnimationFrame
@@ -297,6 +371,8 @@ class AnimationFrame {
 }
 ~~~
 
+
+
 ### 10 raf 库
 
 requestAnimationFrame 的 polyfill（简化操作，处理浏览器兼容性）
@@ -314,6 +390,8 @@ var handle = raf(callback);
 handle();
 raf.cancel(handle);
 ~~~
+
+
 
 ### 11 跨域与 window.postMessage()
 
@@ -361,6 +439,7 @@ window.addEventListener('message', (e) => {
 ### 13 扩展运算符复制数组
 
 扩展运算符可以复制数组或者对象。如果数组的每一项是引用类型，那么不会深复制，只会复制指向数组的指针。所以不能使用扩展运算符对数组或者对象进行深拷贝（深拷贝最好使用 deepcopy）。
+
 
 
 ### 14 HTML 设置夜间模式
@@ -427,9 +506,11 @@ lodash 的主要目的是封装了对象和数组的一些方法，主要功能�
 
 参数：value是必选参数，表示需要转换的对象或者数组；replacer 是可选参数，表示把对象转换成JSON的转换函数，可以选择null；space 表示JSON的缩进或者空格（数字表示空格数量，或者非数字\t）
 
-```javascript
+```js
 JSON.stringify(value[, replacer[, space]])
 ```
+
+
 
 
 
@@ -524,9 +605,7 @@ console.log(gcd(5, 13)); // 1 （公约数为1说明两数互质）
 
 Arguments 表示函数的参数。arguments 有一个属性 cellee 表示函数参数的指针（指向当前的函数）那么这样写相当于递归调用函数。这样写的好处：如果函数名变化后，函数内部的代码不需要改动（arguments.callee），主要在递归调用函数中使用。
 
-例子：
-
-我们使用这个优化一下斐波那契函数：
+例子：我们使用这个优化一下斐波那契函数：
 
 原函数递归调用
 
@@ -540,7 +619,7 @@ function factorial(num){
 }
 ~~~
 
-使用 arguemnts.callee 的函数
+使用 arguements.callee 的函数
 ~~~js
 function factorial(num){    
   if (num <=1) {         
@@ -551,11 +630,13 @@ function factorial(num){
 }
 ~~~
 
+这个方法在 eslint 中弃用，原因：访问 arguments 是个很昂贵的操作，因为它是个很大的对象，每次递归调用时都需要重新创建，影响浏览器的性能，还会影响闭包。
+
 
 
 ### 31 浏览器自动跳转问题
 
-总结一下这个问题的解决过程
+总结一下问题的解决过程
 
 因为页面跳转，默认想到的是 JS window.open 或者 HTML A 标签，然后产品报错误导了方向，恰好近期改动了这部分JS代码
 
@@ -575,7 +656,9 @@ function factorial(num){
 
 ### 32 TAB 跳转实现有两种方法
 
-HTML 设置 button 或者 input，浏览器会自动 TAB；或者设置 JS 然后通过 state 控制状态，设置 currentTab，然后设置对应的样式，这样可以记录上一次的位置（这种需要把浏览器默认的 TAB 事件去掉，例如界面中还有其他的button，那么点击 Tab 还会触发按钮的交互改变）。
+- HTML 设置 button 或者 input，浏览器会自动 TAB——这是默认的做法，效果比较灵活
+
+- 通过JS ，然后通过 state 控制状态，设置 currentTab，然后设置对应的样式，这样可以记录上一次的位置（这种需要把浏览器默认的 TAB 事件去掉，例如界面中还有其他的button，那么点击 Tab 还会触发按钮的交互改变）。问题：如果界面中按钮的数量是动态变化的，就需要动态计算 currentTab 这样比较麻烦。
 
 
 
@@ -589,6 +672,8 @@ HTML 设置 button 或者 input，浏览器会自动 TAB；或者设置 JS 然�
 - DOM使用CPU，不能使用GPU加速 => 使用canvas等代替复杂图形和用户交互
 
 未来移动端巨头是主流，类似微信内嵌QQ浏览器，使用内部小程序完成传统界面设计
+
+
 
 
 ### 34 React 代码分割和懒加载
@@ -612,6 +697,7 @@ function B() {
   );
 }
 ~~~
+
 
 
 ### 35 React 代码用户体验优化
@@ -695,7 +781,7 @@ PC端中如果是中文输入法，那么键盘事件监听到的字母键 keyco
 
 
 
-### 41componentWillReceiveProps 废弃
+### 41 componentWillReceiveProps 废弃
 
 在 React 16 版本后，componentWillReceiveProps 不安全将要废弃，所以使用 getDerivedStateFromProps 从Props获取派生的State。getDerivedStateFromProps (derived 派生的)。原来的生命周期函数中，对比了这次的Props和上次的Props，如果不同，那么重新处理数据或者渲染界面；现在的逻辑：需要将上一次的Props保存在 state 中。当新的 props 传来时，对比新的Props和旧的state，并进行数据处理。
 
@@ -733,6 +819,87 @@ static getDerivedStateFromProps(nextProps, prevState) {
 ~~~
 
 
+
+### 42 setTimeout 循环打印
+
+《你不知道的JS》第一部分第五章——闭包。经典的案例如下
+
+
+```js
+for (var i = 0; i < 10; i++) {
+  setTimeout(function() {
+    console.log(i);
+  }, i * 1000)
+}
+```
+
+这个会打印出10个10，如何解决？
+
+可以使用ES6的 let 形成块级作用域，这样可以正常打印
+
+```js
+for (let i = 0; i < 10; i++) {
+  setTimeout(function() {
+    console.log(i + 1);
+  }, i)
+}
+```
+
+或者使用 IIEF 创建临时的作用域，然后使用中间变量 j 缓存一下
+
+```js
+for (var i = 0; i < 10; i++) {
+  (function() {
+    var j = i;
+    setTimeout(function() {
+      console.log(j + 1);
+    }, j)
+  })();
+}
+```
+
+如果改成一个变量，可以把变量 i 作为参数，传入到 IEFF 中立即执行（创建了临时的函数作用域实现）
+
+```js
+for (var i = 0; i < 10; i++) {
+  (function(j) {
+    setTimeout(function() {
+      console.log(j + 1);
+    }, j)
+  })(i);
+}
+```
+
+### 移动端点击事件
+
+移动端点击事件
+1、click 会延迟 200-300ms 。默认移动端双击屏幕会放大缩小浏览器，所以 click 后会判断是否点击两次。默认的 dbClick 时间会去掉。
+2、移动端执行的是 touch 事件。touchstart, touchmove touchend 三个事件后，再触发 click 。如果已经监听 touch 事件，那么需要把默认的 click 事件去掉。时间对象 e 包括了很多点击的属性
+3、touch 对应的手势事件
+- 点按 touchstart touchend 间隔很小
+- 长按 touchstart touchend 间隔很大，且没有 touchmove 事件
+- 单指上划（下划）左右滑 touchstart touchend 间隔很大，有 touchmove 事件，然后通过移动的位置，判断滑动的方向
+
+~~~js
+endX = firstTouch.pageX;
+endY = firstTouch.pageY;
+//x方向移动大于y方向的移动，并且x方向的移动大于25个像素，表示在向左侧滑动
+if (Math.abs(endX - startX) >= Math.abs(endY - startY) && startX - endX >= 25){
+    handler.call(this, e);
+}
+~~~
+
+https://www.jianshu.com/p/997b23232bb8
+https://juejin.cn/post/6844903569141809166
+https://juejin.cn/post/6844903506311118856
+
+
+### git log 改成简化版本的 git lg
+
+https://luolei.org/better-git-log/#comments
+git log 改成简化版本的 git log 加入下面的软连接配置
+git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+
 ### 其他
 
 高阶组件中设置 ref {withRef:true} 主要用在 i18n 或者 Redux 等高阶函数中；
@@ -746,8 +913,6 @@ raect报错解决，componentWillReceivePorps 将要废弃，那么使用 getDer
 i18n 的基础配置和使用。
 
 HTMLtoCanvas 第三方库学习；canvas.toDataUrl('image/png', 1.0)  配置：allowTaint taintTest allowCORS 等。主要使用场景：统计中 canvas 导出生成 PNG，主页看板娘的 canvas 拍照显示成 png 的功能。
-
-### 
 
 1. Axios 两个配置 baseURL 和 headers 含义
 
@@ -899,5 +1064,35 @@ this.setState((state) => {
     count: state + 1
   }
 });
+~~~
+
+
+
+### 10 thread-loader 多进程多线程打包
+
+webpack 编译打包时间较多，现在使用 thread-loader，可以减少编译时间，https://github.com/webpack-contrib/thread-loader
+
+先定量分析一下打包时间，在耗时较多的 loader 前，使用 thread-loader 处理，使用单独的进程进行打包，在多CPU的情况下，可以节省时间（8核节省75%的时间）如果只使用 babel 转换，不使用 webpack 打包，那么影响不大。
+
+~~~js
+{              
+    test: /\.(js|mjs)$/,
+    exclude: /@babel(?:\/|\\{1,2})runtime/,              
+    use: [
+      {
+        loader: 'thread-loader',
+      },
+      {
+        loader: require.resolve('babel-loader'),
+        options: {
+          babelrc: false,
+          configFile: false,
+          compact: false,
+          cacheDirectory: true,
+          cacheCompression: false,
+        },
+      }
+    ],
+}
 ~~~
 
