@@ -169,6 +169,7 @@ nav:
         - 'no-jekyll-basic': 'ruby/no-jekyll-basic.md'
         - 'no-jekyll-install': 'ruby/no-jekyll-install.md'
         - 'no-ruby-readme': 'ruby/no-ruby-readme.md'
+        - 'Ruby标准开发环境部署': 'ruby/Ruby标准开发环境部署.md'
     - 网络:
         - '2017-12-19-travis-ci-tutorial': 'network/2017-12-19-travis-ci-tutorial.md'
         - '2018-07-04-indexeddb': 'network/2018-07-04-indexeddb.md'
@@ -189,3 +190,6 @@ nav:
         - '计算机网络基础知识': 'network/计算机网络基础知识.md'
         - '跨域': 'network/跨域.md'
         - '跨域2': 'network/跨域2.md'
+        - 'Nginx在应用程序中的作用': 'network/Nginx在应用程序中的作用.md'
+        - 'Visual Studio Code必备': 'network/Visual Studio Code必备插件.md'
+        - 'nginx': 'network/nginx.md'

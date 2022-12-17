@@ -71,8 +71,8 @@ nav:
     - About:
         - '关于': 'index.md'
         - 'changelog': 'changelog.md'
-        - 'thought': 'thought.md'
     - 笔记:
+        - 'leetcode-all': 'note/all-leetcode.md'
         - 'algre-note': 'note/algre-note.md'
         - 'frontend-note': 'note/frontend-note.md'
         - 'network-note': 'note/network-note.md'
@@ -80,6 +80,7 @@ nav:
         - 'think-note': 'note/think-note.md'
         - 'log': 'log.md'
         - '2022掘金技术大会-1P': 'note/2022掘金技术大会-1P.md'
+        - 'log': 'note/log.md'
     - 金融理财:
         - '2019-时事经济思考': 'economy/2019-时事经济思考.md'
         - '2021-时事经济思考': 'economy/2021-时事经济思考.md'
@@ -142,3 +143,10 @@ nav:
         - '精读-你不知道的javascript-中卷': 'other/精读-你不知道的javascript-中卷.md'
         - '精读-图解HTTP': 'other/精读-图解HTTP.md'
         - '精读-高性能javascript': 'other/精读-高性能javascript.md'
+        - '精读-图解HTTP': 'other/精读-图解HTTP.md'
+        # - ebook-heima-nodejs/03.md
+        # - other/精读-你不知道的 javascript-上卷.md
+        # - other/精读-你不知道的javascript-中卷.md
+        # - other/精读-图解HTTP.md
+        # - other/精读-高性能javascript.md
+        # - other/高效读源码.md
