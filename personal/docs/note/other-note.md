@@ -1,41 +1,3 @@
-## 网络
-
-
-
-
-
-#### 2 本地不同项目调试问题
-
-- 本地浏览器支持跨域操作（后端服务和前端页面不在一个端口，但是需要请求登录）：更改本地浏览器配置。可以设置 webpack 支持代理，但是设置后无效，可能和 webpack 版本有关，所以直接使用命令行打开浏览器（增加参数打开）参考：https://blog.csdn.net/qq_41541368/article/details/104035074 扩展：直接写一个脚本，电脑开机后直接命令行执行，打开对应的程序，不需要手动双击每一个程序
-
-~~~js
-open -n /Applications/Google\ Chrome.app/ --args --disable-web-security  --user-data-dir=/Users/seafile/workroom/chrome-config
-
-open /Applications/Google\ Chrome.app && open /Applications/Typora.app 
-~~~
-
-- 如果本地调试两个前端项目，一个项目需要使用另一个项目打包后的文件，可以直接写一个脚本，然后复制这个打包后的文件到另一个文件夹下面（npm link 也可以实现，但是可能存在缓存问题等等），所以写了这个联调脚本。本地联调测试脚本
-
-~~~js
-"move": "npm run prepublishOnly && mv -f /Users/seafile/Desktop/code-seafile/dtable/es /Users/seafile/workroom/dev/dtable-dev/data/dev/dtable-web/frontend/node_modules/@seafile/dtable",
-~~~
-
-
-
-#### 3 本地调试 server 项目跨域问题
-
-问题：本地开发 dtable-web 和 dtable-server 项目时，打开表格界面，127.0.0.1:5000 端口显示跨域。
-
-思考：以往都不会出现跨域问题，近期没有改动配置。
-
-解决过程：先查看 dtable-web 和 dtable-server 的日志（dtable-server 中显示编译错误）本质上：因为在 docker 外部环境执行 npm install，dtable-server 某些第三方依赖库使用C语言编译，没有编译到 docker 内部（即使安装其他第三方库，也会影响已有的这个特殊的库）。所以造成 server 无法编译，服务不正常。nginx 反向代理服务器已经处理了跨域，但是已有服务没起来，所以界面显示的是跨域（找不到对应的服务）。
-
-最后解决：在 docker 内部删除 node_modules 然后重新 npm install 开启服务，正常使用。
-
-总结：界面的报错不一定是真实的原因，需要查看日志。nginx 需要多了解。
-
-
-
 ## NodeJS
 
 #### 1. nodejs 中输入 bash 命令
@@ -252,6 +214,8 @@ https://dl.google.com/dl/androidjumper/mtp/current/androidfiletransfer.dmg
 
 JS 运行在浏览器，用户交互和JS脚本都可能执行，所以设置单线程。如果设置多线程，用户和JS脚本同时执行可能出问题。现在多核CPU的解决：使用HTML5中的 web worker 处理多线程问题。
 
+
+
 ### Mvc-mvp-mvvm
 
 #### MVC 架构
@@ -277,173 +241,6 @@ View 和 Presenter 是双向通信，Presenter 和 Modal 是双向通信。View 
 特点：View 和 ModalView 双向绑定，View 更改后直接体现在 ModalView 中。
 
 原始链接：http://www.ruanyifeng.com/blog/2015/02/mvcmvp_mvvm.html
-
-
-
-
-
-后面部分废弃笔记
-
-### jquery 废弃笔记
-
-1. DOM方法：
-
-   html——获得（设置）对象的html
-
-   text——获得（设置）对象的文本值
-
-   empty——清空对象内容
-
-   remove——移除这个对象
-
-   A.append(B) 
-
-   A.appendTo(B)
-
-   A.prepend(B)
-
-   A.prependTo(B)
-
-   addClass-removeClass-toggleClass-hasClass
-
-2. 改变样式：
-
-   css（键值对，获得200px） width height(获得200) 增减类名
-
-3. 动画：
-
-   show-hide fadeIn-fadeOut slideUp-slideDown 
-
-   animation(动画名称，等待时间，linear，回调函数)
-
-   stop（停止当前动画）用于动画队列
-
-4. 事件：
-
-   on-简单事件 $('div').on('click',function(){回调函数})
-
-   delegate-委托事件：事件触发器和执行者不同
-
-5. 插件和扩展：
-
-   bootstrap插件，zepto扩展
-
-
-### ajax in jquery
-
-
-~~~javascript
-// 第一步，创建ajax对象
-var ajax = new XMLHttpRequest();
-
-// 第二步，选择方式（get-post）
-open(method,url,async);
-
-// 第三步：（post）设置请求头和请求数据
-ajax.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-send(string);
-
-// 设置请求头，发送请求报文在send方法中使用（考点：post方法和get方法的区别：get方法在url中传输数据，post需要单独传递数据。post方法可以传输更多数据，传输特殊符号，传输账号密码。当服务器无缓存可以使用post方法。其他情况使用get方法更快捷简单。）responseText responseXML 响应报文（string或者XML响应数据）
-
-// 第四步: 当请求成功后，获取请求结果
-event.onreadytstatechange(res) = function(){
-	if(status === 200 && readyState === 4){
-		// callback function
-		var text = res;
-	}
-}
-~~~
-
-
-
-传输的文件：文本 xml html json文件
-
-优点：传统的ajax方法，在不同的浏览器操作不同。JQ进行很好的封装，可以兼容不同的浏览器。
-
-
-01 load 方法：把请求到的数据直接放入对应元素内部
-
-~~~javascript
-$(selector).load(url,[data],[function(){
-	callback function;]
-});
-
-url:必选参数，希望加载的url
-data:可选参数，与请求一起发送的键值对
-callback:可选回调函数
-
-$("#conatiner").load("demo.txt");
-
-demo.txt 中的内容是html代码（<p>Hello world</p>）
-
-~~~
-
-回调函数三个参数说明：responseTxt（请求结果） statusTxt（请求状态） xhr（XMLHttpRequest对象）
-
-注意：在load方法中，不管请求是否成功，请求结束后都会执行回调函数。
-
-~~~javascript
-$("#button").click(function(){
-	$("#div1").load("demo.txt",function(responseTxt,statusTxt,xhr){
-		if(statusTxt == "success"){
-			alert("external content load successfully!");
-			//外部内容加载成功
-		}
-		if(statusTxt == "error"){
-			alert("Error" + xhr.status + ":" + xhr.statusTxt);
-			//报错信息：请求状态
-		}
-	});
-});
-~~~
-
-02 ajax.get()方法
-
-get方法可以返回缓存的数据；post方法不会返回缓存的数据，常用于连同请求一起发送数据。
-
-~~~javascript
-$("#button").click(function(){
-	$.get("demo.php",function(data,status){
-		alert("数据"+data+"/n状态"+data);
-	});
-});
-<?php
-	echo "this is some text in PHP";
-?>
-~~~
-03 ajax.post()方法
-
-~~~javascript
-$("#button").click(function(){
-	$.post("demo_post.php",
-		{
-			name:"Trump",
-			age:50
-		},
-		function(data,status){
-			alert("数据"+data);	
-		}
-	});
-});
-
-将数据（键值对）发送到php，php根据发送的数据进行返回，最后执行回调函数
-~~~
-~~~php
-<?php
-	$name = isset($_POST['name']) ? htmlspecialchars($_POST['name']) : '';
-	$age = isset($_POST['age']) ? htmlspecialcharts($_POST['age']) : '';
-	echo 'Dear' . $name;
-	echo 'Your age is ' . $age;
-?>
-~~~
-
-04 $.ajax()方法 该方法用于其他方法不能完成的请求
-
-~~~javascript
-$.ajax({键值对})
-url:"demo.php",success:function(){回调函数},error:function(){},complete:function(){},data:{键值对},type:"GET",xhr 其他键值对共计20个，可以查询
-
-~~~
 
 
 
@@ -575,16 +372,6 @@ git commit -m 'update .gitignore'
 ```
 
 
-#### Bash 命令
-
-```bash
-ls > readme.txt
-ls >> readme.txt
-
-表示将这个命令输出的结果存储在一个文件中(如果没有就新建这个文件)，第一个表示直接覆盖原始文件，第二个表示在这个文件中追加内容。
-```
-
-可以直接对npm的运行日志进行输出。把代码中的warning进行输出，这样可以避免终端界面大量输出。
 
 ### 操作系统
 
@@ -610,6 +397,8 @@ CLI and GUI——Command Line Interface  and Graphical user interface
 
 命令行界面（CLI）没有图形用户界面（GUI）那么方便用户操作。因为，命令行界面的软件通常需要用户记忆操作的命令，但是，由于其本身的特点，命令行界面要较图形用户界面节约计算机系统的资源。在熟记命令的前提下，使用命令行界面往往要较使用图形用户界面的操作速度要快。所以，图形用户界面的操作系统中，都保留着可选的命令行界面。
 
+
+
 ### 阻止事件冒泡
 
 stopImmediatePropagation函数和stopPropagation函数的区别
@@ -632,6 +421,8 @@ div.addEventListener("click" , function(){
 
 // 点击div，第二次执行不会触发
 ```
+
+
 
 ### bash 中批量创建操作文件
 

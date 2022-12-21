@@ -1,15 +1,5 @@
 # 精读《你不知道的 javascript（上卷）》
 
-[![白霸天](https://picx.zhimg.com/v2-39f69dd44a9ad7b993e615dd9b0c9198_xs.jpg?source=172ae18b)](https://www.zhihu.com/people/baibatian)
-
-[白霸天](https://www.zhihu.com/people/baibatian)![img](https://picx.zhimg.com/v2-4812630bc27d642f7cafcd6cdeca3d7a.jpg?source=88ceefae)
-
-程序员解决师
-
-关注她
-
-133 人赞同了该文章
-
 ## 前言
 
 《你不知道的 javascript》是一个前端学习必读的系列，让不求甚解的JavaScript开发者迎难而上，深入语言内部，弄清楚JavaScript每一个零部件的用途。本书介绍了该系列的两个主题：“作用域和闭包”以及“this和对象原型”。这两块也是值得我们反复去学习琢磨的两块只是内容，今天我们用思维导图的方式来精读一遍。（思维导图图片可能有点小，记得点开看，你会有所收获）

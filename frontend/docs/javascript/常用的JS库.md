@@ -41,7 +41,7 @@ github.com/andrewplummer/Sugar
 
 ## **6. [Lazy](https://github.com/dtao/lazy.js)**
 
-拥有5K个stars，lazy.js是一个函数式的JavaScript库。该库的底层的实现都是懒执行的，也就是说尽量不做运算，除非真的需要。这个库不依赖第三方库，这里有一个[demo](http%3A//danieltao.com/lazy.js/demos/events/)，这里是[API文档](http%3A//danieltao.com/lazy.js/)。
+拥有5K个stars，lazy.js是一个函数式的JavaScript库。该库的底层的实现都是懒执行的，也就是说尽量不做运算，除非真的需要。这个库不依赖第三方库，这里有一个[demo](http://danieltao.com/lazy.js/demos/events/)，这里是[API文档](http://danieltao.com/lazy.js/)。
 
 比如，我们要生成300个1到1000之间完全不同的随机数，可以这样写：
 
@@ -136,11 +136,11 @@ https://github.com/mout/mout
 
 > *Licia是一套在开发中实践积累起来的实用JavaScript工具库。该库目前拥有超过180个模块，包括Dom操作，cookie设置，类创建，模板函数，日期格式化等实用模块，同时配套有打包工具Eustia进行定制化，使JS脚本加载量缩减在10KB以下，极大优化移动端页面的加载速度。*
 
-Licia由[RedHood](https%3A//www.surunzi.com/)开发，详细了解可以查看他本人在知乎上写的对Licia的介绍: [超实用JavaScript工具库](https://zhuanlan.zhihu.com/p/25502829)。
+Licia由[RedHood](https://www.surunzi.com/)开发，详细了解可以查看他本人在知乎上写的对Licia的介绍: [超实用JavaScript工具库](https://zhuanlan.zhihu.com/p/25502829)。
 
 [liriliri/liciagithub.com!(https://github.com/liriliri/licia)
 
-## [color](https%3A//www.npmjs.com/package/color)
+## [color](https://www.npmjs.com/package/color)
 
 ==功能==：JavaScript库，用于不可变的颜色转换和对CSS颜色字符串的支持。
 
@@ -154,7 +154,7 @@ console.log(color.ansi256().object());  // { ansi256: 183, alpha: 0.5 }
 
 ------
 
-## [uuidjs](https%3A//www.npmjs.com/package/uuidjs)
+## [uuidjs](https://www.npmjs.com/package/uuidjs)
 
 ==功能==：UUID.js-JavaScript的RFC兼容UUID生成器
 
@@ -200,7 +200,7 @@ console.log(uuid.hexFields[5]);
 
 ------
 
-## [rc-upload](https%3A//www.npmjs.com/package/rc-upload)
+## [rc-upload](https://www.npmjs.com/package/rc-upload)
 
 ==功能==： 文件上传下载拖拽文件 及文件夹等
 
@@ -210,7 +210,7 @@ var React = require('react');
 React.render(<Upload />, container);
 ```
 
-## [react-copy-to-clipboard](https%3A//www.npmjs.com/package/react-copy-to-clipboard) 、clipboard
+## [react-copy-to-clipboard](https://www.npmjs.com/package/react-copy-to-clipboard) 、clipboard
 
 ==功能==：react 复制粘贴
 
@@ -256,7 +256,7 @@ ReactDOM.render(<App />, appRoot);
 
 ------
 
-## [numeral](http%3A//numeraljs.com/)
+## [numeral](http://numeraljs.com/)
 
 ==功能==：一个用于格式化和处理数字的javascript库。
 
@@ -272,7 +272,7 @@ var value2 = myNumeral2.value();
 
 ------
 
-## [omit.js](https%3A//www.npmjs.com/package/omit.js)
+## [omit.js](https://www.npmjs.com/package/omit.js)
 
 ==功能==：返回 在目标对象中 omit[删除; 忽略] 指定属性的对象; 实用程序功能，用于创建删除了某些字段的对象的浅表副本。
 
@@ -288,7 +288,7 @@ omit({ name: 'Benjy', age: 18 }, [ 'name' ]); // => { age: 18
 
 ------
 
-## [Moment.js](https%3A//momentjs.com/)
+## [Moment.js](https://momentjs.com/)
 
 ==功能==：一个JavaScript日期库，用于解析，验证，操作和格式化日期。
 
@@ -332,7 +332,7 @@ ms.months(2);  // 5259600000
 ms.years(2);   // 63115200000
 ```
 
-## [filesize](https%3A//www.npmjs.com/package/filesize)
+## [filesize](https://www.npmjs.com/package/filesize)
 
 ==功能==：filesize.js提供了一种简单的方法来从数字（浮点数或整数）或字符串中获取人类可读的文件大小字符串。
 
@@ -358,7 +358,7 @@ filesize(265318, {separator: ","});   // "259,1 KB"
 filesize(265318, {locale: "de"});   // "259,1 KB"
 ```
 
-## [react-markdown](https%3A//www.npmjs.com/package/react-markdown)
+## [react-markdown](https://www.npmjs.com/package/react-markdown)
 
 ==功能==：使用备注的React的Markdown组件。
 
@@ -534,11 +534,11 @@ const HeadBlock = (props) => {
 export default HeadBlock;
 ```
 
-## [cytoscape](https%3A//www.npmjs.com/package/cytoscape) | cytoscape-dagre
+## [cytoscape](https://www.npmjs.com/package/cytoscape) | cytoscape-dagre
 
 ==功能==：Cytoscape.js是功能齐全的图论库。您是否需要对关系数据进行建模和/或可视化，例如生物数据或社交网络？如果是这样，Cytoscape.js就是您所需要的。Cytoscape.js包含一个图形理论模型和一个用于显示交互式图形的可选渲染器。该库旨在使程序员和科学家尽可能轻松地在其应用程序中使用图论，无论是用于Node.js应用程序中的服务器端分析还是用于丰富的用户界面。
 
-## [Lodash](https%3A//www.npmjs.com/package/lodash)
+## [Lodash](https://www.npmjs.com/package/lodash)
 
 ==功能==：函数工具类库
 
@@ -559,11 +559,11 @@ var at = require('lodash/at');
 var curryN = require('lodash/fp/curryN');
 ```
 
-## [patch-package](https%3A//www.npmjs.com/package/patch-package) node
+## [patch-package](https://www.npmjs.com/package/patch-package) node
 
 ==功能==：npm yran 补丁,用于改node_modules
 
-## [cross-env](https%3A//www.npmjs.com/package/cross-env) node
+## [cross-env](https://www.npmjs.com/package/cross-env) node
 
 ==功能==：
 cross-env这是一款运行跨平台设置和使用环境变量的脚本。
@@ -578,7 +578,7 @@ npm install --save-dev cross-env
 }
 ```
 
-## [bignumber.js](https%3A//www.npmjs.com/package/bignumber.js)
+## [bignumber.js](https://www.npmjs.com/package/bignumber.js)
 
 ==功能==：一个用于任意精度十进制和非十进制算术的JavaScript库
 
@@ -587,7 +587,7 @@ https://mikemcl.github.io/bignumber.js/
 https://juejin.cn/post/6844903704714280968#heading-7
 ```
 
-## [QRCode.js](https%3A//www.npmjs.com/package/qrcodejs2)、 [qrcode.vue](https%3A//www.npmjs.com/package/qrcode.vue)
+## [QRCode.js](https://www.npmjs.com/package/qrcodejs2)、 [qrcode.vue](https://www.npmjs.com/package/qrcode.vue)
 
 ==功能==：
 
@@ -656,11 +656,11 @@ getBlob(base64) {
     },
 ```
 
-## [cssnano](https%3A//www.npmjs.com/package/cssnano)、[js-beautify](https%3A//www.npmjs.com/package/js-beautify)
+## [cssnano](https://www.npmjs.com/package/cssnano)、[js-beautify](https://www.npmjs.com/package/js-beautify)
 
 ==功能==： css js 压缩工具
 
-## [cors](https%3A//www.npmjs.com/package/cors) node
+## [cors](https://www.npmjs.com/package/cors) node
 
 ==功能==：CORS是一个node.js软件包，用于提供可用于通过各种选项启用CORS的Connect / Express中间件。
 
@@ -676,7 +676,7 @@ app.use(
 );
 ```
 
-## [countup.js](https%3A//www.npmjs.com/package/countup.js)
+## [countup.js](https://www.npmjs.com/package/countup.js)
 
 ==功能==：数字滚动插件使用方法详解
 
@@ -702,7 +702,7 @@ interface CountUpOptions {
 }
 ```
 
-## [js-base64](https%3A//www.npmjs.com/package/js-base64)
+## [js-base64](https://www.npmjs.com/package/js-base64)
 
 ==功能==：另一个Base64转码器。
 
@@ -726,7 +726,7 @@ Base64.encode(utf8, true)         // 5bCP6aO85by-
 Base64.encodeURI(utf8);           // 5bCP6aO85by-
 ```
 
-## [json-bigint](https%3A//www.npmjs.com/package/json-bigint)
+## [json-bigint](https://www.npmjs.com/package/json-bigint)
 
 ==功能==： Native Bigint是最近添加到JS的，因此我们添加了一个利用它的选项，而不是bignumber.js。但是，使用本机BigInt进行解析仍然是向后兼容的选项。
 
@@ -748,7 +748,7 @@ console.log('JSONbig.parse(input).value : ', r1.value.toString());
 console.log('JSONbig.stringify(JSONbig.parse(input)):', JSONbig.stringify(r1));
 ```
 
-## [vuejs-datetimepicker](https%3A//www.npmjs.com/package/vuejs-datetimepicker)
+## [vuejs-datetimepicker](https://www.npmjs.com/package/vuejs-datetimepicker)
 
 ==功能==：
 
@@ -769,7 +769,7 @@ export default {
 </script> 
 ```
 
-## [vue-meta-info](https%3A//www.npmjs.com/package/vue-meta-info)
+## [vue-meta-info](https://www.npmjs.com/package/vue-meta-info)
 
 ==功能==：基于Vue 2.0 的单页面 meta info 管理.
 
@@ -795,7 +795,7 @@ export default {
 </script>
 ```
 
-## [vue-smooth-scroll](https%3A//www.npmjs.com/package/vue-smooth-scroll)
+## [vue-smooth-scroll](https://www.npmjs.com/package/vue-smooth-scroll)
 
 ==功能==：Scroll
 
@@ -806,11 +806,11 @@ import vueSmoothScroll from 'vue-smooth-scroll'
 Vue.use(vueSmoothScroll)
 ```
 
-## [prismjs](https%3A//www.npmjs.com/package/prismjs)
+## [prismjs](https://www.npmjs.com/package/prismjs)
 
 ==功能==：Prism是一个轻量，健壮，优雅的语法高亮库。这是Dabblet的衍生项目。
 
-## [vuex-persistedstate](https%3A//www.npmjs.com/package/vuex-persistedstate)
+## [vuex-persistedstate](https://www.npmjs.com/package/vuex-persistedstate)
 
 ==功能==：
 
@@ -874,11 +874,11 @@ export default {
 </script>
 ```
 
-## [CodeMirror](https%3A//www.npmjs.com/package/codemirror)
+## [CodeMirror](https://www.npmjs.com/package/codemirror)
 
 ==功能==：CodeMirror是使用JavaScript为浏览器实现的多功能文本编辑器。它专门用于编辑代码，并具有100多种语言模式和各种插件，可实现更高级的编辑功能。每种语言都带有功能齐全的代码和语法高亮显示，以帮助阅读和编辑复杂代码。
 
-## [vue-codemirror](https%3A//www.npmjs.com/package/vue-codemirror)
+## [vue-codemirror](https://www.npmjs.com/package/vue-codemirror)
 
 ==功能==：
 
@@ -942,7 +942,7 @@ export default {
 }
 ```
 
-## [portfinder](https%3A//www.npmjs.com/package/portfinder) || [get-port](https%3A//www.npmjs.com/package/get-port) node
+## [portfinder](https://www.npmjs.com/package/portfinder) || [get-port](https://www.npmjs.com/package/get-port) node
 
 ==功能==：端口查看器
 
@@ -957,11 +957,11 @@ portfinder.getPort({
 }, callback);
 ```
 
-## [regedit](https%3A//www.npmjs.com/package/regedit) node
+## [regedit](https://www.npmjs.com/package/regedit) node
 
 ==功能==：使用node.js和Windows脚本宿主对Windows注册表进行读取，写入，列出和处理各种时髦的事情。
 
-## [lowdb](https%3A//www.npmjs.com/package/lowdb)
+## [lowdb](https://www.npmjs.com/package/lowdb)
 
 ==功能==：适用于Node，Electron和浏览器的小型JSON数据库。由Lodash驱动。 ⚡️
 
@@ -1011,7 +1011,7 @@ $.html();
 
 ==功能==：node-ajax
 
-## [ora](https%3A//www.npmjs.com/package/ora) node
+## [ora](https://www.npmjs.com/package/ora) node
 
 ==功能==：优雅的终端旋转器
 
@@ -1026,7 +1026,7 @@ setTimeout(() => {
 }, 1000);
 ```
 
-## [node-mkdirp](https://github.com/substack/node-mkdirp) 、[rimraf](https%3A//www.npmjs.com/package/rimraf) node
+## [node-mkdirp](https://github.com/substack/node-mkdirp) 、[rimraf](https://www.npmjs.com/package/rimraf) node
 
 ==功能==：Like mkdir -p UNIX 命令 rm-rf . nodejs 新建创建文件
 
@@ -1039,7 +1039,7 @@ mkdirp('/tmp/foo/bar/baz', function (err) {
 });
 ```
 
-## [shelljs](https%3A//www.npmjs.com/package/shelljs)
+## [shelljs](https://www.npmjs.com/package/shelljs)
 
 ==功能==：hellJS是在Node.js API之上的Unix shell命令的可移植（Windows / Linux / OS X）实现。您可以使用它消除shell脚本对Unix的依赖，同时仍然保留其熟悉而强大的命令。您还可以全局安装它，以便可以从Node项目外部运行它-告别那些讨厌的Bash脚本！
 
@@ -1065,7 +1065,7 @@ shell.ls('*.js').forEach(function (file) {
 shell.cd('..');
 ```
 
-## [shx](https%3A//www.npmjs.com/package/shx)
+## [shx](https://www.npmjs.com/package/shx)
 
 ==功能==：Shx 是一个包装 ShellJS Unix 命令的包装器，为 npm 包脚本中简单的类 Unix 跨平台命令提供了一个简单的解决方案
 
@@ -1115,7 +1115,7 @@ log(chalk.green(
 ));
 ```
 
-## [Nzh](https%3A//blog.whyoop.com/nzh/docs/%23/)
+## [Nzh](https://blog.whyoop.com/nzh/docs/%23/)
 
 ==功能==：适用于需要转换阿拉伯数字与中文数字的场景。
 特点如下:
@@ -1143,7 +1143,7 @@ nzhcn.toMoney("100111.11");         // 转中文金额 >> 人民币壹拾万零�
 ## [decko](https://github.com/developit/decko)
 
 节流 防抖
-[https://blog.csdn.net/qq_2955...](https%3A//blog.csdn.net/qq_29557739/article/details/96430431)
+[https://blog.csdn.net/qq_2955...](https://blog.csdn.net/qq_29557739/article/details/96430431)
 
 ==功能==：三个最有用的装饰器的简洁实现：
 
@@ -1182,7 +1182,7 @@ const queue = new PQueue({concurrency: 1});
 })();
 ```
 
-## [sleep](https%3A//www.npmjs.com/package/sleep)
+## [sleep](https://www.npmjs.com/package/sleep)
 
 ==功能==：sleep
 
@@ -1243,7 +1243,7 @@ https://better-scroll.github.io/docs/zh-CN/guide/#betterscroll-%E6%98%AF%E4%BB%8
 
 > 原作者姓名：ZHUIMEN
 > 原出处：segmentfault
-> 原文链接：[几个常用js库，别再重复造轮子了_泥瓦工 - SegmentFault 思否](https%3A//segmentfault.com/a/1190000038589634)
+> 原文链接：[几个常用js库，别再重复造轮子了_泥瓦工 - SegmentFault 思否](https://segmentfault.com/a/1190000038589634)
 
 
 
@@ -1251,83 +1251,83 @@ https://better-scroll.github.io/docs/zh-CN/guide/#betterscroll-%E6%98%AF%E4%BB%8
 
 ## **JavaScript 库**
 
-- [Particles.js](http%3A//vincentgarreau.com/particles.js/) - 一个用于在网页上创建漂亮的浮动粒子的 JS 库；
-- [Three.js](https%3A//threejs.org/) - 用于在网页上创建 3D 物体与空间的 JS 库；
-- [Fullpage.js](https%3A//alvarotrigo.com/fullPage/%23firstPage) - 易于实现全屏滚动功能的库；
-- [Typed.js](http%3A//www.mattboldt.com/demos/typed-js/) - 实现打字机效果；
-- [Waypoints.js](http%3A//imakewebthings.com/waypoints/) - 滚动到元素触发事件的库；
-- [Highlight.js](https%3A//highlightjs.org/) - 页面上语法高亮显示；
-- [Chart.js](http%3A//www.chartjs.org/) - 纯 JS 制作漂亮的图表；
-- [Instantclick](http%3A//instantclick.io/) - 鼠标悬停预先加载页面资源，大大加速你的网站响应速度；
-- [Chartist](http%3A//gionkunz.github.io/chartist-js/index.html) - 开源响应式图表库；
-- [Motio](http%3A//darsa.in/motio/%23!introduction) - 基于 sprite 的动画和平移库；
-- [Animstion](http%3A//git.blivesta.com/animsition/) - 页面切换动画的 jQuery 插件；
+- [Particles.js](http://vincentgarreau.com/particles.js/) - 一个用于在网页上创建漂亮的浮动粒子的 JS 库；
+- [Three.js](https://threejs.org/) - 用于在网页上创建 3D 物体与空间的 JS 库；
+- [Fullpage.js](https://alvarotrigo.com/fullPage/%23firstPage) - 易于实现全屏滚动功能的库；
+- [Typed.js](http://www.mattboldt.com/demos/typed-js/) - 实现打字机效果；
+- [Waypoints.js](http://imakewebthings.com/waypoints/) - 滚动到元素触发事件的库；
+- [Highlight.js](https://highlightjs.org/) - 页面上语法高亮显示；
+- [Chart.js](http://www.chartjs.org/) - 纯 JS 制作漂亮的图表；
+- [Instantclick](http://instantclick.io/) - 鼠标悬停预先加载页面资源，大大加速你的网站响应速度；
+- [Chartist](http://gionkunz.github.io/chartist-js/index.html) - 开源响应式图表库；
+- [Motio](http://darsa.in/motio/%23!introduction) - 基于 sprite 的动画和平移库；
+- [Animstion](http://git.blivesta.com/animsition/) - 页面切换动画的 jQuery 插件；
 - [Barba.js](https://github.com/luruke/barba.js) - 创建页面间流畅平滑的过渡效果；
-- [TwentyTwenty](http%3A//zurb.com/playground/twentytwenty) - jQuery 视差插件；
+- [TwentyTwenty](http://zurb.com/playground/twentytwenty) - jQuery 视差插件；
 - [Vivus.js](https://github.com/maxwellito/vivus%23vivusjs) - 可以执行 SVG 路径动画的轻量级 JS 库；
-- [Wow.js](http%3A//mynameismatthieu.com/WOW/) - 页面滚动时展现动画效果；
+- [Wow.js](http://mynameismatthieu.com/WOW/) - 页面滚动时展现动画效果；
 - [Scrolline.js](https://github.com/anthonyly/Scrolline.js) - 页面滚动时显示滚动进度的 jQuery 插件；
-- [Velocity.js](http%3A//velocityjs.org/) - 用于加速 JavaScript 动画；
-- [Animate on scroll](http%3A//michalsnik.github.io/aos/) - 页面滚动时增添元素动画的小型库；
-- [Handlebars.js](http%3A//handlebarsjs.com/) - JavaScript 模板引擎；
-- [jInvertScroll](http%3A//www.pixxelfactory.net/jInvertScroll/) - 轻量级的 jQuery 水平视差插件；
+- [Velocity.js](http://velocityjs.org/) - 用于加速 JavaScript 动画；
+- [Animate on scroll](http://michalsnik.github.io/aos/) - 页面滚动时增添元素动画的小型库；
+- [Handlebars.js](http://handlebarsjs.com/) - JavaScript 模板引擎；
+- [jInvertScroll](http://www.pixxelfactory.net/jInvertScroll/) - 轻量级的 jQuery 水平视差插件；
 - [One page scroll](https://github.com/peachananr/onepage-scroll) - 实现苹果风格单页滚动效果的 jQuery 插件；
 - [Parallax.js](https://github.com/wagerfield/parallax) - 轻量级的视差引擎，能够对智能设备的方向作出反应；
-- [Typeahead.js](http%3A//twitter.github.io/typeahead.js/) - 搜索框自动补全的 JS 库；
-- [Dragdealer.js](http%3A//skidding.github.io/dragdealer/) - 基于拖动的 JavaScript 组件；
-- [Bounce.js](http%3A//bouncejs.com/) - 快速创建漂亮的 CSS3 动画效果；
+- [Typeahead.js](http://twitter.github.io/typeahead.js/) - 搜索框自动补全的 JS 库；
+- [Dragdealer.js](http://skidding.github.io/dragdealer/) - 基于拖动的 JavaScript 组件；
+- [Bounce.js](http://bouncejs.com/) - 快速创建漂亮的 CSS3 动画效果；
 - [Pagepiling.js](https://github.com/alvarotrigo/pagePiling.js) - 创建全屏滚动效果；
 - [Multiscroll.js](https://github.com/alvarotrigo/multiscroll.js) - 创建两列垂直反向滚动效果的 jQuery 插件；
-- [Favico.js](http%3A//lab.ejci.net/favico.js/) - 动态图标插件；
-- [Midnight.js](http%3A//aerolab.github.io/midnight.js/) - 固定头部切换效果；
-- [Anime.js](http%3A//animejs.com/) - JavaScript 动画引擎；
-- [Keycode](http%3A//keycode.info/) - 获取键盘按键的 JS 键码值；
-- [Sortable](http%3A//rubaxa.github.io/Sortable/) - 用于拖拽排序的 JavaScript 库；
-- [Flexdatalist](http%3A//projects.sergiodinislopes.pt/flexdatalist/) - 支持 <datalist> 的 jQuery 自动完成插件；
-- [Slideout.js](https%3A//slideout.js.org/) - 实现滑出式 Web App 导航菜单；
-- [Jquerymy](http%3A//jquerymy.com/%23/) - 实时、复杂的双向数据绑定 jQuery 插件；
-- [Cleave.js](http%3A//nosir.github.io/cleave.js/) - 自动格式化表单输入框的文本内容；
-- [Page](http%3A//smalljs.org/client-side-routing/page/) - 构建单页应用的小型客户端路由库；
-- [Selectize.js](http%3A//selectize.github.io/selectize.js/) - 基于 jQuery 的 <select> UI 控件，用于创建 tag 标签输入框和 select 下拉框；
-- [Nice select](http%3A//hernansartorio.com/jquery-nice-select/) - 创建漂亮下拉框的 jQuery 插件；
-- [Tether](http%3A//tether.io/) - 使用绝对定位创建两个互相相关元素的 JS 库；
+- [Favico.js](http://lab.ejci.net/favico.js/) - 动态图标插件；
+- [Midnight.js](http://aerolab.github.io/midnight.js/) - 固定头部切换效果；
+- [Anime.js](http://animejs.com/) - JavaScript 动画引擎；
+- [Keycode](http://keycode.info/) - 获取键盘按键的 JS 键码值；
+- [Sortable](http://rubaxa.github.io/Sortable/) - 用于拖拽排序的 JavaScript 库；
+- [Flexdatalist](http://projects.sergiodinislopes.pt/flexdatalist/) - 支持 <datalist> 的 jQuery 自动完成插件；
+- [Slideout.js](https://slideout.js.org/) - 实现滑出式 Web App 导航菜单；
+- [Jquerymy](http://jquerymy.com/%23/) - 实时、复杂的双向数据绑定 jQuery 插件；
+- [Cleave.js](http://nosir.github.io/cleave.js/) - 自动格式化表单输入框的文本内容；
+- [Page](http://smalljs.org/client-side-routing/page/) - 构建单页应用的小型客户端路由库；
+- [Selectize.js](http://selectize.github.io/selectize.js/) - 基于 jQuery 的 <select> UI 控件，用于创建 tag 标签输入框和 select 下拉框；
+- [Nice select](http://hernansartorio.com/jquery-nice-select/) - 创建漂亮下拉框的 jQuery 插件；
+- [Tether](http://tether.io/) - 使用绝对定位创建两个互相相关元素的 JS 库；
 - [Shepherd.js](https://github.com/HubSpot/shepherd) - 创建新手引导的 JS 库；
 - [Tooltip](https://github.com/HubSpot/tooltip) - 工具提示插件；
-- [Select2](https%3A//select2.github.io/) - 基于 jQuery 的替代选择框；
-- [IziToast](http%3A//izitoast.marcelodolce.com/) - 轻量的跨浏览器响应式消息通知插件；
-- [IziModal](http%3A//izimodal.marcelodolce.com/) - 炫酷的 jQuery 模态窗口插件。
+- [Select2](https://select2.github.io/) - 基于 jQuery 的替代选择框；
+- [IziToast](http://izitoast.marcelodolce.com/) - 轻量的跨浏览器响应式消息通知插件；
+- [IziModal](http://izimodal.marcelodolce.com/) - 炫酷的 jQuery 模态窗口插件。
 
 ------
 
 ## **CSS 库与设计资源**
 
-- [Animate.css](https%3A//daneden.github.io/animate.css/)  - 强大的 CSS3 动画库；
-- [Flat UI Colors](https%3A//flatuicolors.com/) - 漂亮的扁平化配色；
-- [Material Design Lite](https%3A//getmdl.io/index.html) - 基于谷歌 Material Design 的前端框架；
-- [Colorrrs](https%3A//www.webpagefx.com/web-design/random-color-picker/)  - 随机颜色生成器；
-- [Section separators](https%3A//tympanus.net/Development/SectionSeparators/) - CSS 区域分割；
-- [Topcoat](http%3A//topcoat.io/) - 专注为简洁、快速的 Web 应用提供 CSS 开发的工具；
-- [Create Ken Burns Effect](https%3A//www.kirupa.com/html5/ken_burns_effect_css.htm) - 利用 CSS3 实现的 Ken burns 特效；
-- [DynCSS](http%3A//www.vittoriozaccaria.net/dyn-css/) - 用于分析 CSS -dyn-属性规则，并使其具备动态属性；
-- [Magic animations](https%3A//www.minimamente.com/example/magic_animations/) - 具备特殊动效的 CSS3 动画；
-- [CSSpin](https%3A//webkul.github.io/csspin/) - 丰富的 CSS 加载动画；
-- [Feather icons](https%3A//feathericons.com/) - 简单、漂亮的开源图标库；
-- [Ion icons](http%3A//ionicons.com/) - 专为 Ionic 框架设计的图标字体；
-- [Font Awesome](http%3A//fontawesome.io/) - 可缩放的矢量图标字库；
-- [Font Generator](http%3A//brandmark.io/font-generator/) - 在线字体生成器；
-- [On/Off FlipSwitch](https%3A//proto.io/freebies/onoff/) - 在线创建纯 CSS3 动画开关效果；
-- [UIkit](https%3A//getuikit.com/) - 轻量级的模块化前端框架；
-- [Bootstrap](http%3A//getbootstrap.com/) - 著名的前端框架；
-- [Foundation](http%3A//foundation.zurb.com/) - 著名的前端框架。
+- [Animate.css](https://daneden.github.io/animate.css/)  - 强大的 CSS3 动画库；
+- [Flat UI Colors](https://flatuicolors.com/) - 漂亮的扁平化配色；
+- [Material Design Lite](https://getmdl.io/index.html) - 基于谷歌 Material Design 的前端框架；
+- [Colorrrs](https://www.webpagefx.com/web-design/random-color-picker/)  - 随机颜色生成器；
+- [Section separators](https://tympanus.net/Development/SectionSeparators/) - CSS 区域分割；
+- [Topcoat](http://topcoat.io/) - 专注为简洁、快速的 Web 应用提供 CSS 开发的工具；
+- [Create Ken Burns Effect](https://www.kirupa.com/html5/ken_burns_effect_css.htm) - 利用 CSS3 实现的 Ken burns 特效；
+- [DynCSS](http://www.vittoriozaccaria.net/dyn-css/) - 用于分析 CSS -dyn-属性规则，并使其具备动态属性；
+- [Magic animations](https://www.minimamente.com/example/magic_animations/) - 具备特殊动效的 CSS3 动画；
+- [CSSpin](https://webkul.github.io/csspin/) - 丰富的 CSS 加载动画；
+- [Feather icons](https://feathericons.com/) - 简单、漂亮的开源图标库；
+- [Ion icons](http://ionicons.com/) - 专为 Ionic 框架设计的图标字体；
+- [Font Awesome](http://fontawesome.io/) - 可缩放的矢量图标字库；
+- [Font Generator](http://brandmark.io/font-generator/) - 在线字体生成器；
+- [On/Off FlipSwitch](https://proto.io/freebies/onoff/) - 在线创建纯 CSS3 动画开关效果；
+- [UIkit](https://getuikit.com/) - 轻量级的模块化前端框架；
+- [Bootstrap](http://getbootstrap.com/) - 著名的前端框架；
+- [Foundation](http://foundation.zurb.com/) - 著名的前端框架。
 
 ------
 
 ## **有用的产品/链接**
 
-- [ Cheatsheet](https://github.com/joshbuchea/HEAD) - 可以写入到 <head> 标签的内容清单；（译者注：中文翻译版[地址](http%3A//www.css88.com/archives/8052)）
-- [Ghost](https%3A//ghost.org/) - 基于 Node.js 的简易博客平台；
-- [What runs](https%3A//www.whatruns.com/) - 用于网站技术分析的 Chrome 插件；
-- [Learn anything](https%3A//learn-anything.xyz/learn-anything) - 用于分解项目的强大思维导图。
+- [ Cheatsheet](https://github.com/joshbuchea/HEAD) - 可以写入到 <head> 标签的内容清单；（译者注：中文翻译版[地址](http://www.css88.com/archives/8052)）
+- [Ghost](https://ghost.org/) - 基于 Node.js 的简易博客平台；
+- [What runs](https://www.whatruns.com/) - 用于网站技术分析的 Chrome 插件；
+- [Learn anything](https://learn-anything.xyz/learn-anything) - 用于分解项目的强大思维导图。
 
 
 
@@ -1347,7 +1347,7 @@ https://better-scroll.github.io/docs/zh-CN/guide/#betterscroll-%E6%98%AF%E4%BB%8
 
 读这些源码的经历，都源于实际需求中的需要。我其实并没有靠读源码精通上面任何一个项目，但可以用它们解决遇到的问题，这就够了。
 
-对于源码，个人还是倾向于「一定要会读，但能不读就不读」。**对于常见生态足够好的开源项目，教程、示例、设计文档和 issue 讨论足够解决大多数使用层面上的问题。如果想高效学习技术，一定要尽可能找到最高层面，最易于理解的信息源**。比如对于和 Chromium、V8 等谷歌系项目深度绑定的 Ninja 构建系统，我之前一直搞不懂它为什么要做成那样，直到偶然读到作者自述的[设计理念](http%3A//aosabook.org/en/posa/ninja.html)以后，一下就豁然开朗了。这比上来就翻它的源码然后苦思冥想地倒推「这玩意到底想干嘛」要直接而方便得多。
+对于源码，个人还是倾向于「一定要会读，但能不读就不读」。**对于常见生态足够好的开源项目，教程、示例、设计文档和 issue 讨论足够解决大多数使用层面上的问题。如果想高效学习技术，一定要尽可能找到最高层面，最易于理解的信息源**。比如对于和 Chromium、V8 等谷歌系项目深度绑定的 Ninja 构建系统，我之前一直搞不懂它为什么要做成那样，直到偶然读到作者自述的[设计理念](http://aosabook.org/en/posa/ninja.html)以后，一下就豁然开朗了。这比上来就翻它的源码然后苦思冥想地倒推「这玩意到底想干嘛」要直接而方便得多。
 
 毕竟某种程度上，读源码也是一种逆向工程，只应该在必要的时候去做。
 
@@ -1470,15 +1470,15 @@ https://better-scroll.github.io/docs/zh-CN/guide/#betterscroll-%E6%98%AF%E4%BB%8
 
 \- 工具类：
 
-[Lodashlodash.com](https%3A//lodash.com/)
+[Lodashlodash.com](https://lodash.com/)
 
 \- 时间操作：
 
-[Moment.js | Homemomentjs.com](https%3A//momentjs.com/)
+[Moment.js | Homemomentjs.com](https://momentjs.com/)
 
 \- 数学计算：
 
-[an extensive math library for JavaScript and Node.jsmathjs.org](https%3A//mathjs.org/)
+[an extensive math library for JavaScript and Node.jsmathjs.org](https://mathjs.org/)
 
 \- 日志库：
 
@@ -1526,7 +1526,7 @@ https://better-scroll.github.io/docs/zh-CN/guide/#betterscroll-%E6%98%AF%E4%BB%8
 
 
 **github:**[https://github.com/ramda/ramda](https://github.com/ramda/ramda)
-**文档：**[https://ramdajs.com/docs/](https%3A//ramdajs.com/docs/)
+**文档：**[https://ramdajs.com/docs/](https://ramdajs.com/docs/)
 Ramda 是一个用于函数式编程的很酷的 JS 库，目前在GitHub上有18000个星星。JS 的一个优点是开发人员可以选择函数式编程还是面向对象编程。这两种方法各有利弊，但是如果你喜欢函数式编程，那么一定要看看Ramda。
 主要功能是：
 
@@ -1539,7 +1539,7 @@ Ramda 是一个用于函数式编程的很酷的 JS 库，目前在GitHub上有1
 
 
 **github:** [https://github.com/lodash/lodash](https://github.com/lodash/lodash)
-**文档：** [https://lodash.com/](https%3A//lodash.com/)
+**文档：** [https://lodash.com/](https://lodash.com/)
 **Lodash**仍然是最流行和最有用的 JS 库之一。它免去了处理字符串、数组、对象等的麻烦。目前它在GitHub上有43000颗星星。
 有用的功能：
 
@@ -1552,7 +1552,7 @@ Ramda 是一个用于函数式编程的很酷的 JS 库，目前在GitHub上有1
 
 
 **github:** [https://github.com/moment/moment](https://github.com/moment/moment)
-**文档：** [https://momentjs.com/](https%3A//momentjs.com/)
+**文档：** [https://momentjs.com/](https://momentjs.com/)
 如果必须处理日期的操作、验证、解析或格式化，Moment可能是最好的 JS 库。它很轻，很完善，在GitHub上有43000多颗星，它可以在浏览器和Node.js中工作。
 以下是一些有关**Moment**的示例：
 moment().startOf('day').fromNow(); //8 hours ago moment('2019-15-11').isValid() //false moment('2019-02-21').isValid() //true
@@ -1561,7 +1561,7 @@ moment().startOf('day').fromNow(); //8 hours ago moment('2019-15-11').isValid() 
 
 
 **github:** [https://github.com/highlightj..](https://github.com/highlightj..).
-**文档：** [https://highlightjs.org/](https%3A//highlightjs.org/)
+**文档：** [https://highlightjs.org/](https://highlightjs.org/)
 **Highlight.js** 是一个用于语法高亮显示的库，可在浏览器和服务器上使用。 它几乎可以与任何Markdown一起使用，并具有自动语言检测功能。
 Highlight.js将在<pre> <code>标记之间搜索编程代码，尝试自动检测语言并突出显示语法。 它还支持不同的配色方案。
 下面是一个用 JS 编写的代码片段和来自代码编辑器的公共主题的示例
@@ -1574,21 +1574,21 @@ Highlight.js将在<pre> <code>标记之间搜索编程代码，尝试自动检�
 
 
 **github:** [https://github.com/d3/d3](https://github.com/d3/d3)
-**文档：** [https://d3js.org/](https%3A//d3js.org/)
+**文档：** [https://d3js.org/](https://d3js.org/)
 **D3**是最流行的数据可视化库，目前在GitHub上有89,500星。 它使用Web标准，并利用现代浏览器的强大功能，使数据栩栩如生。
 
 **6. Three.js**
 
 
 **github:** [https://github.com/mrdoob/thr..](https://github.com/mrdoob/thr..).
-**文档：** [https://threejs.org/](https%3A//threejs.org/)
+**文档：** [https://threejs.org/](https://threejs.org/)
 **Three.js**是出色的JS 3D库，它使用 WebGL 作为主要渲染器，但也支持其他渲染器，例如Canvas 2D，SVG和css3D。 它在GitHub上有58,000个Star，我们可以用它创建非常酷的东西。
 
 **7. Voca**
 
 
 **github:** [https://github.com/panzerdp/voca](https://github.com/panzerdp/voca)
-**文档：** [https://vocajs.com/](https%3A//vocajs.com/)
+**文档：** [https://vocajs.com/](https://vocajs.com/)
 Voca是一个用于处理字符串的优秀 JS 库。目前在GitHub上有2,800颗星。我们可以使用它来操作字符串，如更改大小写、修剪、pad、slugify、latinise、截断、转义等。
 其他功能包括：
 
@@ -1597,14 +1597,14 @@ Voca是一个用于处理字符串的优秀 JS 库。目前在GitHub上有2,800�
 - 支持多种环境，例如 Chrome，Firefox，Node.js
 - 100％的代码覆盖率，没有依赖性
 
-[豌豆资源搜索网站](https%3A//55wd.com/)[https://55wd.com](https%3A//55wd.com) [广州vi设计公司](http%3A//www.maiqicn.com/)[http://www.maiqicn.com](http%3A//www.maiqicn.com)
+[豌豆资源搜索网站](https://55wd.com/)[https://55wd.com](https://55wd.com) [广州vi设计公司](http://www.maiqicn.com/)[http://www.maiqicn.com](http://www.maiqicn.com)
 
 
 **8. Immutable.js**
 
 
 **github:** [https://github.com/immutable-..](https://github.com/immutable-..).
-**文档：** [https://immutable-js.github.i..](https%3A//immutable-js.github.i..).
+**文档：** [https://immutable-js.github.i..](https://immutable-js.github.i..).
 使用不可变数据结构具有一些主要优点，例如简化了应用程序开发，无防御性拷贝以及高级缓存概念。
 Immutable.js供了不变的数据结构，如列表，堆栈，映射，集合等。
 
@@ -1612,14 +1612,14 @@ Immutable.js供了不变的数据结构，如列表，堆栈，映射，集合�
 
 
 **github:** [https://github.com/hammerjs/h..](https://github.com/hammerjs/h..).
-**文档：** [http://hammerjs.github.io/](http%3A//hammerjs.github.io/)
+**文档：** [http://hammerjs.github.io/](http://hammerjs.github.io/)
 Hammer.js是一个 JS 库，具有20,900个GitHub Stars，可为Web应用程序带来多点触摸手势。 它很小，没有任何依赖性，并且可以识别由触摸，鼠标或指针事件产生的手势。 默认情况下，它会添加用于点击，双击，滑动，按下等的识别器，但是您可以定义自己的此类识别器集。
 
 **10. Leaflet**
 
 
 **github:** [https://github.com/Leaflet/Le..](https://github.com/Leaflet/Le..).
-**文档：** [https://leafletjs.com/](https%3A//leafletjs.com/)
+**文档：** [https://leafletjs.com/](https://leafletjs.com/)
 在创建移动友好的交互式地图时，Leaflet 是一个很棒的 JS 库。它是开源的，在GitHub上有26700个星星，非常轻量，并且拥有大多数开发人员需要的所有特性。
 它可以在所有主流的移动和桌面平台上开箱即用，可以通过插件进行扩展，并且有一个文档良好的、简单的API。
 

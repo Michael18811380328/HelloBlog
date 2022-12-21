@@ -1,17 +1,5 @@
 # 精读《你不知道的javascript（中卷）》
 
-[![白霸天](https://pica.zhimg.com/v2-39f69dd44a9ad7b993e615dd9b0c9198_xs.jpg?source=172ae18b)](https://www.zhihu.com/people/baibatian)
-
-[白霸天](https://www.zhihu.com/people/baibatian)![img](https://picx.zhimg.com/v2-4812630bc27d642f7cafcd6cdeca3d7a.jpg?source=88ceefae)
-
-程序员解决师
-
-关注她
-
-7 人赞同了该文章
-
-
-
 ## 前言
 
 
