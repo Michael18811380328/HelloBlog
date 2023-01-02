@@ -228,6 +228,5 @@ Type: application/x-web-app-manifest+json
 
 ## 参考网址
 
-- Iliyan Peychev, [HTTP 2.0 is coming, be ready](HTTP 2.0 is coming, be ready)
 - Daniel Stenberg, [http2 explained](http://daniel.haxx.se/http2/)
 - Stephen Ludin, [With HTTP/2, Akamai Introduces Next Gen Web](https://blogs.akamai.com/2015/02/with-http2-akamai-introduces-next-gen-web.html)

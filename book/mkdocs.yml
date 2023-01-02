@@ -170,6 +170,7 @@ nav:
         - '11-choose': 'book-JS-primer-code-design/11-choose.md'
         - '22-高级用法': 'book-JS-primer-code-design/22-高级用法.md'
         - '24-最佳实践': 'book-JS-primer-code-design/24-最佳实践.md'
+
     - 湖科大计算机网络基础:
         - '01 概述': 'ebook-network-basic/01 概述.md'
         - '02 物理层': 'ebook-network-basic/02 物理层.md'
@@ -179,13 +180,13 @@ nav:
         - '06 应用层': 'ebook-network-basic/06 应用层.md'
         - 'readme': 'ebook-network-basic/readme.md'
         - 'todo 互联网协议入门-阮一峰': 'ebook-network-basic/todo 互联网协议入门-阮一峰.md'
+
     - 其他技术笔记:
         - 'JS-the-good-parts': 'book-JS-The-good-parts/JS-the-good-parts.md'
         - 'curry-function': 'book-JS-The-good-parts/curry-function.md'
         - 'JavaScript 秘密花园-zh': 'ebook-javascript-secret-garden/JavaScript 秘密花园-zh.md'
         - 'H5C3从入门到精通': 'other/H5C3从入门到精通.md'
         - 'JS 数据结构': 'other/JS 数据结构.md'
-        - 'Taro框架': 'other/Taro框架.md'
         - 'data structure basic': 'other/data structure basic.md'
         - 'leanpub-auto-the-road-to-ecmascript-6': 'other/leanpub-auto-the-road-to-ecmascript-6.md'
         - '代码整洁之道 读书笔记': 'other/代码整洁之道 读书笔记.md'
@@ -193,10 +194,14 @@ nav:
         - '前端工程化笔记-阮一峰': 'other/前端工程化笔记-阮一峰.md'
         - '尚硅谷-React技术全家桶2021版笔记01': 'other/尚硅谷-React技术全家桶2021版笔记01.md'
         - '尚硅谷-React技术全家桶2021版笔记02': 'other/尚硅谷-React技术全家桶2021版笔记02.md'
+        - '精读-你不知道的JS上卷': 'other/精读-你不知道的JS上卷.md'
+        - '精读-你不知道的JS中卷': 'other/精读-你不知道的JS中卷.md'
+        - '精读-图解HTTP': 'other/精读-图解HTTP.md'
+        - '精读-高性能JS': 'other/精读-高性能JS.md'
         - '尚硅谷 nodeJS-basic': 'ebook-upguigu-nodejs/nodeJS-basic.md'
 
     - 黑马程序员nodejs:
         - '00': 'ebook-heima-nodejs/00.md'
         - '01': 'ebook-heima-nodejs/01.md'
         - '02': 'ebook-heima-nodejs/02.md'
-        - 'readme': 'ebook-heima-nodejs/readme.md'
+        - '03': 'ebook-heima-nodejs/03.md'

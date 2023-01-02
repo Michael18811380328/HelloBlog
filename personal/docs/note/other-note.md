@@ -73,6 +73,28 @@ H []
 
 
 
+## 数据库
+
+#### 事务处理
+
+这是数据库中的术语：某一组操作时一个原子操作，如果中途无法执行，就回退到开始的状态，不能执行到一半。
+
+实例：删除一个用户时，用户的各种信息分别在不同的表中存储，那么这组操作就包括多个删除 SQL 语句，就是一个 commit。例如删除用户的基本信息，用户的评论，用户的操作日志等。如果删除用户评论时，发现找不到这个用户，那么应该提示错误并回退到之前的状态，而不应该继续执行，或者执行一半。
+
+```sql
+START TRANSATION
+DELETE FROM USERS WHERE user_id = 002;
+DELETE FROM COMMENTS WHERE user_id = 002;
+DELETE FROM OPERATIONS WHERE user_id = 002;
+COMMIT;
+```
+
+#### nginx 入门可以参考
+
+https://juejin.cn/post/6844904129987526663
+
+https://zhuanlan.zhihu.com/p/34943332
+
 
 
 ## Bash

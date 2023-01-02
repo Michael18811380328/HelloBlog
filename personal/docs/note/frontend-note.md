@@ -498,8 +498,6 @@ lodash 的主要目的是封装了对象和数组的一些方法，主要功能�
 
 
 
-
-
 ### 17 stringify 函数
 
 作用：把JS对象或者数组，转换成JSON格式
@@ -556,32 +554,6 @@ console.log(reg); // /\[\]/gi
 缺陷：点击编辑后，外部整体的高度会被撑开，可能有其他的问题
 
 
-
-### 27 谷歌浏览器版本
-
-这里是全部的谷歌浏览器版本，用于排查某一个版本的问题
-
-2011-2020 主要版本：https://sourceforge.net/projects/osxportableapps/files/Chromium/
-
-https://www.applex.net/downloads/google-chrome-for-mac.25/history
-
-http://www.chromium.org/getting-involved/dev-channel
-
-
-
-### 28 Windows 微信版本问题
-
-微信全部版本及发布时间：https://weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_faq_list&head=true
-
-早期版本中（3.0.0及之前）微信内核是 chrome 53 不支持很多 ES6 的语法，所以需要兼容
-
-最新版本中（3.3.5及之后）微信内核变化后，支持 ES6 语法（不支持开发者工具，不确定内核的具体版本号）
-
-3.0.0 之间到 3.3.5 之后的版本，没有逐一测试兼容性
-
-早期版本的调试步骤参考：https://www.yuque.com/wuchendi/fe/winwechat 具体需要下载一个 dev 的包，然后可以打开调试台
-
-最新的 windows 微信版本支持 ES6，所以不需要做兼容处理
 
 
 
@@ -767,12 +739,6 @@ this.refs.inoutRef.focus();
 
 
 
-### 39 React PureComponent
-
-PureComponent 和 Component 的主要区别：内部实现了shouldComponentUpdate这个生命周期方法（如果poops相同，组件不更新），适应于视图层显示界面（数据简单，不包括数据处理）。这里只会对Props进行浅对比，如果是复杂对象会出错。这个会影响到子组件的对比，所以最好使用在显示界面（不会继续传递数据流）。
-
-
-
 ### 40 中文输入法
 
 手机输入法中，大部分都是 229 无法直接监听符号或者字母（后退正常）其他键已经被输入法封装了，所以Keycode无效。
@@ -870,12 +836,15 @@ for (var i = 0; i < 10; i++) {
 }
 ```
 
-### 移动端点击事件
+### 43 移动端点击事件
 
 移动端点击事件
 1、click 会延迟 200-300ms 。默认移动端双击屏幕会放大缩小浏览器，所以 click 后会判断是否点击两次。默认的 dbClick 时间会去掉。
+
 2、移动端执行的是 touch 事件。touchstart, touchmove touchend 三个事件后，再触发 click 。如果已经监听 touch 事件，那么需要把默认的 click 事件去掉。时间对象 e 包括了很多点击的属性
+
 3、touch 对应的手势事件
+
 - 点按 touchstart touchend 间隔很小
 - 长按 touchstart touchend 间隔很大，且没有 touchmove 事件
 - 单指上划（下划）左右滑 touchstart touchend 间隔很大，有 touchmove 事件，然后通过移动的位置，判断滑动的方向
@@ -890,15 +859,39 @@ if (Math.abs(endX - startX) >= Math.abs(endY - startY) && startX - endX >= 25){
 ~~~
 
 https://www.jianshu.com/p/997b23232bb8
+
 https://juejin.cn/post/6844903569141809166
+
 https://juejin.cn/post/6844903506311118856
 
 
-### git log 改成简化版本的 git lg
+### 44 git log 改成简化版本的 git lg
 
 https://luolei.org/better-git-log/#comments
+
 git log 改成简化版本的 git log 加入下面的软连接配置
+
+~~~bash
 git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+~~~
+
+### 45 升级 axios 版本问题
+
+造成 jest 单元测试不通过的解决
+
+本质原因：早期 axios 是 common-js 打包的，新版本没有支持 common-js 打包。Jest 执行单元测试在 node 环境下，不支持 es6语法，所以 import axios 就会报错。解决思路是，把 import 语法替换掉
+
+```
+moduleNameMapper: {
+	'^axios$': require.resolve('axios'),
+},
+```
+
+就是 module name 映射关系，把 import axios 变成 require.resolve('axios') 这样 Jest 就可以测试通过了
+
+其他参考 https://juejin.cn/post/6898738304754286605
+
+
 
 ### 其他
 
@@ -931,10 +924,6 @@ HTMLtoCanvas 第三方库学习；canvas.toDataUrl('image/png', 1.0)  配置：a
    - [x] Mobile-common-header 移动端通用标题组件
    - [x] Mobile-mask 移动端遮罩组件
    - [x] 保存逻辑：表格界面中，行展开，大部分情况都是发送 OP 对行进行增删改。增加链接是直接的 API，没有支持 OP。其他界面中，行展开操作后，直接发送 API 请求，返回成功后，刷新界面的数据（表格数据多，其他界面数据少，所以性能满足）。
-
-
-
-
 
 
 
@@ -1096,3 +1085,36 @@ webpack 编译打包时间较多，现在使用 thread-loader，可以减少编�
 }
 ~~~
 
+
+
+### 27 谷歌浏览器版本
+
+这里是全部的谷歌浏览器版本，用于排查某一个版本的问题
+
+2011-2020 主要版本：https://sourceforge.net/projects/osxportableapps/files/Chromium/
+
+https://www.applex.net/downloads/google-chrome-for-mac.25/history
+
+http://www.chromium.org/getting-involved/dev-channel
+
+
+
+### 28 Windows 微信版本问题
+
+微信全部版本及发布时间：https://weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_faq_list&head=true
+
+早期版本中（3.0.0及之前）微信内核是 chrome 53 不支持很多 ES6 的语法，所以需要兼容
+
+最新版本中（3.3.5及之后）微信内核变化后，支持 ES6 语法（不支持开发者工具，不确定内核的具体版本号）
+
+3.0.0 之间到 3.3.5 之后的版本，没有逐一测试兼容性
+
+早期版本的调试步骤参考：https://www.yuque.com/wuchendi/fe/winwechat 具体需要下载一个 dev 的包，然后可以打开调试台
+
+最新的 windows 微信版本支持 ES6，所以不需要做兼容处理
+
+
+
+### 39 React PureComponent
+
+PureComponent 和 Component 的主要区别：内部实现了shouldComponentUpdate这个生命周期方法（如果props相同，组件不更新），适应于视图层显示界面（数据简单处理，或者不包括数据处理）。这里只会对 Props 进行浅对比，如果是复杂对象会出错。这个会影响到子组件的对比，所以最好使用在显示界面（不会继续乡下传递数据流）。

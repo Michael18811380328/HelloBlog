@@ -25,7 +25,6 @@ http://www.ajexoop.com/wordpress/
 https://zhuanlan.zhihu.com/p/40799542
 
 
-
 ## 简单使用
 
 使用 canvas 实现动画和交互应用。
