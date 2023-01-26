@@ -15,13 +15,13 @@
 #### 快慢指针
 
 ~~~js
+// 需要预处理next下一个节点是否存在等
 let a = head.next;
 let b = head.next.next;
 while (a.next) {
   a = a.next;
   b = b.next.next;
 }
-// 需要预处理next下一个节点是否存在等
 ~~~
 
 #### 对撞指针
@@ -52,7 +52,6 @@ let fn = (numbers, target) => {
 
 console.log(fn([2, 7, 11, 15], 9));
 console.log(fn([2, 7, 10, 11, 15], 21));
-
 ~~~
 
 ### 2 有序数组转换成等高的二叉搜索树

@@ -48,7 +48,7 @@ open /Applications/Google\ Chrome.app && open /Applications/Typora.app
 - 如果本地调试两个前端项目，一个项目需要使用另一个项目打包后的文件，可以直接写一个脚本，然后复制这个打包后的文件到另一个文件夹下面（npm link 也可以实现，但是可能存在缓存问题等等），所以写了这个联调脚本。本地联调测试脚本
 
 ~~~js
-"move": "npm run prepublishOnly && mv -f /Users/seafile/Desktop/code-seafile/dtable/es /Users/seafile/workroom/dev/dtable-dev/data/dev/dtable-web/frontend/node_modules/@seafile/dtable",
+"move": "npm run prepublishOnly && mv -f /dtable/es /Users/seafile/workroom/dev/dtable-/dtable-web/frontend/node_modules/@seafile/dtable",
 ~~~
 
 
@@ -104,3 +104,4 @@ GraphQL是新一代的协议。每一个请求都类似 POST 请求，前端把�
 vps: Virtual Private Server（虚拟私有服务器），一般架设在云端，有固定的带宽，个人博客可以搭建在这里。企业的网站不适宜搭建。
 
 云服务器：是 vps 的加强版，带宽可变，国内主要是华为云，阿里云，国外是亚马逊。
+
