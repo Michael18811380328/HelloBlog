@@ -6,26 +6,26 @@
 
 学习目标：熟悉 python 环境搭建和基本语法，了解 flask 的设计原理，可以做一个简单项目；有能力可以对接一个前后端项目。
 
-练习项目（知乎）：用户注册、用户登录、搜索文章、发布文章、增加评论。
+练习项目：用户注册、用户登录、搜索文章、发布文章、增加评论。
 
 数据库设计：需要用户表，文章表，评论表，支持不同数据的增删改查。
 
 ## 第0章 安装开发环境
 
-#### 安装 python
+#### 0.1 安装 python
 
-MacOS: 自带 python 2.7 开发环境，在控制台输入 python，或者 `python xxx.py` 即可执行
+MacOS: 自带 python 开发环境，在控制台输入 python，或者 `python xxx.py` 即可执行
 
 Windows：没有 Python 环境。需要下载安装，配置环境变量（`python pip easy-install`）这里需要设置 python 的环境变量和 pip 的环境变量，打开计算机-属性-高级属性-设置环境变量-增加环境变量, 名称是 PATH 属性是文件路径 `C:/Python27;C:/Python27/Scripts`，设置环境变量后，在 cmd 中可以查看 python 和 pip 的版本号，验证安装。
 
-#### 安装虚拟环境 virtualenv
+#### 0.2 安装虚拟环境 virtualenv
 
 不同项目依赖的 python 版本不同，依赖第三方库不同，所以需要不同的 python 虚拟环境，虚拟环境会避免版本冲突。不同的虚拟环境中安装不同的 flask 的版本和库，相互独立不会干扰。
 
 安装虚拟环境
 
 ~~~bash
-sudo pip install virtualenv
+sudo pip3 install virtualenv
 mkdir test
 cd test
 virtualenv flask-env
@@ -36,7 +36,7 @@ Windows 激活虚拟环境
 ~~~bash
 cd flask-dev/scripts
 activate
-pip install -r dependencies.txt
+pip3 install -r requirements.txt
 deactivate
 ~~~
 
@@ -44,20 +44,20 @@ Mac 激活虚拟环境
 
 ~~~bash
 source ~/Virtualenv/flask-env/bin/activate
-pip install -r dependencies.txt
+pip3 install -r requirements.txt
 deactivate
 ~~~
 
-#### 安装 flask
+#### 0.3 安装 flask
 
-falsk 版本兼容问题：教程是 0.12.2 现在安装的是 1.1.1，版本；可能部分代码不兼容，需要实际调试
+flask 版本兼容问题：官方 flask 已经支持 2.x.x 版本，对应 python3；教程版本是否最新等，可能部分代码不兼容，需要实际调试
 
 ~~~bash
 source ~/Virtualenv/flask-env/bin/activate
-pip install flask
+pip3 install flask
 ~~~
 
-测试版本号（监测安装正常）
+测试版本号（测试安装正常）
 ~~~python
 import flask
 print flask.__version__
@@ -66,9 +66,7 @@ print flask.__version__
 
 #### 安装 IDE
 
-可以使用 pycharm https://www.jetbrains.com.cn/pycharm/ sublime Vscode 
-
-虚拟环境和 flask 已经配置完毕
+可以使用 pycharm sublime Vscode 等
 
 ## 第一章 URLs 和 View(视图)
 
@@ -80,9 +78,10 @@ print flask.__version__
 
 ~~~python
 #coding=utf-8
+
 # python 2需要设置语言utf-8
 
-# 从Flask框架中导入这个类
+# 从 Flask 框架中导入这个类
 from flask import Flask
 
 # 初始化对象，需要传参
@@ -99,21 +98,18 @@ def hello_world():
 def index_page():
     return 'Hello Index Page'
 
-# 入口程序：启动一个应用程序，接受用户的请求（eventlistener）
+# 入口程序：启动一个应用程序，接受用户的请求（event listener）
 if __name__ == '__main__':
     app.run()
-
 ~~~
 
 ### 第二课 debug 
 
-app.run(debug=True) 可以打开调试模式
+`app.run(debug=True) `打开调试模式
 
-可以项目热加载（修改python文件才行，JS文件修改后不会热加载）；可以出现问题后在页面中看到报错详情
+可以项目热加载（修改 python 会热加载）；可以出现问题后，在页面中看到报错详情
 
-### 外部配置文件
-
-新建配置文件 config.py，加入大写的参数
+外部配置文件：新建配置文件 config.py，加入大写的参数
 
 ~~~python
 DEBUG = True
@@ -174,12 +170,12 @@ if __name__ == '__main__':
 
 ~~~
 
-注意：运行flask后，需要点击左下角的关闭按钮，才能关闭当前的本地服务器。否则关闭软件后，本地服务器还在运行，可能影响其他的本地服务器。
+注意：运行flask后，需要点击关闭，才能关闭当前的本地服务器。否则关闭终端后，本地服务器还在运行，可能影响其他的本地服务器。
 
 
 ### 第5课 页面重定向和跳转
 
-实际使用:用户未登录时，跳转（重定向）到登录界面
+实际使用: 用户未登录时，跳转（重定向）到登录界面
 
 ~~~python
 #coding=utf-8
@@ -210,6 +206,7 @@ if __name__ == '__main__':
     app.run(debug=True)
 
 ~~~
+
 
 
 ## 第二章 Jinja2模板
@@ -284,3 +281,4 @@ Jinja2 模板中的使用
 ~~~
 
 小案例：四大名著的渲染
+

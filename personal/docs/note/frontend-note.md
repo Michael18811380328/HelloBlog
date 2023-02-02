@@ -1116,3 +1116,28 @@ http://www.chromium.org/getting-involved/dev-channel
 ### 39 React PureComponent
 
 PureComponent 和 Component 的主要区别：内部实现了shouldComponentUpdate这个生命周期方法（如果props相同，组件不更新），适应于视图层显示界面（数据简单处理，或者不包括数据处理）。这里只会对 Props 进行浅对比，如果是复杂对象会出错。这个会影响到子组件的对比，所以最好使用在显示界面（不会继续乡下传递数据流）。
+
+
+### 40 VUE VS React 对比
+
+* 语法格式： vue 是单独的文件格式，一个文件包括了 js css HTML 全部，React 通常是 jsx 格式，JS 和 HTML 写在一个文件中，严格意义是 JSX，会通过 React 转换成JS代码，样式部分通过外部 css 文件控制（或者 less sass，下同）
+* 数据流：React 是单向数据流，也就是上层组件通过 state 存储数据，通过 props 传递给下层组件，下层组件不能直接更改上层组件的数据，通常通过回调函数或者 redux 等状态管理工具，改变整体的数据，触发组件的局部更新。Vue 早期双向数据流？
+* 使用场景：react 起源于国外 Facebook，所以大部分国外公司使用，VUE 作者 Evan You 主要是国内使用。其他对应的第三库也是类似的。国内，阿里巴巴很多项目都是 ts + react。
+* React-native 构建原生应用，实现一套代码多种应用；react 类式代码便于和 ts 结合使用
+* react 需要使用 PureComponent 或者 shouldComponentUpdate 手动进行 props 对比，否则可能造成大量不必要的重复渲染。VUE setter 和 getter 中已经处理了这部分逻辑。
+
+相同点：
+
+* 虚拟DOM，Diff 算法：
+* 响应式和组件化
+* key 的作用：再次渲染时，快速复用之前的 dom 节点，减少性能开销（key 唯一性确保 map 查找节点）
+* 这两个是核心库，路由和全局状态管理交给相关的库。(vue-router、vuex、react-router、redux）；构建工具：create-react-app or vue-cli 
+
+项目如何选择框架？
+
+* 根据人员熟练程度
+* 小项目使用 vue 大项目使用 react；国际化项目使用 react；国内项目使用 vue；react 和对应的类型控制，团队人多时便于合作；vue 写法比较灵活，如果注释不完善，可能理解有一定困难。
+
+<https://juejin.cn/post/6844903668446134286>
+
+
