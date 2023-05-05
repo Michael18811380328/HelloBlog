@@ -15,6 +15,7 @@
 - 'K-means聚类算法': 'algre/K-means聚类算法.md'
 - 'LeetCode刷题方法': 'algre/LeetCode刷题方法.md'
 - 'LintCode刷题顺序': 'algre/LintCode刷题顺序.md'
+- 'all-leetcode': 'algre/all-leetcode.md'
 - 'data structure basic': 'algre/data structure basic.md'
 - 'double-pointer': 'algre/double-pointer.md'
 - 'js判断字符串中是否包含某个字符串': 'algre/js判断字符串中是否包含某个字符串.md'
