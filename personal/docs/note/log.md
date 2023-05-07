@@ -6,19 +6,19 @@ This repository is the first trial repository of Michael An.
 
 ### 2018.01
 
-I start to learn front-end development. There are plenty of differences between traditional webpage editing (such as using Adobe Dreamweaver software to design a webpage).
+I start to learn frontend development. There are plenty of differences between traditional webpage editing (such as using Adobe Dreamweaver software to design a webpage).
 
-The new standards of HTML5 and CSS3 are amazing. These parts are easy , I think. Probablly because I can use photoshop, firework and other Adobe softwares fluentlly.
+The new standards of HTML5 and CSS3 are amazing. These parts are easy, I think. Probablly because I can use photoshop, firework and other Adobe softwares fluently.
 
 What's more, it is easy to use css. But using it well isn't an easy task.
 
 ### 2018.02
 
-learning basic javascript codes. Basic JS codes are similar to other coding languages. JS is an O-O programming language. The polymorphism isn't obvious.
+I am learning basic javascript codes. Basic JS codes are similar to other coding languages. JS is an object oriented programming language. The polymorphism isn't obvious.
 
-ECMAscript, a standard coding plan, is developing rapidly. ES5 is ripe and stable. In 2015, ES6 use class to create an object (from cpp?). And ES6 use string module. It maybe come from Ruby.
+ECMA script, a standard coding plan, is developing rapidly. ES5 is ripe and stable. In 2015, ES6 use class to create an object (from cpp?). And ES6 use string module. It maybe come from Ruby.
 
-Recently some frineds told me that NodeJS could work in desktop application. In one day JS will work every place.
+Recently some frineds told me that NodeJS could used in desktop application(Microsoft VS code). In one day JS will work every place.
 
 ### 2018.03
 
@@ -34,11 +34,11 @@ Read readme.text of data repository. Finish user's information setting in github
 
 I can make a basic webpage using sublime editor. HTML is the structure of pages, CSS is the style of pages, JS is the magic and action of pages.
 
-Other small JS plug-ins can help me to ease working stress. The fullpage plug-in can make different pages switching fluently. And a small shopping project (similar to JD) and a take-out meal project are finished.
+Other small JS plugins can help me to ease working stress. The fullpage plugin can make different pages switching fluently. And a small shopping project (similar to JD) and a take out meal project are finished.
 
 ### 2018.05
 
-laern senior javascript programming. And JS is not easy. Some JS codes are unique. Such as 0.1 plus 0.2 not equal 0.3, however, 0.1 plus 0.5 equal 0.6. And ajax is excellent. Now axios can work well without ajax.
+I am laerning senior javascript programming. And JS is not easy. Some JS codes are unique. Such as 0.1 plus 0.2 not equal 0.3, however, 0.1 plus 0.5 equal 0.6. And ajax is excellent. Now axios can work well without ajax.
 
 In the free time, I learn about main structures and MVC or MVVM design modal. (Modal-View-View-Modal). The main structures are Angular, Vue and React. Recently, Angular is too large to design a single page, so people choose React or Vue. And I design three shopping webpages for mobile devices. The pages use different methods to suit different length and height(percentage, flex, rem). Now I should use it fluently.
 
@@ -46,7 +46,7 @@ In the free time, I learn about main structures and MVC or MVVM design modal. (M
 
 Continue learning structue. Using modals can save more time and make codes use widely. Start designing Leisure website and a company fullpage. We have a small team and my main job is to design webpages. And I need to test my codes with others groupnumbers. There are many bugs that we can't realise until testing together. And sometimes designer perfer another color or logo, I need to clip them right away. The jobs are interesting and busy. Tired but happy.
 
-And I learn some chrome inside render methods. There are three engines and each engines can render diferent parts of webpage. There are much knowledge that I need to learn. As a developing front-end develper, I have to know Internet basic and data structure knowledge as quickly as I can.
+And I learn some chrome inside render methods. There are three engines and each engines can render diferent parts of webpage. There are much knowledge that I need to learn. As a developing frontend develper, I have to know Internet basic and data structure knowledge as quickly as I can.
 
 ### 2018.07
 
@@ -72,7 +72,7 @@ Till now I can't find adequate PS and other softwares in MAC. I didn't have an A
 
 3. new knowledge of Jest
 
-What's more, there are many new knowledge points. I need to learn reactstrap(bootstrap in react framework). The ECMAscript6 is necessary. The differences between const and let (let use much memory than const, about 2% to 3% maybe). And array function is useful. It can bind this to using function automaticly.Others, learn button/DropDown/Modal compoennts of reactstrap.
+What's more, there are many new knowledge points. I need to learn reactstrap(bootstrap in react framework). The ECMA script6 is necessary. The differences between const and let (let use much memory than const, about 2% to 3% maybe). And array function is useful. It can bind this to using function automaticly.Others, learn button/DropDown/Modal compoennts of reactstrap.
 
 React framework contains several life cycle fucntion. How to use them fluently needs much time to practice. And slate.js framework, a rich text framework, is also important. Map Object/Selectiom/Value/Change and ... blob file. write later because there are much things to deal now. reading blog from RuanYF.
 
@@ -86,7 +86,7 @@ And I learn code (JS) data structure of JS. The bacis data strcuture is Array. I
 
 ### 2018.10
 
-For a front-end engineer, I should use front-end technique fluently. The main structure and basic logic and data structure. And I thought that I should not only know my aspects but also learn other aspects. The basic   network and back-end knowledge are also important. I needn't write back-end codes, I just know their methods and thoughts. And I should learn front-end parts firstly. 
+For a frontend engineer, I should use frontend technique fluently. The main structure and basic logic and data structure. And I thought that I should not only know my aspects but also learn other aspects. The basic   network and back-end knowledge are also important. I needn't write back-end codes, I just know their methods and thoughts. And I should learn frontend parts firstly. 
 
 Recently work is not busy (compared with Sep). And there are other things I have to deal with, such as tax, insurance, family tree : ) I will spend at least 20 percentages of my time and monty into future development (books and other online lecture). Never give up! Just hurry up!
 
@@ -106,13 +106,13 @@ The memory of function. In fibonacci method, we can use resursion to culculate. 
 
 learn more of data structure. If I just use some basic components in my daily work, I won't get more new information of CS development. It is necessary for me to learn new method and new grammar(ES7). The latest React structure has some useful utils. React-Routers and React-Native are some of them. I need to learn them. 
 
-We all know that if you didn't study every day, you would been last for a long distance. So just hurry up! Don't hesitate to learn new knowledge. We all know that it is totally diffcult for us to learn in such a short periods, but we need to learn for the future. Two years age, angular is hot in whole China, plenty of my friends use angular as their basic front-end structure. Now, if you use angular, it is not a wise choice.
+We all know that if you didn't study every day, you would been last for a long distance. So just hurry up! Don't hesitate to learn new knowledge. We all know that it is totally diffcult for us to learn in such a short periods, but we need to learn for the future. Two years age, angular is hot in whole China, plenty of my friends use angular as their basic frontend structure. Now, if you use angular, it is not a wise choice.
 
 3.Singles' day thoughts
 
 Today is Nov 11th, the traditional shopping days. Ten years age, shopping day was created by Alibaba. Ten years later, there are 100 billion yuan trades during just ten hours. But I never buy any goods, because I must learn new CS knowledge. During ten years development, the main trades have changed a lot. Much people use mobile Apps to buy goods thought internet. And basic desktop browsers are decrease. 
 
-And I need to learn some mobile front-end methods. First, mobile app use lastest brower in Android or iphone, so we need't deal with old ie version. The new mobile screen and flex design are more important. Second, our mobile phone's hardwares are becoming more and more gaint. We can add some complex tecnology to increase clients thought. Third, 5G network will use in daily life. And we need to thought how to open web page sooner. And sending much data or async functions will use much. Using lazy-loading tec is also important.
+And I need to learn some mobile frontend methods. First, mobile app use lastest brower in Android or iphone, so we need't deal with old ie version. The new mobile screen and flex design are more important. Second, our mobile phone's hardwares are becoming more and more gaint. We can add some complex tecnology to increase clients thought. Third, 5G network will use in daily life. And we need to thought how to open web page sooner. And sending much data or async functions will use much. Using lazy-loading tec is also important.
 
 
 ### 2018.12
@@ -250,7 +250,7 @@ learn leetcode basic methods(sort, search) review basic data structure(array, ob
 - Linked list: Reverse linked list, find the intermediate node of the linked list;
 - Stack: valid bracket string, array dimension reduction
 - Three kinds of binary tree traversal; maximum and minimum depth; nearest common ancestor; symmetric binary tree; binary tree path; binary search tree (verify binary search tree, sort array is converted into binary search tree; tree is converted into linked list; generate different binary Fork search tree) The binary search tree is not very familiar;
-- Simple understanding of front-end monitoring
+- Simple understanding of frontend monitoring
 ### 2021.03
 
 - rebuild personal blog using mkdocs and seperate it into several parts
@@ -283,3 +283,13 @@ What about future development? The core algorithm and ECMA syntax are still fund
 
 Of course, life is not only about work, but also about future development and how to walk out of our own way in spare time.
 
+
+## 2023
+
+### 2023.05
+
+I haven't updated my English blog for a long time, because I have been writing some technical and personal thoughts in my owb [blog](https://michael18811380328.github.io/) or [CSDN](https://blog.csdn.net/weixin_41697143/?type=blog) blog for the past two years. In the last two months, I designed a Genshin Theme novel reader, from development to design, from backend to frontend, to testing. Surprise! Currently only version 1.0.0, containing basic functionality. In the future, some interesting features will be added to the new version.
+
+Recently I have been thinking about my future personal development, which path should I choose, and what should I do in order to achieve my huge goals? Specifically, how to use working time to improve learning efficiency scientifically, and how to arrange my free time to balance life and work? There are so many things to juggle that I have to do the top 30% and delete the last 70%. Focus on the important things and don't waste time on trivial matters.
+
+Hurry up! Don't waste time in a lazy life!
