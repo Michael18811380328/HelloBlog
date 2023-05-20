@@ -27,10 +27,6 @@ npm install
 # package.json
 ~~~
 
-### 卸载
-
-卸载：将 install => uninstall 即可
-
 ### 更新
 
 以 react 为例
@@ -226,3 +222,11 @@ npm install npm@latest -g
 > To solve both these issues, many developers opt to use a node version manager, or nvm, to install npm. The version manager will avoid permissions errors, and will solve the complexities of updating Node.js and npm.
 
 > In addition, developers can use an nvm to test their applications on multiple versions of npm. The nvm enables you to easily switch npm as well as node versions. This makes it easier to ensure that your applications work for most users, even if they are using other versions of npm. If you decide to install a version manager, use the instructions for the version manager you select to learn how to switch versions, and to learn how to keep up-to-date with the latest version of npm.
+
+>由于npm和node.js产品由不同的实体管理，因此更新和维护可能会变得复杂。此外，Node.js安装过程将npm安装在一个只有本地权限的目录中。当您尝试全局运行程序包时，这可能会导致权限错误。
+>
+>为了解决这两个问题，许多开发人员选择使用节点版本管理器或nvm来安装npm。版本管理器将避免权限错误，并将解决更新Node.js和npm的复杂性。
+>
+>此外，开发人员可以使用nvm在多个版本的npm上测试他们的应用程序。nvm使您能够轻松切换npm以及节点版本。这样可以更容易地确保您的应用程序适用于大多数用户，即使他们正在使用其他版本的npm。如果您决定安装版本管理器，请使用所选版本管理器的说明来学习如何切换版本，并学习如何保持最新版本的npm。
+
+这个是不同版本下的 node 和 npm，最好使用 nmv 或者 n 等版本管理工具处理不同版本问题

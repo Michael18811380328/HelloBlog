@@ -1,17 +1,8 @@
 # 掌握拖拽的实现（使用ReactJS hooks）
 
-[![lonelycat](https://pic1.zhimg.com/v2-a94fc85f80add089b2d175ecbb259d79_xs.jpg?source=172ae18b)](https://www.zhihu.com/people/lonelywildcat)
-
-[lonelycat](https://www.zhihu.com/people/lonelywildcat)
-
-关注他
-
-79 人赞同了该文章
-
-> 作者：[Shay Keinan](https://link.zhihu.com/?target=https%3A//engineering.datorama.com/%40crazypixel%3Fsource%3Dpost_page-----fb58dc1f816f----------------------)
 > 原文：[Mastering Drag & Drop using ReactJS hooks](https://link.zhihu.com/?target=https%3A//engineering.datorama.com/mastering-drag-drop-using-reactjs-hooks-fb58dc1f816f)
 
-在[上一篇文章](https://link.zhihu.com/?target=https%3A//engineering.datorama.com/mastering-drag-drop-with-reactjs-part-01-39bed3d40a03)中，我介绍了通用的开源拖拽库，例如React-dnd和React-beautiful-dnd，并使用React类组件的方式构建了一个可拖拽组件。现在我要使用React Hooks实现拖拽，并制作一个可排序列表。
+我介绍了通用的开源拖拽库，例如React-dnd和React-beautiful-dnd，并使用React类组件的方式构建了一个可拖拽组件。现在我要使用React Hooks实现拖拽，并制作一个可排序列表。
 
 <iframe frameborder="0" allowfullscreen="" src="https://www.zhihu.com/video/1156580175243354112?autoplay=false&amp;useMSE=" style="display: block; width: 688px; height: 387px;"></iframe>
 
@@ -38,7 +29,7 @@ const App = () => {
 
 可拖拽组件：
 
-```text
+```js
 import React, {useState, useCallback, useMemo, useEffect} from 'react';
 
 const POSITION = {x: 0, y: 0};
@@ -110,7 +101,7 @@ export default Draggable;
 
 可排序列表：
 
-```text
+```js
 import React, {useState, useCallback} from 'react';
 import styled from 'styled-components';
 import {range, inRange} from 'lodash';

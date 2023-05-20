@@ -44,3 +44,4 @@ https://docs.npmjs.com/receiving-a-one-time-password-over-email
 注：也可以在发版本时，在环境变量中增加 token，可以试一下 `export xxxxx && npm run build && npm publish`
 
 如果安装私有库的代码，执行 npm install 也是正常的
+

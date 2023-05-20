@@ -70,35 +70,32 @@ function translate(){
 </script>
 ~~~
 
-
-
 3、使用谷歌翻译的API
 
-~~~html
-<script type="text/javascript" src="http://www.google.com/jsapi"></script >
-<script type="text/javascript">
-  google.load("language", "1");
-  function initialize()
-  {
-    var text = document.getElementById("text").innerHTML;
-    google.language.detect(text, 
-                           function(result)
-                           {
-      if(!result.error && result.language)
-      {
-        google.language.translate(text, result.language, "en", 
-                                  function(result)
-                                  {
-          var translated = document.getElementById("translation");
-          if(result.translation)
-          {
-            translated.innerHTML = result.translation;
-          }
-        });
-      }
-    });
-  }
-  google.setOnLoadCallback(initialize);
-</script>
-~~~
+界面中引入
 
+`<script type="text/javascript" src="http://www.google.com/jsapi"></script >`
+
+~~~js
+google.load("language", "1");
+function initialize() {
+  var text = document.getElementById("text").innerHTML;
+  google.language.detect(text, 
+                         function(result)
+                         {
+    if(!result.error && result.language)
+    {
+      google.language.translate(text, result.language, "en", 
+                                function(result)
+                                {
+        var translated = document.getElementById("translation");
+        if(result.translation)
+        {
+          translated.innerHTML = result.translation;
+        }
+      });
+    }
+  });
+}
+google.setOnLoadCallback(initialize);
+~~~

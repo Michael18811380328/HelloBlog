@@ -580,11 +580,11 @@ Arguments 表示函数的参数。arguments 有一个属性 cellee 表示函数�
 原函数递归调用
 
 ~~~js
-function factorial(num){    
+function factorial(num){
   if (num <= 1) {         
     return 1;     
   } else {         
-    return num * factorial(num - 1)     
+    return num * factorial(num - 1);
   } 
 }
 ~~~
@@ -1139,5 +1139,4 @@ PureComponent 和 Component 的主要区别：内部实现了shouldComponentUpda
 * 小项目使用 vue 大项目使用 react；国际化项目使用 react；国内项目使用 vue；react 和对应的类型控制，团队人多时便于合作；vue 写法比较灵活，如果注释不完善，可能理解有一定困难。
 
 <https://juejin.cn/post/6844903668446134286>
-
 

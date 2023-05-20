@@ -1,4 +1,4 @@
-## enzyme 简单实践
+# enzyme 简单实践
 
 enzyme 主要用于 React 组件测试
 
@@ -10,9 +10,7 @@ Jest 断言配置：https://github.com/enzymejs/enzyme-matchers/tree/master/pack
 
 环境依赖配置：https://github.com/enzymejs/enzyme-matchers/tree/master/packages/jest-environment-enzyme
 
-官网星星只有 800 颗，证明实际使用的人数不是很多（因为判断组件太严格）国内的组件和功能经常更改，这里不合适
-
-代码两年没有更新了
+官网星星只有 800 颗，证明实际使用的人数不是很多（因为判断组件太严格）国内的组件和功能经常更改，这里不合适，代码两年没有更新了
 
 ### 简单步骤
 
@@ -100,3 +98,4 @@ https://enzymejs.github.io/enzyme/docs/api/shallow.html
 https://enzymejs.github.io/enzyme/docs/api/mount.html
 
 https://enzymejs.github.io/enzyme/docs/api/render.html
+

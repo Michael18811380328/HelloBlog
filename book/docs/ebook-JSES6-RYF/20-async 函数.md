@@ -5,15 +5,16 @@
 ES2017 标准引入了 async 函数，使得异步操作变得更加方便。async 函数是 Generator 函数的语法糖。
 
 ~~~js
-// 目前项目使用不多，现在了解这个函数（就是generate生成器函数的语法糖，可以更好理解的处理异步函数）这是自己理解的一个小案例；
+// 就是generate生成器函数的语法糖，可以更好理解的处理异步函数
 async function fun(url) {
+  // 异步操作增加 await 可以是网络请求，或者本地读取文件 
   let result = await fetch(url);
-  let file = await fs(sth);
   // this is async function, when get result, run then part. result will become res.
   return result;
 }
 
-fun('baidu.com').then((res) => {
+// 这个可以在同域名下测试使用，其他域名下会报错
+fun('https://www.baidu.com').then((res) => {
   console.log(res);
 },(err) => {
   console.log(err);

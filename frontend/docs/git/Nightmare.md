@@ -70,6 +70,8 @@ describe('test index.html', function() {
 });
 ```
 
+
+
 # Nightmare
 
 https://github.com/segmentio/nightmare#api
@@ -163,12 +165,6 @@ describe('test duckduckgo search results', () => {
 You can see examples of every function [in the tests here](https://github.com/segmentio/nightmare/blob/master/test/index.js).
 
 To get started with UI Testing, check out this [quick start guide](https://segment.com/blog/ui-testing-with-nightmare).
-
-### To install dependencies
-
-```
-npm install
-```
 
 ### To run the mocha tests
 
@@ -451,7 +447,7 @@ Injects a local `file` onto the current page. The file `type` must be either `js
 
 Invokes `fn` on the page with `arg1, arg2,...`. All the `args` are optional. On completion it returns the return value of `fn`. Useful for extracting information from the page. Here's an example:
 
-```
+```js
 const selector = 'h1'
 nightmare
   .evaluate(selector => {
@@ -465,7 +461,7 @@ nightmare
 
 Error-first callbacks are supported as a part of `evaluate()`. If the arguments passed are one fewer than the arguments expected for the evaluated function, the evaluation will be passed a callback as the last parameter to the function. For example:
 
-```
+```js
 const selector = 'h1'
 nightmare
   .evaluate((selector, done) => {
@@ -484,7 +480,7 @@ Note that callbacks support only one value argument (eg `function(err, value)`).
 
 Promises are also supported as a part of `evaluate()`. If the return value of the function has a `then` member, `.evaluate()` assumes it is waiting for a promise. For example:
 
-```
+```js
 const selector = 'h1';
 nightmare
   .evaluate((selector) => (
@@ -599,7 +595,7 @@ Gets a cookie by it's `name`. The url will be the current url.
 
 Queries multiple cookies with the `query` object. If a `query.name` is set, it will return the first cookie it finds with that name, otherwise it will query for an array of cookies. If no `query.url` is set, it will use the current url. Here's an example:
 
-```
+```js
 // get all google cookies that are secure
 // and have the path `/query`
 nightmare
@@ -627,7 +623,7 @@ Sets a cookie's `name` and `value`. This is the most basic form, and the url wil
 
 Sets a `cookie`. If `cookie.url` is not set, it will set the cookie on the current url. Here's an example:
 
-```
+```js
 nightmare
   .goto('http://google.com')
   .cookies.set({
@@ -652,7 +648,7 @@ Sets multiple cookies at once. `cookies` is an array of `cookie` objects. Take a
 
 Clears a cookie for the current domain. If `name` is not specified, all cookies for the current domain will be cleared.
 
-```
+```js
 nightmare
   .goto('http://google.com')
   .cookies.clear('SomeCookieName')
@@ -666,7 +662,7 @@ nightmare
 
 Clears all cookies for all domains.
 
-```
+```js
 nightmare
   .goto('http://google.com')
   .cookies.clearAll()
@@ -684,7 +680,7 @@ If your proxy requires authentication you also need the [authentication](https:/
 
 The following example not only demonstrates how to use proxies, but you can run it to test if your proxy connection is working:
 
-```
+```js
 import Nightmare from 'nightmare';
 
 const proxyNightmare = Nightmare({
@@ -996,6 +992,8 @@ make test
 ```
 
 Note that if you are using `xvfb`, `make test` will automatically run the tests under an `xvfb-run` wrapper. If you are planning to run the tests headlessly without running `xvfb` first, set the `HEADLESS` environment variable to `0`.
+
+
 
 下面是实际的案例
 

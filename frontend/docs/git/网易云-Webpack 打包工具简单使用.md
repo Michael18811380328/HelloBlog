@@ -8,7 +8,7 @@ https://study.163.com/course/courseMain.htm?courseId=1004724031&_trace_c_p_k2_=1
 
 注意：这个课程是 2017年出版，是 webpack 版本 3。这个课程仅作为简单复习，了解概念等即可。
 
-现在是 2021年，webpack 5 已经出来，具体细节参考官方文档：https://webpack.docschina.org/guides/getting-started/
+现在是 2021年，webpack 5.80 版本，具体细节参考官方文档：https://webpack.docschina.org/guides/getting-started/
 
 ### 课时1 详细介绍webpack工具的相关基础知识
 

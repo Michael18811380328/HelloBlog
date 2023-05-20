@@ -16,8 +16,6 @@
        minimize : true // 启动压缩
      }
   }
-
-
 ```
 
 由于 tree shaking 只支持 esmodule ，如果你打包出来的是 commonjs，此时 tree-shaking 就失效了。不过当前大家都用的是 vue，react 等框架，他们都是用 babel-loader 编译，以下配置就能够保证他一定是 esmodule
@@ -163,8 +161,6 @@ module.exports = {
 
  // 在其他文件使用 getXXX 引入
   import {getXX} from '../utils'
-
-
 ```
 
 此时，如果文件 getBBB 在外界没有用到，而 tree-shaking 又不能把它摇掉咋办？这个 getBBB 就是副作用。你或许要问 tree-shaking 为什么不能奈何他？原因就是：他在 utils/index.js 里面使用了。只能开启副作用特性。如下：
