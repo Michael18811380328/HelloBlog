@@ -6,9 +6,11 @@ https://taro-ui.jd.com/#/docs/introduction
 
 ~~~bash
 npm install -g @tarojs/cli
+
 taro init myApp
 
 cd myApp
+
 npm install taro-ui
 ~~~
 
@@ -40,7 +42,6 @@ import 'taro-ui/dist/style/index.scss'
 
 ~~~jsx
 <View className='at-icon at-icon-settings'></View>
-
 
 import { AtIcon } from 'taro-ui'
 @import "~taro-ui/dist/style/components/icon.scss";
@@ -82,6 +83,8 @@ import { AtFab } from 'taro-ui'
 </AtFab>
 ~~~
 
+
+
 ### Avatar头像
 
 ```jsx
@@ -90,6 +93,8 @@ import { AtAvatar } from 'taro-ui'
 
 <AtAvatar circle image='https://jdc.jd.com/img/200'></AtAvatar>
 ```
+
+
 
 ### Article文章样式
 
