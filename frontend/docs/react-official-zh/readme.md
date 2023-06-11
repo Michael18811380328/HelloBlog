@@ -38,12 +38,6 @@ CLI选择：SPA选择 create-react-app，服务端使用 Next.js，静态网站 
 
 [Create React App](https://github.com/facebookincubator/create-react-app) 是一个用于学习 React 的舒适环境，也是用 React 创建新的[单页](https://zh-hans.reactjs.org/docs/glossary.html#single-page-application)应用的最佳方式。目前只用到浏览器工程化工具，注意配置文件。
 
-~~~bash
-npx create-react-app my-app
-npm start
-npm run build
-~~~
-
 [Next.js](https://nextjs.org/) 是一个流行的、轻量级的框架，用于配合 React 打造静态化和服务端渲染应用。它包括开箱即用的样式和路由方案，并且假定你使用 [Node.js](https://nodejs.org/) 作为服务器环境。
 
 [Gatsby](https://www.gatsbyjs.org/) 是用 React 创建静态网站的最佳方式。它让你能使用 React 组件，但输出预渲染的 HTML 和 CSS 以保证最快的加载速度。

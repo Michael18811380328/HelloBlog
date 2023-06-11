@@ -8,38 +8,22 @@
 
 为了让 CSS 也能适用软件工程方法，程序员想了各种办法，让它变得像一门编程语言。从最早的Less、SASS，到后来的 PostCSS，再到最近的 CSS in JS，都是为了解决这个问题。
 
-![img](http://www.ruanyifeng.com/blogimg/asset/2016/bg2016061001.png)
-
 本文介绍的 [CSS Modules](https://github.com/css-modules/css-modules) 有所不同。它不是将 CSS 改造成编程语言，而是功能很单纯，只加入了局部作用域和模块依赖，这恰恰是网页组件最急需的功能。
 
 因此，CSS Modules 很容易学，因为它的规则少，同时又非常有用，可以保证某个组件的样式，不会影响到其他组件。
-
-![img](http://www.ruanyifeng.com/blogimg/asset/2016/bg2016061002.png)
 
 ## 零、示例库
 
 我为这个教程写了一个[示例库](https://github.com/ruanyf/css-modules-demos)，包含六个Demo。通过它们，你可以轻松学会CSS Modules。
 
-首先，克隆示例库。
-
 > ```bash
 > $ git clone https://github.com/ruanyf/css-modules-demos.git
-> ```
-
-然后，安装依赖。
-
-> ```bash
 > $ cd css-modules-demos
 > $ npm install
-> ```
-
-接着，就可以运行第一个示例了。
-
-> ```bash
 > $ npm run demo01
 > ```
 
-打开浏览器，访问`http://localhost:8080`，查看结果。其他示例的运行方法类似。
+打开浏览器，访问`http://localhost:8080`，查看结果。
 
 ## 一、局部作用域
 
@@ -120,14 +104,6 @@ CSS Modules 提供各种[插件](https://github.com/css-modules/css-modules/blob
 
 上面代码中，关键的一行是`style-loader!css-loader?modules`，它在`css-loader`后面加了一个查询参数`modules`，表示打开 CSS Modules 功能。
 
-现在，运行这个Demo。
-
-> ```bash
-> $ npm run demo01
-> ```
-
-打开 http://localhost:8080 ，可以看到[结果](http://ruanyf.github.io/css-modules-demos/demo01/)，`h1`标题显示为红色。
-
 ## 二、全局作用域
 
 CSS Modules 允许使用`:global(.className)`的语法，声明一个全局规则。凡是这样声明的`class`，都不会被编译成哈希字符串。
@@ -158,14 +134,6 @@ CSS Modules 允许使用`:global(.className)`的语法，声明一个全局规�
 >   );
 > };
 > ```
-
-运行这个示例。
-
-> ```bash
-> $ npm run demo02
-> ```
-
-打开 http://localhost:8080，应该会[看到](http://ruanyf.github.io/css-modules-demos/demo02/)`h1`标题显示为绿色。
 
 CSS Modules 还提供一种显式的局部作用域语法`:local(.className)`，等同于`.className`，所以上面的`App.css`也可以写成下面这样。
 

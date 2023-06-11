@@ -4,15 +4,13 @@
 
 官方博客参考资料
 
-Taro实践 - TOPLIFE小程序 开发体验 https://juejin.cn/post/6844903632991682567
-
-为何我们要用 React 来写小程序 - Taro 诞生记 https://juejin.cn/post/6844903624938635272
-
-多端统一开发框架 - Taro https://juejin.cn/post/6844903617951072264
+- Taro实践 - TOPLIFE小程序 开发体验 https://juejin.cn/post/6844903632991682567
+- 为何我们要用 React 来写小程序 - Taro 诞生记 https://juejin.cn/post/6844903624938635272
+- 多端统一开发框架 - Taro https://juejin.cn/post/6844903617951072264
 
 ## 01 taro介绍
 
-微信小程序 = VUE的模板语法+React状态管理，后续其他各大厂家小程序很多，但是标准不一样
+微信小程序 = VUE的模板语法+React状态管理，后续其他各大厂家小程序很多，但是标准语法不一样，气人
 
 Taro 框架是京东凹凸实验室制作，目标是用一套代码，编译出各种小程序（微信、支付宝、抖音、百度小程序）
 
@@ -73,9 +71,13 @@ state = {
   
 };
 
-componentDidShow() {}
+componentDidShow() {
+  
+}
 
-componentDidHide() {}
+componentDidHide() {
+  
+}
 ~~~
 
 ## 05 props
