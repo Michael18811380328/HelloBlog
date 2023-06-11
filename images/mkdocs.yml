@@ -12,7 +12,6 @@ theme:
     palette:
         primary: "purple"
 
-# Page tree
 nav:
     - 'index': 'index.md'
     - 'HTTP': 'HTTP.md'
@@ -26,3 +25,4 @@ nav:
     - 'css' : 'css.md'
     - 'future' : 'future.md'
     - 'git' : 'git.md'
+    - 'sql' : 'sql.md'

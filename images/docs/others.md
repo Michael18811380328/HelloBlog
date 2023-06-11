@@ -1,3 +1,7 @@
+## Datastructures.png
+
+![](https://michael18811380328.github.io/images/others/Datastructures.png)
+
 ## Slate.png
 
 ![](https://michael18811380328.github.io/images/others/Slate.png)
@@ -5,6 +9,10 @@
 ## bash常用命令.jpg
 
 ![](https://michael18811380328.github.io/images/others/bash常用命令.jpg)
+
+## data-structures.jpg
+
+![](https://michael18811380328.github.io/images/others/data-structures.jpg)
 
 ## email-server.png
 

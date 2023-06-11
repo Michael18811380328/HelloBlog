@@ -16,6 +16,10 @@ http 是三次握手四次挥手，每次发送请求建立短链接；web-socke
 
 ![](https://michael18811380328.github.io/images/HTTP/Web-socket.png)
 
+## mysql-redis.png
+
+![](https://michael18811380328.github.io/images/HTTP/mysql-redis.png)
+
 ## 计算机网络七层模型.jpg
 
 计算机网络七层模型-四层模型-五层模型，从下到上是 物理层-数据链路层-网络层-运输层-应用层，下层给上层提供服务，上层包使用协议封装打包后传递给下层传输，细节参考计算机网络图片笔记
