@@ -15,3 +15,4 @@ Virtual DOM 是一种编程概念。在这个概念里， UI 以一种理想化�
 ### 什么是 “React Fiber”？
 
 Fiber 是 React 16 中新的协调引擎。它的主要目的是使 Virtual DOM 可以进行增量式渲染。
+
