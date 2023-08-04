@@ -9,4 +9,3 @@
 `npm run build` 执行的是 node scripts/build.js，运行生产环境下的编译。
 
 env.js 和 paths.js 是环境和文件路径的配置文件。
-

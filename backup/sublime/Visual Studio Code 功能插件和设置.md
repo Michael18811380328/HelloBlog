@@ -251,8 +251,6 @@ Align (代码对齐插件)
 
 JavaScript 代码:
 
-
-
 ```csharp
 var test = 'string';
 var another = 10;
@@ -262,8 +260,6 @@ var small = 10 * 10;
 对齐后：
 
 JavaScript 代码:
-
-
 
 ```csharp
 var test    = 'string';

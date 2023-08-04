@@ -2,21 +2,15 @@
 
 ## 用途
 
-对网页 HTML 截图（HTML转换成canvas，然后保存为图片）
+对网页 HTML 截图（HTML转换成canvas，然后保存为图片）。屏幕截图基于DOM，因此可能无法100%准确地反映真实情况。可以截取屏幕一部分，可以截取全部网页。
 
-可以截取一部分，可以截取全部网页
+## 原理
+
+脚本将遍历加载它的页面的DOM。它收集所有元素的信息，然后使用这些元素来构建页面的表示。实际上，它不是基于一个页面的文字来构建的，而是基于它的一个页面的表示。因此，它只能正确地呈现它理解的属性，这意味着有许多CSS属性不起作用。
 
 ## 可靠性
 
 周下载70万，2万星星
-
-## 官网链接
-
-https://www.npmjs.com/package/html2canvas
-
-https://github.com/niklasvh/html2canvas
-
-https://html2canvas.hertzen.com/
 
 ## 基本使用
 
@@ -60,7 +54,45 @@ html2canvas(document.querySelector("#capture")).then(canvas => {
 
 这样就可以把 HTML 转换成 canvas，导出为 png 下载
 
-## 其他
+## 综合案例
+
+~~~jsx
+import html2canvas from 'html2canvas';
+
+onCapture = () => {
+  html2canvas(document.querySelector("#map-container"), {
+    allowTaint: true,
+    taintTest: true,
+    useCORS: true,
+    ignoreElements: (element) => {
+      if (CAPTURE_IGNORE_CLASS_LIST.includes(element.className)) {
+        return true;
+      }
+    }
+  }).then(canvas => {
+    const captureContainer = document.createElement('div');
+    captureContainer.className = 'map-capture';
+    
+    const downLoadLink = document.createElement('a');
+    downLoadLink.className = 'download-link';
+    captureContainer.appendChild(downLoadLink);
+    captureContainer.appendChild(canvas);
+    document.querySelector('.dtable-map-plugin').appendChild(captureContainer);
+
+    document.querySelector('.map-capture').appendChild(canvas);
+    this.convertCanvasToImage(canvas);
+  });
+}
+
+convertCanvasToImage = (canvas) => {
+  const src = canvas.toDataURL("image/png", 1);
+  const link = document.querySelector('.download-link');
+  link.href = src;
+  link.download = 'map.png';
+  link.click();
+  document.querySelector('.map-capture').remove();
+}
+~~~
 
 ### 配置说明
 
@@ -76,15 +108,20 @@ html2canvas(content, {
 
 ### 注意点
 
-- 局限：html2canvas可以通过纯JS对浏览器端经行截屏，但截图的精确度还有待提高，部分css不可识别，所以在canvas中不能完美呈现原画面样式
-- 注意版本号：现在正式版本号 1.3.2，避免使用测试版本；版本号和文档是否对应等问题
+- 局限：html2canvas 可以通过纯JS对浏览器端经行截屏，但截图的精确度还有待提高，部分css不可识别，所以在canvas中不能完美呈现原画面样式
+- 注意版本号：现在正式版本号 1.4，避免使用测试版本；版本号和文档是否对应等问题
 - canvas 污染：canvas 可以导入外部域 crossorigin 的图片或者 svg，那么外部图片的数据可能污染 canvas，叫做污染。
 
-### 参考链接
+## 链接
 
-官网全部配置项：http://html2canvas.hertzen.com/configuration
+官网: http://html2canvas.hertzen.com/
+
+github: https://github.com/niklasvh/html2canvas
+
+配置：http://html2canvas.hertzen.com/configuration
+
+文档：http://html2canvas.hertzen.com/documentation
 
 https://www.jianshu.com/p/6a07e974a7e8
 
 https://www.jianshu.com/p/9615ee8224b0
-
