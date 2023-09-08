@@ -1,4 +1,4 @@
-#[vscode保存自动在末尾加空行](https://www.cnblogs.com/yummylucky/p/11217168.html)
+# [vscode保存自动在末尾加空行](https://www.cnblogs.com/yummylucky/p/11217168.html)
 
 1、进入设置页面
 

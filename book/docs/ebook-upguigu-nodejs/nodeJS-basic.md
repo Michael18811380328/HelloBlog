@@ -2,7 +2,7 @@
 
 尚硅谷视频是2018年的，基于 nodeJS 6 版本（两天课程）
 
-2021-10-31——2021-11-05学习，nodeJS 主要是 12-16版本，可能部分功能不一样，最后以官网为准。
+2021-10-31——2021-11-05学习，nodeJS 主要是12-16版本，可能部分功能不一样，最后以官网为准。
 
 ## 01.Window 命令行
 
@@ -580,6 +580,8 @@ fa.chmodSync(path, mode)
 fs.appendFile(file, data, [options], callback)
 fs.appendFileSync(file, data, [options])
 ~~~
+
+
 
 # 其他资料
 

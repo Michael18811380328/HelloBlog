@@ -1,9 +1,9 @@
-我的React服务端渲染实践
+# 我的React服务端渲染实践
 
-置顶 astonishqft 2020-10-28 21:37:19  255  收藏 2
-分类专栏： react 框架 文章标签： 前端 react ssr
-版权
-前言
+置顶 astonishqft 2020-10-28
+
+## 前言
+
 最近这段时间因为工作需要，实践了一下服务端渲染(Server Side Render，以下简称SSR）技术，在这个过程中遇到了很多问题，也参考了很多开源框架的解决方案，感觉受益匪浅，于是有了这篇文章，目的是从零开始，教会大家如何搭建一个属于自己的基于 React 的 SSR 框架，彻底弄明白 SSR 的原理。
 
 什么是SSR（服务端渲染 ）
@@ -31,8 +31,6 @@ SSR的优势
 
 其实判断的方式还是有很多的。比如最简单的，可以选择鼠标放在网页的任意位置，点击鼠标右键，选择显示网页源代码，客户端渲染的页面是不会包含页面的具体内容的，如果是react的应用，通常会有一个空的 div 容器，比如 id 为 root 的空 div。
 
-
-
 如果是服务端渲染，点击鼠标右键，选择显示网页源代码，能看到完整的页面内容，还是举上图中的例子，看下服务端渲染的效果。
 
 
@@ -59,19 +57,6 @@ router.get('/*', async (ctx) => {
 
   ctx.res.body = html;
 });
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-客户端的实现
-为了更好的方便大家理解整个实现的过程，这里我并不使用脚手架来实现 SSR 过程。
 
 因为 SSR 和 CSR 的代码是同构的，所以，我们先创建一个 react 工程，然后使用 Webpack 编译客户端代码。
 
@@ -108,18 +93,7 @@ class App extends Component {
 }
 
 ReactDOM.render(<App />, document.getElementById('root'));
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
+
 Webpack编译
 为了能让浏览器执行 js 代码，还需要 Webpack 来编译上述代码。
 
@@ -208,102 +182,22 @@ module.exports = {
     open: true,
   },
 };
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-47
-48
-49
-50
-51
-52
-53
-54
-55
-56
-57
-58
-59
-60
-61
-62
-63
-64
-65
-66
-67
-68
-69
-70
-71
-72
-73
-74
-75
-76
-77
-78
-79
-80
-81
+
+
+
 安装相关依赖：
 
 $ yarn add react react-dom
 $ yarn add webpack webpack-cli webpack-dev-server style-loader url-loader html-webpack-plugin babel-loader @babel/core @babel/preset-env @babel/preset-react @babel/plugin-proposal-class-properties -D
-1
-2
+
 在 package.json 的 scripts 中增加一行命令：
 
  "scripts": {
+
  +  "start": "webpack-dev-server --config  webpack.cli.js"
- }
- 1
- 2
- 3
- 执行 $ npm run start, 打开浏览器输入 localhost:9000 就可以看到客户端渲染的效果了。
+    }
+    
+     执行 $ npm run start, 打开浏览器输入 localhost:9000 就可以看到客户端渲染的效果了。
 
 路由
 现在我们已经实现了一个 React 工程的搭建，当然一个单页应用还缺少一个重要的部分——路由。
@@ -371,65 +265,7 @@ export default function renderRoutes(routes = [], extraProps = {}, switchProps =
     </Switch>
   ) : null;
 }
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-47
-48
-49
-50
-51
-52
-53
-54
-55
-56
-57
-58
-59
+
 改造下 index.js 文件，引入 react-router:
 
 src/index.js
@@ -489,21 +325,7 @@ const routersConfig = [
 ];
 
 export default routersConfig;
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
+
 到这里，我们就已经搭建了一个最小化的 React 应用，包括 Webpack 编译打包、es6语法支持、前端路由的实现等。
 
 服务端的实现
@@ -572,6 +394,7 @@ const serverRender = ({ pathname }) => {
       </body>
     
     </html>
+
   `
 
   return {
@@ -580,46 +403,7 @@ const serverRender = ({ pathname }) => {
 }
 
 export default serverRender;
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
+
 接着配置 Webpack 配置文件进行服务端打包：
 
 webpack.server.js
@@ -667,49 +451,7 @@ module.exports = {
     ],
   },
 };
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
+
 可以看到，服务端打包的 Webpack 配置文件和客户端打包的配置文件还是很像的，但是有几个地方需要注意下：
 
 配置文件的 target 属性设置为 node，因为编译后代码的运行环境是nodejs。
@@ -718,12 +460,13 @@ output 的 libraryTarget 属性需要设置为 commonjs2，使打包后的代码
 在package.json 文件的 srcipts 字段中增加一条命令:
 
  "scripts": {
+
  +  "build:ssr": "webpack --config webpack.server.js"
- }
- 1
- 2
- 3
- 在工程根目录下新建 server.js 文件，内容如下：
+    }
+     1
+     2
+     3
+     在工程根目录下新建 server.js 文件，内容如下：
 
 const express = require('express');
 
@@ -804,6 +547,7 @@ webpack 在进行客户端编译时，借助于 html-webpack-plugin 插件，能
 10
 11
 其中会包含客户端打包后的 js 和 css 等资源地址。
+
 
 所以接下来我们改造的思路就是利用客户端编译后生成的 html 文件作为我们服务端编译的输出 html 模板。
 
@@ -998,58 +742,15 @@ module.exports = {
         ],
       },
     
+
     ],
+
   },
   plugins: [
     new MiniCssExtractPlugin(),
   ],
 };
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
+
 看下服务端编译样式处理的 Webpack 配置(完整的 webpack 配置文件可以参考源码)：
 
 webpack.server.js
@@ -1096,48 +797,7 @@ module.exports = {
     ],
   },
 };
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
+
 使用：
 
 Home/index.js
@@ -1275,6 +935,7 @@ const serverRender = async ({ pathname }) => {
       console.log('[SSR]', 'getting initial props of page component')
       pageInitialProps = await getInitialProps();
     }
+
   } catch (error) {
     console.log('[SSR] generate html template error')
   }
@@ -1366,6 +1027,7 @@ function withRoutes(route) {
         <OldComponent {...Object.assign({}, props, data)} />
       );
     }
+
   }
 
   const ret = (args) => {
@@ -1428,117 +1090,7 @@ export default function renderRoutes(routes = [], extraProps = {}, switchProps =
     </Switch>
   ) : null;
 }
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-47
-48
-49
-50
-51
-52
-53
-54
-55
-56
-57
-58
-59
-60
-61
-62
-63
-64
-65
-66
-67
-68
-69
-70
-71
-72
-73
-74
-75
-76
-77
-78
-79
-80
-81
-82
-83
-84
-85
-86
-87
-88
-89
-90
-91
-92
-93
-94
-95
-96
-97
-98
-99
-100
-101
-102
-103
-104
-105
-106
-107
-108
-109
-110
-111
+
 renderRoutes 方法会在服务端和客户端各执行一次。服务端执行的时候会将调用 getInitialProps 静态方法获取到的数据传到组件的 props 上，服务端渲染的时候就可以直接从组件的 props 上获取到数据完成组件的渲染工作了。
 
 客户端执行的时候分两种情况：首选会先去判断 window.__GLOBAL_PAGE_PROPS__ 上是否存在服务端渲染时请求过的数据，如果存在就直接将 window.__GLOBAL_PAGE_PROPS__ 上的数据传递给组件的 props，如果没有就根据 pathname 去调用 component.getInitialProps 方法，去请求数据，请求到的数据同样会传递到组件的 props 上。

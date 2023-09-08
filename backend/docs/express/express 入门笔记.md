@@ -1,13 +1,13 @@
-## 腾讯云 express 基础入门
+# 腾讯云 express 基础入门
 
-腾讯云介绍：https://study.163.com/course/introduction.htm?courseId=1006174010#/courseDetail?tab=1 
+腾讯云课程链接：https://study.163.com/course/introduction.htm?courseId=1006174010#/courseDetail?tab=1 
 
 
-课程目标：启动基本服务端，服务端和数据库对接；服务端和前端界面对接
+课程目标：express 服务启动，服务端和数据库对接；服务端和前端界面对接
 
-#### 1、框架准备和安装
+## 1、框架准备和安装
 
-本地下载 nodejs 和 express 并创建项目；部署云数据库MYSQL和云主机（云服务器），express 本地架构如下
+本地下载 nodejs 和 express，并创建项目；部署云数据库MYSQL和云主机（云服务器），express 本地架构如下
 
 ```
 api
@@ -15,12 +15,13 @@ routers
 config
 views
 src
-
 ```
 
-#### 2、ejs 和页面
+## 2、ejs 和页面
 
 npm install ejs 支持 ejs 语法
+
+### 2.1 模板页面
 
 然后新建 index.ejs 文件，使用 \<%  %> 进行传参
 
@@ -28,7 +29,6 @@ npm install ejs 支持 ejs 语法
 <head>
   <title><%=title %></title>
 </head>
-
 ```
 
 \<% code %> 把变量作为代码片段执行
@@ -37,7 +37,7 @@ npm install ejs 支持 ejs 语法
 
 \<%- string %> 把变量转换成字符串输出
 
-主函数 app.js
+### 2.2 主函数 app.js
 
 ```javascript
 const path = require('path');
@@ -57,21 +57,18 @@ app.set('view engine', 'ejs');
 // 静态文件处理（css, js, imgs, fonts）中间件
 app.use(express.static('src'));
 
-// 页面路由处理
+// 路由处理（页面和API路由）
 const routers = require('./routers/index');
 app.use('/', routers);
-
-// 接口路由处理
 const add = require('./api/add');
 app.user('/api', add);
 
 const server = app.listen(8080, function() {
   console.log('server is running');
 });
-
 ```
 
-路由函数 routers.js （根路径）
+### 2.3 路由函数 routers.js （根路径）
 
 ```javascript
 const express = require('express');
@@ -82,10 +79,9 @@ router.get('/', function(req, res, next) {
 });
 
 module.exports = routers;
-
 ```
 
-#### 3、mysql 和接口
+## 3、mysql 和接口
 
 config.json
 
@@ -124,7 +120,6 @@ router.post('', function(req, res) {
 });
 
 module.exports = router;
-
 ```
 
 接口文档：
@@ -134,9 +129,9 @@ module.exports = router;
 * 参数
 * 返回值
 
-#### 4、cvm 云服务器启动和部署
+## 4、cvm 云服务器启动和部署
 
-代码需要部署到云服务器上
+代码部署到云服务器上（cvm是Cloud Virtual Machine的缩写,意思就是云虚拟机）
 
 那么需要 cvm 系统安装（ubuntu centOS）nodejs 等，都需要命令行工具，yum 工具等操作
 
@@ -145,5 +140,3 @@ ftp 文件上传工具：vs-ftp-d very secure FTP deamon
 pm2 工具安装（类似于 nodemon 工具）
 
 域名购买等
-
-

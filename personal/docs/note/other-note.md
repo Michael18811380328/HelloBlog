@@ -22,7 +22,7 @@ process.exec(command, function(err, stdout, stderr) {
 
 #### 1 Django打包后样式
 
-django模板样式：在开发模式下，直接通过 import 可以导入 CSS 文件。在生产环境下，会把相互的依赖关系分别打包，然后Django后端模板中需要插入对应的JS和CSS文件。这个本地开发测试不出来。（本地环境下正常，在线环境下面不正常的情况）
+django模板样式：在开发模式下，直接通过 import 可以导入 CSS 文件。在生产环境下，会把相互的依赖关系分别打包，然后Django后端模板中需要插入对应的JS和CSS文件。这个本地开发测试不出来。（dev正常，build 后不正常的情况，可能是不同开发环境打包逻辑不一样）
 
 本地环境下面，只显示项目的CSS，可能在生产环境下，项目中的CSS可能和第三方库的CSS冲突（类名冲突）
 
@@ -89,7 +89,7 @@ DELETE FROM OPERATIONS WHERE user_id = 002;
 COMMIT;
 ```
 
-#### nginx 入门可以参考
+#### nginx 入门参考
 
 https://juejin.cn/post/6844904129987526663
 
@@ -115,11 +115,9 @@ ssh 用于登录远程主机，命令是 `用户名@远程主机的ip`，本地�
 
 （需要测试不在一个局域网下的主机是否可以远程登录）
 
-尝试使用联想电脑连接无线，然后开启服务器；使用mac链接手机热点，看能否SSH正常登录一下——SSH 需要在同一个局域网中进行处理。现在报错 22 端口没有开放，稍后继续尝试；两台电脑需要预先设置支持远程登录。
-
 man 命令（manual）可以查看一个命令的帮助文档： man git （git manual 文档）
 
-笔记：移动端的键盘输入问题和切换界面问题；如果是一个界面内部的，不需要考虑；如果是新开的一个页面，需要考虑这个问题；目前的解决办法是，主动让 input 失去焦点，输入法自动关闭，再打开下一单页面（实际问题：移动端中，用户编辑过滤器时，先输入文本或者数字，移动端键盘打开，然后更改列，键盘没有及时关闭，样式错误）
+移动端的键盘输入问题和切换界面问题；如果是一个界面内部的，不需要考虑；如果是新开的一个页面，需要考虑这个问题；目前的解决办法是，主动让 input 失去焦点，输入法自动关闭，再打开下一单页面（实际问题：移动端中，用户编辑过滤器时，先输入文本或者数字，移动端键盘打开，然后更改列，键盘没有及时关闭，样式错误）
 
 笔记：input file 上传后，应该清空一个 input 的值(input.value = '')，这样再次上传同名文件是正常的。
 
@@ -150,7 +148,7 @@ cd book && mkdocs build
 
 #### 3 tree
 
-tree 命令可以显示显示当前项目的结构，通过参数设置不同的效果；其他配置用到再查
+tree 命令可以显示显示当前项目的结构，通过参数设置不同的效果
 
 ~~~bash
 # 显示英文名称
@@ -178,37 +176,6 @@ tree -N -I "*.svg|*.png|*.jpg|*.gif|*.xmind" > tree-res.md
 
 
 ## GIT
-
-#### 1 git cherry-pick 
-
-问题原因：想把一个分支上的一个或者几个 commits 提交到另一个分支上面。比如把 1.5 分支上的后续修复 commit 提交到 master 分支上。但是不需要把全部的 1.5 分支的全部 commits 放在 master 上，可以使用这个命令。下面是操作过程
-
-~~~bash
-git fetch origin 1.5 && git checkout 1.5
-git log
-~~~
-
-查看提交日志，然后找出某一个或者某几个 hash
-
-~~~txt
-commit d60da5d351f0c629ae3655afb9c07c38216a8be9
-Author: Michael An <2331806369@qq.com>
-Date:   Fri Feb 19 16:01:34 2021 +0800
-
-    fix group no rows bug (#2150)
-~~~
-
-然后切换到master上面，进行 cherry-pick 摘樱桃
-
-~~~bash
-git checkout master
-git cherry-pick d60da5d351f0c629ae3655afb9c07c38216a8be9 # 把这一个commit放到master
-git cherry-pick A-hash B-hash # 把两个hash之间的全部Commits放到master分支
-~~~
-
-这样master上就有了1.5分支上的几个commit了。
-
-参考：http://www.ruanyifeng.com/blog/2020/04/git-cherry-pick.html
 
 #### 2 git 命名规范
 
@@ -330,16 +297,15 @@ flex布局中，怎样在一个container中放置nav栏？
 s1:配置 用户名/邮箱/软件界面：
 
 	git config --global  user.name 'xxx'  
-	
 	git config --global user.email "xxx@qq.com"
 	
-	右键-options-looks 设置git外观和显示，
+	右键-options-looks 设置git外观和显示
 
 s2:记录开发过程
 
 初始化仓库——工作区——暂存区——持久区
 
-#### S3 远程服务器交互
+S3 远程服务器交互
 
 远程代码库（码云，github）
 
@@ -351,7 +317,7 @@ s2:记录开发过程
 
 github 秘钥和公钥产生在我的文档下面.ssh文件夹中。
 
-#### S4 忽略文件
+S4 忽略文件
 
 .gitignore 文件不生效原因：git 中已经包含的文件存在缓存，需要删除这部分本地缓存文件。bash 清空缓存后，可以正常忽略文件。
 
@@ -373,7 +339,7 @@ git commit -m 'update .gitignore'
 
 **②** 数据块：进程执行时所需数据和工作单元以及开辟的工作区。
 
-**③** 进程控制块（**PCB**）：一个数据结构，其中包含描述和管理进程所需全部信息。如进程标识、进程所属用户标识、进程状态、调度参数、现场信息和程序地址等。创建进程时建立**PCB**，撤消进程时收**PCB**。**PCB**是进程存在的惟一标志。 
+**③** 进程控制块（PCB）：一个数据结构，其中包含描述和管理进程所需全部信息。如进程标识、进程所属用户标识、进程状态、调度参数、现场信息和程序地址等。创建进程时建立PCB，撤消进程时收PCB。PCB是进程存在的惟一标志。 
 
 3.程序与进程的本质区别在于程序是静态的，进程是动态的。
 

@@ -15,10 +15,8 @@ $ npm install --save react-media
 Then, use as you would anything else:
 
 ```js
-// using ES modules
 import Media from "react-media";
- 
-// using CommonJS modules
+
 var Media = require("react-media");
 ```
 

@@ -257,4 +257,3 @@ $ for i in {1..10}; do echo -n "This is a test in loop $i "; date ; sleep 5; don
 $ while true; do echo -n "This is a test of while loop";date ; sleep 5; done
 ```
 
-

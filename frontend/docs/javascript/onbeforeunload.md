@@ -30,7 +30,7 @@ HTML规范建议作者使用 Event.preventDefault() 而非 Event.returnValue 的
 
 ### React 中使用
 
-在 React 中，需要在 DidMount 阶段监听这个事件，在 willunmount 阶段释放这个事件的回调函数。
+在 React 中，需要在 DidMount 阶段监听这个事件，在 willUnmount 阶段释放这个事件的回调函数。
 
 ~~~jsx
 componentDidMount() {

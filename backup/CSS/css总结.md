@@ -9,8 +9,8 @@ font-weight 属性：100-900 表示粗细 lighter bold(700) normal(400) 使用�
 
 ~~~css
 em {
-color:blue;
-font:normal bold 20px "微软雅黑";
+  color: blue;
+  font: normal bold 20px "微软雅黑";
 }
 ~~~
 重点：综合编辑字体样式,先后顺序不能乱（文字颜色单独写）前两个可以省略，字号和字体不能省略 font-size and font-family 否则不能使用
@@ -30,32 +30,32 @@ font:normal bold 20px "微软雅黑";
 ~~~css
 box-sizing: content-box;
 /*标准W3C规定的盒子模式（总长度=width+padding+border)*/
+
 box-sizing: border-box;
 /*CSS3新增的盒子模型（总长度=width）content+padding+border=width*/
 /*不管哪种盒子模型都不影响margin长度*/
 
-
-opacity:0.8;
-filter:alpha(opacity=95); /* 针对 IE8 以及更早的版本 */
+opacity: 0.8;
+filter: alpha(opacity=95); /* 针对 IE8 以及更早的版本 */
 transform: scale(1.3);
 
-		div img {
-			position:absolute;
-			top:-20px;
-			left: 250px;
-			/*display:none;*/
-			cursor: pointer;
-			transition: all 10s;
-		}
-		div:hover img {
-			display:block;
-			transform: scale(5);
-			opacity: 0.7;
-		}
-动画变形效果：父元素添加变形的时间；子盒子transform：具体的变形情况
+div img {
+  position:absolute;
+  top:-20px;
+  left: 250px;
+  /*display:none;*/
+  cursor: pointer;
+  transition: all 10s;
+}
+div:hover img {
+  display:block;
+  transform: scale(5);
+  opacity: 0.7;
+}
+/* 动画变形效果：父元素添加变形的时间；子盒子transform：具体的变形情况 */
 
 
-利用文字阴影效果（内外）设计凹凸效果
+/* 利用文字阴影效果（内外）设计凹凸效果 */
 /*整体设置背景颜色为灰色*/
 	div {
 		font:700 100px "microsoft yahei";

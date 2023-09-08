@@ -116,7 +116,7 @@ router.get('/regist', function(req, res, next) {
 });
 ~~~
 
-### 课时4    登录功能    06:45
+### 课时4    登录功能
 
 ~~~js
 // routers.js

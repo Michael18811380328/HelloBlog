@@ -1,7 +1,5 @@
 # UnCSS
 
-[![NPM version](https://camo.githubusercontent.com/b40acbf7d34aebb780bbf676ff3faa06a06724d6a1e94c77fd7931d963de5414/68747470733a2f2f696d672e736869656c64732e696f2f6e706d2f762f756e6373732e737667)](https://www.npmjs.com/package/uncss) [![Linux Build Status](https://camo.githubusercontent.com/230959fee5fac0fbe38e879384615a39b46842bec3d67997c9f4cbfacaca2335/68747470733a2f2f696d672e736869656c64732e696f2f7472617669732f756e6373732f756e6373732f6d61737465722e7376673f6c6162656c3d4c696e75782532306275696c64)](https://travis-ci.org/uncss/uncss) [![Windows Build status](https://camo.githubusercontent.com/b249863080f3e7cb84d3256aa022b5fa40ae7bfd5a155dc5328c420ce0f64054/68747470733a2f2f696d672e736869656c64732e696f2f6170707665796f722f63692f756e6373732f756e6373732f6d61737465722e7376673f6c6162656c3d57696e646f77732532306275696c64)](https://ci.appveyor.com/project/uncss/uncss/branch/master) [![Coverage Status](https://camo.githubusercontent.com/e0c59b9130dc63a7d811c0721b7e55194c61fb7df7ccd3241c8e5a9323d14a0c/68747470733a2f2f696d672e736869656c64732e696f2f636f766572616c6c732f756e6373732f756e6373732e737667)](https://coveralls.io/r/uncss/uncss?branch=master) [![dependencies Status](https://camo.githubusercontent.com/205c69e29250b44c9ae23adba35e5c7c54fc902d7e45dff9182e45b4121e8e7a/68747470733a2f2f696d672e736869656c64732e696f2f64617669642f756e6373732f756e6373732e737667)](https://david-dm.org/uncss/uncss) [![devDependencies Status](https://camo.githubusercontent.com/c7b03fdd0a55c122f1e6efda91e06288cf238c6932298fb100f36e1cede3f91d/68747470733a2f2f696d672e736869656c64732e696f2f64617669642f6465762f756e6373732f756e6373732e737667)](https://david-dm.org/uncss/uncss?type=dev)
-
 UnCSS is a tool that removes unused CSS from your stylesheets. It works across multiple files and supports Javascript-injected CSS.
 
 ## How
@@ -32,7 +30,7 @@ npm install -g uncss
 
 ### Within Node.js
 
-```
+```js
 var uncss = require('uncss');
 
 var files   = ['my', 'array', 'of', 'HTML', 'files', 'or', 'http://urls.com'],
@@ -226,7 +224,3 @@ See [PostCSS docs](https://github.com/postcss/postcss) for examples for your env
   ignore: ['.fade']
 }
 ```
-
-## License
-
-Copyright (c) 2019 Giacomo Martino. See the [LICENSE](https://github.com/uncss/uncss/blob/master/LICENSE.md) file for license rights and limitations (MIT).

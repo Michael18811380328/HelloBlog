@@ -66,7 +66,13 @@ async function dbFuc(db) {
 
 参考链接：http://www.ruanyifeng.com/blog/2015/05/async.html
 
+### 2 在线学习平台
 
+正则表达式，这里循序渐进给出几个题目：https://regexone.com/lesson/repeating_characters
+
+正则表达式查询：https://regexr.com/
+
+SQL 语法学习 https://sqlzoo.net/wiki/SQL_Tutorial
 
 ### 3 FileReader
 

@@ -1,4 +1,4 @@
-# Debian的用法
+# Debian操作系统简介
 
 ## 分支
 
@@ -196,9 +196,6 @@ $ ifconfig
 ifup命令和ifdown命令用于开启/关闭网络接口。
 
 ```bash
-
 $ sudo ifdown eth0
-
 $ sudo ifup eth0
-
 ```
