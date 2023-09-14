@@ -1,16 +1,28 @@
-# Rc-calendar 设置语言-日期-环境问题
+# rc-calendar 设置语言-日期-环境问题
 
-在实际开发中，遇到一下几个问题：
+## 项目背景
 
-## 语言和国际化
+rc-calendar 是阿里巴巴出品的移动端日历的小组件，链接如下。
 
-Rc-calendar 支持不同的语言（支持国际化 en_US and zh_CN）
+https://www.npmjs.com/package/rc-calendar
 
-组件一部分的翻译是组件内部提供，另一部分的翻译是 moment 提供，所以需要同时引入两个翻译文件
+https://github.com/react-component/calendar
+
+这个库在 2018-2019 年间还进行大量更新（当时还是何一鸣大佬负责这个项目），2021年后就基本没有更新维护了，比较可惜。我在实际项目开发中，使用了这个库并在 UI 层面进行改动，功能方面进行微调。
+
+在实际开发中，遇到下面几个问题，简单记录一下。
+
+
+
+## 问题：语言和国际化
+
+rc-calendar 也是基于 moment 进行二次开发，支持不同的语言（支持国际化 en_US and zh_CN）。
+
+翻译是两部分完成，一部分国际化是组件内部提供，另一部分的翻译是 moment 提供，所以需要同时引入两个翻译文件。下面是默认的国际化配置。
 
 ~~~js
 // 引入日历组件翻译
-var Calendar =require('rc-calendar');
+var Calendar = require('rc-calendar');
 var zhCN = require('rc-calendar/lib/locale/zh_CN');
 
 // 引入 moment 部分的翻译
@@ -18,19 +30,36 @@ import moment from 'moment';
 require('moment/locale/zh-cn');
 ~~~
 
+我们实际项目中，因为 moment 兼容各种情况，代码多，打包后很大，所以用 dayjs 替换了 moment，实际代码如下，同样需要引入 dayjs 的翻译。
+
+~~~js
+import dayjs from 'dayjs';
+
+import 'dayjs/locale/zh-cn';
+import 'dayjs/locale/en-gb';
+~~~
 
 
-## 时间库
+
+## 问题：时间库
 
 设置时区：`use moment.utcOffset to set timezone`
 
 不使用 moment：因为 moment 比较重，可以使用 dayjs 替代，其他的样式和翻译也需要处理
 
+~~~js
+import dayjs from 'dayjs';
+
+let now = dayjs();
+let time = iszhcn ? dayjs(value).locale('zh-cn') : dayjs(value).locale('en-gb');
+let timeStr = dayjs(time).format('HH:mm:dd');
+~~~
+
 
 
 ## 问题：早期版本开发环境
 
-早期 rc-calendar 使用了 rc-tools 集成工具开发，封装的是 gulp 3 版本，这个版本只能和 node 10 一下兼容，如果是 node14 或者 node16 就无法启动开发环境。
+早期 rc-calendar 使用了阿里巴巴的 rc-tools 集成工具开发，封装的是 gulp 3 版本，这个版本只能和 node 10 一下兼容，如果是 node14 或者 node16 就无法启动开发环境。
 
 具体问题和解决办法，参考这里：https://blog.csdn.net/weixin_41697143/article/details/126764263
 
@@ -106,12 +135,6 @@ class {
           break;
         case 'en':
           language = enUS;
-          break;
-        case 'fr':
-          language = frFR;
-          break;
-        case 'de':
-          language = deDE;
           break;
       }
     }

@@ -1,4 +1,4 @@
-# SSH原理与运用（一）：远程登录
+# SSH原理与运用：远程登录
 
 作者： [阮一峰](https://www.ruanyifeng.com/)
 
@@ -17,8 +17,6 @@ SSH具备多种功能，可以用于很多场合。有些事情，没有它就�
 **SSH原理与运用**
 
 作者：阮一峰
-
-![img](https://www.ruanyifeng.com/blogimg/asset/201112/bg2011122101.jpg)
 
 **一、什么是SSH？**
 

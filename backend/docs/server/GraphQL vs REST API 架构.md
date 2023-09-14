@@ -1,36 +1,10 @@
 # GraphQL vs REST API 架构，谁更胜一筹？
 
-
-
-- Michele Moody
-
-- 平川
-
-- 万佳
-
-
-
-
-
-- 2020 年 1 月 18 日
-
-- 本文字数：2890 字
-
-  阅读完需：约 9 分钟
-
-
-
-![GraphQL vs REST API 架构，谁更胜一筹？](https://static001.infoq.cn/resource/image/ab/5f/ab438b926a31968706644610dfce2a5f.jpeg)
-
 2015 年，Facebook 开源 GraphQL。此后，它在前端 Web 中大受欢迎。传统的 REST API 有何不足？GraphQL 优势何在？在本文中，我们将深入探讨 GraphQL 的设计原则，比较 GraphQL 与 REST 的异同，并讨论 GraphQL 相对其他架构的优点。
-
-
 
 ## 一、你的 API 应该用哪项技术？
 
 自从 2015 年 Facebook 开源 GraphQL 规范以来，它就在前端 Web 开发中迅速流行起来。
-
-
 
 ![img](https://static001.infoq.cn/resource/image/9a/35/9a7412200a062646b729c8419be28b35.jpeg)
 
@@ -150,8 +124,6 @@ REST 架构的设计范式侧重于分配 HTTP 请求方法（GET、POST、PUT�
 GET /graphql?query={ books(id:12) { authors { firstName, lastName } title, yearPublished, length } {   Query {                 //  operation type  books (id:12) {         //  operation endpoint     authors {            //  requested fields        firstName        lastName     }      title     yearPublished        }  }}
 ```
 
-复制代码
-
 
 
 这一切都可以通过一个查询由 GraphQL 服务器逻辑解析和处理完成。当把它与 REST 架构中相同结构的请求进行比较时，GraphQL 的优势就开始显现出来了。
@@ -233,22 +205,6 @@ GET /authors/42
 
 # GraphQL vs. REST API Architecture
 
-[![Michele Moody](https://miro.medium.com/fit/c/96/96/2*Jo65quPriutYbvEgw8z3vQ.jpeg)](https://medium.com/@moody.lillian?source=post_page-----3b95a77512f5-----------------------------------)
-
-[Michele Moody](https://medium.com/@moody.lillian?source=post_page-----3b95a77512f5-----------------------------------)Follow
-
-[Dec 19, 2019](https://medium.com/swlh/graphql-vs-rest-api-architecture-3b95a77512f5?source=post_page-----3b95a77512f5-----------------------------------) · 7 min read
-
-
-
-
-
-
-
-
-
-
-
 
 
 # Which should you use for your API?
@@ -258,10 +214,6 @@ Since the GraphQL specification was open sourced by Facebook in 2015, it has rap
 In order to understand the benefits of GraphQL as an API architecture, we’ll need to discuss the role of an API in a client-server structure. An API, or Application Programming Interface, is an intermediary that allows a server to receive structured requests for data from a client, and send a structured response for the requested data. There are a variety of ways to design API architectures. Let’s examine the important underlying design principles that make GraphQL a great fit for modern web apps.
 
 # Design Principles of a GraphQL Server
-
-![Square graphql logo with transparent background](https://miro.medium.com/max/54/1*MKgJFZmZWwWX0AWx5DmydQ.png?q=20)
-
-![Square graphql logo with transparent background](https://miro.medium.com/max/300/1*MKgJFZmZWwWX0AWx5DmydQ.png)
 
 There are 5 design principles outlined in the GraphQL specification that make it a well-crafted solution for modern front-end development. Let’s examine the design principles of GraphQL, considering the Facebook news feed as our use case.
 
@@ -377,14 +329,4 @@ All things considered, GraphQL offers performance benefits over REST APIs that c
 - https://www.shopify.com/partners/blog/shopify-graphql-learning-kit
 
 [The Startup](https://medium.com/swlh?source=post_sidebar--------------------------post_sidebar--------------)
-
-Get smarter at building your thing. Join The Startup’s +747K followers.
-
-Follow
-
-
-
-1.9K
-
-11
 

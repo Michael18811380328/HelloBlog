@@ -1,4 +1,10 @@
-## 新手写createjs时容易遇到的坑（持续更新）
+# 新手写createjs时容易遇到的坑（持续更新）
+
+createjs是一个基于canvas的制作H5游戏、动画、交互的库。包括EaselJs、TweenJs、SoundJs、 PreloadJs四个部分。它基于容器进行展示，其中根容器是stage对象，在创建了canvas画布后，首先要创建stage对象，就跟cocos里的根节点一样。
+
+实际上使用这个库创建 H5 游戏的人不算多
+
+https://baike.baidu.com/item/CreateJS/2727398?fr=ge_ala
 
 新手写createjs一定会遇到很多的坑，下面我来讲下常见的坑和解决方法，大家可以经常来看看这篇文章，本人会持续更新！
 
@@ -196,7 +202,4 @@ stage.addEventListener(``"stagemousedown"``,``function` `(event){``  ``shape.gra
 
 61.使用xhr模式加载，preloadjs不会判断是否缓存，一定会下载，需要自己写逻辑去判断，preload可以预加载dom的资源，但是dom的资源先加载后，preload的资源还会继续加载，所以需要用preload预加载的童鞋，需要确定好先后顺序。
 
-
-
 这上面很多坑，本人都是花了很长时间才解决的，你们看完后马上就能解决，可以省下很多很多时间，所以多看看，最好背下来，特别是红字部分的！
-
