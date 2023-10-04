@@ -198,9 +198,10 @@ nav:
         - '精读-你不知道的JS中卷': 'other/精读-你不知道的JS中卷.md'
         - '精读-图解HTTP': 'other/精读-图解HTTP.md'
         - '精读-高性能JS': 'other/精读-高性能JS.md'
+        - '计算机是怎样跑起来的': 'other/计算机是怎样跑起来的.md'
         - '尚硅谷 nodeJS-basic': 'ebook-upguigu-nodejs/nodeJS-basic.md'
 
-    - 黑马程序员nodejs:
+    - 黑马程序员nodejs笔记:
         - '00': 'ebook-heima-nodejs/00.md'
         - '01': 'ebook-heima-nodejs/01.md'
         - '02': 'ebook-heima-nodejs/02.md'
