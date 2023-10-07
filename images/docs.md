@@ -10,3 +10,4 @@
 - 'network': 'network.md'
 - 'others': 'others.md'
 - 'react': 'react.md'
+- 'sql': 'sql.md'
