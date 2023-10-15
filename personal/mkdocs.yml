@@ -71,6 +71,7 @@ nav:
     - About:
         - '关于': 'index.md'
         - 'changelog': 'changelog.md'
+        - 'log': 'note/log.md'
     - 笔记:
         - 'algre-note': 'note/algre-note.md'
         - 'frontend-note': 'note/frontend-note.md'
@@ -80,7 +81,19 @@ nav:
         - '2021年度总结': 'note/2021年度总结.md'
         - '2022年度总结': 'note/2022年度总结.md'
         - '2022年前端新技术汇总': 'note/2022年前端新技术汇总.md'
-        - 'log': 'note/log.md'
+    - 笔记(新版):
+        - 'JS 基础-笔记.md': 'note/JS 基础-笔记.md'
+        - '算法-笔记.md': 'note/算法-笔记.md'
+        - 'React-笔记.md': 'note/React-笔记.md'
+        - 'CSS-笔记.md': 'note/CSS-笔记.md'
+        - '工程化-笔记.md': 'note/工程化-笔记.md'
+        - 'BOM-笔记.md': 'note/BOM-笔记.md'
+        - '第三方库-笔记.md': 'note/第三方库-笔记.md'
+        - 'Linux-笔记.md': 'note/Linux-笔记.md'
+        - 'nodejs-笔记.md': 'note/nodejs-笔记.md'
+        - '运营-笔记.md': 'note/运营-笔记.md'
+        - '产品-笔记.md': 'note/产品-笔记.md'
+        - '奇技淫巧-笔记.md': 'note/奇技淫巧-笔记.md'
     - 金融理财:
         - '2019-时事经济思考': 'economy/2019-时事经济思考.md'
         - '2021-时事经济思考': 'economy/2021-时事经济思考.md'

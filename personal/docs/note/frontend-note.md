@@ -235,21 +235,6 @@ match 和 exec 返回值一致，参数和方法换位
 
 
 
-
-### 5 pointer-events 和点击穿透
-
-有时候，我们会遇到界面中多个图层重叠的问题，下面图层绑定函数，上面的图层显示 UI 效果。我们希望点击事件，可以穿透上层 DIV 然后触发下层 DIV 的函数。
-
-那么可以设置 'pointer-events: none' 表示上层的点击事件是无效的。
-
-还可以避免 hover visited 的效果（我们想改变一个链接的显示状况，避免出现 visited 后的蓝色边框）
-
-其他的属性主要用在 svg 上面
-
-详情参考：https://developer.mozilla.org/zh-CN/docs/Web/CSS/pointer-events
-
-
-
 ### 6 字符编码问题
 
 常见字符串的编码格式：ASCII 码，Unicode，UTF-8 编码，GB2312 编码，这几个的区别
@@ -287,16 +272,6 @@ MVC架构的好处：model 是数据层，View 是视图层，Controller 是控�
 在实际项目中，model 是界面中实际的数据，例如上传的图片和行的信息。view 是界面中显示的按钮和控件，以及控制这些控件的 react 状态。Controller 是接口和API。如果一个引用做到 MVC 完全分离，然后不同模块完全分离，如果需要改动某个模块，或者界面样式，或者数据层，都不会影响其他的部分。
 
 例如，我们想把界面中的按钮改成输入框，那么直接更改 View 层即可，不需要改动 Model 层。如果项目的耦合性很强，可能数据划分不是很清楚。
-
-
-
-### 8 重构 UI 组件的感想
-
-1、项目开始前，就应该约定各种组件的规范，后期更改很麻烦，还可能有未知的错误和问题
-
-2、自己写公共组件一定注意细节，这里需要多看官方组件的源代码，看看别人怎么写的。
-
-为什么要写自己的组件？能不能使用传参优化已有的组件，避免造轮子是最好的，也要有造轮子的能力
 
 
 
@@ -559,8 +534,6 @@ console.log(reg); // /\[\]/gi
 
 
 
-
-
 ### 29 arguments.callee 使用
 
 使用转转反侧法计算两个数的最大公约数时，看到这样一个代码
@@ -638,42 +611,6 @@ function factorial(num){
 
 
 
-### 33 DOM性能及优化
-
-浏览器相对于APP的性能问题（PC端性能不影响，移动端影响很大）
-
-- DOM 渲染耗时 => 减少无用的DOM节点
-- DOM 会拖累 JS 渲染 => DOM和JS请求异步处理
-- 浏览器是单线程 => 未来开发多线程浏览器
-- DOM使用CPU，不能使用GPU加速 => 使用canvas等代替复杂图形和用户交互
-
-未来移动端巨头是主流，类似微信内嵌QQ浏览器，使用内部小程序完成传统界面设计
-
-
-
-
-### 34 React 代码分割和懒加载
-
-使用 import 进行模块化，webpack 可以进行代码打包和摇树
-
-使用 Suspense lazy section 进行代码分割
-
-React.lazy 可以处理动态引入，会在代码首次渲染时，自动导入包含子组件的包；在加载时，Suspense组件可以显示loading做到优雅降级。
-
-问题：实际还没有使用过，导入的组件 Component 是 Promise 需要 resolve 一个 `default` export 的 React 组件（这里怎么处理，实际中需要试验使用）。
-
-~~~jsx
-let A = React.lazy(() => import('./Component'));
-
-function B() {
-  return (
-    <Suspense callback={<div>Loading...</div>}>
-      <A/>
-    </Suspense>
-  );
-}
-~~~
-
 
 
 ### 35 React 代码用户体验优化
@@ -681,55 +618,6 @@ function B() {
 - 输入框，对话框打开后自动聚焦（如果是原生的输入框，设置ref，聚焦；如果是合成组件，直接使用组件的autofocus聚焦），点击esc关闭对话框等
 - 表单内部点击 Tab 可以进行跳转
 - 使用 title 属性，alt 属性进行标识
-
-
-
-### 36 import 导入命令
-
-~~~js
-import { fn1, fn2, fn3 } from 'lodash';
-import { fn1, fn2, fn3 as $ } from 'lodash';
-import { * as lodash } from 'lodash';
-// 如果一个模块对外暴露很多的方法，可以使用第一行的命令引入几个方法
-// 可以使用第二行的几个命令，把其中的几个方法封装成对象 （$）然后调用其中的某个方法 $.fn1 $.fn2 使用
-// 第三个是直接把全部的方法封装成一个对象，然后调用对象的方法
-// 这个写法适应于函数式编程（对外暴露很多函数，然后使用测试很方便）
-~~~
-
-
-
-### 37 React.createRef()
-
-为原生DOM添加Ref（不推荐使用字符串形式）
-
-~~~jsx
-<input ref={this.inputRef} />
-
-this.inputRef = React.createRef();
-this.inputRef.current 获取对应的DOM结构
-~~~
-
-最新的ref可以这样使用。首先在DOM节点上绑定处理函数，然后在构造器内部创建REf，使用的时候获取熟悉的current就是对应的DOM元素。React内部，已经处理了不同生命周期函数ref的加载和优化：初始化阶段创建 current，组件卸载前将Ref变成Null，DidMount 和 DidUpdate 阶段更新对应的 ref。
-
-为类组件添加 Ref ：代码相同，直接使用 this.myComponent.current 然后获取内部的属性，或者执行内部的函数。（类组件： class myComponent extends React.Component）
-
-为函数组件添加 Ref：不能直接添加，需要使用 forwardRef，或者将函数组件转成类组件（function CustomTextInput(props) { return <div></fiv> }）;之前界面中报错就是这个原因。
-
-子组件通过回调函数形式把自身的Ref传给父组件
-
-~~~jsx
-// children
-<input ref={this.props.innerInputRef} />
-// father
-<Son innerInputRef={ele => this.sonInputRef = ele } />
-~~~
-
-不推荐使用字符串形式，这种形式有问题（dtable 中现在还要很多这样的代码）
-
-~~~jsx
-<input ref="inputRef"/>
-this.refs.inoutRef.focus();
-~~~
 
 
 
@@ -748,47 +636,6 @@ this.refs.inoutRef.focus();
 手机输入法中，大部分都是 229 无法直接监听符号或者字母（后退正常）其他键已经被输入法封装了，所以Keycode无效。
 
 PC端中如果是中文输入法，那么键盘事件监听到的字母键 keycode 也是 229，这个也需要注意。
-
-
-
-### 41 componentWillReceiveProps 废弃
-
-在 React 16 版本后，componentWillReceiveProps 不安全将要废弃，所以使用 getDerivedStateFromProps 从Props获取派生的State。getDerivedStateFromProps (derived 派生的)。原来的生命周期函数中，对比了这次的Props和上次的Props，如果不同，那么重新处理数据或者渲染界面；现在的逻辑：需要将上一次的Props保存在 state 中。当新的 props 传来时，对比新的Props和旧的state，并进行数据处理。
-
-注意几点不同：
-
-- getDerivedStateFromProps 是静态方法，所以内部无法获取到 this，无法使用 this.setState 改变状态，可以直接返回一个对象
-- 这个生命周期函数不满足条件时，必须返回 null
-- 生命周期函数不能直接调用类中的方法。如果必须使用，可以使用全局的方法。
-
-~~~js
-// 上面是旧方法，不推荐使用
-componentWillReceiveProps(nextProps) {
-  if (nextProps.id !== this.props.id) {
-    // do something, setState
-    let res = this.fn();
-    this.setState({
-      id: nextProps.id,
-    });
-  }
-}
-
-// 推荐使用下面的方法
-// 构造器中加入 prevPropsList 这个状态，然后初始值 prevPropsList: this.props.list
-static getDerivedStateFromProps(nextProps, prevState) {
-  // Note we need to store prevPropsList and prevFilterText to detect changes.
-  if (nextProps.list !== prevState.prevPropsList) {
-    let res = fn();
-    return {
-      prevPropsList: nextProps.list,
-    };
-  }
-  // 这个生命周期函数不满足条件时，必须返回 null
-  return null;
-}
-~~~
-
-
 
 ### 42 setTimeout 循环打印
 
@@ -869,6 +716,8 @@ https://juejin.cn/post/6844903569141809166
 https://juejin.cn/post/6844903506311118856
 
 
+
+
 ### 44 git log 改成简化版本的 git lg
 
 https://luolei.org/better-git-log/#comments
@@ -879,13 +728,15 @@ git log 改成简化版本的 git log 加入下面的软连接配置
 git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 ~~~
 
+
+
 ### 45 升级 axios 版本问题
 
 造成 jest 单元测试不通过的解决
 
 本质原因：早期 axios 是 common-js 打包的，新版本没有支持 common-js 打包。Jest 执行单元测试在 node 环境下，不支持 es6语法，所以 import axios 就会报错。解决思路是，把 import 语法替换掉
 
-```
+```js
 moduleNameMapper: {
 	'^axios$': require.resolve('axios'),
 },
@@ -897,6 +748,14 @@ moduleNameMapper: {
 
 
 
+### 46 TS 细节
+
+//@ts-ignore 作用是忽略下一行的 TS 类型检查。类似 // eslint disable next line 是一个跳过格式检查的方法，可以处理少数代码问题，不推荐大量使用。
+
+留心 Authorization (授权)不要写成 Authentication (认证)
+
+
+
 ### 其他
 
 高阶组件中设置 ref {withRef:true} 主要用在 i18n 或者 Redux 等高阶函数中；
@@ -905,7 +764,7 @@ moduleNameMapper: {
 
 python 内置的 SimpleHttpServer 本地开发服务器（可以调试 index.html）；
 
-raect报错解决，componentWillReceivePorps 将要废弃，那么使用 getDerivedStateFromPorps 获取props的更新，然后重新设置state，然后再ComponentDidUpdate 阶段处理新数据；
+
 
 i18n 的基础配置和使用。
 
@@ -919,7 +778,7 @@ HTMLtoCanvas 第三方库学习；canvas.toDataUrl('image/png', 1.0)  配置：a
 
 4. 前端刮刮乐的实现，canvas API，先创建一个矩形灰色区域，然后监听鼠标点击事件，绘制新的区域，和第一个区域求差值即可，鼠标按下后，监听鼠标移动事件。鼠标抬起后，清空鼠标移动事件。关键是 canvas 的属性和 API，实际没有使用。
 
-5. 公司项目看懂5个文件
+5. 项目看懂5个文件
 
    - [x] universalAPI 这是 dtable-web 对应的接口，包括大部分API，使用 appToken。可能会继续调用 dtable-db 的接口（归档视图）。获取上传链接的三种情况：表单上传图片链接；表单上传普通背景图片链接；表格上传图片或文件链接。然后再调用上传图片即可（data parent_dir）。提交表单的五个参数（table_name page_id row_data, linked_rows, new_linked_rows）。
 
@@ -928,10 +787,6 @@ HTMLtoCanvas 第三方库学习；canvas.toDataUrl('image/png', 1.0)  配置：a
    - [x] Mobile-common-header 移动端通用标题组件
    - [x] Mobile-mask 移动端遮罩组件
    - [x] 保存逻辑：表格界面中，行展开，大部分情况都是发送 OP 对行进行增删改。增加链接是直接的 API，没有支持 OP。其他界面中，行展开操作后，直接发送 API 请求，返回成功后，刷新界面的数据（表格数据多，其他界面数据少，所以性能满足）。
-
-
-
-
 
 
 
@@ -954,34 +809,6 @@ console.log(arr.reduce(fn, 0)); // 15，原始数组不改变
 ```
 
 使用 reduce 实现 map 的功能
-
-
-
-### 2 polyfill 作用
-
-polyfill 英文翻译：垫片；计算机中指的是"补丁"
-
-为什么使用：老版本浏览器需要较早的语法才能使用（IE11不能使用Object.assign）所以需要通过 babel 把高级语法转换成低级语法。我们可以设置需要支持的浏览器版本（例如使用babel 转换到 es3 还是 ES5 版本）。早期的版本需要更多代码，如果不想兼容 ie 678 那么可以节省不少代码。
-
-垫片（补丁）分类：@babel/preset-env @babel/runtime @babel/folyfill @babel/transform-runtime 和 core-js 库，详见官网
-
-补丁使用方法：手动、半自动、全自动。1、手动：根据需求，安装对应的第三方库（Object.assign = require('object-assign')）不利于维护。2、半自动：根据webpack覆盖率：preset-env 根据预设的环境打补丁（https://github.com/browserslist/browserslist）在配置文件中设置 corejs和targets版本，即可打包对应版本的代码。3、自动：polyfill.io 这个库可以根据浏览器的 UA 自动判断不同版本的代码并处理  https://polyfill.io/v3/ 。chrome 会不处理，IE 会转换。参考链接：https://zhuanlan.zhihu.com/p/71640183
-
-
-
-### 3 flex 和 inline-flex 
-
-类似 block 和 inline-block，前缀的 inline 是相对于父盒子而言，是行内元素还是块级元素。flex 都表示内部是伸缩盒子。
-
-Inline-flex 存在的问题：如果不同子盒子的高度不同（例如有的有文字，有的没有文字），都设置了 inline-flex 那么整理的高度就不一定对齐。解决方法：vertical-align: middle 设置到父元素上面（具体应用：移动端链接列对齐）
-
-Flex 细节参考：
-
-https://www.ruanyifeng.com/blog/2015/07/flex-grammar.html
-
-https://www.ruanyifeng.com/blog/2015/07/flex-examples.html
-
-
 
 ### 4 React
 
@@ -1011,7 +838,7 @@ for...in... 可以循环数组的项，以及对象上的函数等（包括原�
 
 ### 6 数字格式设置
 
-Intl.NumberFormat(locale, option).format(10000);
+`Intl.NumberFormat(locale, option).format(10000);`
 
 这个内置方法，可以把一个数字转换成不同格式的货币，分隔符，单位，有效数字等。
 
@@ -1031,9 +858,9 @@ React中，性能优化的目标是减少不必要的渲染
 
 
 
-### 8 Ref 是 Null 的 bug
+### 8 Ref 是 null 的 bug
 
-有些情况下，this.ref.current 是 null，无法直接获取DOM节点。通常问题的原因是，在界面初始化时，还没有渲染这个节点，所以DOM获取不到，获取到的是NUll。通常在事件回调函数中调用是没问题的，但是在 render 或者 DidMount 阶段中获取可能获取不到。
+有些情况下，this.ref.current 是 null，无法直接获取DOM节点。通常问题的原因是，在界面初始化时，还没有渲染这个节点，所以DOM获取不到，获取到的是 null。通常在事件回调函数中调用是没问题的，但是在 render 或者 DidMount 阶段中获取可能获取不到。
 
 
 
@@ -1061,36 +888,6 @@ this.setState((state) => {
 
 
 
-### 10 thread-loader 多进程多线程打包
-
-webpack 编译打包时间较多，现在使用 thread-loader，可以减少编译时间，https://github.com/webpack-contrib/thread-loader
-
-先定量分析一下打包时间，在耗时较多的 loader 前，使用 thread-loader 处理，使用单独的进程进行打包，在多CPU的情况下，可以节省时间（8核节省75%的时间）如果只使用 babel 转换，不使用 webpack 打包，那么影响不大。
-
-~~~js
-{              
-    test: /\.(js|mjs)$/,
-    exclude: /@babel(?:\/|\\{1,2})runtime/,              
-    use: [
-      {
-        loader: 'thread-loader',
-      },
-      {
-        loader: require.resolve('babel-loader'),
-        options: {
-          babelrc: false,
-          configFile: false,
-          compact: false,
-          cacheDirectory: true,
-          cacheCompression: false,
-        },
-      }
-    ],
-}
-~~~
-
-
-
 ### 27 谷歌浏览器版本
 
 这里是全部的谷歌浏览器版本，用于排查某一个版本的问题
@@ -1107,11 +904,9 @@ http://www.chromium.org/getting-involved/dev-channel
 
 微信全部版本及发布时间：https://weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_faq_list&head=true
 
-早期版本中（3.0.0及之前）微信内核是 chrome 53 不支持很多 ES6 的语法，所以需要兼容
-
-最新版本中（3.3.5及之后）微信内核变化后，支持 ES6 语法（不支持开发者工具，不确定内核的具体版本号）
-
-3.0.0 之间到 3.3.5 之后的版本，没有逐一测试兼容性
+- 早期版本中（3.0.0及之前）微信内核是 chrome 53 不支持很多 ES6 的语法，所以需要兼容
+- 3.0.0 之间到 3.3.5 之后的版本，没有逐一测试兼容性
+- 最新版本中（3.3.5及之后）微信内核变化后，支持 ES6 语法（不支持开发者工具，不确定内核的具体版本号）
 
 早期版本的调试步骤参考：https://www.yuque.com/wuchendi/fe/winwechat 具体需要下载一个 dev 的包，然后可以打开调试台
 
@@ -1141,7 +936,7 @@ PureComponent 和 Component 的主要区别：内部实现了shouldComponentUpda
 
 项目如何选择框架？
 
-* 根据人员熟练程度
+* 根据团队人员熟练程度，根据已有项目的兼容情况
 * 小项目使用 vue 大项目使用 react；国际化项目使用 react；国内项目使用 vue；react 和对应的类型控制，团队人多时便于合作；vue 写法比较灵活，如果注释不完善，可能理解有一定困难。
 
 <https://juejin.cn/post/6844903668446134286>

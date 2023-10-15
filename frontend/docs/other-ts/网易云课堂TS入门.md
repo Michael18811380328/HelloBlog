@@ -4,7 +4,7 @@
 
 https://study.163.com/course/introduction.htm?courseId=1209306804&share=1&shareId=1135155721#/courseDetail?tab=1
 
-老师：Mr吴，技术可行，课程100元。
+老师：Mr吴，技术可行，课程100元。——现在变成 9.9 元了？
 
 ## 目录
 

@@ -635,28 +635,30 @@ useMount(() => {
 
 
 
-## 三、TS 应用：JS神助攻 - 强类型
+## 三、TS 应用- 强类型
 
 ### 1.TS 的必要性
 
 作为正常人，我们在开发过程中难免会犯以下错误：
 
+~~~
 变量名写错
 参数少传、多传
 数组或对象变量层次弄错
 相对 JS 在运行时（runtime）才会发现错误，TS 可以帮助我们在 静态代码 中及时定位错误，将 弱类型 的 JS 转为 强类型 的 TS 能够极大地降低我们编码过程中的误码率
+~~~
 
 ### 2.代码更改
 
 将项目中 src 下 js 文件后缀改为 ts，jsx 文件后缀改为 tsx，并对文件代码做如下修改：
 
+~~~
 有参数的组件使用 interface 声明参数类型
 公用类型的可以导出+引入
 不明确类型的显性赋予 unknow 类型 (严格版 any)
 不确定参数是否会传的使用 ?: 赋予类型
 用泛型来规范类型
-
-更多 `ts` 知识学习可见：[【笔记】TS入门](https://iseeu.blog.csdn.net/article/details/122793319)
+~~~
 
 - `src\utils\index.ts`
 
@@ -665,11 +667,12 @@ import { useEffect, useState } from "react";
 
 export const isFalsy = (val: unknown) => (val === 0 ? false : !val);
 
-// 在函数里，不可用直接赋值的方式改变传入的引用类型变量
+// 在函数里，不可用直接赋值的方式改变传入的引用类型变量，清空一个对象的空属性
 export const cleanObject = (obj: object) => {
   const res = { ...obj };
   Object.keys(res).forEach((key) => {
-    //@ts-ignore
+    // 忽略下一行的类型检查
+    //@ts-ignore 
     const val = res[key];
     if (isFalsy(val)) {
       //@ts-ignore
@@ -688,6 +691,7 @@ export const useMount = (cbk: () => void) => useEffect(() => cbk(), []);
  */
 export const useDebounce = <V>(val: V, delay: number = 1000) => {
   // V 泛型，表示传入与返回类型相同
+  
   const [tempVal, setTempVal] = useState(val);
 
   useEffect(() => {
@@ -749,13 +753,11 @@ export const ProjectListScreen = () => {
     </div>
   );
 };
-
-
 ~~~
 
 - `src\screens\ProjectList\components\List.jsx`
 
-~~~ts
+~~~tsx
 import { User } from "./SearchPanel";
 
 interface Project {
@@ -765,6 +767,7 @@ interface Project {
   star: boolean;
   organization: string;
 }
+
 interface ListProps {
   users: User[];
   list: Project[];
@@ -785,8 +788,7 @@ export const List = ({ users, list }: ListProps) => {
             <td>{project.name}</td>
             {/* undefined.name */}
             <td>
-              {users.find((user) => user.id === project.personId)?.name ||
-                "未知"}
+              {users.find((user) => user.id === project.personId)?.name || "未知"}
             </td>
           </tr>
         ))}
@@ -794,12 +796,11 @@ export const List = ({ users, list }: ListProps) => {
     </table>
   );
 };
-
 ~~~
 
 - `src\screens\ProjectList\components\SearchPanel.jsx`
 
-~~~ts
+~~~tsx
 export interface User {
   id: string;
   name: string;
@@ -856,7 +857,7 @@ export const SearchPanel = ({ users, param, setParam }: SearchPanelProps) => {
 
 - `src\App.tsx`
 
-~~~ts
+~~~tsx
 import "./App.css";
 import { ProjectListScreen } from "screens/ProjectList";
 
@@ -869,10 +870,7 @@ function App() {
 }
 
 export default App;
-
 ~~~
-
-- [【笔记】TS 泛型](https://blog.csdn.net/qq_32682301/article/details/129383512)
 
 - [【实战】用 Custom Hook + TS泛型实现 useArray](https://blog.csdn.net/qq_32682301/article/details/129382797)
 
@@ -880,13 +878,13 @@ export default App;
 
 ## 四、JWT、用户认证与异步请求
 
-
-
 ### 1.login
+
+增加登录的页面和逻辑
 
 - 新建文件：`src\screens\login\index.tsx`：
 
-~~~ts
+~~~tsx
 import { FormEvent } from "react";
 
 const apiUrl = process.env.REACT_APP_API_URL;
@@ -901,11 +899,13 @@ export const Login = () => {
       body: JSON.stringify(param),
     }).then(async (res) => {
       if (res.ok) {
+        // 登录成功
       }
     });
   };
 
-  // HTMLFormElement extends Element (子类型继承性兼容所有父类型)(鸭子类型：duck typing: 面向接口编程 而非 面向对象编程)
+  // HTMLFormElement extends Element (子类型继承性兼容所有父类型)
+  // (鸭子类型：duck typing: 面向接口编程 而非 面向对象编程)
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const username = (event.currentTarget.elements[0] as HTMLFormElement).value;
@@ -945,12 +945,13 @@ function App() {
 }
 
 export default App;
-
 ~~~
 
 目前页面点击登录 404，下一步配置 `json-server` 中间件，使其可以模拟 非 restful 接口
 
-### 2.middleware of [json-server](https://so.csdn.net/so/search?q=json-server&spm=1001.2101.3001.7020)
+### 2.middleware of json-server
+
+json-server 中间件，模拟请求和返回数据
 
 - 新建文件：`__json_server_mock__\middleware.js`：
 
@@ -969,7 +970,6 @@ module.exports = (req, res, next) => {
   }
   next();
 };
-
 ~~~
 
 - 配置 `package.json` 中 `json-server` 的 `script`：
@@ -987,7 +987,7 @@ module.exports = (req, res, next) => {
 - 首先确认 git 工作区 clean，安装 jira-dev-tool（imooc-jira-tool）
 - 引入到 `src\index.tsx`
 
-~~~ts
+~~~jsx
 import { loadDevTools } from "jira-dev-tool";
 
 loadDevTools(() => {
@@ -1000,7 +1000,6 @@ loadDevTools(() => {
     document.getElementById("root")
   );
 });
-
 ~~~
 
 问题1: 安装 jira-dev-tool（imooc-jira-tool）后启动项目[联调](https://so.csdn.net/so/search?q=联调&spm=1001.2101.3001.7020)可能会出现的问题
@@ -1046,16 +1045,16 @@ npm ERR! C:\...\npm-cache\_logs\2023-03-08T09_11_24_998Z-debug-0.log
 - 使用 `yarn` 代替 `npm i`
 
 使用
-开发者工具用 MSW 以 Service Worker 为原理实现了"分布式后端"
-后端逻辑处理后，以localStorage为数据库进行增删改查操作
-浏览器上安装了一个独立的后端服务和数据库，再也不受任何中心化服务的影响 点击’清空数据库’便可以重置后端服务
-可以精准地控制 HTTP请求的时间、失败概率、失败规则
+
+开发者工具用 MSW 以 Service Worker 为原理实现了"分布式后端"。后端逻辑处理后，以localStorage为数据库进行增删改查操作。浏览器上安装了一个独立的后端服务和数据库，再也不受任何中心化服务的影响 点击’清空数据库’便可以重置后端服务。可以精准地控制 HTTP请求的时间、失败概率、失败规则
+
 Service Worker + localStorage虽然本质上与传统后端服务并不同，但丝毫不会影响前端开发
+
 其他具体操作可见文档以及接下来的操作：[jira-dev-tool - npm](https://www.npmjs.com/package/jira-dev-tool)
 
 [Service Worker API - Web API 接口参考 | MDN](https://developer.mozilla.org/zh-CN/docs/Web/API/Service_Worker_API)
 
-安装好后进入`/login`,请求login接口，可以看到[状态码](https://so.csdn.net/so/search?q=状态码&spm=1001.2101.3001.7020)后带有（from service worker）字样即成功连接：
+安装好后进入`/login`,请求login接口，可以看到状态码后带有（from service worker）字样即成功连接：
 
 ### 4.JWT原理与auth-provider实现
 
@@ -1067,10 +1066,8 @@ Service Worker + localStorage虽然本质上与传统后端服务并不同，但
   src\screens\login\index.tsx
   ```
 
-  ：
-
   - 调用接口 `login` 改为 `register`；
-  - 按钮 **登录** 改为 **注册**
+- 按钮 **登录** 改为 **注册**
 
 注册一个新用户 jira（密码：jira），接口返回：
 
@@ -1099,9 +1096,8 @@ export interface User {
   email: string;
   title: string;
   organization: string;
-  token: string;
+  token: string; // 新增字段
 }
-...
 ~~~
 
 新建 `src\auth-provider.ts`：
@@ -1118,11 +1114,13 @@ const apiUrl = process.env.REACT_APP_API_URL;
 
 export const getToken = () => window.localStorage.getItem(localStorageKey)
 
+// 处理用户响应——存储到浏览器本地
 export const handleUserResponse = ({user} : { user: User }) => {
   window.localStorage.setItem(localStorageKey, user.token || '')
   return user
 }
 
+// 登录逻辑
 export const login = (data: { username: string, password: string }) => {
   return fetch(`${apiUrl}/login`, {
     method: "POST",
@@ -1139,6 +1137,7 @@ export const login = (data: { username: string, password: string }) => {
   });
 }
 
+// 注册逻辑
 export const register = (data: { username: string, password: string }) => {
   return fetch(`${apiUrl}/register`, {
     method: "POST",
@@ -1155,36 +1154,43 @@ export const register = (data: { username: string, password: string }) => {
   });
 }
 
+// 登出逻辑-直接更改本地配置
 export const logout = async () => window.localStorage.removeItem(localStorageKey)
-
 ```
 
 细节点：
 
 函数定义时，值前添加 async 使其返回一个 Promise 对象
+
 回调函数入参和回调函数内有且只有一个函数调用且它的入参与回调函数入参一致，该回调函数可直接简写为其内部的函数调用且不带参（这是函数式编程-PointFree的一种应用）：
 
 ~~~js
-const login = (form: AuthForm) => auth.login(form).then(user => setUser(user))
-const login = (form: AuthForm) => auth.login(form).then(setUser)
+const login = (form: AuthForm) => {
+  return auth.login(form).then(user => setUser(user));
+}
+const login = (form: AuthForm) => {
+  return auth.login(form).then(setUser);
+}
 ~~~
-
-[【笔记】函数式编程——PointFree](https://iseeu.blog.csdn.net/article/details/129564003)
 
 ### 5.useContext(user,login,register,logout)
 
+上下文组件
+
 新建 `src\context\auth-context.tsx`：
 
-~~~ts
+~~~tsx
 import React, { ReactNode, useState } from "react"
 import * as auth from 'auth-provider'
 import { User } from "screens/ProjectList/components/SearchPanel"
 
+// 表单授权接口（auth）
 interface AuthForm {
   username: string,
   password: string
 }
 
+// 授权上下文（包括登录，注册，登出接口）
 const AuthContext = React.createContext<{
   user: User | null,
   login: (form : AuthForm) => Promise<void>,
@@ -1194,6 +1200,7 @@ const AuthContext = React.createContext<{
 
 AuthContext.displayName = 'AuthContext'
 
+// 提供授权组件（参数是 children）
 export const AuthProvider = ({children}:{children: ReactNode}) => {
   // 这里要考虑到初始值的类型与后续值类型，取并组成一个泛型
   const [user, setUser] = useState<User | null>(null)
@@ -1212,7 +1219,6 @@ export const useAuth = () => {
   }
   return context
 }
-
 ~~~
 
 新建 `src\context\index.tsx`：
@@ -1222,18 +1228,19 @@ import { ReactNode } from "react";
 import { AuthProvider } from "./auth-context";
 
 export const AppProvider = ({children}:{children: ReactNode}) => {
-  return <AuthProvider>
-    {children}
-  </AuthProvider>
+  return (
+  	<AuthProvider>
+      {children}
+    </AuthProvider>
+  )
 }
-
 ~~~
 
 在项目中使用 `AppProvider`，修改 `src\index.tsx`：
 
 ~~~ts
 import { AppProvider } from "context";
-...
+
 loadDevTools(() => {
   root.render(
     // <React.StrictMode>
@@ -1243,30 +1250,22 @@ loadDevTools(() => {
     // </React.StrictMode>
   );
 });
-...
-
 ~~~
 
 修改 `src\screens\login\index.tsx`，调用 `useAuth` 中的 `login`，并使用之前注册的账号 `jira(jira)` 验证：
 
-
-
-~~~ts
+~~~tsx
 import { useAuth } from "context/auth-context";
 import { FormEvent } from "react";
 
 export const Login = () => {
   const {login, user} = useAuth()
-  // HTMLFormElement extends Element (子类型继承性兼容所有父类型)(鸭子类型：duck typing: 面向接口编程 而非 面向对象编程)
+  // HTMLFormElement extends Element (子类型继承性兼容所有父类型)
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {...};
   return (
     <form onSubmit={handleSubmit}>
       <div>
-        {
-          user ? <div>
-            登录成功，用户名{user?.name}
-          </div> : null
-        }
+        {user ? <div>登录成功，用户名{user?.name}</div> : null}
       </div>
       <div>
         <label htmlFor="username">用户名</label>
@@ -1280,8 +1279,6 @@ export const Login = () => {
     </form>
   );
 };
-
-
 ~~~
 
 ### 6.用useAuth切换登录与非登录状态
@@ -1291,7 +1288,7 @@ export const Login = () => {
 - 新建文件夹及下面文件：`unauthenticated-app`
 - `index.tsx`
 
-```
+```tsx
 import { useState } from "react";
 import { Login } from "./login";
 import { Register } from "./register";
@@ -1318,7 +1315,6 @@ import { FormEvent } from "react";
 
 export const Login = () => {
   const { login, user } = useAuth();
-  // HTMLFormElement extends Element (子类型继承性兼容所有父类型)(鸭子类型：duck typing: 面向接口编程 而非 面向对象编程)
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const username = (event.currentTarget.elements[0] as HTMLFormElement).value;
@@ -1350,7 +1346,6 @@ import { FormEvent } from "react";
 
 export const Register = () => {
   const { register, user } = useAuth();
-  // HTMLFormElement extends Element (子类型继承性兼容所有父类型)(鸭子类型：duck typing: 面向接口编程 而非 面向对象编程)
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const username = (event.currentTarget.elements[0] as HTMLFormElement).value;
@@ -1390,7 +1385,6 @@ export const AuthenticatedApp = () => {
     </div>
   );
 };
-
 ~~~
 
 - 修改 `src\App.tsx`（根据是否可以获取到 `user` 信息，决定展示 **登录态** 还是 **非登录态** 页面）
@@ -1403,7 +1397,6 @@ import "./App.css";
 
 function App() {
   const { user } = useAuth();
-
   return (
     <div className="App">
       {user ? <AuthenticatedApp /> : <UnauthenticatedApp />}
@@ -1412,16 +1405,9 @@ function App() {
 }
 
 export default App;
-
 ~~~
 
-查看页面，尝试功能：
-
-切换登录/注册，正常
-登录：login 正常，但是 projects 和 users 接口 401（A token must be provided）
-F12 控制台查看 __auth_provider_token__ (Application - Storage - Local Storage - http://localhost:3000)：
-
-- 注册：正常，默认直接登录（同登录，存储 `user`）
+查看页面，尝试功能：切换登录/注册，正常/登录：login 正常，但是 projects 和 users 接口 401（A token must be provided） F12 控制台查看 __auth_provider_token__ (Application - Storage - Local Storage - http://localhost:3000)：注册：正常，默认直接登录（同登录，存储 `user`）
 
 ### 7.用fetch抽象通用HTTP请求方法，增强通用性
 
@@ -1473,10 +1459,14 @@ export const http = async (funcPath: string, { data, token, headers, ...customCo
 
 ~~~
 
-类型定义思路：按住 Ctrl ，点进 fetch，可见：fetch(input: RequestInfo | URL, init?: RequestInit): Promise<Response>;，因此第二个参数即为 RequestInit 类型，但由于有自定义入参，因此自定义个继承 RequestInit 的类型
+类型定义思路：按住 Ctrl ，点进 fetch，可见：`fetch(input: RequestInfo | URL, init?: RequestInit): Promise<Response>;`，因此第二个参数即为 RequestInit 类型，但由于有自定义入参，因此自定义个继承 RequestInit 的类型
+
 customConfig 会覆盖前面已有属性
+
 需要手动区别 get 和 post 不同的携参方式
+
 axios 和 fetch 不同，axios 会在 状态码 不为 2xx 时，自动抛出异常，fetch 需要 手动处理
+
 留心 Authorization (授权)不要写成 Authentication (认证)，否则后面会报401，且很难找出问题所在
 
 ### 8.用useHttp管理JWT和登录状态，保持登录状态
@@ -1484,18 +1474,16 @@ axios 和 fetch 不同，axios 会在 状态码 不为 2xx 时，自动抛出异
 - 为了使请求接口时能够自动携带 token 定义 useHttp: `src\utils\http.ts`
 
 ~~~ts
-...
 export const http = async (
   funcPath: string,
   { data, token, headers, ...customConfig }: HttpConfig = {} // 参数有 默认值 会自动变为 可选参数
 ) => {...}
-...
+
 export const useHttp = () => {
   const { user } = useAuth()
   // TODO 学习 TS 操作符
   return (...[funcPath, customConfig]: Parameters<typeof http>) => http(funcPath, { ...customConfig, token: user?.token })
 }
-
 ~~~
 
 - 函数定义时参数设定 **默认值**，该参数即为 **可选参数**
@@ -1505,11 +1493,9 @@ export const useHttp = () => {
 - 在 `src\screens\ProjectList\index.tsx` 中使用 `useHttp`(部分原有代码省略)：
 
 ~~~ts
-...
 import { useHttp } from "utils/http";
 
 export const ProjectList = () => {
-  ...
   const client = useHttp()
 
   useEffect(() => {
@@ -1533,7 +1519,6 @@ useHttp 不能在 useEffect 的 callback 中直接使用，否则会报错：Rea
 - 检验成果：登录即可见 `projects` 和 `users` 接口 `200`，即正常携带 `token`，但是当前页面刷新就会退出登录（`user` 初始值为 `null`），接下来优化初始化 `user`(`src\context\auth-context.tsx`)：
 
 ~~~ts
-...
 import { http } from "utils/http";
 import { useMount } from "utils";
 
@@ -1549,14 +1534,12 @@ const initUser = async () => {
   }
   return user
 }
-...
+
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   ...
   useMount(() => initUser().then(setUser))
   return (...);
 };
-...
-
 ~~~
 
 思路分析：定义 `initUser` ，并在 `AuthProvider` 组件 挂载时调用，以确保只要在 `localStorage` 中存在 `token`（未登出或清除），即可获取并通过预设接口 `me` 拿到 `user` ，完成初始化
@@ -1565,22 +1548,19 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
 ### 9.TS的联合类型、Partial和Omit介绍
 
-联合类型
+联合类型：type1 | type2
 
-type1 | type2
-1
-交叉类型
+交叉类型：type1 & type2
 
-type1 & type2
-1
-类型别名
+类型别名： type typeName = typeValue
 
-type typeName = typeValue
-1
 类型别名在很多情况下可以和 interface 互换，但是两种情况例外：
 
+~~~
 typeValue 涉及交叉/联合类型
 typeValue 涉及 Utility Types (工具类型)
+~~~
+
 TS 中的 typeof 用来操作类型，在静态代码中使用（JS 的 typeof 在代码运行时(runtime)起作用），最终编译成的 JS 代码不会包含 typeof 字样
 
 Utility Types(工具类型) 的用法：用泛型的形式传入一个类型（typeName 或 typeof functionName）然后进行类型操作
@@ -1596,7 +1576,6 @@ Utility Types(工具类型) 的用法：用泛型的形式传入一个类型（t
 type Partial<T> = {
     [P in keyof T]?: T[P];
 };
-
 ~~~
 
 - `Omit`：删除父类型中的指定子类型并返回新类型
@@ -1606,7 +1585,6 @@ type Partial<T> = {
  * Construct a type with the properties of T except for those in type K.
  */
 type Omit<T, K extends keyof any> = Pick<T, Exclude<keyof T, K>>;
-
 ~~~
 
 案例：
@@ -1622,7 +1600,6 @@ type Person = {
 
 const CustomPerson: Partial<Person> = {}
 const OnlyJobPerson: Omit<Person, 'name' | 'age'> = { job: { salary: 3000 } }
-
 ~~~
 
 ### 10.TS 的 [Utility](https://so.csdn.net/so/search?q=Utility&spm=1001.2101.3001.7020) Types-Pick、Exclude、Partial 和 Omit 实现
@@ -1664,9 +1641,15 @@ let man: keyof Person
 
 `TS` 在一定程度上可以理解为：类型约束系统
 
-## 五、CSS 其实很简单 - 用 CSS-in-JS 添加样式
 
-### 1.antd+ emotion
+
+——看到这里——
+
+
+
+## 五、用 CSS-in-JS 添加样式
+
+### 1.antd+emotion
 
 ~~~~bash
 npm i antd --force
@@ -1677,7 +1660,7 @@ npm i antd --force
 
 - 在 `src\index.tsx` 中引入 `antd.less`（一定要在 `jira-dev-tool` 之后引入，以便后续修改主题样式能够覆盖到 `jira-dev-tool`）
 
-```
+```js
 import { loadDevTools } from "jira-dev-tool";
 import 'antd/dist/antd.less'
 ```
@@ -1686,7 +1669,7 @@ import 'antd/dist/antd.less'
 
 为对 `create-react-app` 进行自定义配置，需要安装 `craco` 和它的子依赖 `craco-less`:
 
-```
+```bash
 npm i @craco/craco --force
 npm i -D craco-less --force
 ```
@@ -2347,9 +2330,851 @@ object 类型涵盖很广(function、new RegExp('')…)，若只是想用键值�
 
 
 
-6-12节还有后续的笔记，这次没有整理完
+## 六、用户体验优化 - 加载中和错误状态处理
+
+#### 1.给页面添加 Loading 和 Error 状态，增加页面友好性
+
+修改 `src\screens\ProjectList\index.tsx`（新增 loading 状态 和 请求错误提示）（部分未修改内容省略）：
+
+~~~ts
+...
+import { Typography } from "antd";
+
+export const ProjectList = () => {
+  const [users, setUsers] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<null | Error>(null);
+
+  ...
+
+  useEffect(() => {
+    setIsLoading(true)
+    // React Hook "useHttp" cannot be called inside a callback. React Hooks must be called in a React function component or a custom React Hook function.
+    client("projects", { data: cleanObject(lastParam) }).then(setList)
+      .catch(error => {
+        setList([])
+        setError(error)
+      })
+      .finally(() => setIsLoading(false));
+    // React Hook useEffect has a missing dependency: 'client'. Either include it or remove the dependency array.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lastParam]);
+
+  ...
+
+  return (
+    <Container>
+      <h1>项目列表</h1>
+      <SearchPanel users={users} param={param} setParam={setParam} />
+      {error ? <Typography.Text type="danger">{error.message}</Typography.Text> : null}
+      <List loading={isLoading} users={users} dataSource={list} />
+    </Container>
+  );
+};
+
+...
+
+~~~
+
+修改 `src\screens\ProjectList\components\List.tsx`（`ListProps` 继承 `TableProps`, `Table` 的属性（[透传](https://so.csdn.net/so/search?q=透传&spm=1001.2101.3001.7020)））（部分未修改内容省略）：
+
+~~~ts
+
+import { Table, TableProps } from "antd";
+...
+
+interface ListProps extends TableProps<Project> {
+  users: User[];
+}
+
+// type PropsType = Omit<ListProps, 'users'>
+export const List = ({ users, ...props }: ListProps) => {
+  return (
+    <Table
+      pagination={false}
+      columns={...}
+      { ...props }
+    ></Table>
+  );
+};
+
+
+~~~
+
+> 为方便后续在组件外再次配置 `Table` 的属性（透传），直接让 `ListProps` 继承 `TableProps`, `TableProps` 单独抽出到 `props`
+
+#### 2.用高级 Hook-useAsync 统一处理 Loading 和 Error 状态
+
+新建 `src\utils\use-async.ts` (统一对 **异步状态** 和 **请求数据** 的管理)：
+
+~~~ts
+import { useState } from "react";
+
+interface State<D> {
+  error: Error | null;
+  data: D | null;
+  stat: 'ready' | 'loading' | 'error' | 'success'
+}
+
+const defaultInitialState: State<null> = {
+  stat: 'ready',
+  data: null,
+  error: null
+}
+
+export const useAsync = <D>(initialState?: State<D>) => {
+  const [state, setState] = useState<State<D>>({
+    ...defaultInitialState,
+    ...initialState
+  })
+
+  const setData = (data: D) => setState({
+    data,
+    stat: 'success',
+    error: null
+  })
+
+  const setError = (error: Error) => setState({
+    error,
+    stat: 'error',
+    data: null
+  })
+
+  // run 来触发异步请求
+  const run = (promise: Promise<D>) => {
+    if(!promise || !promise.then) {
+      throw new Error('请传入 Promise 类型数据')
+    }
+    setState({...state, stat: 'loading'})
+    return promise.then(data => {
+      setData(data)
+      return data
+    }).catch(error => {
+      setError(error)
+      return error
+    })
+  }
+
+  return {
+    isReady: state.stat === 'ready',
+    isLoading: state.stat === 'loading',
+    isError: state.stat === 'error',
+    isSuccess: state.stat === 'success',
+    run,
+    setData,
+    setError,
+    ...state
+  }
+}
+
+~~~
+
+修改 `src\screens\ProjectList\components\List.tsx` (将 `Project` 导出，以便后续引用)（部分未修改内容省略）：
+
+修改 `src\screens\ProjectList\index.tsx` （部分未修改内容省略）：
+
+- 删去之前 `loading` 和 `error` 相关内容；
+- 删去 `client` 异步请求 `then` 及后续操作；
+- 使用 `useAsync` 统一处理 **异步状态** 和 **请求数据**；
+
+~~~ts
+...
+import { List, Project } from "./components/List";
+...
+import { useAsync } from "utils/use-async";
+
+export const ProjectList = () => {
+  const [users, setUsers] = useState([]);
+  const [param, setParam] = useState({
+    name: "",
+    personId: "",
+  });
+
+  // 对 param 进行防抖处理
+  const lastParam = useDebounce(param);
+  const client = useHttp();
+  const { run, isLoading, error, data: list } = useAsync<Project[]>();
+
+  useEffect(() => {
+    run(client("projects", { data: cleanObject(lastParam) }))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lastParam]);
+
+  useMount(() => client("users").then(setUsers));
+
+  return (
+    <Container>
+      ...
+      <List loading={isLoading} users={users} dataSource={list || []} />
+    </Container>
+  );
+};
+...
+
+~~~
+
+新建 `src\utils\project.ts` (单独处理 Project 数据的异步请求)：
+
+~~~ts
+import { cleanObject } from "utils";
+import { useHttp } from "./http";
+import { useAsync } from "./use-async";
+import { useEffect } from "react";
+import { Project } from "screens/ProjectList/components/List";
+
+export const useProjects = (param?: Partial<Project>) => {
+  const client = useHttp();
+  const { run, ...result } = useAsync<Project[]>();
+
+  useEffect(() => {
+    run(client("projects", { data: cleanObject(param || {}) }))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [param]);
+
+  return result
+}
+
+~~~
+
+新建 `src\utils\use-users.ts` (单独处理 User 数据的异步请求)：
+
+~~~ts
+import { cleanObject } from "utils";
+import { useHttp } from "./http";
+import { useAsync } from "./use-async";
+import { useEffect } from "react";
+import { User } from "screens/ProjectList/components/SearchPanel";
+
+export const useUsers = (param?: Partial<User>) => {
+  const client = useHttp();
+  const { run, ...result } = useAsync<User[]>();
+
+  useEffect(() => {
+    run(client("users", { data: cleanObject(param || {}) }))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [param]);
+
+  return result
+}
+
+~~~
+
+再次修改 `src\screens\ProjectList\index.tsx` （部分未修改内容省略）：
+
+- `Project` 和 `User` 数据获取分别单独抽离
+
+~~~ts
+import { SearchPanel } from "./components/SearchPanel";
+import { List } from "./components/List";
+import { useState } from "react";
+import { useDebounce } from "utils";
+import styled from "@emotion/styled";
+import { Typography } from "antd";
+import { useProjects } from "utils/project";
+import { useUsers } from "utils/use-users";
+
+export const ProjectList = () => {
+  const [param, setParam] = useState({
+    name: "",
+    personId: "",
+  });
+
+  // 对 param 进行防抖处理后接入请求
+  const { isLoading, error, data: list } = useProjects(useDebounce(param));
+  const { data: users } = useUsers();
+
+  return (
+    <Container>
+      <h1>项目列表</h1>
+      <SearchPanel users={users || []} param={param} setParam={setParam} />
+      {error ? (
+        <Typography.Text type="danger">{error.message}</Typography.Text>
+      ) : null}
+      <List loading={isLoading} users={users || []} dataSource={list || []} />
+    </Container>
+  );
+};
+...
+
+~~~
+
+#### 3.登录注册页面 Loading 和 Error 状态处理，与 Event Loop 详解
+
+列表页的 异步状态 弄完，接下来是登录注册页了
+
+修改 src\unauthenticated-app\index.tsx（新增 error 状态处理，将 error j监听操作 交给 登录注册页）：
+
+~~~ts
+...
+import { Card, Button, Divider, Typography } from "antd";
+...
+
+export const UnauthenticatedApp = () => {
+  ...
+  const [error, setError] = useState<Error | null>(null);
+  return (
+    <Container>
+      ...
+      <ShadowCard>
+        <Title>{isRegister ? "请注册" : "请登录"}</Title>
+        { error ? <Typography.Text type="danger">{error.message}</Typography.Text> : null }
+        {isRegister ? <Register onError={setError}/> : <Login onError={setError}/>}
+        <Divider />
+        ...
+      </ShadowCard>
+    </Container>
+  );
+};
+...
+
+~~~
+
+修改 `src\unauthenticated-app\login.tsx`（传入 `onError` 并在异步操作后 `catch` 中使用）：
+
+~~~ts
+...
+export const Login = ({onError}: { onError: (error: Error) => void }) => {
+  ...
+  const handleSubmit = (values: { username: string; password: string }) => {
+    login(values).catch(e => onError(e))
+  };
+  ...
+};
+...
+
+~~~
+
+同理修改 `src\unauthenticated-app\register.tsx`：
+
+~~~ts
+...
+export const Register = ({onError}: { onError: (error: Error) => void }) => {
+  ...
+  const handleSubmit = (values: { username: string; password: string }) => {
+    register(values).catch(e => onError(e))
+  };
+  ...
+};
+...
+~~~
+
+使用非预设用户名密码检验：没反应。。。但是控制台打印出了刚输入的用户名和密码。。。
+
+通过登录的调用链可以找到 导致这个问题的原因：src\auth-provider.ts
+
+!res.ok 时，返回了 Promise.reject(data) ，而 data 是请求入参，这显然不是预想的效果（注册同理），修改这部分为 Promise.reject(await res.json())
+修改后再次检验，成了！
+
+Promise.catch 固然好用，但接下来换个思路，使用 try..catch 并引出 Event Loop。
+
+先修改 src\unauthenticated-app\login.tsx 试试水：
+
+~~~ts
+...
+export const Login = ({onError}: { onError: (error: Error) => void }) => {
+  ...
+  const handleSubmit = (values: { username: string; password: string }) => {
+    try {
+      // login(values).catch(e => onError(e))
+      login(values);
+    } catch(e: Error | any) {
+      onError(e)
+    }
+  };
+  ...
+};
+...
+
+~~~
+
+控制台输出正常，但是界面没有效果。。。
+
+问题出在 login 是异步操作，程序中会优先执行同步操作，然后才会异步操作，所以 onError 优先执行，并没有拿到后端返回的报错信息
+
+再次修改 src\unauthenticated-app\login.tsx （使用 async await 处理异步操作）：
+————————————————
+
+~~~ts
+...
+export const Login = ({onError}: { onError: (error: Error) => void }) => {
+  ...
+  const handleSubmit = async (values: { username: string; password: string }) => {
+    try {
+      // login(values).catch(e => onError(e))
+      await login(values);
+    } catch(e: Error | any) {
+      onError(e)
+    }
+  };
+  ...
+};
+...
+
+~~~
+
+这样便正常啦!
+
+接下来给注册页新增确认密码功能
+
+修改 `src\unauthenticated-app\register.tsx` （新增确认密码的 `Form.Item` 和 相关处理逻辑）：
+
+~~~ts
+...
+export const Register = ({onError}: { onError: (error: Error) => void }) => {
+  const { register, user } = useAuth();
+  const handleSubmit = ({ cpassword, ...values }: { username: string, password: string, cpassword: string }) => {
+    if (cpassword === values.password) {
+      register(values).catch(e => onError(e));
+    } else {
+      onError(new Error('请确认两次的输入密码相同'))
+      return
+    }
+  };
+  return (
+    <Form onFinish={handleSubmit}>
+      <Form.Item
+        name="username"
+        rules={[{ required: true, message: "请输入用户名" }]}
+      >
+        <Input placeholder="用户名" type="text" id="username" />
+      </Form.Item>
+      <Form.Item
+        name="password"
+        rules={[{ required: true, message: "请输入密码" }]}
+      >
+        <Input placeholder="密码" type="password" id="password" />
+      </Form.Item>
+      <Form.Item
+        name="cpassword"
+        rules={[{ required: true, message: "请确认密码" }]}
+      >
+        <Input placeholder="确认密码" type="password" id="cpassword" />
+      </Form.Item>
+      <Form.Item>
+        <LongButton htmlType="submit" type="primary">
+          注册
+        </LongButton>
+      </Form.Item>
+    </Form>
+  );
+};
+
+~~~
+
+再接着为 登录注册页 添加异步状态 `Loading` 的处理：
+
+~~~ts
+...
+import { useAsync } from "utils/use-async";
+
+export const Login = ({onError}: { onError: (error: Error) => void }) => {
+  const { login, user } = useAuth();
+  const { run, isLoading } = useAsync()
+
+  const handleSubmit = async (values: { username: string; password: string }) => {
+    try {
+      // login(values).catch(e => onError(e))
+      await run(login(values))
+    } catch(e: Error | any) {
+      onError(e)
+    }
+  };
+  return (
+    <Form onFinish={handleSubmit}>
+      ...
+      <Form.Item>
+        <LongButton loading={isLoading} htmlType="submit" type="primary">
+          登录
+        </LongButton>
+      </Form.Item>
+    </Form>
+  );
+};
+...
+
+~~~
+
+检验一下，没有效果，但是控制台抛出 400 错误了，排查一下
+
+try..catch 中的 onError 没接收到，唯一的变数就是这个 run 了
+查看一下，果然报错被 run 内部消化了，没有正常抛出（将 catch 到的 error throw 或是用 Promise.reject 包裹返回都是可以的，建议使用后者）
+修改 src\utils\use-async.ts：
+
+~~~ts
+...
+export const useAsync = <D>(initialState?: State<D>) => {
+  ...
+  // run 来触发异步请求
+  const run = (promise: Promise<D>) => {
+    ...
+    return promise
+      .then(...)
+      .catch((error) => {
+        // catch 会消化异常，如果不主动抛出，外面是接收不到异常的
+        setError(error);
+        // return error; // 原代码
+        // throw error;
+        return Promise.reject(error);
+      });
+  };
+  ...
+};
+
+~~~
+
+检验一下，正常 catch 并 展示报错信息
+
+try…catch only works for runtime errors (try…catch 只能处理有效代码之中的异常)
+try…catch works synchronously(try…catch 只能处理同步代码之中的异常)
+问题是解决了，但这样 try…catch 还是有些拖泥带水的感觉，继续优化：
+
+修改 src\utils\use-async.ts（增加是否抛出异常的配置，来合理化逻辑）：
+————————————————
+
+~~~ts
+...
+const defaultConfig = {
+  throwOnError: false
+}
+
+export const useAsync = <D>(initialState?: State<D>, initialConfig?: typeof defaultConfig) => {
+  const config = {...defaultConfig, ...initialConfig}
+  ...
+
+  // run 来触发异步请求
+  const run = (promise: Promise<D>) => {
+    ...
+    return promise
+      .then((data) => {
+        setData(data);
+        return data;
+      })
+      .catch((error) => {
+        // catch 会消化异常，如果不主动抛出，外面是接收不到异常的
+        setError(error);
+        return config.throwOnError ? Promise.reject(error) : error;
+      });
+  };
+  ...
+};
+
+~~~
+
+修改 `src\unauthenticated-app\login.tsx` （传入 `{ throwOnError: true }`）：
+
+~~~ts
+...
+export const Login = ({onError}: { onError: (error: Error) => void }) => {
+  ...
+  const { run, isLoading } = useAsync(undefined, { throwOnError: true })
+  ...
+};
+...
+
+~~~
+
+同理修改 `src\unauthenticated-app\register.tsx` ：
+
+~~~ts
+...
+export const Register = ({onError}: { onError: (error: Error) => void }) => {
+  ...
+  const { run, isLoading } = useAsync(undefined, { throwOnError: true })
+
+  const handleSubmit = async ({ cpassword, ...values }: { username: string, password: string, cpassword: string }) => {
+    if (cpassword === values.password) {
+      try {
+        await run(register(values))
+      } catch (e: Error | any) {
+        onError(e)
+      }
+    } else {
+      onError(new Error('请确认两次的输入密码相同'))
+      return
+    }
+  };
+  return (
+    <Form onFinish={handleSubmit}>
+      ...
+      <Form.Item>
+        <LongButton loading={isLoading} htmlType="submit" type="primary">
+          注册
+        </LongButton>
+      </Form.Item>
+    </Form>
+  );
+};
+
+~~~
+
+最后收尾，修改 `src\unauthenticated-app\index.tsx` （切换登录和注册时，`error` 清空）：
+
+~~~ts
+...
+export const UnauthenticatedApp = () => {
+  const [isRegister, setIsRegister] = useState(false);
+  const [error, setError] = useState<Error | null>(null);
+  return (
+    <Container>
+      ...
+      <ShadowCard>
+        ...
+        <Button type="link" onClick={() => { setIsRegister(!isRegister); setError(null) }}>
+          切换到{isRegister ? "已经有账号了？直接登录" : "没有账号？注册新账号"}
+        </Button>
+      </ShadowCard>
+    </Container>
+  );
+};
+...
+
+~~~
+
+检验效果，完美！
+
+拓展学习（引用自：[高薪之路—前端面试精选集-慕课专栏](https://www.imooc.com/read/68)）
+
+js 是单线程的，异步在 js 中是反直觉的存在
+
+判断打印顺序：
+
+~~~js
+console.log('script start')
+setTimeout(function(){
+  console.log('setTimeout');
+},0);
+new Promise(function(resolve){
+  console.log('promise1');
+  resolve();
+  console.log('promise2');
+}).then(function(){
+  console.log('promise then');
+});
+console log('script end');
+
+script start
+promise1
+promise2
+script end
+promise then
+setTimeout
+~~~
+
+因为JavaScript中有2种任务：
+
+宏任务(macro-task)：同步 script(整体代码)，setTimeout 回调函数，setlnterval 回调函数，l/O，Ul rendering;
+微任务(micro-task)：process.nextTick，Promise 回调函数， Object.observe，MutationObserver
+其执行的顺序是这样的:
+
+首先 JavaScript 引擎会执行一个宏任务，注意这个宏任务一般是指主干代码本身，也就是目前的同步代码；
+执行过程中如果遇到微任务，就把它添加到微任务任务队列中；
+宏任务执行完成后，立即执行当前微任务队列中的微任务，直到微任务队列被清空；
+微任务执行完成后，开始执行下一个宏任务；
+如此循环往复，直到宏任务和微任务被清空。
+
+#### 4.用useAsync获取用户信息
+
+修改 `src\components\lib.tsx`（新增全屏 Loading 组件 和 全屏 Error 展示组件）：
+
+~~~ts
+import { Spin, Typography } from "antd";
+import { DevTools } from "jira-dev-tool";
+
+...
+const FullPage = styled.div`
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
+export const FullPageLoading = () => <FullPage>
+  <Spin size="large"/>
+</FullPage>
+
+export const FullPageErrorFallback = ({error}: {error: Error | null}) => <FullPage>
+  <DevTools/>
+  <Typography.Text type="danger">{error?.message}</Typography.Text>
+</FullPage>
+
+~~~
+
+> - 为了展示报错信息的同时，DevTools 依旧展示，需要引入
+
+修改 `src\context\auth-context.tsx`（使用 `useAsync` 改造，并新增全屏 `Loading` 组件 和 全屏 `Error` 展示组件）（部分未修改内容省略）：
+
+~~~ts
+...
+import { useAsync } from "utils/use-async";
+import { FullPageErrorFallback, FullPageLoading } from "components/lib";
+
+...
+
+export const AuthProvider = ({ children }: { children: ReactNode }) => {
+  // 这里要考虑到初始值的类型与后续值类型，取并组成一个泛型
+  // const [user, setUser] = useState<User | null>(null);
+  const { data: user, error, isLoading, isReady, isSuccess, isError, run, setData: setUser } = useAsync<User | null>()
+
+  ...
+
+  useMount(() => run(initUser()));
+
+  if (isReady || isLoading) {
+    return <FullPageLoading/>
+  }
+
+  if (isError) {
+    return <FullPageErrorFallback error={error}/>
+  }
+
+  return (...);
+};
+...
+
+~~~
+
+#### 5.实现 Error Boundaries，捕获边界错误
+
+修改 `src\unauthenticated-app\index.tsx`（新增一个“[抛出异常](https://so.csdn.net/so/search?q=抛出异常&spm=1001.2101.3001.7020)”按钮）：
+
+~~~ts
+...
+export const UnauthenticatedApp = () => {
+  ...
+  return (
+    <Container>
+      <Header />
+      <Background />
+      <Button onClick={() => {
+        throw new Error('点击抛出一个异常')
+      }}>抛出异常</Button>
+      <ShadowCard>...</ShadowCard>
+    </Container>
+  );
+};
+...
+
+~~~
+
+修改 `src\authenticated-app.tsx`（新增一个变量展示它不存在的一个属性）：
+
+~~~ts
+...
+export const AuthenticatedApp = () => {
+  ...
+  const value: any = undefined;
+  ...
+  return (
+    <Container>
+      { value.notExist }
+      ...
+    </Container>
+  );
+};
+...
+
+~~~
+
+编译代码并全局安装推荐的 `serve` 库，然后启动并访问：
+
+~~~bash
+npm run build
+yarn global add serve
+serve -s build
+~~~
+
+点击“抛出异常”按钮：
+
+测试环境：页面展示抛出异常
+生产环境：页面不变，控制台抛出异常
+登录后：
+
+测试环境：页面展示异常信息
+生产环境：页面空白，控制台打印出异常信息
+这两种异常对比可看出：在渲染阶段出现未被捕获的异常，整个组件树都会被卸载（错误的展示内容比空白内容更可怕）
+
+错误边界 – React
+接下来写一个错误边界捕获组件 —— 新建：src\components\error-boundary.tsx：
+
+~~~ts
+import React, { ReactNode } from "react";
+
+type FallbackRender = (props: { error: Error | null }) => React.ReactElement
+
+// children: ReactNode
+export class ErrorBoundary extends React.Component<React.PropsWithChildren<{fallbackRender: FallbackRender}>, { error: Error | null }> {
+  state = { error: null }
+
+  // 当子组件抛出异常，这里会接受到并更改 state
+  static getDerivedStateFromError(error: Error) {
+    return { error }
+  }
+
+  render() {
+    const { error } = this.state
+    const { fallbackRender, children } = this.props
+    return error ? fallbackRender({ error }) : children
+  }
+}
+
+~~~
+
+如果一个 class 组件中定义了 static getDerivedStateFromError() 或 componentDidCatch() 这两个生命周期方法中的任意一个（或两个）时，那么它就变成一个错误边界
+React.PropsWithChildren 是 React 中的一个 Utility Types (工具类型) 类型处理器，将传入属性以类似 Object.assign 的方式合并:
+type PropsWithChildren<P = unknown> = P & { children?: ReactNode | undefined };
+修改：src\App.tsx(使用错误边界组件 ErrorBoundary 包裹，并将异常展示在 FullPageErrorFallback 中)：
+
+~~~ts
+...
+import { ErrorBoundary } from "components/error-boundary";
+import { FullPageErrorFallback } from "components/lib";
+
+function App() {
+  ...
+  return (
+    <div className="App">
+      <ErrorBoundary fallbackRender={FullPageErrorFallback}>
+       {user ? <AuthenticatedApp /> : <UnauthenticatedApp />}
+      </ErrorBoundary>
+    </div>
+  );
+}
+...
+
+~~~
+
+重新编译代码并重启serve,然后访问：
+
+```bash
+npm run build
+serve -s build
+12
+```
+
+手动抛出错误还是原样，渲染异常导致的边界错误被截获并展示！
+
+```bash
+Cannot read property 'notExist' of undefined
+```
+
+测试结束后清除以下两个文件中的测试内容（“抛出异常”按钮 和 “value”）：
+
+- `src\unauthenticated-app\index.tsx`
+- `src\authenticated-app.tsx`
+
+
+
+
+
+## 7-12节后续的笔记
+
+这次没有整理完，这是后面笔记的链接，整体笔记细节很多
 
 https://iseeu.blog.csdn.net/article/details/132747686
+
+
+
+
 
 
 
