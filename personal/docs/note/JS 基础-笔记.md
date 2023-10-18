@@ -1246,7 +1246,7 @@ class EventBus {
 
 2.冒泡排序，快速排序——要求直接写出来
 
-```
+```javascript
 function bubbleSort(arr) {
   const len = arr.length;
   for (let i = 0; i < len; i++) {
@@ -1281,15 +1281,15 @@ function quickSort(arr) {
 
 ```
 
-3.定位都有哪些。
+3.定位都有哪些
 
-4promise用法，
+4promise用法
 
-5.es6的用法。
+5.es6的用法
 
-6.redux。
+6.redux
 
-7.sass用过了什么。 
+7.sass用过了什么。
 
 
 

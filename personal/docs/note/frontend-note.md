@@ -225,13 +225,13 @@ console.log(Array.from(str.matchAll(/hello/g)));
 
 小结：
 
-indexOf lastIndexOf includes 是一组，字符串中找另一个字符串
+- indexOf lastIndexOf includes 是一组，字符串中找另一个字符串
 
-search match 是字符串的方法，可以传字符串或者正则，一个返回 index，一个返回具体的结果
+- search match 是字符串的方法，可以传字符串或者正则，一个返回 index，一个返回具体的结果
 
-test 和 exec 是正则表达式的方法，返回布尔值或者具体的结果
+- test 和 exec 是正则表达式的方法，返回布尔值或者具体的结果
 
-match 和 exec 返回值一致，参数和方法换位
+- match 和 exec 返回值一致，参数和方法换位
 
 
 
@@ -637,6 +637,8 @@ function factorial(num){
 
 PC端中如果是中文输入法，那么键盘事件监听到的字母键 keycode 也是 229，这个也需要注意。
 
+
+
 ### 42 setTimeout 循环打印
 
 《你不知道的JS》第一部分第五章——闭包。经典的案例如下
@@ -763,7 +765,6 @@ moduleNameMapper: {
 批量下载打包文件（首先请求到下载列表，然后每一个文件使用ajax下载并设置成blob，使用ZipJS写入压缩包对象，然后使用SaveAs保存到本地文档），如果是node环境或者本地内容，直接省略前两步，可能存在的问题，部分文件下载失败处理，大文件是否分片下载等；
 
 python 内置的 SimpleHttpServer 本地开发服务器（可以调试 index.html）；
-
 
 
 i18n 的基础配置和使用。
@@ -916,7 +917,7 @@ http://www.chromium.org/getting-involved/dev-channel
 
 ### 39 React PureComponent
 
-PureComponent 和 Component 的主要区别：内部实现了shouldComponentUpdate这个生命周期方法（如果props相同，组件不更新），适应于视图层显示界面（数据简单处理，或者不包括数据处理）。这里只会对 Props 进行浅对比，如果是复杂对象会出错。这个会影响到子组件的对比，所以最好使用在显示界面（不会继续乡下传递数据流）。
+PureComponent 和 Component 的主要区别：内部实现了shouldComponentUpdate这个生命周期方法（如果props相同，组件不更新），适应于视图层显示界面（数据简单处理，或者不包括数据处理）。这里只会对 Props 进行浅对比，如果是复杂对象会出错。这个会影响到子组件的对比，所以最好使用在显示界面（不会继续向下传递数据流）。
 
 
 ### 40 VUE VS React 对比
@@ -941,3 +942,104 @@ PureComponent 和 Component 的主要区别：内部实现了shouldComponentUpda
 
 <https://juejin.cn/post/6844903668446134286>
 
+
+
+### 1 nginx 入门参考
+
+https://juejin.cn/post/6844904129987526663
+
+https://zhuanlan.zhihu.com/p/34943332
+
+
+
+### 2 安卓手机连接苹果电脑传文件
+
+点击链接下载
+
+android file transfer
+
+然后连接安卓手机即可显示对应的文件
+
+https://dl.google.com/dl/androidjumper/mtp/current/androidfiletransfer.dmg
+
+
+
+
+
+### 3 Event-loop
+
+事件循环
+
+JS 运行在浏览器，用户交互和JS脚本都可能执行，所以设置单线程。如果设置多线程，用户和JS脚本同时执行可能出问题。现在多核CPU的解决：使用HTML5中的 web worker 处理多线程问题。
+
+
+
+### 4 flex 布局
+
+flex布局中，怎样在一个container中放置nav栏？
+
+1.在京东PC端项目中，nav部分以一个独立的div进行布局（nav栏隐藏动画）
+
+2.在京东移动端项目中，百分比布局，nav部分也是单独的div进行布局（左右排布使用row-col布局）
+
+3.在休闲帮PC端项目中，使用bootstrap框架中，有预定的nav组件（bootstrap中spa组件需要加快熟悉）
+
+4.在微金所移动端项目中，使用bootstrap框架，也分成两个container进行开发。
+
+
+
+### 5 移动端的键盘输入问题和切换界面问题
+
+移动端的键盘输入问题和切换界面问题；如果是一个界面内部的，不需要考虑；如果是新开的一个页面，需要考虑这个问题；目前的解决办法是，主动让 input 失去焦点，输入法自动关闭，再打开下一单页面（实际问题：移动端中，用户编辑过滤器时，先输入文本或者数字，移动端键盘打开，然后更改列，键盘没有及时关闭，样式错误）
+
+### 6 input file 上传后清空文件
+
+笔记：input file 上传后，应该清空一个 input 的值(input.value = '')，这样再次上传同名文件是正常的。
+
+
+
+### 7 重构 UI 组件的感想
+
+1、项目开始前，就应该约定各种组件的规范，后期更改很麻烦，还可能有未知的错误和问题
+
+2、自己写公共组件一定注意细节，这里需要多看官方组件的源代码，看看别人怎么写的。
+
+为什么要写自己的组件？能不能使用传参优化已有的组件，避免造轮子是最好的，也要有造轮子的能力
+
+### 8 大公司和小公司区别
+
+强哥：大公司也有很多低学历的人，只要能力足够，不担心学历问题（学历可以的）；上手了其他端的代码都能写，不要担心写不了后端的代码；自己有时间有规划慢慢来，一定有规划，选择比努力更重要；如果去搜狗这样的公司，自己的能力还能实现，毕竟岩哥可以过去；移动端；有几个项目经验，然后技术面试过了；基础+具体的业务功能；今年形势不太好，暂时不动；先找好下家再离职；自己看零散的代码和教程，也不总结，不分类，效果不佳；
+
+
+
+#### 2 本地不同项目调试问题
+
+- 本地浏览器支持跨域操作（后端服务和前端页面不在一个端口，但是需要请求登录）：更改本地浏览器配置。可以设置 webpack 支持代理，但是设置后无效，可能和 webpack 版本有关，所以直接使用命令行打开浏览器（增加参数打开）参考：https://blog.csdn.net/qq_41541368/article/details/104035074 扩展：直接写一个脚本，电脑开机后直接命令行执行，打开对应的程序，不需要手动双击每一个程序
+
+~~~js
+open -n /Applications/Google\ Chrome.app/ --args --disable-web-security  --user-data-dir=/Users/seafile/workroom/chrome-config
+
+open /Applications/Google\ Chrome.app && open /Applications/Typora.app 
+~~~
+
+- 如果本地调试两个前端项目，一个项目需要使用另一个项目打包后的文件，可以直接写一个脚本，然后复制这个打包后的文件到另一个文件夹下面（npm link 也可以实现，但是可能存在缓存问题等等），所以写了这个联调脚本。本地联调测试脚本
+
+~~~js
+"move": "npm run prepublishOnly && mv -f /dtable/es /Users/seafile/workroom/dev/dtable-/dtable-web/frontend/node_modules/@seafile/dtable",
+~~~
+
+#### 3 本地调试 server 项目跨域问题
+
+问题：本地开发 dtable-web 和 dtable-server 项目时，打开表格界面，127.0.0.1:5000 端口显示跨域。
+
+思考：以往都不会出现跨域问题，近期没有改动配置。
+
+解决过程：先查看 dtable-web 和 dtable-server 的日志（dtable-server 中显示编译错误）本质上：因为在 docker 外部环境执行 npm install，dtable-server 某些第三方依赖库使用C语言编译，没有编译到 docker 内部（即使安装其他第三方库，也会影响已有的这个特殊的库）。所以造成 server 无法编译，服务不正常。nginx 反向代理服务器已经处理了跨域，但是已有服务没起来，所以界面显示的是跨域（找不到对应的服务）。
+
+最后解决：在 docker 内部删除 node_modules 然后重新 npm install 开启服务，正常使用。
+
+总结：界面的报错不一定是真实的原因，需要查看日志。nginx 需要多了解。
+
+### op 执行逻辑
+
+服务器 Op 执行时的函数，最好不依赖全局变量。处理 OP 正常情况的逻辑，也有处理异常情况的逻辑（状态机模式），什么时候发出什么指令，本地或者服务器出现问题怎么操作等等。
