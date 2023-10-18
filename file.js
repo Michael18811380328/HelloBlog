@@ -27,7 +27,7 @@ for (var i = 0; i < dirList.length; i++) {
       return;
     }
     for (let i = 0; i < files.length; i++) {
-      if (files[i] === '.DS_Store') {
+      if (files[i] === '.DS_Store' || files[i] === 'Dockerfile') {
         continue;
       }
       if (files[i].includes('.md')) {
