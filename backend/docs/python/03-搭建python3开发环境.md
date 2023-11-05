@@ -8,27 +8,27 @@
 
 因为其他项目会使用 python2 的开发环境。为了避免项目互相干扰，我使用 virtualenv 分别搭建 py2 和 py3 的开发环境。
 
-## 安装python3
+## 安装 python3
 
-如果电脑上没有 python3 的软件，需要下载安装；如果已经有python3，那么直接跳到下一章：
+如果电脑上没有 python3 的软件，需要下载安装；如果已经有 python3，那么直接跳到下一章：
 
 安装脚本如下：
 
 ```bash
 wget https://www.python.org/ftp/python/3.4.3/Python-3.4.3.tgz
-tar zxvf Python-3.4.3.tgz 
-cd Python-3.4.3               
+tar zxvf Python-3.4.3.tgz
+cd Python-3.4.3
 ./configure --enable-shared --prefix=/usr/local
 make && make altinstall
 ```
 
-安装其它版本的python可从官网下载： https://www.python.org/
+安装其它版本的 python 可从官网下载： https://www.python.org/
 
-安装完成后，可以在终端输入 python3 验证安装是否成功（我本地安装的3.7.0版本）
+安装完成后，可以在终端输入 python3 验证安装是否成功（我本地安装的 3.7.0 版本）
 
-## 搭建python3开发环境
+## 搭建 python3 开发环境
 
-1、安装virtualenv，可以通过pip进行安装，命令如下：
+1、安装 virtualenv，可以通过 pip 进行安装，命令如下：
 
 ```bash
 pip install virtualenv
@@ -36,7 +36,7 @@ pip install virtualenv
 
 2、创建虚拟环境：
 
-注意：这里 python3.7 对应你安装的版本（3.4或者3.7）
+注意：这里 python3.7 对应你安装的版本（3.4 或者 3.7）
 
 ```bash
 virtualenv -p /usr/local/bin/python3.7 # 你的虚拟环境的名称（例如，py37-michael-blog-env）
@@ -52,11 +52,10 @@ source py37-michael-blog-env/bin/activate
 
 进行相关开发（pip install -r requirements）等等
 
-4、退出虚拟环境 
+4、退出虚拟环境
 
 ```bash
 deactivate   　　　　　　
 ```
 
-再次进入项目时，只需要执行3-4步骤即可（激活-开发-退出虚拟环境）
-
+再次进入项目时，只需要执行 3-4 步骤即可（激活-开发-退出虚拟环境）

@@ -1,5 +1,4 @@
 class UserManager {
-
   constructor() {
     this.users = [];
   }
@@ -9,12 +8,16 @@ class UserManager {
       this.users[dtableUuid] = new Map();
     }
 
-    this.users[dtableUuid].set(socketId, {username: username, permission: permission, appName: appName});
+    this.users[dtableUuid].set(socketId, {
+      username: username,
+      permission: permission,
+      appName: appName,
+    });
     return true;
   }
 
   deleteUser(dtableUuid, socketId) {
-    if (this.users[dtableUuid] &&this.users[dtableUuid].has(socketId)) {
+    if (this.users[dtableUuid] && this.users[dtableUuid].has(socketId)) {
       this.users[dtableUuid].delete(socketId);
       if (this.users[dtableUuid].size === 0) {
         this.users[dtableUuid] = null;
@@ -45,7 +48,6 @@ class UserManager {
     }
     return socketIdList;
   }
-
 }
 
 export default UserManager;

@@ -1,4 +1,3 @@
-
 # Node 定时器详解
 
 JavaScript 是单线程运行，异步操作特别重要。
@@ -74,7 +73,7 @@ process.nextTick(() => console.log(3));
 Promise.resolve().then(() => console.log(4));
 ```
 
-## 三、process.nextTick() 
+## 三、process.nextTick()
 
 `process.nextTick`这个名字有点误导，它是在本轮循环执行的，而且是所有异步任务里面最快执行的。
 
@@ -130,7 +129,7 @@ Promise.resolve().then(() => console.log(4));
 
 Node 的[官方文档](https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/)是这样介绍的。
 
-> "When Node.js starts, it initializes the event loop, processes the provided input script  which may make async API calls, schedule timers, or call process.nextTick(), then begins processing the event loop."
+> "When Node.js starts, it initializes the event loop, processes the provided input script which may make async API calls, schedule timers, or call process.nextTick(), then begins processing the event loop."
 
 这段话很重要，需要仔细读。它表达了三层意思。
 
@@ -199,7 +198,7 @@ Node 的[官方文档](https://nodejs.org/en/docs/guides/event-loop-timers-and-n
 下面是来自官方文档的一个示例。
 
 ```javascript
-const fs = require('fs');
+const fs = require("fs");
 
 const timeoutScheduled = Date.now();
 
@@ -210,7 +209,7 @@ setTimeout(() => {
 }, 100);
 
 // 异步任务二：至少需要 200ms 的文件读取
-fs.readFile('test.js', () => {
+fs.readFile("test.js", () => {
   const startCallback = Date.now();
   while (Date.now() - startCallback < 200) {
     // 什么也不做
@@ -226,7 +225,7 @@ fs.readFile('test.js', () => {
 
 第二轮事件循环，依然没有到期的定时器，但是已经有了可以执行的 I/O 回调函数，所以会进入 I/O callbacks 阶段，执行`fs.readFile`的回调函数。这个回调函数需要 200ms，也就是说，在它执行到一半的时候，100ms 的定时器就会到期。但是，必须等到这个回调函数执行完，才会离开这个阶段。
 
-第三轮事件循环，已经有了到期的定时器，所以会在 timers 阶段执行定时器。最后输出结果大概是200多毫秒。
+第三轮事件循环，已经有了到期的定时器，所以会在 timers 阶段执行定时器。最后输出结果大概是 200 多毫秒。
 
 ## 八、setTimeout 和 setImmediate
 
@@ -239,16 +238,16 @@ setImmediate(() => console.log(2));
 
 上面代码应该先输出`1`，再输出`2`，但是实际执行的时候，结果却是不确定，有时还会先输出`2`，再输出`1`。
 
-这是因为`setTimeout`的第二个参数默认为`0`。但是实际上，Node 做不到0毫秒，最少也需要1毫秒，根据[官方文档](https://nodejs.org/api/timers.html#timers_settimeout_callback_delay_args)，第二个参数的取值范围在1毫秒到2147483647毫秒之间。也就是说，`setTimeout(f, 0)`等同于`setTimeout(f, 1)`。
+这是因为`setTimeout`的第二个参数默认为`0`。但是实际上，Node 做不到 0 毫秒，最少也需要 1 毫秒，根据[官方文档](https://nodejs.org/api/timers.html#timers_settimeout_callback_delay_args)，第二个参数的取值范围在 1 毫秒到 2147483647 毫秒之间。也就是说，`setTimeout(f, 0)`等同于`setTimeout(f, 1)`。
 
-实际执行的时候，进入事件循环以后，有可能到了1毫秒，也可能还没到1毫秒，取决于系统当时的状况。如果没到1毫秒，那么 timers 阶段就会跳过，进入 check 阶段，先执行`setImmediate`的回调函数。
+实际执行的时候，进入事件循环以后，有可能到了 1 毫秒，也可能还没到 1 毫秒，取决于系统当时的状况。如果没到 1 毫秒，那么 timers 阶段就会跳过，进入 check 阶段，先执行`setImmediate`的回调函数。
 
-但是，下面的代码一定是先输出2，再输出1。
+但是，下面的代码一定是先输出 2，再输出 1。
 
 ```javascript
-const fs = require('fs');
+const fs = require("fs");
 
-fs.readFile('test.js', () => {
+fs.readFile("test.js", () => {
   setTimeout(() => console.log(1));
   setImmediate(() => console.log(2));
 });

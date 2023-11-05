@@ -1,8 +1,6 @@
 # 深入 js 深拷贝对象
 
-
 ## 前言
-
 
 对象是 JS 中基本类型之一，而且和原型链、数组等知识息息相关。不管是面试中，还是实际开发中我们都会碰见深拷贝对象的问题。
 
@@ -18,34 +16,34 @@
 ```js
 let test = {
   num: 0,
-  str: '',
+  str: "",
   boolean: true,
   unf: undefined,
   nul: null,
   obj: {
-    name: '我是一个对象',
-    id: 1
+    name: "我是一个对象",
+    id: 1,
   },
   arr: [0, 1, 2],
-  func: function() {
-    console.log('我是一个函数')
+  func: function () {
+    console.log("我是一个函数");
   },
   date: new Date(0),
-  reg: new RegExp('/我是一个正则/ig'),
-  err: new Error('我是一个错误')
-}
+  reg: new RegExp("/我是一个正则/ig"),
+  err: new Error("我是一个错误"),
+};
 
-let result = deepClone(test)
+let result = deepClone(test);
 
-console.log(result)
+console.log(result);
 for (let key in result) {
   if (isObject(result[key]))
-    console.log(`${key}相同吗？ `, result[key] === test[key])
+    console.log(`${key}相同吗？ `, result[key] === test[key]);
 }
 
 // 判断是否为对象
 function isObject(o) {
-  return (typeof o === 'object' || typeof o === 'function') && o !== null
+  return (typeof o === "object" || typeof o === "function") && o !== null;
 }
 ```
 
@@ -59,22 +57,20 @@ function isObject(o) {
 // 迭代递归法：深拷贝对象与数组
 function deepClone(obj) {
   if (!isObject(obj)) {
-    throw new Error('obj 不是一个对象！')
+    throw new Error("obj 不是一个对象！");
   }
 
-  let isArray = Array.isArray(obj)
-  let cloneObj = isArray ? [] : {}
+  let isArray = Array.isArray(obj);
+  let cloneObj = isArray ? [] : {};
   for (let key in obj) {
-    cloneObj[key] = isObject(obj[key]) ? deepClone(obj[key]) : obj[key]
+    cloneObj[key] = isObject(obj[key]) ? deepClone(obj[key]) : obj[key];
   }
 
-  return cloneObj
+  return cloneObj;
 }
 ```
 
 结果：
-
-
 
 ![img](https://upload-images.jianshu.io/upload_images/4762028-a5776d2e7541f42f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/509/format/webp)
 
@@ -88,22 +84,20 @@ function deepClone(obj) {
 // 代理法
 function deepClone(obj) {
   if (!isObject(obj)) {
-    throw new Error('obj 不是一个对象！')
+    throw new Error("obj 不是一个对象！");
   }
 
-  let isArray = Array.isArray(obj)
-  let cloneObj = isArray ? [...obj] : { ...obj }
-  Reflect.ownKeys(cloneObj).forEach(key => {
-    cloneObj[key] = isObject(obj[key]) ? deepClone(obj[key]) : obj[key]
-  })
+  let isArray = Array.isArray(obj);
+  let cloneObj = isArray ? [...obj] : { ...obj };
+  Reflect.ownKeys(cloneObj).forEach((key) => {
+    cloneObj[key] = isObject(obj[key]) ? deepClone(obj[key]) : obj[key];
+  });
 
-  return cloneObj
+  return cloneObj;
 }
 ```
 
 结果：
-
-
 
 ![img](https://upload-images.jianshu.io/upload_images/4762028-33be5b72f8aeb202.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/551/format/webp)
 
@@ -111,11 +105,11 @@ function deepClone(obj) {
 
 我们发现，结果和使用 for...in 一样。那么它有什么优点呢？读者可以先猜一猜，答案我们会在下文揭晓。
 
-#### lodash中的深拷贝实现
+#### lodash 中的深拷贝实现
 
 著名的 lodash 中的 cloneDeep 方法同样是使用这种方法实现的，只不过它支持的对象种类更多，具体的实现过程读者可以参考[ lodash 的 baseClone 方法](https://link.jianshu.com/?t=https%3A%2F%2Fgithub.com%2Flodash%2Flodash%2Fblob%2Fmaster%2F.internal%2FbaseClone.js)。
 
-我们把测试用例用到的深拷贝函数换成lodash的：
+我们把测试用例用到的深拷贝函数换成 lodash 的：
 
 ```
 let result = _.cloneDeep(test)
@@ -123,13 +117,11 @@ let result = _.cloneDeep(test)
 
 结果：
 
-
-
 ![img](https://upload-images.jianshu.io/upload_images/4762028-796176050394be23.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/547/format/webp)
 
-lodash深拷贝结果.png
+lodash 深拷贝结果.png
 
-我们发现，arr、obj、date、reg深拷贝成功了，但 func 和 err 内存引用仍然不变。
+我们发现，arr、obj、date、reg 深拷贝成功了，但 func 和 err 内存引用仍然不变。
 
 为什么不变呢？这个问题留给读者自己去探寻，嘿嘿~不过可以提示下，这跟 lodash 中的 cloneableTags 有关。
 
@@ -141,9 +133,9 @@ function customizer(value) {
     return value.cloneNode(true);
   }
 }
- 
+
 var el = _.cloneDeepWith(document.body, customizer);
- 
+
 console.log(el === document.body);
 // => false
 console.log(el.nodeName);
@@ -165,8 +157,6 @@ function deepClone(obj) {
 
 结果：
 
-
-
 ![img](https://upload-images.jianshu.io/upload_images/4762028-fcb057ffd720e8d6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/425/format/webp)
 
 序列化反序列化法结果.png
@@ -184,29 +174,21 @@ test.loopObj = test
 
 这时我们使用第一种方法中的 for..in 实现和 Reflect 实现都会栈溢出：
 
-
-
 ![img](https://upload-images.jianshu.io/upload_images/4762028-6e7a0a4ef4e3aee3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/828/format/webp)
 
 环对象深拷贝报错
 
 而使用第二种方法也会报错：
 
-
-
 ![img](https://upload-images.jianshu.io/upload_images/4762028-87629c794d602cd0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/432/format/webp)
 
 但 lodash 却可以得到正确结果：
-
-
 
 ![img](https://upload-images.jianshu.io/upload_images/4762028-9492d678cd3121ef.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/535/format/webp)
 
 lodash 深拷贝环对象.png
 
 为什么呢？我们去 lodash 源码看看：
-
-
 
 ![img](https://upload-images.jianshu.io/upload_images/4762028-cf971d9b5f7492b7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/497/format/webp)
 
@@ -219,22 +201,22 @@ lodash 应对环对象办法.png
 ```js
 function deepClone(obj, hash = new WeakMap()) {
   if (!isObject(obj)) {
-    return obj
+    return obj;
   }
   // 查表
-  if (hash.has(obj)) return hash.get(obj)
+  if (hash.has(obj)) return hash.get(obj);
 
-  let isArray = Array.isArray(obj)
-  let cloneObj = isArray ? [] : {}
+  let isArray = Array.isArray(obj);
+  let cloneObj = isArray ? [] : {};
   // 哈希表设值
-  hash.set(obj, cloneObj)
+  hash.set(obj, cloneObj);
 
-  let result = Object.keys(obj).map(key => {
+  let result = Object.keys(obj).map((key) => {
     return {
-      [key]: deepClone(obj[key], hash)
-    }
-  })
-  return Object.assign(cloneObj, ...result)
+      [key]: deepClone(obj[key], hash),
+    };
+  });
+  return Object.assign(cloneObj, ...result);
 }
 ```
 
@@ -256,8 +238,6 @@ console.log(result[sym] === test[sym])
 
 运行 for...in 实现的深拷贝我们会发现：
 
-
-
 ![img](https://upload-images.jianshu.io/upload_images/4762028-4fa1b3db02294dc2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/227/format/webp)
 
 拷贝失败了，为什么？
@@ -265,8 +245,6 @@ console.log(result[sym] === test[sym])
 因为 [Symbol](https://link.jianshu.com/?t=https%3A%2F%2Fdeveloper.mozilla.org%2Fzh-CN%2Fdocs%2FGlossary%2FSymbol) 是一种特殊的数据类型，它最大的特点便是独一无二，所以它的深拷贝就是浅拷贝。
 
 但如果这时我们使用 Reflect 实现的版本：
-
-
 
 ![img](https://upload-images.jianshu.io/upload_images/4762028-9b02462182d782e2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/289/format/webp)
 
@@ -299,7 +277,7 @@ function deepClone(obj) {
 
 1. 拷贝原型上的属性
 
-众所周知，JS 对象是基于原型链设计的，所以当一个对象的属性查找不到时会沿着它的原型链向上查找，也就是一个非构造函数对象的 [__proto__](https://link.jianshu.com/?t=https%3A%2F%2Fdeveloper.mozilla.org%2Fzh-CN%2Fdocs%2FWeb%2FJavaScript%2FReference%2FGlobal_Objects%2FObject%2Fproto) 属性。
+众所周知，JS 对象是基于原型链设计的，所以当一个对象的属性查找不到时会沿着它的原型链向上查找，也就是一个非构造函数对象的 [**proto**](https://link.jianshu.com/?t=https%3A%2F%2Fdeveloper.mozilla.org%2Fzh-CN%2Fdocs%2FWeb%2FJavaScript%2FReference%2FGlobal_Objects%2FObject%2Fproto) 属性。
 
 我们创建一个 childTest 变量，让 result 为它的深拷贝结果，其他不变：
 
@@ -311,8 +289,6 @@ let result = deepClone(childTest)
 这时，我们最初提供的四种实现只有 for...in 的实现能正确拷贝，为什么呢？原因还是在[结构化克隆算法](https://link.jianshu.com/?t=https%3A%2F%2Fdeveloper.mozilla.org%2Fzh-CN%2Fdocs%2FWeb%2FGuide%2FAPI%2FDOM%2FThe_structured_clone_algorithm%23%E7%9B%B8%E5%85%B3%E9%93%BE%E6%8E%A5)里：原形链上的属性也不会被追踪以及复制。
 
 落在具体实现上就是：for...in 会追踪原型链上的属性，而其它三种方法(Object.keys、Reflect.ownKeys 和 JSON 方法)都不会追踪原型链上的属性：
-
-
 
 ![img](https://upload-images.jianshu.io/upload_images/4762028-ed8132f2adfd5612.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/305/format/webp)
 
@@ -381,8 +357,6 @@ function deepClone(obj, hash = new WeakMap()) {
 
 结果：
 
-
-
 ![img](https://upload-images.jianshu.io/upload_images/4762028-fe598dedb9b65316.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/905/format/webp)
 
 ### 结语
@@ -429,4 +403,3 @@ function cloneDeep(obj) {
 1. 有特殊需求的深拷贝，建议使用 lodash 的 copyDeep 或 copyDeepWith 方法。
 
 最后感谢一下[知乎上关于这个问题的提问](https://link.jianshu.com/?t=https%3A%2F%2Fwww.zhihu.com%2Fquestion%2F47746441)的启发，无论做什么，尽量不要把简单的事情复杂化，深拷贝能不用就不用，它面对的问题往往可以用更优雅的方式解决，当然面试的时候装个逼是可以的。
-

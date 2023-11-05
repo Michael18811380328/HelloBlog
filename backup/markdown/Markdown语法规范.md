@@ -1,6 +1,6 @@
 **NOTE:** This is Simplelified Chinese Edition Document of Markdown Syntax. If you are seeking for English Edition Document. Please refer to [Markdown: Syntax](http://daringfireball.net/projects/markdown/syntax).
 
-**注：** 本项目同时也托管于 [Github](https://github.com/riku/Markdown-Syntax-CN) 上，请通过 fork＋pull request 方式来帮忙改进本项目。
+**注：** 本项目同时也托管于 [Github](https://github.com/riku/Markdown-Syntax-CN) 上，请通过 fork ＋ pull request 方式来帮忙改进本项目。
 
 # Markdown 语法说明 (简体中文版) / ([点击查看快速入门](https://www.appinn.com/markdown/basic.html))
 
@@ -25,7 +25,7 @@
   - [自动链接](https://www.appinn.com/markdown/#autolink)
 - [感谢](https://www.appinn.com/markdown/#acknowledgement)
 
-------
+---
 
 ## 概述
 
@@ -119,7 +119,7 @@ Markdown 将会把它转换为：
 
 不过需要注意的是，code 范围内，不论是行内还是区块， `<` 和 `&` 两个符号都*一定*会被转换成 HTML 实体，这项特性让你可以很容易地用 Markdown 写 HTML code （和 HTML 相对而言， HTML 语法中，你要把所有的 `<` 和 `&` 都转换为 HTML 实体，才能在 HTML 文件里面写出 HTML code。）
 
-------
+---
 
 ## 区块元素
 
@@ -177,7 +177,7 @@ Markdown 标记区块引用是使用类似 email 中用 `>` 的引用方式。�
 > This is a blockquote with two paragraphs. Lorem ipsum dolor sit amet,
 > consectetuer adipiscing elit. Aliquam hendrerit mi posuere lectus.
 > Vestibulum enim wisi, viverra nec, fringilla in, laoreet vitae, risus.
-> 
+>
 > Donec sit amet nisl. Aliquam semper ipsum sit amet velit. Suspendisse
 > id sem consectetuer libero luctus adipiscing.
 ```
@@ -207,12 +207,12 @@ id sem consectetuer libero luctus adipiscing.
 
 ```
 > ## 这是一个标题。
-> 
+>
 > 1.   这是第一行列表项。
 > 2.   这是第二行列表项。
-> 
+>
 > 给出一些例子代码：
-> 
+>
 >     return shell_exec("echo $input | $markdown_script");
 ```
 
@@ -473,7 +473,7 @@ end tell
 ---------------------------------------
 ```
 
-------
+---
 
 ## 区段元素
 
@@ -668,7 +668,7 @@ __double underscores__
 un*frigging*believable
 ```
 
-但是**如果你的 \* 和 _ 两边都有空白的话，它们就只会被当成普通的符号**。
+但是**如果你的 \* 和 \_ 两边都有空白的话，它们就只会被当成普通的符号**。
 
 如果要在文字前后直接插入普通的星号或底线，你可以用反斜线：
 
@@ -777,7 +777,7 @@ Markdown 使用一种和链接很相似的语法来标记图片，同样也允�
 
 到目前为止， Markdown 还没有办法指定图片的宽高，如果你需要的话，你可以使用普通的 `<img>` 标签。
 
-------
+---
 
 ## 其它
 

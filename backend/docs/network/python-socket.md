@@ -1,8 +1,8 @@
-# Python的用法
+# Python 的用法
 
-## socket模块
+## socket 模块
 
-一个简单的web服务器。
+一个简单的 web 服务器。
 
 ```python
 import socket
@@ -25,7 +25,7 @@ while True:
     cli_sock.close()
 ```
 
-多进程版不会堵塞的web server。
+多进程版不会堵塞的 web server。
 
 ```python
 import os

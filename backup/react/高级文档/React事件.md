@@ -1,10 +1,10 @@
-# React.js学习笔记之事件
+# React.js 学习笔记之事件
 
 ## 事件系统
 
 > React 标准化了事件对象，因此在不同的浏览器中都会有相同的属性。
 
-组件createClass后创建的是许多方法组成的对象。组件中使用的方法分为React自有的方法与用户定义的方法。其中React自有方法是组件生命周期中的方法，如：`render`、`componentWillUpdate`、`componentDidMount`等。用户自定义的方法可以起符合JS命名规范的方法就可以（最好使用驼峰命名），如：`handleClick`、`handleChange`、`handleMouseover`等。
+组件 createClass 后创建的是许多方法组成的对象。组件中使用的方法分为 React 自有的方法与用户定义的方法。其中 React 自有方法是组件生命周期中的方法，如：`render`、`componentWillUpdate`、`componentDidMount`等。用户自定义的方法可以起符合 JS 命名规范的方法就可以（最好使用驼峰命名），如：`handleClick`、`handleChange`、`handleMouseover`等。
 
 > 事件绑定语法：onClick = {this.handleClick}
 
@@ -74,11 +74,11 @@
 > - onFocus
 > - onBlur
 
-#### UI元素类
+#### UI 元素类
 
 > - onScroll
 
-滚动事件触发的时候会触发onScroll事件
+滚动事件触发的时候会触发 onScroll 事件
 
 #### 滚动
 
@@ -105,23 +105,25 @@
 
 ```jsx
 var HelloDada = React.createClass({
-  getInitialState:function(){
-    return{
-      name:''
+  getInitialState: function () {
+    return {
+      name: "",
     };
   },
-  handleChange:function(e){
+  handleChange: function (e) {
     this.setState({
-      name:e.target.value
+      name: e.target.value,
     });
   },
-  render:function(){
-    return <div>
-      <input onChange={this.handleChange} />
-    </div>
-  }
+  render: function () {
+    return (
+      <div>
+        <input onChange={this.handleChange} />
+      </div>
+    );
+  },
 });
-ReactDom.render(<HelloDada/>,document.body);
+ReactDom.render(<HelloDada />, document.body);
 ```
 
 ## 事件池
@@ -134,13 +136,13 @@ function onClick(event) {
   console.log(event.type); // => "click"
   var eventType = event.type; // => "click"
 
-  setTimeout(function() {
+  setTimeout(function () {
     console.log(event.type); // => null
     console.log(eventType); // => "click"
   }, 0);
 
-  this.setState({clickEvent: event}); // 不起作用.this.state.clickEvent 将只包含空值.
-  this.setState({eventType: event.type}); // 您依然可以导出事件属性
+  this.setState({ clickEvent: event }); // 不起作用.this.state.clickEvent 将只包含空值.
+  this.setState({ eventType: event.type }); // 您依然可以导出事件属性
 }
 ```
 
@@ -161,19 +163,19 @@ function onClick(event) {
 
 其中`e`是事件对象`target`是事件对象的属性
 
-*(以下内容括号内为类型)*
+_(以下内容括号内为类型)_
 
 ### 通用属性
 
 - bubbles (boolean) 表示事件是否冒泡
 - cancelable(boolean) 表示事件是否可以取消
-- currentTarget(DOMEventTarget) 与Target类似，由于事件可以冒泡，所以两者表示的内容是不同的
+- currentTarget(DOMEventTarget) 与 Target 类似，由于事件可以冒泡，所以两者表示的内容是不同的
 - defaultPrevented(boolean) 表示事件是否禁止了默认行为
 - eventPhase(number) 表示事件所处的阶段
-- isTrusted(boolean) 表示事件是否可信。所谓的可信事件表示的是用户操作的事件，不可信事件就是通过JS代码来触发的事件。
+- isTrusted(boolean) 表示事件是否可信。所谓的可信事件表示的是用户操作的事件，不可信事件就是通过 JS 代码来触发的事件。
 - nativeEvent(DOMEvent)
-- preventDefault() (void) 对应的defaultPrevented，表示的是禁止默认行为
-- stopPropagaTion() (void) 对应的是bubbles，表示的是sh
+- preventDefault() (void) 对应的 defaultPrevented，表示的是禁止默认行为
+- stopPropagaTion() (void) 对应的是 bubbles，表示的是 sh
 - target(DOMEventTarget)
 - timeStamp(number) 时间戳，也就是事件触发的事件
 - type(string) 事件的类型
@@ -186,18 +188,18 @@ function onClick(event) {
 
 #### 键盘事件
 
-- altKey(boolean) 表示是否按下alt键
+- altKey(boolean) 表示是否按下 alt 键
 - charCode(Number) 表示的是按键的字符编码，可以通过编码来判断按下的是什么键
-- ctrlKey(boolean) 表示是否按下ctrl键
-- getModifierState(key) (function) 表示是否按下辅助按键（辅助按键就是雷士ctrl、shift等辅助按键）可以传入按键编码来判断是否按下
+- ctrlKey(boolean) 表示是否按下 ctrl 键
+- getModifierState(key) (function) 表示是否按下辅助按键（辅助按键就是雷士 ctrl、shift 等辅助按键）可以传入按键编码来判断是否按下
 - key(string) 字符串，按下的键
 - keyCode(Number) 表示那些不是字符编码的按键
 - locale(String) 表示本地化得一些字符串
 - location(number) 表示位置
-- metaKey(boolean) 表示的是win系统下的win键，mac系统下对应的command键
+- metaKey(boolean) 表示的是 win 系统下的 win 键，mac 系统下对应的 command 键
 - repeat(boolean) 表示按键是否重复
-- shiftKey(boolean) 表示是否按下shift
-- which(Number) 表示经过通用化得charCode和keyCode
+- shiftKey(boolean) 表示是否按下 shift
+- which(Number) 表示经过通用化得 charCode 和 keyCode
 
 #### 焦点事件
 
@@ -213,8 +215,8 @@ function onClick(event) {
 - ctrlKey(boolean)
 - getModifierState(key) (function)
 - metaKey(boolean)
-- pageX(Number) 原点为HTML页面的左上角
-- pageY(Number) 原点为HTML页面的左上角
+- pageX(Number) 原点为 HTML 页面的左上角
+- pageY(Number) 原点为 HTML 页面的左上角
 - relatedTarget(DOMEventTarget)
 - screenX(Number) 原点为显示器的左上角
 - screenY(Number) 原点为显示器的左上角
@@ -233,7 +235,7 @@ function onClick(event) {
 - targetTouches(DOMTouchList) 判断手势操作
 - touches(DOMTouchList) 判断手势操作
 
-#### UI元素事件
+#### UI 元素事件
 
 - detail(Number) 滚动的距离
 - view(DOMAbstractView) 界面，视窗
@@ -241,9 +243,9 @@ function onClick(event) {
 #### 鼠标滚动
 
 - deltaMode(Number) 可以理解为移动的单位
-- deltaX(Number) X轴移动的相对距离固定值
-- deltaY(Number) Y轴移动的相对距离固定值
-- deltaZ(Number) Z轴移动的相对距离固定值
+- deltaX(Number) X 轴移动的相对距离固定值
+- deltaY(Number) Y 轴移动的相对距离固定值
+- deltaZ(Number) Z 轴移动的相对距离固定值
 
 ### 实例
 
@@ -251,24 +253,29 @@ function onClick(event) {
 
 ```jsx
 var HelloDada = React.creatClass({
-  getInitialState:function(){
+  getInitialState: function () {
     return {
-      backgroundColor:'#FFFFFF'
-    }
+      backgroundColor: "#FFFFFF",
+    };
   },
-  handleWheel:function(e){
-    var newColor = (parseInt(this.state.backgroundColor.substr(1),16)+e.deltaY*997).tiString(16);
+  handleWheel: function (e) {
+    var newColor = (
+      parseInt(this.state.backgroundColor.substr(1), 16) +
+      e.deltaY * 997
+    ).tiString(16);
     this.setState({
-      backgroundColor:newColor
-    })
+      backgroundColor: newColor,
+    });
   },
-  render:function(){
-    return <div onWheel={this.handleWheel} style={this.state}>
-      <p>Dada Shuaige</p>
-    </div>
-  }
+  render: function () {
+    return (
+      <div onWheel={this.handleWheel} style={this.state}>
+        <p>Dada Shuaige</p>
+      </div>
+    );
+  },
 });
-ReactDOM.render(<HelloDada />,document.body)
+ReactDOM.render(<HelloDada />, document.body);
 ```
 
 2.键盘事件对象
@@ -310,57 +317,61 @@ handleChange:function(e){
 }
 ```
 
-> this.setState设置状态
+> this.setState 设置状态
 
 ### 实例
 
 ```jsx
-var Dada =React.creatClass({
-  getInitialState:function(){
-    return{
-      x:0,
-      y:0
-    }
+var Dada = React.creatClass({
+  getInitialState: function () {
+    return {
+      x: 0,
+      y: 0,
+    };
   },
-  handleMouseMove:function(e){
+  handleMouseMove: function (e) {
     this.setState({
-      x:e.clientX,
-      y:e.clientY
+      x: e.clientX,
+      y: e.clientY,
     });
   },
-  render:function(){
-    return <div onMouseMove={this.handleMouseMove} style={{width:'200px',height:'200px',backgroundColor:'#999'}}>
-      {this.state.x+'.'+this.state.y}
-    </div>
-  }
+  render: function () {
+    return (
+      <div
+        onMouseMove={this.handleMouseMove}
+        style={{ width: "200px", height: "200px", backgroundColor: "#999" }}
+      >
+        {this.state.x + "." + this.state.y}
+      </div>
+    );
+  },
 });
-ReactDOM.render(<Dada />,document.body)
+ReactDOM.render(<Dada />, document.body);
 ```
 
 ## 小结
 
-本节主要介绍了React的事件系统，很详细的列出了每一个事件对象与事件对象的属性，可以作为一个查找的参考。
+本节主要介绍了 React 的事件系统，很详细的列出了每一个事件对象与事件对象的属性，可以作为一个查找的参考。
 
+react 对于每个 html 元素都添加了很多事件处理函数，这些事件网上一搜就都出来了，这里简单说下在 react 中利用 js 进行操作类似于 css 里的 hover 所使用的事件。
 
-
-react对于每个html元素都添加了很多事件处理函数，这些事件网上一搜就都出来了，这里简单说下在react中利用js进行操作类似于css里的hover所使用的事件。
-
-比如这样一个需求，有以下3个div：
+比如这样一个需求，有以下 3 个 div：
 
 ```html
 <div class="a abc">a</div>
 <div class="b abc">b</div>
-<div class="c abc">c</div>123
+<div class="c abc">c</div>
+123
 ```
 
-网上很多例子只是简单说了下一个组件是如何操作类似于:hover选择器，没错就是使用onMouseEnter和onMouseLeave，那么现在我要实现这样一个效果： 
-\1. 鼠标不在这三个div上的时候，这个三个div里的字体显示红色 
-\2. 鼠标放在class为a的组件上的时候，它里面的字体颜色不变，其他的div变成绿色
+网上很多例子只是简单说了下一个组件是如何操作类似于:hover 选择器，没错就是使用 onMouseEnter 和 onMouseLeave，那么现在我要实现这样一个效果：
+\1. 鼠标不在这三个 div 上的时候，这个三个 div 里的字体显示红色
+\2. 鼠标放在 class 为 a 的组件上的时候，它里面的字体颜色不变，其他的 div 变成绿色
 
-也许是我以前写前端的时候用习惯了JQuery，处处都是dom操作，现在使用react的时候，一时之间转不过来弯，就好像从面向过程编程过度到面向对象编程一样，我想了一下，想想react改变页面的内容是根据状态，于是我利用onMouseEnter和onMouseLeave事件来动态改变状态hover，然后根据hover的状态值去给这三个div分别添加一个class，这里的class样式在css文本中要写在其他class的下面，因为css是自上而下的。
+也许是我以前写前端的时候用习惯了 JQuery，处处都是 dom 操作，现在使用 react 的时候，一时之间转不过来弯，就好像从面向过程编程过度到面向对象编程一样，我想了一下，想想 react 改变页面的内容是根据状态，于是我利用 onMouseEnter 和 onMouseLeave 事件来动态改变状态 hover，然后根据 hover 的状态值去给这三个 div 分别添加一个 class，这里的 class 样式在 css 文本中要写在其他 class 的下面，因为 css 是自上而下的。
 
-我的代码如下： 
-reactjs中的部分代码
+我的代码如下：
+reactjs 中的部分代码
 
 ```jsx
 construction(props){
@@ -393,24 +404,28 @@ render(){
 }
 ```
 
-css的相关样式
+css 的相关样式
 
 ```css
-.abc{
+.abc {
   //公共的样式
   color: red;
 }
 
 //写在其他class的样式表的下面
-.aHover,.bHover,.cHover{
+.aHover,
+.bHover,
+.cHover {
   color: green;
 }
 
-.aHover:hover,.bHover:hover,.cHover:hover{
+.aHover:hover,
+.bHover:hover,
+.cHover:hover {
   color: red;
 }
 ```
 
-也许有的人会想到用css中的+选择器，比如：.abc:hover + .abc{}，是的，如果只是像这里写的需求的话是可以实现，如果换一下，我鼠标放在b上，b显示红色，其他显示绿色，那么+选择器就无力了，因为css是自上而下，不可逆的，说是+是兄弟级选择器，我看也就是弟弟级选择器，它只能定位到你当前标签后面同级的标签元素。
+也许有的人会想到用 css 中的+选择器，比如：.abc:hover + .abc{}，是的，如果只是像这里写的需求的话是可以实现，如果换一下，我鼠标放在 b 上，b 显示红色，其他显示绿色，那么+选择器就无力了，因为 css 是自上而下，不可逆的，说是+是兄弟级选择器，我看也就是弟弟级选择器，它只能定位到你当前标签后面同级的标签元素。
 
-*注：因为是react，所以不建议使用js对dom进行直接操作、利用css的expression
+\*注：因为是 react，所以不建议使用 js 对 dom 进行直接操作、利用 css 的 expression

@@ -1,6 +1,7 @@
 # 阿里巴巴开源项目
 
 ## 前端开源项目
+
 1.数据驱动的高交互可视化图形语法 AntV - G2
 <img src="https://00feng00.github.io/img/AntV-G2.png">
 G2 是一套基于可视化编码的图形语法，以数据驱动，具有高度的易用性和扩展性，用户无需关注各种繁琐的实现细节，一条语句即可构建出各种各样的可交互的统计图表。同时，G2 也是 AntV 最重要的组成，始于《The Grammar of Graphics》一书描述的视觉编码语法系统（这也是 G2 项目命名的由来）。
@@ -17,7 +18,6 @@ Ant Design 是蚂蚁金服开发和正在使用的一套企业级的前端设计
 它的特性：企业级金融产品的交互语言和视觉体系；丰富实用的 React UI 组件；
 基于 React 的组件化开发模式；背靠 npm 生态圈；基于 webpack 的调试构建方案，支持 ES6。
 [项目链接](https://github.com/ant-design/ant-design)
-
 
 4.基于 G2 封装的 React 图表库 BizCharts
 <img src="https://00feng00.github.io/img/BizCharts.png">
@@ -48,8 +48,8 @@ Dawn 取「黎明、破晓」之意，原为「阿里云·业务运营团队」�
 
 配合工具: OmniGraffle ,Sketch
 OmniGraffle 可以用来绘制图表，流程图，组织结构图以及插图，也可以用来组织头脑中思考的信息，
-组织头脑风暴的结果，绘制心智图，作为样式管理器，或设计网页或PDF文档的原型。
-Sketch 是一个矢量设计软件，可以帮助你快速投入UI设计当中。
+组织头脑风暴的结果，绘制心智图，作为样式管理器，或设计网页或 PDF 文档的原型。
+Sketch 是一个矢量设计软件，可以帮助你快速投入 UI 设计当中。
 [项目链接](http://ux.ant.design/)
 
 9.跨容器的渲染引擎 Rax
@@ -70,7 +70,7 @@ G3D 是阿里巴巴开源的一款基于 WebGL 的 javascript 3D 绘图引擎。
 11.跨平台移动开发工具 Weex
 <img src="https://00feng00.github.io/img/Weex.png">
 Weex 是开源的跨平台移动开发工具，能够完美兼顾性能与动态性，
-让移动开发者通过简捷的前端语法写出Native级别的性能体验，并支持iOS、安卓、YunOS及Web等多端部署。
+让移动开发者通过简捷的前端语法写出 Native 级别的性能体验，并支持 iOS、安卓、YunOS 及 Web 等多端部署。
 [项目链接](https://github.com/apache/incubator-weex/)
 
 12.基于 Weex 的 UI 组件库 Weex Ui
@@ -93,12 +93,12 @@ UltraViewPager 是阿里开源的一个封装多种特性的 ViewPager ，主要
 <img src="https://00feng00.github.io/img/Tangram-UI.png">
 Tangram，七巧板，是天猫团队开源的跨平台模块化 UI 界面方案。
 Tangram 不仅仅是一个 Native（iOS & Android）的界面开发框架，而是从日常工作中沉淀出的一套界面解决方案，
-涵盖了 Native SDK、GUI操作台、后端逻辑容器、组件库机制的一整套方案。
+涵盖了 Native SDK、GUI 操作台、后端逻辑容器、组件库机制的一整套方案。
 [项目链接](http://tangram.pingguohe.net/)
 
 16.自动化测试解决方案 Macaca
 <img src="https://00feng00.github.io/img/Macaca.png">
-Macaca是一套完整的自动化测试解决方案，支持移动端和PC端，支持Native, Hybrid, H5 等多种应用类型，并且提供客户端工具和持续集成服务。
+Macaca 是一套完整的自动化测试解决方案，支持移动端和 PC 端，支持 Native, Hybrid, H5 等多种应用类型，并且提供客户端工具和持续集成服务。
 [项目链接](https://github.com/alibaba/macaca)
 
 17.基于 React 的中后台应用解决方案 飞冰 ICE
@@ -109,48 +109,46 @@ Macaca是一套完整的自动化测试解决方案，支持移动端和PC端，
 [项目链接](https://alibaba.github.io/ice/)
 
 18.HTML5 互动游戏引擎 Hilo
-Hilo 是阿里巴巴集团开发的一款HTML5跨终端游戏解决方案，ta可以帮助开发者快速创建HTML5游戏。
+Hilo 是阿里巴巴集团开发的一款 HTML5 跨终端游戏解决方案，ta 可以帮助开发者快速创建 HTML5 游戏。
 [项目链接](https://github.com/hiloteam/Hilo)
 
 19.JavaScript 模板引擎 Velocity.js
-Velocity.js 是velocity模板语法的javascript实现。Velocity 是基于Java的模板引擎，广泛应用在阿里集 体各个子公司。
-Velocity模板适用于大量模板使用的场景，支持复杂的逻辑运算，包含 基本数据类型、变量赋值和函数等功能。
+Velocity.js 是 velocity 模板语法的 javascript 实现。Velocity 是基于 Java 的模板引擎，广泛应用在阿里集 体各个子公司。
+Velocity 模板适用于大量模板使用的场景，支持复杂的逻辑运算，包含 基本数据类型、变量赋值和函数等功能。
 Velocity.js 支持 Node.js 和浏览器环境。
 [项目链接](https://github.com/shepherdwind/velocity.js)
 
 20. 非侵入式运行期 AOP 框架 Dexposed
-Dexposed 是阿里巴巴无线事业部第一个重量级 Andorid 开源软件，
-基于 ROOT 社区著名开源项目 Xposed 改造剥离了 ROOT 部分，演化为服务于所在应用自身的 AOP 框架。
-它支撑了阿里大部分 App 的在线分钟级客户端 bugfix 和线上调试能力。
-[项目链接](https://github.com/alibaba/dexposed)
-
+    Dexposed 是阿里巴巴无线事业部第一个重量级 Andorid 开源软件，
+    基于 ROOT 社区著名开源项目 Xposed 改造剥离了 ROOT 部分，演化为服务于所在应用自身的 AOP 框架。
+    它支撑了阿里大部分 App 的在线分钟级客户端 bugfix 和线上调试能力。
+    [项目链接](https://github.com/alibaba/dexposed)
 
 21. 自动化测试解决方案 UI Recorder
-<img src="https://00feng00.github.io/img/UI-Recorder.png">
-UI Recorder 是一款零成本的整体自动化测试解决方案，一次自测等于多次测试，测一个浏览器等于测多个浏览器！
-[项目链接](https://github.com/alibaba/uirecorder)
+    <img src="https://00feng00.github.io/img/UI-Recorder.png">
+    UI Recorder 是一款零成本的整体自动化测试解决方案，一次自测等于多次测试，测一个浏览器等于测多个浏览器！
+    [项目链接](https://github.com/alibaba/uirecorder)
 
 22. Android 应用热修复工具 AndFix
-AndFix 是阿里巴巴开源的 Android 应用热修复工具，帮助 Anroid 开发者修复应用的线上问题。
-Andfix 是 "Android hot-fix" 的缩写。
-[项目链接](https://github.com/alibaba/AndFix)
+    AndFix 是阿里巴巴开源的 Android 应用热修复工具，帮助 Anroid 开发者修复应用的线上问题。
+    Andfix 是 "Android hot-fix" 的缩写。
+    [项目链接](https://github.com/alibaba/AndFix)
 
 23. 淘宝 React 框架 React Web
-<img src="https://00feng00.github.io/img/React-Web.png">
-淘宝前端团队开源项目React Web，通过与React Native一致的API构建Web应用。
-[项目链接](https://github.com/taobaofed/react-web)
+    <img src="https://00feng00.github.io/img/React-Web.png">
+    淘宝前端团队开源项目 React Web，通过与 React Native 一致的 API 构建 Web 应用。
+    [项目链接](https://github.com/taobaofed/react-web)
 
 24.基于 Node.js 的自动化持续集成 Reliable
-Reliable 是分布式架构的持续集成系统，由Macaca 团队的成员开发。
-适用于集成构建、集成构建等场景。她是典型的主从结构，分为reliable-master 与 reliable-slave 两部分。
+Reliable 是分布式架构的持续集成系统，由 Macaca 团队的成员开发。
+适用于集成构建、集成构建等场景。她是典型的主从结构，分为 reliable-master 与 reliable-slave 两部分。
 [项目链接](https://github.com/reliablejs/reliable-master)
 
 25. 模拟数据生成器 Mock.js
-Mock.js 是一款模拟数据生成器，旨在帮助前端攻城师独立于后端进行开发，帮助编写单元测试。
-提供了以下模拟功能：根据数据模板生成模拟数据，模拟 Ajax 请求，生成并返回模拟数据，基于 HTML 模板生成模拟数据。
-[项目链接](https://github.com/nuysoft/Mock)
+    Mock.js 是一款模拟数据生成器，旨在帮助前端攻城师独立于后端进行开发，帮助编写单元测试。
+    提供了以下模拟功能：根据数据模板生成模拟数据，模拟 Ajax 请求，生成并返回模拟数据，基于 HTML 模板生成模拟数据。
+    [项目链接](https://github.com/nuysoft/Mock)
 
 26. React 应用的服务器渲染框架 Beidou
-Beidou(北斗) 是 NodeJS & React 同构框架，基于Egg.js开发。
-[项目链接](https://github.com/alibaba/beidou)
-
+    Beidou(北斗) 是 NodeJS & React 同构框架，基于 Egg.js 开发。
+    [项目链接](https://github.com/alibaba/beidou)

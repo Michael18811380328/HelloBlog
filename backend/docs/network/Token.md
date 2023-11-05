@@ -1,12 +1,12 @@
 # Token 介绍
 
-Token 对于计算机网络请求很重要，简单理解，token就是验证用户的一个钥匙（类似身份证号码）。
+Token 对于计算机网络请求很重要，简单理解，token 就是验证用户的一个钥匙（类似身份证号码）。
 
-运行机制：当用户登录时，需要提交用户名和密码等信息。此时通过验证，服务器就返回一个token作为验证。以后用户进行数据请求等操作，只需要将token放入请求中，不需要每次提交用户名和密码进行验证。那么token需要注意下面几个问题：
+运行机制：当用户登录时，需要提交用户名和密码等信息。此时通过验证，服务器就返回一个 token 作为验证。以后用户进行数据请求等操作，只需要将 token 放入请求中，不需要每次提交用户名和密码进行验证。那么 token 需要注意下面几个问题：
 
-### Token 应该保存起来（放到本地的session storage 或者 cookies）
+### Token 应该保存起来（放到本地的 session storage 或者 cookies）
 
-在SPA单页网页中，客户刷新浏览器后会带来一些token问题。解决方法：把 token 保存到起来：[放到 session storage, local storage 或者是客户端的 cookie 里](https://github.com/auth0/angular-token-auth/blob/master/auth.client.js#L31)。如果当前浏览器不支持 session storage 时，应该转存到 cookies 里。
+在 SPA 单页网页中，客户刷新浏览器后会带来一些 token 问题。解决方法：把 token 保存到起来：[放到 session storage, local storage 或者是客户端的 cookie 里](https://github.com/auth0/angular-token-auth/blob/master/auth.client.js#L31)。如果当前浏览器不支持 session storage 时，应该转存到 cookies 里。
 
 如果你想“我把 token 保存到 cookie ，不就跟以前没有任何分别？”。可是在这种情况下你只是把 cookie 当作一个储存机制，而不是一种[验证机制](http://sitr.us/2011/08/26/cookies-are-bad-for-you.html)。（比如说，这个 cookie 不会被 Web 框架用于用户验证，所以没有 XSRF 攻击的危险）。
 
@@ -24,7 +24,7 @@ Tokens 应该有一个有效期，否则只要登录过一次，就可以永远�
 
 一个可能的选择是，当用户通过 app.yourdomain.com 上面的验证时你生成一个 token 并且作为一个 cookie 保存到 .yourdomain.com。
 
-然后，在 youromdain.com 中你可以检查这个 cookie 是不是已经存在了，并且如果存在的话就转到 app.youromdain.com去。从这以后，这个 token 将会对程序的子域名以及之后通常的流程都有效（直到这个 token 超过有效期）。
+然后，在 youromdain.com 中你可以检查这个 cookie 是不是已经存在了，并且如果存在的话就转到 app.youromdain.com 去。从这以后，这个 token 将会对程序的子域名以及之后通常的流程都有效（直到这个 token 超过有效期）。
 
 不过这将会导致 cookie 存在但 token 被删除了或其他意外情况的发生。在这种情况下，用户将不得不重新登录。但重要的是，像我们之前说的，我们不会这个用 cookie 作为验证方法，只是作为一个存储机制去支持存储信息在不同的域名中。
 
@@ -38,9 +38,9 @@ Tokens 应该有一个有效期，否则只要登录过一次，就可以永远�
 
 ### 当你需要流传送某些东西，请用 token 去获取一个已签名的请求。
 
-当使用 cookies 时，你可以很容易开始一个文件的下载或流传送内容。然而，在 tokens 的使用中，请求是通过 XHR 完成的，你不能依赖于它。而解决方法应该是像 AWS 那样通过生成一个签名了的请求，例如，Hawk Bewits 是一个很好的框架去启用它：这个 ticket 是无状态并且是基于 URL 的：host + path + query + headers + timestamp + HMAC，并且有一个有效期。所以它可以用于像只能在5分钟内去下载一个文件。
+当使用 cookies 时，你可以很容易开始一个文件的下载或流传送内容。然而，在 tokens 的使用中，请求是通过 XHR 完成的，你不能依赖于它。而解决方法应该是像 AWS 那样通过生成一个签名了的请求，例如，Hawk Bewits 是一个很好的框架去启用它：这个 ticket 是无状态并且是基于 URL 的：host + path + query + headers + timestamp + HMAC，并且有一个有效期。所以它可以用于像只能在 5 分钟内去下载一个文件。
 
-###  [XSS](http://baike.baidu.com/view/50325.htm) 比 [XSRF](http://baike.baidu.com/view/1609487.htm) 要更容易防范
+### [XSS](http://baike.baidu.com/view/50325.htm) 比 [XSRF](http://baike.baidu.com/view/1609487.htm) 要更容易防范
 
 XSS 攻击的原理是，攻击者插入一段可执行的 JavaScripts 脚本，该脚本会读出用户浏览器的 cookies 并将它传输给攻击者，攻击者得到用户的 Cookies 后，即可冒充用户。但是要防范 XSS 也很简单，在写入 cookies 时，将 HttpOnly 设置为 true，客户端 JavaScripts 就无法读取该 cookies 的值，就可以有效防范 XSS 攻击。因为 Tokens 也是储存在本地的 session storage 或者是客户端的 cookies 中，也是会受到 XSS 攻击。所以在使用 tokens 的时候，必须要考虑过期机制，不然攻击者就可以永久持有受害用户帐号。
 
@@ -80,7 +80,6 @@ JWT 通常以 Base64 + AES 方式编码传输。OAuth 2 协议也支持 JWT，�
 
 ### Tokens 不是万能的解决方法，得根据你的需求自行采用
 
-这些年来，我们帮助过不少大企业实现了他们的以 Token 为基础的验证授权架构。曾经有一家 10k + 员工，有着大量数据的企业，他们想实现一个中央权限管理系统，其中有一个需要是某个员工只能读取某个国家某个医院某个床位的id和name字段数据，想想这样的细粒度的权限管理是多么难实现，无论是技术上还是行政上。
+这些年来，我们帮助过不少大企业实现了他们的以 Token 为基础的验证授权架构。曾经有一家 10k + 员工，有着大量数据的企业，他们想实现一个中央权限管理系统，其中有一个需要是某个员工只能读取某个国家某个医院某个床位的 id 和 name 字段数据，想想这样的细粒度的权限管理是多么难实现，无论是技术上还是行政上。
 
 当然采用 tokens 与否，得看具体需求，但是，要忠告是，不要什么内容都写到 tokens 了，加之前想想有没有这个必要。
-

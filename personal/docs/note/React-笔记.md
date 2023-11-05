@@ -299,6 +299,24 @@ raect报错解决，componentWillReceivePorps 将要废弃，那么使用 getDer
 
 
    
+## 0285 React hook 函数嵌套问题
+
+
+实际问题：useMemo 内部动态计算 dom 树，使用 useRef 获取 dom 节点，但是函数不支持嵌套
+
+不允许嵌套原因：hook 函数设计之初就是纯函数，状态机，一个参数返回一个结果，如果两个 hook 函数嵌套，就不是纯函数概念，可能互相影响等。
+
+```
+// ❌ React Hook "useState" is called conditionally. 
+// React Hooks must be called in the exact same order in every component render.
+
+```
+
+解决办法：因为函数式组件不适合处理复杂的 DOM 计算，那么既然现在需求变了，然后改成 Class，使用 createRef 获取 dom 节点并进行计算。
+
+
+
+   
 ## 0162 原生事件合成事件
 
 

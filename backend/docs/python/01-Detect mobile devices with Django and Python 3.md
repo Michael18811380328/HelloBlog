@@ -33,7 +33,7 @@ def myfunction(request):
 And in `mytemplate.html`:
 
 ```
-{% if is_mobile %}    
+{% if is_mobile %}
     show something
 {% else %}
     show something else
@@ -87,15 +87,13 @@ The usage in template is as follows:
 
 However, note that the middleware class has changed in Django 1.10. So if you are using Django 1.10 +, you will have to modify the middleware class definition in this Package as given in this [GitHub issue tracker page](https://github.com/selwin/django-user_agents/issues/13).
 
-
-
 ## 解决
 
 I found an alternative way, starting from [this answer](https://stackoverflow.com/a/3487254/5802289).
 
 By adding an additional function into `views.py`:
 
-直接使用正则表达式验证 request 
+直接使用正则表达式验证 request
 
 ```python
 import re

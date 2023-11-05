@@ -2,11 +2,11 @@
 
 We wrote this document so that you have a better idea of how we decide what React does and what React doesn’t do, and what our development philosophy is like. While we are excited to see community contributions, we are not likely to choose a path that violates one or more of these principles.
 
-写这篇文档的目睹是介绍React做了什么。我们建议使用React时不要违背这样的原则。这个文档在于对React的理解，并不是React的应用或者组件。
+写这篇文档的目睹是介绍 React 做了什么。我们建议使用 React 时不要违背这样的原则。这个文档在于对 React 的理解，并不是 React 的应用或者组件。
 
 > **Note:**
 >
-> This document assumes a strong understanding of React. It describes the design principles of *React itself*, not React components or applications.
+> This document assumes a strong understanding of React. It describes the design principles of _React itself_, not React components or applications.
 >
 > For an introduction to React, check out [Thinking in React](https://react.docschina.org/docs/thinking-in-react.html) instead.
 
@@ -14,19 +14,19 @@ We wrote this document so that you have a better idea of how we decide what Reac
 
 The key feature of React is composition of components. Components written by different people should work well together. It is important to us that you can add functionality to a component without causing rippling changes throughout the codebase.
 
-React的核心特点是由组件组成。不同人编写的组件应该共同工作（没有冲突）。对于一个组件函数化的设计，你不需要考虑内部的变化。
+React 的核心特点是由组件组成。不同人编写的组件应该共同工作（没有冲突）。对于一个组件函数化的设计，你不需要考虑内部的变化。
 
 For example, it should be possible to introduce some local state into a component without changing any of the components using it. Similarly, it should be possible to add some initialization and teardown code to any component when necessary.
 
-举个例子，如果你使用一个组件，不需要改变任何使用的组件，而只需要传入一些本地的state参数。（React组件对外暴露的接口需要完整，只需要给出接口，其他人即可正确使用）。同理，如果必须的情况下，可以给组件增加一些初始化的数据和卸载的代码。
+举个例子，如果你使用一个组件，不需要改变任何使用的组件，而只需要传入一些本地的 state 参数。（React 组件对外暴露的接口需要完整，只需要给出接口，其他人即可正确使用）。同理，如果必须的情况下，可以给组件增加一些初始化的数据和卸载的代码。
 
 There is nothing “bad” about using state or lifecycle hooks in components. Like any powerful feature, they should be used in moderation, but we have no intention to remove them. On the contrary, we think they are integral parts of what makes React useful. We might enable [more functional patterns](https://github.com/reactjs/react-future/tree/master/07%20-%20Returning%20State) in the future, but both local state and lifecycle hooks will be a part of that model.
 
-在一个组件中，使用state或者生命周期函数并不是坏事。就像任何一个强大的特点，他们需要适度使用，但是我们无意删除这部分。相反，我们认为，这部分代码是的React更有用。将来我们会使用函数式编程，但是，在这个模型中仍然会保留本地的state和生命周期函数。
+在一个组件中，使用 state 或者生命周期函数并不是坏事。就像任何一个强大的特点，他们需要适度使用，但是我们无意删除这部分。相反，我们认为，这部分代码是的 React 更有用。将来我们会使用函数式编程，但是，在这个模型中仍然会保留本地的 state 和生命周期函数。
 
 Components are often described as “just functions” but in our view they need to be more than that to be useful. In React, components describe any composable behavior, and this includes rendering, lifecycle, and state. Some external libraries like [Relay](http://facebook.github.io/relay/) augment components with other responsibilities such as describing data dependencies. It is possible that those ideas might make it back into React too in some form.
 
-组件经常被描述为“只是简单的函数”，但是我们认为他的用处更大。在React中，组价描述任何任何可组合的行为，这包括render，lifestyle，state。
+组件经常被描述为“只是简单的函数”，但是我们认为他的用处更大。在 React 中，组价描述任何任何可组合的行为，这包括 render，lifestyle，state。
 
 ### Common Abstraction
 
@@ -38,9 +38,9 @@ This is why sometimes we add features to React itself. If we notice that many co
 
 通常，我们拒绝添加可以在用户环境中实现的功能。我们不想使用无用的库代码来夸大您的应用程序。但是，也有例外。
 
-例如，如果React不提供对本地状态或生命周期挂钩的支持，人们将为其创建自定义抽象。当有多个抽象竞争时，React无法强制或利用其中任何一个的属性。它必须使用最低公分母来工作。
+例如，如果 React 不提供对本地状态或生命周期挂钩的支持，人们将为其创建自定义抽象。当有多个抽象竞争时，React 无法强制或利用其中任何一个的属性。它必须使用最低公分母来工作。
 
-这就是为什么有时我们向React本身添加功能的原因。如果我们注意到许多组件以不兼容或低效的方式实现了某个功能，那么我们可能更喜欢将其烘焙到React中。我们不能轻易做到。当我们这样做时，这是因为我们有信心提高抽象级别会使整个生态系统受益。状态，生命周期挂钩，跨浏览器事件规范化就是很好的例子。
+这就是为什么有时我们向 React 本身添加功能的原因。如果我们注意到许多组件以不兼容或低效的方式实现了某个功能，那么我们可能更喜欢将其烘焙到 React 中。我们不能轻易做到。当我们这样做时，这是因为我们有信心提高抽象级别会使整个生态系统受益。状态，生命周期挂钩，跨浏览器事件规范化就是很好的例子。
 
 ### Escape Hatches
 
@@ -48,9 +48,9 @@ React is pragmatic. It is driven by the needs of the products written at Faceboo
 
 If we want to deprecate a pattern that we don’t like, it is our responsibility to consider all existing use cases for it and [educate the community about the alternatives](https://react.docschina.org/blog/2016/07/13/mixins-considered-harmful.html) before we deprecate it. If some pattern that is useful for building apps is hard to express in a declarative way, we will [provide an imperative API](https://react.docschina.org/docs/more-about-refs.html) for it. If we can’t figure out a perfect API for something that we found necessary in many apps, we will [provide a temporary subpar working API](https://react.docschina.org/docs/context.html) as long as it is possible to get rid of it later and it leaves the door open for future improvements.
 
-React是程序化的。 它由在Facebook上编写的产品的需求驱动。 尽管它受到尚未完全成为主流的一些范例（例如函数式编程）的影响，但使具有不同技能和经验水平的众多开发人员可以使用它是该项目的明确目标。
+React 是程序化的。 它由在 Facebook 上编写的产品的需求驱动。 尽管它受到尚未完全成为主流的一些范例（例如函数式编程）的影响，但使具有不同技能和经验水平的众多开发人员可以使用它是该项目的明确目标。
 
-如果我们要弃用我们不喜欢的模式，则我们有责任考虑它的所有现有用例，并在弃用之前对社区进行替代教育。 如果很难以声明的方式表达一些对构建应用有用的模式，那么我们将为其提供命令性的API。 如果我们无法为许多应用程序中需要的东西找到理想的API，我们将提供一个临时的，低于标准的API，只要有可能稍后将其淘汰，并为将来的改进打开方便之门。
+如果我们要弃用我们不喜欢的模式，则我们有责任考虑它的所有现有用例，并在弃用之前对社区进行替代教育。 如果很难以声明的方式表达一些对构建应用有用的模式，那么我们将为其提供命令性的 API。 如果我们无法为许多应用程序中需要的东西找到理想的 API，我们将提供一个临时的，低于标准的 API，只要有可能稍后将其淘汰，并为将来的改进打开方便之门。
 
 ### Stability
 
@@ -72,25 +72,23 @@ When we add a deprecation warning, we keep it for the rest of the current major 
 
 You can find the codemods that we released in the [react-codemod](https://github.com/reactjs/react-codemod) repository.
 
-我们重视API的稳定性。在Facebook，我们有超过2万个使用React的组件。其他许多公司，包括Twitter和Airbnb，也是React的重度用户。这就是为什么我们通常不愿更改公共API或行为的原因。
+我们重视 API 的稳定性。在 Facebook，我们有超过 2 万个使用 React 的组件。其他许多公司，包括 Twitter 和 Airbnb，也是 React 的重度用户。这就是为什么我们通常不愿更改公共 API 或行为的原因。
 
 但是，我们认为“没有任何变化”意义上的稳定性被高估了。它很快变成停滞状态。取而代之的是，我们更喜欢“在生产中大量使用它，并且当某些事情发生变化时，会有一条清晰的（最好是自动化的）迁移路径。”
 
-弃用模式时，我们会在Facebook上研究其内部用法并添加弃用警告。他们让我们评估了变化的影响。有时，如果我们发现为时过早，我们会退后一步，我们需要更策略性地考虑使代码库达到可以进行此更改的程度。
+弃用模式时，我们会在 Facebook 上研究其内部用法并添加弃用警告。他们让我们评估了变化的影响。有时，如果我们发现为时过早，我们会退后一步，我们需要更策略性地考虑使代码库达到可以进行此更改的程度。
 
-如果我们确信更改不会带来太大破坏，并且迁移策略对所有用例都可行，那么我们将向开源社区发布弃用警告。我们与Facebook以外的React的许多用户保持着密切联系，并且我们监视流行的开源项目并指导他们解决这些过时的问题。
+如果我们确信更改不会带来太大破坏，并且迁移策略对所有用例都可行，那么我们将向开源社区发布弃用警告。我们与 Facebook 以外的 React 的许多用户保持着密切联系，并且我们监视流行的开源项目并指导他们解决这些过时的问题。
 
-考虑到Facebook React代码库的庞大规模，成功进行内部迁移通常可以很好地表明其他公司也不会遇到问题。不过，有时人们会指出我们没有想到的其他用例，因此我们为它们添加了逃生舱口，或者重新考虑了我们的方法。
+考虑到 Facebook React 代码库的庞大规模，成功进行内部迁移通常可以很好地表明其他公司也不会遇到问题。不过，有时人们会指出我们没有想到的其他用例，因此我们为它们添加了逃生舱口，或者重新考虑了我们的方法。
 
 没有充分的理由，我们不会弃用任何东西。我们认识到有时弃用警告会造成挫败感，但我们添加它们是因为弃用警告为我们和社区中许多人认为有价值的改进和新功能扫清了道路。
 
-例如，我们在React 15.2.0中添加了有关未知DOM道具的警告。许多项目受此影响。但是修复此警告很重要，这样我们才能将对自定义属性的支持引入到React中。在我们添加的每个不赞成使用行为背后都有这样的原因。
+例如，我们在 React 15.2.0 中添加了有关未知 DOM 道具的警告。许多项目受此影响。但是修复此警告很重要，这样我们才能将对自定义属性的支持引入到 React 中。在我们添加的每个不赞成使用行为背后都有这样的原因。
 
-添加弃用警告时，我们会将其保留在当前主要版本的其余部分中，并在下一个主要版本中更改其行为。如果涉及大量重复的手动工作，我们将发布一个使大多数更改自动化的codemod脚本。 Codemods使我们能够在庞大的代码库中前进而不会停滞不前，并且我们鼓励您也使用它们。
+添加弃用警告时，我们会将其保留在当前主要版本的其余部分中，并在下一个主要版本中更改其行为。如果涉及大量重复的手动工作，我们将发布一个使大多数更改自动化的 codemod 脚本。 Codemods 使我们能够在庞大的代码库中前进而不会停滞不前，并且我们鼓励您也使用它们。
 
-您可以在react-codemod存储库中找到我们发布的codemod。
-
-
+您可以在 react-codemod 存储库中找到我们发布的 codemod。
 
 ### Interoperability
 
@@ -182,7 +180,7 @@ In our codebase, JSX provides an unambiguous hint to the tools that they are dea
 
 ### Dogfooding
 
-We try our best to address the problems raised by the community. However we are likely to prioritize the issues that people are *also* experiencing internally at Facebook. Perhaps counter-intuitively, we think this is the main reason why the community can bet on React.
+We try our best to address the problems raised by the community. However we are likely to prioritize the issues that people are _also_ experiencing internally at Facebook. Perhaps counter-intuitively, we think this is the main reason why the community can bet on React.
 
 Heavy internal usage gives us the confidence that React won’t disappear tomorrow. React was created at Facebook to solve its problems. It brings tangible business value to the company and is used in many of its products. [Dogfooding](https://en.wikipedia.org/wiki/Eating_your_own_dog_food) it means that our vision stays sharp and we have a focused direction going forward.
 

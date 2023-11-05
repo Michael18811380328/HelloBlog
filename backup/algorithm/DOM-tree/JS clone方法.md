@@ -1,28 +1,26 @@
-## JS clone方法
+## JS clone 方法
 
-JavaScript中并没有直接提供对象复制(Object Clone)的方法。因此下面的代码中改变对象b的时候，也就改变了对象a。
+JavaScript 中并没有直接提供对象复制(Object Clone)的方法。因此下面的代码中改变对象 b 的时候，也就改变了对象 a。
 
 ```js
-a = {k1:1, k2:2, k3:3};
+a = { k1: 1, k2: 2, k3: 3 };
 b = a;
 b.k2 = 4;
 ```
 
-如果只想改变b而保持a不变，就需要对对象a进行复制。
+如果只想改变 b 而保持 a 不变，就需要对对象 a 进行复制。
 
-### 用jQuery进行对象复制
+### 用 jQuery 进行对象复制
 
-在可以使用jQuery的情况下，jQuery自带的`extend`方法可以用来实现对象的复制。
+在可以使用 jQuery 的情况下，jQuery 自带的`extend`方法可以用来实现对象的复制。
 
 ```js
-a = {k1:1, k2:2, k3:3};
+a = { k1: 1, k2: 2, k3: 3 };
 b = {};
-$.extend(b,a);
+$.extend(b, a);
 ```
 
- 
-
-### 自定义clone()方法来实现对象复制
+### 自定义 clone()方法来实现对象复制
 
 下面的方法，是对象复制的基本想法。
 
@@ -32,7 +30,7 @@ Object.prototype.clone = function() {
   for (attr in this) {
     if (!obj.hasOwnProperty(attr)) continue;
     copy[attr] = (typeof this[i] == "object")?obj[attr].clone():obj[attr];
-  } 
+  }
   return copy;
 };
 
@@ -76,5 +74,3 @@ function clone(obj) {
     throw new Error("Unable to copy obj! Its type isn't supported.");
 }
 ```
-
- 

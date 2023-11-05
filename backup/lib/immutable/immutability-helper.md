@@ -13,7 +13,7 @@ This is a drop-in replacement for [`react-addons-update`](https://facebook.githu
 ```
 // import update from 'react-addons-update';
 import update from 'immutability-helper';
- 
+
 const state1 = ['x'];
 const state2 = update(state1, {$push: ['y']}); // ['x', 'y']
 ```
@@ -24,7 +24,7 @@ Note that this module has nothing to do with React. However, since this module i
 
 React lets you use whatever style of data management you want, including mutation. However, if you can use immutable data in performance-critical parts of your application it's easy to implement a fast[`shouldComponentUpdate()`](https://facebook.github.io/react/docs/react-component.html#shouldcomponentupdate) method to significantly speed up your app.
 
-Dealing with immutable data in JavaScript is more difficult than in languages designed for it, like [Clojure](http://clojure.org/). However, we've provided a simple immutability helper, `update()`, that makes dealing with this type of data much easier, *without* fundamentally changing how your data is represented. You can also take a look at Facebook's [Immutable.js](https://facebook.github.io/immutable-js/docs/) and React’s [Using Immutable Data Structures](https://facebook.github.io/react/docs/optimizing-performance.html#using-immutable-data-structures) section for more detail on Immutable.js.
+Dealing with immutable data in JavaScript is more difficult than in languages designed for it, like [Clojure](http://clojure.org/). However, we've provided a simple immutability helper, `update()`, that makes dealing with this type of data much easier, _without_ fundamentally changing how your data is represented. You can also take a look at Facebook's [Immutable.js](https://facebook.github.io/immutable-js/docs/) and React’s [Using Immutable Data Structures](https://facebook.github.io/react/docs/optimizing-performance.html#using-immutable-data-structures) section for more detail on Immutable.js.
 
 ### The Main Idea
 
@@ -48,7 +48,7 @@ Unfortunately, deep copies are expensive, and sometimes impossible. You can alle
 
 ```
 import update, { extend } from 'immutability-helper';
- 
+
 const newData = extend(myData, {
   x: extend(myData.x, {
     y: extend(myData.x.y, {z: 7}),
@@ -65,7 +65,7 @@ While this is fairly performant (since it only makes a shallow copy of `log n` o
 
 ```
 import update from 'immutability-helper';
- 
+
 const newData = update(myData, {
   x: {y: {z: {$set: 7}}},
   a: {b: {$push: [9]}}
@@ -74,13 +74,13 @@ const newData = update(myData, {
 
 While the syntax takes a little getting used to (though it's inspired by [MongoDB's query language](http://docs.mongodb.org/manual/core/crud-introduction/#query)) there's no redundancy, it's statically analyzable and it's not much more typing than the mutative version.
 
-The `$`-prefixed keys are called *commands*. The data structure they are "mutating" is called the *target*.
+The `$`-prefixed keys are called _commands_. The data structure they are "mutating" is called the _target_.
 
 ## Available Commands
 
 - `{$push: array}` `push()` all the items in `array` on the target.
 - `{$unshift: array}` `unshift()` all the items in `array` on the target.
-- `{$splice: array of arrays}` for each item in `arrays` call `splice()` on the target with the parameters provided by the item. ***Note:** The items in the array are applied sequentially, so the order matters. The indices of the target may change during the operation.*
+- `{$splice: array of arrays}` for each item in `arrays` call `splice()` on the target with the parameters provided by the item. **\*Note:** The items in the array are applied sequentially, so the order matters. The indices of the target may change during the operation.\*
 - `{$set: any}` replace the target entirely.
 - `{$toggle: array of strings}` toggles a list of boolean fields from the target object.
 - `{$unset: array of strings}` remove the list of keys in `array` from the target object.
@@ -181,7 +181,7 @@ var desiredState = {
     },
   ],
 };
- 
+
 const state2 = update(state, {
   foo: foo =>
     update(foo || [], {
@@ -191,7 +191,7 @@ const state2 = update(state, {
         })
     })
 });
- 
+
 console.log(JSON.stringify(state2) === JSON.stringify(desiredState)) // true
 // note that state could have been declared as any of the following and it would still output true:
 // var state = { foo: [] }
@@ -203,7 +203,7 @@ You can also choose to use the extend functionality to add an `$auto` and `$auto
 
 ```
 import update, { extend } from 'immutability-helper';
- 
+
 extend('$auto', function(value, object) {
   return object ?
     update(object, value):
@@ -214,7 +214,7 @@ extend('$autoArray', function(value, object) {
     update(object, value):
     update([], value);
 });
- 
+
 var state = {}
 var desiredState = {
   foo: [
@@ -233,7 +233,7 @@ var state2 = update(state, {
 console.log(JSON.stringify(state2) === JSON.stringify(desiredState)) // true
 ```
 
-------
+---
 
 ## Adding your own commands
 
@@ -241,7 +241,7 @@ The main difference this module has with `react-addons-update` is that you can e
 
 ```
 import update, { extend } from 'immutability-helper';
- 
+
 extend('$addtax', function(tax, original) {
   return original + (tax * original);
 });
@@ -258,13 +258,13 @@ If you don't want to mess around with the globally exported `update` function yo
 
 ```
 import { Context } from 'immutability-helper';
- 
+
 const myContext = new Context();
- 
+
 myContext.extend('$foo', function(value, original) {
   return 'foo!';
 });
- 
+
 myContext.update(/* args */);
 ```
 

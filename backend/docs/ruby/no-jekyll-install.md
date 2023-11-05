@@ -2,15 +2,15 @@
 
 In termanal, initialize jekyll then generate some bolgs.
 
-~~~bash
+```bash
 # make directory
 mkdir test-blog
 cd test-blog/
 
 # use jekyll generate bolgs
 jekyll new blog
-Could not load Bundler. Bundle install skipped. 
-New jekyll site installed in /blog. 
+Could not load Bundler. Bundle install skipped.
+New jekyll site installed in /blog.
 
 cd blog/
 
@@ -22,7 +22,7 @@ cd blog/
 	from /Library/Ruby/Gems/2.3.0/gems/jekyll-3.8.5/exe/jekyll:11:in `<top (required)>'
 	from /usr/local/bin/jekyll:22:in `load'
 	from /usr/local/bin/jekyll:22:in `<main>'
-	
+
 # install bundler to fix
 sudo gem install bundler -r --source http://rubygems.org/
 
@@ -65,7 +65,7 @@ Configuration file: /blog/_config.yml
             Source: /blog
        Destination: /blog/_site
  Incremental build: disabled. Enable with --incremental
-      Generating... 
+      Generating...
        Jekyll Feed: Generating feed for posts
                     done in 0.469 seconds.
  Auto-regeneration: enabled for '/blog'
@@ -74,7 +74,6 @@ Configuration file: /blog/_config.yml
 [2019-04-08 18:02:46] ERROR `/favicon.ico' not found.
 
 # open http://127.0.0.1:4000/ in browser to view blogs
-# warning：`/favicon.ico' not found. 
+# warning：`/favicon.ico' not found.
 # we should put page ico file in /
-~~~
-
+```

@@ -1,4 +1,4 @@
-# React.children简介
+# React.children 简介
 
 React.Children 是 React 的内置对象，具有很多方法。
 
@@ -10,23 +10,21 @@ this.props.children 或者 props.children 表示某个组件的子组件。注�
 
 类似于数组的 map，可以获取每一个子组件并处理
 
-~~~jsx
+```jsx
 function handleChildren() {
-  React.Children.map(this.props.children, function(child) {
-    return <li>{child}</li>
+  React.Children.map(this.props.children, function (child) {
+    return <li>{child}</li>;
   });
 }
-~~~
+```
 
 这样可以批量处理子组件
 
-~~~jsx
+```jsx
 let NodeList = React.createClass({
-  render: function() {
-    return (
-      <ul>{this.handleChildren()}</ul>
-    );
-  }
+  render: function () {
+    return <ul>{this.handleChildren()}</ul>;
+  },
 });
 
 React.render(
@@ -34,15 +32,16 @@ React.render(
     <span>hello</span>
     <span>Michael</span>
   </NotesList>,
-document.body);
-~~~
+  document.body
+);
+```
 
-~~~html
+```html
 <ul>
   <li><span>hello</span></li>
   <li><span>Michael</span></li>
 </ul>
-~~~
+```
 
 ## forEach
 

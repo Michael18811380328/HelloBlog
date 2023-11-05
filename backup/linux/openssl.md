@@ -1,4 +1,4 @@
-# OpenSSL的用法
+# OpenSSL 的用法
 
 生成私钥
 
@@ -9,7 +9,7 @@
 $ openssl genrsa -des3 -out server.enc.key 1024
 ```
 
-解除密钥的pass-phrase保护
+解除密钥的 pass-phrase 保护
 
 ```bash
 $ openssl rsa -in server.enc.key -out server.key
@@ -45,4 +45,3 @@ openssl s_client \
   -key /Users/Integralist/.pki/Certificate.key \
   -showcerts
 ```
-

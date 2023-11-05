@@ -44,8 +44,8 @@ $ npm install -S webpack webpack-cli
 （5）在项目根目录下，新建一个脚本文件`app.js`。
 
 ```javascript
-const $ = require('jquery');
-$('h1').css({ color: 'red'});
+const $ = require("jquery");
+$("h1").css({ color: "red" });
 ```
 
 上面代码中，`require`方法是 Node 特有的模块加载命令。
@@ -73,7 +73,6 @@ $ npm run build
 
 1. 修改样式，将标题变为蓝色，然后重新编译生成打包文件。
 
-
 ## REST API
 
 ### 实验目的
@@ -90,9 +89,9 @@ $ npm install -S json-server
 
 （2） 在项目根目录下，新建一个 JSON 文件`db.json`。
 
-这里的JSON相当于数据库，不同的键表示不同的路径。使用GET方法可以获取数据，使用POST方法可以新增数据（数据体需要`x-www-form-urlencoded`编码，否则无法增加这个数据，例如评论）。
+这里的 JSON 相当于数据库，不同的键表示不同的路径。使用 GET 方法可以获取数据，使用 POST 方法可以新增数据（数据体需要`x-www-form-urlencoded`编码，否则无法增加这个数据，例如评论）。
 
-这里的数据表的列名是用户可选择的，MYSQL中的列名有必选项和可选项，这样会返回不同的结果。
+这里的数据表的列名是用户可选择的，MYSQL 中的列名有必选项和可选项，这样会返回不同的结果。
 
 ```javascript
 {
@@ -126,18 +125,18 @@ $ npm run server
 （6）向`http://127.0.0.1:3000/comments`发出`POST`请求。注意，数据体`Body`要选择`x-www-form-urlencoded`编码，然后依次添加下面两个字段。
 
 ```javascript
-body: "hello world"
-postId: 1
+body: "hello world";
+postId: 1;
 ```
 
 发出该请求后，再向`http://127.0.0.1:3000/comments`发出`GET`请求，查看结果。
 
-get请求可以看到新增加的一些评论（数据项）
+get 请求可以看到新增加的一些评论（数据项）
 
 （7） 向`http://127.0.0.1:3000/comments/2`发出`PUT`请求，数据体`Body`要选择`x-www-form-urlencoded`编码，然后添加下面的字段。
 
 ```javascript
-body: "hello react"
+body: "hello react";
 ```
 
 发出该请求后，再向`http://127.0.0.1:3000/comments`发出`GET`请求，查看结果。
@@ -147,8 +146,6 @@ body: "hello react"
 （8）向`http://127.0.0.1:3000/comments/2`发出`delete`请求。
 
 发出该请求后，再向`http://127.0.0.1:3000/comments`发出`GET`请求，查看结果。
-
-
 
 ## Express
 
@@ -168,8 +165,8 @@ $ npm install
 （2）打开`app1.js`，尝试看懂这个脚本。
 
 ```javascript
-var express    = require('express');
-var app        = express();
+var express = require("express");
+var app = express();
 ```
 
 上面代码调用`express`，生成一个 Web 应用的实例。
@@ -177,22 +174,22 @@ var app        = express();
 ```javascript
 var router = express.Router();
 
-router.get('/', function(req, res) {
-  res.send('<h1>Hello World</h1>');
+router.get("/", function (req, res) {
+  res.send("<h1>Hello World</h1>");
 });
 
-app.use('/home', router);
+app.use("/home", router);
 ```
 
 上面代码新建了一个路由对象，该对象指定访问根路由（`/`）时，返回`Hello World`。然后，将该路由加载在`/home`路径，也就是说，访问`/home`会返回`Hello World`。
 
-`router.get`方法的第二个参数是一个回调函数，当符合指定路由的请求进来，会被这个函数处理。该函数的两个参数，`req`和`res`都是Express 内置的对象，分别表示用户的请求和 Web 服务器的回应。`res.send`方法就表示服务器回应所送出的内容。
+`router.get`方法的第二个参数是一个回调函数，当符合指定路由的请求进来，会被这个函数处理。该函数的两个参数，`req`和`res`都是 Express 内置的对象，分别表示用户的请求和 Web 服务器的回应。`res.send`方法就表示服务器回应所送出的内容。
 
 ```javascript
 var port = process.env.PORT || 8080;
 
 app.listen(port);
-console.log('Magic happens on port ' + port);
+console.log("Magic happens on port " + port);
 ```
 
 上面代码指定了外部访问的端口，如果环境变量没有指定，则端口默认为`8080`。最后两行是启动应用，并输出一行提示文字。
@@ -206,8 +203,6 @@ $ node app1.js
 浏览器访问`localhost:8080/home`，看看是否输出`Hello World`。
 
 然后，命令行下按 Ctrl + C，退出这个进程。
-
-
 
 （4）通过环境变量，自定义启动端口。
 
@@ -232,21 +227,21 @@ $ node app1.js
 
 ==思考题：Node 应用能否直接在`80`端口启动？==
 
-不能直接在80或者82端口启动，可以在3000，8000， 8008， 8080端口启动。
+不能直接在 80 或者 82 端口启动，可以在 3000，8000， 8008， 8080 端口启动。
 
-可能是监听 < 1024 的端口要 root 权限；执行 sudo PORT=80 node app1.js 即可启动80端口
+可能是监听 < 1024 的端口要 root 权限；执行 sudo PORT=80 node app1.js 即可启动 80 端口
 
-~~~js
-server.listen(80, '127.0.0.1', () => {
-        console.log('server is running');
-    });
-~~~
+```js
+server.listen(80, "127.0.0.1", () => {
+  console.log("server is running");
+});
+```
 
 （5）打开`app2.js`，查看新增的那个路由。
 
 ```javascript
-router.get('/:name', function(req, res) {
-  res.send('<h1>Hello ' + req.params.name + '</h1>');
+router.get("/:name", function (req, res) {
+  res.send("<h1>Hello " + req.params.name + "</h1>");
 });
 ```
 
@@ -262,13 +257,11 @@ $ node app2.js
 
 然后，命令行下按 Ctrl + C，退出这个进程。
 
-
-
 （6）打开`app3.js`，先查看页面头部新增的两行代码。
 
 ```javascript
 // 新增代码...
-var bodyParser = require('body-parser');
+var bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: true }));
 ```
 
@@ -277,9 +270,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 下面查看新增的那个路由。
 
 ```javascript
-router.post('/', function (req, res) {
+router.post("/", function (req, res) {
   var name = req.body.name;
-  res.json({message: 'Hello ' + name});
+  res.json({ message: "Hello " + name });
 });
 ```
 
@@ -309,8 +302,6 @@ name=Alice
 }
 ```
 
-
-
 （7）打开`app4.js`，查看在所有路由之前新增的那个函数。
 
 ```javascript
@@ -334,20 +325,20 @@ router.get('/', function(req, res) {
 
 2. URL 的查询字符串，比如`localhost:8080?name=Alice`里面的`name`，可以用`req.query.name`拿到。请修改一个路由，使之可以收到查询字符串，然后输出`'Hello ' + req.query.name`。
 
-~~~js
-router.use(function(req, res, next) {
-  console.log('-----------------------------------');
-  console.log('This is next interval to get Timer');
+```js
+router.use(function (req, res, next) {
+  console.log("-----------------------------------");
+  console.log("This is next interval to get Timer");
   let time = new Date();
-  console.log('发出请求的时间是' + time);
-  console.log('-----------------------------------');
+  console.log("发出请求的时间是" + time);
+  console.log("-----------------------------------");
   next();
 });
 
 // req.query可以获取查询中的参数（实际不能明文传递密码）
-router.get('/', function(req, res) {
+router.get("/", function (req, res) {
   console.log("用户名：" + req.query.name + "  密码：" + req.query.pwd);
   // console.log(req.query);
-  res.send('<h1>Hello World</h1>');
+  res.send("<h1>Hello World</h1>");
 });
-~~~
+```

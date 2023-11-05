@@ -1,6 +1,6 @@
 # 用户管理
 
-Linux系统的用户管理，主要用到以下命令。
+Linux 系统的用户管理，主要用到以下命令。
 
 - useradd 增加新用户
 - usermod 修改现有用户
@@ -23,7 +23,7 @@ uid=1001(john) gid=100(users) groups=100(users)
 
 ### whoami
 
-`whoami`命令返回当前用户的ID。
+`whoami`命令返回当前用户的 ID。
 
 ```bash
 $ whoami
@@ -47,13 +47,13 @@ $ useradd -u 2000 -g 5000 -c "Admin Account of SAP" -d /opt/sap -s /bin/ksh john
 $ grep john /etc/passwd
 ```
 
-`useradd`命令背后，Linux系统会进行以下操作。
+`useradd`命令背后，Linux 系统会进行以下操作。
 
 - 新建用户主目录`/home/<username>`
 - 在`/etc/passwd`文件更新用户信息
 - 在`/etc/group`文件储存用户的组信息
 - 在`/etc/shadow`文件更新用户的密码信息
-- 在`/var/spool/mail/<username>`目录储存用户的Email
+- 在`/var/spool/mail/<username>`目录储存用户的 Email
 
 `useradd`命令的参数如下。
 
@@ -61,14 +61,14 @@ $ grep john /etc/passwd
 - `-c` `--comment`：用户信息（Comments），一个描述该 ID 的文本字符串
 - `-d` `--home`：用户主目录（Home Directory）的目录名称
 - `-e` `--expiredate`：帐户将过期或被禁用的日期，格式为 YYYY-MM_DD。
-- `-g` `--gid`：组ID（GID），用户的初始登录组的名称或编号。该组必须存在。
+- `-g` `--gid`：组 ID（GID），用户的初始登录组的名称或编号。该组必须存在。
 - `-G` `--groups`：用户所属的其他组的逗号分隔列表。
 - `-K` 可用于覆盖来自`/etc/login.defs`的默认值。
 - `-m` `--create-home`：创建用户主目录，如果用户的主目录不存在，则创建它。将框架文件和 /etc/skel 中的所有目录都复制到主目录。
 - `-o` `--non-unique` 允许用户拥有一个非唯一 ID。
 - `-p` `--password` 加密的密码。如果未指定密码，默认设置是禁用该帐户。您通常将在后续步骤中使用 passwd 命令，而不是生成一个加密的密码并在 useradd 命令上指定它。
-- `-s` `--shell`：用户Shell，如果用户的登录 shell 的名称与默认登录 shell 不同，则采用用户的登录 shell 名称。
-- `-u` `--uid`：用户ID（UID） 非负的用户 ID 编号，如果未指定 -o，那么它必须是唯一的。默认设置是使用不低于 UID_MIN 且大于任何现有用户的 ID 的最小值。
+- `-s` `--shell`：用户 Shell，如果用户的登录 shell 的名称与默认登录 shell 不同，则采用用户的登录 shell 名称。
+- `-u` `--uid`：用户 ID（UID） 非负的用户 ID 编号，如果未指定 -o，那么它必须是唯一的。默认设置是使用不低于 UID_MIN 且大于任何现有用户的 ID 的最小值。
 
 ## 相关文件
 
@@ -99,13 +99,13 @@ john3:x:1003:1003:John Doe3:/home/john3:/bin/bash
 
 每一行包含 7 个以冒号 (:) 分隔的字段。
 
-- 用户名	用于登录系统的名称。例如 jane。
-- 密码	已加密的密码。使用影子密码时，只包含一个 x 字符。
-- 用户 ID (UID)	用于在系统中表示此用户名的编号。例如，表示用户 jane 的 1002。
-- 组 ID(GID)	用于表示此用户在系统中的主要组的编号。例如，用户 jane 的 1002。
-- 注释(GECOS)	一个用于描述用户的可选字段。例如 Jane Doe。该字段可以包含多个逗号分隔的条目。它也可供 finger 等程序使用。GECOS 是过去使用的名称。请在 man 5 passwd 中查阅详细信息。
-- 主目录	用户的主目录的绝对路径。例如 /home/jane。
-- Shell	在用户登录到系统时自动启动的程序。这通常是一个交互式 shell，比如 /bin/bash 或 /bin/tcsh，但它可以是任何程序，不一定是交互式 shell。对于 mail 用户，它是 /sbin/nologin，指示系统 mail 用户无法登录。
+- 用户名 用于登录系统的名称。例如 jane。
+- 密码 已加密的密码。使用影子密码时，只包含一个 x 字符。
+- 用户 ID (UID) 用于在系统中表示此用户名的编号。例如，表示用户 jane 的 1002。
+- 组 ID(GID) 用于表示此用户在系统中的主要组的编号。例如，用户 jane 的 1002。
+- 注释(GECOS) 一个用于描述用户的可选字段。例如 Jane Doe。该字段可以包含多个逗号分隔的条目。它也可供 finger 等程序使用。GECOS 是过去使用的名称。请在 man 5 passwd 中查阅详细信息。
+- 主目录 用户的主目录的绝对路径。例如 /home/jane。
+- Shell 在用户登录到系统时自动启动的程序。这通常是一个交互式 shell，比如 /bin/bash 或 /bin/tcsh，但它可以是任何程序，不一定是交互式 shell。对于 mail 用户，它是 /sbin/nologin，指示系统 mail 用户无法登录。
 
 ### /etc/group
 
@@ -121,10 +121,10 @@ john3:x:1003:
 
 每一行包含 4 个以冒号 (:) 分隔的字段。
 
-- 组名称	此组的名称。例如 john2。
-- 密码	已加密的密码。使用影子组密码时，只包含一个 x 字符。
-- 组 ID(GID)	用于在系统中表示此组的编号。例如表示组 jane 的 1002。
-- 成员	一个逗号分隔的组成员列表，以此组作为主要组的成员除外。
+- 组名称 此组的名称。例如 john2。
+- 密码 已加密的密码。使用影子组密码时，只包含一个 x 字符。
+- 组 ID(GID) 用于在系统中表示此组的编号。例如表示组 jane 的 1002。
+- 成员 一个逗号分隔的组成员列表，以此组作为主要组的成员除外。
 
 ## usermod
 
@@ -138,7 +138,7 @@ $ usermod -G sap -d /opt/sap -s /bin/sh harry
 
 - -G：修改用户所在的组
 - -d：修改用户主密码
-- -s：修改用户的Shell
+- -s：修改用户的 Shell
 - -L：锁定或挂起帐户。
 - -U：解锁帐户。
 - -e：设置帐户的有效期。
@@ -189,7 +189,7 @@ GID_MAX			60000
 #SYS_GID_MAX		  999
 ```
 
-上面一段定义用户的最小编号是1000，用户组的最小编号是1000。
+上面一段定义用户的最小编号是 1000，用户组的最小编号是 1000。
 
 ## 特殊帐号
 
@@ -242,7 +242,7 @@ $ passwd -i <days> <username>
 
 非根用户会被要求先输入当前密码，然后再设置新密码。
 
-密码状态信息一共有7栏，含义如下。
+密码状态信息一共有 7 栏，含义如下。
 
 - 用户名
 - 密码状态：PS（Password Set）、LK（Password locked）、NP（No Password）
@@ -276,7 +276,7 @@ $ chage -d 0 <username>
 $ chage -l <username>
 ```
 
-change命令的选项
+change 命令的选项
 
 - -E 设置帐户的有效期。
 - -m 密码的最短有效天数。
@@ -303,10 +303,10 @@ $ sudo -i
 
 `groupadd`命令用来添加用户组。
 
-- -f	如果组已存在，则以成功状态退出。当您不需要在尝试创建某个组之前检查它是否存在时，此选项对于脚本编写很方便。
-- -g	手动指定组 ID。默认设置是使用不低于 GID_MIN 且大于任何现有组的 ID 的最小值。组 ID 通常是唯一的，而且必须是非负的。
-- -o	允许组拥有一个非唯一 ID。
-- -K	可用于覆盖来自 /etc/login.defs 的默认值。
+- -f 如果组已存在，则以成功状态退出。当您不需要在尝试创建某个组之前检查它是否存在时，此选项对于脚本编写很方便。
+- -g 手动指定组 ID。默认设置是使用不低于 GID_MIN 且大于任何现有组的 ID 的最小值。组 ID 通常是唯一的，而且必须是非负的。
+- -o 允许组拥有一个非唯一 ID。
+- -K 可用于覆盖来自 /etc/login.defs 的默认值。
 
 ### groupdel
 

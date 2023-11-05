@@ -24,6 +24,7 @@ function beforebuild() {
     cp -r js book/docs/js 
     cp -r js personal/docs/js 
     cp -r js leetcode/docs/js
+    cp -r js react/docs/js
 }
 
 function afterbuild() {
@@ -32,6 +33,7 @@ function afterbuild() {
     rm -rf book/docs/js 
     rm -rf personal/docs/js 
     rm -rf leetcode/docs/js
+    rm -rf react/docs/js
 }
 
 # 编译全部的文件夹
@@ -44,6 +46,7 @@ function build() {
     cd ../backend && mkdocs build
     cd ../personal && mkdocs build
     cd ../images && mkdocs build
+    cd ../react && mkdocs build
     cd ../
     afterbuild;
     echo "build end------"

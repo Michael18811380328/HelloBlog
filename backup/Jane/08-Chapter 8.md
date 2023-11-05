@@ -123,5 +123,3 @@ Thus relieved of a grievous load, I from that hour set to work afresh, resolved 
 Well has Solomon said—“Better is a dinner of herbs where love is, than a stalled ox and hatred therewith.”
 
 I would not now have exchanged Lowood with all its privations for Gateshead and its daily luxuries.
-
-

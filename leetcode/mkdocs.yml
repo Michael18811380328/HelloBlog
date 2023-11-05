@@ -108,6 +108,10 @@ nav:
         - '贪心算法': 'algre/贪心算法.md'
         - '链表算法': 'algre/链表算法.md'
         - '验证二叉搜索树': 'algre/验证二叉搜索树.md'
+        - 'DH算法': 'algre/DH算法.md'
+        - '今日头条推荐算法简介': 'algre/今日头条推荐算法简介.md'
+        - '数据兼容性问题解决': 'algre/数据兼容性问题解决.md'
+        - 'all-leetcode': 'algre/all-leetcode.md'
     - 刷题:
         - '01 面试题1-(1-30)': 'interview/01 面试题1-(1-30).md'
         - '02 面试题1-(30-60)': 'interview/02 面试题1-(30-60).md'

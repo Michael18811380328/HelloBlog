@@ -20,7 +20,7 @@ API: http://seaborn.pydata.org/api.html
 
 ### 案例
 
-~~~python
+```python
 # Import seaborn
 import seaborn as sns
 
@@ -36,15 +36,14 @@ sns.relplot(
     x="total_bill", y="tip", col="time",
     hue="smoker", style="smoker", size="size",
 )
-~~~
+```
 
 注：执行时，可能加载数据有问题，报下面的错误
 
-~~~bash
+```bash
 urllib.error.URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1045)>
-~~~
+```
 
 因为 sns.load_dataset("tips") 需要从 github 联网加载测试数据集，如果网络不好或者没有翻墙，这里会报错
 
 参考：https://blog.csdn.net/weixin_41571493/article/details/82528742
-

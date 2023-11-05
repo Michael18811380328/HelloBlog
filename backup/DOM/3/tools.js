@@ -2,8 +2,8 @@
  * Created by Lenovo on 2016/9/2.
  */
 
-function getEle(id){
-    return document.getElementById(id);
+function getEle(id) {
+  return document.getElementById(id);
 }
 
 /**
@@ -11,9 +11,9 @@ function getEle(id){
  * @param ele
  * @returns {Element|*|Node}
  */
-function getFirstNode(ele){
-    var node = ele.firstElementChild || ele.firstChild;
-    return node;
+function getFirstNode(ele) {
+  var node = ele.firstElementChild || ele.firstChild;
+  return node;
 }
 
 /**
@@ -21,8 +21,8 @@ function getFirstNode(ele){
  * @param ele
  * @returns {Element|*|Node}
  */
-function getLastNode(ele){
-    return ele.lastElementChild || ele.lastChild;
+function getLastNode(ele) {
+  return ele.lastElementChild || ele.lastChild;
 }
 
 /**
@@ -30,8 +30,8 @@ function getLastNode(ele){
  * @param ele
  * @returns {Element|*|Node}
  */
-function getNextNode(ele){
-    return ele.nextElementSibling || ele.nextSibling;
+function getNextNode(ele) {
+  return ele.nextElementSibling || ele.nextSibling;
 }
 
 /**
@@ -39,8 +39,8 @@ function getNextNode(ele){
  * @param ele
  * @returns {Element|*|Node}
  */
-function getPrevNode(ele){
-    return ele.previousElementSibling || ele.previousSibling;
+function getPrevNode(ele) {
+  return ele.previousElementSibling || ele.previousSibling;
 }
 
 /**
@@ -49,8 +49,8 @@ function getPrevNode(ele){
  * @param index 索引值
  * @returns {*|HTMLElement}
  */
-function getEleOfIndex(ele,index){
-    return ele.parentNode.children[index];
+function getEleOfIndex(ele, index) {
+  return ele.parentNode.children[index];
 }
 
 /**
@@ -58,15 +58,15 @@ function getEleOfIndex(ele,index){
  * @param ele
  * @returns {Array}
  */
-function getAllSiblings(ele){
-    //定义一个新数组，装所有的兄弟元素，将来返回
-    var newArr = [];
-    var arr = ele.parentNode.children;
-    for(var i=0;i<arr.length;i++){
-        //判断，如果不是传递过来的元素本身，那么添加到新数组中。
-        if(arr[i]!==ele){
-            newArr.push(arr[i]);
-        }
+function getAllSiblings(ele) {
+  //定义一个新数组，装所有的兄弟元素，将来返回
+  var newArr = [];
+  var arr = ele.parentNode.children;
+  for (var i = 0; i < arr.length; i++) {
+    //判断，如果不是传递过来的元素本身，那么添加到新数组中。
+    if (arr[i] !== ele) {
+      newArr.push(arr[i]);
     }
-    return newArr;
+  }
+  return newArr;
 }

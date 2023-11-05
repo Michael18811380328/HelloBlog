@@ -1,8 +1,8 @@
-# Fish Shell的用法
+# Fish Shell 的用法
 
 ## prompt
 
-fish有一个函数fish_prompt，该函数的输出内容就是命令行提示符。
+fish 有一个函数 fish_prompt，该函数的输出内容就是命令行提示符。
 
 ```bash
 function fish_prompt
@@ -44,4 +44,4 @@ function fish_prompt
 end
 ```
 
-set_color命令只支持以下值：black, red, green, brown, yellow, blue, magenta, purple, cyan, white and normal。
+set_color 命令只支持以下值：black, red, green, brown, yellow, blue, magenta, purple, cyan, white and normal。

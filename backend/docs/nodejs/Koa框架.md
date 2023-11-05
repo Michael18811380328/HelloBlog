@@ -4,7 +4,7 @@ Node 主要用在开发 Web 应用。这决定了使用 Node，往往离不开 W
 
 ![](http://www.ruanyifeng.com/blogimg/asset/2017/bg2017080801.png)
 
-[Koa](http://koajs.com/) 就是一种简单好用的 Web 框架。它的特点是优雅、简洁、表达力强、自由度高。本身代码只有1000多行，所有功能都通过插件实现，很符合 Unix 哲学。
+[Koa](http://koajs.com/) 就是一种简单好用的 Web 框架。它的特点是优雅、简洁、表达力强、自由度高。本身代码只有 1000 多行，所有功能都通过插件实现，很符合 Unix 哲学。
 
 本文从零开始，循序渐进，教会你如何使用 Koa 写出自己的 Web 应用。每一步都有简洁易懂的示例，希望让大家一看就懂。
 
@@ -32,7 +32,7 @@ $ cd koa-demos
 $ npm install
 ```
 
-所有示例源码，都在 [demos](https://github.com/ruanyf/koa-demos/tree/master/demos)  目录下面。
+所有示例源码，都在 [demos](https://github.com/ruanyf/koa-demos/tree/master/demos) 目录下面。
 
 ## 一、基本用法
 
@@ -42,7 +42,7 @@ $ npm install
 
 ```javascript
 // demos/01.js
-const Koa = require('koa');
+const Koa = require("koa");
 const app = new Koa();
 
 app.listen(3000);
@@ -66,11 +66,11 @@ Koa 提供一个 Context 对象，表示一次对话的上下文（包括 HTTP �
 
 ```javascript
 // demos/02.js
-const Koa = require('koa');
+const Koa = require("koa");
 const app = new Koa();
 
-const main = ctx => {
-  ctx.response.body = 'Hello World';
+const main = (ctx) => {
+  ctx.response.body = "Hello World";
 };
 
 app.use(main);
@@ -97,19 +97,19 @@ Koa 默认的返回类型是`text/plain`，如果想返回其他类型的内容�
 
 ```javascript
 // demos/03.js
-const main = ctx => {
-  if (ctx.request.accepts('xml')) {
-    ctx.response.type = 'xml';
-    ctx.response.body = '<data>Hello World</data>';
-  } else if (ctx.request.accepts('json')) {
-    ctx.response.type = 'json';
-    ctx.response.body = { data: 'Hello World' };
-  } else if (ctx.request.accepts('html')) {
-    ctx.response.type = 'html';
-    ctx.response.body = '<p>Hello World</p>';
+const main = (ctx) => {
+  if (ctx.request.accepts("xml")) {
+    ctx.response.type = "xml";
+    ctx.response.body = "<data>Hello World</data>";
+  } else if (ctx.request.accepts("json")) {
+    ctx.response.type = "json";
+    ctx.response.body = { data: "Hello World" };
+  } else if (ctx.request.accepts("html")) {
+    ctx.response.type = "html";
+    ctx.response.body = "<p>Hello World</p>";
   } else {
-    ctx.response.type = 'text';
-    ctx.response.body = 'Hello World';
+    ctx.response.type = "text";
+    ctx.response.body = "Hello World";
   }
 };
 ```
@@ -130,11 +130,11 @@ $ node demos/03.js
 
 ```javascript
 // demos/04.js
-const fs = require('fs');
+const fs = require("fs");
 
-const main = ctx => {
-  ctx.response.type = 'html';
-  ctx.response.body = fs.createReadStream('./demos/template.html');
+const main = (ctx) => {
+  ctx.response.type = "html";
+  ctx.response.body = fs.createReadStream("./demos/template.html");
 };
 ```
 
@@ -156,12 +156,12 @@ $ node demos/04.js
 
 ```javascript
 // demos/05.js
-const main = ctx => {
-  if (ctx.request.path !== '/') {
-    ctx.response.type = 'html';
+const main = (ctx) => {
+  if (ctx.request.path !== "/") {
+    ctx.response.type = "html";
     ctx.response.body = '<a href="/">Index Page</a>';
   } else {
-    ctx.response.body = 'Hello World';
+    ctx.response.body = "Hello World";
   }
 };
 ```
@@ -182,19 +182,19 @@ $ node demos/05.js
 
 ```javascript
 // demos/06.js
-const route = require('koa-route');
+const route = require("koa-route");
 
-const about = ctx => {
-  ctx.response.type = 'html';
+const about = (ctx) => {
+  ctx.response.type = "html";
   ctx.response.body = '<a href="/">Index Page</a>';
 };
 
-const main = ctx => {
-  ctx.response.body = 'Hello World';
+const main = (ctx) => {
+  ctx.response.body = "Hello World";
 };
 
-app.use(route.get('/', main));
-app.use(route.get('/about', about));
+app.use(route.get("/", main));
+app.use(route.get("/about", about));
 ```
 
 上面代码中，根路径`/`的处理函数是`main`，`/about`路径的处理函数是`about`。
@@ -213,8 +213,8 @@ $ node demos/06.js
 
 ```javascript
 // demos/12.js
-const path = require('path');
-const serve = require('koa-static');
+const path = require("path");
+const serve = require("koa-static");
 
 const main = serve(path.join(__dirname));
 app.use(main);
@@ -230,16 +230,16 @@ $ node demos/12.js
 
 ### 2.4 重定向
 
-有些场合，服务器需要重定向（redirect）访问请求。比如，用户登陆以后，将他重定向到登陆前的页面。`ctx.response.redirect()`方法可以发出一个302跳转，将用户导向另一个路由。请看下面的例子（完整代码看[这里](https://github.com/ruanyf/koa-demos/blob/master/demos/13.js)）。
+有些场合，服务器需要重定向（redirect）访问请求。比如，用户登陆以后，将他重定向到登陆前的页面。`ctx.response.redirect()`方法可以发出一个 302 跳转，将用户导向另一个路由。请看下面的例子（完整代码看[这里](https://github.com/ruanyf/koa-demos/blob/master/demos/13.js)）。
 
 ```javascript
 // demos/13.js
-const redirect = ctx => {
-  ctx.response.redirect('/');
+const redirect = (ctx) => {
+  ctx.response.redirect("/");
   ctx.response.body = '<a href="/">Index Page</a>';
 };
 
-app.use(route.get('/redirect', redirect));
+app.use(route.get("/redirect", redirect));
 ```
 
 运行这个 demo。
@@ -260,9 +260,9 @@ Koa 的最大特色，也是最重要的一个设计，就是中间件（middlew
 
 ```javascript
 // demos/07.js
-const main = ctx => {
+const main = (ctx) => {
   console.log(`${Date.now()} ${ctx.request.method} ${ctx.request.url}`);
-  ctx.response.body = 'Hello World';
+  ctx.response.body = "Hello World";
 };
 ```
 
@@ -287,7 +287,7 @@ $ node demos/07.js
 const logger = (ctx, next) => {
   console.log(`${Date.now()} ${ctx.request.method} ${ctx.request.url}`);
   next();
-}
+};
 app.use(logger);
 ```
 
@@ -320,27 +320,26 @@ $ node demos/08.js
 ```javascript
 // demos/09.js
 const one = (ctx, next) => {
-  console.log('>> one');
+  console.log(">> one");
   next();
-  console.log('<< one');
-}
+  console.log("<< one");
+};
 
 const two = (ctx, next) => {
-  console.log('>> two');
-  next(); 
-  console.log('<< two');
-}
+  console.log(">> two");
+  next();
+  console.log("<< two");
+};
 
 const three = (ctx, next) => {
-  console.log('>> three');
+  console.log(">> three");
   next();
-  console.log('<< three');
-}
+  console.log("<< three");
+};
 
 app.use(one);
 app.use(two);
 app.use(three);
-
 ```
 
 运行这个 demo。
@@ -368,13 +367,13 @@ $ node demos/09.js
 
 ```javascript
 // demo02/10.js
-const fs = require('fs.promised');
-const Koa = require('koa');
+const fs = require("fs.promised");
+const Koa = require("koa");
 const app = new Koa();
 
 const main = async function (ctx, next) {
-  ctx.response.type = 'html';
-  ctx.response.body = await fs.readFile('./demos/template.html', 'utf8');
+  ctx.response.type = "html";
+  ctx.response.body = await fs.readFile("./demos/template.html", "utf8");
 };
 
 app.use(main);
@@ -397,15 +396,15 @@ $ node demos/10.js
 
 ```javascript
 // demos/11.js
-const compose = require('koa-compose');
+const compose = require("koa-compose");
 
 const logger = (ctx, next) => {
   console.log(`${Date.now()} ${ctx.request.method} ${ctx.request.url}`);
   next();
-}
+};
 
-const main = ctx => {
-  ctx.response.body = 'Hello World';
+const main = (ctx) => {
+  ctx.response.body = "Hello World";
 };
 
 const middlewares = compose([logger, main]);
@@ -424,11 +423,11 @@ $ node demos/11.js
 
 ### 4.1 500 错误
 
-如果代码运行过程中发生错误，我们需要把错误信息返回给用户。HTTP 协定约定这时要返回500状态码。Koa 提供了`ctx.throw()`方法，用来抛出错误，`ctx.throw(500)`就是抛出500错误。请看下面的例子（完整代码看[这里](https://github.com/ruanyf/koa-demos/blob/master/demos/14.js)）。
+如果代码运行过程中发生错误，我们需要把错误信息返回给用户。HTTP 协定约定这时要返回 500 状态码。Koa 提供了`ctx.throw()`方法，用来抛出错误，`ctx.throw(500)`就是抛出 500 错误。请看下面的例子（完整代码看[这里](https://github.com/ruanyf/koa-demos/blob/master/demos/14.js)）。
 
 ```javascript
 // demos/14.js
-const main = ctx => {
+const main = (ctx) => {
   ctx.throw(500);
 };
 ```
@@ -443,15 +442,15 @@ $ node demos/14.js
 
 ![](http://www.ruanyifeng.com/blogimg/asset/2017/bg2017080807.png)
 
-### 4.2 404错误
+### 4.2 404 错误
 
-如果将`ctx.response.status`设置成404，就相当于`ctx.throw(404)`，返回404错误。请看下面的例子（完整代码看[这里](https://github.com/ruanyf/koa-demos/blob/master/demos/15.js)）。
+如果将`ctx.response.status`设置成 404，就相当于`ctx.throw(404)`，返回 404 错误。请看下面的例子（完整代码看[这里](https://github.com/ruanyf/koa-demos/blob/master/demos/15.js)）。
 
 ```javascript
 // demos/15.js
-const main = ctx => {
+const main = (ctx) => {
   ctx.response.status = 404;
-  ctx.response.body = 'Page Not Found';
+  ctx.response.body = "Page Not Found";
 };
 ```
 
@@ -461,7 +460,7 @@ const main = ctx => {
 $ node demos/15.js
 ```
 
-访问 http://127.0.0.1:3000 ，你就看到一个404页面“Page Not Found”。
+访问 http://127.0.0.1:3000 ，你就看到一个 404 页面“Page Not Found”。
 
 ![](http://www.ruanyifeng.com/blogimg/asset/2017/bg2017080808.png)
 
@@ -477,12 +476,12 @@ const handler = async (ctx, next) => {
   } catch (err) {
     ctx.response.status = err.statusCode || err.status || 500;
     ctx.response.body = {
-      message: err.message
+      message: err.message,
     };
   }
 };
 
-const main = ctx => {
+const main = (ctx) => {
   ctx.throw(500);
 };
 
@@ -496,7 +495,7 @@ app.use(main);
 $ node demos/16.js
 ```
 
-访问 http://127.0.0.1:3000 ，你会看到一个500页，里面有报错提示 `{"message":"Internal Server Error"}`。
+访问 http://127.0.0.1:3000 ，你会看到一个 500 页，里面有报错提示 `{"message":"Internal Server Error"}`。
 
 ![](http://www.ruanyifeng.com/blogimg/asset/2017/bg2017080809.png)
 
@@ -534,18 +533,18 @@ const handler = async (ctx, next) => {
     await next();
   } catch (err) {
     ctx.response.status = err.statusCode || err.status || 500;
-    ctx.response.type = 'html';
-    ctx.response.body = '<p>Something wrong, please contact administrator.</p>';
-    ctx.app.emit('error', err, ctx);
+    ctx.response.type = "html";
+    ctx.response.body = "<p>Something wrong, please contact administrator.</p>";
+    ctx.app.emit("error", err, ctx);
   }
 };
 
-const main = ctx => {
+const main = (ctx) => {
   ctx.throw(500);
 };
 
-app.on('error', function(err) {
-  console.log('logging error ', err.message);
+app.on("error", function (err) {
+  console.log("logging error ", err.message);
   console.log(err);
 });
 ```
@@ -562,17 +561,17 @@ $ node demos/18.js
 
 ## 五、Web App 的功能
 
-### 5.1  Cookies
+### 5.1 Cookies
 
 `ctx.cookies`用来读写 Cookie。请看下面的例子（完整代码看[这里](https://github.com/ruanyf/koa-demos/blob/master/demos/19.js)）。
 
 ```javascript
 // demos/19.js
-const main = function(ctx) {
-  const n = Number(ctx.cookies.get('view') || 0) + 1;
-  ctx.cookies.set('view', n);
-  ctx.response.body = n + ' views';
-}
+const main = function (ctx) {
+  const n = Number(ctx.cookies.get("view") || 0) + 1;
+  ctx.cookies.set("view", n);
+  ctx.response.body = n + " views";
+};
 ```
 
 运行这个 demo。
@@ -581,7 +580,7 @@ const main = function(ctx) {
 $ node demos/19.js
 ```
 
-访问 http://127.0.0.1:3000 ，你会看到`1 views`。刷新一次页面，就变成了`2 views`。再刷新，每次都会计数增加1。
+访问 http://127.0.0.1:3000 ，你会看到`1 views`。刷新一次页面，就变成了`2 views`。再刷新，每次都会计数增加 1。
 
 ![](http://www.ruanyifeng.com/blogimg/asset/2017/bg2017080810.png)
 
@@ -591,11 +590,11 @@ Web 应用离不开处理表单。本质上，表单就是 POST 方法发送到�
 
 ```javascript
 // demos/20.js
-const koaBody = require('koa-body');
+const koaBody = require("koa-body");
 
-const main = async function(ctx) {
+const main = async function (ctx) {
   const body = ctx.request.body;
-  if (!body.name) ctx.throw(400, '.name required');
+  if (!body.name) ctx.throw(400, ".name required");
   ctx.body = { name: body.name };
 };
 
@@ -626,11 +625,11 @@ name required
 
 ```javascript
 // demos/21.js
-const os = require('os');
-const path = require('path');
-const koaBody = require('koa-body');
+const os = require("os");
+const path = require("path");
+const koaBody = require("koa-body");
 
-const main = async function(ctx) {
+const main = async function (ctx) {
   const tmpdir = os.tmpdir();
   const filePaths = [];
   const files = ctx.request.body.files || {};

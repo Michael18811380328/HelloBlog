@@ -1,6 +1,6 @@
 # 网络管理
 
-Linux有以下工具，可以查看网络接口。
+Linux 有以下工具，可以查看网络接口。
 
 - `ip`：显示和操作路由
 - `netstat`：显示网络连接、路由表等。
@@ -83,7 +83,7 @@ $ /sbin/ifconfig -a
 
 网络配置文件是`/etc/network/interfaces`。
 
-设置静态IP地址的例子。
+设置静态 IP 地址的例子。
 
 ```
 auto eth0

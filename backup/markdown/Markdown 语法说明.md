@@ -2,7 +2,7 @@
 
 **声明：** 这份文档派生(fork)于[繁体中文版](http://markdown.tw/)，在此基础上进行了繁体转简体工作，并进行了适当的润色。此文档用 Markdown 语法编写，你可以到这里[查看它的源文件](http://gitcafe.com/riku/Markdown-Syntax-CN/blob/master/syntax.md)。「繁体中文版的原始文件可以[查看这里](https://github.com/othree/markdown-syntax-zhtw/blob/master/syntax.md) 。」--By @[riku](https://twitter.com/riku) / 本项目托管于 [GitCafe](http://gitcafe.com/riku/Markdown-Syntax-CN)
 
-**注：** 本项目同时也托管于 [Github](https://github.com/riku/Markdown-Syntax-CN) 上，请通过 fork＋pull request 方式来帮忙改进本项目。
+**注：** 本项目同时也托管于 [Github](https://github.com/riku/Markdown-Syntax-CN) 上，请通过 fork ＋ pull request 方式来帮忙改进本项目。
 
 # Markdown 语法说明 (简体中文版) / ([点击查看快速入门](https://www.appinn.com/markdown/basic.html))
 
@@ -27,7 +27,7 @@
   - [自动链接](https://www.appinn.com/markdown/#autolink)
 - [感谢](https://www.appinn.com/markdown/#acknowledgement)
 
-------
+---
 
 ## 概述
 
@@ -47,7 +47,7 @@ Markdown 不是想要取代 HTML，甚至也没有要和它相近，它的语法
 
 不在 Markdown 涵盖范围之内的标签，都可以直接在文档里面用 HTML 撰写。不需要额外标注这是 HTML 或是 Markdown；只要直接加标签就可以了。
 
-要制约的只有一些 HTML 区块元素――比如 ``、``、``、`` 等标签，必须在前后加上空行与其它内容区隔开，还要求它们的开始标签与结尾标签不能用制表符或空格来缩进。Markdown 的生成器有足够智能，不会在 HTML 区块标签外加上不必要的 `` 标签。
+要制约的只有一些 HTML 区块元素――比如 `、`、`、` 等标签，必须在前后加上空行与其它内容区隔开，还要求它们的开始标签与结尾标签不能用制表符或空格来缩进。Markdown 的生成器有足够智能，不会在 HTML 区块标签外加上不必要的 `` 标签。
 
 例子如下，在 Markdown 文件里加上一段 HTML 表格：
 
@@ -65,7 +65,7 @@ Markdown 不是想要取代 HTML，甚至也没有要和它相近，它的语法
 
 请注意，在 HTML 区块标签间的 Markdown 格式语法将不会被处理。比如，你在 HTML 区块内使用 Markdown 样式的`*强调*`会没有效果。
 
-HTML 的区段（行内）标签如 ``、``、`~~`~~ 可以在 Markdown 的段落、列表或是标题里随意使用。依照个人习惯，甚至可以不用 Markdown 格式，而直接采用 HTML 标签来格式化。举例说明：如果比较喜欢 HTML 的 `` 或 `` 标签，可以直接使用这些标签，而不用 Markdown 提供的链接或是图像标签语法。
+HTML 的区段（行内）标签如 `、`、`~~`~~ 可以在 Markdown 的段落、列表或是标题里随意使用。依照个人习惯，甚至可以不用 Markdown 格式，而直接采用 HTML 标签来格式化。举例说明：如果比较喜欢 HTML 的 `或` 标签，可以直接使用这些标签，而不用 Markdown 提供的链接或是图像标签语法。
 
 和处在 HTML 区块标签间不同，Markdown 语法在 HTML 区段标签间是有效的。
 
@@ -121,7 +121,7 @@ Markdown 将会把它转换为：
 
 不过需要注意的是，code 范围内，不论是行内还是区块， `<` 和 `&` 两个符号都*一定*会被转换成 HTML 实体，这项特性让你可以很容易地用 Markdown 写 HTML code （和 HTML 相对而言， HTML 语法中，你要把所有的 `<` 和 `&` 都转换为 HTML 实体，才能在 HTML 文件里面写出 HTML code。）
 
-------
+---
 
 ## 区块元素
 
@@ -179,7 +179,7 @@ Markdown 标记区块引用是使用类似 email 中用 `>` 的引用方式。�
 > This is a blockquote with two paragraphs. Lorem ipsum dolor sit amet,
 > consectetuer adipiscing elit. Aliquam hendrerit mi posuere lectus.
 > Vestibulum enim wisi, viverra nec, fringilla in, laoreet vitae, risus.
-> 
+>
 > Donec sit amet nisl. Aliquam semper ipsum sit amet velit. Suspendisse
 > id sem consectetuer libero luctus adipiscing.
 ```
@@ -209,12 +209,12 @@ id sem consectetuer libero luctus adipiscing.
 
 ```
 > ## 这是一个标题。
-> 
+>
 > 1.   这是第一行列表项。
 > 2.   这是第二行列表项。
-> 
+>
 > 给出一些例子代码：
-> 
+>
 >     return shell_exec("echo $input | $markdown_script");
 ```
 
@@ -398,7 +398,7 @@ sit amet, consectetuer adipiscing elit.
 
 ### 代码区块
 
-和程序相关的写作或是标签语言原始码通常会有已经排版好的代码区块，通常这些区块我们并不希望它以一般段落文件的方式去排版，而是照原来的样子显示，Markdown 会用 `` 和 `` 标签来把代码区块包起来。
+和程序相关的写作或是标签语言原始码通常会有已经排版好的代码区块，通常这些区块我们并不希望它以一般段落文件的方式去排版，而是照原来的样子显示，Markdown 会用 `和` 标签来把代码区块包起来。
 
 要在 Markdown 中建立代码区块很简单，只要简单地缩进 4 个空格或是 1 个制表符就可以，例如，下面的输入：
 
@@ -475,7 +475,7 @@ end tell
 ---------------------------------------
 ```
 
-------
+---
 
 ## 区段元素
 
@@ -779,7 +779,7 @@ Markdown 使用一种和链接很相似的语法来标记图片，同样也允�
 
 到目前为止， Markdown 还没有办法指定图片的宽高，如果你需要的话，你可以使用普通的 `` 标签。
 
-------
+---
 
 ## 其它
 

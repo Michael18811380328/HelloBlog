@@ -5,5 +5,7 @@ personal/site
 leetcode/site
 book/site
 images/site
+react/site
 typescript/site
 .DS_Store
+node_modules

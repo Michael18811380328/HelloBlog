@@ -1,6 +1,6 @@
-# SSH用法
+# SSH 用法
 
-## SSL/TLS协议
+## SSL/TLS 协议
 
 客户端要向服务端提供一些加密参数，这叫做“加密集”（cipher suite）。
 
@@ -15,7 +15,7 @@ TLS_RSA_WITH_AES_128_CBC_SHA
 - AES：加密算法
 - 128：加密强度
 - CBC：加密模式
-- SHA：数字签名的Hash函数
+- SHA：数字签名的 Hash 函数
 
 ```http
 Handshake protocol: ClientHello
@@ -83,7 +83,7 @@ $ ssh-keygen -t rsa
 
 密钥会在`~/.ssh`目录生成。
 
-服务器安装OpenSSH服务器。
+服务器安装 OpenSSH 服务器。
 
 ```bash
 $ sudo apt-get install openssh-server
@@ -108,4 +108,3 @@ $ ssh-copy-id username@host
 ```bash
 $ ssh johndoe@host.example.com -i ~/.ssh/host.key
 ```
-

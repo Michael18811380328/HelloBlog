@@ -2,7 +2,7 @@
 
 ## docker-compose.yml
 
-项目根目录下的`docker-compose.yml`文件，是项目的Docker配置文件。
+项目根目录下的`docker-compose.yml`文件，是项目的 Docker 配置文件。
 
 ```bash
 #  version 2 of the Docker Compose file format 编译文件的版本号
@@ -51,15 +51,13 @@ RUN npm install --production
 CMD ["node", "index.js"]
 ```
 
-
-
 上面代码的含义如下。
 
 ```
 FROM nodesource/node:4
 ```
 
-上面代码指定Dockerfile的镜像，表示是NodeSource维护的Node镜像，4.x版本。
+上面代码指定 Dockerfile 的镜像，表示是 NodeSource 维护的 Node 镜像，4.x 版本。
 
 ```
 RUN mkdir -p /home/nodejs/app
@@ -72,7 +70,7 @@ WORKDIR /home/nodejs/app
 COPY . /home/nodejs/app
 ```
 
-上面命令将Dockerfile所在目录的文件，拷贝到指定目录。
+上面命令将 Dockerfile 所在目录的文件，拷贝到指定目录。
 
 ```
 RUN npm install --production
@@ -84,7 +82,7 @@ RUN npm install --production
 CMD ["node", "index.js"]
 ```
 
-S上面命令在命令行下执行指定命令。
+S 上面命令在命令行下执行指定命令。
 
 最后，执行下面的命令。
 
@@ -112,4 +110,3 @@ Email: your_email@foo.bar
 Login Successful!
 $ docker push “your_user_name/myapp”
 ```
-

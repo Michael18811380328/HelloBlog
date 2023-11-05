@@ -1,8 +1,8 @@
-## Range对象学习
+## Range 对象学习
 
-Range表示包含节点和部分文本节点的文档片段。
+Range 表示包含节点和部分文本节点的文档片段。
 
- `Range`可以用 [`Document`](https://developer.mozilla.org/zh-CN/docs/Web/API/Document) 对象的 [`createRange`](https://developer.mozilla.org/zh-CN/docs/Web/API/Document/createRange)方法创建，也可以用[`Selection`](https://developer.mozilla.org/zh-CN/docs/Web/API/Selection)对象的[`getRangeAt`](https://developer.mozilla.org/zh-CN/docs/Web/API/Selection/getRangeAt)方法取得。另外，可以通过构造函数 [`Range()`](https://developer.mozilla.org/zh-CN/docs/Web/API/Range/Range) 来获得一个 `Range `。
+`Range`可以用 [`Document`](https://developer.mozilla.org/zh-CN/docs/Web/API/Document) 对象的 [`createRange`](https://developer.mozilla.org/zh-CN/docs/Web/API/Document/createRange)方法创建，也可以用[`Selection`](https://developer.mozilla.org/zh-CN/docs/Web/API/Selection)对象的[`getRangeAt`](https://developer.mozilla.org/zh-CN/docs/Web/API/Selection/getRangeAt)方法取得。另外，可以通过构造函数 [`Range()`](https://developer.mozilla.org/zh-CN/docs/Web/API/Range/Range) 来获得一个 `Range `。
 
 ### 属性
 
@@ -20,7 +20,7 @@ Range表示包含节点和部分文本节点的文档片段。
 
 - [`Range.endOffset`](https://developer.mozilla.org/zh-CN/docs/Web/API/Range/endOffset) 只读
 
-  返回 endContainer 中表示Range终点位置的数字。
+  返回 endContainer 中表示 Range 终点位置的数字。
 
 - [`Range.startContainer`](https://developer.mozilla.org/zh-CN/docs/Web/API/Range/startContainer) 只读
 
@@ -34,21 +34,19 @@ Range表示包含节点和部分文本节点的文档片段。
 
 #### 定位方法
 
-1.setStart:表示某个节点的range对象的起点位置; 
+1.setStart:表示某个节点的 range 对象的起点位置;
 
-2.setEnd:表示某个节点的range对象的结束位置;
+2.setEnd:表示某个节点的 range 对象的结束位置;
 
-3.setStartBefore:表示用于将某个节点的起点位置设置为range对象的起点位置;
+3.setStartBefore:表示用于将某个节点的起点位置设置为 range 对象的起点位置;
 
- 4.setStartAfter:表示用于将某个节点的终点位置设置为range对象的起点位置; 
+4.setStartAfter:表示用于将某个节点的终点位置设置为 range 对象的起点位置;
 
-5.setEndBefore:表示用于将某个节点的起点位置设置为range对象的终点位置; 
+5.setEndBefore:表示用于将某个节点的起点位置设置为 range 对象的终点位置;
 
-6.setEndAfter:表示用于将某个节点的终点位置设置为range对象的终点位置;
+6.setEndAfter:表示用于将某个节点的终点位置设置为 range 对象的终点位置;
 
-
-
-*我们没有在此列举继承方法。*
+_我们没有在此列举继承方法。_
 
 - [`Range.setStart()`](https://developer.mozilla.org/zh-CN/docs/Web/API/Range/setStart)
 
@@ -88,7 +86,7 @@ Range表示包含节点和部分文本节点的文档片段。
 
 #### 编辑方法
 
-*通过以下方法，可以从 Range 中获得节点，改变 Range 的内容。*
+_通过以下方法，可以从 Range 中获得节点，改变 Range 的内容。_
 
 - [`Range.cloneContents()`](https://developer.mozilla.org/zh-CN/docs/Web/API/Range/cloneContents)
 
@@ -126,40 +124,40 @@ Range表示包含节点和部分文本节点的文档片段。
 
 - [`Range.toString()`](https://developer.mozilla.org/zh-CN/docs/Web/API/Range/toString)
 
-  把Range内容作为字符串返回。
+  把 Range 内容作为字符串返回。
 
 #### Gecko 方法
 
-*在这里解释Mozilla独有的，在W3C DOM标准里没有的* `Range`*方法。*
+_在这里解释 Mozilla 独有的，在 W3C DOM 标准里没有的_ `Range`_方法。_
 
-- [`Range.compareNode()`](https://developer.mozilla.org/zh-CN/docs/Web/API/Range/compareNode) 
+- [`Range.compareNode()`](https://developer.mozilla.org/zh-CN/docs/Web/API/Range/compareNode)
 
-  返回常量，表示node是否在range的前、后、中、外。
+  返回常量，表示 node 是否在 range 的前、后、中、外。
 
-- [`Range.comparePoint()`](https://developer.mozilla.org/zh-CN/docs/Web/API/Range/comparePoint) 
+- [`Range.comparePoint()`](https://developer.mozilla.org/zh-CN/docs/Web/API/Range/comparePoint)
 
-  返回-1、0、1，分别表示指定点在range的前、中、后。
+  返回-1、0、1，分别表示指定点在 range 的前、中、后。
 
 - [`Range.createContextualFragment()`](https://developer.mozilla.org/zh-CN/docs/Web/API/Range/createContextualFragment)
 
-  解析指定字符串（XML或HTML），并返回document fragment。
+  解析指定字符串（XML 或 HTML），并返回 document fragment。
 
--  
+-
 
-- [`Range.intersectsNode()`](https://developer.mozilla.org/zh-CN/docs/Web/API/Range/intersectsNode) 
+- [`Range.intersectsNode()`](https://developer.mozilla.org/zh-CN/docs/Web/API/Range/intersectsNode)
 
-  返回boolean值，表示指定Node是否横断Range。
+  返回 boolean 值，表示指定 Node 是否横断 Range。
 
-- [`Range.isPointInRange()`](https://developer.mozilla.org/zh-CN/docs/Web/API/Range/isPointInRange) 
+- [`Range.isPointInRange()`](https://developer.mozilla.org/zh-CN/docs/Web/API/Range/isPointInRange)
 
-  返回boolean值，表示指定点是否在range中。
+  返回 boolean 值，表示指定点是否在 range 中。
 
--  
+-
 
-- [`Range.getBoundingClientRect()`](https://developer.mozilla.org/zh-CN/docs/Web/API/Range/getBoundingClientRect) 
+- [`Range.getBoundingClientRect()`](https://developer.mozilla.org/zh-CN/docs/Web/API/Range/getBoundingClientRect)
 
   Returns a [`ClientRect`](https://developer.mozilla.org/zh-CN/docs/Web/API/ClientRect) object which bounds the entire contents of the`Range`; this would be the union of all the rectangles returned by [`range.getClientRects()`](https://developer.mozilla.org/zh-CN/docs/Web/API/Range/getClientRects).
 
-- [`Range.getClientRects()`](https://developer.mozilla.org/zh-CN/docs/Web/API/Range/getClientRects) 
+- [`Range.getClientRects()`](https://developer.mozilla.org/zh-CN/docs/Web/API/Range/getClientRects)
 
   Returns a list of [`ClientRect`](https://developer.mozilla.org/zh-CN/docs/Web/API/ClientRect) objects that aggregates the results of [`Element.getClientRects()`](https://developer.mozilla.org/zh-CN/docs/Web/API/Element/getClientRects) for all the elements in the `Range`.

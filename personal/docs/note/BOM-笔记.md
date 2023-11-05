@@ -219,4 +219,158 @@ textBaseline = "top/bottom/middle";
 
 
 
+   
+## 0251 浏览器自动跳转到另一个页面的问题
+
+
+浏览器自动跳转问题
+
+总结一下问题的解决过程
+
+因为页面跳转，默认想到的是 JS window.open 或者 HTML A 标签，报错误导了方向，恰好近期改动了这部分JS代码
+
+1、首先用户反馈，这个是公式引用报错，把自己绕到了链接公式 roolup 这部分功能，一直排查是否是 JS 的问题。
+
+2、测试不同的浏览器，都会自动刷新。所以排除浏览器的兼容性问题。然后通过 console.log 保留日志分析，这个数据基本正常。
+
+3、开始判断是用户行为，还是 JS 代码逻辑问题。设置一个定时器，自动更改 JS 代码，然后不出错。证明 JS 链接公式没问题，主要问题在用户点击。
+
+4、逐步排查点击事件，然后不是当前组件，而是内部的选择器组件中的问题。把点击事件的默认行为改掉，就不出错了。但是内部的选择是公共组件，其他使用公共组件的地方是正常的，最好不改动公共组件。
+
+5、找到使用这个组件的地方，外部为了样式，加了一个 Form，然后点击事件触发了表单提交，页面就刷新了。
+
+6、更改：把 Form 改成 DIV 就不会跳转了。
+
+总结：默认界面跳转也可能是这个问题（无意中的表单提交）
+
+
+
+   
+## 0252 TAB 跳转实现有两种方法
+
+
+1. HTML 设置 button 或者 input，浏览器会自动 TAB——这是浏览器默认的做法，效果比较灵活。
+2. JS ，然后通过 state 控制状态，设置 currentTab，然后设置对应的样式，这样可以记录上一次的位置（这种需要把浏览器默认的 TAB 事件去掉，例如界面中还有其他的button，那么点击 Tab 还会触发按钮的交互改变）。问题：如果界面中按钮的数量是动态变化的，就需要动态计算 currentTab 这样比较麻烦。
+
+
+
+   
+## 0258 线上如何避免前端缓存
+
+
+缓存的原理：当浏览器请求资源文件时，优先检查本地是否有相同的资源，如果有资源就不需要请求服务器了。
+
+线上避免缓存方法，给固定的资源加上时间戳。
+
+静态资源：如果是一次性的变化，直接加一个随机数 ?v=xxx 即可（全局样式 and-design）
+
+静态资源：如果是经常变化，可以加一个 ?t={{ version }} 通过后端传参，设置不同版本下静态资源自动更新，避免缓存影响界面效果（翻译文件）
+
+前端文件：webpack 打包时，给 bundle 加入一个随机数，当代码更新后，然后 html 请求不同的 JS 和 CSS file，就相当于避免了浏览器缓存。
+
+
+
+   
+## 0264 window.postMessage 有什么作用
+
+
+### 跨域与 window.postMessage()
+
+跨域：协议不同、域名不同、端口号不同，会产生跨域。跨域：不同域之间不能访问 cookie、localStorage，不能操作 DOM，不能发送请求(无法向非同源地址发送 AJAX 请求)等。可能在多层 iframe 中出现，或者页面新打开一个窗口等。
+
+解决跨域方法：
+
+1、如果主域和子域是同一个公司维护，那么设置 document.domain 
+
+2、跨文档通信 window.postMessage() ，父窗口向子窗口发送消息，子窗口监听message事件。
+
+```javascript
+// father url is test.com
+let sonWindow = window.open('http://baidu.com', 'title');
+
+// 父窗口向子窗口发送消息
+sonWindow.postMessage('这是信息', 'http://baidu.com');
+
+// 子窗口监听message事件，获取消息
+window.addEventListener('message', (e) => {
+  // e.source === 'test.com'
+  // e.origin === 'baidu.com'
+  // e.data === '这是信息'
+});
+
+```
+
+3、JSONP: 网页通过添加一个\`\<script>元素\`，向服务器请求 JSON 数据，服务器收到请求后，将数据放在一个指定名字的回调函数的参数位置传回来
+
+4、CORS (cross origin resource share 跨域资源共享) 需要前端请求加入参数，后端配置 Access-Control-Allow-Origin 
+
+参考链接：
+
+<https://blog.csdn.net/qq_38128179/article/details/84956552> 
+
+
+
+   
+## 0278 前端如何下载多个文件？
+
+
+#### 1、前端最多并行下载多少文件？
+
+谷歌浏览器 118 版本允许并行下载 10个文件，超出 10个后就不会直接下载，其他主流浏览器也是类似的。
+
+老版本浏览器并行下载数量更少。
+
+#### 2、如果下载超10个，解决的方法有哪些？
+
+方法1：前端使用延迟函数，间隔下载（目前表格下载20个文件，使用这个方案）
+
+```javascript
+function sleep() {
+  return new Promise((resolve) => {
+    setTimeout(resolve, 1000);
+  });
+}
+
+async function downLoadResult(fileName, resultStr) {
+  await sleep();
+  const blob = new Blob([resultStr], {
+    type: "text/plain;charset=utf-8"
+  });
+  const objectURL = URL.createObjectURL(blob);
+  const aTag = document.createElement('a');
+  aTag.href = objectURL;
+  aTag.download = fileName + "-笔记.md";
+  aTag.click();
+  URL.revokeObjectURL(objectURL);
+}
+
+```
+
+方法2：前端使用 JSzip 打包，把很多小文件打包成大文件下载。
+
+<https://www.npmjs.com/package/jszip> 
+
+```javascript
+const zip = new JSZip();
+
+zip.file("Hello.txt", "Hello World\n");
+zip.file("note.md", "This is note for nodejs");
+
+zip.generateAsync({type:"blob"}).then(function(content) {
+    // see FileSaver.js
+    saveAs(content, "example.zip");
+});
+
+// Results in a zip containing
+/*
+Hello.txt
+note.md
+*/
+
+```
+
+方法3：后端实现打包，前端直接访问 URL 下载。
+
+
+
   

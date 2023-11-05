@@ -1,8 +1,7 @@
 class TreeNode {
-
   constructor({ path, object, isLoaded, isPreload, isExpanded, parentNode }) {
-    this.path = path || object.name,  // The default setting is the object name, which is set to a relative path when the father is set.
-    this.object = object.clone();
+    (this.path = path || object.name), // The default setting is the object name, which is set to a relative path when the father is set.
+      (this.object = object.clone());
     this.isLoaded = isLoaded || false;
     this.isPreload = isPreload || false;
     this.isExpanded = isExpanded || false;
@@ -19,7 +18,7 @@ class TreeNode {
       isExpanded: this.isExpanded,
       parentNode: parentNode || null,
     });
-    treeNode.children = this.children.map(child => {
+    treeNode.children = this.children.map((child) => {
       let newChild = child.clone(treeNode);
       return newChild;
     });
@@ -30,7 +29,7 @@ class TreeNode {
   setParent(parentNode) {
     this.path = this.generatePath(parentNode);
     this.parentNode = parentNode;
-    this.isLoaded = false;  // update parentNode need loaded data again;
+    this.isLoaded = false; // update parentNode need loaded data again;
   }
 
   hasChildren() {
@@ -50,9 +49,11 @@ class TreeNode {
           break;
         }
       }
-      if (index === -1) { // -1: all the node object is dir;
+      if (index === -1) {
+        // -1: all the node object is dir;
         this.children.push(node);
-      } else if (index === 0) { // 0: all the node object is file
+      } else if (index === 0) {
+        // 0: all the node object is file
         this.children.unshift(node);
       } else {
         this.children.splice(index, 0, node);
@@ -61,14 +62,14 @@ class TreeNode {
   }
 
   addChildren(nodeList) {
-    nodeList.forEach(node => {
+    nodeList.forEach((node) => {
       node.setParent(this);
     });
     this.children = nodeList;
   }
 
   deleteChild(node) {
-    let children = this.children.filter(item => {
+    let children = this.children.filter((item) => {
       return item !== node;
     });
     this.children = children;
@@ -76,7 +77,7 @@ class TreeNode {
 
   rename(newName) {
     this.object.name = newName;
-    this.path = this.generatePath(this.parentNode); 
+    this.path = this.generatePath(this.parentNode);
     if (this.isExpanded) {
       this.updateChildrenPath(this);
     } else {
@@ -86,7 +87,7 @@ class TreeNode {
 
   updateChildrenPath(node) {
     let children = node.children;
-    children.forEach(child => {
+    children.forEach((child) => {
       child.path = child.generatePath(child.parentNode);
       if (child.isExpanded) {
         child.updateChildrenPath(child);
@@ -107,13 +108,15 @@ class TreeNode {
   }
 
   generatePath(parentNode) {
-    return parentNode.path === '/' ? parentNode.path + this.object.name : parentNode.path + '/' + this.object.name;
+    return parentNode.path === "/"
+      ? parentNode.path + this.object.name
+      : parentNode.path + "/" + this.object.name;
   }
 
   serializeToJson() {
     let children = [];
     if (this.hasChildren) {
-      children = this.children.map(m => m.serializeToJson());
+      children = this.children.map((m) => m.serializeToJson());
     }
 
     const treeNode = {
@@ -139,7 +142,15 @@ class TreeNode {
    */
   static deserializefromJson(json) {
     // 对输入的JSON进行解构赋值，获取对应的属性和值（已知属性）；
-    let { path, object, isLoaded, isPreload, isExpanded, parentNode, children = [] } = json;
+    let {
+      path,
+      object,
+      isLoaded,
+      isPreload,
+      isExpanded,
+      parentNode,
+      children = [],
+    } = json;
 
     // 这里实现对象的深复制。object
     object = object.clone();
@@ -151,7 +162,7 @@ class TreeNode {
       isPreload,
       isExpanded,
       parentNode,
-      children: children.map(item => TreeNode.deserializefromJson(item))
+      children: children.map((item) => TreeNode.deserializefromJson(item)),
     });
     return treeNode;
   }

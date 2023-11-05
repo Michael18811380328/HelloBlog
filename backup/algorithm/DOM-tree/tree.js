@@ -1,7 +1,6 @@
-import TreeNode from './tree-node';
+import TreeNode from "./tree-node";
 
 class Tree {
-
   constructor() {
     this.root = null;
   }
@@ -18,7 +17,7 @@ class Tree {
     this.root = node;
   }
 
-  getNodeByPath(path) { 
+  getNodeByPath(path) {
     let findNode = null;
     function callback(currentNode) {
       if (currentNode.path === path) {
@@ -32,7 +31,7 @@ class Tree {
   }
 
   getNodeChildrenObject(node) {
-    let objects = node.children.map(item => {
+    let objects = node.children.map((item) => {
       let object = item.object;
       return object;
     });
@@ -44,7 +43,7 @@ class Tree {
   }
 
   addNodeListToParent(nodeList, parentNode) {
-    nodeList.forEach(node => {
+    nodeList.forEach((node) => {
       parentNode.addChild(node);
     });
   }
@@ -55,7 +54,7 @@ class Tree {
   }
 
   deleteNodeList(nodeList) {
-    nodeList.forEach(node => {
+    nodeList.forEach((node) => {
       this.deleteNode(node);
     });
   }
@@ -112,13 +111,13 @@ class Tree {
       node = node.parentNode;
     }
   }
-  
+
   collapseNode(node) {
     node.isExpanded = false;
   }
 
   isNodeChild(node, parentNode) {
-    return parentNode.children.some(item => {
+    return parentNode.children.some((item) => {
       return item.path === node.path;
     });
   }
@@ -133,7 +132,6 @@ class Tree {
     tree.setRoot(root);
     return tree;
   }
-
 }
 
 export default Tree;

@@ -7,7 +7,7 @@ const linkReg2 = /^<\S+>$/;
 function getLinks(hrefs) {
   const hrefObj = {
     links: [],
-    images: []
+    images: [],
   };
   hrefs.forEach((href) => {
     if (href.search(linkReg1) >= 0 || href.search(linkReg2) >= 0) {
@@ -26,14 +26,14 @@ function getLinks(hrefs) {
 }
 
 function getPreviewContent(markdownContent) {
-  let preview = '';
-  let newMarkdownContent = markdownContent.replace(hrefReg, '');
+  let preview = "";
+  let newMarkdownContent = markdownContent.replace(hrefReg, "");
   const newMarkdownLength = newMarkdownContent.length;
   for (let index = 0; index < newMarkdownLength; index++) {
-    if (newMarkdownContent[index] === '#') {
+    if (newMarkdownContent[index] === "#") {
       continue;
-    } else if (newMarkdownContent[index] === '\n') {
-      preview += ' ';
+    } else if (newMarkdownContent[index] === "\n") {
+      preview += " ";
     } else {
       preview += newMarkdownContent[index];
     }

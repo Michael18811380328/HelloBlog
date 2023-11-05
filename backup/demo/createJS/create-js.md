@@ -1,8 +1,8 @@
 # createJS 说明
 
-CreateJS是基于HTML5开发的一套模块化的库和工具。
+CreateJS 是基于 HTML5 开发的一套模块化的库和工具。
 
-基于这些库，可以非常快捷地开发出基于HTML5的游戏、动画和交互应用。
+基于这些库，可以非常快捷地开发出基于 HTML5 的游戏、动画和交互应用。
 
 主要使用 HTML5 canvas 游戏制作
 
@@ -23,7 +23,6 @@ http://www.ajexoop.com/wordpress/
 博客介绍
 
 https://zhuanlan.zhihu.com/p/40799542
-
 
 ## 简单使用
 

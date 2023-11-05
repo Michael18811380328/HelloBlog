@@ -6,13 +6,13 @@ JXcore 是一个支持多线程的 Node.js 发行版本，基本不需要对你�
 
 这篇文章主要是要向大家介绍 JXcore 的打包功能。
 
-------
+---
 
 ## JXcore 安装
 
 下载 JXcore 安装包，并解压，在解压的的目录下提供了 jx 二进制文件命令，接下来我们主要使用这个命令。
 
-### 步骤1、下载
+### 步骤 1、下载
 
 下载 JXcore 安装包 https://github.com/jxcore/jxcore-release，你需要根据你自己的系统环境来下载安装包。
 
@@ -37,7 +37,7 @@ $ jx --version
 v0.10.32
 ```
 
-------
+---
 
 ## 包代码
 
@@ -58,14 +58,12 @@ drwxr-xr-x  2 root root  4096 Feb 15 11:56 style
 $ jx package index.js index
 ```
 
-
-
 以上命令执行成功，会生成以下两个文件：
 
 - **index.jxp** 这是一个中间件文件，包含了需要编译的完整项目信息。
 - **index.jx** 这是一个完整包信息的二进制文件，可运行在客户端上。
 
-------
+---
 
 ## 载入 JX 文件
 
@@ -81,7 +79,7 @@ $ node index.js command_line_arguments
 $ jx index.jx command_line_arguments
 ```
 
-------
+---
 
 更多 JXcore 安装参考：https://github.com/jxcore/jxcore/blob/master/doc/INSTALLATION.md。
 

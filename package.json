@@ -1,0 +1,22 @@
+{
+  "name": "helloblog",
+  "version": "1.0.0",
+  "description": "这是 Michael An 的 个人站点，欢迎大家交流。",
+  "main": "file.js",
+  "scripts": {
+    "prettier": "prettier --check --write ."
+  },
+  "devDependencies": {
+    "prettier": "2.8.8"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Michael18811380328/HelloBlog.git"
+  },
+  "author": "Michael An",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Michael18811380328/HelloBlog/issues"
+  },
+  "homepage": "https://github.com/Michael18811380328/HelloBlog#readme"
+}

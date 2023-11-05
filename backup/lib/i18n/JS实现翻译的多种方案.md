@@ -1,63 +1,66 @@
-# JS实现翻译的多种方案
+# JS 实现翻译的多种方案
 
 1、language.js 库
 
 <https://languages.js.org/docs/>
 
-适应于 React  Angular 和 Vue2 （需要时再学）
+适应于 React Angular 和 Vue2 （需要时再学）
 
-~~~js
-import Languages from 'languages-js'
-~~~
+```js
+import Languages from "languages-js";
+```
 
-2、网上另一个微软JS库
+2、网上另一个微软 JS 库
 
-~~~js
-$(function(){
-  var script=document.createElement("script");
-  script.type="text/javascript";
-  script.src="js/translate.js";
-  document.getElementsByTagName('head')[0].appendChild(script);
-  
+```js
+$(function () {
+  var script = document.createElement("script");
+  script.type = "text/javascript";
+  script.src = "js/translate.js";
+  document.getElementsByTagName("head")[0].appendChild(script);
 
   var value = sessionStorage.getItem("language");
   document.onreadystatechange = function () {
-    if (document.readyState == 'complete') {
-      if(value==="1"){
-        Microsoft.Translator.Widget.Translate('zh-CHS', 'en', onProgress, onError, onComplete, onRestoreOriginal, 2000);
+    if (document.readyState == "complete") {
+      if (value === "1") {
+        Microsoft.Translator.Widget.Translate(
+          "zh-CHS",
+          "en",
+          onProgress,
+          onError,
+          onComplete,
+          onRestoreOriginal,
+          2000
+        );
       }
     }
-  }
-  
-  function onProgress(value) {
-  }
-  
-  function onError(error) {
-  }
-  
+  };
+
+  function onProgress(value) {}
+
+  function onError(error) {}
+
   function onComplete() {
     $("#WidgetFloaterPanels").hide();
   }
-  
-  function onRestoreOriginal() {
-  }
-  
+
+  function onRestoreOriginal() {}
 });
 
-function translate(){
+function translate() {
   var value = sessionStorage.getItem("language");
-  if(value==="1"){
+  if (value === "1") {
     sessionStorage.setItem("language", "0");
-  }else{
+  } else {
     sessionStorage.setItem("language", "1");
   }
   window.location.reload();
 }
-~~~
+```
 
 测试界面
 
-~~~html
+```html
 <body>
   <button id="change">中英文切换</button
     </br></br></br></br></br></br></br></br></br></br></br></br></br></br></br>
@@ -70,37 +73,32 @@ function translate(){
     translate();
   })
 </script>
-~~~
+```
 
+3、使用谷歌翻译的 API
 
-
-3、使用谷歌翻译的API
-
-~~~html
-<script type="text/javascript" src="http://www.google.com/jsapi"></script >
+```html
+<script type="text/javascript" src="http://www.google.com/jsapi"></script>
 <script type="text/javascript">
   google.load("language", "1");
-  function initialize()
-  {
+  function initialize() {
     var text = document.getElementById("text").innerHTML;
-    google.language.detect(text, 
-                           function(result)
-                           {
-      if(!result.error && result.language)
-      {
-        google.language.translate(text, result.language, "en", 
-                                  function(result)
-                                  {
-          var translated = document.getElementById("translation");
-          if(result.translation)
-          {
-            translated.innerHTML = result.translation;
+    google.language.detect(text, function (result) {
+      if (!result.error && result.language) {
+        google.language.translate(
+          text,
+          result.language,
+          "en",
+          function (result) {
+            var translated = document.getElementById("translation");
+            if (result.translation) {
+              translated.innerHTML = result.translation;
+            }
           }
-        });
+        );
       }
     });
   }
   google.setOnLoadCallback(initialize);
 </script>
-~~~
-
+```

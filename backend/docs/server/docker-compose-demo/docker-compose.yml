@@ -1,9 +1,8 @@
 # yaml 配置
-version: '3'
+version: "3"
 
 # 该 Compose 文件定义了两个服务：web 和 redis
 services:
-
   # web：Flask 服务使用从 Dockerfile 当前目录中构建的镜像。它将容器和主机绑定到暴露的端口 5000。使用 Flask Web 服务器的默认端口 5000。
   web:
     build: .

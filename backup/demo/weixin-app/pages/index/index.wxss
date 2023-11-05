@@ -101,7 +101,7 @@
 }
 
 .introduction {
-  color: #6A737D;
+  color: #6a737d;
   line-height: 2;
   display: block;
   /* text-align: justify;

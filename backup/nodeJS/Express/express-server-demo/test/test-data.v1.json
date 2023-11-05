@@ -106,9 +106,7 @@
               "sortType": "up"
             }
           ],
-          "hidden_columns": [
-            "3vEy"
-          ],
+          "hidden_columns": ["3vEy"],
           "groupbys": [
             {
               "column_key": "0000",
@@ -140,9 +138,7 @@
               "filter_term_modifier": ""
             }
           ],
-          "hidden_columns": [
-            "PTGx"
-          ],
+          "hidden_columns": ["PTGx"],
           "groupbys": [],
           "group_rows": []
         }

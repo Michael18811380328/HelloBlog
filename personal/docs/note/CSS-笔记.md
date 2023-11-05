@@ -420,6 +420,119 @@ MDN: 元素根据正常文档流进行定位，然后相对它的_最近滚动�
 
 <https://www.runoob.com/cssref/css-pr-grid.html> 
 
+还有个人的博客
+
+<https://michael18811380328.github.io/frontend/site/css/Grid%E5%B8%83%E5%B1%80/> 
+
+
+
+   
+## 0246 white-space 是什么
+
+
+white-space 用来处理空格的显示方式，通常用来处理省略号显示，以及多个空格显示问题。
+
+浏览器渲染网页的两个规则：把空格换行符都当做自动换行，会把多个空格渲染成一个空格显示。
+
+* white-space: nowrap; 表示超出的部分不换行，一行内部显示
+* white-space: pre-wrap; 正常换行，多个空格保留，不会自动转换成一个空格
+* white-space: pre; 多个空格保留，不会自动转换成一个空格; 超出部分不换行
+
+参考链接
+
+<https://www.w3school.com.cn/cssref/pr_text_white-space.asp> 
+
+<https://www.zhangxinxu.com/wordpress/2021/07/css-white-space-nowrap/> 
+
+
+
+   
+## 0247 如何实现文本超出显示省略号
+
+
+使用下面的css
+
+```
+.text-truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+```
+
+overflow: hidden; 表示超出部分隐藏；
+
+text-overflow: ellipsis; 表示文本超出部分，显示省略号；
+
+white-space: nowrap; 段落不换行，一行展示；
+
+
+
+   
+## 0250 grid 中 gap 怎么使用
+
+
+gap属性是用来设置网格行与列之间的间隙，该属性是 row-gap() 和 column-gap 的简写形式。
+
+设置网格行与列之间的间隙
+
+使用场景：flex grid 布局中支持，block table 中不支持这个属性。这个属性应该使用在父元素上。
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* 基本样式 */
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      width: 300px;
+      border: 1px solid #ccc;
+    }
+    .container>div {
+      border: 1px solid greenyellow;
+    }
+
+    /* grid 布局 */
+    .container {
+      display: grid;
+      gap: 20px;
+      grid-template-columns: 50px 50px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+    <div>5</div>
+  </div>
+</body>
+</html>
+
+[object Object]
+
+```
+
+参考
+
+<https://www.runoob.com/cssref/css3-pr-gap.html>﻿
+
+[﻿https://developer.mozilla.org/zh-CN/docs/Web/CSS/gap﻿](<https://developer.mozilla.org/zh-CN/docs/Web/CSS/gap﻿>) 
+
+<https://developer.mozilla.org/zh-CN/docs/Web/CSS/row-gap> 
+
+<https://developer.mozilla.org/zh-CN/docs/Web/CSS/column-gap> 
+
 
 
   

@@ -4,9 +4,9 @@
 
 `React`框架自身实现了一套事件处理机制，它的基本用法和`DOM`事件很相似。例如，给某个`react`元素绑定点击事件：
 
-~~~jsx
-import React from 'react';
-import ReactDOM from 'react-dom';
+```jsx
+import React from "react";
+import ReactDOM from "react-dom";
 
 class App extends React.Component {
   constructor(props) {
@@ -14,12 +14,12 @@ class App extends React.Component {
   }
   onClick = () => {
     //
-  }
+  };
   render() {
-    return (<button onClick={this.onClick}></button>);
+    return <button onClick={this.onClick}></button>;
   }
 }
-~~~
+```
 
 - 事件类型采用小驼峰命名法，因此是 `onClick`，而不是 `onclick`，其他事件类型相同。
 - 直接将函数的声明(this.onClick)当成事件句柄传递
@@ -33,15 +33,27 @@ class App extends React.Component {
 `React`中，默认的事件传播方式为**冒泡**：
 
 ```jsx
-import React, { Component } from "react"
-import ReactDOM from "react-dom"
+import React, { Component } from "react";
+import ReactDOM from "react-dom";
 
 class App extends Component {
   render() {
     return (
-      <div onClick={() => {console.log("ancestor");}}>
-        <div onClick={() => {console.log("parent");}}>
-          <div onClick={() => {console.log("child");}}></div>
+      <div
+        onClick={() => {
+          console.log("ancestor");
+        }}
+      >
+        <div
+          onClick={() => {
+            console.log("parent");
+          }}
+        >
+          <div
+            onClick={() => {
+              console.log("child");
+            }}
+          ></div>
         </div>
       </div>
     );
@@ -53,18 +65,30 @@ ReactDOM.render(<App />, document.querySelector("#root"));
 
 在该示例中，`3`个`div`嵌套显示，并且每个元素上均绑定`onClick`事件：
 
-当用户点击 `div`元素时，可以看到，控制台先后输出了`child -> parent -> ancestor`，==这是因为在React的事件处理系统中，默认的事件流就是冒泡==，如果说我们希望以捕获的方式来触发事件的话，可以使用`onClickCapture`来绑定事件，也就是在事件类型后面加一个后缀`Capture`：
+当用户点击 `div`元素时，可以看到，控制台先后输出了`child -> parent -> ancestor`，==这是因为在 React 的事件处理系统中，默认的事件流就是冒泡==，如果说我们希望以捕获的方式来触发事件的话，可以使用`onClickCapture`来绑定事件，也就是在事件类型后面加一个后缀`Capture`：
 
 ```jsx
-import React, { Component } from "react"
-import ReactDOM from "react-dom"
+import React, { Component } from "react";
+import ReactDOM from "react-dom";
 
 class App extends Component {
   render() {
     return (
-      <div onClickCapture={() => {console.log("ancestor");}}>
-        <div onClickCapture={() => {console.log("parent");}}>
-          <div onClickCapture={() => {console.log("child");}}></div>
+      <div
+        onClickCapture={() => {
+          console.log("ancestor");
+        }}
+      >
+        <div
+          onClickCapture={() => {
+            console.log("parent");
+          }}
+        >
+          <div
+            onClickCapture={() => {
+              console.log("child");
+            }}
+          ></div>
         </div>
       </div>
     );
@@ -87,10 +111,23 @@ ReactDOM.render(<App />, document.querySelector("#root"));
 我们在红色区域的`div`里，也就是最里层的那个元素上，使用`e.stopPropagation()`方法来阻止事件流的传播：
 
 ```jsx
-<div onClick={() => {console.log("ancestor")}}>
-    <div onClick={() => {console.log("parent");}}>
-        <div onClick={e => { console.log("child"); e.stopPropagation();}}></div>
-    </div>
+<div
+  onClick={() => {
+    console.log("ancestor");
+  }}
+>
+  <div
+    onClick={() => {
+      console.log("parent");
+    }}
+  >
+    <div
+      onClick={(e) => {
+        console.log("child");
+        e.stopPropagation();
+      }}
+    ></div>
+  </div>
 </div>
 ```
 
@@ -107,25 +144,24 @@ ReactDOM.render(<App />, document.querySelector("#root"));
 在`SyntheticEvent`中，我们依然可以获取到事件发生时的`event`对象：
 
 ```jsx
-import React, { Component } from "react"
-import ReactDOM from "react-dom"
+import React, { Component } from "react";
+import ReactDOM from "react-dom";
 
 class App extends Component {
-
   state = {
     x: 0,
-    y: 0
-  }
+    y: 0,
+  };
 
   render() {
     return (
       <div>
         <div
           style={styles["DEBUG_DISPLAY"]}
-          onClick={e => {
-            console.log(e)
+          onClick={(e) => {
+            console.log(e);
           }}
-          >
+        >
           x: {this.state.x}，y: {this.state.y}
         </div>
       </div>
@@ -142,15 +178,15 @@ ReactDOM.render(<App />, document.querySelector("#root"));
 
 ```jsx
 <div
-    style={styles["DEBUG_DISPLAY"]}
-    onClick={e => {
-        this.setState({
-            x: e.clientX,
-            y: e.clientY
-        });
-    }}
-    >
-    x: {this.state.x}，y: {this.state.y}
+  style={styles["DEBUG_DISPLAY"]}
+  onClick={(e) => {
+    this.setState({
+      x: e.clientX,
+      y: e.clientY,
+    });
+  }}
+>
+  x: {this.state.x}，y: {this.state.y}
 </div>
 ```
 
@@ -158,17 +194,17 @@ ReactDOM.render(<App />, document.querySelector("#root"));
 
 ```jsx
 <div
-    style={styles["DEBUG_DISPLAY"]}
-    onClick={e => {
-        setTimeout(() => {
-            this.setState({
-                x: e.clientX,
-                y: e.clientY
-            });
-        }, 1000);
-    }}
-    >
-    x: {this.state.x}，y: {this.state.y}
+  style={styles["DEBUG_DISPLAY"]}
+  onClick={(e) => {
+    setTimeout(() => {
+      this.setState({
+        x: e.clientX,
+        y: e.clientY,
+      });
+    }, 1000);
+  }}
+>
+  x: {this.state.x}，y: {this.state.y}
 </div>
 ```
 
@@ -180,18 +216,18 @@ ReactDOM.render(<App />, document.querySelector("#root"));
 
 ```jsx
 <div
-    style={styles["DEBUG_DISPLAY"]}
-    onClick={e => {
-        const { clientX, clientY } = e;
-        setTimeout(() => {
-            this.setState({
-                x: clientX,
-                y: clientY
-            });
-        }, 1000);
-    }}
-    >
-    x: {this.state.x}，y: {this.state.y}
+  style={styles["DEBUG_DISPLAY"]}
+  onClick={(e) => {
+    const { clientX, clientY } = e;
+    setTimeout(() => {
+      this.setState({
+        x: clientX,
+        y: clientY,
+      });
+    }, 1000);
+  }}
+>
+  x: {this.state.x}，y: {this.state.y}
 </div>
 ```
 
@@ -200,14 +236,13 @@ ReactDOM.render(<App />, document.querySelector("#root"));
 `react`鼓励我们使用合成事件，但是，在某些需求中，还是需要通过原生事件来进行处理，这时，就涉及到合成事件和原生事件的混合使用，例如以下示例：
 
 ```jsx
-import React, { Component } from "react"
-import ReactDOM from "react-dom"
+import React, { Component } from "react";
+import ReactDOM from "react-dom";
 
 class App extends Component {
-
   state = {
-    isShow: "none"
-  }
+    isShow: "none",
+  };
 
   render() {
     return (
@@ -215,16 +250,20 @@ class App extends Component {
         <button
           onClick={() => {
             this.setState({
-              isShow: "block"
+              isShow: "block",
             });
           }}
-        >点击显示</button>
-        <div style={{
-          display: this.state.isShow,
-          width: "100px",
-          height: "100px",
-          backgroundColor: "red"
-        }}></div>
+        >
+          点击显示
+        </button>
+        <div
+          style={{
+            display: this.state.isShow,
+            width: "100px",
+            height: "100px",
+            backgroundColor: "red",
+          }}
+        ></div>
       </div>
     );
   }
@@ -237,7 +276,7 @@ ReactDOM.render(<App />, document.querySelector("#root"));
 
 ![图片描述](https://segmentfault.com/img/bVbm5fJ?w=560&h=750)
 
-要实现 *点击其他区域隐藏`div`元素* 的功能，需要将事件绑定在`document`元素上，接下来，在`compnentDidMount`生命周期函数中，来绑定该事件：
+要实现 _点击其他区域隐藏`div`元素_ 的功能，需要将事件绑定在`document`元素上，接下来，在`compnentDidMount`生命周期函数中，来绑定该事件：
 
 ```jsx
 class App extends Component {
@@ -269,27 +308,26 @@ class App extends Component {
 处理方法：
 
 ```jsx
-import React, { Component } from "react"
-import ReactDOM from "react-dom"
+import React, { Component } from "react";
+import ReactDOM from "react-dom";
 
 class App extends Component {
-
   state = {
-    isShow: "none"
-  }
+    isShow: "none",
+  };
 
   button = React.createRef();
 
   componentDidMount() {
-    document.addEventListener("click", e => {
+    document.addEventListener("click", (e) => {
       // 当 native 事件被触发时，我们判断一下当前目标元素是否为 button，
       // 如果不是点击的按钮，则就意味着将元素隐藏
       if (e.target !== this.button.current) {
         this.setState({
-          isShow: "none"
+          isShow: "none",
         });
       }
-    })
+    });
   }
 
   render() {
@@ -299,16 +337,20 @@ class App extends Component {
           ref={this.button}
           onClick={() => {
             this.setState({
-              isShow: "block"
+              isShow: "block",
             });
           }}
-        >点击显示</button>
-        <div style={{
-          display: this.state.isShow,
-          width: "100px",
-          height: "100px",
-          backgroundColor: "red"
-        }}></div>
+        >
+          点击显示
+        </button>
+        <div
+          style={{
+            display: this.state.isShow,
+            width: "100px",
+            height: "100px",
+            backgroundColor: "red",
+          }}
+        ></div>
       </div>
     );
   }

@@ -2,13 +2,11 @@
 
 2021-12-02
 
-Socket.IO 是一个基于 web-socket 通信的库，可以在浏览器和服务器之间实现实时、双向和基于事件的通信。 
+Socket.IO 是一个基于 web-socket 通信的库，可以在浏览器和服务器之间实现实时、双向和基于事件的通信。
 
 包括：Node.js 服务器和浏览器的 Javascript 客户端库。
 
 可以将 Socket.IO 客户端视为 WebSocket API 的“小型”包装器。
-
-
 
 ## 主要用途
 
@@ -18,8 +16,6 @@ Socket.IO 是一个基于 web-socket 通信的库，可以在浏览器和服务�
 - 文档协作：允许用户同时编辑文档并查看彼此的更改。
 
 Microsoft Office 使用这个库，性能上没问题
-
-
 
 ## 案例：聊天室
 
@@ -35,7 +31,7 @@ Writing a chat application with popular web applications stacks like LAMP (PHP) 
 
 Sockets have traditionally been the solution around which most real-time chat systems are architected, providing a bi-directional communication channel between a client and a server.
 
-This means that the server can *push* messages to clients. Whenever you write a chat message, the idea is that the server will get it and push it to all other connected clients.
+This means that the server can _push_ messages to clients. Whenever you write a chat message, the idea is that the server will get it and push it to all other connected clients.
 
 ### The web framework
 
@@ -65,17 +61,17 @@ Once it’s installed we can create an `index.js` file that will set up our appl
 这是服务端代码（使用 express 搭建应用，使用路由 / 打开默认的 index.html 页面，在 3000 端口开启 HTTP 服务）
 
 ```js
-const express = require('express');
+const express = require("express");
 const app = express();
-const http = require('http');
+const http = require("http");
 const server = http.createServer(app);
 
-app.get('/', (req, res) => {
-  res.send('<h1>Hello world</h1>');
+app.get("/", (req, res) => {
+  res.send("<h1>Hello world</h1>");
 });
 
 server.listen(3000, () => {
-  console.log('listening on *:3000');
+  console.log("listening on *:3000");
 });
 ```
 
@@ -85,7 +81,7 @@ This means that it:
 - We define a route handler `/` that gets called when we hit our website home.
 - We make the http server listen on port 3000.
 
-可以在终端运行 node.js 并打开浏览器访问  localhost: 3000
+可以在终端运行 node.js 并打开浏览器访问 localhost: 3000
 
 If you run `node index.js` you should see the following. And if you point your browser to `http://localhost:3000`.
 
@@ -98,8 +94,8 @@ So far in `index.js` we’re calling `res.send` and passing it a string of HTML.
 Let’s refactor our route handler to use `sendFile` instead.
 
 ```js
-app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/index.html');
+app.get("/", (req, res) => {
+  res.sendFile(__dirname + "/index.html");
 });
 ```
 
@@ -111,16 +107,56 @@ Put the following in your `index.html` file:
   <head>
     <title>Socket.IO chat</title>
     <style>
-      body { margin: 0; padding-bottom: 3rem; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+      body {
+        margin: 0;
+        padding-bottom: 3rem;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Helvetica, Arial, sans-serif;
+      }
 
-      #form { background: rgba(0, 0, 0, 0.15); padding: 0.25rem; position: fixed; bottom: 0; left: 0; right: 0; display: flex; height: 3rem; box-sizing: border-box; backdrop-filter: blur(10px); }
-      #input { border: none; padding: 0 1rem; flex-grow: 1; border-radius: 2rem; margin: 0.25rem; }
-      #input:focus { outline: none; }
-      #form > button { background: #333; border: none; padding: 0 1rem; margin: 0.25rem; border-radius: 3px; outline: none; color: #fff; }
+      #form {
+        background: rgba(0, 0, 0, 0.15);
+        padding: 0.25rem;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        display: flex;
+        height: 3rem;
+        box-sizing: border-box;
+        backdrop-filter: blur(10px);
+      }
+      #input {
+        border: none;
+        padding: 0 1rem;
+        flex-grow: 1;
+        border-radius: 2rem;
+        margin: 0.25rem;
+      }
+      #input:focus {
+        outline: none;
+      }
+      #form > button {
+        background: #333;
+        border: none;
+        padding: 0 1rem;
+        margin: 0.25rem;
+        border-radius: 3px;
+        outline: none;
+        color: #fff;
+      }
 
-      #messages { list-style-type: none; margin: 0; padding: 0; }
-      #messages > li { padding: 0.5rem 1rem; }
-      #messages > li:nth-child(odd) { background: #efefef; }
+      #messages {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+      }
+      #messages > li {
+        padding: 0.5rem 1rem;
+      }
+      #messages > li:nth-child(odd) {
+        background: #efefef;
+      }
     </style>
   </head>
   <body>
@@ -150,24 +186,24 @@ npm install socket.io
 That will install the module and add the dependency to `package.json`. Now let’s edit `index.js` to add it:
 
 ```js
-const express = require('express');
+const express = require("express");
 const app = express();
-const http = require('http');
+const http = require("http");
 const server = http.createServer(app);
 
 const { Server } = require("socket.io");
 const io = new Server(server);
 
-app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/index.html');
+app.get("/", (req, res) => {
+  res.sendFile(__dirname + "/index.html");
 });
 
-io.on('connection', (socket) => {
-  console.log('a user connected');
+io.on("connection", (socket) => {
+  console.log("a user connected");
 });
 
 server.listen(3000, () => {
-  console.log('listening on *:3000');
+  console.log("listening on *:3000");
 });
 ```
 
@@ -184,7 +220,7 @@ Now in index.html add the following snippet before the `</body>` (end body tag):
 
 That’s all it takes to load the `socket.io-client`, which exposes an `io` global (and the endpoint `GET /socket.io/socket.io.js`), and then connect.
 
-本地的JS路径（node_modules/socket.io/client-dist/socket.io.js）
+本地的 JS 路径（node_modules/socket.io/client-dist/socket.io.js）
 
 If you would like to use the local version of the client-side JS file, you can find it at `node_modules/socket.io/client-dist/socket.io.js`.
 
@@ -197,10 +233,10 @@ Try opening several tabs, and you’ll see several messages.
 Each socket also fires a special `disconnect` event:
 
 ```js
-io.on('connection', (socket) => {
-  console.log('a user connected');
-  socket.on('disconnect', () => {
-    console.log('user disconnected');
+io.on("connection", (socket) => {
+  console.log("a user connected");
+  socket.on("disconnect", () => {
+    console.log("user disconnected");
   });
 });
 ```
@@ -218,14 +254,14 @@ Let’s make it so that when the user types in a message, the server gets it as 
 <script>
   var socket = io();
 
-  var form = document.getElementById('form');
-  var input = document.getElementById('input');
+  var form = document.getElementById("form");
+  var input = document.getElementById("input");
 
-  form.addEventListener('submit', function(e) {
+  form.addEventListener("submit", function (e) {
     e.preventDefault();
     if (input.value) {
-      socket.emit('chat message', input.value);
-      input.value = '';
+      socket.emit("chat message", input.value);
+      input.value = "";
     }
   });
 </script>
@@ -234,16 +270,14 @@ Let’s make it so that when the user types in a message, the server gets it as 
 And in `index.js` we print out the `chat message` event:
 
 ```js
-io.on('connection', (socket) => {
-  socket.on('chat message', (msg) => {
-    console.log('message: ' + msg);
+io.on("connection", (socket) => {
+  socket.on("chat message", (msg) => {
+    console.log("message: " + msg);
   });
 });
 ```
 
 The result should be like the following video:
-
-
 
 ### Broadcasting
 
@@ -252,7 +286,10 @@ The next goal is for us to emit the event from the server to the rest of the use
 In order to send an event to everyone, Socket.IO gives us the `io.emit()` method.
 
 ```js
-io.emit('some event', { someProperty: 'some value', otherProperty: 'other value' });
+io.emit("some event", {
+  someProperty: "some value",
+  otherProperty: "other value",
+});
 
 // This will emit the event to all connected sockets
 ```
@@ -260,41 +297,41 @@ io.emit('some event', { someProperty: 'some value', otherProperty: 'other value'
 If you want to send a message to everyone except for a certain emitting socket, we have the `broadcast` flag for emitting from that socket:
 
 ```js
-io.on('connection', (socket) => {
-  socket.broadcast.emit('hi');
+io.on("connection", (socket) => {
+  socket.broadcast.emit("hi");
 });
 ```
 
 In this case, for the sake of simplicity we’ll send the message to everyone, including the sender.
 
 ```js
-io.on('connection', (socket) => {
-  socket.on('chat message', (msg) => {
-    io.emit('chat message', msg);
+io.on("connection", (socket) => {
+  socket.on("chat message", (msg) => {
+    io.emit("chat message", msg);
   });
 });
 ```
 
-And on the client side when we capture a `chat message` event we’ll include it in the page. The *total* client-side JavaScript code now amounts to:
+And on the client side when we capture a `chat message` event we’ll include it in the page. The _total_ client-side JavaScript code now amounts to:
 
 ```html
 <script>
   var socket = io();
 
-  var messages = document.getElementById('messages');
-  var form = document.getElementById('form');
-  var input = document.getElementById('input');
+  var messages = document.getElementById("messages");
+  var form = document.getElementById("form");
+  var input = document.getElementById("input");
 
-  form.addEventListener('submit', function(e) {
+  form.addEventListener("submit", function (e) {
     e.preventDefault();
     if (input.value) {
-      socket.emit('chat message', input.value);
-      input.value = '';
+      socket.emit("chat message", input.value);
+      input.value = "";
     }
   });
 
-  socket.on('chat message', function(msg) {
-    var item = document.createElement('li');
+  socket.on("chat message", function (msg) {
+    var item = document.createElement("li");
     item.textContent = msg;
     messages.appendChild(item);
     window.scrollTo(0, document.body.scrollHeight);
@@ -323,4 +360,3 @@ You can find it on GitHub [here](https://github.com/socketio/chat-example).
 ```bash
 git clone https://github.com/socketio/chat-example.git
 ```
-

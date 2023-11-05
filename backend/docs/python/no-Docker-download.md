@@ -12,9 +12,7 @@ http://www.runoob.com/docker/ubuntu-docker-install.html
 
 http://www.runoob.com/docker/macos-docker-install.html
 
-自己先在mac安装，稍后在ubuntu进行安装
-
-
+自己先在 mac 安装，稍后在 ubuntu 进行安装
 
 ## 常用命令
 
@@ -40,7 +38,7 @@ http://www.runoob.com/docker/macos-docker-install.html
 - [export](http://www.runoob.com/docker/docker-export-command.html)
 - [port](http://www.runoob.com/docker/docker-port-command.html)
 
-### 容器rootfs命令
+### 容器 rootfs 命令
 
 - [commit](http://www.runoob.com/docker/docker-commit-command.html)
 - [cp](http://www.runoob.com/docker/docker-cp-command.html)

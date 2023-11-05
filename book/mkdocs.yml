@@ -200,7 +200,9 @@ nav:
         - '精读-高性能JS': 'other/精读-高性能JS.md'
         - '计算机是怎样跑起来的': 'other/计算机是怎样跑起来的.md'
         - '尚硅谷 nodeJS-basic': 'ebook-upguigu-nodejs/nodeJS-basic.md'
-
+        - '计算机组成原理知识点总结': 'ebook-Principles of Computer Composition/计算机组成原理知识点总结.md'
+        - 'qianfeng-express': 'ebook-qianfeng-express/01.md'
+        - 'express图书馆项目': 'other/express图书馆项目.md'
     - 黑马程序员nodejs笔记:
         - '00': 'ebook-heima-nodejs/00.md'
         - '01': 'ebook-heima-nodejs/01.md'

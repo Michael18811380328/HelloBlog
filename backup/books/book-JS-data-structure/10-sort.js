@@ -1,7 +1,6 @@
 // sort
 // 结论：越简单的方法，算法复杂度越差
 function ArrayList() {
-
   let arr = [];
   this.insert = (item) => {
     arr.push(item);
@@ -23,7 +22,7 @@ function ArrayList() {
         }
       }
     }
-  }
+  };
 
   bubbleSortUpdate = () => {
     let len = arr.length;
@@ -34,7 +33,7 @@ function ArrayList() {
         }
       }
     }
-  }
+  };
 
   // select sort
   selectSort = () => {
@@ -51,12 +50,12 @@ function ArrayList() {
         swap(arr[i], arr[minItem]);
       }
     }
-  }
+  };
 
   // insertSort
   insertSort = () => {
     let len = arr.length;
-    let j , temp;
+    let j, temp;
     for (let i = 0; i < len; i++) {
       j = i;
       temp = arr[i];
@@ -66,14 +65,14 @@ function ArrayList() {
       }
       arr[j] = temp;
     }
-  }
+  };
 
   // mergeSort
-  this.mergeSort = function() {
+  this.mergeSort = function () {
     return mergeSortRect(array);
-  }
+  };
 
-  let mergeSortRect = function(array) {
+  let mergeSortRect = function (array) {
     let len = array.length;
     if (len === 1) {
       return array;
@@ -82,9 +81,9 @@ function ArrayList() {
     let left = array.slice(0, mid);
     let right = array.slice(mid, len);
     return merge(mergeSortRect(left), mergeSortRect(right));
-  }
+  };
 
-  let merge = function(left, right) {
+  let merge = function (left, right) {
     let result = [];
     let indexLeft, rightRight;
     while (indexLeft < left.length && indexRight < right.length) {
@@ -95,19 +94,19 @@ function ArrayList() {
       }
     }
     while (indexLeft < left.length) {
-      result.push(left[indexLeft])
+      result.push(left[indexLeft]);
     }
     while (indexRight < right.length) {
       result.push(right[indexRight]);
     }
     return result;
-  }
+  };
 
   // quickSort
-  this.quickSort = function() {
+  this.quickSort = function () {
     let len = array.length;
     quick(array, 0, len - 1);
-  }
+  };
 
   function quick(array, left, right) {
     let index;
@@ -124,7 +123,8 @@ function ArrayList() {
 
   function partition(array, left, right) {
     let middle = array[Math.floor((left + right) / 2)];
-    let i = left, j = right;
+    let i = left,
+      j = right;
     while (i < j) {
       while (array[i] < middle) {
         i++;

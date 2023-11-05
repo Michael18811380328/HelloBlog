@@ -9,7 +9,7 @@
 
 每个独立的线程有一个程序运行的入口、顺序执行序列和程序的出口。但是线程不能够独立执行，必须依存在应用程序中，由应用程序提供多个线程执行控制。
 
-每个线程都有他自己的一组CPU寄存器，称为线程的上下文，该上下文反映了线程上次运行该线程的CPU寄存器的状态。
+每个线程都有他自己的一组 CPU 寄存器，称为线程的上下文，该上下文反映了线程上次运行该线程的 CPU 寄存器的状态。
 
 指令指针和堆栈指针寄存器是线程上下文中两个最重要的寄存器，线程总是在进程得到上下文中运行的，这些地址都用于标志拥有线程的进程地址空间中的内存。
 
@@ -23,18 +23,16 @@
 
 Python3 线程中常用的两个模块为：
 
-- _thread
+- \_thread
 - threading(推荐使用)
 
-thread 模块已被废弃。用户可以使用 threading 模块代替。所以，在 Python3 中不能再使用"thread" 模块。为了兼容性，Python3 将 thread 重命名为 "_thread"。
+thread 模块已被废弃。用户可以使用 threading 模块代替。所以，在 Python3 中不能再使用"thread" 模块。为了兼容性，Python3 将 thread 重命名为 "\_thread"。
 
+## 开始学习 Python 线程
 
+Python 中使用线程有两种方式：函数或者用类来包装线程对象。
 
-## 开始学习Python线程
-
-Python中使用线程有两种方式：函数或者用类来包装线程对象。
-
-函数式：调用 _thread 模块中的start_new_thread()函数来产生新线程。语法如下:
+函数式：调用 \_thread 模块中的 start_new_thread()函数来产生新线程。语法如下:
 
 ```python
 _thread.start_new_thread ( function, args[, kwargs] )
@@ -43,7 +41,7 @@ _thread.start_new_thread ( function, args[, kwargs] )
 参数说明:
 
 - function - 线程函数。
-- args - 传递给线程函数的参数,他必须是个tuple类型。
+- args - 传递给线程函数的参数,他必须是个 tuple 类型。
 - kwargs - 可选参数。
 
 ## 实例
@@ -72,39 +70,37 @@ except:
 while 1:
   pass
 ```
+
 执行以上程序输出结果如下：
 
 ```md
-Thread-1: Wed Apr  6 11:36:31 2016
-Thread-1: Wed Apr  6 11:36:33 2016
-Thread-2: Wed Apr  6 11:36:33 2016
-Thread-1: Wed Apr  6 11:36:35 2016
-Thread-1: Wed Apr  6 11:36:37 2016
-Thread-2: Wed Apr  6 11:36:37 2016
-Thread-1: Wed Apr  6 11:36:39 2016
-Thread-2: Wed Apr  6 11:36:41 2016
-Thread-2: Wed Apr  6 11:36:45 2016
-Thread-2: Wed Apr  6 11:36:49 2016
+Thread-1: Wed Apr 6 11:36:31 2016
+Thread-1: Wed Apr 6 11:36:33 2016
+Thread-2: Wed Apr 6 11:36:33 2016
+Thread-1: Wed Apr 6 11:36:35 2016
+Thread-1: Wed Apr 6 11:36:37 2016
+Thread-2: Wed Apr 6 11:36:37 2016
+Thread-1: Wed Apr 6 11:36:39 2016
+Thread-2: Wed Apr 6 11:36:41 2016
+Thread-2: Wed Apr 6 11:36:45 2016
+Thread-2: Wed Apr 6 11:36:49 2016
 ```
 
 执行以上程后可以按下 ctrl-c 退出。
 
-
-
-
 ## 线程模块
 
-Python3 通过两个标准库 _thread 和 threading 提供对线程的支持。
+Python3 通过两个标准库 \_thread 和 threading 提供对线程的支持。
 
-_thread 提供了低级别的、原始的线程以及一个简单的锁，它相比于 threading 模块的功能还是比较有限的。
+\_thread 提供了低级别的、原始的线程以及一个简单的锁，它相比于 threading 模块的功能还是比较有限的。
 
-threading 模块除了包含 _thread 模块中的所有方法外，还提供的其他方法：
+threading 模块除了包含 \_thread 模块中的所有方法外，还提供的其他方法：
 
 - threading.currentThread(): 返回当前的线程变量。
-- threading.enumerate(): 返回一个包含正在运行的线程的list。正在运行指线程启动后、结束前，不包括启动前和终止后的线程。
-- threading.activeCount(): 返回正在运行的线程数量，与len(threading.enumerate())有相同的结果。
+- threading.enumerate(): 返回一个包含正在运行的线程的 list。正在运行指线程启动后、结束前，不包括启动前和终止后的线程。
+- threading.activeCount(): 返回正在运行的线程数量，与 len(threading.enumerate())有相同的结果。
 
-除了使用方法外，线程模块同样提供了Thread类来处理线程，Thread类提供了以下方法:
+除了使用方法外，线程模块同样提供了 Thread 类来处理线程，Thread 类提供了以下方法:
 
 - run(): 用以表示线程活动的方法。
 
@@ -112,9 +108,7 @@ threading 模块除了包含 _thread 模块中的所有方法外，还提供的�
 
   启动线程活动。
 
-  
-
-- join([time]): 等待至线程中止。这阻塞调用线程直至线程的join() 方法被调用中止-正常退出或者抛出未处理的异常-或者是可选的超时发生。
+- join([time]): 等待至线程中止。这阻塞调用线程直至线程的 join() 方法被调用中止-正常退出或者抛出未处理的异常-或者是可选的超时发生。
 
 - isAlive(): 返回线程是否活动的。
 
@@ -122,7 +116,7 @@ threading 模块除了包含 _thread 模块中的所有方法外，还提供的�
 
 - setName(): 设置线程名。
 
-------
+---
 
 ## 使用 threading 模块创建线程
 
@@ -189,7 +183,7 @@ Thread-2: Wed Apr  6 11:46:55 2016
 退出主线程
 ```
 
-------
+---
 
 ## 线程同步
 
@@ -199,13 +193,13 @@ Thread-2: Wed Apr  6 11:46:55 2016
 
 多线程的优势在于可以同时运行多个任务（至少感觉起来是这样）。但是当线程需要共享数据时，可能存在数据不同步的问题。
 
-考虑这样一种情况：一个列表里所有元素都是0，线程"set"从后向前把所有元素改成1，而线程"print"负责从前往后读取列表并打印。
+考虑这样一种情况：一个列表里所有元素都是 0，线程"set"从后向前把所有元素改成 1，而线程"print"负责从前往后读取列表并打印。
 
-那么，可能线程"set"开始改的时候，线程"print"便来打印列表了，输出就成了一半0一半1，这就是数据的不同步。为了避免这种情况，引入了锁的概念。
+那么，可能线程"set"开始改的时候，线程"print"便来打印列表了，输出就成了一半 0 一半 1，这就是数据的不同步。为了避免这种情况，引入了锁的概念。
 
 锁有两种状态——锁定和未锁定。每当一个线程比如"set"要访问共享数据时，必须先获得锁定；如果已经有别的线程比如"print"获得锁定了，那么就让线程"set"暂停，也就是同步阻塞；等到线程"print"访问完毕，释放锁以后，再让线程"set"继续。
 
-经过这样的处理，打印列表时要么全部输出0，要么全部输出1，不会再出现一半0一半1的尴尬场面。
+经过这样的处理，打印列表时要么全部输出 0，要么全部输出 1，不会再出现一半 0 一半 1 的尴尬场面。
 
 ## 实例
 
@@ -258,7 +252,6 @@ print ("退出主线程")
 
 执行以上程序，输出结果为：
 
-
 ```
 开启线程： Thread-1
 开启线程： Thread-2
@@ -271,16 +264,15 @@ Thread-2: Wed Apr  6 11:53:05 2016
 退出主线程
 ```
 
-------
+---
 
 ## 线程优先级队列（ Queue）
 
-Python 的 Queue 模块中提供了同步的、线程安全的队列类，包括FIFO（先入先出)队列Queue，LIFO（后入先出）队列LifoQueue，和优先级队列 PriorityQueue。
+Python 的 Queue 模块中提供了同步的、线程安全的队列类，包括 FIFO（先入先出)队列 Queue，LIFO（后入先出）队列 LifoQueue，和优先级队列 PriorityQueue。
 
 这些队列都实现了锁原语，能够在多线程中直接使用，可以使用队列来实现线程间的同步。
 
 Queue 模块中的常用方法:
-
 
 ```python
 - Queue.qsize() 返回队列的大小
@@ -294,6 +286,7 @@ Queue 模块中的常用方法:
 - Queue.task_done() 在完成一项工作之后，Queue.task_done()函数向任务已经完成的队列发送一个信号
 - Queue.join() 实际上意味着等到队列为空，再执行别的操作
 ```
+
 ## 实例
 
 ```python
@@ -361,7 +354,6 @@ print ("退出主线程")
 ```
 
 以上程序执行结果：
-
 
 ```
 开启线程：Thread-1

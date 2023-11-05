@@ -1,16 +1,16 @@
 # Node.js v12.14.0 文档
 
-- [返回文档首页](http://nodejs.cn/api/) 
+- [返回文档首页](http://nodejs.cn/api/)
 - [搜索](http://nodejs.cn/search)
 
-------
+---
 
 ## 目录
 
 - [global（全局变量）](http://nodejs.cn/api/globals.html#globals_global_objects)
   - [Buffer 类](http://nodejs.cn/api/globals.html#globals_class_buffer)
-  - [__dirname](http://nodejs.cn/api/globals.html#globals_dirname)
-  - [__filename](http://nodejs.cn/api/globals.html#globals_filename)
+  - [\_\_dirname](http://nodejs.cn/api/globals.html#globals_dirname)
+  - [\_\_filename](http://nodejs.cn/api/globals.html#globals_filename)
   - [clearImmediate(immediateObject)](http://nodejs.cn/api/globals.html#globals_clearimmediate_immediateobject)
   - [clearInterval(intervalObject)](http://nodejs.cn/api/globals.html#globals_clearinterval_intervalobject)
   - [clearTimeout(timeoutObject)](http://nodejs.cn/api/globals.html#globals_cleartimeout_timeoutobject)
@@ -54,13 +54,13 @@
 
 用于处理二进制数据。请参阅 [Buffer 文档](http://nodejs.cn/s/FP4oTy)。
 
-## __dirname[#](http://nodejs.cn/api/globals.html#globals_dirname)
+## \_\_dirname[#](http://nodejs.cn/api/globals.html#globals_dirname)
 
 [中英对照](http://nodejs.cn/api/globals/dirname.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/globals/dirname.md)
 
 此变量虽然看似全局的，但实际上不是。 请参阅 [`__dirname`](http://nodejs.cn/s/etUQhi) 文档。
 
-## __filename[#](http://nodejs.cn/api/globals.html#globals_filename)
+## \_\_filename[#](http://nodejs.cn/api/globals.html#globals_filename)
 
 [中英对照](http://nodejs.cn/api/globals/filename.html)[提交修改](https://github.com/nodejscn/node-api-cn/edit/master/globals/filename.md)
 
@@ -145,21 +145,21 @@
 微任务队列由 V8 管理，可以与 [`process.nextTick()`](http://nodejs.cn/s/j4g1bA) 队列（由 Node.js 管理）类似的方式使用。 始终在 Node.js 事件循环的每个回合中的微任务队列之前处理 `process.nextTick()` 队列。
 
 ```js
-// `queueMicrotask()` 用于确保 'load' 事件始终异步地触发，且因此保持一致。 
+// `queueMicrotask()` 用于确保 'load' 事件始终异步地触发，且因此保持一致。
 // 在这里使用 `process.nextTick()` 会导致 'load' 事件总是在任何其他 promise 任务之前触发。
 
 DataHandler.prototype.load = async function load(key) {
   const hit = this._cache.get(url);
   if (hit !== undefined) {
     queueMicrotask(() => {
-      this.emit('load', hit);
+      this.emit("load", hit);
     });
     return;
   }
 
   const data = await fetchData(key);
   this._cache.set(url, data);
-  this.emit('load', data);
+  this.emit("load", data);
 };
 ```
 

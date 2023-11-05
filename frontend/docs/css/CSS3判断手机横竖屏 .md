@@ -1,6 +1,7 @@
-# CSS3(@media)判断手机横竖屏 (实用、赞）
+# CSS3(@media)判断手机横竖屏
 
 原文出处：https://jingyan.baidu.com/article/455a9950aa8aaea16627788a.html
+
 相似文章：[CSS之响应式Web设计（横屏/竖屏提醒）](https://blog.csdn.net/qq_16494241/article/details/50251703)
 
 相信大家在使用phone/pad在浏览网页时都有这样的感受，横屏/竖屏看网页时，内容一致，但是排班和样式却大不一样；
@@ -11,7 +12,7 @@
 
 举例：
 
-```
+```html
 <!DOCTYPE html>
 <html>  
   <head>

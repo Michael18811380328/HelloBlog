@@ -789,28 +789,6 @@ p.then(() => {}, () => {})
 
 
    
-## 0130 DOM性能及优化
-
-
-浏览器相对于APP的性能问题（PC端性能不影响，移动端影响很大）
-
-
-
-\- DOM 渲染耗时 => 减少无用的DOM节点
-
-\- DOM 会拖累 JS 渲染 => DOM和JS请求异步处理
-
-\- 浏览器是单线程 => 未来开发多线程浏览器
-
-\- DOM使用CPU，不能使用GPU加速 => 使用canvas等代替复杂图形和用户交互
-
-
-
-未来移动端巨头是主流，类似微信内嵌QQ浏览器，使用内部小程序完成传统界面设计
-
-
-
-   
 ## 0132 import 导入命令
 
 
@@ -1290,6 +1268,112 @@ function quickSort(arr) {
 6.redux
 
 7.sass用过了什么。
+
+
+
+   
+## 0262 字符串的编码格式有哪些
+
+
+### 字符编码问题
+
+常见字符串的编码格式：ASCII 码，Unicode，UTF-8 编码，GB2312 编码，这几个的区别
+
+前端和编码相关的函数：escape() encodeURI() encodeURIComponent() 和对应的三个解密函数，区别和适应情况
+
+四种类型编码简单理解：
+
+\- ASCII 码是最早的英文和控制码对应的编码，0-127，需要记住大写A-Za-z对应的编码范围(065到090，097到122) 不支持中文
+
+\- Unicode：因为 ASCII 无法表示各种编码，所以出现了 Unicode，大概有几万，可以代表世界上很多的语言表情符号等等，有对应的官方介绍全部的编码，也有不少的标准
+
+\- UTF-8：是 Unicode 的一个类似子集，也有 UTF-16 UTF-32 等编码。文件声明部分会写 coding=utf-8
+
+\- GB2313 是简体字的编码，还有繁体字等等，前端使用不多
+
+前端三个字符串转换函数和加密函数：因为浏览器 URL 中不允许某些特殊符号，所以需要把特殊符号转换成编码，例如 ; 等
+
+根据 MDN 介绍和知乎高赞总结：
+
+\- escape 转义字符串，不推荐使用，未来可能废弃
+
+\- encodeURI 转义特殊字符串（不转换某些符号，例如 http\:// 不转换）
+
+\- encodeURIComponennt 转义特殊字符串（特殊符号全部转换，例如 http\:// 会转换）
+
+\- 具体使用：我们在发送请求时，URL 中可能有参数含有特殊符号（例如文件名用户名等用户输入）需要使用 encodeURIComponent 转义，然后拼接成 URL
+
+<https://www.zhihu.com/question/21861899> 
+
+<https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/escape> 
+
+<https://www.cnblogs.com/luckyuns/p/6396701.html> 
+
+<https://www.ruanyifeng.com/blog/2007/10/ascii_unicode_and_utf-8.html> 
+
+
+
+   
+## 0265 es6 中扩展字符串，深拷贝还是浅拷贝
+
+
+扩展运算符可以复制数组或者对象。
+
+如果数组的每一项是引用类型，那么不会深复制，只会复制指向数组的指针。所以不能使用扩展运算符对数组或者对象进行深拷贝（深拷贝数组使用 deepcopy）。
+
+
+
+   
+## 0268 JSON 的几种格式？主要方法
+
+
+JSON 的三种格式
+
+  1 普通的数值、字符串、布尔值（很少使用）
+
+  2 对象（双引号，最后一个键值对不能加逗号）
+
+  3 数组（数组每一项可以是简单或者复杂的数据结构）
+
+  常用方法：
+
+  JSON.parse() 把 JSON 转换成 JS
+
+  JSON.stringify 把 JS 数据类型转换成 JSON（字符串）
+
+
+
+   
+## 0269 搜索框3个英文开始搜索，一个中文开始搜索？
+
+
+使用下面的函数，根据字符串的 unicode，判断是字母，符号，还是汉字，然后返回实际占用的字节个数。
+
+```javascript
+export const getValueLength = (str) => {
+  var code, len = 0;
+  for (var i = 0; i < str.length; i++) {
+    code = str.charCodeAt(i);
+    if (code === 10) { //solve enter problem
+      len += 2;
+    }
+    else if (code < 0x007f) {
+      len += 1;
+    }
+    else if (code >= 0x0080 && code <= 0x07ff) {
+      len += 2;
+    }
+    // 汉字 unicode 9968到40869
+    else if (code >= 0x0800 && code <= 0xffff) {
+      len += 3;
+    }
+  }
+  return len;
+};
+
+```
+
+统一码（Unicode），也叫万国码、单一码，由[统一码联盟](https://baike.baidu.com/item/%E7%BB%9F%E4%B8%80%E7%A0%81%E8%81%94%E7%9B%9F/3694574?fromModule=lemma_inlink)开发，是[计算机科学领域](https://baike.baidu.com/item/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E9%A2%86%E5%9F%9F/12650606?fromModule=lemma_inlink)里的一项业界标准，包括[字符集](https://baike.baidu.com/item/%E5%AD%97%E7%AC%A6%E9%9B%86/946585?fromModule=lemma_inlink)、[编码方案](https://baike.baidu.com/item/%E7%BC%96%E7%A0%81%E6%96%B9%E6%A1%88/20835369?fromModule=lemma_inlink)等。统一码是为了解决传统的[字符编码](https://baike.baidu.com/item/%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81/8446880?fromModule=lemma_inlink)方案的局限而产生的，它为每种语言中的每个字符设定了统一并且唯一的[二进制编码](https://baike.baidu.com/item/%E4%BA%8C%E8%BF%9B%E5%88%B6%E7%BC%96%E7%A0%81/1758517?fromModule=lemma_inlink)，以满足跨语言、[跨平台](https://baike.baidu.com/item/%E8%B7%A8%E5%B9%B3%E5%8F%B0/8558902?fromModule=lemma_inlink)进行文本转换、处理的要求。
 
 
 

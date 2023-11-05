@@ -8,7 +8,7 @@
 
 检查当前 docker 版本
 
-~~~bash
+```bash
 192:~ seafile$ docker --version
 Docker version 18.09, build c97c6d6
 
@@ -17,43 +17,43 @@ docker-compose version 1.24.0, build 8dd22a9
 
 192:~ seafile$ docker-machine --version
 docker-machine version 0.16.0, build 9ba6da9
-~~~
+```
 
 运行一个镜像（如果没有就会联网安装）
 
-~~~bash
+```bash
 docker run hello-world
 # 如果找不到就到官方去 pull
-~~~
+```
 
-使用docker搭建一个网络服务器 nginx
+使用 docker 搭建一个网络服务器 nginx
 
-~~~bash
+```bash
 docker run --detach --publish=80:80 --name=webserver nginx
 docker run --detach --publish=80:80 --name=webserver nginx
-~~~
+```
 
 现在打开浏览器访问 localhost 即可看到 nginx 的界面
 
 当容器已经运行，可以查看容器的细节
 
-~~~bash
+```bash
 docker ps
 # 等价于
 docker container ls
-~~~
+```
 
 停止容器
 
-~~~bash
+```bash
 docker container stop webserver
 docker container rm webserver
 docker image rm nginx
-~~~
+```
 
 删除已有容器和镜像操作
 
-~~~bash
+```bash
 # 查看当前的镜像的ID(共计五个，三个公司的，helloworld nginx)
 192:~ seafile$ docker ps -aq
 30b8a8b128f4
@@ -83,7 +83,7 @@ CONTAINER ID        IMAGE                                                   COMM
 dfdf5180c891        docker.seafile.top/seafile-dev/mariadb:10.3             "docker-entrypoint.s…"   6 months ago        Up 22 minutes       0.0.0.0:3306->3306/tcp                                                   seafile-mysql
 3b54b280d6ef        memcached:1.4-alpine                                    "docker-entrypoint.s…"   6 months ago        Up 22 minutes       0.0.0.0:11211->11211/tcp                                                 seafile-memcached
 
-# 强行删除 30b8a8b128f4 nginx 容器 
+# 强行删除 30b8a8b128f4 nginx 容器
 192:~ seafile$ docker rm -f 30b8a8b128f4
 30b8a8b128f4
 
@@ -110,14 +110,14 @@ hello-world                                      latest              fce289e99eb
 docker.seafile.top/seafile-dev/seafile-pro-dev   master              74f5640d3df7        7 months ago        1.04GB
 docker.seafile.top/seafile-dev/mariadb           10.3                2c73b3262fff        9 months ago        363MB
 memcached                                        1.4-alpine          273374b463b8        21 months ago       7.68MB
-~~~
+```
 
 #### 2. 配置
 
 在 docker 配置菜单中
 
-1. 通用：配置docker开机启动、自动升级、用户统计反馈、虚拟机备份、记住docker登录等（使用默认）
-2. 文件共享：设置docker的运行目录。使用默认配置。
-3. 高级：设置docker运行的硬件资源：通常情况，docker使用宿主机的一半CPU（如果需要增加或者减少性能，可以改变CPU个数）；内存通常使用宿主机的2G运行内存（可以增加或者减少）swap 虚拟内存，通常设置为1G虚拟内存。现在电脑的CPU吃不消，所以增加内存和虚拟内存，增加CPU个数，这样可以缓解单个CPU的性能。
+1. 通用：配置 docker 开机启动、自动升级、用户统计反馈、虚拟机备份、记住 docker 登录等（使用默认）
+2. 文件共享：设置 docker 的运行目录。使用默认配置。
+3. 高级：设置 docker 运行的硬件资源：通常情况，docker 使用宿主机的一半 CPU（如果需要增加或者减少性能，可以改变 CPU 个数）；内存通常使用宿主机的 2G 运行内存（可以增加或者减少）swap 虚拟内存，通常设置为 1G 虚拟内存。现在电脑的 CPU 吃不消，所以增加内存和虚拟内存，增加 CPU 个数，这样可以缓解单个 CPU 的性能。
 4. 用户代理：选择默认的用户代理
 5. 存储位置和容量：可以迁移镜像在计算机中的位置和设置容量

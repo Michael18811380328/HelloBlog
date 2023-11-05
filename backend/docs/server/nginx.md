@@ -1,4 +1,4 @@
-# nginx的用法
+# nginx 的用法
 
 ## 简介
 
@@ -26,7 +26,7 @@ nginx 有一个主进程和几个 worker 进程。有多少个 CPU，就有多�
 $ ps -ef --forest | grep nginx
 ```
 
-上面的命令可以查看所有 nginx 进程，一般是1个主进程，与 CPU 内核数对应的 worker 进程，1个 cache manager 进程，1个 cache loader 进程。
+上面的命令可以查看所有 nginx 进程，一般是 1 个主进程，与 CPU 内核数对应的 worker 进程，1 个 cache manager 进程，1 个 cache loader 进程。
 
 nginx 进程分工如下。
 
@@ -35,7 +35,7 @@ nginx 进程分工如下。
 - cache loader 进程：将硬盘上的缓存读入内存，然后退出。
 - cache manager 进程：周期性执行，从缓存清除过时的条目。
 
-worker 进程在创建时，根据配置文件初始化，并且留有多个socket用于与主进程通信。每当有新的网络请求，worker进程就会监听到事件，从而启动。
+worker 进程在创建时，根据配置文件初始化，并且留有多个 socket 用于与主进程通信。每当有新的网络请求，worker 进程就会监听到事件，从而启动。
 
 ### Web 根目录
 
@@ -96,11 +96,11 @@ $ sudo service nginx restart
 
 ### 内置模块
 
-nginx 采用模块式设计，通过加载模块扩展功能。目前，nginx不支持动态加载模块，模块必须和内核一起编译。所有的模块都是中间件，即接收上一个模块的输入，处理后再将输出传给下一个模块。
+nginx 采用模块式设计，通过加载模块扩展功能。目前，nginx 不支持动态加载模块，模块必须和内核一起编译。所有的模块都是中间件，即接收上一个模块的输入，处理后再将输出传给下一个模块。
 
 下面是一些默认编译的模块。
 
-- Access (ngx_http_access_module)：限制访问某些IP地址。
+- Access (ngx_http_access_module)：限制访问某些 IP 地址。
 
 ```
 location / {
@@ -112,7 +112,7 @@ location / {
 }
 ```
 
-- HTTP Auth (ngx_http_auth_basic_module)：启用HTTP Basic Auth。
+- HTTP Auth (ngx_http_auth_basic_module)：启用 HTTP Basic Auth。
 
 ```
 location / {
@@ -122,8 +122,8 @@ location / {
 ```
 
 - Subrequest Auth (ngx_http_auth_request_module)：客户端认证基于一个子请求的结果。
-- Limit connections (ngx_http_limit_conn_module)：允许设置单个IP地址的同一时间的最大连接数（connection）。
-- Limit requests (ngx_http_limit_req_module)：允许设置单个IP地址的最大请求数。
+- Limit connections (ngx_http_limit_conn_module)：允许设置单个 IP 地址的同一时间的最大连接数（connection）。
+- Limit requests (ngx_http_limit_req_module)：允许设置单个 IP 地址的最大请求数。
 
 ### 外部模块
 
@@ -137,9 +137,9 @@ $ ./configure  --without-http_dav_module --withouthttp_spdy_module
 
 下面是一些有用的外部模块。
 
-- ngx_pagespeed：Google的PageSpeed项目的一个产品，用于提高网页加载速度。
+- ngx_pagespeed：Google 的 PageSpeed 项目的一个产品，用于提高网页加载速度。
 - nginx-rtmp-module：实时流（stream）操作的模块。
-- nginx-push-stream-module：基于流操作的一个推送（push）模块，支持EventSource长轮询（Long polling），一个例子就是WebSocket。
+- nginx-push-stream-module：基于流操作的一个推送（push）模块，支持 EventSource 长轮询（Long polling），一个例子就是 WebSocket。
 
 ## 使用方法
 
@@ -159,7 +159,7 @@ $ nginx -t
 
 ## 配置
 
-### server区块
+### server 区块
 
 基本配置。
 
@@ -167,16 +167,16 @@ $ nginx -t
 server {
     listen       80;
     server_name  tecmintlovesnginx.com www.tecmintlovesnginx.com;
-    access_log  /var/www/logs/tecmintlovesnginx.access.log;  
-    error_log  /var/www/logs/tecmintlovesnginx.error.log error; 
-        root   /var/www/tecmintlovesnginx.com/public_html;  
+    access_log  /var/www/logs/tecmintlovesnginx.access.log;
+    error_log  /var/www/logs/tecmintlovesnginx.error.log error;
+        root   /var/www/tecmintlovesnginx.com/public_html;
         index  index.html index.htm;
 }
 ```
 
 （1）server_tokens
 
-server_tokens指定发生错误时，是否显示nginx错误信息。
+server_tokens 指定发生错误时，是否显示 nginx 错误信息。
 
 ```bash
 server {
@@ -190,9 +190,9 @@ server {
 }
 ```
 
-（2）屏蔽指定的HTTP动词
+（2）屏蔽指定的 HTTP 动词
 
-在server区块内部，指定可以接受的HTTP动词。
+在 server 区块内部，指定可以接受的 HTTP 动词。
 
 ```bash
 if ($request_method !~ ^(GET|HEAD|POST)$) {
@@ -200,13 +200,13 @@ if ($request_method !~ ^(GET|HEAD|POST)$) {
 }
 ```
 
-然后，下面的命令就会返回444错误。
+然后，下面的命令就会返回 444 错误。
 
 ```bash
 $ curl -X DELETE http://192.168.0.25/index.html
 ```
 
-（3）指定SSL版本
+（3）指定 SSL 版本
 
 ```bash
 server {
@@ -224,7 +224,7 @@ server {
 
 （4）指定 SSL 证书
 
-首先，删除或注释掉下面指定监听80端口的两行。
+首先，删除或注释掉下面指定监听 80 端口的两行。
 
 ```bash
 listen 80 default_server;
@@ -290,7 +290,7 @@ $ sudo service nginx restart
 # openssl x509 -req -days 365 -in tecmintlovesnginx.csr -signkey tecmintlovesnginx.key -out tecmintlovesnginx.crt
 ```
 
-（5）HTTP导向HTTPS
+（5）HTTP 导向 HTTPS
 
 ```bash
 server {
@@ -312,7 +312,7 @@ http {
 }
 ```
 
-上面代码中，用户对`/app`路径的访问请求，会被转发到后端服务。这时，nginx会增加一个HTTP信息头`X-ClientCert-DN`，它的值就是nginx变量`$ssl_client_s_dn`，这个值从客户端证书的Common Name部分获取。
+上面代码中，用户对`/app`路径的访问请求，会被转发到后端服务。这时，nginx 会增加一个 HTTP 信息头`X-ClientCert-DN`，它的值就是 nginx 变量`$ssl_client_s_dn`，这个值从客户端证书的 Common Name 部分获取。
 
 另一个例子。
 
@@ -324,9 +324,9 @@ location / {
 }
 ```
 
-### User Agent限制
+### User Agent 限制
 
-新建一个文件`/etc/nginx/blockuseragents.rules`，定义屏蔽User Agent的规则。
+新建一个文件`/etc/nginx/blockuseragents.rules`，定义屏蔽 User Agent 的规则。
 
 ```bash
 map $http_user_agent $blockedagent {
@@ -339,13 +339,13 @@ map $http_user_agent $blockedagent {
 }
 ```
 
-然后，在server区块之前包含这个文件。
+然后，在 server 区块之前包含这个文件。
 
 ```bash
 include /etc/nginx/blockuseragents.rules;
 ```
 
-接着，在server区块里面启用屏蔽功能。
+接着，在 server 区块里面启用屏蔽功能。
 
 ```bash
 server {
@@ -355,7 +355,7 @@ server {
 }
 ```
 
-重新启动以后，使用被屏蔽的user agent访问，就会返回403错误。
+重新启动以后，使用被屏蔽的 user agent 访问，就会返回 403 错误。
 
 ```bash
 $ wget --user-agent "I am a bandit haha" http://192.168.0.25/index.html
@@ -369,13 +369,13 @@ $ wget --user-agent "I am a bandit haha" http://192.168.0.25/index.html
 $ vi /etc/nginx/sites-enabled/blockips.conf
 ```
 
-写入所要拦截的IP。
+写入所要拦截的 IP。
 
 ```
 deny 123.123.123.123;
 ```
 
-然后，重启nginx。
+然后，重启 nginx。
 
 ```bash
 sudo /etc/init.d/nginx restart
@@ -394,7 +394,7 @@ allow 1.2.3.4/24;
 deny all;
 ```
 
-nginx配置文件里面限制IP段。
+nginx 配置文件里面限制 IP 段。
 
 ```
 location / {
@@ -429,7 +429,7 @@ server {
 }
 ```
 
-认证和IP地址之中，只要满足一个条件即可。
+认证和 IP 地址之中，只要满足一个条件即可。
 
 ```
 location / {
@@ -443,7 +443,7 @@ location / {
 }
 ```
 
-限制单个IP地址的带宽，以及能够建立的连接数。
+限制单个 IP 地址的带宽，以及能够建立的连接数。
 
 ```
 
@@ -454,7 +454,7 @@ location /download/ {
 
 ```
 
-## SSL支持
+## SSL 支持
 
 下面的命令用来生成自签名证书，生成的证书为`/etc/nginx/ssl/ssl.crt`。
 
@@ -464,7 +464,7 @@ $ sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/nginx/ss
 
 将数字证书放在/etc/nginx/certificates/目录。
 
-修改配置文件，打开HTTPs端口。
+修改配置文件，打开 HTTPs 端口。
 
 ```
 server {
@@ -478,9 +478,9 @@ server {
 }
 ```
 
-重启nginx服务。
+重启 nginx 服务。
 
-修改配置文件，将HTTP流量导向HTTPs。
+修改配置文件，将 HTTP 流量导向 HTTPs。
 
 ```
 server {
@@ -490,7 +490,7 @@ server {
 }
 ```
 
-增加ssl session的缓存时间。
+增加 ssl session 的缓存时间。
 
 ```javascript
 worker_processes auto;
@@ -511,7 +511,7 @@ http {
         ...
 ```
 
-同一台服务器同时处理HTTP和HTTPs请求。
+同一台服务器同时处理 HTTP 和 HTTPs 请求。
 
 ```
 server {
@@ -561,7 +561,7 @@ server {
 }
 ```
 
-检查nginx是否支持SNI扩展。
+检查 nginx 是否支持 SNI 扩展。
 
 ```bash
 $ NGINX -V
@@ -596,9 +596,10 @@ http {
 - fcambus, [Nginx Resources](https://github.com/fcambus/nginx-resources)
 - Nishant Modak, [Nginx Guide: Essentials](http://code.tutsplus.com/articles/nginx-guide-essentials--cms-22880)
 - H5BP, [Server Configs Nginx](https://github.com/h5bp/server-configs-nginx/blob/master/doc/TOC.md)
+
 # 配置
 
-Nginx的主配置文件是`nginx.conf`，通常位于`/usr/local/etc/nginx`或者`/etc/nginx`。官方网站提供范例配置[nginx.conf.default](https://gist.github.com/nishantmodak/d08aae033775cb1a0f8a)）可以查看。
+Nginx 的主配置文件是`nginx.conf`，通常位于`/usr/local/etc/nginx`或者`/etc/nginx`。官方网站提供范例配置[nginx.conf.default](https://gist.github.com/nishantmodak/d08aae033775cb1a0f8a)）可以查看。
 
 虚拟主机的默认配置文件是`/etc/nginx/sites-available/default`。一般的做法是，在`sites-available`目录里面，根据每个站点的名字，新建配置文件，比如`/etc/nginx/sites-available/example.com.conf`。
 
@@ -626,7 +627,7 @@ $ nginx –s reload
 
 除了`nginx.conf`，还有`sites-available`和`sites-enabled`两个目录，前者包括所有可用的网站配置，后者只包括前者的符号链接，指向那些已经激活的网站。
 
-`sites-available`目录里面的配置文件，加上660权限。
+`sites-available`目录里面的配置文件，加上 660 权限。
 
 ```bash
 # chmod 660 /etc/nginx/sites-available/example.com.conf
@@ -642,7 +643,7 @@ $ chgrp www-data  /etc/nginx/sites-available/tecmintlovesnginx.com.conf
 $ chgrp nginx  /etc/nginx/sites-available/tecmintlovesnginx.com.conf
 ```
 
-另外，需要修改日志目录的用户组，与nginx属于同一个用户组。
+另外，需要修改日志目录的用户组，与 nginx 属于同一个用户组。
 
 ```bash
 # mkdir /var/www/logs
@@ -658,7 +659,7 @@ $ chgrp nginx  /etc/nginx/sites-available/tecmintlovesnginx.com.conf
 
 接着，在`/var/www/<domain name>/public_html`目录里面，放置一个`index.html`。
 
-最后，测试配置，并重启nginx。
+最后，测试配置，并重启 nginx。
 
 ```bash
 # nginx -t && systemctl start nginx
@@ -682,7 +683,7 @@ $ /etc/init.d/nginx reload
 $
 ```
 
-停用某个网站的做法是从sites-enabled目录移除符号链接，重启nginx。
+停用某个网站的做法是从 sites-enabled 目录移除符号链接，重启 nginx。
 
 ```
 $ cd /etc/nginx/sites-enabled
@@ -691,6 +692,7 @@ $ /etc/init.d/nginx reload
 [....] Reloading nginx configuration: nginx.
 $
 ```
+
 ## 负载均衡
 
 Nginx 可以用作负载均衡。
@@ -725,7 +727,7 @@ upstream backend  {
 }
 ```
 
-上面代码指定，连续三次失败或15秒超时，Nginx会不再给这台服务器分配流量。
+上面代码指定，连续三次失败或 15 秒超时，Nginx 会不再给这台服务器分配流量。
 
 如果某台服务器下线，可以手动指定。
 
@@ -746,6 +748,7 @@ server {
   }
 }
 ```
+
 # 反向代理
 
 编辑`/etc/nginx/sites-available/default`，或者在该目录下新建一个配置文件`/etc/nginx/sites-available/my-site`。
@@ -783,8 +786,8 @@ server {
 
 上面的字段含义如下。
 
--  server_name：你的域名或IP地址
--  proxy_pass：私有IP地址
+- server_name：你的域名或 IP 地址
+- proxy_pass：私有 IP 地址
 
 可以增加`location`区块，为不同的路径代理不同的后端地址。
 
@@ -811,7 +814,7 @@ server {
 }
 ```
 
-上面的代码将所有请求，301重定向到另一个域名。
+上面的代码将所有请求，301 重定向到另一个域名。
 
 如果只要重定向某个目录的请求，可以像下面这样写。
 
@@ -822,6 +825,7 @@ rewrite ^/images/(.*)$ http://images.example.com/$1 redirect;
 # 302 重定向
 rewrite ^/images/(.*)$ http://images.example.com/$1 permanent;
 ```
+
 # TLS 设置
 
 ## 启用 HTTP/2

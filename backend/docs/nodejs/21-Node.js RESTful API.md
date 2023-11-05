@@ -2,26 +2,24 @@
 
 ## 什么是 REST？
 
-REST即表述性状态传递（英文：Representational State Transfer，简称REST）是Roy Fielding博士在2000年他的博士论文中提出来的一种软件架构风格。
+REST 即表述性状态传递（英文：Representational State Transfer，简称 REST）是 Roy Fielding 博士在 2000 年他的博士论文中提出来的一种软件架构风格。
 
-表述性状态转移是一组架构约束条件和原则。满足这些约束条件和原则的应用程序或设计就是RESTful。需要注意的是，REST是设计风格而不是标准。REST通常基于使用HTTP，URI，和XML（标准通用标记语言下的一个子集）以及HTML（标准通用标记语言下的一个应用）这些现有的广泛流行的协议和标准。REST 通常使用 JSON 数据格式。
+表述性状态转移是一组架构约束条件和原则。满足这些约束条件和原则的应用程序或设计就是 RESTful。需要注意的是，REST 是设计风格而不是标准。REST 通常基于使用 HTTP，URI，和 XML（标准通用标记语言下的一个子集）以及 HTML（标准通用标记语言下的一个应用）这些现有的广泛流行的协议和标准。REST 通常使用 JSON 数据格式。
 
 ### HTTP 方法
 
 以下为 REST 基本架构的四个方法：
-
-
 
 - **GET** - 用于获取数据。
 - **PUT** - 用于更新或添加数据。
 - **DELETE** - 用于删除数据。
 - **POST** - 用于添加数据。
 
-------
+---
 
 ## RESTful Web Services
 
-Web service是一个平台独立的，低耦合的，自包含的、基于可编程的web的应用程序，可使用开放的XML（标准通用标记语言下的一个子集）标准来描述、发布、发现、协调和配置这些应用程序，用于开发分布式的互操作的应用程序。
+Web service 是一个平台独立的，低耦合的，自包含的、基于可编程的 web 的应用程序，可使用开放的 XML（标准通用标记语言下的一个子集）标准来描述、发布、发现、协调和配置这些应用程序，用于开发分布式的互操作的应用程序。
 
 基于 REST 架构的 Web Services 即是 RESTful。
 
@@ -31,7 +29,7 @@ RESTful Web 服务通常可以通过自动客户端或代表用户的应用程�
 
 更多介绍，可以查看：[RESTful 架构详解](https://www.runoob.com/w3cnote/restful-architecture.html)
 
-------
+---
 
 ## 创建 RESTful
 
@@ -98,7 +96,7 @@ var server = app.listen(8081, function () {
 接下来执行以下命令：
 
 ```
-$ node server.js 
+$ node server.js
 应用实例，访问地址为 http://0.0.0.0:8081
 ```
 
@@ -168,7 +166,7 @@ var server = app.listen(8081, function () {
 接下来执行以下命令：
 
 ```
-$ node server.js 
+$ node server.js
 应用实例，访问地址为 http://0.0.0.0:8081
 ```
 
@@ -194,13 +192,13 @@ $ node server.js
    { name: 'mohit',
      password: 'password4',
      profession: 'teacher',
-     id: 4 } 
+     id: 4 }
 }
 ```
 
 ### 显示用户详情
 
-以下代码，我们创建了 RESTful API **:id（用户id）**， 用于读取指定用户的详细信息，server.js 文件代码如下所示：
+以下代码，我们创建了 RESTful API **:id（用户 id）**， 用于读取指定用户的详细信息，server.js 文件代码如下所示：
 
 ```
 var express = require('express');
@@ -211,7 +209,7 @@ app.get('/:id', function (req, res) {
    // 首先我们读取已存在的用户
    fs.readFile( __dirname + "/" + "users.json", 'utf8', function (err, data) {
        data = JSON.parse( data );
-       var user = data["user" + req.params.id] 
+       var user = data["user" + req.params.id]
        console.log( user );
        res.end( JSON.stringify(user));
    });
@@ -229,7 +227,7 @@ var server = app.listen(8081, function () {
 接下来执行以下命令：
 
 ```
-$ node server.js 
+$ node server.js
 应用实例，访问地址为 http://0.0.0.0:8081
 ```
 
@@ -261,7 +259,7 @@ app.get('/deleteUser', function (req, res) {
    fs.readFile( __dirname + "/" + "users.json", 'utf8', function (err, data) {
        data = JSON.parse( data );
        delete data["user" + id];
-       
+
        console.log( data );
        res.end( JSON.stringify(data));
    });
@@ -279,7 +277,7 @@ var server = app.listen(8081, function () {
 接下来执行以下命令：
 
 ```
-$ node server.js 
+$ node server.js
 应用实例，访问地址为 http://0.0.0.0:8081
 ```
 
@@ -295,6 +293,6 @@ $ node server.js
    { name: 'ramesh',
      password: 'password3',
      profession: 'clerk',
-     id: 3 } 
+     id: 3 }
 }
 ```

@@ -22,71 +22,79 @@ WebSockets 可以解决上面的问题。首次握手后，服务端和客户端
 
 1、新建一个项目（存放客户端和服务端的代码），安装服务端的依赖
 
-~~~bash
+```bash
 npm init
 npm install nodejs-websocket --save
-~~~
+```
 
 2、新建 server.js 服务器代码
 
-~~~js
-var ws = require('nodejs-websocket');
+```js
+var ws = require("nodejs-websocket");
 
 // 创建服务器
-var server = ws.createServer(function(socket){
-  // 事件名称为text(读取字符串时，就叫做text)，读取客户端传来的字符串
-  var count = 1;
-  socket.on('text', function(str) {
-    // 在控制台输出前端传来的消息　　
-    console.log(str);
-    //向前端回复消息
-    socket.sendText('服务器端收到客户端端发来的消息了！' + count++);
-  });
-}).listen(3000); 
-~~~
+var server = ws
+  .createServer(function (socket) {
+    // 事件名称为text(读取字符串时，就叫做text)，读取客户端传来的字符串
+    var count = 1;
+    socket.on("text", function (str) {
+      // 在控制台输出前端传来的消息
+      console.log(str);
+      //向前端回复消息
+      socket.sendText("服务器端收到客户端端发来的消息了！" + count++);
+    });
+  })
+  .listen(3000);
+```
 
 启动服务端
 
-~~~bash
+```bash
 node server.js
-~~~
+```
 
 3 创建客户端 index.html
 
-~~~html
+```html
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  <script src="./client.js" type="text/javascript" charset="utf-8" async defer></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script
+      src="./client.js"
+      type="text/javascript"
+      charset="utf-8"
+      async
+      defer
+    ></script>
+  </body>
 </html>
-~~~
+```
 
-引入 client.js 
+引入 client.js
 
-~~~js
+```js
 // webSocket 是浏览器中的对象，在 node 环境中不存在（报错）
-var ws = new WebSocket('ws://localhost:3000/');
+var ws = new WebSocket("ws://localhost:3000/");
 
-ws.onopen = function(evt) { 
-  console.log("Connection open ..."); 
+ws.onopen = function (evt) {
+  console.log("Connection open ...");
   ws.send("Hello WebSockets!");
 };
 
-ws.onmessage = function(evt) {
-  console.log( "Received Message: " + evt.data);
+ws.onmessage = function (evt) {
+  console.log("Received Message: " + evt.data);
   ws.close();
 };
 
-ws.onclose = function(evt) {
+ws.onclose = function (evt) {
   console.log("Connection closed.");
-}; 
-~~~
+};
+```
 
 在这里监听不同的事件，对应不同的回调函数
 

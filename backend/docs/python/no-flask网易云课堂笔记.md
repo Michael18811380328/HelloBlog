@@ -1,8 +1,8 @@
 # Flask 课程笔记
 
-课程介绍：网易云课堂视频课程；2020年学习前两章并总结笔记如下（然后旧视频下架了）
+课程介绍：网易云课堂视频课程；2020 年学习前两章并总结笔记如下（然后旧视频下架了）
 
-2022年新的课程链接：https://study.163.com/course/courseMain.htm?courseId=1004091002
+2022 年新的课程链接：https://study.163.com/course/courseMain.htm?courseId=1004091002
 
 学习目标：熟悉 python 环境搭建和基本语法，了解 flask 的设计原理，可以做一个简单项目；有能力可以对接一个前后端项目。
 
@@ -10,7 +10,7 @@
 
 数据库设计：需要用户表，文章表，评论表，支持不同数据的增删改查。
 
-## 第0章 安装开发环境
+## 第 0 章 安装开发环境
 
 #### 0.1 安装 python
 
@@ -24,45 +24,46 @@ Windows：没有 Python 环境。需要下载安装，配置环境变量（`pyth
 
 安装虚拟环境
 
-~~~bash
+```bash
 sudo pip3 install virtualenv
 mkdir test
 cd test
 virtualenv flask-env
-~~~
+```
 
 Windows 激活虚拟环境
 
-~~~bash
+```bash
 cd flask-dev/scripts
 activate
 pip3 install -r requirements.txt
 deactivate
-~~~
+```
 
 Mac 激活虚拟环境
 
-~~~bash
+```bash
 source ~/Virtualenv/flask-env/bin/activate
 pip3 install -r requirements.txt
 deactivate
-~~~
+```
 
 #### 0.3 安装 flask
 
 flask 版本兼容问题：官方 flask 已经支持 2.x.x 版本，对应 python3；教程版本是否最新等，可能部分代码不兼容，需要实际调试
 
-~~~bash
+```bash
 source ~/Virtualenv/flask-env/bin/activate
 pip3 install flask
-~~~
+```
 
 测试版本号（测试安装正常）
-~~~python
+
+```python
 import flask
 print flask.__version__
 # 1.1.1
-~~~
+```
 
 #### 安装 IDE
 
@@ -72,11 +73,11 @@ print flask.__version__
 
 ### 第一课 hello flask
 
-1. 第一次创建项目的时候，需要添加虚拟环境（在pycharm）选择虚拟环境中的 python 执行文件
+1. 第一次创建项目的时候，需要添加虚拟环境（在 pycharm）选择虚拟环境中的 python 执行文件
 
 2. flask 代码基本结构解释
 
-~~~python
+```python
 #coding=utf-8
 
 # python 2需要设置语言utf-8
@@ -101,9 +102,9 @@ def index_page():
 # 入口程序：启动一个应用程序，接受用户的请求（event listener）
 if __name__ == '__main__':
     app.run()
-~~~
+```
 
-### 第二课 debug 
+### 第二课 debug
 
 `app.run(debug=True) `打开调试模式
 
@@ -111,41 +112,41 @@ if __name__ == '__main__':
 
 外部配置文件：新建配置文件 config.py，加入大写的参数
 
-~~~python
+```python
 DEBUG = True
 # SECRET_KEY
-~~~
+```
 
 在主文件中引入配置文件，使用配置
 
 main.py
 
-~~~python
+```python
 import config
 app.config.from_object(config)
-~~~
+```
 
-### 第3课 URL 传参
+### 第 3 课 URL 传参
 
-可以在URL中传参
+可以在 URL 中传参
 
-~~~python
+```python
 @app.route('/page/<number>')
 def change_page(number):
 	return 'change page to %s' % number
-~~~
+```
 
 参数需要放在尖括号中，视图函数中参数和原始参数相同。
 
-### 第4课 URL反转
+### 第 4 课 URL 反转
 
-可以在一个视图函数中，传入其他视图函数，返回对应的URL
+可以在一个视图函数中，传入其他视图函数，返回对应的 URL
 
 使用 url_for 内置函数
 
-用途：页面重定向；HTML中A链接
+用途：页面重定向；HTML 中 A 链接
 
-~~~python
+```python
 from flask import Flask, url_for
 import config
 app = Flask(__name__)
@@ -168,16 +169,15 @@ def change_page(number):
 if __name__ == '__main__':
     app.run()
 
-~~~
+```
 
-注意：运行flask后，需要点击关闭，才能关闭当前的本地服务器。否则关闭终端后，本地服务器还在运行，可能影响其他的本地服务器。
+注意：运行 flask 后，需要点击关闭，才能关闭当前的本地服务器。否则关闭终端后，本地服务器还在运行，可能影响其他的本地服务器。
 
-
-### 第5课 页面重定向和跳转
+### 第 5 课 页面重定向和跳转
 
 实际使用: 用户未登录时，跳转（重定向）到登录界面
 
-~~~python
+```python
 #coding=utf-8
 from flask import Flask, redirect, url_for
 app = Flask(__name__)
@@ -205,17 +205,15 @@ def question(id):
 if __name__ == '__main__':
     app.run(debug=True)
 
-~~~
+```
 
-
-
-## 第二章 Jinja2模板
+## 第二章 Jinja2 模板
 
 ### 第一课 模板渲染和传参
 
 模板放在 templates 路径下
 
-导入模板：render_template 函数；注意：不需要写templates文件夹的路径，直接写入口文件
+导入模板：render_template 函数；注意：不需要写 templates 文件夹的路径，直接写入口文件
 
 模板传参：render_template 函数中第二个参数进行传参；在模板中使用变量需要 {{ 参数 }}
 
@@ -225,7 +223,7 @@ if __name__ == '__main__':
 
 ### 第三课 条件语句
 
-~~~jinja2
+```jinja2
 {% if user %}
 	<p>{{ user.name }}</p>
 	<p>注销</p>
@@ -233,7 +231,7 @@ if __name__ == '__main__':
 	<p>登录</p>
 	<p>注册</p>
 {% endif %}
-~~~
+```
 
 and or not 逻辑操作
 
@@ -243,7 +241,7 @@ and or not 逻辑操作
 
 python 中遍历字典和 JS 不同
 
-~~~python
+```python
 user = {
     'name': 'Mike',
     'age': 18
@@ -251,26 +249,26 @@ user = {
 for k, v in user.items():
     print k
     print v
-~~~
+```
 
 Jinja2 模板中的使用
 
-其他的遍历和python一样， 使用 items() keys() values() iteritems() itrtkeys() itervalues() 迭代器遍历
+其他的遍历和 python 一样， 使用 items() keys() values() iteritems() itrtkeys() itervalues() 迭代器遍历
 
-~~~jinja2
+```jinja2
 <dl>
 <% for key, value, in my_dict.iteritems() %>
 <dt>{{ key|e }}</dt>
 <dd>{{ value|e }}</dd>
 <% endfor %>
 </dl>
-~~~
+```
 
 #### 遍历列表
 
 没有值的情况
 
-~~~jinja2
+```jinja2
 <ul>
 {% for user in users %}
 <li>{{ user.name }}</li>
@@ -278,7 +276,6 @@ Jinja2 模板中的使用
 <li>no users found</li>
 {% endfor %}
 </ul>
-~~~
+```
 
 小案例：四大名著的渲染
-

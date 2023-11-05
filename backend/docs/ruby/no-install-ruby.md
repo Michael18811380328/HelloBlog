@@ -2,17 +2,16 @@
 
 run this in terminal, then create new blogs.
 
-~~~bash
+```bash
 brew install ruby
 ruby install gem
 gem install jekyll
 
 mkdir test
 jelyll new bolb
-~~~
+```
 
-
-~~~bash
+```bash
 # install rvm toolc(Ruby version management tool)
 curl -L https://get.rvm.io | bash -s stable
 Installation of RVM in /.rvm/ is almost complete:
@@ -22,7 +21,7 @@ source ~/.rvm/scripts/rvm
 
 # view Ruby version and make sure install successfully
 rvm -v
-rvm 1.29.7 
+rvm 1.29.7
 
 # list all Ruby versions
 rvm list known
@@ -42,8 +41,8 @@ rvm list known
 [ruby-]2.6[.0]
 ruby-head
 
-# use RVM to install Ruby (version 2.3 upper) 
-# you can also use brew install Ruby in Mac 
+# use RVM to install Ruby (version 2.3 upper)
+# you can also use brew install Ruby in Mac
 rvm install 2.0.0
 
 Searching for binary rubies, this might take some time.
@@ -70,7 +69,7 @@ ruby-2.6.0 - @generating global wrappers.......
 ruby-2.6.0 - @gemset created /.rvm/gems/ruby-2.6.0
 ruby-2.6.0 - @generating default wrappers.......
 ruby-2.6.0 - @adjusting @shebangs for (gem irb erb ri rdoc testrb rake).
-Install of ruby-2.6.0 - @complete 
+Install of ruby-2.6.0 - @complete
 
 # view ruby version，make sure version 2.6 install successfully
 ruby --version
@@ -111,7 +110,8 @@ brew install ruby
 ==> Installing dependencies for ruby: openssl
 ==> Installing ruby dependency: openssl
 ...
-~~~
+```
+
 More Info：
 
 https://www.cnblogs.com/daguo/p/4097263.html

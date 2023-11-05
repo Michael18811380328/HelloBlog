@@ -129,5 +129,3 @@ Helen’s head, always drooping, sank a little lower as she finished this senten
 “Helen Burns, if you don’t go and put your drawer in order, and fold up your work this minute, I’ll tell Miss Scatcherd to come and look at it!”
 
 Helen sighed as her reverie fled, and getting up, obeyed the monitor without reply as without delay.
-
-

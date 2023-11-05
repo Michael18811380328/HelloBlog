@@ -86,7 +86,7 @@ CFLAGS=-Qunused-arguments CPPFLAGS=-Qunused-arguments pip install -r requirement
 If it does not work: First install **mysql-connector-c**
 
 ```bash
-brew install mysql-connector-c 
+brew install mysql-connector-c
 pip install MySQL-python
 ```
 
@@ -96,7 +96,7 @@ https://dev.mysql.com/downloads/connector/c/
 
 You can also check what happend when you try install it with `pip3.`
 
-*UPDATE:* If you have Linux: Please open the `/usr/local/bin/mysql_config`.
+_UPDATE:_ If you have Linux: Please open the `/usr/local/bin/mysql_config`.
 
 And then:
 
@@ -128,8 +128,6 @@ LDFLAGS=-L/usr/local/opt/openssl/lib pip install mysql-python
 ```
 
 should be helpful.
-
-
 
 第二种方法
 

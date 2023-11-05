@@ -48,7 +48,7 @@ class MyComponent extends React.Component {
 const node = this.myRef.current;
 ```
 
-ref的值取决于节点的类型:
+ref 的值取决于节点的类型:
 
 - 当 `ref` 属性被用于一个普通的 HTML 元素时，`React.createRef()` 将接收底层 DOM 元素作为它的 `current` 属性以创建 `ref` 。
 - 当 `ref` 属性被用于一个自定义类组件时，`ref` 对象将接收该组件已挂载的实例作为它的 `current`。
@@ -79,10 +79,7 @@ class CustomTextInput extends React.Component {
     // 告诉 React 我们想把 <input> ref 关联到构造器里创建的 `textInput` 上
     return (
       <div>
-        <input
-          type="text"
-          ref={this.textInput} 
-         /> 
+        <input type="text" ref={this.textInput} />
         <input
           type="button"
           value="Focus the text input"
@@ -112,9 +109,7 @@ class AutoFocusTextInput extends React.Component {
   }
 
   render() {
-    return (
-      <CustomTextInput ref={this.textInput} />
-    );
+    return <CustomTextInput ref={this.textInput} />;
   }
 }
 ```
@@ -143,9 +138,7 @@ class Parent extends React.Component {
   }
   render() {
     // 这将 *不会* 工作！
-    return (
-      <MyFunctionalComponent ref={this.textInput} />
-    );
+    return <MyFunctionalComponent ref={this.textInput} />;
   }
 }
 ```
@@ -167,14 +160,13 @@ function CustomTextInput(props) {
     <div>
       <input
         type="text"
-        ref={(input) => { textInput = input; }} />
-      <input
-        type="button"
-        value="Focus the text input"
-        onClick={handleClick}
+        ref={(input) => {
+          textInput = input;
+        }}
       />
+      <input type="button" value="Focus the text input" onClick={handleClick} />
     </div>
-  );  
+  );
 }
 ```
 
@@ -200,11 +192,10 @@ React 也支持另一种设置 ref 的方式，称为“回调 ref”，更加�
 
 ```jsx
 class CustomTextInput extends React.Component {
-  
   constructor(props) {
     super(props);
     this.textInput = null;
-    this.setTextInputRef = element => {
+    this.setTextInputRef = (element) => {
       this.textInput = element;
     };
 
@@ -224,10 +215,7 @@ class CustomTextInput extends React.Component {
     // 实例上（比如 this.textInput）
     return (
       <div>
-        <input
-          type="text"
-          ref={this.setTextInputRef}
-        />
+        <input type="text" ref={this.setTextInputRef} />
         <input
           type="button"
           value="Focus the text input"
@@ -254,11 +242,7 @@ function CustomTextInput(props) {
 
 class Parent extends React.Component {
   render() {
-    return (
-      <CustomTextInput
-        inputRef={el => this.inputElement = el}
-      />
-    );
+    return <CustomTextInput inputRef={(el) => (this.inputElement = el)} />;
   }
 }
 ```
@@ -267,7 +251,7 @@ class Parent extends React.Component {
 
 ### 旧版 API：String 类型的 Refs
 
-如果你之前使用过 React ，你可能了解过之前的API中的 string 类型的 ref 属性，比如 “textInput” ，你可以通过 this.refs.textInput 访问DOM节点。我们不建议使用它，因为 String 类型的 refs [存在问题](https://github.com/facebook/pull/8333#issuecomment-271648615)。它已过时并**可能会在未来的版本被移除**。如果你目前还在使用 this.refs.textInput 这种方式访问 refs ，我们建议用回调函数的方式代替。
+如果你之前使用过 React ，你可能了解过之前的 API 中的 string 类型的 ref 属性，比如 “textInput” ，你可以通过 this.refs.textInput 访问 DOM 节点。我们不建议使用它，因为 String 类型的 refs [存在问题](https://github.com/facebook/pull/8333#issuecomment-271648615)。它已过时并**可能会在未来的版本被移除**。如果你目前还在使用 this.refs.textInput 这种方式访问 refs ，我们建议用回调函数的方式代替。
 
 ### 注意
 
