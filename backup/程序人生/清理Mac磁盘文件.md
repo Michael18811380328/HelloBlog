@@ -6,19 +6,15 @@
 
 原文链接：https://pawelurbanek.com/macos-free-disk-space#commento
 
-
-
 Hire me
 
 I'm available to conduct a performance tuning and security audit of your Rails app.
 
 [More details](https://pawelurbanek.com/#rails-performance-tuning)
 
-Installing or updating an app (*ahem, ahem XCode…*) on macOS is sometimes surprisingly difficult because of missing disk space. In this blog post, I’ll describe various ways to quickly and safely clean vast amounts of storage on a Mac Book used for web development.
+Installing or updating an app (_ahem, ahem XCode…_) on macOS is sometimes surprisingly difficult because of missing disk space. In this blog post, I’ll describe various ways to quickly and safely clean vast amounts of storage on a Mac Book used for web development.
 
 I’ve recently performed the same analysis and cleanup on my MacBook Pro. As a result, I’ve managed to free tens of GBs of storage and could finally update XCode to the newest version.
-
-
 
 ## Analyze your disk usage
 
@@ -38,17 +34,15 @@ Let’s now discuss the lowest hanging fruits in reducing storage usage.
 
 ## Remove redundant applications cache
 
-清空磁盘缓存：本地 yarn 有10G缓存，各大浏览器有 2G 缓存，这是不少的存储空间。
+清空磁盘缓存：本地 yarn 有 10G 缓存，各大浏览器有 2G 缓存，这是不少的存储空间。
 
 也就是为什么 yarn 安装包比 npm 快很多的原因。
 
-On my computer the significant bulk of unnecessary data was in the `~/Library/Caches` folder. I’ve noticed hundreds of MBs related to *Yarn* that I did not use for a year or so. Apparently, many applications are keen to cache data while neglecting to do the cleanup afterward.
+On my computer the significant bulk of unnecessary data was in the `~/Library/Caches` folder. I’ve noticed hundreds of MBs related to _Yarn_ that I did not use for a year or so. Apparently, many applications are keen to cache data while neglecting to do the cleanup afterward.
 
 ![macOS cache usage before cleanup](https://pawelurbanek.com/assets/cache-before-3c0eb04faa3d22370a0d79ce639de8e66fc6581f5d1ae913ea2578c1dbc03322.png)
 
 macOS cache usage before cleanup
-
-
 
 You can thoroughly purge the cache using the following commands:
 
@@ -59,7 +53,7 @@ rm -rf *
 
 Alternatively, you can cherry-pick which cache folders to remove. I’ve been regularly doing the total cache cleanups for a couple of months now. Other than the temporary system slowdown, I did not notice any issues.
 
-Obviously, the cache will rebuild itself over time. But it does not grow to the same size even after a more extended period. After removing over *30GB* of cache, the `Caches` folder size increased to only around *2GB* after the week of regularly using the computer.
+Obviously, the cache will rebuild itself over time. But it does not grow to the same size even after a more extended period. After removing over _30GB_ of cache, the `Caches` folder size increased to only around _2GB_ after the week of regularly using the computer.
 
 ![macOS cache usage after cleanup](https://pawelurbanek.com/assets/cache-after-236358b8e3c414b7682b1366351c02249e412744a578d28d5474fc3f5fd1063a.png)
 
@@ -67,15 +61,13 @@ macOS cache usage a week after cleanup
 
 ## Remove old log files
 
-I work mostly with Ruby on Rails on my desktop. While using *Disk Inventory X*, I’ve discovered that running the local tests continuously appends content to the `log/test.log` file.
+I work mostly with Ruby on Rails on my desktop. While using _Disk Inventory X_, I’ve discovered that running the local tests continuously appends content to the `log/test.log` file.
 
 ![Overgrown Rails test log file](https://pawelurbanek.com/assets/rails-test-logs-ab4fd91e07d1c510d83d9f9f2f4ea1298d261b2e0444d42a014c69499356783b.png)
 
 Overgrown Rails log file
 
-
-
-I can imagine other stacks similarly silently consuming the disk space. *Disk Inventory X* is invaluable in identifying and fixing such cases.
+I can imagine other stacks similarly silently consuming the disk space. _Disk Inventory X_ is invaluable in identifying and fixing such cases.
 
 ## Reduce Docker disk space usage
 
@@ -127,6 +119,6 @@ Check out the [Docker documentation](https://docs.docker.com/config/pruning/) to
 
 ## Summary
 
-I hope those tips will help you to clean the vast amounts of disk space easily. Regularly checking the *Disk Inventory X* for unnecessary disk usage bloats is the a good practice that will help you keep your disk usage in order.
+I hope those tips will help you to clean the vast amounts of disk space easily. Regularly checking the _Disk Inventory X_ for unnecessary disk usage bloats is the a good practice that will help you keep your disk usage in order.
 
 I'm available to conduct a performance tuning and security audit of your Rails app.

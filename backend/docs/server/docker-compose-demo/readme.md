@@ -14,14 +14,13 @@ Compose 使用的三个步骤：
 
 其他常用命令
 
-~~~bash
+```bash
 docker exec -it 容器名称 bash
 docker run -it 镜像名称 bash
 # 本地有 node 的镜像，但是没有 node 的容器，所以第二行可以运行
 
-docker port dtable-mysql 查看容器端口映射  
+docker port dtable-mysql 查看容器端口映射
 3306/tcp -> 0.0.0.0:3306
 
 docker start/stop 容器名称 打开或者关闭容器
-~~~
-
+```

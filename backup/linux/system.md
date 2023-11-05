@@ -2,9 +2,9 @@
 
 ## Systemd
 
-Systemd是一个系统管理软件，主要用于管理后台守护进程（daemon）。它用来取代传统的initd服务启动方式。在使用它的系统中，它是所有其他进程的父进程。
+Systemd 是一个系统管理软件，主要用于管理后台守护进程（daemon）。它用来取代传统的 initd 服务启动方式。在使用它的系统中，它是所有其他进程的父进程。
 
-Systemd每个启动的进程，称为“单位”（unit）。每个服务由描述文件（unit file）定义，描述文件存放在下面两个目录。
+Systemd 每个启动的进程，称为“单位”（unit）。每个服务由描述文件（unit file）定义，描述文件存放在下面两个目录。
 
 - `/usr/lib/systemd/system/`：软件包安装时自动添加的服务
 - `/etc/systemd/system/`：系统管理员添加的服务，优先级较高。
@@ -188,7 +188,7 @@ $ timedatectl list-timezones
 $ sudo timedatectl set-timezone America/New_York
 ```
 
-列出当前session。
+列出当前 session。
 
 ```bash
 $ loginctl list-sessions
@@ -262,11 +262,11 @@ WantedBy=multi-user.target
 
 它的含义如下。
 
-- After：用来定义服务的依赖关系。如果A服务依赖于B服务，则增加`Requires=B`和`After=B`到A服务的描述文件的`[Unit]`部分。
+- After：用来定义服务的依赖关系。如果 A 服务依赖于 B 服务，则增加`Requires=B`和`After=B`到 A 服务的描述文件的`[Unit]`部分。
 - ExecStart：启动脚本。该脚本应该是可执行的（`chmod +x app.js`），并且第一行指定解释器（`#!/usr/bin/env node`）
 - Restart：定义该服务的政策，`always`表示总是执行
 - Environment：这些行用来指定环境变量。将`NODE_ENV`设为`production`的标准做法。
-- Install部分：该服务何时激活，上例是系统启动时
+- Install 部分：该服务何时激活，上例是系统启动时
 
 将该文件拷贝到`/etc/systemd/system`目录。
 
@@ -274,7 +274,7 @@ WantedBy=multi-user.target
 $ sudo myapp.service /etc/systemd/system
 ```
 
-让SystemMD重新加载配置文件。
+让 SystemMD 重新加载配置文件。
 
 ```bash
 $ sudo stemctl daemon-reload
@@ -288,7 +288,7 @@ $ sudo systemctl start myapp
 
 ### 系统日志
 
-Systemd本身包含了系统日志，因此`syslog`进程不再需要了。journald的配置文件是`/etc/systemd/journald.conf`。
+Systemd 本身包含了系统日志，因此`syslog`进程不再需要了。journald 的配置文件是`/etc/systemd/journald.conf`。
 
 ```bash
 # 查看日志

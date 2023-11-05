@@ -1,36 +1,36 @@
-# [Node.js使用Nodemailer发送邮件](https://segmentfault.com/a/1190000012251328)
+# [Node.js 使用 Nodemailer 发送邮件](https://segmentfault.com/a/1190000012251328)
 
 [nodemailer](https://segmentfault.com/t/nodemailer)[email](https://segmentfault.com/t/email)[node.js](https://segmentfault.com/t/node.js)
 
- 阅读约 17 分钟
+阅读约 17 分钟
 
-*原文链接：[Node.js使用Nodemailer发送邮件](https://mp.weixin.qq.com/s?__biz=MzU0OTE3MjE1Mw==&mid=2247483763&idx=1&sn=0166a93351c092aeb2c4efb8c0e0a4b3&chksm=fbb2a7a5ccc52eb3b241f32601a23be8a431e671ff493327ff61becc4f4ceb1da319ec6c8ea8#rd)*
+_原文链接：[Node.js 使用 Nodemailer 发送邮件](https://mp.weixin.qq.com/s?__biz=MzU0OTE3MjE1Mw==&mid=2247483763&idx=1&sn=0166a93351c092aeb2c4efb8c0e0a4b3&chksm=fbb2a7a5ccc52eb3b241f32601a23be8a431e671ff493327ff61becc4f4ceb1da319ec6c8ea8#rd)_
 
 电子邮件是—种用电子手段提供信息交换的通信方式，是互联网应用最广的服务。通过网络的电子邮件系统，用户可以以非常低廉的价格（不管发送到哪里，都只需负担网费）、非常快速的方式（几秒钟之内可以发送到世界上任何指定的目的地），与世界上任何一个角落的网络用户联系。
 
-在很多项目中，我们都会遇到邮件注册，邮件反馈等需求。在node中收发电子邮件也非常简单，因为强大的社区有各种各样的包可以供我么直接使用。[Nodemailer](https://github.com/nodemailer/nodemailer)包就可以帮助我们快速实现发送邮件的功能。
+在很多项目中，我们都会遇到邮件注册，邮件反馈等需求。在 node 中收发电子邮件也非常简单，因为强大的社区有各种各样的包可以供我么直接使用。[Nodemailer](https://github.com/nodemailer/nodemailer)包就可以帮助我们快速实现发送邮件的功能。
 
-Github源码：https://github.com/ogilhinn/node-abc/tree/master/lesson10
+Github 源码：https://github.com/ogilhinn/node-abc/tree/master/lesson10
 
-## Nodemailer简介
+## Nodemailer 简介
 
-Nodemailer是一个简单易用的Node.js邮件发送组件
+Nodemailer 是一个简单易用的 Node.js 邮件发送组件
 
 官网地址：[https://nodemailer.com](https://nodemailer.com/)
 
-GitHub地址：https://github.com/nodemailer/nodemailer
+GitHub 地址：https://github.com/nodemailer/nodemailer
 
-Nodemailer的主要特点包括：
+Nodemailer 的主要特点包括：
 
-- 支持Unicode编码
-- 支持Window系统环境
-- 支持HTML内容和普通文本内容
+- 支持 Unicode 编码
+- 支持 Window 系统环境
+- 支持 HTML 内容和普通文本内容
 - 支持附件(传送大附件)
-- 支持HTML内容中嵌入图片
-- 支持SSL/STARTTLS安全的邮件发送
-- 支持内置的transport方法和其他插件实现的transport方法
+- 支持 HTML 内容中嵌入图片
+- 支持 SSL/STARTTLS 安全的邮件发送
+- 支持内置的 transport 方法和其他插件实现的 transport 方法
 - 支持自定义插件处理消息
-- 支持XOAUTH2登录验证
+- 支持 XOAUTH2 登录验证
 
 ## 安装使用
 
@@ -85,11 +85,11 @@ nodemailer.createTestAccount((err, account) => {
 });
 ```
 
-这个小例子是生成了Ethereal的账户进行邮件发送演示的。但是这多没意思，我们来使用自己的邮箱来发送邮件
+这个小例子是生成了 Ethereal 的账户进行邮件发送演示的。但是这多没意思，我们来使用自己的邮箱来发送邮件
 
 ## 发出个真实的邮件
 
-这里我使用了我的qq邮箱给163邮箱发送email。
+这里我使用了我的 qq 邮箱给 163 邮箱发送 email。
 
 ```
 'use strict';
@@ -127,23 +127,23 @@ transporter.sendMail(mailOptions, (error, info) => {
 });
 ```
 
-运行程序，成功将返回messageId。这是便可以去收件箱查看这个新邮件啦
+运行程序，成功将返回 messageId。这是便可以去收件箱查看这个新邮件啦
 
 ![email](https://user-gold-cdn.xitu.io/2017/12/2/16014b44aaa09b42?w=1882&h=672&f=png&s=105593)
 
-这里我们需要注意，auth.pass 不是邮箱账户的密码而是stmp的授权码。
+这里我们需要注意，auth.pass 不是邮箱账户的密码而是 stmp 的授权码。
 
 到此我们就掌握了发邮件的基本操作。
 
 ## 更多配置
 
-- CC: Carbon Copy(抄送)，用于通知相关的人，收件人可以看到都邮件都抄送给谁了。一般回报工作或跨部门沟通时，都会CC给收件人的领导一份
+- CC: Carbon Copy(抄送)，用于通知相关的人，收件人可以看到都邮件都抄送给谁了。一般回报工作或跨部门沟通时，都会 CC 给收件人的领导一份
 - BCC:Blind Carbon Copy(暗抄送)，也是用于通知相关的人，但是收件人是看不到邮件被密送给谁了。
 - attachments: 附件
 
 更多配置项：https://nodemailer.com/message/
 
-这里我们就不演示CC、BCC了，请自行尝试。我们来试试发送附件
+这里我们就不演示 CC、BCC 了，请自行尝试。我们来试试发送附件
 
 ```
 ...
@@ -161,13 +161,13 @@ attachments: [
 ...
 ```
 
-发送email，就可以收到一个内容为hello world的text.txt文件，以及一个我公众号的二维码。
+发送 email，就可以收到一个内容为 hello world 的 text.txt 文件，以及一个我公众号的二维码。
 
-## 好看的HTML邮件
+## 好看的 HTML 邮件
 
 HTML Email 编写指南: http://www.ruanyifeng.com/blog/2013/06/html_email.html
 
-这儿，我们使用Foundation for Emails: https://foundation.zurb.com/emails.html的模板
+这儿，我们使用 Foundation for Emails: https://foundation.zurb.com/emails.html的模板
 
 ```
 'use strict';
@@ -208,11 +208,11 @@ transporter.sendMail(mailOptions, (error, info) => {
 });
 ```
 
-运行程序，你将如愿以偿收到如下Email。*样式可能会有细微偏差*
+运行程序，你将如愿以偿收到如下 Email。_样式可能会有细微偏差_
 
 ![屏幕快照 2017-12-01 16.32.41](https://user-gold-cdn.xitu.io/2017/12/2/16014b30fef62b82?w=1500&h=1296&f=jpeg&s=97303)
 
-上面email中我们用了外链的图片，我们也可以使用附件的方式，将图片嵌入进去。给附件加个`cid`属性即可。
+上面 email 中我们用了外链的图片，我们也可以使用附件的方式，将图片嵌入进去。给附件加个`cid`属性即可。
 
 ```
 ...
@@ -232,24 +232,24 @@ let mailOptions = {
 
 ### 使用模板引擎
 
-邮件信息一般都不是固定的，我们可以引入模板引擎对HTML内容进行渲染。
+邮件信息一般都不是固定的，我们可以引入模板引擎对 HTML 内容进行渲染。
 
-这里我们使用Ejs：https://github.com/mde/ejs/来做演示
+这里我们使用 Ejs：https://github.com/mde/ejs/来做演示
 
 ```
 $ npm install ejs --save
 ```
 
-*ejs具体语法请参看官方文档*
+_ejs 具体语法请参看官方文档_
 
-先建立一个email.ejs文件
+先建立一个 email.ejs 文件
 
 ```
 <h1>hello <%= title %></h1>
 <p><%= desc %></p>
 ```
 
-修改我们的js文件
+修改我们的 js 文件
 
 ```
 ...
@@ -269,7 +269,7 @@ let mailOptions = {
 ...
 ```
 
-到此，你的邮箱将收到一个动态渲染的hello Ejs。
+到此，你的邮箱将收到一个动态渲染的 hello Ejs。
 
 本文到此告一段落，在此基础上你可以实现更多有用的功能
 
@@ -283,6 +283,6 @@ let mailOptions = {
 
 **左手代码，右手砖，抛砖引玉**
 
-如果你知道更多好用HTML email资源，留言交流让更多人知道。
+如果你知道更多好用 HTML email 资源，留言交流让更多人知道。
 
 ### 最后福利干货来了

@@ -1,4 +1,4 @@
-#  应用管理
+# 应用管理
 
 ```bash
 $ whatis nginx

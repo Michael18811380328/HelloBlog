@@ -72,7 +72,7 @@ SVG 代码都放在顶层标签`<svg>`之中。下面是一个例子。
 &lt;/svg>
 </code></pre></blockquote>
 
-`<viewBox>`属性的值有四个数字，分别是左上角的横坐标和纵坐标、视口的宽度和高度。上面代码中，SVG 图像是100像素宽 x 100像素高，`viewBox`属性指定视口从`(50, 50)`这个点开始。所以，实际看到的是右下角的四分之一圆。
+`<viewBox>`属性的值有四个数字，分别是左上角的横坐标和纵坐标、视口的宽度和高度。上面代码中，SVG 图像是 100 像素宽 x 100 像素高，`viewBox`属性指定视口从`(50, 50)`这个点开始。所以，实际看到的是右下角的四分之一圆。
 
 注意，视口必须适配所在的空间。上面代码中，视口的大小是 50 x 50，由于 SVG 图像的大小是 100 x 100，所以视口会放大去适配 SVG 图像的大小，即放大了四倍。
 
@@ -100,9 +100,9 @@ SVG 代码都放在顶层标签`<svg>`之中。下面是一个例子。
 }
 
 .fancy {
-  fill: none;
-  stroke: black;
-  stroke-width: 3pt;
+fill: none;
+stroke: black;
+stroke-width: 3pt;
 }
 </code></pre></blockquote>
 
@@ -217,8 +217,8 @@ SVG 的 CSS 属性与网页元素有所不同。
 &lt;svg viewBox="0 0 30 10" xmlns="http://www.w3.org/2000/svg">
   &lt;circle id="myCircle" cx="5" cy="5" r="4"/>
 
-  &lt;use href="#myCircle" x="10" y="0" fill="blue" />
-  &lt;use href="#myCircle" x="20" y="0" fill="white" stroke="blue" />
+&lt;use href="#myCircle" x="10" y="0" fill="blue" />
+&lt;use href="#myCircle" x="20" y="0" fill="white" stroke="blue" />
 &lt;/svg>
 </code></pre></blockquote>
 
@@ -235,8 +235,8 @@ SVG 的 CSS 属性与网页元素有所不同。
     &lt;circle cx="50" cy="50" r="20"/>
   &lt;/g>
 
-  &lt;use href="#myCircle" x="100" y="0" fill="blue" />
-  &lt;use href="#myCircle" x="200" y="0" fill="white" stroke="blue" />
+&lt;use href="#myCircle" x="100" y="0" fill="blue" />
+&lt;use href="#myCircle" x="200" y="0" fill="white" stroke="blue" />
 &lt;/svg>
 </code></pre></blockquote>
 
@@ -253,9 +253,9 @@ SVG 的 CSS 属性与网页元素有所不同。
     &lt;/g>
   &lt;/defs>
 
-  &lt;use href="#myCircle" x="0" y="0" />
-  &lt;use href="#myCircle" x="100" y="0" fill="blue" />
-  &lt;use href="#myCircle" x="200" y="0" fill="white" stroke="blue" />
+&lt;use href="#myCircle" x="0" y="0" />
+&lt;use href="#myCircle" x="100" y="0" fill="blue" />
+&lt;use href="#myCircle" x="200" y="0" fill="white" stroke="blue" />
 &lt;/svg>
 </code></pre></blockquote>
 
@@ -330,7 +330,7 @@ SVG 的 CSS 属性与网页元素有所不同。
 &lt;/svg>
 </code></pre></blockquote>
 
-上面代码中，`<animateTransform>`的效果为旋转（`rotate`），这时`from`和`to`属性值有三个数字，第一个数字是角度值，第二个值和第三个值是旋转中心的坐标。`from="0 200 200"`表示开始时，角度为0，围绕`(200, 200)`开始旋转；`to="360 400 400"`表示结束时，角度为360，围绕`(400, 400)`旋转。
+上面代码中，`<animateTransform>`的效果为旋转（`rotate`），这时`from`和`to`属性值有三个数字，第一个数字是角度值，第二个值和第三个值是旋转中心的坐标。`from="0 200 200"`表示开始时，角度为 0，围绕`(200, 200)`开始旋转；`to="360 400 400"`表示结束时，角度为 360，围绕`(400, 400)`旋转。
 
 ## 三、JavaScript 操作
 
@@ -359,8 +359,8 @@ circle {
 }
 
 circle:hover {
-  stroke: #090;
-  fill: #fff;
+stroke: #090;
+fill: #fff;
 }
 </code></pre></blockquote>
 
@@ -370,8 +370,8 @@ circle:hover {
 var mycircle = document.getElementById('mycircle');
 
 mycircle.addEventListener('click', function(e) {
-  console.log('circle clicked - enlarging');
-  mycircle.setAttribute('r', 60);
+console.log('circle clicked - enlarging');
+mycircle.setAttribute('r', 60);
 }, false);
 </code></pre></blockquote>
 
@@ -469,7 +469,8 @@ Date |Amount
       &lt;text x="-30"   y="20">January 2014&lt;/text>
       &lt;text x="240" y="20">April&lt;/text>
     &lt;/g>
-  &lt;/g>
+
+&lt;/g>
 &lt;/svg>
 </code></pre></blockquote>
 

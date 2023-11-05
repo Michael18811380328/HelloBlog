@@ -1,4 +1,4 @@
-# Apache的用法
+# Apache 的用法
 
 ## 安装
 
@@ -10,10 +10,10 @@ $ apt-get install apache2
 
 - apache2.conf：主配置文件
 - ports.conf：指定虚拟主机监听的端口
-- conf.d/：该目录用于配置某些特定的细节，比如SSL配置和安全配置
+- conf.d/：该目录用于配置某些特定的细节，比如 SSL 配置和安全配置
 - sites-available/：该目录包含所有的虚拟主机配置。注意，这里是可以用的配置，而并非实际激活的配置。
 - sites-enabled/：该目录包含实际使用的虚拟主机，通常是指向`sites-available`目录的符号链接。
-- `mods-[enabled,available]/`：这些目录的功能与对应的site目录类似，用来定义可加载的模块。
+- `mods-[enabled,available]/`：这些目录的功能与对应的 site 目录类似，用来定义可加载的模块。
 
 常用命令
 
@@ -44,21 +44,21 @@ systemctl restart apache2.service
 
 ## apache2.conf
 
-`/etc/apache2/apache2.conf`文件是Apache的主配置文件。
+`/etc/apache2/apache2.conf`文件是 Apache 的主配置文件。
 
 该文件分成三部分。
 
-- Apache主进程的配置
+- Apache 主进程的配置
 - 默认服务器的配置（`Include`命令加载）
 - 虚拟主机的配置（`Include`命令加载）
 
-`Include`命令允许Apache读取其他配置文件，加入当前文件。
+`Include`命令允许 Apache 读取其他配置文件，加入当前文件。
 
 下面是全局配置的一些主要配置项。
 
 （1）Timeout
 
-`Timeout`设置处理每个请求的最长时间，默认为300秒，可以调低为30到60秒。
+`Timeout`设置处理每个请求的最长时间，默认为 300 秒，可以调低为 30 到 60 秒。
 
 （2）KeepAlive
 
@@ -66,7 +66,7 @@ systemctl restart apache2.service
 
 （3）MaxKeepAliveRequests
 
-`MaxKeepAliveRequests`设置每个连接处理多少个请求之后才会关闭。这个设置比较高，会使得Apache向每个连接发送更多的内容。如果这个值设为0，就允许每个连接处理无限数量的请求。
+`MaxKeepAliveRequests`设置每个连接处理多少个请求之后才会关闭。这个设置比较高，会使得 Apache 向每个连接发送更多的内容。如果这个值设为 0，就允许每个连接处理无限数量的请求。
 
 （4）KeepAliveTimeout
 
@@ -100,11 +100,11 @@ systemctl restart apache2.service
 . . .
 ```
 
-上面代码的第一行，处理所有网卡的80端口（http端口）的请求。
+上面代码的第一行，处理所有网卡的 80 端口（http 端口）的请求。
 
-`ServerAdmin`参数设置一个Email地址，用作服务器发生故障时的联系人。
+`ServerAdmin`参数设置一个 Email 地址，用作服务器发生故障时的联系人。
 
-如果使用这个文件作为虚拟主机设置的模板，需要添加一个`ServerName`定义，指定域名或IP地址。
+如果使用这个文件作为虚拟主机设置的模板，需要添加一个`ServerName`定义，指定域名或 IP 地址。
 
 如果添加`ServerAlias`参数，可以使得一个虚拟主机配置，适应多个域名。这可以用来为同样的内容，提供多个路径的访问。比如，用于在同一个域名前面，加上`www`的二级域名。
 
@@ -123,11 +123,11 @@ systemctl restart apache2.service
 
 上面代码设置，如果请求不符合后续的所有指定的路径，则不允许该请求。
 
-下面一个路径定义是针对`/var/www`，这个路径是HTTP可以访问的文档路径，所以设为`allow from all`，覆盖上面对`/`的定义。
+下面一个路径定义是针对`/var/www`，这个路径是 HTTP 可以访问的文档路径，所以设为`allow from all`，覆盖上面对`/`的定义。
 
 `AllowOverride`参数用于指定是否允许当前目录下的“.htaccess“文件改变该设置。
 
-`Alias`设置一个URL对应特定路径的请求。`ScriptAlias`作用类似，但用于指定路径之中有可执行文件。
+`Alias`设置一个 URL 对应特定路径的请求。`ScriptAlias`作用类似，但用于指定路径之中有可执行文件。
 
 ```bash
 Alias /content/ /path/to/content/
@@ -141,7 +141,7 @@ Alias /content/ /path/to/content/
 $ sudo a2ensite virtual_host_file_name
 ```
 
-加载一个站点以后，使用下面的命令让Apache重启，让配置生效。
+加载一个站点以后，使用下面的命令让 Apache 重启，让配置生效。
 
 ```bash
 $ sudo service apache2 reload
@@ -153,15 +153,13 @@ $ sudo service apache2 reload
 $ sudo a2dissite virtual_host_file_name
 ```
 
-移除以后，也需要重启一下Apache。
+移除以后，也需要重启一下 Apache。
 
 模块可以用`a2enmod`命令加载，`a2dismod`命令移除。它们与`a2ensite`命令和`a2dissite`命令的用法是一致的。
 
 ## 操作
 
 ### 配置文件生效
-
-
 
 ### 查看已安装的模块
 

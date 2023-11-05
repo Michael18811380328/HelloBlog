@@ -85,5 +85,3 @@ A singular notion dawned upon me. I doubted not—never doubted— that if Mr. R
 “Silence! This violence is all most repulsive:” and so, no doubt, she felt it. I was a precocious actress in her eyes; she sincerely looked on me as a compound of virulent passions, mean spirit, and dangerous duplicity.
 
 Bessie and Abbot having retreated, Mrs. Reed, impatient of my now frantic anguish and wild sobs, abruptly thrust me back and locked me in, without farther parley. I heard her sweeping away; and soon after she was gone, I suppose I had a species of fit: unconsciousness closed the scene.
-
-

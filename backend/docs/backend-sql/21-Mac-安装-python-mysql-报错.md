@@ -1,4 +1,4 @@
-# Mac安装MySQLdb（python-mysql）模块报错
+# Mac 安装 MySQLdb（python-mysql）模块报错
 
 2021-12-01
 
@@ -6,27 +6,27 @@
 
 #### 前面
 
-Python写的项目需要连接MySQL数据库，所以本地需要安装MySQLdb模块，但是在安装的过程中也是遇到了一些问题，在这里记录一下。
+Python 写的项目需要连接 MySQL 数据库，所以本地需要安装 MySQLdb 模块，但是在安装的过程中也是遇到了一些问题，在这里记录一下。
 
 > 操作系统：MacOS 10.12.5
 
-> Python版本：2.7.10
+> Python 版本：2.7.10
 
 > pip： 9.0.1
 
 #### 开始
 
-一般的，如果你使用了连接MySQL的代码，或者依赖于MySQLdb类库的类库，就会看到这个：`ImportError: No module named MySQLdb`，提示找不到模块。
+一般的，如果你使用了连接 MySQL 的代码，或者依赖于 MySQLdb 类库的类库，就会看到这个：`ImportError: No module named MySQLdb`，提示找不到模块。
 
-这个时候我们就需要安装对应的`MySQL for Python`了，也就是`MySQL-python`，在终端执行`pip install MySQL-python`，额~前提是你已经安装pip了啊。
+这个时候我们就需要安装对应的`MySQL for Python`了，也就是`MySQL-python`，在终端执行`pip install MySQL-python`，额~前提是你已经安装 pip 了啊。
 
 #### 遇到错误
 
 当你按下回车键，出现错误：`EnvironmentError: mysql_config not found`
 
-粗略看了一下，大概意思就是，你还需要安装一个MySQL，What？我就是想连接一下数据库，不至于还要下一个数据库吧。仔细看了看又，原来是需要安装一个mysql开发包（当然你也可以本地安装一个MySQL），好吧，没办法，那再来。
+粗略看了一下，大概意思就是，你还需要安装一个 MySQL，What？我就是想连接一下数据库，不至于还要下一个数据库吧。仔细看了看又，原来是需要安装一个 mysql 开发包（当然你也可以本地安装一个 MySQL），好吧，没办法，那再来。
 
-手动下载了dmg版本的，根据提示安装完毕，终端运行`pip install MySQL-python`发下还是原来的错误，又去查了查资料，应该是安装的mysql库没有加入环境变量，现在就是要找到我刚才安装的mysql到哪个目录了。终端窗口执行`find / -name mysql_config`，结果中有一个：/usr/local/mysql-connector-c-6.1.10-macos10.12-x86_64/bin/mysql_config
+手动下载了 dmg 版本的，根据提示安装完毕，终端运行`pip install MySQL-python`发下还是原来的错误，又去查了查资料，应该是安装的 mysql 库没有加入环境变量，现在就是要找到我刚才安装的 mysql 到哪个目录了。终端窗口执行`find / -name mysql_config`，结果中有一个：/usr/local/mysql-connector-c-6.1.10-macos10.12-x86_64/bin/mysql_config
 ，应该就是它了，通过：`export PATH=$PATH:/usr/local/mysql-connector-c-6.1.10-macos10.12-x86_64/bin/`加入环境变量。
 
 #### 再次错误
@@ -50,14 +50,14 @@ Collecting MySQL-python
 
 #### 换一种方式
 
-还能不能愉快的玩耍了~ Google了一下，没有解决，我想我要换一种方式了。把刚才安装的mysql开发包删掉。通过brew重新安装试试。
+还能不能愉快的玩耍了~ Google 了一下，没有解决，我想我要换一种方式了。把刚才安装的 mysql 开发包删掉。通过 brew 重新安装试试。
 
 ```bash
 # install brew
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 ```
 
-有兴趣的同学可以去brew官网看看，居然有中文，厚道：[https://brew.sh/index_zh-cn.html](https://link.jianshu.com/?t=https://brew.sh/index_zh-cn.html)
+有兴趣的同学可以去 brew 官网看看，居然有中文，厚道：[https://brew.sh/index_zh-cn.html](https://link.jianshu.com/?t=https://brew.sh/index_zh-cn.html)
 
 #### 怀疑人生/胜利在望
 
@@ -71,18 +71,18 @@ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/
   error: command 'cc' failed with exit status 1
 ```
 
-就是上面这个错误，于是乎，我又Google，发现了：[https://stackoverflow.com/questions/22697440/cc-failed-with-exit-status-1-error-when-install-python-library](https://link.jianshu.com/?t=https://stackoverflow.com/questions/22697440/cc-failed-with-exit-status-1-error-when-install-python-library)
+就是上面这个错误，于是乎，我又 Google，发现了：[https://stackoverflow.com/questions/22697440/cc-failed-with-exit-status-1-error-when-install-python-library](https://link.jianshu.com/?t=https://stackoverflow.com/questions/22697440/cc-failed-with-exit-status-1-error-when-install-python-library)
 
 就是这个人解答的，和我遇到的问题一样
 
-然后我通过大神的指示：`xcode-select --install`，会弹出xcode的软件安装窗口，等待几分钟，安装完毕，再次执行：`pip install MySQL-python`。
+然后我通过大神的指示：`xcode-select --install`，会弹出 xcode 的软件安装窗口，等待几分钟，安装完毕，再次执行：`pip install MySQL-python`。
 
 呼~成功了你相信吗？
 
 ```bash
 Collecting MySQL-python
   Downloading MySQL-python-1.2.5.zip (108kB)
-    100% |████████████████████████████████| 112kB 127kB/s 
+    100% |████████████████████████████████| 112kB 127kB/s
 Installing collected packages: MySQL-python
   Running setup.py install for MySQL-python ... done
 Successfully installed MySQL-python-1.2.5

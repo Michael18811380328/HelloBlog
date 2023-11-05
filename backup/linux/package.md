@@ -70,4 +70,3 @@ $ yum info package_name
 $ dpkg --search file_name
 $ rpm -qf file_name
 ```
-

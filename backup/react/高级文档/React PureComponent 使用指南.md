@@ -2,7 +2,7 @@
 
 ## 为什么使用？
 
-React15.3中新加了一个 `PureComponent` 类，顾名思义， `pure` 是纯的意思， `PureComponent` 也就是纯组件，取代其前身 `PureRenderMixin` , `PureComponent` 是优化 `React` 应用程序最重要的方法之一，易于实施，只要把继承类从 `Component` 换成 `PureComponent` 即可，可以减少不必要的 `render` 操作的次数，从而提高性能，而且可以少写 `shouldComponentUpdate` 函数，节省了点代码。
+React15.3 中新加了一个 `PureComponent` 类，顾名思义， `pure` 是纯的意思， `PureComponent` 也就是纯组件，取代其前身 `PureRenderMixin` , `PureComponent` 是优化 `React` 应用程序最重要的方法之一，易于实施，只要把继承类从 `Component` 换成 `PureComponent` 即可，可以减少不必要的 `render` 操作的次数，从而提高性能，而且可以少写 `shouldComponentUpdate` 函数，节省了点代码。
 
 ## 原理
 
@@ -10,8 +10,8 @@ React15.3中新加了一个 `PureComponent` 类，顾名思义， `pure` 是纯�
 
 ```js
 if (this._compositeType === CompositeTypes.PureClass) {
-  shouldUpdate = !shallowEqual(prevProps, nextProps)
-  || !shallowEqual(inst.state, nextState);
+  shouldUpdate =
+    !shallowEqual(prevProps, nextProps) || !shallowEqual(inst.state, nextState);
 }
 ```
 
@@ -26,20 +26,24 @@ if (this._compositeType === CompositeTypes.PureClass) {
 ```jsx
 class App extends PureComponent {
   state = {
-    items: [1, 2, 3]
-  }
+    items: [1, 2, 3],
+  };
   handleClick = () => {
     const { items } = this.state;
     items.pop();
     this.setState({ items });
-  }
+  };
   render() {
-    return (<div>
-      <ul>
-        {this.state.items.map(i => <li key={i}>{i}</li>)}
-      </ul>
-      <button onClick={this.handleClick}>delete</button>
-    </div>)
+    return (
+      <div>
+        <ul>
+          {this.state.items.map((i) => (
+            <li key={i}>{i}</li>
+          ))}
+        </ul>
+        <button onClick={this.handleClick}>delete</button>
+      </div>
+    );
   }
 }
 ```
@@ -51,7 +55,7 @@ handleClick = () => {
   const { items } = this.state;
   items.pop();
   this.setState({ items: [].concat(items) });
-}
+};
 ```
 
 这样每次改变都会产生一个新的数组，也就可以 `render` 了。这里有一个矛盾的地方，如果没有 `items.pop();` 操作，每次 `items` 数据并没有变，但还是 `render` 了，这不就很操蛋么？呵呵，数据都不变，你 `setState` 干嘛？
@@ -67,19 +71,19 @@ handleClick = () => {
   const { items } = this.state;
   items.splice(items.length - 1, 1);
   this.setState({ items });
-}
+};
 ```
 
 `items` 的引用也是改变的，但如果 `items` 里面是引用类型数据：
 
 ```jsx
-items: [{a: 1}, {a: 2}, {a: 3}]
+items: [{ a: 1 }, { a: 2 }, { a: 3 }];
 ```
 
 这个时候
 
 ```jsx
-state.items[0] === nextState.items[0] // false
+state.items[0] === nextState.items[0]; // false
 ```
 
 子组件里还是`re-render`了。这样就需要我们保证不变的子组件数据的引用不能改变。这个时候可以使用[immutable-js](https://facebook.github.io/immutable-js/)函数库。
@@ -114,26 +118,34 @@ render() {
 
 #### 空对象、空数组或固定对象
 
-有时候后台返回的数据中，数组长度为0或者对象没有属性会直接给一个 `null` ，这时候我们需要做一些容错：
+有时候后台返回的数据中，数组长度为 0 或者对象没有属性会直接给一个 `null` ，这时候我们需要做一些容错：
 
 ```jsx
 class App extends PureComponent {
   state = {
-    items: [{ name: 'test1' }, null, { name: 'test3'  }]
-  }
+    items: [{ name: "test1" }, null, { name: "test3" }],
+  };
   store = (id, value) => {
     const { items } = this.state;
-    items[id]  = assign({}, items[id], { name: value });
+    items[id] = assign({}, items[id], { name: value });
     this.setState({ items: [].concat(items) });
-  }
+  };
   render() {
-    return (<div>
-      <ul>
-        {this.state.items.map((i, k) =>
-          <Item style={{ color: 'red' }} store={this.store} key={k} id={k} data={i || {}} />)
-        }
-      </ul>
-    </div>)
+    return (
+      <div>
+        <ul>
+          {this.state.items.map((i, k) => (
+            <Item
+              style={{ color: "red" }}
+              store={this.store}
+              key={k}
+              id={k}
+              data={i || {}}
+            />
+          ))}
+        </ul>
+      </div>
+    );
   }
 }
 ```

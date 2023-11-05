@@ -8,7 +8,7 @@
 
 #### 1. 基本操作
 
-~~~bash
+```bash
 # 检查当前 docker 版本
 docker --version
 Docker version 18.09, build c97c6d6
@@ -21,46 +21,46 @@ docker-compose up
 
 docker-machine
 # 可以创建查看虚拟机（详见 https://www.runoob.com/docker/docker-machine.html）当前没有用到
-~~~
+```
 
 运行一个镜像（如果没有就会联网安装）
 
-~~~bash
+```bash
 docker run hello-world
 # 如果找不到就到官方去 pull
-~~~
+```
 
-使用docker搭建一个网络服务器 nginx
+使用 docker 搭建一个网络服务器 nginx
 
-~~~bash
+```bash
 docker run --detach --publish=80:80 --name=webserver nginx
 docker run --detach --publish=80:80 --name=webserver nginx
-~~~
+```
 
 现在打开浏览器访问 localhost 即可看到 nginx 的界面
 
 当容器已经运行，可以查看容器的细节
 
-~~~bash
+```bash
 docker ps
 
 # 等价于
 docker container ls
-~~~
+```
 
 停止容器，然后删除已有容器，再删除已有镜像。
 
 镜像和容器，对应面向对象中的类和实例。
 
-~~~bash
+```bash
 docker container stop webserver
 docker container rm webserver
 docker image rm nginx
-~~~
+```
 
 因为 docker 镜像会定期更新，所以本地开发需要根据镜像发布，然后定期更新镜像操作
 
-~~~bash
+```bash
 # 查看当前的镜像的ID(公司的，helloworld nginx)
 docker ps -aq
 30b8a8b128f4
@@ -87,7 +87,7 @@ CONTAINER ID        IMAGE                                                   COMM
 dfdf5180c891        docker.test.top/test-dev/mariadb:10.3             "docker-entrypoint.s…"   6 months ago        Up 22 minutes       0.0.0.0:3306->3306/tcp                                                   test-mysql
 3b54b280d6ef        memcached:1.4-alpine                                    "docker-entrypoint.s…"   6 months ago        Up 22 minutes       0.0.0.0:11211->11211/tcp                                                 test-memcached
 
-# 强行删除 30b8a8b128f4 nginx 容器 
+# 强行删除 30b8a8b128f4 nginx 容器
 docker rm -f 30b8a8b128f4
 30b8a8b128f4
 
@@ -114,12 +114,12 @@ hello-world                                      latest              fce289e99eb
 docker.test.top/test-dev/test-pro-dev   master              74f5640d3df7        7 months ago        1.04GB
 docker.test.top/test-dev/mariadb           10.3                2c73b3262fff        9 months ago        363MB
 memcached                                        1.4-alpine          273374b463b8        21 months ago       7.68MB
-~~~
+```
 
 #### 2. 配置
 
-1. 通用：配置docker开机启动、自动升级、用户统计反馈、虚拟机备份、记住docker登录等（使用默认）
-2. 文件共享：设置docker的运行目录。使用默认配置。
-3. 高级：设置docker运行的硬件资源：通常情况，docker使用宿主机的一半CPU（如果需要增加或者减少性能，可以改变CPU个数）；内存通常使用宿主机的2G运行内存（可以增加或者减少）swap 虚拟内存，通常设置为1G虚拟内存。现在电脑的CPU吃不消，所以增加内存和虚拟内存，增加CPU个数，这样可以缓解单个CPU的性能。
+1. 通用：配置 docker 开机启动、自动升级、用户统计反馈、虚拟机备份、记住 docker 登录等（使用默认）
+2. 文件共享：设置 docker 的运行目录。使用默认配置。
+3. 高级：设置 docker 运行的硬件资源：通常情况，docker 使用宿主机的一半 CPU（如果需要增加或者减少性能，可以改变 CPU 个数）；内存通常使用宿主机的 2G 运行内存（可以增加或者减少）swap 虚拟内存，通常设置为 1G 虚拟内存。现在电脑的 CPU 吃不消，所以增加内存和虚拟内存，增加 CPU 个数，这样可以缓解单个 CPU 的性能。
 4. 用户代理：选择默认的用户代理
 5. 存储位置和容量：可以迁移镜像在计算机中的位置和设置容量

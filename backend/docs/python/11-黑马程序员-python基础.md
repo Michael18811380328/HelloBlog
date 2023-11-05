@@ -8,27 +8,27 @@
 
 #### input
 
-在Python3 中，直接输入的内容就是给一个字符串。但是在python2中，input 后面的内容作为一个语句执行了。所以使用 raw_input 表示输入的内容。输入的内容如果是数字，但是这是字符串类型的数字，需要转化成数值进行处理。
-python3 中没有 raw_input 函数，input函数相当于 raw_input 函数。
+在 Python3 中，直接输入的内容就是给一个字符串。但是在 python2 中，input 后面的内容作为一个语句执行了。所以使用 raw_input 表示输入的内容。输入的内容如果是数字，但是这是字符串类型的数字，需要转化成数值进行处理。
+python3 中没有 raw_input 函数，input 函数相当于 raw_input 函数。
 
-~~~python
+```python
 age = "test";
 print("%s"%age)
 
 tall = 100
 print("%d"%tall)
-~~~
+```
 
-这里类似于C语言，使用后面的变量取代字符串中的变量。C语言中有逗号，Python中没有逗号。
+这里类似于 C 语言，使用后面的变量取代字符串中的变量。C 语言中有逗号，Python 中没有逗号。
 
 字符串乘一个数字，就是把这个字符串重复多少次。
 
-~~~python
+```python
 print("test " * 10)
-~~~
+```
 
 \a 换行
-\t tab缩进
+\t tab 缩进
 
 ### 字符串
 
@@ -36,11 +36,11 @@ print("test " * 10)
 
 ### 列表
 
-列表类似 JS 中的数组。C语言中的数组只能存储固定类型的数据，Python 和 JS中的列表数组可以存储不同类型的数据。列表的增删改查功能对应的不同的方法（参考数组的方法）。数组的方法append对应的增删改查。
+列表类似 JS 中的数组。C 语言中的数组只能存储固定类型的数据，Python 和 JS 中的列表数组可以存储不同类型的数据。列表的增删改查功能对应的不同的方法（参考数组的方法）。数组的方法 append 对应的增删改查。
 
-python中列表长度不能自动扩展，注意！声明是需要考虑长度
+python 中列表长度不能自动扩展，注意！声明是需要考虑长度
 
-~~~python
+```python
 #增加
 append()
 insert()
@@ -56,12 +56,12 @@ array[1] = 10
 
 #查询
 in
-not in 
-~~~
+not in
+```
 
-### 列表API
+### 列表 API
 
-~~~python
+```python
 # coding=utf-8
 
 # append extend 都是给一个列表增加元素
@@ -84,15 +84,15 @@ nums1.append(6)
 # 注意 append 会改变原列表，返回值是 None
 b = nums1.append(2)
 # print(b) None
-~~~
+```
 
 ### 元组
 
-~~~python
+```python
 a = (1, 2, 3)
 # 元组是只读的，可以查询，不可以更改
 # 日常使用不多
-~~~
+```
 
 字典就是对象，是键值对的集合。同理可以对对象增删改查操作，对应的方法。
 
@@ -103,12 +103,11 @@ a = (1, 2, 3)
 
 常见的循环案例：三角形、九九乘法表，输出偶数包含固定的部分
 
-注意事项：Python中字符串中嵌套变量进行输出，需要不同变量和后面的参数配合，不能直接模板字符串输出。
+注意事项：Python 中字符串中嵌套变量进行输出，需要不同变量和后面的参数配合，不能直接模板字符串输出。
 
+### while 循环语句
 
-### while循环语句
-
-~~~python
+```python
 # coding=utf-8
 # while 循环需要判断边界条件，可以循环一部分元素
 # for 循环适合循环全部的元素
@@ -128,11 +127,11 @@ while i < nums2_len:
 nums3 = [1, 2, 3, 4, 5]
 for num in nums:
   print(num)
-~~~
+```
 
 ### for 循环语句
 
-~~~python
+```python
 # coding=utf-8
 # python 和其他语言不同，支持 if else 结构
 nums = [1, 2, 3, 4]
@@ -170,4 +169,4 @@ for info in infos:
     break;
 else:
   print('this person not fount')
-~~~
+```

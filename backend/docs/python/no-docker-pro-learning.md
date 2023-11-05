@@ -1,8 +1,8 @@
-# 专业版docker开发环境
+# 专业版 docker 开发环境
 
 ## 包含模块
 
-seafile-pro, ccnet-pro, seahub, seahub-extra, seafevents, seafes(需要额外的es服务)
+seafile-pro, ccnet-pro, seahub, seahub-extra, seafevents, seafes(需要额外的 es 服务)
 
 ## 使用步骤
 
@@ -25,7 +25,7 @@ wget https://raw.githubusercontent.com/seafileltd/seafile-dev-docker/6.3/docker-
 
 Bash
 
-创建要挂载的目录 `data`, 在其中创建`ssh_key`的文件夹，并将自己的公私钥移动进去；下载mysql初始脚本, 创建 mysql 数据目录
+创建要挂载的目录 `data`, 在其中创建`ssh_key`的文件夹，并将自己的公私钥移动进去；下载 mysql 初始脚本, 创建 mysql 数据目录
 
 ```
 mkdir -p data/ssh_key
@@ -97,7 +97,7 @@ docker exec -it seafile-dev-pro bash  # 注意 master 分支叫做 seafile-pro-d
 run.sh compile
 ```
 
-创建seahub的数据库
+创建 seahub 的数据库
 
 ```
 run.sh python-env /data/dev/seahub/manage.py migrate
@@ -155,7 +155,7 @@ cd frontend/
 npm run dev
 ```
 
-修改seahub配置：`seahub_settings.py`
+修改 seahub 配置：`seahub_settings.py`
 
 ```
 import os
@@ -172,14 +172,14 @@ WEBPACK_LOADER = {
 
 ## 开发情景示例
 
-#### seahub开发[不需要底层改变]
+#### seahub 开发[不需要底层改变]
 
-- 拷贝自己的公私钥到本地home目录下的.ssh文件夹下, 以及主机上需要安装git
-- 进入本地源码目录的seahub目录下，比如挂载到了`/data`目录下，则进入`/data/dev/seahub`目录
-- 直接使用git命令切换分支
-- 因为seahub启动是用django的runserver方式启动，而且默认加了debug选项，所以不需要重启可以直接查看界面效果
+- 拷贝自己的公私钥到本地 home 目录下的.ssh 文件夹下, 以及主机上需要安装 git
+- 进入本地源码目录的 seahub 目录下，比如挂载到了`/data`目录下，则进入`/data/dev/seahub`目录
+- 直接使用 git 命令切换分支
+- 因为 seahub 启动是用 django 的 runserver 方式启动，而且默认加了 debug 选项，所以不需要重启可以直接查看界面效果
 
-#### seahub开发[需要seafile-pro-server和ccnet-pro-server的feature1分支]
+#### seahub 开发[需要 seafile-pro-server 和 ccnet-pro-server 的 feature1 分支]
 
 切换分支
 
@@ -207,7 +207,7 @@ run.sh migrate # 拷贝到系统目录
 
 Bash
 
-修改seahub代码
+修改 seahub 代码
 
 重启服务
 
@@ -219,7 +219,7 @@ Bash
 
 访问`127.0.0.1:8000`页面查看效果
 
-#### seafile本地开发
+#### seafile 本地开发
 
 - 代码修改
 
@@ -243,7 +243,7 @@ Bash
 
   Bash
 
-- 打开开发环境python终端
+- 打开开发环境 python 终端
 
   ```
   . /root/scripts/run.sh python-env
@@ -251,7 +251,7 @@ Bash
 
   Bash
 
-- 在python终端环境下查看接口是否正确
+- 在 python 终端环境下查看接口是否正确
 
   ```
   from seaserv import seafile_api
@@ -273,7 +273,7 @@ Bash
   #  ports:
   #    - 9200:9200
   #    - 9300:9300
-  
+
 ```
 
 以及
@@ -306,7 +306,7 @@ index_office_pdf=true # 添加全文搜索支持
 - conf: 程序的配置文件
 - logs: 程序产生的日志
 - ssh_key: 预先放入的公私钥
-- docker-entrypoint-initdb.d: 初始化mysql执行的sql语句
+- docker-entrypoint-initdb.d: 初始化 mysql 执行的 sql 语句
 - dev: 包含各个项目的源代码
 - compiled: 编译后产生的文件
   - bin: 编译产生的可执行文件
@@ -316,13 +316,13 @@ index_office_pdf=true # 添加全文搜索支持
 
 #### 公私钥
 
-为了从github上拷项目以及上传代码的时候使用
+为了从 github 上拷项目以及上传代码的时候使用
 
 ### Seafile Docker 镜像
 
 包含了 Seafile 运行所需要的依赖软件
 
-### python环境操作
+### python 环境操作
 
 ```
 docker exec -it seafile-dev-pro /root/scripts/run.sh python-env xxx
@@ -341,10 +341,10 @@ Bash
 
 ## 常见问题
 
-- Q: office无法预览，而且日志报fetch错误
+- Q: office 无法预览，而且日志报 fetch 错误
 
-  A: 检查主机上防火墙上8082是否开启
+  A: 检查主机上防火墙上 8082 是否开启
 
-- Q: mac上出现错误`ERROR: xxxxxx Mounts denied:`
+- Q: mac 上出现错误`ERROR: xxxxxx Mounts denied:`
 
-  A: 请将你准备挂载的目录放到docker的file sharing中。步骤: Preference -> File Sharing -> 选择挂载路径并添加 -> 重启docker
+  A: 请将你准备挂载的目录放到 docker 的 file sharing 中。步骤: Preference -> File Sharing -> 选择挂载路径并添加 -> 重启 docker

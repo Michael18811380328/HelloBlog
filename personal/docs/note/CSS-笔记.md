@@ -167,23 +167,15 @@ Animation 动画
 ## 0129 pointer-events 和点击穿透
 
 
-有时候，我们会遇到界面中多个图层重叠的问题，下面图层绑定函数，上面的图层显示 UI 效果。我们希望点击事件，可以穿透上层 DIV 然后触发下层 DIV 的函数。
+有时候，我们会遇到界面中多个图层重叠的问题，下面图层绑定函数，上面的图层显示 UI 效果，希望点击事件，可以穿透上层 DIV 然后触发下层 DIV 的函数。
 
-
-
-那么可以设置 'pointer-events: none' 表示上层的点击事件是无效的。
-
-
+那么可以设置 `pointer-events: none` ，表示上层的点击事件是无效的。
 
 还可以避免 hover visited 的效果（我们想改变一个链接的显示状况，避免出现 visited 后的蓝色边框）
 
-
-
 其他的属性主要用在 svg 上面
 
-
-
-详情参考：https\://developer.mozilla.org/zh-CN/docs/Web/CSS/pointer-events
+详情参考：<https://developer.mozilla.org/zh-CN/docs/Web/CSS/pointer-events>
 
 
 
@@ -228,6 +220,59 @@ https\://www.ruanyifeng.com/blog/2015/07/flex-examples.html
 <https://juejin.cn/post/6844904111842787341> 
 
 硬件加速：硬件加速意味着 GPU 会通过代替 CPU 做一些负荷比较大的事情，来协助浏览器快速渲染页面，当CSS操作使用硬件加速的时候，通常会使页面渲染速度加快。
+
+
+
+   
+## 0210 canvas 有哪些方法
+
+
+HTML 插入 canvas
+
+```html
+<canvas id="can" width="500" height="500"></canvas>
+
+```
+
+具体方法
+
+```javascript
+//常用方法
+var can = document.getElementById('can');
+var cvs = can.ContentText("2d");
+
+cvs.moveTo(0,0);
+cvs.lineTo(500,500);
+cvs.stroke();
+cvs.strokeWidth = 5;
+cvs.lineStyle = "red";
+cvs.closePath();
+cvs.clearPath();
+
+cvs.fillStyle = "blue";
+cvs.fill();
+
+cvs.strokeRest(0,0,200,200);
+cvs.fillRect(200,200,100,100);
+cvs.clearRect(0,0,cvs.width,cvs.height);
+
+lineCap: butt square round
+lineJoin: miter bevel round
+
+//虚线
+cvs.setLineDash([x,y,z,p]);
+cvs.getLineDash();
+cvs.lineDashOffset = 2;
+//偏移量
+
+//绘制汉字
+strokeText('描边文字');
+fillText('填充汉字');
+textAlign = "left/right/center";
+textBaseline = "top/bottom/middle";
+//垂直对齐方式
+
+```
 
 
 
@@ -419,6 +464,119 @@ MDN: 元素根据正常文档流进行定位，然后相对它的_最近滚动�
 
 
 <https://www.runoob.com/cssref/css-pr-grid.html> 
+
+还有个人的博客
+
+<https://michael18811380328.github.io/frontend/site/css/Grid%E5%B8%83%E5%B1%80/> 
+
+
+
+   
+## 0246 white-space 是什么
+
+
+white-space 用来处理空格的显示方式，通常用来处理省略号显示，以及多个空格显示问题。
+
+浏览器渲染网页的两个规则：把空格换行符都当做自动换行，会把多个空格渲染成一个空格显示。
+
+* white-space: nowrap; 表示超出的部分不换行，一行内部显示
+* white-space: pre-wrap; 正常换行，多个空格保留，不会自动转换成一个空格
+* white-space: pre; 多个空格保留，不会自动转换成一个空格; 超出部分不换行
+
+参考链接
+
+<https://www.w3school.com.cn/cssref/pr_text_white-space.asp> 
+
+<https://www.zhangxinxu.com/wordpress/2021/07/css-white-space-nowrap/> 
+
+
+
+   
+## 0247 如何实现文本超出显示省略号
+
+
+使用下面的 css
+
+```
+.text-truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+```
+
+overflow: hidden; 表示超出部分隐藏；
+
+text-overflow: ellipsis; 表示文本超出部分，显示省略号；
+
+white-space: nowrap; 段落不换行，一行展示；
+
+这个可以用于文本的内容超出省略号，也能用于 span 元素超出的省略号。如果不显示省略号，看一下父节点的宽度是否合适。如果父节点的宽度大于子节点宽度，那么自然不显示省略号。
+
+
+
+   
+## 0250 grid 中 gap 怎么使用
+
+
+gap属性是用来设置网格行与列之间的间隙，该属性是 row-gap() 和 column-gap 的简写形式。
+
+设置网格行与列之间的间隙
+
+使用场景：flex grid 布局中支持，block table 中不支持这个属性。这个属性应该使用在父元素上。
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* 基本样式 */
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      width: 300px;
+      border: 1px solid #ccc;
+    }
+    .container>div {
+      border: 1px solid greenyellow;
+    }
+
+    /* grid 布局 */
+    .container {
+      display: grid;
+      gap: 20px;
+      grid-template-columns: 50px 50px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+    <div>5</div>
+  </div>
+</body>
+</html>
+
+```
+
+参考
+
+<https://www.runoob.com/cssref/css3-pr-gap.html>﻿
+
+[﻿https://developer.mozilla.org/zh-CN/docs/Web/CSS/gap﻿](<https://developer.mozilla.org/zh-CN/docs/Web/CSS/gap﻿>) 
+
+<https://developer.mozilla.org/zh-CN/docs/Web/CSS/row-gap> 
+
+<https://developer.mozilla.org/zh-CN/docs/Web/CSS/column-gap> 
 
 
 

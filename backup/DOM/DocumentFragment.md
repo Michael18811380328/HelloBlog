@@ -1,6 +1,6 @@
 # DocumentFragment
 
-The **DocumentFragment** interface represents a minimal document object that has no parent. It is used as a lightweight version of [`Document`](https://developer.mozilla.org/en-US/docs/Web/API/Document) that stores a segment of a document structure comprised of nodes just like a standard document. 
+The **DocumentFragment** interface represents a minimal document object that has no parent. It is used as a lightweight version of [`Document`](https://developer.mozilla.org/en-US/docs/Web/API/Document) that stores a segment of a document structure comprised of nodes just like a standard document.
 
 The key difference is that because the document fragment isn't part of the active document tree structure, ==changes made to the fragment don't affect the document, cause [reflow](https://developer.mozilla.org/en-US/docs/Glossary/reflow), or incur any performance impact that can occur== when changes are made.
 
@@ -12,7 +12,7 @@ An empty `DocumentFragment` can be created using the [`document.createDocumentFr
 
 ## Properties
 
-*This interface has no specific properties, but inherits those of its parent, Node, and implements those of the ParentNode interface.*
+_This interface has no specific properties, but inherits those of its parent, Node, and implements those of the ParentNode interface._
 
 - [`ParentNode.children`](https://developer.mozilla.org/en-US/docs/Web/API/ParentNode/children) Read only
 
@@ -32,7 +32,7 @@ An empty `DocumentFragment` can be created using the [`document.createDocumentFr
 
 ## Constructor
 
-- [`DocumentFragment()`](https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment/DocumentFragment) 
+- [`DocumentFragment()`](https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment/DocumentFragment)
 
   Returns an empty `DocumentFragment` object.
 
@@ -54,10 +54,10 @@ This interface inherits the methods of its parent, Node, and implements those of
 
 ## Specifications
 
-| Specification                                                | Status          | Comment                                                      |
-| ------------------------------------------------------------ | --------------- | ------------------------------------------------------------ |
-| [DOM The definition of 'DocumentFragment' in that specification.](https://dom.spec.whatwg.org/#interface-documentfragment) | Living Standard | Added the constructor and the implementation of [`ParentNode`](https://developer.mozilla.org/en-US/docs/Web/API/ParentNode). |
-| [Selectors API Level 1 The definition of 'DocumentFragment' in that specification.](https://www.w3.org/TR/selectors-api/#the-apis) | Obsolete        | Added the `querySelector()` and `querySelectorAll()` methods. |
-| [Document Object Model (DOM) Level 3 Core Specification The definition of 'DocumentFragment' in that specification.](https://www.w3.org/TR/DOM-Level-3-Core/core.html#ID-B63ED1A3) | Obsolete        | No change from [Document Object Model (DOM) Level 2 Core Specification](https://www.w3.org/TR/DOM-Level-2-Core/) |
-| [Document Object Model (DOM) Level 2 Core Specification The definition of 'DocumentFragment' in that specification.](https://www.w3.org/TR/DOM-Level-2-Core/core.html#ID-B63ED1A3) | Obsolete        | No change from [Document Object Model (DOM) Level 1 Specification](https://www.w3.org/TR/REC-DOM-Level-1/) |
-| [Document Object Model (DOM) Level 1 Specification The definition of 'DocumentFragment' in that specification.](https://www.w3.org/TR/REC-DOM-Level-1/level-one-core.html#ID-B63ED1A3) | Obsolete        | Initial definition                                           |
+| Specification                                                                                                                                                                          | Status          | Comment                                                                                                                      |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| [DOM The definition of 'DocumentFragment' in that specification.](https://dom.spec.whatwg.org/#interface-documentfragment)                                                             | Living Standard | Added the constructor and the implementation of [`ParentNode`](https://developer.mozilla.org/en-US/docs/Web/API/ParentNode). |
+| [Selectors API Level 1 The definition of 'DocumentFragment' in that specification.](https://www.w3.org/TR/selectors-api/#the-apis)                                                     | Obsolete        | Added the `querySelector()` and `querySelectorAll()` methods.                                                                |
+| [Document Object Model (DOM) Level 3 Core Specification The definition of 'DocumentFragment' in that specification.](https://www.w3.org/TR/DOM-Level-3-Core/core.html#ID-B63ED1A3)     | Obsolete        | No change from [Document Object Model (DOM) Level 2 Core Specification](https://www.w3.org/TR/DOM-Level-2-Core/)             |
+| [Document Object Model (DOM) Level 2 Core Specification The definition of 'DocumentFragment' in that specification.](https://www.w3.org/TR/DOM-Level-2-Core/core.html#ID-B63ED1A3)     | Obsolete        | No change from [Document Object Model (DOM) Level 1 Specification](https://www.w3.org/TR/REC-DOM-Level-1/)                   |
+| [Document Object Model (DOM) Level 1 Specification The definition of 'DocumentFragment' in that specification.](https://www.w3.org/TR/REC-DOM-Level-1/level-one-core.html#ID-B63ED1A3) | Obsolete        | Initial definition                                                                                                           |

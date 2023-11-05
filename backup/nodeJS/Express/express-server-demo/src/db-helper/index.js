@@ -1,14 +1,15 @@
-import mysql from 'mysql';
-import { CONFIG } from '../config/config';
+import mysql from "mysql";
+import { CONFIG } from "../config/config";
 
 const mysql_config = {
-  host    : CONFIG.host,
-  user    : CONFIG.user,
+  host: CONFIG.host,
+  user: CONFIG.user,
   password: CONFIG.password,
   database: CONFIG.database,
-  port    : CONFIG.port,
-  connectionLimit: CONFIG.connectionLimit === undefined ? 10 : CONFIG.connectionLimit,
-  timezone: '+00:00'
+  port: CONFIG.port,
+  connectionLimit:
+    CONFIG.connectionLimit === undefined ? 10 : CONFIG.connectionLimit,
+  timezone: "+00:00",
 };
 
 let pool = mysql.createPool(mysql_config);

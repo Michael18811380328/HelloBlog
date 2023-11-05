@@ -1,7 +1,7 @@
-import fs from 'fs';
-import jwt from 'jsonwebtoken';
-import multipart from 'connect-multiparty';
-import {PRIVATE_KEY} from '../config/config';
+import fs from "fs";
+import jwt from "jsonwebtoken";
+import multipart from "connect-multiparty";
+import { PRIVATE_KEY } from "../config/config";
 
 export function deleteDir(path) {
   if (fs.existsSync(path)) {
@@ -30,10 +30,13 @@ export function loadJsonFile(file) {
 }
 
 export function genJWT(dtable_uuid) {
-  let token = jwt.sign({
-    exp: Math.floor(Date.now() / 1000) + (5 * 60),
-    dtable_uuid: dtable_uuid,
-  }, PRIVATE_KEY);
+  let token = jwt.sign(
+    {
+      exp: Math.floor(Date.now() / 1000) + 5 * 60,
+      dtable_uuid: dtable_uuid,
+    },
+    PRIVATE_KEY
+  );
   return token;
 }
 

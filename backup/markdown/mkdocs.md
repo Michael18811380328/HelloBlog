@@ -6,28 +6,28 @@
 
 ## 本地基本配置
 
-~~~yml
+```yml
 site_name: Michale An Blog
 site_author: Michael An
 
 pages:
-- 首页: index.md
-- 进程与线程: 1.md
-- UUID: 2.md
+  - 首页: index.md
+  - 进程与线程: 1.md
+  - UUID: 2.md
 
 # 这是一个二级导航
 nav:
-- Home: 'index.md'
-- User Guide:
-    - '原地算法': 'in-place.md'
-    - '二分算法': 'part-two.md'
-- Learn:
-    - '双指针': 'double-pointer.md'
-    - '分治算法': 'diverce.md'
-    - '聚类算法': 'K-means.md'
-- About:
-    - 'License': 'process-and-thread.md'
-    - 'Release Notes': 'uuid.md'
+  - Home: "index.md"
+  - User Guide:
+      - "原地算法": "in-place.md"
+      - "二分算法": "part-two.md"
+  - Learn:
+      - "双指针": "double-pointer.md"
+      - "分治算法": "diverce.md"
+      - "聚类算法": "K-means.md"
+  - About:
+      - "License": "process-and-thread.md"
+      - "Release Notes": "uuid.md"
 
 # https://mkdocs.zimoapps.com/user-guide/ 详细资料可以参考这里
 
@@ -35,11 +35,9 @@ docs_dir: ./docs
 
 copyright: Copyright &copy; TEST
 
-
 # site_url: https://michael18811380328.github.io/blog/
 # repo_name: blog
 # repo_url: https://github.com/Michael18811380328/blog
-
 
 theme: material
 # readthedocs
@@ -59,7 +57,6 @@ theme: material
 #   palette:
 #     primary: deep orange
 #     accent:
-
 
 # plugins:
 #   - search # necessary for search to work
@@ -83,12 +80,7 @@ theme: material
 #   - markdown.extensions.toc:
 #       permalink: true
 #       toc_depth: "1-4"
-
-~~~
-
-
-
-
+```
 
 ## 中文配置
 
@@ -228,7 +220,7 @@ pages:
 
 **默认值**: `'site'`
 
-**Note**: 如果你使用了版本控制系统, 通常不希望 *构建输出* 文件被提交到版本库, 而只需要对 *源码* 进行版本控制. 例如, 如果使用 `git` , 你可以添加以下代码到 `.gitignore` 文件:
+**Note**: 如果你使用了版本控制系统, 通常不希望 _构建输出_ 文件被提交到版本库, 而只需要对 _源码_ 进行版本控制. 例如, 如果使用 `git` , 你可以添加以下代码到 `.gitignore` 文件:
 
 ```
 site/
@@ -264,7 +256,7 @@ site/
 
 默认的 `use_directory_urls=true` 选项能生成用户友好的 URLs, 通常情况下你不应该修改默认选项.
 
-替代选项在你需要直接在文件系统中打开文档, 并保持链接正确时很有用, 因为它创建的链接直接指向目标 *文件* 而不是目标 *文件夹*.
+替代选项在你需要直接在文件系统中打开文档, 并保持链接正确时很有用, 因为它创建的链接直接指向目标 _文件_ 而不是目标 _文件夹_.
 
 **默认值**: `true`
 
@@ -296,17 +288,13 @@ markdown_extensions: [smartypants]
 
 [Next ](https://markdown-docs-zh.readthedocs.io/zh_CN/latest/about/license/)[ Previous](https://markdown-docs-zh.readthedocs.io/zh_CN/latest/user-guide/styling-your-docs/)
 
-
-
-
-
 ## 英文配置
 
 # Configuration
 
 Guide to all available configuration settings.
 
-------
+---
 
 ## Introduction
 
@@ -426,8 +414,8 @@ This setting is used to determine the format and layout of the global navigation
 
 ```yaml
 nav:
-    - 'index.md'
-    - 'about.md'
+  - "index.md"
+  - "about.md"
 ```
 
 All paths must be relative to the `mkdocs.yml` configuration file. See the section on [configuring pages and navigation](https://www.mkdocs.org/user-guide/writing-your-docs/#configure-pages-and-navigation) for a more detailed breakdown, including how to create sub-sections.
@@ -436,9 +424,9 @@ Navigation items may also include links to external sites. While titles are opti
 
 ```yaml
 nav:
-    - Introduction: 'index.md'
-    - 'about.md'
-    - 'Issue Tracker': 'https://example.com/'
+  - Introduction: "index.md"
+  - "about.md"
+  - "Issue Tracker": "https://example.com/"
 ```
 
 In the above example, the first two items point to local files while the third points to an external site.
@@ -449,9 +437,9 @@ However, sometimes the MkDocs site is hosted in a subdirectory of a project's si
 site_url: https://example.com/foo/
 
 nav:
-    - Home: '../'
-    - 'User Guide': 'user-guide.md'
-    - 'Bug Tracker': '/bugs/'
+  - Home: "../"
+  - "User Guide": "user-guide.md"
+  - "Bug Tracker": "/bugs/"
 ```
 
 In the above example, two different styles of external links are used. First, note that the `site_url` indicates that the MkDocs site is hosted in the `/foo/` subdirectory of the domain. Therefore, the `Home` navigation item is a relative link that steps up one level to the server root and effectively points to `https://example.com/`. The `Bug Tracker` item uses an absolute path from the server root and effectively points to `https://example.com/bugs/`. Of course, the `User Guide` points to a local MkDocs page.
@@ -470,12 +458,12 @@ An example set of key/value pairs might look something like this:
 
 ```yaml
 theme:
-    name: mkdocs
-    locale: en
-    custom_dir: my_theme_customizations/
-    static_templates:
-        - sitemap.html
-    include_sidebar: false
+  name: mkdocs
+  locale: en
+  custom_dir: my_theme_customizations/
+  static_templates:
+    - sitemap.html
+  include_sidebar: false
 ```
 
 If a set of key/value pairs, the following nested keys can be defined:
@@ -520,7 +508,7 @@ The directory where the output HTML and other files are created. This can either
 
 Note:
 
-If you are using source code control you will normally want to ensure that your *build output* files are not committed into the repository, and only keep the *source* files under version control. For example, if using `git` you might add the following line to your `.gitignore` file:
+If you are using source code control you will normally want to ensure that your _build output_ files are not committed into the repository, and only keep the _source_ files under version control. For example, if using `git` you might add the following line to your `.gitignore` file:
 
 ```
 site/
@@ -534,8 +522,8 @@ Set a list of CSS files in your `docs_dir` to be included by the theme. For exam
 
 ```yaml
 extra_css:
-    - css/extra.css
-    - css/second_extra.css
+  - css/extra.css
+  - css/second_extra.css
 ```
 
 **default**: `[]` (an empty list).
@@ -560,7 +548,7 @@ For example, if you are using a theme that supports displaying the project versi
 
 ```yaml
 extra:
-    version: 1.0
+  version: 1.0
 ```
 
 **default**: By default `extra` will be an empty key-value mapping.
@@ -581,7 +569,7 @@ The following table demonstrates how the URLs used on the site differ when setti
 
 The default style of `use_directory_urls: true` creates more user friendly URLs, and is usually what you'll want to use.
 
-The alternate style can be useful if you want your documentation to remain properly linked when opening pages directly from the file system, because it creates links that point directly to the target *file* rather than the target *directory*.
+The alternate style can be useful if you want your documentation to remain properly linked when opening pages directly from the file system, because it creates links that point directly to the target _file_ rather than the target _directory_.
 
 **default**: `true`
 
@@ -611,7 +599,7 @@ For example, to enable the [SmartyPants typography extension](https://python-mar
 
 ```yaml
 markdown_extensions:
-    - smarty
+  - smarty
 ```
 
 Some extensions provide configuration options of their own. If you would like to set any configuration options, then you can nest a key/value mapping (`option_name: option value`) of any options that a given extension supports. See the documentation for the extension you are using to determine what options they support.
@@ -620,37 +608,37 @@ For example, to enable permalinks in the (included) `toc` extension, use:
 
 ```yaml
 markdown_extensions:
-    - toc:
-        permalink: True
+  - toc:
+      permalink: True
 ```
 
 Note that a colon (`:`) must follow the extension name (`toc`) and then on a new line the option name and value must be indented and separated by a colon. If you would like to define multiple options for a single extension, each option must be defined on a separate line:
 
 ```yaml
 markdown_extensions:
-    - toc:
-        permalink: True
-        separator: "_"
+  - toc:
+      permalink: True
+      separator: "_"
 ```
 
 Add an additional item to the list for each extension. If you have no configuration options to set for a specific extension, then simply omit options for that extension:
 
 ```yaml
 markdown_extensions:
-    - smarty
-    - toc:
-        permalink: True
-    - sane_lists
+  - smarty
+  - toc:
+      permalink: True
+  - sane_lists
 ```
 
 In the above examples, each extension is a list item (starts with a `-`). As an alternative, key/value pairs can be used instead. However, in that case an empty value must be provided for extensions for which no options are defined. Therefore, the last example above could also be defined as follows:
 
 ```yaml
 markdown_extensions:
-    smarty: {}
-    toc:
-        permalink: True
-    sane_lists: {}
+  smarty: {}
+  toc:
+    permalink: True
+  sane_lists: {}
 ```
 
 This alternative syntax is required if you intend to override some options via [inheritance](https://www.mkdocs.org/user-guide/configuration/#configuration-inheritance).
@@ -671,28 +659,28 @@ If the `plugins` config setting is defined in the `mkdocs.yml` config file, then
 
 ```yaml
 plugins:
-    - search
-    - your_other_plugin
+  - search
+  - your_other_plugin
 ```
 
 To define options for a given plugin, use a nested set of key/value pairs:
 
 ```yaml
 plugins:
-    - search
-    - your_other_plugin:
-        option1: value
-        option2: other value
+  - search
+  - your_other_plugin:
+      option1: value
+      option2: other value
 ```
 
 In the above examples, each plugin is a list item (starts with a `-`). As an alternative, key/value pairs can be used instead. However, in that case an empty value must be provided for plugins for which no options are defined. Therefore, the last example above could also be defined as follows:
 
 ```yaml
 plugins:
-    search: {}
-    your_other_plugin:
-        option1: value
-        option2: other value
+  search: {}
+  your_other_plugin:
+    option1: value
+    option2: other value
 ```
 
 This alternative syntax is required if you intend to override some options via [inheritance](https://www.mkdocs.org/user-guide/configuration/#configuration-inheritance).
@@ -715,8 +703,8 @@ A regular expression which matches the characters used as word separators when b
 
 ```yaml
 plugins:
-    - search:
-        separator: '[\s\-\.]+'
+  - search:
+      separator: '[\s\-\.]+'
 ```
 
 **default**: `'[\s\-]+'`
@@ -727,8 +715,8 @@ An integer value that defines the minimum length for a search query. By default 
 
 ```yaml
 plugins:
-    - search:
-        min_search_length: 2
+  - search:
+      min_search_length: 2
 ```
 
 **default**: 3
@@ -789,17 +777,17 @@ Configures what strategy the search indexer will use when building the index for
 
 ```yaml
 plugins:
-    - search:
-        indexing: 'full'
+  - search:
+      indexing: "full"
 ```
 
 ###### Options
 
-| Option     | Description                                                  |
-| ---------- | ------------------------------------------------------------ |
+| Option     | Description                                                      |
+| ---------- | ---------------------------------------------------------------- |
 | `full`     | Indexes the title, section headings, and full text of each page. |
-| `sections` | Indexes the title and section headings of each page.         |
-| `titles`   | Indexes only the title of each page.                         |
+| `sections` | Indexes the title and section headings of each page.             |
+| `titles`   | Indexes only the title of each page.                             |
 
 **default**: `full`
 
@@ -814,13 +802,13 @@ site_name: !ENV SITE_NAME
 If the environment variable is not defined, then the configuration setting would be assigned a `null` (or `None` in Python) value. A default value can be defined as the last value in a list. Like this:
 
 ```yaml
-site_name: !ENV [SITE_NAME, 'My default site name']
+site_name: !ENV [SITE_NAME, "My default site name"]
 ```
 
 Multiple fallback variables can be used as well. Note that the last value is not an environment variable, but must be a value to use as a default if none of the specified environment variables are defined.
 
 ```yaml
-site_name: !ENV [SITE_NAME, OTHER_NAME, 'My default site name']
+site_name: !ENV [SITE_NAME, OTHER_NAME, "My default site name"]
 ```
 
 Simple types defined within an environment variable such as string, bool, integer, float, datestamp and null are parsed as if they were defined directly in the YAML file, which means that the value will be converted to the appropriate type. However, complex types such as lists and key/value pairs cannot be defined within a single environment variable.
@@ -839,14 +827,14 @@ For example, suppose the common (parent) configuration is defined in `base.yml`:
 
 ```yaml
 theme:
-    name: mkdocs
-    locale: en
-    highlightjs: true
+  name: mkdocs
+  locale: en
+  highlightjs: true
 
 markdown_extensions:
-    toc:
-        permalink: true
-    admonition: {}
+  toc:
+    permalink: true
+  admonition: {}
 ```
 
 Then, for the "foo" site, the primary configuration file would be defined at `foo/mkdocs.yml`:
@@ -864,14 +852,14 @@ site_name: Foo Project
 site_url: https://example.com/foo
 
 theme:
-    name: mkdocs
-    locale: en
-    highlightjs: true
+  name: mkdocs
+  locale: en
+  highlightjs: true
 
 markdown_extensions:
-    toc:
-        permalink: true
-    admonition: {}
+  toc:
+    permalink: true
+  admonition: {}
 ```
 
 Deep merging allows you to add and/or override various values in your primary configuration file. For example, suppose for one site you wanted to add support for definition lists, use a different symbol for permalinks, and define a different separator. In that site's primary configuration file you could do:
@@ -882,10 +870,10 @@ site_name: Bar Project
 site_url: https://example.com/bar
 
 markdown_extensions:
-    def_list: {}
-    toc:
-        permalink: 
-        separator: "_"
+  def_list: {}
+  toc:
+    permalink: 
+    separator: "_"
 ```
 
 In that case, the above configuration would be deep merged with `base.yml` and result in the following configuration:
@@ -895,16 +883,16 @@ site_name: Bar Project
 site_url: https://example.com/bar
 
 theme:
-    name: mkdocs
-    locale: en
-    highlightjs: true
+  name: mkdocs
+  locale: en
+  highlightjs: true
 
 markdown_extensions:
-    def_list: {}
-    toc:
-        permalink: 
-        separator: "_"
-    admonition: {}
+  def_list: {}
+  toc:
+    permalink: 
+    separator: "_"
+  admonition: {}
 ```
 
 Notice that the `admonition` extension was retained from the parent configuration, the `def_list` extension was added, the value of `toc.permalink` was replaced, and the value of `toc.separator` was added.

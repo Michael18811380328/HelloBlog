@@ -8,7 +8,7 @@ Matplotlib: Visualization with Python（Matplotlib：使用 Python 进行可视�
 
 ### 简介
 
-Matplotlib is a comprehensive library for creating static, animated, and interactive visualizations in Python.Matplotlib makes easy things easy and hard things possible. 
+Matplotlib is a comprehensive library for creating static, animated, and interactive visualizations in Python.Matplotlib makes easy things easy and hard things possible.
 
 Matplotlib 是一个综合性的库，用于在 Python 中创建静态、动画和交互式可视化。Matplotlib 使简单的事情变得容易，使困难的事情成为可能。
 
@@ -29,8 +29,6 @@ Extend
 - Explore tailored functionality provided by [third party packages](https://matplotlib.org/thirdpartypackages/index.html)
 - Learn more about Matplotlib through the many [external learning resources](https://matplotlib.org/resources/index.html)
 
-
-
 创建
 
 - 只需几行代码即可开发出版质量的图
@@ -46,22 +44,19 @@ Extend
 - 探索第三方软件包提供的定制功能
 - 通过许多外部学习资源了解有关 Matplotlib 的更多信息
 
-
-
 ### 案例
 
-~~~Python
-import numpy as np 
-from matplotlib import pyplot as plt 
- 
-x = np.arange(1,11) 
-y =  2 * x + 5 
-plt.title("Matplotlib demo") 
-plt.xlabel("x axis caption") 
-plt.ylabel("y axis caption") 
-plt.plot(x,y) 
+```Python
+import numpy as np
+from matplotlib import pyplot as plt
+
+x = np.arange(1,11)
+y =  2 * x + 5
+plt.title("Matplotlib demo")
+plt.xlabel("x axis caption")
+plt.ylabel("y axis caption")
+plt.plot(x,y)
 plt.show()
-~~~
+```
 
 这里显示一个函数图像（也支持各种图表等）
-

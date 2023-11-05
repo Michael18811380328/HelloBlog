@@ -1,9 +1,9 @@
 # Node.js v12.14.0 文档
 
-- [返回文档首页](http://nodejs.cn/api/) 
+- [返回文档首页](http://nodejs.cn/api/)
 - [搜索](http://nodejs.cn/search)
 
-------
+---
 
 ## 目录
 
@@ -231,7 +231,7 @@
 要使用此模块：
 
 ```js
-const fs = require('fs');
+const fs = require("fs");
 ```
 
 所有文件系统操作都具有同步和异步的形式。
@@ -239,22 +239,22 @@ const fs = require('fs');
 异步的形式总是将完成回调作为其最后一个参数。 传给完成回调的参数取决于具体方法，但第一个参数始终预留用于异常。 如果操作成功完成，则第一个参数将为 `null` 或 `undefined`。
 
 ```js
-const fs = require('fs');
+const fs = require("fs");
 
-fs.unlink('/tmp/hello', (err) => {
+fs.unlink("/tmp/hello", (err) => {
   if (err) throw err;
-  console.log('已成功删除 /tmp/hello');
+  console.log("已成功删除 /tmp/hello");
 });
 ```
 
 使用同步的操作发生的异常会立即抛出，可以使用 `try…catch` 处理，也可以允许冒泡。
 
 ```js
-const fs = require('fs');
+const fs = require("fs");
 
 try {
-  fs.unlinkSync('/tmp/hello');
-  console.log('已成功删除 /tmp/hello');
+  fs.unlinkSync("/tmp/hello");
+  console.log("已成功删除 /tmp/hello");
 } catch (err) {
   // 处理错误
 }
@@ -263,11 +263,11 @@ try {
 使用异步的方法时无法保证顺序。 因此，以下的操作容易出错，因为 `fs.stat()` 操作可能在 `fs.rename()` 操作之前完成：
 
 ```js
-fs.rename('/tmp/hello', '/tmp/world', (err) => {
+fs.rename("/tmp/hello", "/tmp/world", (err) => {
   if (err) throw err;
-  console.log('重命名完成');
+  console.log("重命名完成");
 });
-fs.stat('/tmp/world', (err, stats) => {
+fs.stat("/tmp/world", (err, stats) => {
   if (err) throw err;
   console.log(`文件属性: ${JSON.stringify(stats)}`);
 });
@@ -276,9 +276,9 @@ fs.stat('/tmp/world', (err, stats) => {
 要正确地排序这些操作，则将 `fs.stat()` 调用移动到 `fs.rename()` 操作的回调中：
 
 ```js
-fs.rename('/tmp/hello', '/tmp/world', (err) => {
+fs.rename("/tmp/hello", "/tmp/world", (err) => {
   if (err) throw err;
-  fs.stat('/tmp/world', (err, stats) => {
+  fs.stat("/tmp/world", (err, stats) => {
     if (err) throw err;
     console.log(`文件属性: ${JSON.stringify(stats)}`);
   });
@@ -315,9 +315,9 @@ Error: EISDIR: illegal operation on a directory, read
 在 POSIX 上使用绝对路径的示例：
 
 ```js
-const fs = require('fs');
+const fs = require("fs");
 
-fs.open('/open/some/file.txt', 'r', (err, fd) => {
+fs.open("/open/some/file.txt", "r", (err, fd) => {
   if (err) throw err;
   fs.close(fd, (err) => {
     if (err) throw err;
@@ -328,7 +328,7 @@ fs.open('/open/some/file.txt', 'r', (err, fd) => {
 在 POSIX 上使用相对路径（相对于 `process.cwd()`）的示例：
 
 ```js
-fs.open('file.txt', 'r', (err, fd) => {
+fs.open("file.txt", "r", (err, fd) => {
   if (err) throw err;
   fs.close(fd, (err) => {
     if (err) throw err;
@@ -341,7 +341,7 @@ fs.open('file.txt', 'r', (err, fd) => {
 在 POSIX 上使用绝对路径的示例：
 
 ```js
-fs.open(Buffer.from('/open/some/file.txt'), 'r', (err, fd) => {
+fs.open(Buffer.from("/open/some/file.txt"), "r", (err, fd) => {
   if (err) throw err;
   fs.close(fd, (err) => {
     if (err) throw err;
@@ -356,8 +356,8 @@ fs.open(Buffer.from('/open/some/file.txt'), 'r', (err, fd) => {
 对于大多数 `fs` 模块的函数， `path` 或 `filename` 参数可以传入 WHATWG [`URL`](http://nodejs.cn/s/5dwq7G) 对象。 仅支持使用 `file:` 协议的 [`URL`](http://nodejs.cn/s/5dwq7G) 对象。
 
 ```js
-const fs = require('fs');
-const fileUrl = new URL('file:///tmp/hello');
+const fs = require("fs");
+const fileUrl = new URL("file:///tmp/hello");
 
 fs.readFileSync(fileUrl);
 ```
@@ -373,15 +373,15 @@ fs.readFileSync(fileUrl);
 
 // - 带有主机名的 WHATWG 文件的 URL 转换为 UNC 路径。
 // file://hostname/p/a/t/h/file => \\hostname\p\a\t\h\file
-fs.readFileSync(new URL('file://hostname/p/a/t/h/file'));
+fs.readFileSync(new URL("file://hostname/p/a/t/h/file"));
 
 // - 带有驱动器号的 WHATWG 文件的 URL 转换为绝对路径。
 // file:///C:/tmp/hello => C:\tmp\hello
-fs.readFileSync(new URL('file:///C:/tmp/hello'));
+fs.readFileSync(new URL("file:///C:/tmp/hello"));
 
 // - 没有主机名的 WHATWG 文件的 URL 必须包含驱动器号。
-fs.readFileSync(new URL('file:///notdriveletter/p/a/t/h/file'));
-fs.readFileSync(new URL('file:///c/p/a/t/h/file'));
+fs.readFileSync(new URL("file:///notdriveletter/p/a/t/h/file"));
+fs.readFileSync(new URL("file:///c/p/a/t/h/file"));
 // TypeError [ERR_INVALID_FILE_URL_PATH]: File URL path must be absolute
 ```
 
@@ -394,26 +394,26 @@ fs.readFileSync(new URL('file:///c/p/a/t/h/file'));
 
 // - 不支持带有主机名的 WHATWG 文件的 URL。
 // file://hostname/p/a/t/h/file => throw!
-fs.readFileSync(new URL('file://hostname/p/a/t/h/file'));
+fs.readFileSync(new URL("file://hostname/p/a/t/h/file"));
 // TypeError [ERR_INVALID_FILE_URL_PATH]: must be absolute
 
 // - WHATWG 文件的 URL 转换为绝对路径。
 // file:///tmp/hello => /tmp/hello
-fs.readFileSync(new URL('file:///tmp/hello'));
+fs.readFileSync(new URL("file:///tmp/hello"));
 ```
 
 包含编码后的斜杆字符（`%2F`）的 `file:` URL 在所有平台上都将导致抛出错误：
 
 ```js
 // 在 Windows 上：
-fs.readFileSync(new URL('file:///C:/p/a/t/h/%2F'));
-fs.readFileSync(new URL('file:///C:/p/a/t/h/%2f'));
+fs.readFileSync(new URL("file:///C:/p/a/t/h/%2F"));
+fs.readFileSync(new URL("file:///C:/p/a/t/h/%2f"));
 /* TypeError [ERR_INVALID_FILE_URL_PATH]: File URL path must not include encoded
 \ or / characters */
 
 // 在 POSIX 上：
-fs.readFileSync(new URL('file:///p/a/t/h/%2F'));
-fs.readFileSync(new URL('file:///p/a/t/h/%2f'));
+fs.readFileSync(new URL("file:///p/a/t/h/%2F"));
+fs.readFileSync(new URL("file:///p/a/t/h/%2f"));
 /* TypeError [ERR_INVALID_FILE_URL_PATH]: File URL path must not include encoded
 / characters */
 ```
@@ -422,8 +422,8 @@ fs.readFileSync(new URL('file:///p/a/t/h/%2f'));
 
 ```js
 // 在 Windows 上：
-fs.readFileSync(new URL('file:///C:/path/%5C'));
-fs.readFileSync(new URL('file:///C:/path/%5c'));
+fs.readFileSync(new URL("file:///C:/path/%5C"));
+fs.readFileSync(new URL("file:///C:/path/%5c"));
 /* TypeError [ERR_INVALID_FILE_URL_PATH]: File URL path must not include encoded
 \ or / characters */
 ```
@@ -435,7 +435,7 @@ fs.readFileSync(new URL('file:///C:/path/%5c'));
 `fs.open()` 方法用于分配新的文件描述符。 一旦被分配，则文件描述符可用于从文件读取数据、向文件写入数据、或请求关于文件的信息。
 
 ```js
-fs.open('/open/some/file.txt', 'r', (err, fd) => {
+fs.open("/open/some/file.txt", "r", (err, fd) => {
   if (err) throw err;
   fs.fstat(fd, (err, stat) => {
     if (err) throw err;
@@ -462,7 +462,7 @@ fs.open('/open/some/file.txt', 'r', (err, fd) => {
 由 [`fs.opendir()`](http://nodejs.cn/s/zomk1H)、[`fs.opendirSync()`](http://nodejs.cn/s/V6ipxZ) 或 [`fsPromises.opendir()`](http://nodejs.cn/s/wUZTwT) 创建。
 
 ```js
-const fs = require('fs');
+const fs = require("fs");
 
 async function print(path) {
   const dir = await fs.promises.opendir(path);
@@ -470,7 +470,7 @@ async function print(path) {
     console.log(dirent.name);
   }
 }
-print('./').catch(console.error);
+print("./").catch(console.error);
 ```
 
 ### dir.close()[#](http://nodejs.cn/api/fs.html#fs_dir_close)
@@ -645,7 +645,7 @@ print('./').catch(console.error);
 
 ```js
 // 使用 fs.watch（）监听器的示例。
-fs.watch('./tmp', { encoding: 'buffer' }, (eventType, filename) => {
+fs.watch("./tmp", { encoding: "buffer" }, (eventType, filename) => {
   if (filename) {
     console.log(filename);
     // 打印: <Buffer ...>
@@ -1104,28 +1104,27 @@ stat 对象中的时间具有以下语义：
 最后一个参数 `callback` 是一个回调函数，调用时将传入可能的错误参数。 如果可访问性检查失败，则错误参数将是 `Error` 对象。 以下示例检查 `package.json` 是否存在，以及它是否可读或可写。
 
 ```js
-const file = 'package.json';
+const file = "package.json";
 
 // 检查当前目录中是否存在该文件。
 fs.access(file, fs.constants.F_OK, (err) => {
-  console.log(`${file} ${err ? '不存在' : '存在'}`);
+  console.log(`${file} ${err ? "不存在" : "存在"}`);
 });
 
 // 检查文件是否可读。
 fs.access(file, fs.constants.R_OK, (err) => {
-  console.log(`${file} ${err ? '不可读' : '可读'}`);
+  console.log(`${file} ${err ? "不可读" : "可读"}`);
 });
 
 // 检查文件是否可写。
 fs.access(file, fs.constants.W_OK, (err) => {
-  console.log(`${file} ${err ? '不可写' : '可写'}`);
+  console.log(`${file} ${err ? "不可写" : "可写"}`);
 });
 
 // 检查当前目录中是否存在该文件，以及该文件是否可写。
 fs.access(file, fs.constants.F_OK | fs.constants.W_OK, (err) => {
   if (err) {
-    console.error(
-      `${file} ${err.code === 'ENOENT' ? '不存在' : '只可读'}`);
+    console.error(`${file} ${err.code === "ENOENT" ? "不存在" : "只可读"}`);
   } else {
     console.log(`${file} 存在，且它是可写的`);
   }
@@ -1137,13 +1136,13 @@ fs.access(file, fs.constants.F_OK | fs.constants.W_OK, (err) => {
 **写入（不推荐）**
 
 ```js
-fs.access('myfile', (err) => {
+fs.access("myfile", (err) => {
   if (!err) {
-    console.error('myfile 已存在');
+    console.error("myfile 已存在");
     return;
   }
 
-  fs.open('myfile', 'wx', (err, fd) => {
+  fs.open("myfile", "wx", (err, fd) => {
     if (err) throw err;
     writeMyData(fd);
   });
@@ -1153,10 +1152,10 @@ fs.access('myfile', (err) => {
 **写入（推荐）**
 
 ```js
-fs.open('myfile', 'wx', (err, fd) => {
+fs.open("myfile", "wx", (err, fd) => {
   if (err) {
-    if (err.code === 'EEXIST') {
-      console.error('myfile 已存在');
+    if (err.code === "EEXIST") {
+      console.error("myfile 已存在");
       return;
     }
 
@@ -1170,17 +1169,17 @@ fs.open('myfile', 'wx', (err, fd) => {
 **读取（不推荐）**
 
 ```js
-fs.access('myfile', (err) => {
+fs.access("myfile", (err) => {
   if (err) {
-    if (err.code === 'ENOENT') {
-      console.error('myfile 不存在');
+    if (err.code === "ENOENT") {
+      console.error("myfile 不存在");
       return;
     }
 
     throw err;
   }
 
-  fs.open('myfile', 'r', (err, fd) => {
+  fs.open("myfile", "r", (err, fd) => {
     if (err) throw err;
     readMyData(fd);
   });
@@ -1190,10 +1189,10 @@ fs.access('myfile', (err) => {
 **读取（推荐）**
 
 ```js
-fs.open('myfile', 'r', (err, fd) => {
+fs.open("myfile", "r", (err, fd) => {
   if (err) {
-    if (err.code === 'ENOENT') {
-      console.error('myfile 不存在');
+    if (err.code === "ENOENT") {
+      console.error("myfile 不存在");
       return;
     }
 
@@ -1225,10 +1224,10 @@ fs.open('myfile', 'r', (err, fd) => {
 
 ```js
 try {
-  fs.accessSync('etc/passwd', fs.constants.R_OK | fs.constants.W_OK);
-  console.log('可以读写');
+  fs.accessSync("etc/passwd", fs.constants.R_OK | fs.constants.W_OK);
+  console.log("可以读写");
 } catch (err) {
-  console.error('无权访问');
+  console.error("无权访问");
 }
 ```
 
@@ -1250,24 +1249,24 @@ try {
 异步地将数据追加到文件，如果文件尚不存在则创建该文件。 `data` 可以是字符串或 [`Buffer`](http://nodejs.cn/s/FApxjh)。
 
 ```js
-fs.appendFile('message.txt', '追加的数据', (err) => {
+fs.appendFile("message.txt", "追加的数据", (err) => {
   if (err) throw err;
-  console.log('数据已追加到文件');
+  console.log("数据已追加到文件");
 });
 ```
 
 如果 `options` 是字符串，则它指定字符编码：
 
 ```js
-fs.appendFile('message.txt', '追加的数据', 'utf8', callback);
+fs.appendFile("message.txt", "追加的数据", "utf8", callback);
 ```
 
 `path` 可以指定为已打开用于追加（使用 `fs.open()` 或 `fs.openSync()`）的数字型文件描述符。 文件描述符不会自动关闭。
 
 ```js
-fs.open('message.txt', 'a', (err, fd) => {
+fs.open("message.txt", "a", (err, fd) => {
   if (err) throw err;
-  fs.appendFile(fd, '追加的数据', 'utf8', (err) => {
+  fs.appendFile(fd, "追加的数据", "utf8", (err) => {
     fs.close(fd, (err) => {
       if (err) throw err;
     });
@@ -1293,8 +1292,8 @@ fs.open('message.txt', 'a', (err, fd) => {
 
 ```js
 try {
-  fs.appendFileSync('message.txt', '追加的数据');
-  console.log('数据已追加到文件');
+  fs.appendFileSync("message.txt", "追加的数据");
+  console.log("数据已追加到文件");
 } catch (err) {
   /* 处理错误 */
 }
@@ -1303,7 +1302,7 @@ try {
 如果 `options` 是字符串，则它指定字符编码：
 
 ```js
-fs.appendFileSync('message.txt', '追加的数据', 'utf8');
+fs.appendFileSync("message.txt", "追加的数据", "utf8");
 ```
 
 `path` 可以指定为已打开用于追加（使用 `fs.open()` 或 `fs.openSync()`）的数字型文件描述符。 文件描述符不会自动关闭。
@@ -1312,13 +1311,12 @@ fs.appendFileSync('message.txt', '追加的数据', 'utf8');
 let fd;
 
 try {
-  fd = fs.openSync('message.txt', 'a');
-  fs.appendFileSync(fd, '追加的数据', 'utf8');
+  fd = fs.openSync("message.txt", "a");
+  fs.appendFileSync(fd, "追加的数据", "utf8");
 } catch (err) {
   /* 处理错误 */
 } finally {
-  if (fd !== undefined)
-    fs.closeSync(fd);
+  if (fd !== undefined) fs.closeSync(fd);
 }
 ```
 
@@ -1338,9 +1336,9 @@ try {
 也可参阅 [`chmod(2)`](http://nodejs.cn/s/K3psEw)。
 
 ```js
-fs.chmod('my_file.txt', 0o775, (err) => {
+fs.chmod("my_file.txt", 0o775, (err) => {
   if (err) throw err;
-  console.log('文件 “my_file.txt” 的权限已被更改');
+  console.log("文件 “my_file.txt” 的权限已被更改");
 });
 ```
 
@@ -1474,23 +1472,23 @@ fs.chmod('my_file.txt', 0o775, (err) => {
 - `fs.constants.COPYFILE_FICLONE_FORCE` - 拷贝操作将尝试创建写时拷贝链接。如果平台不支持写时拷贝，则拷贝操作将失败。
 
 ```js
-const fs = require('fs');
+const fs = require("fs");
 
 // 默认情况下将创建或覆盖目标文件。
-fs.copyFile('源文件.txt', '目标文件.txt', (err) => {
+fs.copyFile("源文件.txt", "目标文件.txt", (err) => {
   if (err) throw err;
-  console.log('源文件已拷贝到目标文件');
+  console.log("源文件已拷贝到目标文件");
 });
 ```
 
 如果第三个参数是数字，则它指定 `flags`:
 
 ```js
-const fs = require('fs');
+const fs = require("fs");
 const { COPYFILE_EXCL } = fs.constants;
 
 // 通过使用 COPYFILE_EXCL，如果目标文件存在，则操作将失败。
-fs.copyFile('源文件.txt', '目标文件.txt', COPYFILE_EXCL, callback);
+fs.copyFile("源文件.txt", "目标文件.txt", COPYFILE_EXCL, callback);
 ```
 
 ## fs.copyFileSync(src, dest[, flags])[#](http://nodejs.cn/api/fs.html#fs_fs_copyfilesync_src_dest_flags)
@@ -1510,21 +1508,21 @@ fs.copyFile('源文件.txt', '目标文件.txt', COPYFILE_EXCL, callback);
 - `fs.constants.COPYFILE_FICLONE_FORCE` - 拷贝操作将尝试创建写时拷贝链接。如果平台不支持写时拷贝，则拷贝操作将失败。
 
 ```js
-const fs = require('fs');
+const fs = require("fs");
 
 // 默认情况下将创建或覆盖目标文件。
-fs.copyFileSync('源文件.txt', '目标文件.txt');
-console.log('源文件已拷贝到目标文件');
+fs.copyFileSync("源文件.txt", "目标文件.txt");
+console.log("源文件已拷贝到目标文件");
 ```
 
 如果第三个参数是数字，则它指定 `flags`:
 
 ```js
-const fs = require('fs');
+const fs = require("fs");
 const { COPYFILE_EXCL } = fs.constants;
 
 // 通过使用 COPYFILE_EXCL，如果目标文件存在，则操作将失败。
-fs.copyFileSync('源文件.txt', '目标文件.txt', COPYFILE_EXCL);
+fs.copyFileSync("源文件.txt", "目标文件.txt", COPYFILE_EXCL);
 ```
 
 ## fs.createReadStream(path[, options])[#](http://nodejs.cn/api/fs.html#fs_fs_createreadstream_path_options)
@@ -1557,9 +1555,9 @@ fs.copyFileSync('源文件.txt', '目标文件.txt', COPYFILE_EXCL);
 默认情况下，流在销毁后将不会触发 `'close'` 事件。 这与其他 `Readable` 流的默认行为相反。 将 `emitClose` 选项设置为 `true` 可更改此行为。
 
 ```js
-const fs = require('fs');
+const fs = require("fs");
 // 从某个字符设备创建一个流。
-const stream = fs.createReadStream('/dev/input/event0');
+const stream = fs.createReadStream("/dev/input/event0");
 setTimeout(() => {
   stream.close(); // 这可能不会关闭流。
   // 人工标记流的结束，就像底层的资源自身已表明文件的结束一样，允许流进行关闭。
@@ -1576,7 +1574,7 @@ setTimeout(() => {
 示例，从一个大小为 100 个字节的文件中读取最后 10 个字节：
 
 ```js
-fs.createReadStream('sample.txt', { start: 90, end: 99 });
+fs.createReadStream("sample.txt", { start: 90, end: 99 });
 ```
 
 如果 `options` 是字符串，则它指定字符编码。
@@ -1623,8 +1621,8 @@ fs.createReadStream('sample.txt', { start: 90, end: 99 });
 通过检查文件系统来测试给定的路径是否存在。 然后调用 `callback` 并带上参数 `true` 或 `false`：
 
 ```js
-fs.exists('/etc/passwd', (exists) => {
-  console.log(exists ? '存在' : '不存在');
+fs.exists("/etc/passwd", (exists) => {
+  console.log(exists ? "存在" : "不存在");
 });
 ```
 
@@ -1635,11 +1633,11 @@ fs.exists('/etc/passwd', (exists) => {
 **写入（不推荐）**
 
 ```js
-fs.exists('myfile', (exists) => {
+fs.exists("myfile", (exists) => {
   if (exists) {
-    console.error('myfile 已存在');
+    console.error("myfile 已存在");
   } else {
-    fs.open('myfile', 'wx', (err, fd) => {
+    fs.open("myfile", "wx", (err, fd) => {
       if (err) throw err;
       writeMyData(fd);
     });
@@ -1650,10 +1648,10 @@ fs.exists('myfile', (exists) => {
 **写入（推荐）**
 
 ```js
-fs.open('myfile', 'wx', (err, fd) => {
+fs.open("myfile", "wx", (err, fd) => {
   if (err) {
-    if (err.code === 'EEXIST') {
-      console.error('myfile 已存在');
+    if (err.code === "EEXIST") {
+      console.error("myfile 已存在");
       return;
     }
 
@@ -1667,14 +1665,14 @@ fs.open('myfile', 'wx', (err, fd) => {
 **读取（不推荐）**
 
 ```js
-fs.exists('myfile', (exists) => {
+fs.exists("myfile", (exists) => {
   if (exists) {
-    fs.open('myfile', 'r', (err, fd) => {
+    fs.open("myfile", "r", (err, fd) => {
       if (err) throw err;
       readMyData(fd);
     });
   } else {
-    console.error('myfile 不存在');
+    console.error("myfile 不存在");
   }
 });
 ```
@@ -1682,10 +1680,10 @@ fs.exists('myfile', (exists) => {
 **读取（推荐）**
 
 ```js
-fs.open('myfile', 'r', (err, fd) => {
+fs.open("myfile", "r", (err, fd) => {
   if (err) {
-    if (err.code === 'ENOENT') {
-      console.error('myfile 不存在');
+    if (err.code === "ENOENT") {
+      console.error("myfile 不存在");
       return;
     }
 
@@ -1716,8 +1714,8 @@ fs.open('myfile', 'r', (err, fd) => {
 虽然 `fs.exists()` 已废弃，但 `fs.existsSync()` 不是废弃的。 `fs.exists()` 的 `callback` 参数接受与其他 Node.js 回调不一致的参数。 `fs.existsSync()` 不使用回调。
 
 ```js
-if (fs.existsSync('/etc/passwd')) {
-  console.log('文件已存在');
+if (fs.existsSync("/etc/passwd")) {
+  console.log("文件已存在");
 }
 ```
 
@@ -1853,16 +1851,16 @@ if (fs.existsSync('/etc/passwd')) {
 例如，以下程序只保留文件的前 4 个字节：
 
 ```js
-console.log(fs.readFileSync('temp.txt', 'utf8'));
+console.log(fs.readFileSync("temp.txt", "utf8"));
 // 打印: Node.js
 
 // 获取要截断的文件的文件描述符。
-const fd = fs.openSync('temp.txt', 'r+');
+const fd = fs.openSync("temp.txt", "r+");
 
 // 将文件截断为前 4 个字节。
 fs.ftruncate(fd, 4, (err) => {
   assert.ifError(err);
-  console.log(fs.readFileSync('temp.txt', 'utf8'));
+  console.log(fs.readFileSync("temp.txt", "utf8"));
 });
 // 打印: Node
 ```
@@ -1870,16 +1868,16 @@ fs.ftruncate(fd, 4, (err) => {
 如果文件小于 `len` 个字节，则会对其进行扩展，并且扩展部分将填充空字节（`'\0'`）：
 
 ```js
-console.log(fs.readFileSync('temp.txt', 'utf8'));
+console.log(fs.readFileSync("temp.txt", "utf8"));
 // 打印: Node.js
 
 // 获取要截断的文件的文件描述符。
-const fd = fs.openSync('temp.txt', 'r+');
+const fd = fs.openSync("temp.txt", "r+");
 
 // 将文件截断为前 10 个字节，但实际大小为 7 个字节。
 fs.ftruncate(fd, 10, (err) => {
   assert.ifError(err);
-  console.log(fs.readFileSync('temp.txt'));
+  console.log(fs.readFileSync("temp.txt"));
 });
 // 打印: <Buffer 4e 6f 64 65 2e 6a 73 00 00 00>
 // (UTF8 的值为 'Node.js\0\0\0')
@@ -1896,7 +1894,7 @@ fs.ftruncate(fd, 10, (err) => {
 
 返回 `undefined`。
 
-有关详细信息，请参阅此API的异步版本的文档：[`fs.ftruncate()`](http://nodejs.cn/s/dRb1jt)。
+有关详细信息，请参阅此 API 的异步版本的文档：[`fs.ftruncate()`](http://nodejs.cn/s/dRb1jt)。
 
 ## fs.futimes(fd, atime, mtime, callback)[#](http://nodejs.cn/api/fs.html#fs_fs_futimes_fd_atime_mtime_callback)
 
@@ -2049,7 +2047,7 @@ fs.ftruncate(fd, 10, (err) => {
 
 ```js
 // 创建 /tmp/a/apple 目录，无论是否存在 /tmp 和 /tmp/a 目录。
-fs.mkdir('/tmp/a/apple', { recursive: true }, (err) => {
+fs.mkdir("/tmp/a/apple", { recursive: true }, (err) => {
   if (err) throw err;
 });
 ```
@@ -2057,7 +2055,7 @@ fs.mkdir('/tmp/a/apple', { recursive: true }, (err) => {
 在 Windows 上，在根目录上使用 `fs.mkdir()` （即使使用递归参数）也会导致错误：
 
 ```js
-fs.mkdir('/', { recursive: true }, (err) => {
+fs.mkdir("/", { recursive: true }, (err) => {
   // => [Error: EPERM: operation not permitted, mkdir 'C:\']
 });
 ```
@@ -2101,7 +2099,7 @@ fs.mkdir('/', { recursive: true }, (err) => {
 可选的 `options` 参数可以是指定字符编码的字符串，也可以是具有指定要使用的字符编码的 `encoding` 属性的对象。
 
 ```js
-fs.mkdtemp(path.join(os.tmpdir(), '目录-'), (err, folder) => {
+fs.mkdtemp(path.join(os.tmpdir(), "目录-"), (err, folder) => {
   if (err) throw err;
   console.log(folder);
   // 打印: /tmp/目录-itXde2 或 C:\Users\...\AppData\Local\Temp\目录-itXde2
@@ -2123,7 +2121,7 @@ fs.mkdtemp(tmpDir, (err, folder) => {
 });
 
 // 此用法是正确的：
-const { sep } = require('path');
+const { sep } = require("path");
 fs.mkdtemp(`${tmpDir}${sep}`, (err, folder) => {
   if (err) throw err;
   console.log(folder);
@@ -2302,7 +2300,7 @@ fs.mkdtemp(`${tmpDir}${sep}`, (err, folder) => {
 异步地读取文件的全部内容。
 
 ```js
-fs.readFile('/etc/passwd', (err, data) => {
+fs.readFile("/etc/passwd", (err, data) => {
   if (err) throw err;
   console.log(data);
 });
@@ -2315,19 +2313,19 @@ fs.readFile('/etc/passwd', (err, data) => {
 如果 `options` 是字符串，则它指定字符编码：
 
 ```js
-fs.readFile('/etc/passwd', 'utf8', callback);
+fs.readFile("/etc/passwd", "utf8", callback);
 ```
 
 当 `path` 是目录时， `fs.readFile()` 与 [`fs.readFileSync()`](http://nodejs.cn/s/LxKo1q) 的行为是特定于平台的。 在 macOS、Linux 和 Windows 上，将返回错误。 在 FreeBSD 上，将返回目录内容的表示。
 
 ```js
 // 在 macOS、Linux 和 Windows 上：
-fs.readFile('<目录>', (err, data) => {
+fs.readFile("<目录>", (err, data) => {
   // => [Error: EISDIR: illegal operation on a directory, read <目录>]
 });
 
 // 在 FreeBSD 上：
-fs.readFile('<目录>', (err, data) => {
+fs.readFile("<目录>", (err, data) => {
   // => null, <data>
 });
 ```
@@ -2364,11 +2362,11 @@ fs.readFile('<目录>', (err, data) => {
 
 ```js
 // 在 macOS、Linux 和 Windows 上：
-fs.readFileSync('<目录>');
+fs.readFileSync("<目录>");
 // => [Error: EISDIR: illegal operation on a directory, read <目录>]
 
 // 在 FreeBSD 上：
-fs.readFileSync('<目录>'); // => <data>
+fs.readFileSync("<目录>"); // => <data>
 ```
 
 ## fs.readlink(path[, options], callback)[#](http://nodejs.cn/api/fs.html#fs_fs_readlink_path_options_callback)
@@ -2519,9 +2517,9 @@ fs.readFileSync('<目录>'); // => <data>
 也可参阅 [`rename(2)`](http://nodejs.cn/s/YbqghQ)。
 
 ```js
-fs.rename('旧文件.txt', '新文件.txt', (err) => {
+fs.rename("旧文件.txt", "新文件.txt", (err) => {
   if (err) throw err;
-  console.log('重命名完成');
+  console.log("重命名完成");
 });
 ```
 
@@ -2604,12 +2602,12 @@ fs.rename('旧文件.txt', '新文件.txt', (err) => {
 以下程序将会检查给定路径的统计信息：
 
 ```js
-const fs = require('fs');
+const fs = require("fs");
 
-const pathsToCheck = ['./txtDir', './txtDir/file.txt'];
+const pathsToCheck = ["./txtDir", "./txtDir/file.txt"];
 
 for (let i = 0; i < pathsToCheck.length; i++) {
-  fs.stat(pathsToCheck[i], function(err, stats) {
+  fs.stat(pathsToCheck[i], function (err, stats) {
     console.log(stats.isDirectory());
     console.log(stats);
   });
@@ -2695,7 +2693,7 @@ Stats {
 相对目标是相对于链接的父目录。
 
 ```js
-fs.symlink('./mew', './example/mewtwo', callback);
+fs.symlink("./mew", "./example/mewtwo", callback);
 ```
 
 上面的示例中，在 `example` 中创建了符号链接 `mewtwo`，它指向同一目录中的 `mew`：
@@ -2761,9 +2759,9 @@ example/
 
 ```js
 // 假设 'path/file.txt' 是常规文件。
-fs.unlink('path/file.txt', (err) => {
+fs.unlink("path/file.txt", (err) => {
   if (err) throw err;
-  console.log('文件已删除');
+  console.log("文件已删除");
 });
 ```
 
@@ -2893,12 +2891,12 @@ AIX 文件在文件的生命周期中保留相同的索引节点。 在 AIX 上�
 仅在 Linux、macOS、Windows 和 AIX 上支持在回调中提供 `filename` 参数。 即使在支持的平台上，也不总是保证提供 `filename`。 因此，不要假设在回调中始终提供 `filename` 参数，并且如果它为 `null` 则需要一些后备逻辑。
 
 ```js
-fs.watch('somedir', (eventType, filename) => {
+fs.watch("somedir", (eventType, filename) => {
   console.log(`事件类型是: ${eventType}`);
   if (filename) {
     console.log(`提供的文件名: ${filename}`);
   } else {
-    console.log('文件名未提供');
+    console.log("文件名未提供");
   }
 });
 ```
@@ -2924,7 +2922,7 @@ fs.watch('somedir', (eventType, filename) => {
 `listener` 有两个参数，当前的 stat 对象和之前的 stat 对象：
 
 ```js
-fs.watchFile('message.text', (curr, prev) => {
+fs.watchFile("message.text", (curr, prev) => {
   console.log(`当前的最近修改时间是: ${curr.mtime}`);
   console.log(`之前的最近修改时间是: ${prev.mtime}`);
 });
@@ -3026,17 +3024,17 @@ fs.watchFile('message.text', (curr, prev) => {
 如果 `data` 是一个 buffer，则 `encoding` 选项会被忽略。
 
 ```js
-const data = new Uint8Array(Buffer.from('Node.js中文网'));
-fs.writeFile('文件.txt', data, (err) => {
+const data = new Uint8Array(Buffer.from("Node.js中文网"));
+fs.writeFile("文件.txt", data, (err) => {
   if (err) throw err;
-  console.log('文件已被保存');
+  console.log("文件已被保存");
 });
 ```
 
 如果 `options` 是一个字符串，则它指定字符编码：
 
 ```js
-fs.writeFile('文件.txt', 'Node.js中文网', 'utf8', callback);
+fs.writeFile("文件.txt", "Node.js中文网", "utf8", callback);
 ```
 
 在同一个文件上多次使用 `fs.writeFile()` 且不等待回调是不安全的。 对于这种情况，建议使用 [`fs.createWriteStream()`](http://nodejs.cn/s/VdSJQa)。
@@ -3199,14 +3197,13 @@ fs.write(fd, Buffer.from(data, options.encoding), callback);
 - 返回: [](http://nodejs.cn/s/ri1kj8) 如果底层的文件描述符被关闭则 `Promise` 将会被解决，如果关闭时发生错误则将 `Promise` 将会被拒绝。 关闭文件描述符。
 
 ```js
-const fsPromises = require('fs').promises;
+const fsPromises = require("fs").promises;
 async function openAndClose() {
   let filehandle;
   try {
-    filehandle = await fsPromises.open('thefile.txt', 'r');
+    filehandle = await fsPromises.open("thefile.txt", "r");
   } finally {
-    if (filehandle !== undefined)
-      await filehandle.close();
+    if (filehandle !== undefined) await filehandle.close();
   }
 }
 ```
@@ -3302,16 +3299,16 @@ async function openAndClose() {
 例如，以下程序只保留文件的前 4 个字节：
 
 ```js
-const fs = require('fs');
+const fs = require("fs");
 const fsPromises = fs.promises;
 
-console.log(fs.readFileSync('temp.txt', 'utf8'));
+console.log(fs.readFileSync("temp.txt", "utf8"));
 // 打印: Node.js
 
 async function doTruncate() {
   let filehandle = null;
   try {
-    filehandle = await fsPromises.open('temp.txt', 'r+');
+    filehandle = await fsPromises.open("temp.txt", "r+");
     await filehandle.truncate(4);
   } finally {
     if (filehandle) {
@@ -3319,7 +3316,7 @@ async function doTruncate() {
       await filehandle.close();
     }
   }
-  console.log(fs.readFileSync('temp.txt', 'utf8'));  // 打印: Node
+  console.log(fs.readFileSync("temp.txt", "utf8")); // 打印: Node
 }
 
 doTruncate().catch(console.error);
@@ -3328,16 +3325,16 @@ doTruncate().catch(console.error);
 如果文件小于 `len` 个字节，则会对其进行扩展，并且扩展部分将填充空字节（`'\0'`）：
 
 ```js
-const fs = require('fs');
+const fs = require("fs");
 const fsPromises = fs.promises;
 
-console.log(fs.readFileSync('temp.txt', 'utf8'));
+console.log(fs.readFileSync("temp.txt", "utf8"));
 // 打印: Node.js
 
 async function doTruncate() {
   let filehandle = null;
   try {
-    filehandle = await fsPromises.open('temp.txt', 'r+');
+    filehandle = await fsPromises.open("temp.txt", "r+");
     await filehandle.truncate(10);
   } finally {
     if (filehandle) {
@@ -3345,7 +3342,7 @@ async function doTruncate() {
       await filehandle.close();
     }
   }
-  console.log(fs.readFileSync('temp.txt', 'utf8'));  // 打印 Node.js\0\0\0
+  console.log(fs.readFileSync("temp.txt", "utf8")); // 打印 Node.js\0\0\0
 }
 
 doTruncate().catch(console.error);
@@ -3462,12 +3459,13 @@ doTruncate().catch(console.error);
 如果可访问性检查成功，则 `Promise` 会被解决且不带值。 如果任何可访问性检查失败，则 `Promise` 会被拒绝并带上 `Error` 对象。 以下示例会检查当前进程是否可以读取和写入 `/etc/passwd` 文件。
 
 ```js
-const fs = require('fs');
+const fs = require("fs");
 const fsPromises = fs.promises;
 
-fsPromises.access('/etc/passwd', fs.constants.R_OK | fs.constants.W_OK)
-  .then(() => console.log('可以访问'))
-  .catch(() => console.error('不可访问'));
+fsPromises
+  .access("/etc/passwd", fs.constants.R_OK | fs.constants.W_OK)
+  .then(() => console.log("可以访问"))
+  .catch(() => console.error("不可访问"));
 ```
 
 不建议在调用 `fsPromises.open()` 之前使用 `fsPromises.access()` 检查文件的可访问性。 这样做会引入竞态条件，因为其他进程可能会在两个调用之间更改文件的状态。 相反，应该直接打开、读取或写入文件，如果文件无法访问则处理引发的错误。
@@ -3531,25 +3529,27 @@ Node.js 不保证拷贝操作的原子性。 如果在打开目标文件用于�
 - `fs.constants.COPYFILE_FICLONE_FORCE` - 拷贝操作将尝试创建写时拷贝链接。如果平台不支持写时拷贝，则拷贝操作将失败。
 
 ```js
-const fsPromises = require('fs').promises;
+const fsPromises = require("fs").promises;
 
 // 默认情况下将创建或覆盖目标文件。
-fsPromises.copyFile('源文件.txt', '目标文件.txt')
-  .then(() => console.log('源文件已拷贝到目标文件'))
-  .catch(() => console.log('该文件无法拷贝'));
+fsPromises
+  .copyFile("源文件.txt", "目标文件.txt")
+  .then(() => console.log("源文件已拷贝到目标文件"))
+  .catch(() => console.log("该文件无法拷贝"));
 ```
 
 如果第三个参数是数字，则它指定 `flags`:
 
 ```js
-const fs = require('fs');
+const fs = require("fs");
 const fsPromises = fs.promises;
 const { COPYFILE_EXCL } = fs.constants;
 
 // 通过使用 COPYFILE_EXCL，如果目标文件存在，则操作将失败。
-fsPromises.copyFile('源文件.txt', '目标文件.txt', COPYFILE_EXCL)
-  .then(() => console.log('源文件已拷贝到目标文件'))
-  .catch(() => console.log('该文件无法拷贝'));
+fsPromises
+  .copyFile("源文件.txt", "目标文件.txt", COPYFILE_EXCL)
+  .then(() => console.log("源文件已拷贝到目标文件"))
+  .catch(() => console.log("该文件无法拷贝"));
 ```
 
 ### fsPromises.lchmod(path, mode)[#](http://nodejs.cn/api/fs.html#fs_fspromises_lchmod_path_mode)
@@ -3628,8 +3628,7 @@ fsPromises.copyFile('源文件.txt', '目标文件.txt', COPYFILE_EXCL)
 可选的 `options` 参数可以是指定字符编码的字符串，也可以是具有指定要使用的字符编码的 `encoding` 属性的对象。
 
 ```js
-fsPromises.mkdtemp(path.join(os.tmpdir(), 'foo-'))
-  .catch(console.error);
+fsPromises.mkdtemp(path.join(os.tmpdir(), "foo-")).catch(console.error);
 ```
 
 `fsPromises.mkdtemp()` 方法将六位随机选择的字符直接附加到 `prefix` 字符串。 例如，给定目录 `/tmp`，如果打算在 `/tmp` 中创建临时目录，则 `prefix` 必须在尾部加上特定平台的路径分隔符（`require('path').sep`）。
@@ -3669,7 +3668,7 @@ fsPromises.mkdtemp(path.join(os.tmpdir(), 'foo-'))
 使用异步迭代的示例：
 
 ```js
-const fs = require('fs');
+const fs = require("fs");
 
 async function print(path) {
   const dir = await fs.promises.opendir(path);
@@ -3677,7 +3676,7 @@ async function print(path) {
     console.log(dirent.name);
   }
 }
-print('./').catch(console.error);
+print("./").catch(console.error);
 ```
 
 ### fsPromises.readdir(path[, options])[#](http://nodejs.cn/api/fs.html#fs_fspromises_readdir_path_options)
@@ -3874,12 +3873,12 @@ print('./').catch(console.error);
 
 以下常量适用于 [`fs.access()`](http://nodejs.cn/s/NCPsM3)。
 
-| 常量   | 说明                                                         |
-| :----- | :----------------------------------------------------------- |
+| 常量   | 说明                                                                                                                  |
+| :----- | :-------------------------------------------------------------------------------------------------------------------- |
 | `F_OK` | 表明文件对调用进程可见。 这对于判断文件是否存在很有用，但对 `rwx` 权限没有任何说明。 如果未指定模式，则默认值为该值。 |
-| `R_OK` | 表明调用进程可以读取文件。                                   |
-| `W_OK` | 表明调用进程可以写入文件。                                   |
-| `X_OK` | 表明调用进程可以执行文件。 在 Windows 上无效（表现得像 `fs.constants.F_OK`）。 |
+| `R_OK` | 表明调用进程可以读取文件。                                                                                            |
+| `W_OK` | 表明调用进程可以写入文件。                                                                                            |
+| `X_OK` | 表明调用进程可以执行文件。 在 Windows 上无效（表现得像 `fs.constants.F_OK`）。                                        |
 
 ### 文件拷贝的常量[#](http://nodejs.cn/api/fs.html#fs_file_copy_constants)
 
@@ -3887,11 +3886,11 @@ print('./').catch(console.error);
 
 以下常量适用于 [`fs.copyFile()`](http://nodejs.cn/s/T2U5cj)。
 
-| 常量                     | 说明                                                         |
-| :----------------------- | :----------------------------------------------------------- |
-| `COPYFILE_EXCL`          | 如果目标路径已存在，则拷贝操作将失败。                       |
+| 常量                     | 说明                                                                                |
+| :----------------------- | :---------------------------------------------------------------------------------- |
+| `COPYFILE_EXCL`          | 如果目标路径已存在，则拷贝操作将失败。                                              |
 | `COPYFILE_FICLONE`       | 拷贝操作将尝试创建写时拷贝链接。 如果底层平台不支持写时拷贝，则使用备选的拷贝机制。 |
-| `COPYFILE_FICLONE_FORCE` | 拷贝操作将尝试创建写时拷贝链接。 如果底层平台不支持写时拷贝，则拷贝操作将失败。 |
+| `COPYFILE_FICLONE_FORCE` | 拷贝操作将尝试创建写时拷贝链接。 如果底层平台不支持写时拷贝，则拷贝操作将失败。     |
 
 ### 文件打开的常量[#](http://nodejs.cn/api/fs.html#fs_file_open_constants)
 
@@ -3899,24 +3898,24 @@ print('./').catch(console.error);
 
 以下常量适用于 `fs.open()`。
 
-| 常量              | 说明                                                         |
-| :---------------- | :----------------------------------------------------------- |
-| `O_RDONLY`        | 表明打开文件用于只读访问。                                   |
-| `O_WRONLY`        | 表明打开文件用于只写访问。                                   |
-| `O_RDWR`          | 表明打开文件用于读写访问。                                   |
-| `O_CREAT`         | 表明如果文件尚不存在则创建该文件。                           |
-| `O_EXCL`          | 表明如果设置了 `O_CREAT` 标志且文件已存在，则打开文件应该失败。 |
-| `O_NOCTTY`        | 表明如果路径表示终端设备，则打开该路径不应该造成该终端变成进程的控制终端（如果进程还没有终端）。 |
-| `O_TRUNC`         | 表明如果文件存在且是常规文件、并且文件成功打开以进行写入访问，则其长度应截断为零。 |
-| `O_APPEND`        | 表明数据将会追加到文件的末尾。                               |
-| `O_DIRECTORY`     | 表明如果路径不是目录，则打开应该失败。                       |
-| `O_NOATIME`       | 表明文件系统的读取访问将不再导致与文件相关联的 `atime` 信息的更新。 仅在 Linux 操作系统上可用。 |
-| `O_NOFOLLOW`      | 表明如果路径是符号链接，则打开应该失败。                     |
-| `O_SYNC`          | 表明文件是为同步 I/O 打开的，写入操作将会等待文件的完整性。  |
-| `O_DSYNC`         | 表明文件是为同步 I/O 打开的，写入操作将会等待数据的完整性    |
-| `O_SYMLINK`       | 表明打开符号链接自身，而不是它指向的资源。                   |
-| `O_DIRECT`        | 表明将尝试最小化文件 I/O 的缓存效果。                        |
-| `O_NONBLOCK`      | 表明在可能的情况下以非阻塞模式打开文件。                     |
+| 常量              | 说明                                                                                                                |
+| :---------------- | :------------------------------------------------------------------------------------------------------------------ |
+| `O_RDONLY`        | 表明打开文件用于只读访问。                                                                                          |
+| `O_WRONLY`        | 表明打开文件用于只写访问。                                                                                          |
+| `O_RDWR`          | 表明打开文件用于读写访问。                                                                                          |
+| `O_CREAT`         | 表明如果文件尚不存在则创建该文件。                                                                                  |
+| `O_EXCL`          | 表明如果设置了 `O_CREAT` 标志且文件已存在，则打开文件应该失败。                                                     |
+| `O_NOCTTY`        | 表明如果路径表示终端设备，则打开该路径不应该造成该终端变成进程的控制终端（如果进程还没有终端）。                    |
+| `O_TRUNC`         | 表明如果文件存在且是常规文件、并且文件成功打开以进行写入访问，则其长度应截断为零。                                  |
+| `O_APPEND`        | 表明数据将会追加到文件的末尾。                                                                                      |
+| `O_DIRECTORY`     | 表明如果路径不是目录，则打开应该失败。                                                                              |
+| `O_NOATIME`       | 表明文件系统的读取访问将不再导致与文件相关联的 `atime` 信息的更新。 仅在 Linux 操作系统上可用。                     |
+| `O_NOFOLLOW`      | 表明如果路径是符号链接，则打开应该失败。                                                                            |
+| `O_SYNC`          | 表明文件是为同步 I/O 打开的，写入操作将会等待文件的完整性。                                                         |
+| `O_DSYNC`         | 表明文件是为同步 I/O 打开的，写入操作将会等待数据的完整性                                                           |
+| `O_SYMLINK`       | 表明打开符号链接自身，而不是它指向的资源。                                                                          |
+| `O_DIRECT`        | 表明将尝试最小化文件 I/O 的缓存效果。                                                                               |
+| `O_NONBLOCK`      | 表明在可能的情况下以非阻塞模式打开文件。                                                                            |
 | `UV_FS_O_FILEMAP` | 当设置后，将会使用内存文件的映射来访问文件。 此标志仅在 Windows 操作系统上可用。 在其他操作系统上，此标志会被忽略。 |
 
 ### 文件类型的常量[#](http://nodejs.cn/api/fs.html#fs_file_type_constants)
@@ -4005,12 +4004,12 @@ print('./').catch(console.error);
 
 ```js
 // 在 macOS 和 Linux 上：
-fs.open('<目录>', 'a+', (err, fd) => {
+fs.open("<目录>", "a+", (err, fd) => {
   // => [Error: EISDIR: illegal operation on a directory, open <目录>]
 });
 
 // 在 Windows 和 FreeBSD 上：
-fs.open('<目录>', 'a+', (err, fd) => {
+fs.open("<目录>", "a+", (err, fd) => {
   // => null, <fd>
 });
 ```

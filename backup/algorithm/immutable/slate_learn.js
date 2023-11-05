@@ -1,19 +1,19 @@
-import direction from 'direction'
-import invariant from 'tiny-invariant'
-import warning from 'tiny-warning'
-import { List, OrderedSet, Set, Stack } from 'immutable'
+import direction from "direction";
+import invariant from "tiny-invariant";
+import warning from "tiny-warning";
+import { List, OrderedSet, Set, Stack } from "immutable";
 
-import mixin from '../utils/mixin'
-import Block from '../models/block'
-import Decoration from '../models/decoration'
-import Document from '../models/document'
-import Inline from '../models/inline'
-import memoize from '../utils/memoize'
-import PathUtils from '../utils/path-utils'
-import Point from '../models/point'
-import Range from '../models/range'
-import Selection from '../models/selection'
-import Value from '../models/value'
+import mixin from "../utils/mixin";
+import Block from "../models/block";
+import Decoration from "../models/decoration";
+import Document from "../models/document";
+import Inline from "../models/inline";
+import memoize from "../utils/memoize";
+import PathUtils from "../utils/path-utils";
+import Point from "../models/point";
+import Range from "../models/range";
+import Selection from "../models/selection";
+import Value from "../models/value";
 
 /**
  * The interface that `Document`, `Block` and `Inline` all implement, to make
@@ -34,11 +34,11 @@ class ElementInterface {
    */
 
   addMark(path, offset, length, mark) {
-    let node = this.assertDescendant(path)
-    path = this.resolvePath(path)
-    node = node.addMark(offset, length, mark)
-    const ret = this.replaceNode(path, node)
-    return ret
+    let node = this.assertDescendant(path);
+    path = this.resolvePath(path);
+    node = node.addMark(offset, length, mark);
+    const ret = this.replaceNode(path, node);
+    return ret;
   }
 
   /**
@@ -49,9 +49,9 @@ class ElementInterface {
    */
 
   createDecoration(properties) {
-    properties = Decoration.createProperties(properties)
-    const decoration = this.resolveDecoration(properties)
-    return decoration
+    properties = Decoration.createProperties(properties);
+    const decoration = this.resolveDecoration(properties);
+    return decoration;
   }
 
   /**
@@ -62,9 +62,9 @@ class ElementInterface {
    */
 
   createPoint(properties) {
-    properties = Point.createProperties(properties)
-    const point = this.resolvePoint(properties)
-    return point
+    properties = Point.createProperties(properties);
+    const point = this.resolvePoint(properties);
+    return point;
   }
 
   /**
@@ -75,9 +75,9 @@ class ElementInterface {
    */
 
   createRange(properties) {
-    properties = Range.createProperties(properties)
-    const range = this.resolveRange(properties)
-    return range
+    properties = Range.createProperties(properties);
+    const range = this.resolveRange(properties);
+    return range;
   }
 
   /**
@@ -88,9 +88,9 @@ class ElementInterface {
    */
 
   createSelection(properties) {
-    properties = Selection.createProperties(properties)
-    const selection = this.resolveSelection(properties)
-    return selection
+    properties = Selection.createProperties(properties);
+    const selection = this.resolveSelection(properties);
+    return selection;
   }
 
   /**
@@ -101,13 +101,13 @@ class ElementInterface {
    */
 
   filterDescendants(iterator) {
-    const matches = []
+    const matches = [];
 
     this.forEachDescendant((node, i, nodes) => {
-      if (iterator(node, i, nodes)) matches.push(node)
-    })
+      if (iterator(node, i, nodes)) matches.push(node);
+    });
 
-    return List(matches)
+    return List(matches);
   }
 
   /**
@@ -118,16 +118,16 @@ class ElementInterface {
    */
 
   findDescendant(iterator) {
-    let found = null
+    let found = null;
 
     this.forEachDescendant((node, i, nodes) => {
       if (iterator(node, i, nodes)) {
-        found = node
-        return false
+        found = node;
+        return false;
       }
-    })
+    });
 
-    return found
+    return found;
   }
 
   /**
@@ -138,21 +138,21 @@ class ElementInterface {
    */
 
   forEachDescendant(iterator) {
-    let ret
+    let ret;
 
     this.nodes.forEach((child, i, nodes) => {
       if (iterator(child, i, nodes) === false) {
-        ret = false
-        return false
+        ret = false;
+        return false;
       }
 
-      if (child.object != 'text') {
-        ret = child.forEachDescendant(iterator)
-        return ret
+      if (child.object != "text") {
+        ret = child.forEachDescendant(iterator);
+        return ret;
       }
-    })
+    });
 
-    return ret
+    return ret;
   }
 
   /**
@@ -163,61 +163,61 @@ class ElementInterface {
    */
 
   getActiveMarksAtRange(range) {
-    range = this.resolveRange(range)
-    if (range.isUnset) return Set()
+    range = this.resolveRange(range);
+    if (range.isUnset) return Set();
 
     if (range.isCollapsed) {
-      const { start } = range
-      return this.getMarksAtPosition(start.key, start.offset).toSet()
+      const { start } = range;
+      return this.getMarksAtPosition(start.key, start.offset).toSet();
     }
 
-    const { start, end } = range
-    let startKey = start.key
-    let startOffset = start.offset
-    let endKey = end.key
-    let endOffset = end.offset
-    let startText = this.getDescendant(startKey)
+    const { start, end } = range;
+    let startKey = start.key;
+    let startOffset = start.offset;
+    let endKey = end.key;
+    let endOffset = end.offset;
+    let startText = this.getDescendant(startKey);
 
     if (startKey !== endKey) {
       while (startKey !== endKey && endOffset === 0) {
-        const endText = this.getPreviousText(endKey)
-        endKey = endText.key
-        endOffset = endText.text.length
+        const endText = this.getPreviousText(endKey);
+        endKey = endText.key;
+        endOffset = endText.text.length;
       }
 
       while (startKey !== endKey && startOffset === startText.text.length) {
-        startText = this.getNextText(startKey)
-        startKey = startText.key
-        startOffset = 0
+        startText = this.getNextText(startKey);
+        startKey = startText.key;
+        startOffset = 0;
       }
     }
 
     if (startKey === endKey) {
-      return startText.getActiveMarksBetweenOffsets(startOffset, endOffset)
+      return startText.getActiveMarksBetweenOffsets(startOffset, endOffset);
     }
 
     const startMarks = startText.getActiveMarksBetweenOffsets(
       startOffset,
       startText.text.length
-    )
-    if (startMarks.size === 0) return Set()
-    const endText = this.getDescendant(endKey)
-    const endMarks = endText.getActiveMarksBetweenOffsets(0, endOffset)
-    let marks = startMarks.intersect(endMarks)
+    );
+    if (startMarks.size === 0) return Set();
+    const endText = this.getDescendant(endKey);
+    const endMarks = endText.getActiveMarksBetweenOffsets(0, endOffset);
+    let marks = startMarks.intersect(endMarks);
     // If marks is already empty, the active marks is empty
-    if (marks.size === 0) return marks
+    if (marks.size === 0) return marks;
 
-    let text = this.getNextText(startKey)
+    let text = this.getNextText(startKey);
 
     while (text.key !== endKey) {
       if (text.text.length !== 0) {
-        marks = marks.intersect(text.getActiveMarks())
-        if (marks.size === 0) return Set()
+        marks = marks.intersect(text.getActiveMarks());
+        if (marks.size === 0) return Set();
       }
 
-      text = this.getNextText(text.key)
+      text = this.getNextText(text.key);
     }
-    return marks
+    return marks;
   }
 
   /**
@@ -228,18 +228,18 @@ class ElementInterface {
    */
 
   getAncestors(path) {
-    path = this.resolvePath(path)
-    if (!path) return null
+    path = this.resolvePath(path);
+    if (!path) return null;
 
-    const ancestors = []
+    const ancestors = [];
 
     path.forEach((p, i) => {
-      const current = path.slice(0, i)
-      const parent = this.getNode(current)
-      ancestors.push(parent)
-    })
+      const current = path.slice(0, i);
+      const parent = this.getNode(current);
+      ancestors.push(parent);
+    });
 
-    return List(ancestors)
+    return List(ancestors);
   }
 
   /**
@@ -249,8 +249,8 @@ class ElementInterface {
    */
 
   getBlocks() {
-    const array = this.getBlocksAsArray()
-    return List(array)
+    const array = this.getBlocksAsArray();
+    return List(array);
   }
 
   /**
@@ -261,11 +261,11 @@ class ElementInterface {
 
   getBlocksAsArray() {
     return this.nodes.reduce((array, child) => {
-      if (child.object != 'block') return array
-      if (!child.isLeafBlock()) return array.concat(child.getBlocksAsArray())
-      array.push(child)
-      return array
-    }, [])
+      if (child.object != "block") return array;
+      if (!child.isLeafBlock()) return array.concat(child.getBlocksAsArray());
+      array.push(child);
+      return array;
+    }, []);
   }
 
   /**
@@ -278,10 +278,10 @@ class ElementInterface {
   getBlocksAtRange(range) {
     warning(
       false,
-      'As of slate@0.44 the `node.getBlocksAtRange` method has been renamed to `getLeafBlocksAtRange`.'
-    )
+      "As of slate@0.44 the `node.getBlocksAtRange` method has been renamed to `getLeafBlocksAtRange`."
+    );
 
-    return this.getLeafBlocksAtRange(range)
+    return this.getLeafBlocksAtRange(range);
   }
 
   /**
@@ -294,10 +294,10 @@ class ElementInterface {
   getBlocksAtRangeAsArray(range) {
     warning(
       false,
-      'As of slate@0.44 the `node.getBlocksAtRangeAsArray` method has been renamed to `getLeafBlocksAtRangeAsArray`.'
-    )
+      "As of slate@0.44 the `node.getBlocksAtRangeAsArray` method has been renamed to `getLeafBlocksAtRangeAsArray`."
+    );
 
-    return this.getLeafBlocksAtRangeAsArray(range)
+    return this.getLeafBlocksAtRangeAsArray(range);
   }
 
   /**
@@ -308,8 +308,8 @@ class ElementInterface {
    */
 
   getBlocksByType(type) {
-    const array = this.getBlocksByTypeAsArray(type)
-    return List(array)
+    const array = this.getBlocksByTypeAsArray(type);
+    return List(array);
   }
 
   /**
@@ -321,15 +321,15 @@ class ElementInterface {
 
   getBlocksByTypeAsArray(type) {
     return this.nodes.reduce((array, node) => {
-      if (node.object != 'block') {
-        return array
+      if (node.object != "block") {
+        return array;
       } else if (node.isLeafBlock() && node.type == type) {
-        array.push(node)
-        return array
+        array.push(node);
+        return array;
       } else {
-        return array.concat(node.getBlocksByTypeAsArray(type))
+        return array.concat(node.getBlocksByTypeAsArray(type));
       }
-    }, [])
+    }, []);
   }
 
   /**
@@ -340,10 +340,10 @@ class ElementInterface {
    */
 
   getChild(path) {
-    path = this.resolvePath(path)
-    if (!path) return null
-    const child = path.size === 1 ? this.nodes.get(path.first()) : null
-    return child
+    path = this.resolvePath(path);
+    if (!path) return null;
+    const child = path.size === 1 ? this.nodes.get(path.first()) : null;
+    return child;
   }
 
   /**
@@ -355,16 +355,16 @@ class ElementInterface {
    */
 
   getClosest(path, iterator) {
-    const ancestors = this.getAncestors(path)
-    if (!ancestors) return null
+    const ancestors = this.getAncestors(path);
+    if (!ancestors) return null;
 
     const closest = ancestors.findLast((node, ...args) => {
       // We never want to include the top-level node.
-      if (node === this) return false
-      return iterator(node, ...args)
-    })
+      if (node === this) return false;
+      return iterator(node, ...args);
+    });
 
-    return closest || null
+    return closest || null;
   }
 
   /**
@@ -375,8 +375,8 @@ class ElementInterface {
    */
 
   getClosestBlock(path) {
-    const closest = this.getClosest(path, n => n.object === 'block')
-    return closest
+    const closest = this.getClosest(path, (n) => n.object === "block");
+    return closest;
   }
 
   /**
@@ -387,8 +387,8 @@ class ElementInterface {
    */
 
   getClosestInline(path) {
-    const closest = this.getClosest(path, n => n.object === 'inline')
-    return closest
+    const closest = this.getClosest(path, (n) => n.object === "inline");
+    return closest;
   }
 
   /**
@@ -402,14 +402,14 @@ class ElementInterface {
   getClosestVoid(path, editor) {
     invariant(
       !Value.isValue(editor),
-      'As of Slate 0.42.0, the `node.getClosestVoid` method takes an `editor` instead of a `value`.'
-    )
+      "As of Slate 0.42.0, the `node.getClosestVoid` method takes an `editor` instead of a `value`."
+    );
 
-    const ancestors = this.getAncestors(path)
-    if (!ancestors) return null
+    const ancestors = this.getAncestors(path);
+    if (!ancestors) return null;
 
-    const ancestor = ancestors.findLast(a => editor.query('isVoid', a))
-    return ancestor
+    const ancestor = ancestors.findLast((a) => editor.query("isVoid", a));
+    return ancestor;
   }
 
   /**
@@ -421,13 +421,13 @@ class ElementInterface {
    */
 
   getCommonAncestor(a, b) {
-    a = this.resolvePath(a)
-    b = this.resolvePath(b)
-    if (!a || !b) return null
+    a = this.resolvePath(a);
+    b = this.resolvePath(b);
+    if (!a || !b) return null;
 
-    const path = PathUtils.relate(a, b)
-    const node = this.getNode(path)
-    return node
+    const path = PathUtils.relate(a, b);
+    const node = this.getNode(path);
+    return node;
   }
 
   /**
@@ -440,12 +440,12 @@ class ElementInterface {
   getDecorations(editor) {
     invariant(
       !Value.isValue(editor),
-      'As of Slate 0.42.0, the `node.getDecorations` method takes an `editor` instead of a `value`.'
-    )
+      "As of Slate 0.42.0, the `node.getDecorations` method takes an `editor` instead of a `value`."
+    );
 
-    const array = editor.run('decorateNode', this)
-    const decorations = Decoration.createList(array)
-    return decorations
+    const array = editor.run("decorateNode", this);
+    const decorations = Decoration.createList(array);
+    return decorations;
   }
 
   /**
@@ -457,12 +457,12 @@ class ElementInterface {
    */
 
   getDepth(path, startAt = 1) {
-    path = this.resolvePath(path)
-    if (!path) return null
+    path = this.resolvePath(path);
+    if (!path) return null;
 
-    const node = this.getNode(path)
-    const depth = node ? path.size - 1 + startAt : null
-    return depth
+    const node = this.getNode(path);
+    const depth = node ? path.size - 1 + startAt : null;
+    return depth;
   }
 
   /**
@@ -473,12 +473,12 @@ class ElementInterface {
    */
 
   getDescendant(path) {
-    path = this.resolvePath(path)
-    if (!path) return null
+    path = this.resolvePath(path);
+    if (!path) return null;
 
-    const deep = path.flatMap(x => ['nodes', x])
-    const ret = this.getIn(deep)
-    return ret
+    const deep = path.flatMap((x) => ["nodes", x]);
+    const ret = this.getIn(deep);
+    return ret;
   }
 
   /**
@@ -487,51 +487,51 @@ class ElementInterface {
    * @param {Range} range
    * @return {Document}
    */
-   // 根据range获取节点的片段（DOM Fragment）
+  // 根据range获取节点的片段（DOM Fragment）
   getFragmentAtRange(range) {
-    // 确保传入的 range 存在（keys paths 等同步对应）slate range 
-    range = this.resolveRange(range)
+    // 确保传入的 range 存在（keys paths 等同步对应）slate range
+    range = this.resolveRange(range);
 
     // 判断 anchor or focus unset
     if (range.isUnset) {
-      return Document.create()
+      return Document.create();
       // create a new Document with no properties
     }
 
-    const { start, end } = range
+    const { start, end } = range;
     // 获取当前范围的开始节点，结束节点
 
-    let node = this
+    let node = this;
     // this指的是什么？（Document调用这个方法）
-    let targetPath = end.path
-    let targetPosition = end.offset
-    let mode = 'end'
+    let targetPath = end.path;
+    let targetPosition = end.offset;
+    let mode = "end";
 
     while (targetPath.size) {
       // 遍历内部结束节点（长度大于0）
-      const index = targetPath.last()
+      const index = targetPath.last();
       // 获取Path最后一位
-      node = node.splitNode(targetPath, targetPosition)
+      node = node.splitNode(targetPath, targetPosition);
       // 把节点劈开
-      targetPosition = index + 1
-      targetPath = PathUtils.lift(targetPath)
+      targetPosition = index + 1;
+      targetPath = PathUtils.lift(targetPath);
 
-      if (!targetPath.size && mode === 'end') {
-        targetPath = start.path
-        targetPosition = start.offset
-        mode = 'start'
+      if (!targetPath.size && mode === "end") {
+        targetPath = start.path;
+        targetPosition = start.offset;
+        mode = "start";
       }
       // 如果结尾的节点处理完毕，处理开始的节点；
     }
 
-    const startIndex = start.path.first() + 1
-    const endIndex = end.path.first() + 2
+    const startIndex = start.path.first() + 1;
+    const endIndex = end.path.first() + 2;
 
-    const nodes = node.nodes.slice(startIndex, endIndex)
+    const nodes = node.nodes.slice(startIndex, endIndex);
     // 获取已有的节点slice
-    const fragment = Document.create({ nodes })
+    const fragment = Document.create({ nodes });
     // 创建新的DOM-Fragment
-    return fragment
+    return fragment;
   }
 
   /**
@@ -543,16 +543,16 @@ class ElementInterface {
    */
 
   getFurthest(path, iterator) {
-    const ancestors = this.getAncestors(path)
-    if (!ancestors) return null
+    const ancestors = this.getAncestors(path);
+    if (!ancestors) return null;
 
     const furthest = ancestors.find((node, ...args) => {
       // We never want to include the top-level node.
-      if (node === this) return false
-      return iterator(node, ...args)
-    })
+      if (node === this) return false;
+      return iterator(node, ...args);
+    });
 
-    return furthest || null
+    return furthest || null;
   }
 
   /**
@@ -563,10 +563,10 @@ class ElementInterface {
    */
 
   getFurthestAncestor(path) {
-    path = this.resolvePath(path)
-    if (!path) return null
-    const furthest = path.size ? this.nodes.get(path.first()) : null
-    return furthest
+    path = this.resolvePath(path);
+    if (!path) return null;
+    const furthest = path.size ? this.nodes.get(path.first()) : null;
+    return furthest;
   }
 
   /**
@@ -577,8 +577,8 @@ class ElementInterface {
    */
 
   getFurthestBlock(path) {
-    const furthest = this.getFurthest(path, n => n.object === 'block')
-    return furthest
+    const furthest = this.getFurthest(path, (n) => n.object === "block");
+    return furthest;
   }
 
   /**
@@ -589,8 +589,8 @@ class ElementInterface {
    */
 
   getFurthestInline(path) {
-    const furthest = this.getFurthest(path, n => n.object === 'inline')
-    return furthest
+    const furthest = this.getFurthest(path, (n) => n.object === "inline");
+    return furthest;
   }
 
   /**
@@ -601,16 +601,16 @@ class ElementInterface {
    */
 
   getFurthestOnlyChildAncestor(path) {
-    const ancestors = this.getAncestors(path)
-    if (!ancestors) return null
+    const ancestors = this.getAncestors(path);
+    if (!ancestors) return null;
 
     const furthest = ancestors
       .rest()
       .reverse()
-      .takeUntil(p => p.nodes.size > 1)
-      .last()
+      .takeUntil((p) => p.nodes.size > 1)
+      .last();
 
-    return furthest || null
+    return furthest || null;
   }
 
   /**
@@ -620,9 +620,9 @@ class ElementInterface {
    */
 
   getInlines() {
-    const array = this.getInlinesAsArray()
-    const list = List(array)
-    return list
+    const array = this.getInlinesAsArray();
+    const list = List(array);
+    return list;
   }
 
   /**
@@ -632,19 +632,19 @@ class ElementInterface {
    */
 
   getInlinesAsArray() {
-    let array = []
+    let array = [];
 
-    this.nodes.forEach(child => {
-      if (child.object == 'text') return
+    this.nodes.forEach((child) => {
+      if (child.object == "text") return;
 
       if (child.isLeafInline()) {
-        array.push(child)
+        array.push(child);
       } else {
-        array = array.concat(child.getInlinesAsArray())
+        array = array.concat(child.getInlinesAsArray());
       }
-    })
+    });
 
-    return array
+    return array;
   }
 
   /**
@@ -657,10 +657,10 @@ class ElementInterface {
   getInlinesAtRange(range) {
     warning(
       false,
-      'As of slate@0.44 the `node.getInlinesAtRange` method has been renamed to `getLeafInlinesAtRange`.'
-    )
+      "As of slate@0.44 the `node.getInlinesAtRange` method has been renamed to `getLeafInlinesAtRange`."
+    );
 
-    return this.getLeafInlinesAtRange(range)
+    return this.getLeafInlinesAtRange(range);
   }
 
   /**
@@ -673,10 +673,10 @@ class ElementInterface {
   getInlinesAtRangeAsArray(range) {
     warning(
       false,
-      'As of slate@0.44 the `node.getInlinesAtRangeAsArray` method has been renamed to `getLeafInlinesAtRangeAsArray`.'
-    )
+      "As of slate@0.44 the `node.getInlinesAtRangeAsArray` method has been renamed to `getLeafInlinesAtRangeAsArray`."
+    );
 
-    return this.getLeafInlinesAtRangeAsArray(range)
+    return this.getLeafInlinesAtRangeAsArray(range);
   }
 
   /**
@@ -687,9 +687,9 @@ class ElementInterface {
    */
 
   getInlinesByType(type) {
-    const array = this.getInlinesByTypeAsArray(type)
-    const list = List(array)
-    return list
+    const array = this.getInlinesByTypeAsArray(type);
+    const list = List(array);
+    return list;
   }
 
   /**
@@ -701,17 +701,17 @@ class ElementInterface {
 
   getInlinesByTypeAsArray(type) {
     const array = this.nodes.reduce((inlines, node) => {
-      if (node.object == 'text') {
-        return inlines
+      if (node.object == "text") {
+        return inlines;
       } else if (node.isLeafInline() && node.type == type) {
-        inlines.push(node)
-        return inlines
+        inlines.push(node);
+        return inlines;
       } else {
-        return inlines.concat(node.getInlinesByTypeAsArray(type))
+        return inlines.concat(node.getInlinesByTypeAsArray(type));
       }
-    }, [])
+    }, []);
 
-    return array
+    return array;
   }
 
   /**
@@ -722,21 +722,21 @@ class ElementInterface {
    */
 
   getInsertMarksAtRange(range) {
-    range = this.resolveRange(range)
-    const { start } = range
+    range = this.resolveRange(range);
+    const { start } = range;
 
     if (range.isUnset) {
-      return Set()
+      return Set();
     }
 
     if (range.isCollapsed) {
       // PERF: range is not cachable, use key and offset as proxies for cache
-      return this.getMarksAtPosition(start.key, start.offset)
+      return this.getMarksAtPosition(start.key, start.offset);
     }
 
-    const text = this.getDescendant(start.key)
-    const marks = text.getMarksAtIndex(start.offset + 1)
-    return marks
+    const text = this.getDescendant(start.key);
+    const marks = text.getMarksAtIndex(start.offset + 1);
+    return marks;
   }
 
   /**
@@ -747,9 +747,9 @@ class ElementInterface {
    */
 
   getLeafBlocksAtRange(range) {
-    const array = this.getLeafBlocksAtRangeAsArray(range)
+    const array = this.getLeafBlocksAtRangeAsArray(range);
     // Eliminate duplicates by converting to an `OrderedSet` first.
-    return List(OrderedSet(array))
+    return List(OrderedSet(array));
   }
 
   /**
@@ -760,21 +760,21 @@ class ElementInterface {
    */
 
   getLeafBlocksAtRangeAsArray(range) {
-    range = this.resolveRange(range)
-    if (range.isUnset) return []
+    range = this.resolveRange(range);
+    if (range.isUnset) return [];
 
-    const { start, end } = range
-    const startBlock = this.getClosestBlock(start.key)
+    const { start, end } = range;
+    const startBlock = this.getClosestBlock(start.key);
 
     // PERF: the most common case is when the range is in a single block node,
     // where we can avoid a lot of iterating of the tree.
-    if (start.key === end.key) return [startBlock]
+    if (start.key === end.key) return [startBlock];
 
-    const endBlock = this.getClosestBlock(end.key)
-    const blocks = this.getBlocksAsArray()
-    const startIndex = blocks.indexOf(startBlock)
-    const endIndex = blocks.indexOf(endBlock)
-    return blocks.slice(startIndex, endIndex + 1)
+    const endBlock = this.getClosestBlock(end.key);
+    const blocks = this.getBlocksAsArray();
+    const startIndex = blocks.indexOf(startBlock);
+    const endIndex = blocks.indexOf(endBlock);
+    return blocks.slice(startIndex, endIndex + 1);
   }
 
   /**
@@ -785,10 +785,10 @@ class ElementInterface {
    */
 
   getLeafInlinesAtRange(range) {
-    const array = this.getLeafInlinesAtRangeAsArray(range)
+    const array = this.getLeafInlinesAtRangeAsArray(range);
     // Remove duplicates by converting it to an `OrderedSet` first.
-    const list = List(OrderedSet(array))
-    return list
+    const list = List(OrderedSet(array));
+    return list;
   }
 
   /**
@@ -799,14 +799,14 @@ class ElementInterface {
    */
 
   getLeafInlinesAtRangeAsArray(range) {
-    range = this.resolveRange(range)
-    if (range.isUnset) return []
+    range = this.resolveRange(range);
+    if (range.isUnset) return [];
 
     const array = this.getTextsAtRangeAsArray(range)
-      .map(text => this.getClosestInline(text.key))
-      .filter(exists => exists)
+      .map((text) => this.getClosestInline(text.key))
+      .filter((exists) => exists);
 
-    return array
+    return array;
   }
 
   /**
@@ -816,8 +816,8 @@ class ElementInterface {
    */
 
   getMarks() {
-    const array = this.getMarksAsArray()
-    return Set(array)
+    const array = this.getMarksAsArray();
+    return Set(array);
   }
 
   /**
@@ -827,15 +827,15 @@ class ElementInterface {
    */
 
   getMarksAsArray() {
-    const result = []
+    const result = [];
 
-    this.nodes.forEach(node => {
-      result.push(node.getMarksAsArray())
-    })
+    this.nodes.forEach((node) => {
+      result.push(node.getMarksAsArray());
+    });
 
     // PERF: use only one concat rather than multiple for speed.
-    const array = [].concat(...result)
-    return array
+    const array = [].concat(...result);
+    return array;
   }
 
   /**
@@ -847,24 +847,24 @@ class ElementInterface {
    */
 
   getMarksAtPosition(key, offset) {
-    const text = this.getDescendant(key)
-    const currentMarks = text.getMarksAtIndex(offset)
-    if (offset !== 0) return currentMarks
-    const closestBlock = this.getClosestBlock(key)
+    const text = this.getDescendant(key);
+    const currentMarks = text.getMarksAtIndex(offset);
+    if (offset !== 0) return currentMarks;
+    const closestBlock = this.getClosestBlock(key);
 
-    if (closestBlock.text === '') {
+    if (closestBlock.text === "") {
       // insert mark for empty block; the empty block are often created by split node or add marks in a range including empty blocks
-      return currentMarks
+      return currentMarks;
     }
 
-    const previous = this.getPreviousText(key)
-    if (!previous) return Set()
+    const previous = this.getPreviousText(key);
+    if (!previous) return Set();
 
     if (closestBlock.hasDescendant(previous.key)) {
-      return previous.getMarksAtIndex(previous.text.length)
+      return previous.getMarksAtIndex(previous.text.length);
     }
 
-    return currentMarks
+    return currentMarks;
   }
 
   /**
@@ -875,8 +875,8 @@ class ElementInterface {
    */
 
   getMarksAtRange(range) {
-    const marks = Set(this.getOrderedMarksAtRange(range))
-    return marks
+    const marks = Set(this.getOrderedMarksAtRange(range));
+    return marks;
   }
 
   /**
@@ -887,8 +887,8 @@ class ElementInterface {
    */
 
   getMarksByType(type) {
-    const array = this.getMarksByTypeAsArray(type)
-    return Set(array)
+    const array = this.getMarksByTypeAsArray(type);
+    return Set(array);
   }
 
   /**
@@ -900,12 +900,12 @@ class ElementInterface {
 
   getMarksByTypeAsArray(type) {
     const array = this.nodes.reduce((memo, node) => {
-      return node.object == 'text'
-        ? memo.concat(node.getMarksAsArray().filter(m => m.type == type))
-        : memo.concat(node.getMarksByTypeAsArray(type))
-    }, [])
+      return node.object == "text"
+        ? memo.concat(node.getMarksAsArray().filter((m) => m.type == type))
+        : memo.concat(node.getMarksByTypeAsArray(type));
+    }, []);
 
-    return array
+    return array;
   }
 
   /**
@@ -916,21 +916,21 @@ class ElementInterface {
    */
 
   getNextBlock(key) {
-    const child = this.assertDescendant(key)
-    let last
+    const child = this.assertDescendant(key);
+    let last;
 
-    if (child.object == 'block') {
-      last = child.getLastText()
+    if (child.object == "block") {
+      last = child.getLastText();
     } else {
-      const block = this.getClosestBlock(key)
-      last = block.getLastText()
+      const block = this.getClosestBlock(key);
+      last = block.getLastText();
     }
 
-    const next = this.getNextText(last.key)
-    if (!next) return null
+    const next = this.getNextText(last.key);
+    if (!next) return null;
 
-    const closest = this.getClosestBlock(next.key)
-    return closest
+    const closest = this.getClosestBlock(next.key);
+    return closest;
   }
 
   /**
@@ -944,18 +944,18 @@ class ElementInterface {
    */
 
   getNextNode(path) {
-    path = this.resolvePath(path)
-    if (!path) return null
-    if (!path.size) return null
+    path = this.resolvePath(path);
+    if (!path) return null;
+    if (!path.size) return null;
 
     for (let i = path.size; i > 0; i--) {
-      const p = path.slice(0, i)
-      const target = PathUtils.increment(p)
-      const node = this.getNode(target)
-      if (node) return node
+      const p = path.slice(0, i);
+      const target = PathUtils.increment(p);
+      const node = this.getNode(target);
+      if (node) return node;
     }
 
-    return null
+    return null;
   }
 
   /**
@@ -966,12 +966,12 @@ class ElementInterface {
    */
 
   getNextSibling(path) {
-    path = this.resolvePath(path)
-    if (!path) return null
-    if (!path.size) return null
-    const p = PathUtils.increment(path)
-    const sibling = this.getNode(p)
-    return sibling
+    path = this.resolvePath(path);
+    if (!path) return null;
+    if (!path.size) return null;
+    const p = PathUtils.increment(path);
+    const sibling = this.getNode(p);
+    return sibling;
   }
 
   /**
@@ -982,13 +982,13 @@ class ElementInterface {
    */
 
   getNextText(path) {
-    path = this.resolvePath(path)
-    if (!path) return null
-    if (!path.size) return null
-    const next = this.getNextNode(path)
-    if (!next) return null
-    const text = next.getFirstText()
-    return text
+    path = this.resolvePath(path);
+    if (!path) return null;
+    if (!path.size) return null;
+    const next = this.getNextNode(path);
+    if (!next) return null;
+    const text = next.getFirstText();
+    return text;
   }
 
   /**
@@ -1001,9 +1001,9 @@ class ElementInterface {
    */
 
   getNodesAtRange(range) {
-    range = this.resolveRange(range)
-    if (range.isUnset) return List()
-    const { start, end } = range
+    range = this.resolveRange(range);
+    if (range.isUnset) return List();
+    const { start, end } = range;
 
     // Do a depth-first stack-based search for all nodes in the range
     // Nodes that are pushed to the stack are inside the range
@@ -1019,9 +1019,9 @@ class ElementInterface {
           relativeStartPath: start.path.slice(1),
           relativeEndPath: end.path.slice(1),
         }))
-    )
+    );
 
-    const result = []
+    const result = [];
 
     while (stack.size > 0) {
       const {
@@ -1030,16 +1030,16 @@ class ElementInterface {
         onEndEdge,
         relativeStartPath,
         relativeEndPath,
-      } = stack.peek()
+      } = stack.peek();
 
-      stack = stack.shift()
-      result.push(node)
+      stack = stack.shift();
+      result.push(node);
 
-      if (node.object === 'text') continue
+      if (node.object === "text") continue;
 
       // Modify indexes to exclude children that are outside of the range
-      const startIndex = onStartEdge ? relativeStartPath.get(0) : 0
-      const endIndex = onEndEdge ? relativeEndPath.get(0) : node.nodes.size - 1
+      const startIndex = onStartEdge ? relativeStartPath.get(0) : 0;
+      const endIndex = onEndEdge ? relativeEndPath.get(0) : node.nodes.size - 1;
 
       // Push children that are inside the range to the stack
       stack = stack.pushAll(
@@ -1054,10 +1054,10 @@ class ElementInterface {
               ? relativeEndPath.slice(1)
               : null,
         }))
-      )
+      );
     }
 
-    return List(result)
+    return List(result);
   }
 
   /**
@@ -1068,17 +1068,17 @@ class ElementInterface {
    */
 
   getOffset(key) {
-    this.assertDescendant(key)
+    this.assertDescendant(key);
 
     // Calculate the offset of the nodes before the highest child.
-    const child = this.getFurthestAncestor(key)
+    const child = this.getFurthestAncestor(key);
     const offset = this.nodes
-      .takeUntil(n => n == child)
-      .reduce((memo, n) => memo + n.text.length, 0)
+      .takeUntil((n) => n == child)
+      .reduce((memo, n) => memo + n.text.length, 0);
 
     // Recurse if need be.
-    const ret = this.hasChild(key) ? offset : offset + child.getOffset(key)
-    return ret
+    const ret = this.hasChild(key) ? offset : offset + child.getOffset(key);
+    return ret;
   }
 
   /**
@@ -1089,19 +1089,19 @@ class ElementInterface {
    */
 
   getOffsetAtRange(range) {
-    range = this.resolveRange(range)
+    range = this.resolveRange(range);
 
     if (range.isUnset) {
-      throw new Error('The range cannot be unset to calculcate its offset.')
+      throw new Error("The range cannot be unset to calculcate its offset.");
     }
 
     if (range.isExpanded) {
-      throw new Error('The range must be collapsed to calculcate its offset.')
+      throw new Error("The range must be collapsed to calculcate its offset.");
     }
 
-    const { start } = range
-    const offset = this.getOffset(start.key) + start.offset
-    return offset
+    const { start } = range;
+    const offset = this.getOffset(start.key) + start.offset;
+    return offset;
   }
 
   /**
@@ -1111,8 +1111,8 @@ class ElementInterface {
    */
 
   getOrderedMarks() {
-    const array = this.getMarksAsArray()
-    return OrderedSet(array)
+    const array = this.getMarksAsArray();
+    return OrderedSet(array);
   }
 
   /**
@@ -1123,16 +1123,16 @@ class ElementInterface {
    */
 
   getOrderedMarksAtRange(range) {
-    range = this.resolveRange(range)
-    const { start, end } = range
+    range = this.resolveRange(range);
+    const { start, end } = range;
 
     if (range.isUnset) {
-      return OrderedSet()
+      return OrderedSet();
     }
 
     if (range.isCollapsed) {
       // PERF: range is not cachable, use key and offset as proxies for cache
-      return this.getMarksAtPosition(start.key, start.offset)
+      return this.getMarksAtPosition(start.key, start.offset);
     }
 
     const marks = this.getOrderedMarksBetweenPositions(
@@ -1140,9 +1140,9 @@ class ElementInterface {
       start.offset,
       end.key,
       end.offset
-    )
+    );
 
-    return marks
+    return marks;
   }
 
   /**
@@ -1158,25 +1158,25 @@ class ElementInterface {
 
   getOrderedMarksBetweenPositions(startKey, startOffset, endKey, endOffset) {
     if (startKey === endKey) {
-      const startText = this.getDescendant(startKey)
-      return startText.getMarksBetweenOffsets(startOffset, endOffset)
+      const startText = this.getDescendant(startKey);
+      return startText.getMarksBetweenOffsets(startOffset, endOffset);
     }
 
-    const texts = this.getTextsBetweenPositionsAsArray(startKey, endKey)
+    const texts = this.getTextsBetweenPositionsAsArray(startKey, endKey);
 
-    return OrderedSet().withMutations(result => {
-      texts.forEach(text => {
+    return OrderedSet().withMutations((result) => {
+      texts.forEach((text) => {
         if (text.key === startKey) {
           result.union(
             text.getMarksBetweenOffsets(startOffset, text.text.length)
-          )
+          );
         } else if (text.key === endKey) {
-          result.union(text.getMarksBetweenOffsets(0, endOffset))
+          result.union(text.getMarksBetweenOffsets(0, endOffset));
         } else {
-          result.union(text.getMarks())
+          result.union(text.getMarks());
         }
-      })
-    })
+      });
+    });
   }
 
   /**
@@ -1187,8 +1187,8 @@ class ElementInterface {
    */
 
   getOrderedMarksByType(type) {
-    const array = this.getMarksByTypeAsArray(type)
-    return OrderedSet(array)
+    const array = this.getMarksByTypeAsArray(type);
+    return OrderedSet(array);
   }
 
   /**
@@ -1199,12 +1199,12 @@ class ElementInterface {
    */
 
   getParent(path) {
-    path = this.resolvePath(path)
-    if (!path) return null
-    if (!path.size) return null
-    const parentPath = PathUtils.lift(path)
-    const parent = this.getNode(parentPath)
-    return parent
+    path = this.resolvePath(path);
+    if (!path) return null;
+    if (!path.size) return null;
+    const parentPath = PathUtils.lift(path);
+    const parent = this.getNode(parentPath);
+    return parent;
   }
 
   /**
@@ -1215,21 +1215,21 @@ class ElementInterface {
    */
 
   getPreviousBlock(key) {
-    const child = this.assertDescendant(key)
-    let first
+    const child = this.assertDescendant(key);
+    let first;
 
-    if (child.object == 'block') {
-      first = child.getFirstText()
+    if (child.object == "block") {
+      first = child.getFirstText();
     } else {
-      const block = this.getClosestBlock(key)
-      first = block.getFirstText()
+      const block = this.getClosestBlock(key);
+      first = block.getFirstText();
     }
 
-    const previous = this.getPreviousText(first.key)
-    if (!previous) return null
+    const previous = this.getPreviousText(first.key);
+    if (!previous) return null;
 
-    const closest = this.getClosestBlock(previous.key)
-    return closest
+    const closest = this.getClosestBlock(previous.key);
+    return closest;
   }
 
   /**
@@ -1240,20 +1240,20 @@ class ElementInterface {
    */
 
   getRootBlocksAtRange(range) {
-    range = this.resolveRange(range)
-    if (range.isUnset) return List()
+    range = this.resolveRange(range);
+    if (range.isUnset) return List();
 
-    const { start, end } = range
-    const startBlock = this.getFurthestBlock(start.key)
+    const { start, end } = range;
+    const startBlock = this.getFurthestBlock(start.key);
 
     // PERF: the most common case is when the range is in a single block node,
     // where we can avoid a lot of iterating of the tree.
-    if (start.key === end.key) return List([startBlock])
+    if (start.key === end.key) return List([startBlock]);
 
-    const endBlock = this.getFurthestBlock(end.key)
-    const startIndex = this.nodes.indexOf(startBlock)
-    const endIndex = this.nodes.indexOf(endBlock)
-    return this.nodes.slice(startIndex, endIndex + 1)
+    const endBlock = this.getFurthestBlock(end.key);
+    const startIndex = this.nodes.indexOf(startBlock);
+    const endIndex = this.nodes.indexOf(endBlock);
+    return this.nodes.slice(startIndex, endIndex + 1);
   }
 
   /**
@@ -1264,10 +1264,10 @@ class ElementInterface {
    */
 
   getRootInlinesAtRange(range) {
-    const array = this.getRootInlinesAtRangeAsArray(range)
+    const array = this.getRootInlinesAtRangeAsArray(range);
     // Remove duplicates by converting it to an `OrderedSet` first.
-    const list = List(OrderedSet(array))
-    return list
+    const list = List(OrderedSet(array));
+    return list;
   }
 
   /**
@@ -1278,14 +1278,14 @@ class ElementInterface {
    */
 
   getRootInlinesAtRangeAsArray(range) {
-    range = this.resolveRange(range)
-    if (range.isUnset) return List()
+    range = this.resolveRange(range);
+    if (range.isUnset) return List();
 
     const array = this.getTextsAtRangeAsArray(range)
-      .map(text => this.getFurthestInline(text.key))
-      .filter(exists => exists)
+      .map((text) => this.getFurthestInline(text.key))
+      .filter((exists) => exists);
 
-    return array
+    return array;
   }
 
   /**
@@ -1299,20 +1299,20 @@ class ElementInterface {
    */
 
   getPreviousNode(path) {
-    path = this.resolvePath(path)
-    if (!path) return null
-    if (!path.size) return null
+    path = this.resolvePath(path);
+    if (!path) return null;
+    if (!path.size) return null;
 
     for (let i = path.size; i > 0; i--) {
-      const p = path.slice(0, i)
-      if (p.last() === 0) continue
+      const p = path.slice(0, i);
+      if (p.last() === 0) continue;
 
-      const target = PathUtils.decrement(p)
-      const node = this.getNode(target)
-      if (node) return node
+      const target = PathUtils.decrement(p);
+      const node = this.getNode(target);
+      if (node) return node;
     }
 
-    return null
+    return null;
   }
 
   /**
@@ -1323,13 +1323,13 @@ class ElementInterface {
    */
 
   getPreviousSibling(path) {
-    path = this.resolvePath(path)
-    if (!path) return null
-    if (!path.size) return null
-    if (path.last() === 0) return null
-    const p = PathUtils.decrement(path)
-    const sibling = this.getNode(p)
-    return sibling
+    path = this.resolvePath(path);
+    if (!path) return null;
+    if (!path.size) return null;
+    if (path.last() === 0) return null;
+    const p = PathUtils.decrement(path);
+    const sibling = this.getNode(p);
+    return sibling;
   }
 
   /**
@@ -1340,13 +1340,13 @@ class ElementInterface {
    */
 
   getPreviousText(path) {
-    path = this.resolvePath(path)
-    if (!path) return null
-    if (!path.size) return null
-    const previous = this.getPreviousNode(path)
-    if (!previous) return null
-    const text = previous.getLastText()
-    return text
+    path = this.resolvePath(path);
+    if (!path) return null;
+    if (!path.size) return null;
+    const previous = this.getPreviousNode(path);
+    if (!previous) return null;
+    const text = previous.getLastText();
+    return text;
   }
 
   /**
@@ -1360,46 +1360,47 @@ class ElementInterface {
    */
 
   getSelectionIndexes(range, isSelected = true) {
-    const { start, end } = range
+    const { start, end } = range;
 
     // PERF: if we're not selected, we can exit early.
     if (!isSelected) {
-      return null
+      return null;
     }
 
     // if we've been given an invalid selection we can exit early.
     if (range.isUnset) {
-      return null
+      return null;
     }
 
     // PERF: if the start and end keys are the same, just check for the child
     // that contains that single key.
     if (start.key == end.key) {
-      const child = this.getFurthestAncestor(start.key)
-      const index = child ? this.nodes.indexOf(child) : null
-      return { start: index, end: index + 1 }
+      const child = this.getFurthestAncestor(start.key);
+      const index = child ? this.nodes.indexOf(child) : null;
+      return { start: index, end: index + 1 };
     }
 
     // Otherwise, check all of the children...
-    let startIndex = null
-    let endIndex = null
+    let startIndex = null;
+    let endIndex = null;
 
     this.nodes.forEach((child, i) => {
-      if (child.object == 'text') {
-        if (startIndex == null && child.key == start.key) startIndex = i
-        if (endIndex == null && child.key == end.key) endIndex = i + 1
+      if (child.object == "text") {
+        if (startIndex == null && child.key == start.key) startIndex = i;
+        if (endIndex == null && child.key == end.key) endIndex = i + 1;
       } else {
-        if (startIndex == null && child.hasDescendant(start.key)) startIndex = i
-        if (endIndex == null && child.hasDescendant(end.key)) endIndex = i + 1
+        if (startIndex == null && child.hasDescendant(start.key))
+          startIndex = i;
+        if (endIndex == null && child.hasDescendant(end.key)) endIndex = i + 1;
       }
 
       // PERF: exit early if both start and end have been found.
-      return startIndex == null || endIndex == null
-    })
+      return startIndex == null || endIndex == null;
+    });
 
-    if (isSelected && startIndex == null) startIndex = 0
-    if (isSelected && endIndex == null) endIndex = this.nodes.size
-    return startIndex == null ? null : { start: startIndex, end: endIndex }
+    if (isSelected && startIndex == null) startIndex = 0;
+    if (isSelected && endIndex == null) endIndex = this.nodes.size;
+    return startIndex == null ? null : { start: startIndex, end: endIndex };
   }
 
   /**
@@ -1411,17 +1412,17 @@ class ElementInterface {
 
   getTextAtOffset(offset) {
     // PERF: Add a few shortcuts for the obvious cases.
-    if (offset === 0) return this.getFirstText()
-    if (offset === this.text.length) return this.getLastText()
-    if (offset < 0 || offset > this.text.length) return null
+    if (offset === 0) return this.getFirstText();
+    if (offset === this.text.length) return this.getLastText();
+    if (offset < 0 || offset > this.text.length) return null;
 
-    let length = 0
+    let length = 0;
     const text = this.getTexts().find((node, i, nodes) => {
-      length += node.text.length
-      return length > offset
-    })
+      length += node.text.length;
+      return length > offset;
+    });
 
-    return text
+    return text;
   }
 
   /**
@@ -1431,8 +1432,8 @@ class ElementInterface {
    */
 
   getTextDirection() {
-    const dir = direction(this.text)
-    return dir === 'neutral' ? null : dir
+    const dir = direction(this.text);
+    return dir === "neutral" ? null : dir;
   }
 
   /**
@@ -1442,8 +1443,8 @@ class ElementInterface {
    */
 
   getTexts() {
-    const array = this.getTextsAsArray()
-    return List(array)
+    const array = this.getTextsAsArray();
+    return List(array);
   }
 
   /**
@@ -1453,17 +1454,17 @@ class ElementInterface {
    */
 
   getTextsAsArray() {
-    let array = []
+    let array = [];
 
-    this.nodes.forEach(node => {
-      if (node.object == 'text') {
-        array.push(node)
+    this.nodes.forEach((node) => {
+      if (node.object == "text") {
+        array.push(node);
       } else {
-        array = array.concat(node.getTextsAsArray())
+        array = array.concat(node.getTextsAsArray());
       }
-    })
+    });
 
-    return array
+    return array;
   }
 
   /**
@@ -1474,12 +1475,12 @@ class ElementInterface {
    */
 
   getTextsAtRange(range) {
-    range = this.resolveRange(range)
-    if (range.isUnset) return List()
-    const { start, end } = range
-    const list = List(this.getTextsBetweenPositionsAsArray(start.key, end.key))
+    range = this.resolveRange(range);
+    if (range.isUnset) return List();
+    const { start, end } = range;
+    const list = List(this.getTextsBetweenPositionsAsArray(start.key, end.key));
 
-    return list
+    return list;
   }
 
   /**
@@ -1490,11 +1491,11 @@ class ElementInterface {
    */
 
   getTextsAtRangeAsArray(range) {
-    range = this.resolveRange(range)
-    if (range.isUnset) return []
-    const { start, end } = range
-    const texts = this.getTextsBetweenPositionsAsArray(start.key, end.key)
-    return texts
+    range = this.resolveRange(range);
+    if (range.isUnset) return [];
+    const { start, end } = range;
+    const texts = this.getTextsBetweenPositionsAsArray(start.key, end.key);
+    return texts;
   }
 
   /**
@@ -1507,18 +1508,18 @@ class ElementInterface {
    */
 
   getTextsBetweenPositionsAsArray(startKey, endKey) {
-    const startText = this.getDescendant(startKey)
+    const startText = this.getDescendant(startKey);
 
     // PERF: the most common case is when the range is in a single text node,
     // where we can avoid a lot of iterating of the tree.
-    if (startKey == endKey) return [startText]
+    if (startKey == endKey) return [startText];
 
-    const endText = this.getDescendant(endKey)
-    const texts = this.getTextsAsArray()
-    const start = texts.indexOf(startText)
-    const end = texts.indexOf(endText, start)
-    const ret = texts.slice(start, end + 1)
-    return ret
+    const endText = this.getDescendant(endKey);
+    const texts = this.getTextsAsArray();
+    const start = texts.indexOf(startText);
+    const end = texts.indexOf(endText, start);
+    const ret = texts.slice(start, end + 1);
+    return ret;
   }
 
   /**
@@ -1528,7 +1529,7 @@ class ElementInterface {
    */
 
   hasBlockChildren() {
-    return !!(this.nodes && this.nodes.find(n => n.object === 'block'))
+    return !!(this.nodes && this.nodes.find((n) => n.object === "block"));
   }
 
   /**
@@ -1539,8 +1540,8 @@ class ElementInterface {
    */
 
   hasChild(path) {
-    const child = this.getChild(path)
-    return !!child
+    const child = this.getChild(path);
+    return !!child;
   }
 
   /**
@@ -1552,8 +1553,8 @@ class ElementInterface {
   hasInlineChildren() {
     return !!(
       this.nodes &&
-      this.nodes.find(n => n.object === 'inline' || n.object === 'text')
-    )
+      this.nodes.find((n) => n.object === "inline" || n.object === "text")
+    );
   }
 
   /**
@@ -1564,8 +1565,8 @@ class ElementInterface {
    */
 
   hasDescendant(path) {
-    const descendant = this.getDescendant(path)
-    return !!descendant
+    const descendant = this.getDescendant(path);
+    return !!descendant;
   }
 
   /**
@@ -1579,11 +1580,11 @@ class ElementInterface {
   hasVoidParent(path, editor) {
     invariant(
       !Value.isValue(editor),
-      'As of Slate 0.42.0, the `node.hasVoidParent` method takes an `editor` instead of a `value`.'
-    )
+      "As of Slate 0.42.0, the `node.hasVoidParent` method takes an `editor` instead of a `value`."
+    );
 
-    const closest = this.getClosestVoid(path, editor)
-    return !!closest
+    const closest = this.getClosestVoid(path, editor);
+    return !!closest;
   }
 
   /**
@@ -1595,14 +1596,14 @@ class ElementInterface {
    */
 
   insertNode(path, node) {
-    path = this.resolvePath(path)
-    const index = path.last()
-    const parentPath = PathUtils.lift(path)
-    let parent = this.assertNode(parentPath)
-    const nodes = parent.nodes.splice(index, 0, node)
-    parent = parent.set('nodes', nodes)
-    const ret = this.replaceNode(parentPath, parent)
-    return ret
+    path = this.resolvePath(path);
+    const index = path.last();
+    const parentPath = PathUtils.lift(path);
+    let parent = this.assertNode(parentPath);
+    const nodes = parent.nodes.splice(index, 0, node);
+    parent = parent.set("nodes", nodes);
+    const ret = this.replaceNode(parentPath, parent);
+    return ret;
   }
 
   /**
@@ -1616,11 +1617,11 @@ class ElementInterface {
    */
 
   insertText(path, offset, text, marks) {
-    let node = this.assertDescendant(path)
-    path = this.resolvePath(path)
-    node = node.insertText(offset, text, marks)
-    const ret = this.replaceNode(path, node)
-    return ret
+    let node = this.assertDescendant(path);
+    path = this.resolvePath(path);
+    node = node.insertText(offset, text, marks);
+    const ret = this.replaceNode(path, node);
+    return ret;
   }
 
   /**
@@ -1630,10 +1631,10 @@ class ElementInterface {
    */
 
   isLeafBlock() {
-    const { object, nodes } = this
-    if (!nodes.size) return true
-    const first = nodes.first()
-    return object === 'block' && first.object !== 'block'
+    const { object, nodes } = this;
+    if (!nodes.size) return true;
+    const first = nodes.first();
+    return object === "block" && first.object !== "block";
   }
 
   /**
@@ -1643,10 +1644,10 @@ class ElementInterface {
    */
 
   isLeafInline() {
-    const { object, nodes } = this
-    if (!nodes.size) return true
-    const first = nodes.first()
-    return object === 'inline' && first.object !== 'inline'
+    const { object, nodes } = this;
+    if (!nodes.size) return true;
+    const first = nodes.first();
+    return object === "inline" && first.object !== "inline";
   }
 
   /**
@@ -1659,19 +1660,19 @@ class ElementInterface {
    */
 
   isNodeInRange(path, range) {
-    this.assertDescendant(path)
-    path = this.resolvePath(path)
-    range = this.resolveRange(range)
-    if (range.isUnset) return false
+    this.assertDescendant(path);
+    path = this.resolvePath(path);
+    range = this.resolveRange(range);
+    if (range.isUnset) return false;
 
-    const toStart = PathUtils.compare(path, range.start.path)
+    const toStart = PathUtils.compare(path, range.start.path);
     const toEnd =
       range.start.key === range.end.key
         ? toStart
-        : PathUtils.compare(path, range.end.path)
+        : PathUtils.compare(path, range.end.path);
 
-    const is = toStart !== -1 && toEnd !== 1
-    return is
+    const is = toStart !== -1 && toEnd !== 1;
+    return is;
   }
 
   /**
@@ -1683,15 +1684,15 @@ class ElementInterface {
    */
 
   mapChildren(iterator) {
-    let { nodes } = this
+    let { nodes } = this;
 
     nodes.forEach((node, i) => {
-      const ret = iterator(node, i, this.nodes)
-      if (ret !== node) nodes = nodes.set(ret.key, ret)
-    })
+      const ret = iterator(node, i, this.nodes);
+      if (ret !== node) nodes = nodes.set(ret.key, ret);
+    });
 
-    const ret = this.set('nodes', nodes)
-    return ret
+    const ret = this.set("nodes", nodes);
+    return ret;
   }
 
   /**
@@ -1703,19 +1704,19 @@ class ElementInterface {
    */
 
   mapDescendants(iterator) {
-    let { nodes } = this
+    let { nodes } = this;
 
     nodes.forEach((node, index) => {
-      let ret = node
-      if (ret.object !== 'text') ret = ret.mapDescendants(iterator)
-      ret = iterator(ret, index, this.nodes)
-      if (ret === node) return
+      let ret = node;
+      if (ret.object !== "text") ret = ret.mapDescendants(iterator);
+      ret = iterator(ret, index, this.nodes);
+      if (ret === node) return;
 
-      nodes = nodes.set(index, ret)
-    })
+      nodes = nodes.set(index, ret);
+    });
 
-    const ret = this.set('nodes', nodes)
-    return ret
+    const ret = this.set("nodes", nodes);
+    return ret;
   }
 
   /**
@@ -1726,34 +1727,34 @@ class ElementInterface {
    */
 
   mergeNode(path) {
-    const b = this.assertNode(path)
-    path = this.resolvePath(path)
+    const b = this.assertNode(path);
+    path = this.resolvePath(path);
 
     if (path.last() === 0) {
       throw new Error(
         `Unable to merge node because it has no previous sibling: ${b}`
-      )
+      );
     }
 
-    const withPath = PathUtils.decrement(path)
-    const a = this.assertNode(withPath)
+    const withPath = PathUtils.decrement(path);
+    const a = this.assertNode(withPath);
 
     if (a.object !== b.object) {
       throw new Error(
         `Unable to merge two different kinds of nodes: ${a} and ${b}`
-      )
+      );
     }
 
     const newNode =
-      a.object === 'text'
+      a.object === "text"
         ? a.mergeText(b)
-        : a.set('nodes', a.nodes.concat(b.nodes))
+        : a.set("nodes", a.nodes.concat(b.nodes));
 
-    let ret = this
-    ret = ret.removeNode(path)
-    ret = ret.removeNode(withPath)
-    ret = ret.insertNode(withPath, newNode)
-    return ret
+    let ret = this;
+    ret = ret.removeNode(path);
+    ret = ret.removeNode(withPath);
+    ret = ret.insertNode(withPath, newNode);
+    return ret;
   }
 
   /**
@@ -1769,26 +1770,26 @@ class ElementInterface {
    */
 
   moveNode(path, newPath, newIndex = 0) {
-    const node = this.assertNode(path)
-    path = this.resolvePath(path)
-    newPath = this.resolvePath(newPath, newIndex)
+    const node = this.assertNode(path);
+    path = this.resolvePath(path);
+    newPath = this.resolvePath(newPath, newIndex);
 
-    const newParentPath = PathUtils.lift(newPath)
-    this.assertNode(newParentPath)
+    const newParentPath = PathUtils.lift(newPath);
+    this.assertNode(newParentPath);
 
-    const [p, np] = PathUtils.crop(path, newPath)
-    const position = PathUtils.compare(p, np)
+    const [p, np] = PathUtils.crop(path, newPath);
+    const position = PathUtils.compare(p, np);
 
     // If the old path ends above and before a node in the new path, then
     // removing it will alter the target, so we need to adjust the new path.
     if (path.size < newPath.size && position === -1) {
-      newPath = PathUtils.decrement(newPath, 1, p.size - 1)
+      newPath = PathUtils.decrement(newPath, 1, p.size - 1);
     }
 
-    let ret = this
-    ret = ret.removeNode(path)
-    ret = ret.insertNode(newPath, node)
-    return ret
+    let ret = this;
+    ret = ret.removeNode(path);
+    ret = ret.insertNode(newPath, node);
+    return ret;
   }
 
   /**
@@ -1802,11 +1803,11 @@ class ElementInterface {
    */
 
   removeMark(path, offset, length, mark) {
-    let node = this.assertDescendant(path)
-    path = this.resolvePath(path)
-    node = node.removeMark(offset, length, mark)
-    const ret = this.replaceNode(path, node)
-    return ret
+    let node = this.assertDescendant(path);
+    path = this.resolvePath(path);
+    node = node.removeMark(offset, length, mark);
+    const ret = this.replaceNode(path, node);
+    return ret;
   }
 
   /**
@@ -1817,11 +1818,11 @@ class ElementInterface {
    */
 
   removeNode(path) {
-    this.assertDescendant(path)
-    path = this.resolvePath(path)
-    const deep = path.flatMap(x => ['nodes', x])
-    const ret = this.deleteIn(deep)
-    return ret
+    this.assertDescendant(path);
+    path = this.resolvePath(path);
+    const deep = path.flatMap((x) => ["nodes", x]);
+    const ret = this.deleteIn(deep);
+    return ret;
   }
 
   /**
@@ -1834,10 +1835,10 @@ class ElementInterface {
    */
 
   removeText(path, offset, text) {
-    let node = this.assertDescendant(path)
-    node = node.removeText(offset, text.length)
-    const ret = this.replaceNode(path, node)
-    return ret
+    let node = this.assertDescendant(path);
+    node = node.removeText(offset, text.length);
+    const ret = this.replaceNode(path, node);
+    return ret;
   }
 
   /**
@@ -1849,19 +1850,19 @@ class ElementInterface {
    */
 
   replaceNode(path, node) {
-    path = this.resolvePath(path)
+    path = this.resolvePath(path);
 
     if (!path) {
       throw new Error(
         `Unable to replace a node because it could not be found in the first place: ${path}`
-      )
+      );
     }
 
-    if (!path.size) return node
-    this.assertNode(path)
-    const deep = path.flatMap(x => ['nodes', x])
-    const ret = this.setIn(deep, node)
-    return ret
+    if (!path.size) return node;
+    this.assertNode(path);
+    const deep = path.flatMap((x) => ["nodes", x]);
+    const ret = this.setIn(deep, node);
+    return ret;
   }
 
   /**
@@ -1873,9 +1874,9 @@ class ElementInterface {
    */
 
   resolveDecoration(decoration) {
-    decoration = Decoration.create(decoration)
-    decoration = decoration.normalize(this)
-    return decoration
+    decoration = Decoration.create(decoration);
+    decoration = decoration.normalize(this);
+    return decoration;
   }
 
   /**
@@ -1887,9 +1888,9 @@ class ElementInterface {
    */
 
   resolvePoint(point) {
-    point = Point.create(point)
-    point = point.normalize(this)
-    return point
+    point = Point.create(point);
+    point = point.normalize(this);
+    return point;
   }
 
   /**
@@ -1902,9 +1903,9 @@ class ElementInterface {
 
   // 确保range中的 keys 和 offset 存在，并且与paths同步（相同）。
   resolveRange(range) {
-    range = Range.create(range)
-    range = range.normalize(this)
-    return range
+    range = Range.create(range);
+    range = range.normalize(this);
+    return range;
   }
 
   /**
@@ -1916,9 +1917,9 @@ class ElementInterface {
    */
 
   resolveSelection(selection) {
-    selection = Selection.create(selection)
-    selection = selection.normalize(this)
-    return selection
+    selection = Selection.create(selection);
+    selection = selection.normalize(this);
+    return selection;
   }
 
   /**
@@ -1930,10 +1931,10 @@ class ElementInterface {
    */
 
   setNode(path, properties) {
-    let node = this.assertNode(path)
-    node = node.merge(properties)
-    const ret = this.replaceNode(path, node)
-    return ret
+    let node = this.assertNode(path);
+    node = node.merge(properties);
+    const ret = this.replaceNode(path, node);
+    return ret;
   }
 
   /**
@@ -1948,10 +1949,10 @@ class ElementInterface {
    */
 
   setMark(path, offset, length, mark, properties) {
-    let node = this.assertNode(path)
-    node = node.updateMark(offset, length, mark, properties)
-    const ret = this.replaceNode(path, node)
-    return ret
+    let node = this.assertNode(path);
+    node = node.updateMark(offset, length, mark, properties);
+    const ret = this.replaceNode(path, node);
+    return ret;
   }
 
   /**
@@ -1965,29 +1966,29 @@ class ElementInterface {
    */
 
   splitNode(path, position, properties) {
-    const child = this.assertNode(path)
-    path = this.resolvePath(path)
-    let a
-    let b
+    const child = this.assertNode(path);
+    path = this.resolvePath(path);
+    let a;
+    let b;
 
-    if (child.object === 'text') {
-      ;[a, b] = child.splitText(position)
+    if (child.object === "text") {
+      [a, b] = child.splitText(position);
     } else {
-      const befores = child.nodes.take(position)
-      const afters = child.nodes.skip(position)
-      a = child.set('nodes', befores)
-      b = child.set('nodes', afters).regenerateKey()
+      const befores = child.nodes.take(position);
+      const afters = child.nodes.skip(position);
+      a = child.set("nodes", befores);
+      b = child.set("nodes", afters).regenerateKey();
     }
 
-    if (properties && child.object !== 'text') {
-      b = b.merge(properties)
+    if (properties && child.object !== "text") {
+      b = b.merge(properties);
     }
 
-    let ret = this
-    ret = ret.removeNode(path)
-    ret = ret.insertNode(path, b)
-    ret = ret.insertNode(path, a)
-    return ret
+    let ret = this;
+    ret = ret.removeNode(path);
+    ret = ret.insertNode(path, b);
+    ret = ret.insertNode(path, a);
+    return ret;
   }
 }
 
@@ -1995,20 +1996,20 @@ class ElementInterface {
  * Mix in assertion variants.
  */
 
-const ASSERTS = ['Child', 'Depth', 'Descendant', 'Node', 'Parent', 'Path']
+const ASSERTS = ["Child", "Depth", "Descendant", "Node", "Parent", "Path"];
 
 for (const method of ASSERTS) {
-  ElementInterface.prototype[`assert${method}`] = function(path, ...args) {
-    const ret = this[`get${method}`](path, ...args)
+  ElementInterface.prototype[`assert${method}`] = function (path, ...args) {
+    const ret = this[`get${method}`](path, ...args);
 
     if (ret == null) {
       throw new Error(
         `\`Node.assert${method}\` could not find node with path or key: ${path}`
-      )
+      );
     }
 
-    return ret
-  }
+    return ret;
+  };
 }
 
 /**
@@ -2016,35 +2017,35 @@ for (const method of ASSERTS) {
  */
 
 memoize(ElementInterface.prototype, [
-  'getBlocksAsArray',
-  'getBlocksAtRangeAsArray',
-  'getBlocksByTypeAsArray',
-  'getDecorations',
-  'getFragmentAtRange',
-  'getInlinesAsArray',
-  'getInlinesByTypeAsArray',
-  'getLeafBlocksAtRangeAsArray',
-  'getLeafInlinesAtRangeAsArray',
-  'getMarksAsArray',
-  'getMarksAtPosition',
-  'getNodesAtRange',
-  'getOrderedMarksBetweenPositions',
-  'getInsertMarksAtRange',
-  'getMarksByTypeAsArray',
-  'getNextBlock',
-  'getOffset',
-  'getOffsetAtRange',
-  'getPreviousBlock',
-  'getRootBlocksAtRange',
-  'getRootInlinesAtRangeAsArray',
-  'getTextAtOffset',
-  'getTextDirection',
-  'getTextsAsArray',
-  'getTextsBetweenPositionsAsArray',
-])
+  "getBlocksAsArray",
+  "getBlocksAtRangeAsArray",
+  "getBlocksByTypeAsArray",
+  "getDecorations",
+  "getFragmentAtRange",
+  "getInlinesAsArray",
+  "getInlinesByTypeAsArray",
+  "getLeafBlocksAtRangeAsArray",
+  "getLeafInlinesAtRangeAsArray",
+  "getMarksAsArray",
+  "getMarksAtPosition",
+  "getNodesAtRange",
+  "getOrderedMarksBetweenPositions",
+  "getInsertMarksAtRange",
+  "getMarksByTypeAsArray",
+  "getNextBlock",
+  "getOffset",
+  "getOffsetAtRange",
+  "getPreviousBlock",
+  "getRootBlocksAtRange",
+  "getRootInlinesAtRangeAsArray",
+  "getTextAtOffset",
+  "getTextDirection",
+  "getTextsAsArray",
+  "getTextsBetweenPositionsAsArray",
+]);
 
 /**
  * Mix in the element interface.
  */
 
-mixin(ElementInterface, [Block, Document, Inline])
+mixin(ElementInterface, [Block, Document, Inline]);

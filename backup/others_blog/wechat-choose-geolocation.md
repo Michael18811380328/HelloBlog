@@ -1,212 +1,249 @@
 ## 前言
+
 现在省市区选择控件，我们可以搜索到就有很多参考了。我之所以写这篇主要是因为想要写一个更加灵活，体验更加好的。（特别是微信端的）
 
 先来看下我们这个控件展示效果
 
 <img src="https://00feng00.github.io/img/pro_city_dis.jpg">
 
-
 下面开始讲我们这个控件里面的逻辑
-## 正文
-我们这个控件是使用VUE来开发的，代码主要包括html、css、js这三块。下面开始讲代码以及逻辑：
 
-html代码
+## 正文
+
+我们这个控件是使用 VUE 来开发的，代码主要包括 html、css、js 这三块。下面开始讲代码以及逻辑：
+
+html 代码
 
 ```html
-  <section class="myAddress">
-    <!-- 省市区三级联动选项 -->
-    <section class="showChose" v-show="showChose">
-      <section class="address">
-        <section class="topheader" id="topheader">
-          <span>选择您所在的地区</span>
-          <span @click="closeAdd()" class="close">×</span>
-        </section>
-        <section class="title" id="title">
-          <div class="area" @click="provinceSelected(0)" :class="tabIndex===0?'active':''">
-            {{Province ? Province : '请选择'}}
-          </div>
-          <div class="area" @click="citySelected(1)" :class="tabIndex===1?'active':''" v-show="Province">
-            {{City ? City : '请选择'}}
-          </div>
-          <div class="area" @click="districtSelected(2)" :class="tabIndex===2?'active':''"
-               v-show="City && hasDistrict && option===3">
-            {{District ? District : '请选择'}}
-          </div>
-        </section>
-        <ul id="searchBar" @scroll="ProvinceScroll"   v-show="showProvince">
-          <!-- 常用城市 -->
-          <div v-show="showProvince" class="frequentCity">
-             <p class="frequentCityTip" v-show="showFrequentCity">常用城市</p>
-              <div class="frequentCityList">
-                <span class="cityName" v-for="(frequentCity, index) in frequentCitys" :key="'frequentCity'+index" @click="selectFrequentCity(frequentCity)">{{RegExp(/市/).test(frequentCity.city) ? frequentCity.city.slice(0,frequentCity.city.length-1) : frequentCity.city}}</span>
-              </div>
-            <div class="frequentCityTip" v-show="showProvince">选择省份</div>
-          </div>
-          <!-- 省市区列表 -->
-          <div style="height: 101%">
-          <li class="addList van-hairline--bottom" v-for="(v , k) in info"
-              @click="getProvinceId(v.RNUM, v.AREA_NAME, k, v.AREA_CODE)" :class="v.selected ? 'active' : ''">
-            {{v.AREA_NAME}}
-          </li>
-          </div>
-        </ul>
-        <ul id="cityChangeScroll" @scroll="cityChangeScroll"  v-show="showCity">
-          <div style="height: 101%">
-          <li class="addList van-hairline--bottom" v-for="(v,k) in showCityList"
-              @click="getCityId(v.RNUM, v.AREA_NAME, k, v.AREA_CODE)" :class="v.selected ? 'active' : ''">{{v.AREA_NAME}}
-          </li>
-          </div>
-        </ul>
-
-        <ul id="DistrictChangeScroll"  @scroll="DistrictChangeScroll"
-            v-show="showDistrict && option===3">
-          <div style="height: 101%">
-          <li class="addList van-hairline--bottom" v-for="(v,k) in showDistrictList"
-              @click="getDistrictId(v.RNUM, v.AREA_NAME, k, v.AREA_CODE)" :class="v.selected ? 'active' : ''">
-            {{v.AREA_NAME}}
-          </li>
-          </div>
-        </ul>
+<section class="myAddress">
+  <!-- 省市区三级联动选项 -->
+  <section class="showChose" v-show="showChose">
+    <section class="address">
+      <section class="topheader" id="topheader">
+        <span>选择您所在的地区</span>
+        <span @click="closeAdd()" class="close">×</span>
       </section>
+      <section class="title" id="title">
+        <div
+          class="area"
+          @click="provinceSelected(0)"
+          :class="tabIndex===0?'active':''"
+        >
+          {{Province ? Province : '请选择'}}
+        </div>
+        <div
+          class="area"
+          @click="citySelected(1)"
+          :class="tabIndex===1?'active':''"
+          v-show="Province"
+        >
+          {{City ? City : '请选择'}}
+        </div>
+        <div
+          class="area"
+          @click="districtSelected(2)"
+          :class="tabIndex===2?'active':''"
+          v-show="City && hasDistrict && option===3"
+        >
+          {{District ? District : '请选择'}}
+        </div>
+      </section>
+      <ul id="searchBar" @scroll="ProvinceScroll" v-show="showProvince">
+        <!-- 常用城市 -->
+        <div v-show="showProvince" class="frequentCity">
+          <p class="frequentCityTip" v-show="showFrequentCity">常用城市</p>
+          <div class="frequentCityList">
+            <span
+              class="cityName"
+              v-for="(frequentCity, index) in frequentCitys"
+              :key="'frequentCity'+index"
+              @click="selectFrequentCity(frequentCity)"
+              >{{RegExp(/市/).test(frequentCity.city) ?
+              frequentCity.city.slice(0,frequentCity.city.length-1) :
+              frequentCity.city}}</span
+            >
+          </div>
+          <div class="frequentCityTip" v-show="showProvince">选择省份</div>
+        </div>
+        <!-- 省市区列表 -->
+        <div style="height: 101%">
+          <li
+            class="addList van-hairline--bottom"
+            v-for="(v , k) in info"
+            @click="getProvinceId(v.RNUM, v.AREA_NAME, k, v.AREA_CODE)"
+            :class="v.selected ? 'active' : ''"
+          >
+            {{v.AREA_NAME}}
+          </li>
+        </div>
+      </ul>
+      <ul id="cityChangeScroll" @scroll="cityChangeScroll" v-show="showCity">
+        <div style="height: 101%">
+          <li
+            class="addList van-hairline--bottom"
+            v-for="(v,k) in showCityList"
+            @click="getCityId(v.RNUM, v.AREA_NAME, k, v.AREA_CODE)"
+            :class="v.selected ? 'active' : ''"
+          >
+            {{v.AREA_NAME}}
+          </li>
+        </div>
+      </ul>
+
+      <ul
+        id="DistrictChangeScroll"
+        @scroll="DistrictChangeScroll"
+        v-show="showDistrict && option===3"
+      >
+        <div style="height: 101%">
+          <li
+            class="addList van-hairline--bottom"
+            v-for="(v,k) in showDistrictList"
+            @click="getDistrictId(v.RNUM, v.AREA_NAME, k, v.AREA_CODE)"
+            :class="v.selected ? 'active' : ''"
+          >
+            {{v.AREA_NAME}}
+          </li>
+        </div>
+      </ul>
     </section>
   </section>
+</section>
 ```
 
-css代码:
-
+css 代码:
 
 ```css
- .myAddress {
-   width: 100%;
-   background-color: white;
-   color: #333;
-   height: 100%;
- }
+.myAddress {
+  width: 100%;
+  background-color: white;
+  color: #333;
+  height: 100%;
+}
 .showChose {
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 120;
-    background: rgba(77, 82, 113, 0.8);
-  }
-  .address {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    z-index: 121;
-    background: #fff;
-    width: 100%;
-    height: 100%;
-  }
-  .topTip{
-    height: 0.88rem;
-    font-size: .32rem;
-    color: #000;
-    line-height: 0.88rem;
-    text-align: center;
-  }
-  .title{
-    height: 0.88rem;
-  }
-  .unactTitle{
-    background-color: #ffffff;
-  }
-  .actTitle{
-    background-color: #f6f6f6;
-  }
-  .scrollDiv{
-    height: 6.4rem;
-    overflow-y: scroll;
-  }
-  .title h4 {
-    display: inline-block;
-    margin-left: 2rem;
-    font-size: 0.32rem;
-    line-height: 0.88rem;
-    font-weight: normal;
-    color: #999;
-  }
-  .title span {
-    margin: 0.42rem 0 0 2.2rem;
-    font-size: 0.45rem;
-    line-height: 0.34rem;
-    color: #D8D8D8;
-  }
-  .area {
-    display: inline-block;
-    font-size: 0.28rem;
-    line-height: 0.64rem;
-    height: 0.64rem;
-    margin-left: 0.32rem;
-    color: #333;
-  }
-  .addList {
-    padding-left: 0.32rem;
-    font-size: 0.28rem;
-    height: 0.88rem;
-    line-height: 0.88rem;
-    color: #333;
-  }
-  /* 修改的格式 */
-  .address ul {
-    height: 86%;
-    overflow-y: scroll;
-    -webkit-overflow-scrolling : touch;
-  }
-  .address .title .active {
-    color: #0071B8;
-    border-bottom: 0.02rem solid #0071B8;
-  }
-  .address ul .active {
-    color: #0071B8;
-  }
-  .provinceTip{
-    background-color: #fafafa;
-    font-size: .24rem;
-    color: #262626;
-    text-align: left;
-    padding-left: .32rem;
-    height: 0.64rem;
-    line-height: 0.64rem;
-  }
-  .frequentCity{
-    width: 7.5rem;
-    height: 1.68rem;
-    overflow: hidden;
-  }
-  .frequentCityTip{
-    text-align: left;
-    font-size: 0.24rem;
-    padding-left: 0.32rem;
-    background-color: #f6f6f6;
-    height: 0.64rem;
-    line-height: 0.64rem;
-  }
-  .frequentCityList{
-    display: -webkit-box; /* Chrome 4+, Safari 3.1, iOS Safari 3.2+ */
-    display: -moz-box; /* Firefox 17- */
-    display: -webkit-flex; /* Chrome 21+, Safari 6.1+, iOS Safari 7+, Opera 15/16 */
-    display: -moz-flex; /* Firefox 18+ */
-    display: -ms-flexbox; /* IE 10 */
-    display: flex; /* Chrome 29+, Firefox 22+, IE 11+, Opera 12.1/17/18, Android 4.4+ */
-    flex-wrap: wrap;
-    margin-right: .32rem;
-    padding: 0 0.32rem;
-  }
-  .cityName{
-    letter-spacing: .02rem;
-    font-size: .28rem;
-    border-radius: .4rem;
-    height: 1.04rem;
-    line-height: 1.04rem;
-    margin-right: 0.24rem;
-  }
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 120;
+  background: rgba(77, 82, 113, 0.8);
+}
+.address {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 121;
+  background: #fff;
+  width: 100%;
+  height: 100%;
+}
+.topTip {
+  height: 0.88rem;
+  font-size: 0.32rem;
+  color: #000;
+  line-height: 0.88rem;
+  text-align: center;
+}
+.title {
+  height: 0.88rem;
+}
+.unactTitle {
+  background-color: #ffffff;
+}
+.actTitle {
+  background-color: #f6f6f6;
+}
+.scrollDiv {
+  height: 6.4rem;
+  overflow-y: scroll;
+}
+.title h4 {
+  display: inline-block;
+  margin-left: 2rem;
+  font-size: 0.32rem;
+  line-height: 0.88rem;
+  font-weight: normal;
+  color: #999;
+}
+.title span {
+  margin: 0.42rem 0 0 2.2rem;
+  font-size: 0.45rem;
+  line-height: 0.34rem;
+  color: #d8d8d8;
+}
+.area {
+  display: inline-block;
+  font-size: 0.28rem;
+  line-height: 0.64rem;
+  height: 0.64rem;
+  margin-left: 0.32rem;
+  color: #333;
+}
+.addList {
+  padding-left: 0.32rem;
+  font-size: 0.28rem;
+  height: 0.88rem;
+  line-height: 0.88rem;
+  color: #333;
+}
+/* 修改的格式 */
+.address ul {
+  height: 86%;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+.address .title .active {
+  color: #0071b8;
+  border-bottom: 0.02rem solid #0071b8;
+}
+.address ul .active {
+  color: #0071b8;
+}
+.provinceTip {
+  background-color: #fafafa;
+  font-size: 0.24rem;
+  color: #262626;
+  text-align: left;
+  padding-left: 0.32rem;
+  height: 0.64rem;
+  line-height: 0.64rem;
+}
+.frequentCity {
+  width: 7.5rem;
+  height: 1.68rem;
+  overflow: hidden;
+}
+.frequentCityTip {
+  text-align: left;
+  font-size: 0.24rem;
+  padding-left: 0.32rem;
+  background-color: #f6f6f6;
+  height: 0.64rem;
+  line-height: 0.64rem;
+}
+.frequentCityList {
+  display: -webkit-box; /* Chrome 4+, Safari 3.1, iOS Safari 3.2+ */
+  display: -moz-box; /* Firefox 17- */
+  display: -webkit-flex; /* Chrome 21+, Safari 6.1+, iOS Safari 7+, Opera 15/16 */
+  display: -moz-flex; /* Firefox 18+ */
+  display: -ms-flexbox; /* IE 10 */
+  display: flex; /* Chrome 29+, Firefox 22+, IE 11+, Opera 12.1/17/18, Android 4.4+ */
+  flex-wrap: wrap;
+  margin-right: 0.32rem;
+  padding: 0 0.32rem;
+}
+.cityName {
+  letter-spacing: 0.02rem;
+  font-size: 0.28rem;
+  border-radius: 0.4rem;
+  height: 1.04rem;
+  line-height: 1.04rem;
+  margin-right: 0.24rem;
+}
 ```
 
-js代码
-
+js 代码
 
 ```js
 /* 这块是data里面需要的数据参数 */
@@ -274,7 +311,7 @@ data () {
     districtSelected(index) {
       this.tabIndex = index
       this.showProvince = false
-      this.showCity = false 
+      this.showCity = false
       this.showDistrict = true
       this.firstShow(3)
     }
@@ -489,6 +526,7 @@ data () {
 ```
 
 ## 分析
+
 上面的代码拿到手就可以直接复制黏贴，然后就可以运行了。
 这里讲下其中有几个需要注意的点：
 
@@ -496,74 +534,76 @@ data () {
 
 2、当我们选择省市区完后，我们需要关闭弹框，closeAdd()这个方法就是关闭弹框的，需要注意，当我们再次点开的时候，应该显示区。
 
-3、我们拿到数据后，注意是用_filter()这个方法对数据进行过滤。
+3、我们拿到数据后，注意是用\_filter()这个方法对数据进行过滤。
 
-4、当我们第一次加载这个控件后，为了防止用户下拉，拖动到body滚动条，我们需要用firstShow()这个方法来处理，体验更好。
+4、当我们第一次加载这个控件后，为了防止用户下拉，拖动到 body 滚动条，我们需要用 firstShow()这个方法来处理，体验更好。
 
 5、为了让体验更好，我们需要对省市区对应的滚动的事件进行处理。ProvinceScroll()、cityChangeScroll()、DistrictChangeScroll()
 
-6、info这个数据源的格式:
+6、info 这个数据源的格式:
 
 ```json
 [
   {
-    AREA_CODE:"110000",
-    AREA_NAME:"北京市",
-    LV:2,
-    P_AREA_CODE:"100000",
-    RNUM:1,
-    hasNodes:1,
-    id:"110100",
-    index:0,
-    text:"北京市",
-    citys:[
+    "AREA_CODE": "110000",
+    "AREA_NAME": "北京市",
+    "LV": 2,
+    "P_AREA_CODE": "100000",
+    "RNUM": 1,
+    "hasNodes": 1,
+    "id": "110100",
+    "index": 0,
+    "text": "北京市",
+    "citys": [
       {
-        AREA_CODE: "110100", 
-        AREA_NAME: "北京市", 
-        LV: 3, 
-        P_AREA_CODE: "110000", 
-        RNUM: 1, 
-        hasNodes:1,
-        id: "110100",
-        index: 0, 
-        text: "北京市",
-        district:[
+        "AREA_CODE": "110100",
+        "AREA_NAME": "北京市",
+        "LV": 3,
+        "P_AREA_CODE": "110000",
+        "RNUM": 1,
+        "hasNodes": 1,
+        "id": "110100",
+        "index": 0,
+        "text": "北京市",
+        "district": [
           {
-            AREA_CODE:"110101",
-            AREA_NAME:"东城区",
-            LV:4,
-            P_AREA_CODE:"110100",
-            RNUM:1,
-            hasNodes:0,
-            id:"110101",
-            index:0,
-            text:"东城区"
+            "AREA_CODE": "110101",
+            "AREA_NAME": "东城区",
+            "LV": 4,
+            "P_AREA_CODE": "110100",
+            "RNUM": 1,
+            "hasNodes": 0,
+            "id": "110101",
+            "index": 0,
+            "text": "东城区"
           }
-        ],
+        ]
       }
-    ],
+    ]
   }
 ]
 ```
-info是一个数组，每个对象里面包含city这个数组，city每个对象里面又包含district这个数组。
+
+info 是一个数组，每个对象里面包含 city 这个数组，city 每个对象里面又包含 district 这个数组。
 
 说明一下个别属性的含义：
 
-1、hasNodes是否有下一级（对象里面是否有数组）
+1、hasNodes 是否有下一级（对象里面是否有数组）
 
-2、RNUM是当前是第几个（从1开始，省、市、区是分开算的，比如省是从1开始算，市是从1开始，区是从1开始算的。三者是分开的）
+2、RNUM 是当前是第几个（从 1 开始，省、市、区是分开算的，比如省是从 1 开始算，市是从 1 开始，区是从 1 开始算的。三者是分开的）
 
-3、index是当前下标是第几个(从0开始，当前数据对象所处的数组的第几个)
+3、index 是当前下标是第几个(从 0 开始，当前数据对象所处的数组的第几个)
 
-4、LV可用可不用（可以自己根据需求来考虑）
-
+4、LV 可用可不用（可以自己根据需求来考虑）
 
 ## 注意
+
 看完上面的分析，应该对整个控件有了一定的理解了。最后需要注意的两点：
 
-1、info这个数据，是用来接收后端返回来的数据的。我们需要自己写一个方法来接收后端返回来的数据的。
+1、info 这个数据，是用来接收后端返回来的数据的。我们需要自己写一个方法来接收后端返回来的数据的。
 
-2、三个滚动事件主要处理的了滚动的边界，然后停止事件的传播。主要用到event.stoppropagation()
+2、三个滚动事件主要处理的了滚动的边界，然后停止事件的传播。主要用到 event.stoppropagation()
 
 ## 后记
-  最后说下完成这个控件，个人的一点感受。一般自己写钩子，可以提升自己对数据的处理能力，然后需要考虑到兼容性问题。最后需要对这个钩子进行不断的测试优化，最后上线。
+
+最后说下完成这个控件，个人的一点感受。一般自己写钩子，可以提升自己对数据的处理能力，然后需要考虑到兼容性问题。最后需要对这个钩子进行不断的测试优化，最后上线。

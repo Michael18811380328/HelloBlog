@@ -172,7 +172,7 @@ var str = `<a href="https://blog.csdn.net/weixin_41697143/article/details/810497
 <a href="https://blog.csdn.net/weixin_41697143/article/details/104820998" target="_blank">window-onbeforeunload 的使用</a>`;
 
 var result = [];
-var target = '\"';
+var target = '"';
 // 思路：获取第一个和第二个双引号的位置，然后把这部分字符串拿出来放到数组中，原来的字符串递归处理
 
 while (str.indexOf(target) > -1) {
@@ -182,7 +182,7 @@ while (str.indexOf(target) > -1) {
     break;
   }
   var link = str.slice(first + 1, last);
-  if (link.indexOf('https') > -1) {
+  if (link.indexOf("https") > -1) {
     result.push(link);
   }
   str = str.slice(last + 1);

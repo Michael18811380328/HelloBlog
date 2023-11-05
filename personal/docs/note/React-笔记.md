@@ -184,17 +184,11 @@ getSnapshotBeforeUpdate 替代 componentWillUpdate
 
 使用 import 进行模块化，webpack 可以进行代码打包和摇树
 
-
-
 使用 Suspense lazy section 进行代码分割
-
-
 
 React.lazy 可以处理动态引入，会在代码首次渲染时，自动导入包含子组件的包；在加载时，Suspense组件可以显示loading做到优雅降级。
 
-
-
-问题：实际还没有使用过，导入的组件 Component 是 Promise 需要 resolve 一个 \`default\` export 的 React 组件（这里怎么处理，实际中需要试验使用）。
+问题：生产中没有使用过，导入的组件 Component 是 Promise 需要 resolve 一个 \`default\` export 的 React 组件（这里怎么处理，实际中需要试验使用）。
 
 ```javascript
 let A = React.lazy(() => import('./Component'));
@@ -215,25 +209,32 @@ function B() {
 ## 0133 React.createRef() 是什么
 
 
-为原生DOM添加Ref（不推荐使用字符串形式）
+#### 类组件
 
-```
+class myComponent extends React.Component
+
+为原生DOM添加Ref
+
+```javascript
 <input ref={this.inputRef} />
 
 this.inputRef = React.createRef();
-this.inputRef.current 获取对应的DOM结构
+this.inputRef.current
+// 获取对应的DOM结构
 
 ```
 
 最新的ref可以这样使用。首先在DOM节点上绑定处理函数，然后在构造器内部创建REf，使用的时候获取熟悉的current就是对应的DOM元素。React内部，已经处理了不同生命周期函数ref的加载和优化：初始化阶段创建 current，组件卸载前将Ref变成Null，DidMount 和 DidUpdate 阶段更新对应的 ref。
 
-为类组件添加 Ref ：代码相同，直接使用 \`this.myComponent.current\` 然后获取内部的属性，或者执行内部的函数。（类组件： \`class myComponent extends React.Component\`）
+#### 函数组件
 
-为函数组件添加 Ref：不能直接添加，需要使用 forwardRef，或者将函数组件转成类组件（\`function CustomTextInput(props) { return \<div>\</div> }）\`;之前界面中报错就是这个原因。
+添加 Ref：不能直接添加，需要使用 forwardRef，或者将函数组件转成类组件
+
+function CustomTextInput(props) { return \<div>\</div> }
 
 子组件通过回调函数形式把自身的Ref传给父组件
 
-```
+```javascript
 // children
 <input ref={this.props.innerInputRef} />
 
@@ -242,10 +243,11 @@ this.inputRef.current 获取对应的DOM结构
 
 ```
 
-不推荐使用字符串形式，这种形式有问题（老项目现在还要很多这样的代码）
+不推荐使用字符串形式声明 ref
 
 ```
 <input ref="inputRef"/>
+
 this.refs.inoutRef.focus();
 
 ```
@@ -256,18 +258,20 @@ this.refs.inoutRef.focus();
 ## 0134 componentWillReceiveProps 废弃和解决
 
 
-在 React 16 版本后，componentWillReceiveProps 不安全将要废弃，所以使用 getDerivedStateFromProps 从Props获取派生的State。getDerivedStateFromProps (derived 派生的)。原来的生命周期函数中，对比了这次的Props和上次的Props，如果不同，那么重新处理数据或者渲染界面；现在的逻辑：需要将上一次的Props保存在 state 中。当新的 props 传来时，对比新的Props和旧的state，并进行数据处理。
+在 React 16 版本后，componentWillReceiveProps 不安全将要废弃，所以使用 getDerivedStateFromProps 从 Props获取派生的State。getDerivedStateFromProps (derived 派生的)。
+
+原来的生命周期函数中，对比了这次的Props和上次的Props，如果不同，那么重新处理数据或者渲染界面
+
+现在的逻辑：需要将上一次的 Props 保存在 state 中，当新的 props 传来时，对比新的 Props 和旧的state，并进行数据处理。
 
 注意几点不同：
 
-\- getDerivedStateFromProps 是静态方法，所以内部无法获取到 this，无法使用 this.setState 改变状态，可以直接返回一个对象
-
-\- 这个生命周期函数不满足条件时，必须返回 null
-
-\- 生命周期函数不能直接调用类中的方法。如果必须使用，可以使用全局的方法。
+* getDerivedStateFromProps 是静态方法，所以内部无法获取到 this，无法使用 this.setState 改变状态，可以直接返回一个对象
+* 这个生命周期函数不满足条件时，必须返回 null
+* 生命周期函数不能直接调用类中的方法。如果必须使用，可以使用全局的方法。
 
 ```javascript
-// 上面是旧方法，不推荐使用
+// 旧语法，不推荐
 componentWillReceiveProps(nextProps) {
   if (nextProps.id !== this.props.id) {
     // do something, setState
@@ -278,7 +282,7 @@ componentWillReceiveProps(nextProps) {
   }
 }
 
-// 推荐使用下面的方法
+// 推荐
 // 构造器中加入 prevPropsList 这个状态，然后初始值 prevPropsList: this.props.list
 static getDerivedStateFromProps(nextProps, prevState) {
   // Note we need to store prevPropsList and prevFilterText to detect changes.
@@ -294,7 +298,25 @@ static getDerivedStateFromProps(nextProps, prevState) {
 
 ```
 
-raect报错解决，componentWillReceivePorps 将要废弃，那么使用 getDerivedStateFromPorps 获取props的更新，然后重新设置state，然后再ComponentDidUpdate 阶段处理新数据；
+raect报错解决，componentWillReceivePorps 将要废弃，那么使用 getDerivedStateFromPorps 获取props的更新，然后重新设置state，然后再ComponentDidUpdate 阶段处理新数据。
+
+
+
+   
+## 0285 React hook 函数嵌套问题
+
+
+实际问题：useMemo 内部动态计算 dom 树，使用 useRef 获取 dom 节点，但是函数不支持嵌套
+
+不允许嵌套原因：hook 函数设计之初就是纯函数，状态机，一个参数返回一个结果，如果两个 hook 函数嵌套，就不是纯函数概念，可能互相影响等。
+
+```
+// ❌ React Hook "useState" is called conditionally. 
+// React Hooks must be called in the exact same order in every component render.
+
+```
+
+解决办法：因为函数式组件不适合处理复杂的 DOM 计算，那么既然现在需求变了，然后改成 Class，使用 createRef 获取 dom 节点并进行计算。
 
 
 
@@ -452,10 +474,109 @@ useRefs
 
 
    
-## 0165 Use memo use call back
+## 0165 UseMemo 和 useCallback 区别
 
 
-代码更新阶段，避免重复渲染
+概括：memo、useMemo、useCallBack主要用于避免React Hooks中的重复渲染，作为性能优化的一种手段，三者需要组合并结合场景使用。
+
+### React.memo()
+
+如果你的组件在相同 props 的情况下渲染相同的结果，那么你可以通过将其包装在`React.memo`中调用，以此通过记忆组件渲染结果的方式来提高组件的性能表现。这意味着在这种情况下，React 将跳过渲染组件的操作并直接复用最近一次渲染的结果。[React memo官方文档](https://link.zhihu.com/?target=https%3A//zh-hans.reactjs.org/docs/react-api.html%23reactmemo)
+
+与Class Component中的PureComponent类似，在React Hooks中，可以通过memo来避免组件的重复渲染。
+
+参考：<https://zhuanlan.zhihu.com/p/545578633> 
+
+### useMemo
+
+> 把“创建”函数和依赖项数组作为参数传入`useMemo`，它仅会在某个依赖项改变时才重新计算 memoized 值。这种优化有助于避免在每次渲染时都进行高开销的计算。[React useMemo文档](https://link.zhihu.com/?target=https%3A//zh-hans.reactjs.org/docs/hooks-reference.html%23usememo)
+
+useMemo的用法和useEffect的用法类似，它需要接收两个参数。
+
+1. 第一个参数要求为一个function，function需要return一个变量
+2. 第二个参数为一个数组，和useEffect类似，作为第一个参数的依赖项数组
+
+它的功能可以理解为：
+
+在检测到依赖项数组中的变量发生变化时，重新执行传入的function，并返回传入function执行后的结果。
+
+```javascript
+import { useMemo, useState } from "react";
+
+function Demo() {
+  const [name, setName] = useState('Michael');
+
+  // useMemo 用来缓存：第一个参数是函数，第二个参数是变量数组
+  // 当第二个参数不变时，不重新计算函数（返回上一次的缓存结果）
+  const description = useMemo(() => {
+    return (
+      <span>{`my name is ${name}, age is${Math.random()}`}</span>
+    );
+  }, [name]);
+
+  return (
+    <div>
+      <button onClick={() => setName('Mike')}></button>
+      <span>{name}</span>
+      <span>{description}</span>
+    </div>
+  );
+}
+
+export default Demo;
+
+```
+
+### useCallBack
+
+useCallBack：useMemo的语法糖
+
+> 把内联回调函数及依赖项数组作为参数传入`useCallback`，它将返回该回调函数的 memoized 版本，该回调函数仅在某个依赖项改变时才会更新。当你把回调函数传递给经过优化的并使用引用相等性去避免非必要渲染（例如`shouldComponentUpdate`）的子组件时，它将非常有用。[React useCallBack官方文档](https://link.zhihu.com/?target=https%3A//zh-hans.reactjs.org/docs/hooks-reference.html%23usecallback)
+
+useCallBack和useMemo唯一的区别是：useMemo返回的是传入的回调函数的执行结果（dom或者返回值），useCallBack返回的是传入的回调函数。本质上就是useMemo的语法糖。
+
+```javascript
+import { useContext, memo } from "react";
+
+function Parent() {
+
+  const [age, setAge] = useState(10);
+
+  // 我们只需要使用useCallBack保护一下父组件中传入子组件的那个函数（toChildFun函数）保证它不会在没有必要的情况下返回一个新的内存地址就好了。
+  // 返回一个函数
+  const toChildFun = useContext(() => {
+    // 需要传入子组价的函数
+  }, []);
+
+  return (
+    <div>
+      <button onClick={() => useState(age => age + 1)}></button>
+      {/* 这样父组件传参的函数就不会更新 */}
+      <Child fun={toChildFun}></Child>
+    </div>
+  );
+}
+
+const Child = memo((fun) => {
+  return <div onClick={fun}></div>
+});
+
+
+```
+
+### 总结
+
+1. memo与class组件中的pureComponent类似，通过props浅比较来判断组件需不需要重新渲染
+2. useMemo、useCallBack通过浅比较依赖数组项中的变量，判断对应变量/function需不需要重新生成
+3. useMemo、useCallBack不要滥用，需要结合具体场景
+
+### 参考链接
+
+<https://juejin.cn/post/7107943235099557896> 
+
+<https://zhuanlan.zhihu.com/p/545578633> 
+
+<https://blog.csdn.net/weixin_45269534/article/details/131416114> 
 
 
 

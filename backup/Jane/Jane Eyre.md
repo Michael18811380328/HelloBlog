@@ -1,4 +1,3 @@
-
 ## Chapter 11
 
 A new chapter in a novel is something like a new scene in a play; and when I draw up the curtain this time, reader, you must fancy you see a room in the George Inn at Millcote, with such large figured papering on the walls as inn rooms have; such a carpet, such furniture, such ornaments on the mantelpiece, such prints, including a portrait of George the Third, and another of the Prince of Wales, and a representation of the death of Wolfe. All this is visible to you by the light of an oil lamp hanging from the ceiling, and by that of an excellent fire, near which I sit in my cloak and bonnet; my muff and umbrella lie on the table, and I am warming away the numbness and chill contracted by sixteen hours’ exposure to the rawness of an October day: I left Lowton at four o’clock a.m., and the Millcote town clock is now just striking eight.
@@ -251,10 +250,6 @@ The conversation, thus turned on Adèle, continued till we reached the light and
 
 We found dinner ready, and waiting for us in Mrs. Fairfax’s room.
 
-
-
-
-
 ## Chapter 12
 
 The promise of a smooth career, which my first calm introduction to Thornfield Hall seemed to pledge, was not belied on a longer acquaintance with the place and its inmates. Mrs. Fairfax turned out to be what she appeared, a placid-tempered, kind-natured woman, of competent education and average intelligence. My pupil was a lively child, who had been spoilt and indulged, and therefore was sometimes wayward; but as she was committed entirely to my care, and no injudicious interference from any quarter ever thwarted my plans for her improvement, she soon forgot her little freaks, and became obedient and teachable. She had no great talents, no marked traits of character, no peculiar development of feeling or taste which raised her one inch above the ordinary level of childhood; but neither had she any deficiency or vice which sunk her below it. She made reasonable progress, entertained for me a vivacious, though perhaps not very profound, affection; and by her simplicity, gay prattle, and efforts to please, inspired me, in return, with a degree of attachment sufficient to make us both content in each other’s society.
@@ -394,10 +389,6 @@ I hastened to Mrs. Fairfax’s room; there was a fire there too, but no candle, 
 “Ah! Bring me a candle will you Leah?”
 
 Leah brought it; she entered, followed by Mrs. Fairfax, who repeated the news; adding that Mr. Carter the surgeon was come, and was now with Mr. Rochester: then she hurried out to give orders about tea, and I went upstairs to take off my things.
-
-
-
-
 
 ## Chapter 13
 
@@ -673,10 +664,6 @@ Adèle went to kiss him before quitting the room: he endured the caress, but sca
 
 The answer was evasive. I should have liked something clearer; but Mrs. Fairfax either could not, or would not, give me more explicit information of the origin and nature of Mr. Rochester’s trials. She averred they were a mystery to herself, and that what she knew was chiefly from conjecture. It was evident, indeed, that she wished me to drop the subject, which I did accordingly.
 
-
-
-
-
 ## Chapter 14
 
 For several subsequent days I saw little of Mr. Rochester. In the mornings he seemed much engaged with business, and, in the afternoon, gentlemen from Millcote or the neighbourhood called, and sometimes stayed to dine with him. When his sprain was well enough to admit of horse exercise, he rode out a good deal; probably to return these visits, as he generally did not come back till late at night.
@@ -895,10 +882,6 @@ And spreading out her dress, she chasséed across the room till, having reached 
 
 “Pre-cise-ly!” was the answer; “and, ‘comme cela,’ she charmed my English gold out of my British breeches’ pocket. I have been green, too, Miss Eyre,—ay, grass green: not a more vernal tint freshens you now than once freshened me. My Spring is gone, however, but it has left me that French floweret on my hands, which, in some moods, I would fain be rid of. Not valuing now the root whence it sprang; having found that it was of a sort which nothing but gold dust could manure, I have but half a liking to the blossom, especially when it looks so artificial as just now. I keep it and rear it rather on the Roman Catholic principle of expiating numerous sins, great or small, by one good work. I’ll explain all this some day. Good- night.”
 
-
-
-
-
 ## Chapter 15
 
 Mr. Rochester did, on a future occasion, explain it. It was one afternoon, when he chanced to meet me and Adèle in the grounds: and while she played with Pilot and her shuttlecock, he asked me to walk up and down a long beech avenue within sight of her.
@@ -1052,10 +1035,6 @@ Strange energy was in his voice, strange fire in his look.
 “Well, leave me:” he relaxed his fingers, and I was gone.
 
 I regained my couch, but never thought of sleep. Till morning dawned I was tossed on a buoyant but unquiet sea, where billows of trouble rolled under surges of joy. I thought sometimes I saw beyond its wild waters a shore, sweet as the hills of Beulah; and now and then a freshening gale, wakened by hope, bore my spirit triumphantly towards the bourne: but I could not reach it, even in fancy—a counteracting breeze blew off land, and continually drove me back. Sense would resist delirium: judgment would warn passion. Too feverish to rest, I rose as soon as day dawned.
-
-
-
-
 
 ## Chapter 16
 
@@ -1212,10 +1191,6 @@ That a greater fool than Jane Eyre had never breathed the breath of life; that a
 I kept my word. An hour or two sufficed to sketch my own portrait in crayons; and in less than a fortnight I had completed an ivory miniature of an imaginary Blanche Ingram. It looked a lovely face enough, and when compared with the real head in chalk, the contrast was as great as self-control could desire. I derived benefit from the task: it had kept my head and hands employed, and had given force and fixedness to the new impressions I wished to stamp indelibly on my heart.
 
 Ere long, I had reason to congratulate myself on the course of wholesome discipline to which I had thus forced my feelings to submit. Thanks to it, I was able to meet subsequent occurrences with a decent calm, which, had they found me unprepared, I should probably have been unequal to maintain, even externally.
-
-
-
-
 
 ## Chapter 17
 
@@ -1531,10 +1506,6 @@ He looked at me for a minute.
 
 “But I affirm that you are: so much depressed that a few more words would bring tears to your eyes—indeed, they are there now, shining and swimming; and a bead has slipped from the lash and fallen on to the flag. If I had time, and was not in mortal dread of some prating prig of a servant passing, I would know what all this means. Well, to-night I excuse you; but understand that so long as my visitors stay, I expect you to appear in the drawing-room every evening; it is my wish; don’t neglect it. Now go, and send Sophie for Adèle. Good-night, my—” He stopped, bit his lip, and abruptly left me.
 
-
-
-
-
 ## Chapter 18
 
 Merry days were these at Thornfield Hall; and busy days too: how different from the first three months of stillness, monotony, and solitude I had passed beneath its roof! All sad feelings seemed now driven from the house, all gloomy associations forgotten: there was life everywhere, movement all day long. You could not now traverse the gallery, once so hushed, nor enter the front chambers, once so tenantless, without encountering a smart lady’s-maid or a dandy valet.
@@ -1740,10 +1711,6 @@ In the midst of the tumult, and while my eyes and ears were fully engaged in the
 “If you like, miss,” said Sam, “I’ll wait in the hall for you; and if she frightens you, just call and I’ll come in.”
 
 “No, Sam, return to the kitchen: I am not in the least afraid.” Nor was I; but I was a good deal interested and excited.
-
-
-
-
 
 ## Chapter 19
 
@@ -2036,10 +2003,6 @@ I did his behest. The company all stared at me as I passed straight among them. 
 At a late hour, after I had been in bed some time, I heard the visitors repair to their chambers: I distinguished Mr. Rochester’s voice, and heard him say, “This way, Mason; this is your room.”
 
 He spoke cheerfully: the gay tones set my heart at ease. I was soon asleep.
-
-
-
-
 
 ## Chapter 20
 
@@ -2376,10 +2339,6 @@ He got up instantly, went quite to the other end of the walk, and when he came b
 As I went one way, he went another, and I heard him in the yard, saying cheerfully—
 
 “Mason got the start of you all this morning; he was gone before sunrise: I rose at four to see him off.”
-
-
-
-
 
 ## Chapter 21
 
@@ -2773,10 +2732,6 @@ Eliza surveyed her parent calmly. After a silence of some minutes she observed�
 
 “With her constitution she should have lived to a good old age: her life was shortened by trouble.” And then a spasm constricted her mouth for an instant: as it passed away she turned and left the room, and so did I. Neither of us had dropt a tear.
 
-
-
-
-
 ## Chapter 22
 
 Mr. Rochester had given me but one week’s leave of absence: yet a month elapsed before I quitted Gateshead. I wished to leave immediately after the funeral, but Georgiana entreated me to stay till she could get off to London, whither she was now at last invited by her uncle, Mr. Gibson, who had come down to direct his sister’s interment and settle the family affairs. Georgiana said she dreaded being left alone with Eliza; from her she got neither sympathy in her dejection, support in her fears, nor aid in her preparations; so I bore with her feeble-minded wailings and selfish lamentations as well as I could, and did my best in sewing for her and packing her dresses. It is true, that while I worked, she would idle; and I thought to myself, “If you and I were destined to live always together, cousin, we would commence matters on a different footing. I should not settle tamely down into being the forbearing party; I should assign you your share of labour, and compel you to accomplish it, or else it should be left undone: I should insist, also, on your keeping some of those drawling, half-insincere complaints hushed in your own breast. It is only because our connection happens to be very transitory, and comes at a peculiarly mournful season, that I consent thus to render it so patient and compliant on my part.”
@@ -2854,10 +2809,6 @@ I that evening shut my eyes resolutely against the future: I stopped my cars aga
 A fortnight of dubious calm succeeded my return to Thornfield Hall. Nothing was said of the master’s marriage, and I saw no preparation going on for such an event. Almost every day I asked Mrs. Fairfax if she had yet heard anything decided: her answer was always in the negative. Once she said she had actually put the question to Mr. Rochester as to when he was going to bring his bride home; but he had answered her only by a joke and one of his queer looks, and she could not tell what to make of him.
 
 One thing specially surprised me, and that was, there were no journeyings backward and forward, no visits to Ingram Park: to be sure it was twenty miles off, on the borders of another county; but what was that distance to an ardent lover? To so practised and indefatigable a horseman as Mr. Rochester, it would be but a morning’s ride. I began to cherish hopes I had no right to conceive: that the match was broken off; that rumour had been mistaken; that one or both parties had changed their minds. I used to look at my master’s face to see if it were sad or fierce; but I could not remember the time when it had been so uniformly clear of clouds or evil feelings. If, in the moments I and my pupil spent with him, I lacked spirits and sank into inevitable dejection, he became even gay. Never had he called me more frequently to his presence; never been kinder to me when there—and, alas! never had I loved him so well.
-
-
-
-
 
 ## Chapter 23
 
@@ -3101,10 +3052,6 @@ He kissed me repeatedly. When I looked up, on leaving his arms, there stood the 
 
 Before I left my bed in the morning, little Adèle came running in to tell me that the great horse-chestnut at the bottom of the orchard had been struck by lightning in the night, and half of it split away.
 
-
-
-
-
 ## Chapter 24
 
 As I rose and dressed, I thought over what had happened, and wondered if it were a dream. I could not be certain of the reality till I had seen Mr. Rochester again, and heard him renew his words of love and promise.
@@ -3283,7 +3230,7 @@ I was so hurt by her coldness and scepticism, that the tears rose to my eyes.
 
 “Why?—am I a monster?” I said: “is it impossible that Mr. Rochester should have a sincere affection for me?”
 
-“No: you are very well; and much improved of late; and Mr. Rochester, I daresay, is fond of you. I have always noticed that you were a sort of pet of his. There are times when, for your sake, I have been a little uneasy at his marked preference, and have wished to put you on your guard: but I did not like to suggest even the possibility of wrong. I knew such an idea would shock, perhaps offend you; and you were so discreet, and so thoroughly modest and sensible, I hoped you might be trusted to protect yourself.  night I cannot tell you what I suffered when I sought all over the house, and could find you nowhere, nor the master either; and then, at twelve o’clock, saw you come in with him.”
+“No: you are very well; and much improved of late; and Mr. Rochester, I daresay, is fond of you. I have always noticed that you were a sort of pet of his. There are times when, for your sake, I have been a little uneasy at his marked preference, and have wished to put you on your guard: but I did not like to suggest even the possibility of wrong. I knew such an idea would shock, perhaps offend you; and you were so discreet, and so thoroughly modest and sensible, I hoped you might be trusted to protect yourself. night I cannot tell you what I suffered when I sought all over the house, and could find you nowhere, nor the master either; and then, at twelve o’clock, saw you come in with him.”
 
 “Well, never mind that now,” I interrupted impatiently; “it is enough that all was right.”
 
@@ -3545,10 +3492,6 @@ In other people’s presence I was, as formerly, deferential and quiet; any othe
 
 Yet after all my task was not an easy one; often I would rather have pleased than teased him. My future husband was becoming to me my whole world; and more than the world: almost my hope of heaven. He stood between me and every thought of religion, as an eclipse intervenes between man and the broad sun. I could not, in those days, see God for His creature: of whom I had made an idol.
 
-
-
-
-
 ## Chapter 25
 
 The month of courtship had wasted: its very last hours were being numbered. There was no putting off the day that advanced—the bridal day; and all preparations for its arrival were complete. I, at least, had nothing more to do: there were my trunks, packed, locked, corded, ranged in a row along the wall of my little chamber; to-morrow, at this time, they would be far on their road to London: and so should I (D.V.),—or rather, not I, but one Jane Rochester, a person whom as yet I knew not. The cards of address alone remained to nail on: they lay, four little squares, in the drawer. Mr. Rochester had himself written the direction, “Mrs. Rochester,— Hotel, London,” on each: I could not persuade myself to affix them, or to have them affixed. Mrs. Rochester! She did not exist: she would not be born till to-morrow, some time after eight o’clock a.m.; and I would wait to be assured she had come into the world alive before I assigned to her all that property. It was enough that in yonder closet, opposite my dressing-table, garments said to be hers had already displaced my black stuff Lowood frock and straw bonnet: for not to me appertained that suit of wedding raiment; the pearl-coloured robe, the vapoury veil pendent from the usurped portmanteau. I shut the closet to conceal the strange, wraith-like apparel it contained; which, at this evening hour—nine o’clock— gave out certainly a most ghostly shimmer through the shadow of my apartment. “I will leave you by yourself, white dream,” I said. “I am feverish: I hear the wind blowing: I will go out of doors and feel it.”
@@ -3767,10 +3710,6 @@ It was. Half heaven was pure and stainless: the clouds, now trooping before the 
 
 This prediction was but half fulfilled: I did not indeed dream of sorrow, but as little did I dream of joy; for I never slept at all. With little Adèle in my arms, I watched the slumber of childhood—so tranquil, so passionless, so innocent—and waited for the coming day: all my life was awake and astir in my frame: and as soon as the sun rose I rose too. I remember Adèle clung to me as I left her: I remember I kissed her as I loosened her little hands from my neck; and I cried over her with strange emotion, and quitted her because I feared my sobs would break her still sound repose. She seemed the emblem of my past life; and he I was now to array myself to meet, the dread, but adored, type of my unknown future day.
 
-
-
-
-
 ## Chapter 26
 
 Sophie came at seven to dress me: she was very long indeed in accomplishing her task; so long that Mr. Rochester, grown, I suppose, impatient of my delay, sent up to ask why I did not come. She was just fastening my veil (the plain square of blond after all) to my hair with a brooch; I hurried from under her hands as soon as I could.
@@ -3956,10 +3895,6 @@ My eyes were covered and closed: eddying darkness seemed to swim round me, and r
 “Be not far from me, for trouble is near: there is none to help.”
 
 It was near: and as I had lifted no petition to Heaven to avert it—as I had neither joined my hands, nor bent my knees, nor moved my lips—it came: in full heavy swing the torrent poured over me. The whole consciousness of my life lorn, my love lost, my hope quenched, my faith death-struck, swayed full and mighty above me in one sullen mass. That bitter hour cannot be described: in truth, “the waters came into my soul; I sank in deep mire: I felt no standing; I came into deep waters; the floods overflowed me.”
-
-
-
-
 
 ## Chapter 27
 
@@ -4155,7 +4090,7 @@ He bared his wrist, and offered it to me: the blood was forsaking his cheek and 
 
 I felt the truth of these words; and I drew from them the certain inference, that if I were so far to forget myself and all the teaching that had ever been instilled into me, as—under any pretext—with any justification—through any temptation—to become the successor of these poor girls, he would one day regard me with the same feeling which now in his mind desecrated their memory. I did not give utterance to this conviction: it was enough to feel it. I impressed it on my heart, that it might remain there to serve me as aid in the time of trial.
 
-“Now, Jane, why don’t you say ‘Well, sir?’ I have not done. You are looking grave. You disapprove of me still, I see. But let me come to the point.  January, rid of all mistresses—in a harsh, bitter frame of mind, the result of a useless, roving, lonely life— corroded with disappointment, sourly disposed against all men, and especially against all womankind (for I began to regard the notion of an intellectual, faithful, loving woman as a mere dream), recalled by business, I came back to England.
+“Now, Jane, why don’t you say ‘Well, sir?’ I have not done. You are looking grave. You disapprove of me still, I see. But let me come to the point. January, rid of all mistresses—in a harsh, bitter frame of mind, the result of a useless, roving, lonely life— corroded with disappointment, sourly disposed against all men, and especially against all womankind (for I began to regard the notion of an intellectual, faithful, loving woman as a mere dream), recalled by business, I came back to England.
 
 “On a frosty winter afternoon, I rode in sight of Thornfield Hall. Abhorred spot! I expected no peace—no pleasure there. On a stile in Hay Lane I saw a quiet little figure sitting by itself. I passed it as negligently as I did the pollard willow opposite to it: I had no presentiment of what it would be to me; no inward warning that the arbitress of my life—my genius for good or evil—waited there in humble guise. I did not know it, even when, on the occasion of Mesrour’s accident, it came up and gravely offered me help. Childish and slender creature! It seemed as if a linnet had hopped to my foot and proposed to bear me on its tiny wing. I was surly; but the thing would not go: it stood by me with strange perseverance, and looked and spoke with a sort of authority. I must be aided, and by that hand: and aided I was.
 
@@ -4288,10 +4223,6 @@ I skirted fields, and hedges, and lanes till after sunrise. I believe it was a l
 When I got there, I was forced to sit to rest me under the hedge; and while I sat, I heard wheels, and saw a coach come on. I stood up and lifted my hand; it stopped. I asked where it was going: the driver named a place a long way off, and where I was sure Mr. Rochester had no connections. I asked for what sum he would take me there; he said thirty shillings; I answered I had but twenty; well, he would try to make it do. He further gave me leave to get into the inside, as the vehicle was empty: I entered, was shut in, and it rolled on its way.
 
 Gentle reader, may you never feel what I then felt! May your eyes never shed such stormy, scalding, heart-wrung tears as poured from mine. May you never appeal to Heaven in prayers so hopeless and so agonised as in that hour left my lips; for never may you, like me, dread to be the instrument of evil to what you wholly love.
-
-
-
-
 
 ## Chapter 28
 
@@ -4583,10 +4514,6 @@ I looked at her. She had, I thought, a remarkable countenance, instinct both wit
 
 They withdrew. Very soon one of the ladies returned—I could not tell which. A kind of pleasant stupor was stealing over me as I sat by the genial fire. In an undertone she gave some directions to Hannah. Ere long, with the servant’s aid, I contrived to mount a staircase; my dripping clothes were removed; soon a warm, dry bed received me. I thanked God—experienced amidst unutterable exhaustion a glow of grateful joy—and slept.
 
-
-
-
-
 ## Chapter 29
 
 The recollection of about three days and nights succeeding this is very dim in my mind. I can recall some sensations felt in that interval; but few thoughts framed, and no actions performed. I knew I was in a small room and in a narrow bed. To that bed I seemed to have grown; I lay on it motionless as a stone; and to have torn me from it would have been almost to kill me. I took no note of the lapse of time—of the change from morning to noon, from noon to evening. I observed when any one entered or left the apartment: I could even tell who they were; I could understand what was said when the speaker stood near to me; but I could not answer; to open my lips or move my limbs was equally impossible. Hannah, the servant, was my most frequent visitor. Her coming disturbed me. I had a feeling that she wished me away: that she did not understand me or my circumstances; that she was prejudiced against me. Diana and Mary appeared in the chamber once or twice a day. They would whisper sentences of this sort at my bedside—
@@ -4841,10 +4768,6 @@ But when St. John had mused a few moments he recommenced as imperturbably and wi
 
 He now resumed the book with which he had been occupied before tea. I soon withdrew, for I had talked as much, and sat up as long, as my present strength would permit.
 
-
-
-
-
 ## Chapter 30
 
 The more I knew of the inmates of Moor House, the better I liked them. In a few days I had so far recovered my health that I could sit up all day, and walk out sometimes. I could join with Diana and Mary in all their occupations; converse with them as much as they wished, and aid them when and where they would allow me. There was a reviving pleasure in this intercourse, of a kind now tasted by me for the first time-the pleasure arising from perfect congeniality of tastes, sentiments, and principles.
@@ -4987,10 +4910,6 @@ For some minutes no one spoke. Diana then turned to me.
 
 This explanation given, the subject was dropped, and no further reference made to it by either Mr. Rivers or his sisters. The next day I left Marsh End for Morton. The day after, Diana and Mary quitted it for distant B-. In a week, Mr. Rivers and Hannah repaired to the parsonage: and so the old grange was abandoned.
 
-
-
-
-
 ## Chapter 31
 
 My home, then, when I at last find a home,—is a cottage; a little room with whitewashed walls and a sanded floor, containing four painted chairs and a table, a clock, a cupboard, with two or three plates and dishes, and a set of tea-things in delf. Above, a chamber of the same dimensions as the kitchen, with a deal bedstead and chest of drawers; small, yet too large to be filled with my scanty wardrobe: though the kindness of my gentle and generous friends has increased that, by a modest stock of such things as are necessary.
@@ -5069,7 +4988,7 @@ What did St. John Rivers think of this earthly angel? I naturally asked myself t
 
 “You have indeed. She is teachable and handy.” (This then, I thought, is Miss Oliver, the heiress; favoured, it seems, in the gifts of fortune, as well as in those of nature! What happy combination of the planets presided over her birth, I wonder?)
 
-“I shall come up and help you to teach sometimes,” she added. “It will be a change for me to visit you now and then; and I like a change. Mr. Rivers, I have been SO gay during my stay at S-.  night, or rather this morning, I was dancing till two o’clock. The—th regiment are stationed there since the riots; and the officers are the most agreeable men in the world: they put all our young knife-grinders and scissor merchants to shame.”
+“I shall come up and help you to teach sometimes,” she added. “It will be a change for me to visit you now and then; and I like a change. Mr. Rivers, I have been SO gay during my stay at S-. night, or rather this morning, I was dancing till two o’clock. The—th regiment are stationed there since the riots; and the officers are the most agreeable men in the world: they put all our young knife-grinders and scissor merchants to shame.”
 
 It seemed to me that Mr. St. John’s under lip protruded, and his upper lip curled a moment. His mouth certainly looked a good deal compressed, and the lower part of his face unusually stern and square, as the laughing girl gave him this information. He lifted his gaze, too, from the daisies, and turned it on her. An unsmiling, a searching, a meaning gaze it was. She answered it with a second laugh, and laughter well became her youth, her roses, her dimples, her bright eyes.
 
@@ -5098,10 +5017,6 @@ She held out her hand. He just touched it. “Good evening!” he repeated, in a
 “Quite well,” he enunciated; and, with a bow, he left the gate. She went one way; he another. She turned twice to gaze after him as she tripped fairy-like down the field; he, as he strode firmly across, never turned at all.
 
 This spectacle of another’s suffering and sacrifice rapt my thoughts from exclusive meditation on my own. Diana Rivers had designated her brother “inexorable as death.” She had not exaggerated.
-
-
-
-
 
 ## Chapter 32
 
@@ -5242,10 +5157,6 @@ He drew over the picture the sheet of thin paper on which I was accustomed to re
 “Well!” I exclaimed, using an expression of the district, “that caps the globe, however!”
 
 I, in my turn, scrutinised the paper; but saw nothing on it save a few dingy stains of paint where I had tried the tint in my pencil. I pondered the mystery a minute or two; but finding it insolvable, and being certain it could not be of much moment, I dismissed, and soon forgot it.
-
-
-
-
 
 ## Chapter 34
 
@@ -5540,10 +5451,6 @@ How I looked while these ideas were taking my spirit by storm, I cannot tell; bu
 He smiled approbation: we shook hands, and he took leave.
 
 I need not narrate in detail the further struggles I had, and arguments I used, to get matters regarding the legacy settled as I wished. My task was a very hard one; but, as I was absolutely resolved—as my cousins saw at length that my mind was really and immutably fixed on making a just division of the property—as they must in their own hearts have felt the equity of the intention; and must, besides, have been innately conscious that in my place they would have done precisely what I wished to do—they yielded at length so far as to consent to put the affair to arbitration. The judges chosen were Mr. Oliver and an able lawyer: both coincided in my opinion: I carried my point. The instruments of transfer were drawn out: St. John, Diana, Mary, and I, each became possessed of a competency.
-
-
-
-
 
 ## Chapter 33
 
@@ -5869,10 +5776,6 @@ What a cold, loose touch, he impressed on my fingers! He was deeply displeased b
 
 And with that answer he left me. I would much rather he had knocked me down.
 
-
-
-
-
 ## Chapter 35
 
 He did not leave for Cambridge the next day, as he had said he would. He deferred his departure a whole week, and during that time he made me feel what severe punishment a good yet stern, a conscientious yet implacable man can inflict on one who has offended him. Without one overt act of hostility, one upbraiding word, he contrived to impress me momently with the conviction that I was put beyond the pale of his favour.
@@ -6071,10 +5974,6 @@ The hills beyond Marsh Glen sent the answer faintly back—“Where are you?” 
 
 I broke from St. John, who had followed, and would have detained me. It was my time to assume ascendency. My powers were in play and in force. I told him to forbear question or remark; I desired him to leave me: I must and would be alone. He obeyed at once. Where there is energy to command well enough, obedience never fails. I mounted to my chamber; locked myself in; fell on my knees; and prayed in my way—a different way to St. John’s, but effective in its own fashion. I seemed to penetrate very near a Mighty Spirit; and my soul rushed out in gratitude at His feet. I rose from the thanksgiving—took a resolve—and lay down, unscared, enlightened— eager but for the daylight.
 
-
-
-
-
 ## Chapter 36
 
 The daylight came. I rose at dawn. I busied myself for an hour or two with arranging my things in my chamber, drawers, and wardrobe, in the order wherein I should wish to leave them during a brief absence. Meantime, I heard St. John quit his room. He stopped at my door: I feared he would knock—no, but a slip of paper was passed under the door. I took it up. It bore these words—
@@ -6234,10 +6133,6 @@ I had dreaded worse. I had dreaded he was mad. I summoned strength to ask what h
 “We have a chaise, ma’am, a very handsome chaise.”
 
 “Let it be got ready instantly; and if your post-boy can drive me to Ferndean before dark this day, I’ll pay both you and him twice the hire you usually demand.”
-
-
-
-
 
 ## Chapter 37
 
@@ -6761,10 +6656,6 @@ He put me off his knee, rose, and reverently lifting his hat from his brow, and 
 
 Then he stretched his hand out to be led. I took that dear hand, held it a moment to my lips, then let it pass round my shoulder: being so much lower of stature than he, I served both for his prop and guide. We entered the wood, and wended homeward.
 
-
-
-
-
 ## Chapter 38—CONCLUSION
 
 Reader, I married him. A quiet wedding we had: he and I, the parson（牧师） and clerk（执士）, were alone present. When we got back from church, I went into the kitchen of the manor-house（庄园）, where Mary was cooking the dinner and John cleaning the knives, and I said—
@@ -6812,8 +6703,6 @@ As to St. John Rivers, he left England: he went to India. He entered on the path
 St. John is unmarried: he never will marry now. Himself has hitherto sufficed to the toil, and the toil draws near its close: his glorious sun hastens to its setting. The last letter I received from him drew from my eves human tears, and yet filled my heart with divine joy: he anticipated his sure reward, his incorruptible crown. I know that a stranger’s hand will write to me next, to say that the good and faithful servant has been called at length into the joy of his Lord. And why weep for this? No fear of death will darken St. John’s last hour: his mind will be unclouded, his heart will be undaunted, his hope will be sure, his faith steadfast. His own words are a pledge of this—
 
 “My Master,” he says, “has forewarned me. Daily He announces more distinctly,—‘Surely I come quickly!’ and hourly I more eagerly respond,—‘Amen; even so come, Lord Jesus!’”
-
-
 
 The Bronte Sisters（勃朗特姐妹）
 

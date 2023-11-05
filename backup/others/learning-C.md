@@ -1,6 +1,6 @@
 ## C 语言
 
-~~~c
+```c
 
 #include<stdio.h>
 int main ()
@@ -29,8 +29,8 @@ int main ()
   for(a=0;a<10;a++)
   {scanf("%d",&d[a]);
   printf("\n");}
-  
-  
+
+
   for(b=0;b<10;b++)
     printf("The number is %d\n",*(d+b));
   return 0;
@@ -43,12 +43,12 @@ int main ()
   int a;
   int d[10];
   int *p=d;
-  
+
   for(a=0;a<10;a++)
   {scanf("%d",&d[a]);
   printf("\n");}
-  
-  
+
+
   for(;p<(d+10);p++)
     printf("The number is %d\n",*p);
   return 0;
@@ -129,7 +129,7 @@ int main ()
           break;
         }
       }
-    
+
     }
 
   system("pause");
@@ -141,7 +141,7 @@ int main ()
 int main ()
 {
   int a,b,c,i,j;
-  
+
   char max,m[10];
 
   for(a=0;a<10;a++)
@@ -149,10 +149,10 @@ int main ()
     printf("please input %dth number\n",a+1);
     scanf("%c",&m[a]);
   }
-  
+
   for(j=9;j<0;j--)
   {max=m[0];
-  
+
   for(i=1;i<j+1;i++)
   {
     if(max>m[i])
@@ -165,7 +165,7 @@ int main ()
   for(b=0;b<10;b++)
   {
     printf("the %cth number is %c.\n",m[b+1],m[b]);
-    
+
   }
   return 0;
 }
@@ -181,10 +181,10 @@ int main ()
     printf("please input %dth number\n",a+1);
     scanf("%c",&m[a]);
   }
-    
+
   for(j=9;j<0,j--)
   {max=m[0];
-  
+
   for(i=1;i<j+1;i++)
   {
     if(max>m[i])
@@ -198,7 +198,7 @@ int main ()
   for(b=0;b<10;b++)
   {
     printf("the %cth number is %c.\n",m[b+1],m[b]);
-    
+
   }
   return 0;
 
@@ -206,7 +206,7 @@ int main ()
 float Max=0，Min=0;
 int main()
 { float average(float a[],int n);
-  
+
   float ave;
   int i;
   float score[10];
@@ -292,12 +292,12 @@ int main()
   }
   for(j=0;j<7;j+=2)
   {
-    
+
 #include<stdio.h>
 float Max=0;Min=0;
 int main()
 { float average(float a[],int n);
-  
+
   float ave;
   int i;
   float score[10];
@@ -330,7 +330,7 @@ float average(float a[],int n)
 int main ()
 {
   int a,b,c,i,j;
-  
+
   char max,m[10];
 
   for(a=0;a<10;a++)
@@ -338,10 +338,10 @@ int main ()
     printf("please input %dth number\n",a+1);
     scanf("%c",&m[a]);
   }
-  
+
   for(j=9;j<0;j--)
   {max=m[0];
-  
+
   for(i=1;i<j+1;i++)
   {
     if(max>m[i])
@@ -356,7 +356,7 @@ int main ()
   for(b=0;b<10;b++)
   {
     printf("the %cth number is %c.\n",m[b+1],m[b]);
-    
+
   }
   return 0;
 }
@@ -374,8 +374,8 @@ int main ()
   t=a[0][0];
   m=0;
   n=0;
-  
-    
+
+
   for(i=0;i<3;i++)
   {
     for(j=0;j<=i;j++)
@@ -435,7 +435,7 @@ int main ()
   printf("%s\n\n%s\n\n",a,b);
   return 0;
 }
-  
+
 
 
 #include<stdio.h>
@@ -455,7 +455,7 @@ int main ()
   printf("%s\n\n%s\n\n",a,b);
   return 0;
 }
-  
+
 
 #include<stdio.h>
 int main ()
@@ -499,11 +499,11 @@ int main()
     else
       b=1;
   }
-  else 
+  else
     b=2;
   if(b==1)
     printf("It is a runnian !");
-  else 
+  else
     printf("It not a runnian !");
   return 0;
 }
@@ -539,7 +539,7 @@ char ch[]="I love you!";ch存储的是所有的字符数据。
 
 #include <stdio.h>
 int main()
-{ char *string=“I love China!”; 
+{ char *string=“I love China!”;
    printf(“%s\n”,string);
    string=”I am a student.”;
    printf(“%s\n”,string);
@@ -571,7 +571,7 @@ int main()
   scanf("%d,%d",&b,&c);
   printf("input the number\n");
   scanf("%d",&a);
-  
+
   if(a==1)
     p=max;
   else if(a==2)
@@ -622,7 +622,7 @@ int main()
   for(j=(n-1);j>=0;j--)
     printf("%d\n",a[j]);
   printf("\n\n");
-  
+
   free(a);
   return 0;
 }
@@ -635,7 +635,7 @@ int main(void)
   int b[3]={4,5,6};
   int c[3];
   int i,j,k;
-  
+
   for(i=0;i<3;i++)
   {
     c[i]=0;
@@ -644,7 +644,7 @@ int main(void)
       c[i]=c[i]+a[i][j]*b[j];
     }
   }
-  
+
   for(k=0;k<3;k++)
     printf("The C is  %d\n",c[k]);
   return 0;
@@ -726,14 +726,14 @@ int main()
   }
 
   printf("%d\n\n",sum);
-  
+
   for(i=0;i<3;i++)
   {for(j=0;j<3;j++)
     printf("    %d    ",a[i][j]);
   printf("\n");
 
   }
-  
+
   return 0;
 }
 
@@ -759,7 +759,7 @@ void anbing(int *p,int *q)
     p=q;
     q=temp;
   }
-} 
+}
 Ps:void 类型函数不用返回值。
 调用函数，实际参数不是*p，*p表示实际的数字而不是指针。
 
@@ -771,7 +771,7 @@ int main(void)
   int b[3][3]={{1,1,1},{1,1,1},{1,1,1}};
   int c[3][3];
   int i,j,k;
-  
+
   for(i=0;i<3;i++)
   {
     for(j=0;j<3;j++)
@@ -783,8 +783,8 @@ int main(void)
       }
     }
   }
-  
-  
+
+
   printf("The result is :\n");
   for(k=0;k<3;k++)
   {
@@ -825,47 +825,47 @@ int main( )
 
 1、求1+2+3+⋯⋯⋯.+100。（循环）
 答案
-#include<stdio.h> 
-void main() 
-{ 
- int i,sum=0; 
- for(i=1;i<=100;i++) 
- sum=sum+i; 
- printf("%d",sum); 
+#include<stdio.h>
+void main()
+{
+ int i,sum=0;
+ for(i=1;i<=100;i++)
+ sum=sum+i;
+ printf("%d",sum);
 }
 2、 求1*2*3*⋯⋯⋯.*10。（循环）
 答案
 
 #include<stdio.h>
-void main() 
-{ 
-int i=0,j=1; 
-for (i=2;i<=10;i++) 
-{ 
-j*=i; 
-} 
-printf("%d",j); 
+void main()
+{
+int i=0,j=1;
+for (i=2;i<=10;i++)
+{
+j*=i;
+}
+printf("%d",j);
 }
 3、 输入三个数字，输出他们的最大值。（if）
 答案
 #include<stdio.h>
-void main() 
+void main()
 {
 
-int a,b,c,d; 
-scanf("%d,%d,%d",&a,&b,&c); 
-d=max(a,b,c); 
-printf("max=%d",d); 
-getch();/*暂停看运行结果*/ 
-} 
+int a,b,c,d;
+scanf("%d,%d,%d",&a,&b,&c);
+d=max(a,b,c);
+printf("max=%d",d);
+getch();/*暂停看运行结果*/
+}
 int max(int x,int y,int z)
-{int u; 
-if(x>=y&&x>=z) 
-u=x; 
-else if(y>=x&&y>=z) 
-u=y; 
-else 
-u=z; 
+{int u;
+if(x>=y&&x>=z)
+u=x;
+else if(y>=x&&y>=z)
+u=y;
+else
+u=z;
 return(u);
 
 4.用起泡法对十个数据排序（数组实现）
@@ -883,7 +883,7 @@ main ( )
    }
 for(i=0;i<10;i++)
  printf("%2d",a[i]);
-} 
+}
 5、输入十个数字，逆序输出。（数组实现）
 答案
 #include<stdio.h>
@@ -948,7 +948,7 @@ void main()
      a[i]=a[i]+32;
         printf("%c",a[i]);
     }
-} 
+}
 9、 编写一个简单计算器程序，要求能够完成两个数的+，-，*，/四种运算。输出运算式及运算结果。(switch)
 6.2
 #include"stdio.h"
@@ -1021,15 +1021,15 @@ main()
 {int x,y;
 printf("输入x：");
 scanf("%d",&x);
-if(x<1)                        
+if(x<1)
 { y=x;
 printf("x=%3d, y=x=%d\n",x,y);
 }
-else if (x<10)                
+else if (x<10)
 { y=2*x-1;
 printf("x=%3d, y=2*x-1=%d\n",x,y);
 }
-else                    
+else
 { y=3*x-11;
 printf("x=%3d, y=3*x-11=%d\n",x,y);
 }
@@ -1060,21 +1060,21 @@ case 0: grade=’E’;
 }
 printf("成绩是%5.1f，相应的等级是%c。\n",score,grade);
 }
- 
 
-#include<stdio.h> 
-    void main() 
-    { 
-        int year; 
-        year=2000; 
-      go: if(((year%4 == 0)&&(year%100 != 0)) || (year%400 == 0)) 
-           printf("%d is run nian",year); 
-        if(year<=2500) 
-           year=year++; 
+
+#include<stdio.h>
+    void main()
+    {
+        int year;
+        year=2000;
+      go: if(((year%4 == 0)&&(year%100 != 0)) || (year%400 == 0))
+           printf("%d is run nian",year);
+        if(year<=2500)
+           year=year++;
           if(year>2500)
-           goto end;        
-      goto go; 
-        end:   getch(); 
+           goto end;
+      goto go;
+        end:   getch();
        }
 
 1.分数连加，中间符号不一样。
@@ -1098,5 +1098,4 @@ int main()
   return 0;
 }
 调用函数实现：
-~~~
-
+```

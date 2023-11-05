@@ -1,16 +1,16 @@
-# Nginx在应用程序中的作用
+# Nginx 在应用程序中的作用
 
 - 解决跨域
 - 请求过滤
-- 配置gzip
+- 配置 gzip
 - 负载均衡
 - 静态资源服务器
 
-nginx是一个高性能的HTTP和反向代理服务器，也是一个通用的TCP/UDP代理服务器，最初由俄罗斯人Igor Sysoev编写。
+nginx 是一个高性能的 HTTP 和反向代理服务器，也是一个通用的 TCP/UDP 代理服务器，最初由俄罗斯人 Igor Sysoev 编写。
 
-nginx现在几乎是众多大型网站的必用技术，大多数情况下，我们不需要亲自去配置它，但是了解它在应用程序中所担任的角色，以及如何解决这些问题是非常必要的。
+nginx 现在几乎是众多大型网站的必用技术，大多数情况下，我们不需要亲自去配置它，但是了解它在应用程序中所担任的角色，以及如何解决这些问题是非常必要的。
 
-下面我将从nginx在企业中的真实应用来解释nginx在应用程序中起到的作用。
+下面我将从 nginx 在企业中的真实应用来解释 nginx 在应用程序中起到的作用。
 
 为了便于理解，首先先来了解一下一些基础知识，`nginx是一个高性能的反向代理服务器`那么什么是反向代理呢？
 
@@ -30,7 +30,7 @@ nginx现在几乎是众多大型网站的必用技术，大多数情况下，我
 
 #### 反向代理
 
-**反向代理**（Reverse Proxy）方式是指以代理服务器来接受internet上的连接请求，然后将请求转发给内部网络上的服务器，并将从服务器上得到的结果返回给internet上请求连接的客户端，此时代理服务器对外就表现为一个反向代理服务器。
+**反向代理**（Reverse Proxy）方式是指以代理服务器来接受 internet 上的连接请求，然后将请求转发给内部网络上的服务器，并将从服务器上得到的结果返回给 internet 上请求连接的客户端，此时代理服务器对外就表现为一个反向代理服务器。
 
 **反向代理**是为服务端服务的，反向代理可以帮助服务器接收来自客户端的请求，帮助服务器做请求转发，负载均衡等。
 
@@ -41,17 +41,17 @@ nginx现在几乎是众多大型网站的必用技术，大多数情况下，我
 
 #### 配置结构
 
-下面是一个nginx配置文件的基本结构：
+下面是一个 nginx 配置文件的基本结构：
 
 ```
-events { 
+events {
 
 }
 
-http 
+http
 {
     server
-    { 
+    {
         location path
         {
             ...
@@ -70,10 +70,10 @@ http
 }
 ```
 
-- `main`:nginx的全局配置，对全局生效。
-- `events`:配置影响nginx服务器或与用户的网络连接。
-- `http`：可以嵌套多个server，配置代理，缓存，日志定义等绝大多数功能和第三方模块的配置。
-- `server`：配置虚拟主机的相关参数，一个http中可以有多个server。
+- `main`:nginx 的全局配置，对全局生效。
+- `events`:配置影响 nginx 服务器或与用户的网络连接。
+- `http`：可以嵌套多个 server，配置代理，缓存，日志定义等绝大多数功能和第三方模块的配置。
+- `server`：配置虚拟主机的相关参数，一个 http 中可以有多个 server。
 - `location`：配置请求的路由，以及各种页面的处理情况。
 - `upstream`：配置后端服务器具体地址，负载均衡配置不可或缺的部分。
 
@@ -81,21 +81,21 @@ http
 
 下面是`nginx`一些配置中常用的内置全局变量，你可以在配置的任何位置使用它们。
 
-| 变量名                   | 功能                                                         |
-| ------------------------ | ------------------------------------------------------------ |
+| 变量名                   | 功能                                                             |
+| ------------------------ | ---------------------------------------------------------------- |
 | `$host`                  | 请求信息中的`Host`，如果请求中没有`Host`行，则等于设置的服务器名 |
-| `$request_method`        | 客户端请求类型，如`GET`、`POST`                              |
-| `$remote_addr`           | 客户端的`IP`地址                                             |
-| `$args`                  | 请求中的参数                                                 |
-| `$content_length`        | 请求头中的`Content-length`字段                               |
-| `$http_user_agent`       | 客户端agent信息                                              |
-| `$http_cookie`           | 客户端cookie信息                                             |
-| `$remote_addr`           | 客户端的IP地址                                               |
-| `$remote_port`           | 客户端的端口                                                 |
-| `$server_protocol`       | 请求使用的协议，如`HTTP/1.0`、·HTTP/1.1`                     |
-| `$服务器地址server_addr` | 服务器地址                                                   |
-| `$server_name`           | 服务器名称                                                   |
-| `$server_port`           | 服务器的端口号                                               |
+| `$request_method`        | 客户端请求类型，如`GET`、`POST`                                  |
+| `$remote_addr`           | 客户端的`IP`地址                                                 |
+| `$args`                  | 请求中的参数                                                     |
+| `$content_length`        | 请求头中的`Content-length`字段                                   |
+| `$http_user_agent`       | 客户端 agent 信息                                                |
+| `$http_cookie`           | 客户端 cookie 信息                                               |
+| `$remote_addr`           | 客户端的 IP 地址                                                 |
+| `$remote_port`           | 客户端的端口                                                     |
+| `$server_protocol`       | 请求使用的协议，如`HTTP/1.0`、·HTTP/1.1`                         |
+| `$服务器地址server_addr` | 服务器地址                                                       |
+| `$server_name`           | 服务器名称                                                       |
+| `$server_port`           | 服务器的端口号                                                   |
 
 ### 解决跨域
 
@@ -109,22 +109,18 @@ http
 
 如果两个页面的协议，端口（如果有指定）和域名都相同，则两个页面具有相同的源。
 
- 
-
 ![img](https://img2018.cnblogs.com/blog/48590/201907/48590-20190708094534344-2138208771.jpg)
 
- 
-
-#### nginx解决跨域的原理
+#### nginx 解决跨域的原理
 
 例如：
 
-- 前端server的域名为：`fe.server.com`
+- 前端 server 的域名为：`fe.server.com`
 - 后端服务的域名为：`dev.server.com`
 
 现在我在`fe.server.com`对`dev.server.com`发起请求一定会出现跨域。
 
-现在我们只需要启动一个nginx服务器，将`server_name`设置为`fe.server.com`,然后设置相应的location以拦截前端需要跨域的请求，最后将请求代理回`dev.server.com`。如下面的配置：
+现在我们只需要启动一个 nginx 服务器，将`server_name`设置为`fe.server.com`,然后设置相应的 location 以拦截前端需要跨域的请求，最后将请求代理回`dev.server.com`。如下面的配置：
 
 ```
 server {
@@ -150,7 +146,7 @@ error_page 500 501 502 503 504 506 /50x.html;
     }
 ```
 
-根据URL名称过滤，精准匹配URL，不匹配的URL全部重定向到主页。
+根据 URL 名称过滤，精准匹配 URL，不匹配的 URL 全部重定向到主页。
 
 ```
 location / {
@@ -166,33 +162,25 @@ if ( $request_method !~ ^(GET|POST|HEAD)$ ) {
     }
 ```
 
-推荐大家使用[Fundebug](https://links.jianshu.com/go?to=https%3A%2F%2Fwww.fundebug.com%2F%3Futm_source%3Dconardli)，一款很好用的BUG监控工具~
+推荐大家使用[Fundebug](https://links.jianshu.com/go?to=https%3A%2F%2Fwww.fundebug.com%2F%3Futm_source%3Dconardli)，一款很好用的 BUG 监控工具~
 
-### 配置gzip
+### 配置 gzip
 
-`GZIP`是规定的三种标准HTTP压缩格式之一。目前绝大多数的网站都在使用`GZIP`传输 `HTML`、`CSS`、`JavaScript` 等资源文件。
+`GZIP`是规定的三种标准 HTTP 压缩格式之一。目前绝大多数的网站都在使用`GZIP`传输 `HTML`、`CSS`、`JavaScript` 等资源文件。
 
 对于文本文件，`GZip` 的效果非常明显，开启后传输所需流量大约会降至 `1/4 ~ 1/3`。
 
 并不是每个浏览器都支持`gzip`的，如何知道客户端是否支持`gzip`呢，请求头中的`Accept-Encoding`来标识对压缩的支持。
 
- 
-
 ![img](https://img2018.cnblogs.com/blog/48590/201907/48590-20190708094546481-1636245962.jpg)
-
- 
 
 启用`gzip`同时需要客户端和服务端的支持，如果客户端支持`gzip`的解析，那么只要服务端能够返回`gzip`的文件就可以启用`gzip`了,我们可以通过`nginx`的配置来让服务端支持`gzip`。下面的`respone`中`content-encoding:gzip`，指服务端开启了`gzip`的压缩方式。
 
- 
-
 ![img](https://img2018.cnblogs.com/blog/48590/201907/48590-20190708094557531-1055028065.jpg)
-
- 
 
 ```
     gzip                    on;
-    gzip_http_version       1.1;        
+    gzip_http_version       1.1;
     gzip_comp_level         5;
     gzip_min_length         1000;
     gzip_types text/csv text/xml text/css text/plain text/javascript application/javascript application/x-javascript application/json application/xml;
@@ -215,11 +203,7 @@ if ( $request_method !~ ^(GET|POST|HEAD)$ ) {
 
 启用持久连接情况下，服务器发出响应后让`TCP`连接继续打开着。同一对客户/服务器之间的后续请求和响应可以通过这个连接发送。
 
- 
-
 ![img](https://img2018.cnblogs.com/blog/48590/201907/48590-20190708094614507-1993308298.jpg)
-
- 
 
 为了尽可能的提高 `HTTP` 性能，使用持久连接就显得尤为重要了。
 
@@ -229,11 +213,11 @@ if ( $request_method !~ ^(GET|POST|HEAD)$ ) {
 
 `Nginx`在启用了`GZip`的情况下，不会等文件 `GZip` 完成再返回响应，而是边压缩边响应，这样可以显著提高 `TTFB`(`Time To First Byte`，首字节时间，WEB 性能优化重要指标)。这样唯一的问题是，`Nginx` 开始返回响应时，它无法知道将要传输的文件最终有多大，也就是无法给出`Content-Length`这个响应头部。
 
-所以，在`HTTP1.0`中如果利用`Nginx`启用了`GZip`，是无法获得`Content-Length`的，这导致HTTP1.0中开启持久链接和使用`GZip`只能二选一，所以在这里`gzip_http_version`默认设置为`1.1`。
+所以，在`HTTP1.0`中如果利用`Nginx`启用了`GZip`，是无法获得`Content-Length`的，这导致 HTTP1.0 中开启持久链接和使用`GZip`只能二选一，所以在这里`gzip_http_version`默认设置为`1.1`。
 
 #### gzip_comp_level
 
-- 压缩级别，级别越高压缩率越大，当然压缩时间也就越长（传输快但比较消耗cpu）。
+- 压缩级别，级别越高压缩率越大，当然压缩时间也就越长（传输快但比较消耗 cpu）。
 - 默认值为 `1`
 - 压缩级别取值为`1-9`
 
@@ -245,7 +229,7 @@ if ( $request_method !~ ^(GET|POST|HEAD)$ ) {
 
 #### gzip_types
 
-- 要采用gzip压缩的文件类型(`MIME`类型)
+- 要采用 gzip 压缩的文件类型(`MIME`类型)
 - 默认值:`text/html`(默认不压缩`js`/`css`)
 
 ### 负载均衡
@@ -256,9 +240,9 @@ if ( $request_method !~ ^(GET|POST|HEAD)$ ) {
 
 把前面的服务窗口想像成我们的后端服务器，而后面终端的人则是无数个客户端正在发起请求。负载均衡就是用来帮助我们将众多的客户端请求合理的分配到各个服务器，以达到服务端资源的充分利用和更少的请求时间。
 
-#### nginx如何实现负载均衡
+#### nginx 如何实现负载均衡
 
-Upstream指定后端服务器地址列表
+Upstream 指定后端服务器地址列表
 
 ```
 upstream balanceServer {
@@ -268,7 +252,7 @@ upstream balanceServer {
 }
 ```
 
-在server中拦截响应请求，并将请求转发到Upstream中配置的服务器列表。
+在 server 中拦截响应请求，并将请求转发到 Upstream 中配置的服务器列表。
 
 ```
     server {
@@ -280,17 +264,13 @@ upstream balanceServer {
     }
 ```
 
-上面的配置只是指定了nginx需要转发的服务端列表，并没有指定分配策略。
+上面的配置只是指定了 nginx 需要转发的服务端列表，并没有指定分配策略。
 
-#### nginx实现负载均衡的策略
+#### nginx 实现负载均衡的策略
 
 **轮询策略**
 
- 
-
 ![img](https://img2018.cnblogs.com/blog/48590/201907/48590-20190708094643826-1700546265.jpg)
-
- 
 
 默认情况下采用的策略，将所有客户端请求轮询分配给服务端。这种策略是可以正常工作的，但是如果其中某一台服务器压力太大，出现延迟，会影响所有分配在这台服务器下的用户。
 
@@ -304,11 +284,7 @@ upstream balanceServer {
 
 **最小连接数策略**
 
- 
-
 ![img](https://img2018.cnblogs.com/blog/48590/201907/48590-20190708094655455-1170558787.jpg)
-
- 
 
 将请求优先分配给压力较小的服务器，它可以平衡每个队列的长度，并避免向压力大的服务器添加更多的请求。
 
@@ -323,13 +299,9 @@ upstream balanceServer {
 
 **最快响应时间策略**
 
- 
-
 ![img](https://img2018.cnblogs.com/blog/48590/201907/48590-20190708094708300-1509210421.jpg)
 
- 
-
-依赖于NGINX Plus，优先分配给响应时间最短的服务器。
+依赖于 NGINX Plus，优先分配给响应时间最短的服务器。
 
 ```
 upstream balanceServer {
@@ -340,9 +312,9 @@ upstream balanceServer {
 }
 ```
 
-**客户端ip绑定**
+**客户端 ip 绑定**
 
-来自同一个ip的请求永远只分配一台服务器，有效解决了动态网页存在的session共享问题。
+来自同一个 ip 的请求永远只分配一台服务器，有效解决了动态网页存在的 session 共享问题。
 
 ```
 upstream balanceServer {
@@ -357,20 +329,13 @@ upstream balanceServer {
 
 ```
 location ~* \.(png|gif|jpg|jpeg)$ {
-    root    /root/static/;  
+    root    /root/static/;
     autoindex on;
     access_log  off;
-    expires     10h;# 设置过期时间为10小时          
+    expires     10h;# 设置过期时间为10小时
 }
 ```
 
-匹配以`png|gif|jpg|jpeg`为结尾的请求，并将请求转发到本地路径，`root`中指定的路径即nginx本地路径。同时也可以进行一些缓存的设置。
+匹配以`png|gif|jpg|jpeg`为结尾的请求，并将请求转发到本地路径，`root`中指定的路径即 nginx 本地路径。同时也可以进行一些缓存的设置。
 
 链接：https://www.jianshu.com/p/bd652a2a8bea
-
-
-
-
-
-
-

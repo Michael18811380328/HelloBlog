@@ -1,12 +1,12 @@
-# django入门基础教程
+# django 入门基础教程
 
 https://www.jianshu.com/p/faeee7d5ad3b
 
-Django是一个开放源代码的Web应用框架，由Python写成。采用了MVT的框架模式，即模型M，视图V和模版T。它最初是被开发来用于管理劳伦斯出版集团旗下的一些以新闻内容为主的网站的，即是CMS（内容管理系统）软件。并于2005年7月在BSD许可证下发布。这套框架是以比利时的吉普赛爵士吉他手Django Reinhardt来命名的。
+Django 是一个开放源代码的 Web 应用框架，由 Python 写成。采用了 MVT 的框架模式，即模型 M，视图 V 和模版 T。它最初是被开发来用于管理劳伦斯出版集团旗下的一些以新闻内容为主的网站的，即是 CMS（内容管理系统）软件。并于 2005 年 7 月在 BSD 许可证下发布。这套框架是以比利时的吉普赛爵士吉他手 Django Reinhardt 来命名的。
 
 # 框架介绍
 
-Django 项目是一个Python定制框架，它源自一个在线新闻 Web 站点，于 2005 年以开源的形式被释放出来。Django 框架的核心组件有：
+Django 项目是一个 Python 定制框架，它源自一个在线新闻 Web 站点，于 2005 年以开源的形式被释放出来。Django 框架的核心组件有：
 
 1. 用于创建模型的[对象关系映射](https://links.jianshu.com/go?to=https%3A%2F%2Fbaike.baidu.com%2Fitem%2F%E5%AF%B9%E8%B1%A1%E5%85%B3%E7%B3%BB%E6%98%A0%E5%B0%84)
 2. 为最终用户设计的完美管理界面
@@ -16,30 +16,28 @@ Django 项目是一个Python定制框架，它源自一个在线新闻 Web 站�
 
 ## 架构设计
 
-Django是一个基于[MVC](https://links.jianshu.com/go?to=https%3A%2F%2Fbaike.baidu.com%2Fitem%2FMVC)构造的框架。但是在Django中，控制器接受用户输入的部分由框架自行处理，所以 Django 里更关注的是模型（Model）、模板(Template)和视图（Views），称为 MTV模式。它们各自的职责如下：
+Django 是一个基于[MVC](https://links.jianshu.com/go?to=https%3A%2F%2Fbaike.baidu.com%2Fitem%2FMVC)构造的框架。但是在 Django 中，控制器接受用户输入的部分由框架自行处理，所以 Django 里更关注的是模型（Model）、模板(Template)和视图（Views），称为 MTV 模式。它们各自的职责如下：
 
 ![img](https:////upload-images.jianshu.io/upload_images/12747273-30afb6956c6d4c5e.png?imageMogr2/auto-orient/strip|imageView2/2/w/594/format/webp)
 
 image.png
 
-从以上表述可以看出Django 视图不处理用户输入，而仅仅决定要展现哪些数据给用户，而Django 模板 仅仅决定如何展现Django视图指定的数据。或者说, Django将MVC中的视图进一步分解为 Django视图 和 Django模板两个部分，分别决定 “展现哪些数据” 和 “如何展现”，使得Django的模板可以根据需要随时替换，而不仅仅限制于内置的模板。
- 至于MVC控制器部分，由Django框架的URLconf来实现。URLconf机制是使用正则表达式匹配URL，然后调用合适的Python函数。URLconf对于URL的规则没有任何限制，你完全可以设计成任意的URL风格，不管是传统的，RESTful的，或者是另类的。框架把控制层给封装了，无非与数据交互这层都是数据库表的读,写,删除,更新的操作。在写程序的时候，只要调用相应的方法就行了，感觉很方便。程序员把控制层东西交给Django自动完成了。 只需要编写非常少的代码完成很多的事情。所以，它比MVC框架考虑的问题要深一步，因为我们程序员大都在写控制层的程序。现在这个工作交给了框架，仅需写很少的调用代码，大大提高了工作效率
+从以上表述可以看出 Django 视图不处理用户输入，而仅仅决定要展现哪些数据给用户，而 Django 模板 仅仅决定如何展现 Django 视图指定的数据。或者说, Django 将 MVC 中的视图进一步分解为 Django 视图 和 Django 模板两个部分，分别决定 “展现哪些数据” 和 “如何展现”，使得 Django 的模板可以根据需要随时替换，而不仅仅限制于内置的模板。
+至于 MVC 控制器部分，由 Django 框架的 URLconf 来实现。URLconf 机制是使用正则表达式匹配 URL，然后调用合适的 Python 函数。URLconf 对于 URL 的规则没有任何限制，你完全可以设计成任意的 URL 风格，不管是传统的，RESTful 的，或者是另类的。框架把控制层给封装了，无非与数据交互这层都是数据库表的读,写,删除,更新的操作。在写程序的时候，只要调用相应的方法就行了，感觉很方便。程序员把控制层东西交给 Django 自动完成了。 只需要编写非常少的代码完成很多的事情。所以，它比 MVC 框架考虑的问题要深一步，因为我们程序员大都在写控制层的程序。现在这个工作交给了框架，仅需写很少的调用代码，大大提高了工作效率
 
 # 快速安装：
 
-1. 安装Python
+1. 安装 Python
 
    作为一个 Python Web 框架，Django 需要 Python， Python 包含了一个名为 [SQLite](https://links.jianshu.com/go?to=https%3A%2F%2Fsqlite.org%2F) 的轻量级数据库，所以你暂时不必自行设置一个数据库。
 
    最新版本的 Python 可以通过访问 [https://www.python.org/downloads/](https://links.jianshu.com/go?to=https%3A%2F%2Fwww.python.org%2Fdownloads%2F) 或者操作系统的包管理工具获取
 
-\2.     设置数据库
+\2. 设置数据库
 
 此步骤仅在你打算使用诸如 PostgreSQL, MySQL, 或者 Oracle 这些大型数据库引擎时需要。要安装这种数据库, 请参考 [database installation information](https://links.jianshu.com/go?to=https%3A%2F%2Fdocs.djangoproject.com%2Fzh-hans%2F2.1%2Ftopics%2Finstall%2F%23database-installation)。
 
-\3.     安装 Django
-
-
+\3. 安装 Django
 
 ```undefined
 pip install Django
@@ -47,15 +45,11 @@ pip install Django
 
 或者
 
-
-
 ```php
 git clone https://github.com/django/django.git
 ```
 
 1. 验证
-
-
 
 ```python
 >>> import django
@@ -76,8 +70,6 @@ git clone https://github.com/django/django.git
 
 打开命令行，cd 到一个你想放置你代码的目录，然后运行以下命令：
 
-
-
 ```undefined
 django-admin startproject mysite
 ```
@@ -88,8 +80,6 @@ django-admin startproject mysite
 
 image.png
 
-
-
 这些目录和文件的用处是：
 
 - 最外层的:file: <cite>mysite/</cite> 根目录只是你项目的容器，** Django 不关心它的名字**，你可以将它重命名为任何你喜欢的名字。
@@ -97,12 +87,10 @@ image.png
 - 里面一层的 `mysite/` 目录包含你的项目**，它是一个纯 Python 包**。它的名字就是当你引用它内部任何东西时需要用到的 Python 包名。 (比如 `mysite.urls`).
 - `mysite/__init__.py`：一个空文件，告诉 Python 这个目录应该被认为是一个 Python 包。如果你是 Python 初学者，阅读官方文档中的 [更多关于包的知识](https://links.jianshu.com/go?to=https%3A%2F%2Fdocs.python.org%2F3%2Ftutorial%2Fmodules.html%23tut-packages)。
 - `mysite/settings.py`：**Django 项目的配置文件**。如果你想知道这个文件是如何工作的，请查看 [Django settings](https://links.jianshu.com/go?to=https%3A%2F%2Fdocs.djangoproject.com%2Fzh-hans%2F2.1%2Ftopics%2Fsettings%2F) 了解细节。
-- `mysite/urls.py`：Django 项目的** URL 声明，就像你网站的“目录”**。阅读 [URL调度器](https://links.jianshu.com/go?to=https%3A%2F%2Fdocs.djangoproject.com%2Fzh-hans%2F2.1%2Ftopics%2Fhttp%2Furls%2F) 文档来获取更多关于 URL 的内容。
-- `mysite/wsgi.py`：作为你的项目的运行在 WSGI 兼容的Web服务器上的入口。阅读 [如何使用 WSGI 进行部署](https://links.jianshu.com/go?to=https%3A%2F%2Fdocs.djangoproject.com%2Fzh-hans%2F2.1%2Fhowto%2Fdeployment%2Fwsgi%2F) 了解更多细节。
+- `mysite/urls.py`：Django 项目的** URL 声明，就像你网站的“目录”**。阅读 [URL 调度器](https://links.jianshu.com/go?to=https%3A%2F%2Fdocs.djangoproject.com%2Fzh-hans%2F2.1%2Ftopics%2Fhttp%2Furls%2F) 文档来获取更多关于 URL 的内容。
+- `mysite/wsgi.py`：作为你的项目的运行在 WSGI 兼容的 Web 服务器上的入口。阅读 [如何使用 WSGI 进行部署](https://links.jianshu.com/go?to=https%3A%2F%2Fdocs.djangoproject.com%2Fzh-hans%2F2.1%2Fhowto%2Fdeployment%2Fwsgi%2F) 了解更多细节。
 
 ## 用于开发的简易服务器
-
-
 
 ```css
  python manage.py runserver
@@ -115,19 +103,15 @@ image.png
 [图片上传中...(image.png-3ac1a5-1559911924187-0)]
 
 更换端口：
- `python manage.py runserver 8080`
+`python manage.py runserver 8080`
 
 ## 创建投票应用
-
-
 
 ```css
 python manage.py startapp polls
 ```
 
 这将会创建一个 polls 目录，它的目录结构大致如下：
-
-
 
 ![img](https:////upload-images.jianshu.io/upload_images/12747273-ba16b6c78ff19df8.png?imageMogr2/auto-orient/strip|imageView2/2/w/361/format/webp)
 
@@ -139,19 +123,15 @@ image.png
 
 polls/views.py
 
-
-
 ```python
 def  index(request):
     return  HttpResponse("Hello, world. You're at the polls index.")
 ```
 
 这是 Django 中最简单的视图。如果想看见效果，我们需要将一个 URL 映射到它——这就是我们需要 URLconf 的原因了。
- 为了创建 URLconf，请在 polls 目录里新建一个 urls.py 文件。你的应用目录现在看起来应该是这样
+为了创建 URLconf，请在 polls 目录里新建一个 urls.py 文件。你的应用目录现在看起来应该是这样
 
 在 polls/urls.py 中，输入如下代码：
-
-
 
 ```python
 from django.urls import path
@@ -164,9 +144,7 @@ urlpatterns = [
 ```
 
 下一步是要在根 URLconf 文件中指定我们创建的 polls.urls 模块。在 mysite/urls.py 文件的 urlpatterns 列表里插入一个 include()， 如下：
- mysite/urls.py
-
-
+mysite/urls.py
 
 ```jsx
 from django.contrib import admin
@@ -192,15 +170,11 @@ image.png
 
 默认开启的某些应用需要至少一个数据表，所以，在使用他们之前需要在数据库中创建一些表。请执行以下命令：
 
-
-
 ```css
 python manage.py migrate
 ```
 
-这个**[`migrate`](https://links.jianshu.com/go?to=https%3A%2F%2Fdocs.djangoproject.com%2Fzh-hans%2F2.1%2Fref%2Fdjango-admin%2F%23django-admin-migrate) 命令检查 [`INSTALLED_APPS`](https://links.jianshu.com/go?to=https%3A%2F%2Fdocs.djangoproject.com%2Fzh-hans%2F2.1%2Fref%2Fsettings%2F%23std%3Asetting-INSTALLED_APPS)\**\**设置，为其中的每个应用创建需要的数据表**，至于具体会创建什么，这取决于你的 `mysite/settings.py` 设置文件和每个应用的数据库迁移文件。这个命令所执行的每个迁移操作都会在终端中显示出来
-
-
+这个**[`migrate`](https://links.jianshu.com/go?to=https%3A%2F%2Fdocs.djangoproject.com%2Fzh-hans%2F2.1%2Fref%2Fdjango-admin%2F%23django-admin-migrate) 命令检查 [`INSTALLED_APPS`](https://links.jianshu.com/go?to=https%3A%2F%2Fdocs.djangoproject.com%2Fzh-hans%2F2.1%2Fref%2Fsettings%2F%23std%3Asetting-INSTALLED_APPS)\*\*\*\*设置，为其中的每个应用创建需要的数据表**，至于具体会创建什么，这取决于你的 `mysite/settings.py` 设置文件和每个应用的数据库迁移文件。这个命令所执行的每个迁移操作都会在终端中显示出来
 
 ```css
 E:\codeDev\djangoDemo\mysite>python manage.py migrate
@@ -229,17 +203,15 @@ Running migrations:
 ## 创建模型
 
 在 Django 里写一个数据库驱动的 Web 应用的第一步是定义模型 - 也就是数据库结构设计和附加的其它元数据
- 在这个简单的投票应用中，需要创建两个模型：
+在这个简单的投票应用中，需要创建两个模型：
 
 问题 Question 和选项 Choice。
 
 Question 模型包括问题描述和发布时间。
- Choice 模型有两个字段，选项描述和当前得票数。每个选项属于一个问题。
- 这些概念可以通过一个简单的 Python 类来描述。按照下面的例子来编辑 polls/models.py 文件：
+Choice 模型有两个字段，选项描述和当前得票数。每个选项属于一个问题。
+这些概念可以通过一个简单的 Python 类来描述。按照下面的例子来编辑 polls/models.py 文件：
 
 polls/models.py
-
-
 
 ```python
 from django.db import models
@@ -262,10 +234,8 @@ class Choice(models.Model):
 
 - 为这个应用创建数据库 schema（生成 CREATE TABLE 语句）。
 - 创建可以与 Question 和 Choice 对象进行交互的 Python 数据库 API。
-   但是首先得把 polls 应用安装到我们的项目里
-   mysite/settings.py
-
-
+  但是首先得把 polls 应用安装到我们的项目里
+  mysite/settings.py
 
 ```bash
 INSTALLED_APPS = [
@@ -280,8 +250,6 @@ INSTALLED_APPS = [
 ```
 
 - 现在你的 Django 项目会包含 polls 应用。接着运行下面的命令：
-
-
 
 ```bash
 E:\codeDev\djangoDemo\mysite>python manage.py makemigrations polls
@@ -299,15 +267,11 @@ Django 有一个自动执行数据库迁移并同步管理你的数据库结构�
 
 - [`sqlmigrate`](https://links.jianshu.com/go?to=https%3A%2F%2Fdocs.djangoproject.com%2Fzh-hans%2F2.1%2Fref%2Fdjango-admin%2F%23django-admin-sqlmigrate) 命令接收一个迁移的名称，然后返回对应的 SQL：(非必须)
 
-
-
 ```css
 python manage.py sqlmigrate polls 0001
 ```
 
 你将会看到类似下面这样的输出（我把输出重组成了人类可读的格式）：
-
-
 
 ```cpp
 E:\codeDev\djangoDemo\mysite>python manage.py sqlmigrate polls 0001
@@ -327,15 +291,11 @@ COMMIT;
 
 - 现在，再次运行 [`migrate`](https://links.jianshu.com/go?to=https%3A%2F%2Fdocs.djangoproject.com%2Fzh-hans%2F2.1%2Fref%2Fdjango-admin%2F%23django-admin-migrate) 命令，在数据库里创建新定义的模型的数据表：
 
-
-
 ```css
 python manage.py migrate
 ```
 
 结果如下：
-
-
 
 ```css
 E:\codeDev\djangoDemo\mysite>python manage.py migrate
@@ -358,8 +318,6 @@ Running migrations:
 现在让我们进入交互式 Python 命令行，尝试一下 Django 为你创建的各种 API。通过以下命令打开 Python 命令行：
 
 python manage.py shell
-
-
 
 ```dart
 E:\codeDev\djangoDemo\mysite>python manage.py shell
@@ -389,17 +347,17 @@ Out[8]: datetime.datetime(2019, 5, 30, 4, 11, 17, 277390, tzinfo=<UTC>)
 
 In [9]:  q.question_text = "What's up?"
 
-In [10]: 
+In [10]:
 
 In [10]: q.save()
 
 In [11]: Question.objects.all()
 Out[11]: <QuerySet [<Question: Question object (1)>]>
 
-In [12]: 
+In [12]:
 ```
 
-等等。`` 对于我们了解这个对象的细节没什么帮助。让我们通过编辑 `Question` 模型的代码（位于 `polls/models.py` 中）来修复这个问题。给 `Question` 和 `Choice` 增加[`**__str__()**`](https://links.jianshu.com/go?to=https%3A%2F%2Fdocs.djangoproject.com%2Fzh-hans%2F2.1%2Fref%2Fmodels%2Finstances%2F%23django.db.models.Model.__str__)方法。
+等等。``对于我们了解这个对象的细节没什么帮助。让我们通过编辑`Question`模型的代码（位于`polls/models.py`中）来修复这个问题。给`Question`和`Choice` 增加[`****str**()**`](https://links.jianshu.com/go?to=https%3A%2F%2Fdocs.djangoproject.com%2Fzh-hans%2F2.1%2Fref%2Fmodels%2Finstances%2F%23django.db.models.Model.__str__)方法。
 
 **polls/models.py**
 
@@ -409,11 +367,9 @@ image.png
 
 给模型增加 [`__str__()`](https://links.jianshu.com/go?to=https%3A%2F%2Fdocs.djangoproject.com%2Fzh-hans%2F2.1%2Fref%2Fmodels%2Finstances%2F%23django.db.models.Model.__str__) 方法是很重要的，这不仅仅能给你在命令行里使用带来方便，Django 自动生成的 admin 里也使用这个方法来表示对象。
 
-注意：这些都是常规的 Python方法。让我们添加一个自定义的方法，这只是为了演示
+注意：这些都是常规的 Python 方法。让我们添加一个自定义的方法，这只是为了演示
 
 polls/models.py
-
-
 
 ```python
 import datetime
@@ -427,8 +383,6 @@ class Question(models.Model):
     def was_published_recently(self):
         return self.pub_date >= timezone.now() - datetime.timedelta(days=1)
 ```
-
-
 
 ```ruby
 E:\codeDev\djangoDemo\mysite>python manage.py shell
@@ -454,7 +408,7 @@ In [6]:  current_year = timezone.now().year
 In [7]: Question.objects.get(pub_date__year=current_year)
 Out[7]: <Question: What's up?>
 
-In [8]: 
+In [8]:
 
 In [8]: Question.objects.get(id=2)
 ---------------------------------------------------------------------------
@@ -486,7 +440,7 @@ In [10]: q = Question.objects.get(pk=1)
 In [11]:  q.was_published_recently()
 Out[11]: True
 
-In [12]: 
+In [12]:
 
 In [12]: q = Question.objects.get(pk=1)
 
@@ -515,12 +469,12 @@ Out[20]: <QuerySet [<Choice: Not much>, <Choice: The sky>, <Choice: Just hacking
 
 In [21]:  c = q.choice_set.filter(choice_text__startswith='Just hacking')
 
-In [22]: 
+In [22]:
 
 In [22]: c.delete()
 Out[22]: (1, {'polls.Choice': 1})
 
-In [23]: 
+In [23]:
 ```
 
 ## 介绍 Django 管理页面
@@ -530,19 +484,17 @@ In [23]:
 首先，我们得创建一个能登录管理页面的用户。请运行下面的命令：
 
 python manage.py createsuperuser
- 键入你想要使用的用户名，然后按下回车键：
+键入你想要使用的用户名，然后按下回车键：
 
 Username: admin
- 然后提示你输入想要使用的邮件地址：
+然后提示你输入想要使用的邮件地址：
 
 Email address: [admin@example.com](https://links.jianshu.com/go?to=mailto%3Aadmin%40example.com)
- 最后一步是输入密码。你会被要求输入两次密码，第二次的目的是为了确认第一次输入的确实是你想要的密码。
+最后一步是输入密码。你会被要求输入两次密码，第二次的目的是为了确认第一次输入的确实是你想要的密码。
 
-Password: **********
- Password (again): *********
- Superuser created successfully.
-
-
+Password: ****\*\*****
+Password (again): ****\*****
+Superuser created successfully.
 
 ```csharp
 E:\codeDev\djangoDemo\mysite>python manage.py createsuperuser
@@ -571,8 +523,6 @@ python manage.py runserver
 
 image.png
 
-
-
 ### 进入管理站点页面
 
 现在，试着使用你在上一步中创建的超级用户来登录。然后你将会看到 Django 管理页面的索引页
@@ -591,8 +541,6 @@ image.png
 
 polls/admin.py
 
-
-
 ```css
 from django.contrib import admin
 
@@ -604,25 +552,17 @@ admin.site.register(Question)
 
 现在我们向管理页面注册了问题 Question 类。Django 知道它应该被显示在索引页里：
 
-
-
 ![img](https:////upload-images.jianshu.io/upload_images/12747273-5ad1bf413552fed0.png?imageMogr2/auto-orient/strip|imageView2/2/w/1014/format/webp)
 
 image.png
 
-
-
 点击 "Questions" 。现在看到是问题 "Questions" 对象的列表 "change list" 。这个界面会显示所有数据库里的问题 Question 对象，你可以选择一个来修改。这里现在有我们在上一部分中创建的 “What's up?” 问题。
-
-
 
 ![img](https:////upload-images.jianshu.io/upload_images/12747273-098490efa9e40f05.png?imageMogr2/auto-orient/strip|imageView2/2/w/930/format/webp)
 
 image.png
 
 点击 “What's up?” 来编辑这个问题（Question）对象：
-
-
 
 ![img](https:////upload-images.jianshu.io/upload_images/12747273-396080bcbd55b2bb.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200/format/webp)
 
@@ -665,20 +605,18 @@ Django 中的**视图的概念是「一类具有相同功能和模板的网页�
 
 在 Django 中，网页和其他内容都是从视图派生而来。每一个视图表现为一个简单的 Python 函数（或者说方法，如果是在基于类的视图里的话）。Django 将会根据用户请求的 URL 来选择使用哪个视图（更准确的说，是根据 URL 中域名之后的部分）。
 
-在你上网的过程中，很可能看见过像这样美丽的 URL： "ME2/Sites/dirmod.asp?sid=&type=gen&mod=Core+Pages&gid=A6CD4967199A42D9B65B1B" 。别担心，Django 里的 *URL 规则* 要比这优雅的多！
+在你上网的过程中，很可能看见过像这样美丽的 URL： "ME2/Sites/dirmod.asp?sid=&type=gen&mod=Core+Pages&gid=A6CD4967199A42D9B65B1B" 。别担心，Django 里的 _URL 规则_ 要比这优雅的多！
 
 一个 URL 模式定义了某种 URL 的基本格式——举个例子：`/newsarchive///`。
 
 为了将 URL 和视图关联起来，Django 使用了 'URLconfs' 来配置。URLconf 将 URL 模式映射到视图。
 
-本教程只会介绍 URLconf 的基础内容，你可以看看 [URL调度器](https://links.jianshu.com/go?to=https%3A%2F%2Fdocs.djangoproject.com%2Fzh-hans%2F2.1%2Ftopics%2Fhttp%2Furls%2F) 以获取更多内容。
+本教程只会介绍 URLconf 的基础内容，你可以看看 [URL 调度器](https://links.jianshu.com/go?to=https%3A%2F%2Fdocs.djangoproject.com%2Fzh-hans%2F2.1%2Ftopics%2Fhttp%2Furls%2F) 以获取更多内容。
 
 ## 编写更多视图
 
 现在让我们向 polls/views.py 里添加更多视图。这些视图有一些不同，因为他们接收参数：
- polls/views.py
-
-
+polls/views.py
 
 ```python
 from django.http import HttpResponse
@@ -704,8 +642,6 @@ def vote(request, question_id):
 
 polls/urls.py
 
-
-
 ```python
 from django.urls import path
 
@@ -729,8 +665,6 @@ image.png
 
 当某人请求你网站的某一页面时——比如说， "/polls/34/" ，Django 将会载入 `mysite.urls` 模块，因为这在配置项 [`**ROOT_URLCONF**`](https://links.jianshu.com/go?to=https%3A%2F%2Fdocs.djangoproject.com%2Fzh-hans%2F2.1%2Fref%2Fsettings%2F%23std%3Asetting-ROOT_URLCONF)中设置了。然后 Django 寻找名为 `urlpatterns` 变量并且按序匹配正则表达式。在找到匹配项 `'polls/'`，它切掉了匹配的文本（`"polls/"`），将剩余文本——`"34/"`，发送至 'polls.urls' URLconf 做进一步处理。在这里剩余文本匹配了 `'/'`，使得我们 Django 以如下形式调用 `detail()`:
 
-
-
 ```csharp
 detail(request=<HttpRequest object>, question_id=34)
 ```
@@ -739,15 +673,11 @@ question_id=34 由 <int:question_id> 匹配生成。使用尖括号“捕获”�
 
 为每个 URL 加上不必要的东西，例如 .html ，是没有必要的。不过如果你非要加的话，也是可以的
 
-
-
 ```bash
 path('polls/latest.html', views.index),
 ```
 
 但是，别这样做，这太傻了。
-
-
 
 ![img](https:////upload-images.jianshu.io/upload_images/12747273-d8b2bf0112997270.png?imageMogr2/auto-orient/strip|imageView2/2/w/776/format/webp)
 
@@ -768,8 +698,6 @@ Django 只要求返回的是一个 [`HttpResponse`](https://links.jianshu.com/go
 因为 Django 自带的数据库 API 很方便，我们曾在 [教程第 2 部分](https://links.jianshu.com/go?to=https%3A%2F%2Fdocs.djangoproject.com%2Fzh-hans%2F2.1%2Fintro%2Ftutorial02%2F) 中学过，所以我们试试在视图里使用它。**我们在 `index()` 函数里插入了一些新内容，让它能展示数据库里以发布日期排序的最近 5 个投票问题，以空格分割**
 
 polls/views.py
-
-
 
 ```python
 from django.http import HttpResponse
@@ -799,11 +727,9 @@ image.png
 
 将下面的代码输入到刚刚创建的模板文件中：
 
-以列表方式展示前5个投票详情
+以列表方式展示前 5 个投票详情
 
 polls/templates/polls/index.html
-
-
 
 ```xml
 {% if latest_question_list %}
@@ -820,8 +746,6 @@ polls/templates/polls/index.html
 然后，让我们更新一下 polls/views.py 里的 index 视图来使用模板：
 
 polls/views.py
-
-
 
 ```python
 from django.http import HttpResponse
@@ -853,8 +777,6 @@ image.png
 
 polls/views.py
 
-
-
 ```python
 from django.shortcuts import render
 
@@ -868,9 +790,7 @@ def index(request):
 ## 抛出 404 错误
 
 现在，我们来处理投票详情视图——它会显示指定投票的问题标题。下面是这个视图的代码：
- polls/views.py
-
-
+polls/views.py
 
 ```python
 from django.http import Http404
@@ -892,15 +812,11 @@ def detail(request, question_id):
 
 polls/templates/polls/detail.html
 
-
-
 ```undefined
 {{ question }}
 ```
 
 这样你就能测试了
-
-
 
 ![img](https:////upload-images.jianshu.io/upload_images/12747273-c6c912bdd8fdb2cb.png?imageMogr2/auto-orient/strip|imageView2/2/w/777/format/webp)
 
@@ -909,9 +825,7 @@ image.png
 ### 一个快捷函数： [`get_object_or_404()`](https://links.jianshu.com/go?to=https%3A%2F%2Fdocs.djangoproject.com%2Fzh-hans%2F2.1%2Ftopics%2Fhttp%2Fshortcuts%2F%23django.shortcuts.get_object_or_404)
 
 尝试用 [`get()`](https://links.jianshu.com/go?to=https%3A%2F%2Fdocs.djangoproject.com%2Fzh-hans%2F2.1%2Fref%2Fmodels%2Fquerysets%2F%23django.db.models.query.QuerySet.get) 函数获取一个对象，如果不存在就抛出 [`Http404`](https://links.jianshu.com/go?to=https%3A%2F%2Fdocs.djangoproject.com%2Fzh-hans%2F2.1%2Ftopics%2Fhttp%2Fviews%2F%23django.http.Http404) 错误也是一个普遍的流程。Django 也提供了一个快捷函数，下面是修改后的详情 `detail()` 视图代码：
- polls/views.py
-
-
+polls/views.py
 
 ```python
 from django.shortcuts import get_object_or_404, render
@@ -932,8 +846,6 @@ image.png
 回过头去看看我们的 detail() 视图。它向模板传递了上下文变量 question 。下面是 polls/detail.html 模板里正式的代码：
 
 polls/templates/polls/detail.html
-
-
 
 ```xml
 <h1>{{ question.question_text }}</h1>
@@ -960,8 +872,6 @@ polls/templates/polls/detail.html
 
 这个标签的工作方式是在 `polls.urls` 模块的 URL 定义中寻具有指定名字的条目。你可以回忆一下，具有名字 'detail' 的 URL 是在如下语句中定义的：
 
-
-
 ```bash
 ...
 # the 'name' value as called by the {% url %} template tag
@@ -971,8 +881,6 @@ path('<int:question_id>/', views.detail, name='detail'),
 
 如果你想改变投票详情视图的 URL，比如想改成 polls/specifics/12/ ，你不用在模板里修改任何东西（包括其它模板），只要在 polls/urls.py 里稍微修改一下就行：
 
-
-
 ```bash
 ...
 # added the word 'specifics'
@@ -980,9 +888,7 @@ path('specifics/<int:question_id>/', views.detail, name='detail'),
 ...
 ```
 
-访问index:  127.0.0.1:8000/polls/
-
-
+访问 index: 127.0.0.1:8000/polls/
 
 ![img](https:////upload-images.jianshu.io/upload_images/12747273-2d08a1a11a13670d.png?imageMogr2/auto-orient/strip|imageView2/2/w/724/format/webp)
 
@@ -995,8 +901,6 @@ image.png
 答案是：在根 URLconf 中添加命名空间。在 polls/urls.py 文件中稍作修改，加上 app_name 设置命名空间：
 
 polls/urls.py
-
-
 
 ```go
 from django.urls import path
@@ -1013,18 +917,14 @@ urlpatterns = [
 ```
 
 现在，编辑 polls/index.html 文件，从：
- polls/templates/polls/index.html
-
-
+polls/templates/polls/index.html
 
 ```xml
 <li><a href="{% url 'detail' question.id %}">{{ question.question_text }}</a></li>
 ```
 
 修改为指向具有命名空间的详细视图：
- polls/templates/polls/index.html
-
-
+polls/templates/polls/index.html
 
 ```xml
 <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
@@ -1037,8 +937,6 @@ urlpatterns = [
 让我们更新一下在上一个教程中编写的投票详细页面的模板 ("polls/detail.html") ，让它包含一个 HTML <form> 元素：
 
 polls/templates/polls/detail.html
-
-
 
 ```xml
 <h1>{{ question.question_text }}</h1>
@@ -1058,7 +956,7 @@ polls/templates/polls/detail.html
 简要说明：
 
 - 上面的模板在 Question 的每个 Choice 前添加一个单选按钮。 每个单选按钮的** `value` **属性是对应的各个 Choice 的 ID。每个单选按钮的 `name` 是 `"choice"` 。这意味着，当有人选择一个单选按钮并提交表单提交时，它将发送一个 POST 数据 `choice=#` ，其中# 为选择的 Choice 的 ID。这是 HTML 表单的基本概念。
-- **我们设置表单的 `action` 为 `{% url 'polls:vote' question.id %}` ，并设置 `method="post"` 。使用 `method="post"``（与其相对的是 ``method="get"`）是非常重要的，因为这个提交表单的行为会改变服务器端的数据。 无论何时，当你需要创建一个改变服务器端数据的表单时，请使用 ``method="post"` 。这不是 Django 的特定技巧；这是优秀的网站开发技巧**。
+- **我们设置表单的 `action` 为 `{% url 'polls:vote' question.id %}` ，并设置 `method="post"` 。使用 ` method="post"``（与其相对的是 ``method="get" `）是非常重要的，因为这个提交表单的行为会改变服务器端的数据。 无论何时，当你需要创建一个改变服务器端数据的表单时，请使用 ``method="post"` 。这不是 Django 的特定技巧；这是优秀的网站开发技巧**。
 - `forloop.counter` 指示 [`for`](https://links.jianshu.com/go?to=https%3A%2F%2Fdocs.djangoproject.com%2Fzh-hans%2F2.1%2Fref%2Ftemplates%2Fbuiltins%2F%23std%3Atemplatetag-for) 标签已经循环多少次。
 - 由于我们创建一个 POST 表单（它具有修改数据的作用），所以我们需要小心**跨站点请求伪造**。 谢天谢地，你不必太过担心，因为 Django 已经拥有一个用来防御它的非常容易使用的系统。 简而言之，所有针对内部 URL 的 POST 表单都应该使用 [`**{% csrf_token %}**`](https://links.jianshu.com/go?to=https%3A%2F%2Fdocs.djangoproject.com%2Fzh-hans%2F2.1%2Fref%2Ftemplates%2Fbuiltins%2F%23std%3Atemplatetag-csrf_token)模板标签。
 
@@ -1067,11 +965,9 @@ polls/templates/polls/detail.html
 polls/urls.py
 
 path('<int:question_id>/vote/', views.vote, name='vote'),
- 我们还创建了一个 vote() 函数的虚拟实现。让我们来创建一个真实的版本。 将下面的代码添加到 polls/views.py ：
+我们还创建了一个 vote() 函数的虚拟实现。让我们来创建一个真实的版本。 将下面的代码添加到 polls/views.py ：
 
 polls/views.py
-
-
 
 ```python
 from django.http import HttpResponse, HttpResponseRedirect
@@ -1109,11 +1005,9 @@ def vote(request, question_id):
 
 - 在增加 Choice 的得票数之后，代码返回一个 [`HttpResponseRedirect`](https://links.jianshu.com/go?to=https%3A%2F%2Fdocs.djangoproject.com%2Fzh-hans%2F2.1%2Fref%2Frequest-response%2F%23django.http.HttpResponseRedirect) 而不是常用的 [`HttpResponse`](https://links.jianshu.com/go?to=https%3A%2F%2Fdocs.djangoproject.com%2Fzh-hans%2F2.1%2Fref%2Frequest-response%2F%23django.http.HttpResponse) 、 **[`HttpResponseRedirect`](https://links.jianshu.com/go?to=https%3A%2F%2Fdocs.djangoproject.com%2Fzh-hans%2F2.1%2Fref%2Frequest-response%2F%23django.http.HttpResponseRedirect) 只接收一个参数**：**用户将要被重定向的 URL**（请继续看下去，我们将会解释如何构造这个例子中的 URL）。
 
-  **正如上面的Python注释所指出的，在成功处理POST数据之后，应该始终返回HttpResponseRedirect。这个技巧不是Django特有的;这只是很好的Web开发实践。**
+  **正如上面的 Python 注释所指出的，在成功处理 POST 数据之后，应该始终返回 HttpResponseRedirect。这个技巧不是 Django 特有的;这只是很好的 Web 开发实践。**
 
 - 在这个例子中，我们在 [`HttpResponseRedirect`](https://links.jianshu.com/go?to=https%3A%2F%2Fdocs.djangoproject.com%2Fzh-hans%2F2.1%2Fref%2Frequest-response%2F%23django.http.HttpResponseRedirect) 的构造函数中使用 `reverse()` 函数。这个函数避免了我们在视图函数中硬编码 URL。它需要我们给出我们想要跳转的视图的名字和该视图所对应的 URL 模式中需要给该视图提供的参数。 在本例中，使用在 [教程第 3 部分](https://links.jianshu.com/go?to=https%3A%2F%2Fdocs.djangoproject.com%2Fzh-hans%2F2.1%2Fintro%2Ftutorial03%2F) 中设定的 URLconf， `reverse()` 调用将返回一个这样的字符串：
-
-
 
 ```bash
 '/polls/3/results/'
@@ -1121,13 +1015,9 @@ def vote(request, question_id):
 
 其中 3 是 question.id 的值。重定向的 URL 将调用 'results' 视图来显示最终的页面
 
-
-
 ![img](https:////upload-images.jianshu.io/upload_images/12747273-cd0378b8ccbf36b9.png?imageMogr2/auto-orient/strip|imageView2/2/w/1062/format/webp)
 
 image.png
-
-
 
 ![img](https:////upload-images.jianshu.io/upload_images/12747273-d03e765f80b7e733.png?imageMogr2/auto-orient/strip|imageView2/2/w/1051/format/webp)
 
@@ -1136,8 +1026,6 @@ image.png
 当有人对 Question 进行投票后， vote() 视图将请求重定向到 Question 的结果界面。让我们来编写这个视图
 
 polls/views.py
-
-
 
 ```python
 from django.shortcuts import get_object_or_404, render
@@ -1153,8 +1041,6 @@ def results(request, question_id):
 现在，创建一个 `polls/results.html` 模板：
 
 polls/templates/polls/results.html
-
-
 
 ```xml
 <h1>{{ question.question_text }}</h1>
@@ -1174,13 +1060,11 @@ image.png
 
 ### 使用通用视图：代码还是少点好
 
-`detail()` （在 [教程第3部分](https://links.jianshu.com/go?to=https%3A%2F%2Fdocs.djangoproject.com%2Fzh-hans%2F2.1%2Fintro%2Ftutorial03%2F) 中）和 `results()` 视图都很简单 —— 并且，像上面提到的那样，存在冗余问题。用来显示一个投票列表的 `index()` 视图（也在 [教程第 3 部分](https://links.jianshu.com/go?to=https%3A%2F%2Fdocs.djangoproject.com%2Fzh-hans%2F2.1%2Fintro%2Ftutorial03%2F) 中）和它们类似。
+`detail()` （在 [教程第 3 部分](https://links.jianshu.com/go?to=https%3A%2F%2Fdocs.djangoproject.com%2Fzh-hans%2F2.1%2Fintro%2Ftutorial03%2F) 中）和 `results()` 视图都很简单 —— 并且，像上面提到的那样，存在冗余问题。用来显示一个投票列表的 `index()` 视图（也在 [教程第 3 部分](https://links.jianshu.com/go?to=https%3A%2F%2Fdocs.djangoproject.com%2Fzh-hans%2F2.1%2Fintro%2Ftutorial03%2F) 中）和它们类似。
 
 ![img](https:////upload-images.jianshu.io/upload_images/12747273-39b60def883fc5bf.png?imageMogr2/auto-orient/strip|imageView2/2/w/535/format/webp)
 
 image.png
-
-
 
 ![img](https:////upload-images.jianshu.io/upload_images/12747273-a30d54be6de81947.png?imageMogr2/auto-orient/strip|imageView2/2/w/658/format/webp)
 
@@ -1188,21 +1072,19 @@ image.png
 
 这些视图反映基本的 Web 开发中的一个常见情况：根据 URL 中的参数从数据库中获取数据、载入模板文件然后返回渲染后的模板。 由于这种情况特别常见，Django 提供一种快捷方式，叫做“通用视图”系统。
 
-通用视图将常见的模式抽象化，可以使你在编写应用时甚至不需要编写Python代码。
+通用视图将常见的模式抽象化，可以使你在编写应用时甚至不需要编写 Python 代码。
 
 让我们将我们的投票应用转换成使用通用视图系统，这样我们可以删除许多我们的代码。我们仅仅需要做以下几步来完成转换，我们将：
 
 转换 URLconf。
- 删除一些旧的、不再需要的视图。
- 基于 Django 的通用视图引入新的视图。
- 请继续阅读来了解详细信息
+删除一些旧的、不再需要的视图。
+基于 Django 的通用视图引入新的视图。
+请继续阅读来了解详细信息
 
 ### 改良 URLconf[¶](https://links.jianshu.com/go?to=https%3A%2F%2Fdocs.djangoproject.com%2Fzh-hans%2F2.1%2Fintro%2Ftutorial04%2F%23amend-urlconf)
 
 首先，打开 polls/urls.py 这个 URLconf 并将它修改成：
- polls/urls.py
-
-
+polls/urls.py
 
 ```go
 from django.urls import path
@@ -1225,8 +1107,6 @@ urlpatterns = [
 下一步，我们将删除旧的 index, detail, 和 results 视图，并用 Django 的通用视图代替。打开 polls/views.py 文件，并将它修改成：
 
 polls/views.py
-
-
 
 ```python
 from django.http import HttpResponseRedirect
@@ -1281,8 +1161,6 @@ def vote(request, question_id):
 
 这就是 django.contrib.staticfiles 存在的意义：它将各个应用的静态文件（和一些你指明的目录里的文件）统一收集起来，这样一来，在生产环境中，这些文件就会集中在一个便于分发的地方。
 
-
-
 ![img](https:////upload-images.jianshu.io/upload_images/12747273-a436f319e7b8d81a.png?imageMogr2/auto-orient/strip|imageView2/2/w/355/format/webp)
 
 image.png
@@ -1299,18 +1177,14 @@ Django 的 [`STATICFILES_FINDERS`](https://links.jianshu.com/go?to=https%3A%2F%2
 
 polls/static/polls/style.css
 
-
-
 ```css
 li a {
-    color: green;
+  color: green;
 }
 ```
 
 下一步，在 polls/templates/polls/index.html 的文件头添加以下内容：
- polls/templates/polls/index.html
-
-
+polls/templates/polls/index.html
 
 ```tsx
 {% load static %}
@@ -1318,18 +1192,16 @@ li a {
 ```
 
 {% static %} 模板标签会生成静态文件的绝对路径。
- 这就是你开发所需要做的所有事情了。
- 启动服务器(如果它正在运行中，重新启动一次):
+这就是你开发所需要做的所有事情了。
+启动服务器(如果它正在运行中，重新启动一次):
 
 python manage.py runserver
 
-重新载入`http://localhost:8000/polls/` ，你会发现有问题的链接是绿色的 (这是Django自己的问题标注方式) ，这意味着你追加的样式表起作用了。
+重新载入`http://localhost:8000/polls/` ，你会发现有问题的链接是绿色的 (这是 Django 自己的问题标注方式) ，这意味着你追加的样式表起作用了。
 
 ![img](https:////upload-images.jianshu.io/upload_images/12747273-13f9e91e994b377f.png?imageMogr2/auto-orient/strip|imageView2/2/w/746/format/webp)
 
 image.png
-
-
 
 ## 添加一个背景图
 
@@ -1339,11 +1211,9 @@ image.png
 
 polls/static/polls/style.css
 
-
-
 ```css
 body {
-    background: white url("images/background.gif") no-repeat;
+  background: white url("images/background.gif") no-repeat;
 }
 ```
 
@@ -1352,8 +1222,6 @@ body {
 ![img](https:////upload-images.jianshu.io/upload_images/12747273-fed91d1df20a656e.png?imageMogr2/auto-orient/strip|imageView2/2/w/812/format/webp)
 
 image.png
-
-
 
 # 编写你的第一个 Django 应用，第 7 部分
 
@@ -1364,8 +1232,6 @@ image.png
 让我们通过重排列表单上的字段来看看它是怎么工作的。用以下内容替换 admin.site.register(Question)：
 
 polls/admin.py
-
-
 
 ```python
 from django.contrib import admin
@@ -1380,8 +1246,6 @@ admin.site.register(Question, QuestionAdmin)
 
 以上修改使得 "Publication date" 字段显示在 "Question" 字段之前：
 
-
-
 ![img](https:////upload-images.jianshu.io/upload_images/12747273-df072326db45552b.png?imageMogr2/auto-orient/strip|imageView2/2/w/633/format/webp)
 
 image.png
@@ -1389,9 +1253,7 @@ image.png
 这在只有两个字段时显得没啥卵用，但对于拥有数十个字段的表单来说，为表单选择一个直观的排序方法就显得你的针很细了。
 
 说到拥有数十个字段的表单，你可能更期望将表单分为几个字段集：
- polls/admin.py
-
-
+polls/admin.py
 
 ```python
 from django.contrib import admin
@@ -1420,8 +1282,6 @@ image.png
 
 polls/admin.py
 
-
-
 ```python
 from django.contrib import admin
 
@@ -1430,25 +1290,18 @@ from .models import Choice, Question
 admin.site.register(Choice)
 ```
 
-
-
 ![img](https:////upload-images.jianshu.io/upload_images/12747273-b96ae4ada166136b.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200/format/webp)
 
 image.png
 
-
- 在这个表单中，"Question" 字段是一个包含数据库中所有投票的选择框。Django 知道要将 [`ForeignKey`](https://links.jianshu.com/go?to=https%3A%2F%2Fdocs.djangoproject.com%2Fzh-hans%2F2.1%2Fref%2Fmodels%2Ffields%2F%23django.db.models.ForeignKey) 在后台中以选择框 `` 的形式展示。此时，我们只有一个投票。
-
-
+在这个表单中，"Question" 字段是一个包含数据库中所有投票的选择框。Django 知道要将 [`ForeignKey`](https://links.jianshu.com/go?to=https%3A%2F%2Fdocs.djangoproject.com%2Fzh-hans%2F2.1%2Fref%2Fmodels%2Ffields%2F%23django.db.models.ForeignKey) 在后台中以选择框 `` 的形式展示。此时，我们只有一个投票。
 
 同时也注意下 "Question" 旁边的“添加”按钮。每个使用 `ForeignKey` 关联到另一个对象的对象会自动获得这个功能。当你点击“添加”按钮时，你会见到一个包含“添加投票”的表单。如果你在这个弹出框中添加了一个投票，并点击了“保存”，Django 会将其保存至数据库，并动态地在你正在查看的“添加选项”表单中选中它。
 
 不过，这是一种很低效地添加“选项”的方法。更好的办法是在你创建“投票”对象时直接添加好几个选项。让我们实现它。
 
 移除调用 `register()` 注册 `Choice` 模型的代码。随后，像这样修改 `Question` 的注册代码：
- polls/admin.py
-
-
+polls/admin.py
 
 ```python
 from django.contrib import admin
@@ -1475,19 +1328,13 @@ admin.site.register(Question, QuestionAdmin)
 
 加载“添加投票”页面来看看它长啥样：
 
-
-
 ![img](https:////upload-images.jianshu.io/upload_images/12747273-0a31836dd18f64af.png?imageMogr2/auto-orient/strip|imageView2/2/w/689/format/webp)
 
 image.png
 
-
-
 不过，仍然有点小问题。它占据了大量的屏幕区域来显示所有关联的 Choice 对象的字段。对于这个问题，Django 提供了一种表格式的单行显示关联对象的方法。你只需按如下形式修改 ChoiceInline 申明：
 
 polls/admin.py
-
-
 
 ```python
 class ChoiceInline(admin.TabularInline):
@@ -1506,8 +1353,6 @@ image.png
 
 以下是它此时的外
 
-
-
 ![img](https:////upload-images.jianshu.io/upload_images/12747273-3e461824c76c0824.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200/format/webp)
 
 image.png
@@ -1515,8 +1360,6 @@ image.png
 默认情况下，Django 显示每个对象的 `str()` 返回的值。但有时如果我们能够显示单个字段，它会更有帮助。为此，使用 [`list_display`](https://links.jianshu.com/go?to=https%3A%2F%2Fdocs.djangoproject.com%2Fzh-hans%2F2.1%2Fref%2Fcontrib%2Fadmin%2F%23django.contrib.admin.ModelAdmin.list_display) 后台选项，它是一个包含要显示的字段名的元组，在更改列表页中以列的形式展示这个对象：
 
 polls/admin.py
-
-
 
 ```python
 class QuestionAdmin(admin.ModelAdmin):
@@ -1527,8 +1370,6 @@ class QuestionAdmin(admin.ModelAdmin):
 为了更好用，让我们也包含 [教程第 2 部分](https://links.jianshu.com/go?to=https%3A%2F%2Fdocs.djangoproject.com%2Fzh-hans%2F2.1%2Fintro%2Ftutorial02%2F) 中的 `was_published_recently()` 方法：
 
 polls/admin.py
-
-
 
 ```python
 class QuestionAdmin(admin.ModelAdmin):
@@ -1545,9 +1386,7 @@ image.png
 你可以点击列标题来对这些行进行排序——除了 was_published_recently 这个列，因为没有实现排序方法。顺便看下这个列的标题 was_published_recently，默认就是方法名（用空格替换下划线），该列的每行都以字符串形式展示出处。
 
 你可以通过给这个方法（在 polls/models.py 中）一些属性来达到优化的目的，像这样：
- polls/models.py
-
-
+polls/models.py
 
 ```python
 class Question(models.Model):
@@ -1576,10 +1415,7 @@ image.png
 
 image.png
 
-
- 展示的过滤器类型取决你你要过滤的字段的类型。因为 `pub_date` 是类 [`DateTimeField`](https://links.jianshu.com/go?to=https%3A%2F%2Fdocs.djangoproject.com%2Fzh-hans%2F2.1%2Fref%2Fmodels%2Ffields%2F%23django.db.models.DateTimeField)，Django 知道要提供哪个过滤器：“任意时间”，“今天”，“过去7天”，“这个月”和“今年”。
-
-
+展示的过滤器类型取决你你要过滤的字段的类型。因为 `pub_date` 是类 [`DateTimeField`](https://links.jianshu.com/go?to=https%3A%2F%2Fdocs.djangoproject.com%2Fzh-hans%2F2.1%2Fref%2Fmodels%2Ffields%2F%23django.db.models.DateTimeField)，Django 知道要提供哪个过滤器：“任意时间”，“今天”，“过去 7 天”，“这个月”和“今年”。
 
 这已经弄的很好了。让我们再扩充些功能:
 
@@ -1607,8 +1443,6 @@ image.png
 
 mysite/settings.py
 
-
-
 ```csharp
 TEMPLATES = [
     {
@@ -1630,11 +1464,9 @@ TEMPLATES = [
 [`DIRS`](https://links.jianshu.com/go?to=https%3A%2F%2Fdocs.djangoproject.com%2Fzh-hans%2F2.1%2Fref%2Fsettings%2F%23std%3Asetting-TEMPLATES-DIRS) 是一个包含多个系统目录的文件列表，用于在载入 Django 模板时使用，是一个待搜索路径。
 
 现在，在 templates 目录内创建名为 admin 的目录，随后，将存放 Django 默认模板的目录（django/contrib/admin/templates）内的模板文件 admin/base_site.html 复制到这个目录内。
- Django 的源文件在哪里？
+Django 的源文件在哪里？
 
 如果你不知道 Django 源码在你系统的哪个位置，运行以下命令：
-
-
 
 ```swift
 python -c "import django; print(django.__path__)"
@@ -1649,8 +1481,6 @@ image.png
 image.png
 
 接着，用你站点的名字替换文件内的 [`](https://docs.djangoproject.com/zh-hans/2.1/intro/tutorial07/#id1){{ site_header|default:_('Django administration') }}`（包含大括号）。完成后，你应该看到如下代码：
-
-
 
 ```xml
 {% block branding %}

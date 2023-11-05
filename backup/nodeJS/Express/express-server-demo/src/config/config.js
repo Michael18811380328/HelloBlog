@@ -1,19 +1,19 @@
-import path from 'path';
-import { loadJsonFile } from '../utils/utils';
+import path from "path";
+import { loadJsonFile } from "../utils/utils";
 
 let filePath = process.env.DTABLE_SERVER_CONFIG;
 if (!filePath) {
-  filePath = path.join(__dirname, '../../config/config.json');
+  filePath = path.join(__dirname, "../../config/config.json");
 }
 
 const config = loadJsonFile(filePath);
 
 export const CONFIG = {
-  host    : config.host,
-  user    : config.user,
+  host: config.host,
+  user: config.user,
   password: config.password,
   database: config.database,
-  port    : config.port,
+  port: config.port,
   connectionLimit: config.connection_limit,
 };
 

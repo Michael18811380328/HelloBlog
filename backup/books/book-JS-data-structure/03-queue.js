@@ -1,27 +1,27 @@
 // 0.创建队列
 function Queue() {
   let items = [];
-  this.enqueue = function(ele) {
+  this.enqueue = function (ele) {
     items.push(ele);
-  }
-  this.dequeue = function() {
+  };
+  this.dequeue = function () {
     return items.shift();
-  }
-  this.front = function() {
+  };
+  this.front = function () {
     return items[0];
-  }
-  this.isEmpty = function() {
+  };
+  this.isEmpty = function () {
     return items.length == 0;
-  }
-  this.clear = function() {
+  };
+  this.clear = function () {
     items = [];
-  }
-  this.size = function() {
+  };
+  this.size = function () {
     return items.length;
-  }
-  this.print = function() {
+  };
+  this.print = function () {
     console.log(items.toString());
-  }
+  };
 }
 
 let queue = new Queue();
@@ -46,10 +46,10 @@ function PriorityQueue() {
   }
   this.isEmpty = () => {
     return items.length == 0;
-  }
+  };
   this.print = () => {
     console.log(items);
-  }
+  };
   // 入列函数
   this.enqueue = (ele, priority) => {
     // 把当前输入值和属性创建一个队列元素对象
@@ -57,12 +57,11 @@ function PriorityQueue() {
     // 如果当前队列是空，直接将当前队列元素push
     if (this.isEmpty()) {
       items.push(queueElement);
-    }
-    else {
+    } else {
       // 如果当前队列非空，循环比较队列元素的属性和输入新元素的属性大小；如果当前属性小于某个已有属性，在当前位置插入当前新元素；跳出循环
       let added = false;
-      for(let i = 0; i < items.length; i++) {
-        if(queueElement.priority < items[i].priority) {
+      for (let i = 0; i < items.length; i++) {
+        if (queueElement.priority < items[i].priority) {
           items.splice(i, 0, queueElement);
           added = true;
           break;
@@ -87,19 +86,19 @@ priQueue.print();
 // 原理：击鼓传花(hot potato)：设置初始的队列元素，给定一个数值（设置n次传递），每一次从前面删除一个元素加到后面。如果n次循环结束，直接删除当前元素。
 function hotPotato(nameList, num) {
   let queue = new Queue();
-  for(let i = 0; i < nameList.length; i++) {
+  for (let i = 0; i < nameList.length; i++) {
     queue.enqueue(nameList[i]);
   }
-  let loser = '';
+  let loser = "";
   while (queue.size() > 1) {
-    for(let i = 0; i < num ; i++) {
+    for (let i = 0; i < num; i++) {
       queue.enqueue(queue.dequeue());
     }
     loser = queue.dequeue();
-    console.log('淘汰者' + loser);
+    console.log("淘汰者" + loser);
   }
   return queue.dequeue();
 }
-let names = ["Mike","Tom","John","Carl", "Cindy"];
+let names = ["Mike", "Tom", "John", "Carl", "Cindy"];
 let winner = hotPotato(names, 10);
 console.log("winner is " + winner);

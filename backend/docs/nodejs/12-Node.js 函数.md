@@ -1,6 +1,6 @@
 # 12-Node.js 函数-20210714
 
-在JavaScript中，一个函数可以作为另一个函数的参数。我们可以先定义一个函数，然后传递，也可以在传递参数的地方直接定义函数。Node.js中函数的使用与Javascript类似：
+在 JavaScript 中，一个函数可以作为另一个函数的参数。我们可以先定义一个函数，然后传递，也可以在传递参数的地方直接定义函数。Node.js 中函数的使用与 Javascript 类似：
 
 ```js
 function say(word) {
@@ -14,13 +14,11 @@ function execute(fn, value) {
 execute(say, "Hello");
 ```
 
-我们把 say 函数作为execute函数的第一个变量进行了传递。这里传递的不是 say 的返回值，而是 say 本身！
+我们把 say 函数作为 execute 函数的第一个变量进行了传递。这里传递的不是 say 的返回值，而是 say 本身！
 
-say 就变成了execute 中的本地变量 someFunction ，execute可以通过调用 someFunction() （带括号的形式）来使用 say 函数。
+say 就变成了 execute 中的本地变量 someFunction ，execute 可以通过调用 someFunction() （带括号的形式）来使用 say 函数。
 
 当然，因为 say 有一个变量， execute 在调用 someFunction 时可以传递这样一个变量。
-
-
 
 ## 匿名函数
 
@@ -31,8 +29,8 @@ function execute(someFunction, value) {
   someFunction(value);
 }
 
-execute(function(word){ 
-  console.log(word) 
+execute(function (word) {
+  console.log(word);
 }, "Hello");
 ```
 
@@ -40,20 +38,20 @@ execute(function(word){
 
 用这种方式，我们甚至不用给这个函数起名字，这也是为什么它被叫做匿名函数 。
 
+## 函数传递是如何让 HTTP 服务器工作的
 
-
-## 函数传递是如何让HTTP服务器工作的
-
-我们再来看看我们简约而不简单的HTTP服务器：
+我们再来看看我们简约而不简单的 HTTP 服务器：
 
 ```js
 var http = require("http");
 
-http.createServer(function(request, response) {
-  response.writeHead(200, {"Content-Type": "text/plain"});
-  response.write("Hello World");
-  response.end();
-}).listen(8888);
+http
+  .createServer(function (request, response) {
+    response.writeHead(200, { "Content-Type": "text/plain" });
+    response.write("Hello World");
+    response.end();
+  })
+  .listen(8888);
 ```
 
 现在它看上去应该清晰了很多：我们向 createServer 函数传递了一个匿名函数。
@@ -64,7 +62,7 @@ http.createServer(function(request, response) {
 var http = require("http");
 
 function onRequest(request, response) {
-  response.writeHead(200, {"Content-Type": "text/plain"});
+  response.writeHead(200, { "Content-Type": "text/plain" });
   response.write("Hello World");
   response.end();
 }

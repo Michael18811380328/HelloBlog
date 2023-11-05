@@ -1,18 +1,18 @@
-## React中数据传输
+## React 中数据传输
 
 ### 父组件传递给子组件
 
-概述：React中主要使用组件进行数据传输，组件的数据存储在props和state中，进行**自上而下**单向数据传递。
+概述：React 中主要使用组件进行数据传输，组件的数据存储在 props 和 state 中，进行**自上而下**单向数据传递。
 
 #### props
 
-React核心思想：组件化，页面被切成一个个可以复用的独立的组件。每个组件是一个内部封闭的环境，类似于一个函数，props就是传入的参数。
+React 核心思想：组件化，页面被切成一个个可以复用的独立的组件。每个组件是一个内部封闭的环境，类似于一个函数，props 就是传入的参数。
 
 1.用法
 
-在父组件中，render<Example> 中就是调用子函数的过程，并把实际参数传入。在子组件中，需要使用props作为形式参数，传递父组件传入的参数。
+在父组件中，render<Example> 中就是调用子函数的过程，并把实际参数传入。在子组件中，需要使用 props 作为形式参数，传递父组件传入的参数。
 
-~~~jsx
+```jsx
 //父组件
 import Item from "./item";
 export default class ItemList extends 		React.Component{
@@ -34,34 +34,34 @@ export default class Item extends React.Component{
   }
 }
 // this.props获取到组件的所有数据(是一个对象，包括这个组件的配置)根据父组件，现在只有item = item 属性，所有直接获取this.props.item即可获得全部数据。
-~~~
+```
 
 2.只读性不变性
 
-props用于**初始化状态和渲染组件**两个功能。所以当组件实例化以后，props是不能改变的。只有通过父组件重新渲染的方式才能将新的props传入子组件中。（子组件中无法对this.props进行修改）。props类似于从上面传来的常量。
+props 用于**初始化状态和渲染组件**两个功能。所以当组件实例化以后，props 是不能改变的。只有通过父组件重新渲染的方式才能将新的 props 传入子组件中。（子组件中无法对 this.props 进行修改）。props 类似于从上面传来的常量。
 
 3.默认参数和数据类型
 
-~~~js
+```js
 Item.defaultProps = {
-    item: "React Seafile"
-}
+  item: "React Seafile",
+};
 // 默认参数
 Item.propTypes = {
-    item: PropTypes.string
-}
+  item: PropTypes.string,
+};
 // 默认数据类型：字符串(或者其他数据类型)
-~~~
+```
 
 #### State
 
 state: state is similar to props, but it is private and fully controlled by the component.
 
-State是与props相同点都是数据（参数），但是state是子组件私有的变量，而且由子组件完全控制。
+State 是与 props 相同点都是数据（参数），但是 state 是子组件私有的变量，而且由子组件完全控制。
 
 1.用法
 
-~~~js
+```js
 export default class ItemList extends React.Component{
   constructor(){
     super();
@@ -94,7 +94,7 @@ constructor是唯一初始化state的地方，this.state来初始化state，this
 多用props，少用state，props可以逐层向下传递。
 
 React中的同一个组件内部标签条件渲染：不需要设置某个标签的show-hide属性，直接使用JSX中的三目计算进行渲染
-{条件（属性==true）？<Form1/>:null} 
+{条件（属性==true）？<Form1/>:null}
 
 //fetch 新的请求方法(兼容性)——附加
 fetch(url, options).then(function(response){
@@ -129,13 +129,13 @@ arrayBuffer() 生成一个ArrayBuffer
 formData() 生成格式化的数据 可用于其他的请求
 
 参考文件：JavaScript利用fetch实现异步请求的方法案例
-~~~
+```
 
 ### 子组件传递给父组件
 
 #### 回调函数
 
-当子组件的状态发生变化时，可以用户触发或者JS触发回调函数，把子组件的信息通过回调函数返回父组件，之后父组件处理并setState。这是常用的方法。
+当子组件的状态发生变化时，可以用户触发或者 JS 触发回调函数，把子组件的信息通过回调函数返回父组件，之后父组件处理并 setState。这是常用的方法。
 
 #### 事件监听
 
@@ -143,4 +143,4 @@ formData() 生成格式化的数据 可用于其他的请求
 
 #### Ref
 
-上面两种方式适应于子组件发出信号，然后父组件被动接收。如果父组件向主动获取子组件的信息，需要通过 ref 访问子组件的 DOM 属性状态。子组件中设置 `ref={(node) => {this.ref = node}}` 把子组件通过ref传出去。父组件中使用 ref 属性可以获取子组件（高阶组件中不能直接获取ref，需要转换）。
+上面两种方式适应于子组件发出信号，然后父组件被动接收。如果父组件向主动获取子组件的信息，需要通过 ref 访问子组件的 DOM 属性状态。子组件中设置 `ref={(node) => {this.ref = node}}` 把子组件通过 ref 传出去。父组件中使用 ref 属性可以获取子组件（高阶组件中不能直接获取 ref，需要转换）。

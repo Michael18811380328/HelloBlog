@@ -1,6 +1,6 @@
 # Node.js v12.14.0 文档
 
-------
+---
 
 ## 目录
 
@@ -27,7 +27,7 @@
 `path` 模块提供用于处理文件路径和目录路径的实用工具。 它可以使用以下方式访问：
 
 ```js
-const path = require('path');
+const path = require("path");
 ```
 
 ## Windows 与 POSIX
@@ -41,14 +41,14 @@ const path = require('path');
 在 POSIX 上:
 
 ```js
-path.basename('C:\\temp\\myfile.html');
+path.basename("C:\\temp\\myfile.html");
 // 返回: 'C:\\temp\\myfile.html'
 ```
 
 在 Windows 上:
 
 ```js
-path.basename('C:\\temp\\myfile.html');
+path.basename("C:\\temp\\myfile.html");
 // 返回: 'myfile.html'
 ```
 
@@ -57,7 +57,7 @@ path.basename('C:\\temp\\myfile.html');
 在 POSIX 和 Windows 上:
 
 ```js
-path.win32.basename('C:\\temp\\myfile.html');
+path.win32.basename("C:\\temp\\myfile.html");
 // 返回: 'myfile.html'
 ```
 
@@ -66,7 +66,7 @@ path.win32.basename('C:\\temp\\myfile.html');
 在 POSIX 和 Windows 上:
 
 ```js
-path.posix.basename('/tmp/myfile.html');
+path.posix.basename("/tmp/myfile.html");
 // 返回: 'myfile.html'
 ```
 
@@ -85,10 +85,10 @@ path.posix.basename('/tmp/myfile.html');
 `path.basename()` 方法返回 `path` 的最后一部分，类似于 Unix 的 `basename` 命令。 尾部的目录分隔符将被忽略，参阅 [`path.sep`](http://nodejs.cn/s/io7vxJ)。
 
 ```js
-path.basename('/foo/bar/baz/asdf/quux.html');
+path.basename("/foo/bar/baz/asdf/quux.html");
 // 返回: 'quux.html'
 
-path.basename('/foo/bar/baz/asdf/quux.html', '.html');
+path.basename("/foo/bar/baz/asdf/quux.html", ".html");
 // 返回: 'quux'
 ```
 
@@ -139,7 +139,7 @@ process.env.PATH.split(path.delimiter);
 `path.dirname()` 方法返回 `path` 的目录名，类似于 Unix 的 `dirname` 命令。 尾部的目录分隔符将被忽略，参阅 [`path.sep`](http://nodejs.cn/s/io7vxJ)。
 
 ```js
-path.dirname('/foo/bar/baz/asdf/quux');
+path.dirname("/foo/bar/baz/asdf/quux");
 // 返回: '/foo/bar/baz/asdf'
 ```
 
@@ -157,22 +157,22 @@ path.dirname('/foo/bar/baz/asdf/quux');
 `path.extname()` 方法返回 `path` 的扩展名，从最后一次出现 `.`（句点）字符到 `path` 最后一部分的字符串结束。 如果在 `path` 的最后一部分中没有 `.` ，或者如果 `path` 的基本名称（参阅 `path.basename()`）除了第一个字符以外没有 `.`，则返回空字符串。
 
 ```js
-path.extname('index.html');
+path.extname("index.html");
 // 返回: '.html'
 
-path.extname('index.coffee.md');
+path.extname("index.coffee.md");
 // 返回: '.md'
 
-path.extname('index.');
+path.extname("index.");
 // 返回: '.'
 
-path.extname('index');
+path.extname("index");
 // 返回: ''
 
-path.extname('.index');
+path.extname(".index");
 // 返回: ''
 
-path.extname('.index.md');
+path.extname(".index.md");
 // 返回: '.md'
 ```
 
@@ -206,27 +206,27 @@ path.extname('.index.md');
 // 则返回 `${dir}${path.sep}${base}`。
 // `root` 会被忽略。
 path.format({
-  root: '/ignored',
-  dir: '/home/user/dir',
-  base: 'file.txt'
+  root: "/ignored",
+  dir: "/home/user/dir",
+  base: "file.txt",
 });
 // 返回: '/home/user/dir/file.txt'
 
-// 如果未指定 `dir`，则使用 `root`。 
-// 如果只提供 `root`，或 'dir` 等于 `root`，则将不包括平台分隔符。 
+// 如果未指定 `dir`，则使用 `root`。
+// 如果只提供 `root`，或 'dir` 等于 `root`，则将不包括平台分隔符。
 // `ext` 将被忽略。
 path.format({
-  root: '/',
-  base: 'file.txt',
-  ext: 'ignored'
+  root: "/",
+  base: "file.txt",
+  ext: "ignored",
 });
 // 返回: '/file.txt'
 
 // 如果未指定 `base`，则使用 `name` + `ext`。
 path.format({
-  root: '/',
-  name: 'file',
-  ext: '.txt'
+  root: "/",
+  name: "file",
+  ext: ".txt",
 });
 // 返回: '/file.txt'
 ```
@@ -235,8 +235,8 @@ path.format({
 
 ```js
 path.format({
-  dir: 'C:\\path\\dir',
-  base: 'file.txt'
+  dir: "C:\\path\\dir",
+  base: "file.txt",
 });
 // 返回: 'C:\\path\\dir\\file.txt'
 ```
@@ -257,22 +257,22 @@ path.format({
 例如，在 POSIX 上：
 
 ```js
-path.isAbsolute('/foo/bar'); // true
-path.isAbsolute('/baz/..');  // true
-path.isAbsolute('qux/');     // false
-path.isAbsolute('.');        // false
+path.isAbsolute("/foo/bar"); // true
+path.isAbsolute("/baz/.."); // true
+path.isAbsolute("qux/"); // false
+path.isAbsolute("."); // false
 ```
 
 在 Windows 上：
 
 ```js
-path.isAbsolute('//server');    // true
-path.isAbsolute('\\\\server');  // true
-path.isAbsolute('C:/foo/..');   // true
-path.isAbsolute('C:\\foo\\..'); // true
-path.isAbsolute('bar\\baz');    // false
-path.isAbsolute('bar/baz');     // false
-path.isAbsolute('.');           // false
+path.isAbsolute("//server"); // true
+path.isAbsolute("\\\\server"); // true
+path.isAbsolute("C:/foo/.."); // true
+path.isAbsolute("C:\\foo\\.."); // true
+path.isAbsolute("bar\\baz"); // false
+path.isAbsolute("bar/baz"); // false
+path.isAbsolute("."); // false
 ```
 
 如果 `path` 不是字符串，则抛出 [`TypeError`](http://nodejs.cn/s/Z7Lqyj)。
@@ -291,10 +291,10 @@ path.isAbsolute('.');           // false
 零长度的 `path` 片段会被忽略。 如果连接的路径字符串是零长度的字符串，则返回 `'.'`，表示当前工作目录。
 
 ```js
-path.join('/foo', 'bar', 'baz/asdf', 'quux', '..');
+path.join("/foo", "bar", "baz/asdf", "quux", "..");
 // 返回: '/foo/bar/baz/asdf'
 
-path.join('foo', {}, 'bar');
+path.join("foo", {}, "bar");
 // 抛出 'TypeError: Path must be a string. Received {}'
 ```
 
@@ -318,21 +318,21 @@ path.join('foo', {}, 'bar');
 例如，在 POSIX 上：
 
 ```js
-path.normalize('/foo/bar//baz/asdf/quux/..');
+path.normalize("/foo/bar//baz/asdf/quux/..");
 // 返回: '/foo/bar/baz/asdf'
 ```
 
 在 Windows 上：
 
 ```js
-path.normalize('C:\\temp\\\\foo\\bar\\..\\');
+path.normalize("C:\\temp\\\\foo\\bar\\..\\");
 // 返回: 'C:\\temp\\foo\\'
 ```
 
 由于 Windows 识别多种路径分隔符，因此这些分隔符都将被替换为 Windows 首选的分隔符（`\`）：
 
 ```js
-path.win32.normalize('C:////temp\\\\/\\/\\/foo/bar');
+path.win32.normalize("C:////temp\\\\/\\/\\/foo/bar");
 // 返回: 'C:\\temp\\foo\\bar'
 ```
 
@@ -424,14 +424,14 @@ path.parse('C:\\path\\dir\\file.txt');
 例如，在 POSIX 上：
 
 ```js
-path.relative('/data/orandea/test/aaa', '/data/orandea/impl/bbb');
+path.relative("/data/orandea/test/aaa", "/data/orandea/impl/bbb");
 // 返回: '../../impl/bbb'
 ```
 
 在 Windows 上：
 
 ```js
-path.relative('C:\\orandea\\test\\aaa', 'C:\\orandea\\impl\\bbb');
+path.relative("C:\\orandea\\test\\aaa", "C:\\orandea\\impl\\bbb");
 // 返回: '..\\..\\impl\\bbb'
 ```
 
@@ -459,13 +459,13 @@ path.relative('C:\\orandea\\test\\aaa', 'C:\\orandea\\impl\\bbb');
 如果没有传入 `path` 片段，则 `path.resolve()` 将返回当前工作目录的绝对路径。
 
 ```js
-path.resolve('/foo/bar', './baz');
+path.resolve("/foo/bar", "./baz");
 // 返回: '/foo/bar/baz'
 
-path.resolve('/foo/bar', '/tmp/file/');
+path.resolve("/foo/bar", "/tmp/file/");
 // 返回: '/tmp/file'
 
-path.resolve('wwwroot', 'static_files/png/', '../gif/image.gif');
+path.resolve("wwwroot", "static_files/png/", "../gif/image.gif");
 // 如果当前工作目录是 /home/myself/node，
 // 则返回 '/home/myself/node/wwwroot/static_files/gif/image.gif'
 ```
@@ -488,14 +488,14 @@ path.resolve('wwwroot', 'static_files/png/', '../gif/image.gif');
 例如，在 POSIX 上：
 
 ```js
-'foo/bar/baz'.split(path.sep);
+"foo/bar/baz".split(path.sep);
 // 返回: ['foo', 'bar', 'baz']
 ```
 
 在 Windows 上：
 
 ```js
-'foo\\bar\\baz'.split(path.sep);
+"foo\\bar\\baz".split(path.sep);
 // 返回: ['foo', 'bar', 'baz']
 ```
 

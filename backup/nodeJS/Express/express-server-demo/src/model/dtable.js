@@ -1,13 +1,18 @@
-import { convertDTableToVersion1, normalizeDTableVersion1, convertDTableToVersion2, convertDTableToVersion3, convertDTableToVersion4 } from './convert-dtable';
+import {
+  convertDTableToVersion1,
+  normalizeDTableVersion1,
+  convertDTableToVersion2,
+  convertDTableToVersion3,
+  convertDTableToVersion4,
+} from "./convert-dtable";
 
 class DTable {
-
   constructor(dtableString) {
-    this.uuid = '';
+    this.uuid = "";
     this.meta = {
-      last_access: '',
+      last_access: "",
       need_save: false,
-      last_save_time: '',
+      last_save_time: "",
     };
     this.value = this.deseralizeDTable(dtableString);
   }
@@ -16,7 +21,7 @@ class DTable {
     let last_access = new Date().getTime();
     this.value = value;
     let need_save = true;
-    this.setMeta({last_access, need_save})
+    this.setMeta({ last_access, need_save });
   }
 
   setMeta(meta) {
@@ -37,14 +42,14 @@ class DTable {
     value.description = this.value.description;
     value.plugin_settings = this.value.plugin_settings;
     value.settings = this.value.settings;
-    value.tables = this.value.tables.map(table => {
+    value.tables = this.value.tables.map((table) => {
       let newTable = {
         _id: table._id,
         name: table.name,
         rows: table.rows,
         columns: table.columns,
         views: table.views,
-        id_row_map: {}
+        id_row_map: {},
       };
       return newTable;
     });
@@ -57,30 +62,29 @@ class DTable {
   }
 
   normalizeDTable(dtable) {
-
-    if (!dtable['format_version']) {
-      dtable['format_version'] = 0;
+    if (!dtable["format_version"]) {
+      dtable["format_version"] = 0;
     }
 
-    if (!dtable['tables']) {
-      throw new Error('The tables data must be exist.');
+    if (!dtable["tables"]) {
+      throw new Error("The tables data must be exist.");
     }
 
-    if (dtable['format_version'] === 0) {
+    if (dtable["format_version"] === 0) {
       convertDTableToVersion1(dtable);
       this.meta.need_save = true;
     }
 
-    if (dtable['format_version'] === 1) {
+    if (dtable["format_version"] === 1) {
       convertDTableToVersion2(dtable);
       this.meta.need_save = true;
     }
 
-    if (dtable['format_version'] === 2) {
+    if (dtable["format_version"] === 2) {
       convertDTableToVersion3(dtable);
     }
 
-    if (dtable['format_version'] === 3) {
+    if (dtable["format_version"] === 3) {
       convertDTableToVersion4(dtable);
     }
 
@@ -94,7 +98,6 @@ class DTable {
     this.value = this.normalizeDTable(dtable);
     return this.value;
   }
-
 }
 
 export default DTable;

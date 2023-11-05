@@ -1,6 +1,5 @@
 // 方法一：创建一个字典类，基于数组
 function Dictionary() {
-
   this.dataStore = [];
   this.add = add;
   this.find = find;
@@ -21,14 +20,14 @@ function Dictionary() {
     if (this.dataStore[key]) {
       delete this.dataStore[key];
     } else {
-      return 'Not Found';
+      return "Not Found";
     }
   }
 
   function showAll() {
     var sortKeys = Object.keys(this.dataStore).sort();
     for (var key in sortKeys) {
-      console.log(sortKeys[key] + '->' + this.dataStore[sortKeys[key]]);
+      console.log(sortKeys[key] + "->" + this.dataStore[sortKeys[key]]);
     }
   }
 
@@ -47,31 +46,28 @@ function Dictionary() {
   }
 }
 
-
 // test
 var dictionary = new Dictionary();
-dictionary.add('tel', '18812345678');
+dictionary.add("tel", "18812345678");
 dictionary.showAll();
-dictionary.remove('tel');
+dictionary.remove("tel");
 dictionary.showAll();
-
 
 // 方法二：字典类似于 Map 对象
 function Dictionary() {
-
   items = {};
 
   this.has = (key) => {
     return key in items;
-  }
+  };
 
   this.set = (key, value) => {
     items[key] = value;
-  }
+  };
 
   this.get = (key) => {
     return items.has[key] ? items[key] : undefined;
-  }
+  };
 
   this.remove = (key) => {
     if (this.has(key)) {
@@ -79,7 +75,7 @@ function Dictionary() {
       return true;
     }
     return false;
-  }
+  };
 
   this.values = () => {
     let values = [];
@@ -89,21 +85,21 @@ function Dictionary() {
       }
     }
     return values;
-  }
+  };
 
   this.keys = () => {
-    return items.keys
-  }
+    return items.keys;
+  };
 
   this.clear = () => {
     items = {};
-  }
+  };
 
   this.size = () => {
     return Object.keys(items).length;
-  }
+  };
 
   this.getItems = () => {
     return items;
-  }
+  };
 }

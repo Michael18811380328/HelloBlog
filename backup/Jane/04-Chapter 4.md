@@ -245,5 +245,3 @@ I nodded.
 “Just now! and rather! How coolly my little lady says it! I dare say now if I were to ask you for a kiss you wouldn’t give it me: you’d say you’d rather not.”
 
 “I’ll kiss you and welcome: bend your head down.” Bessie stooped; we mutually embraced, and I followed her into the house quite comforted. That afternoon lapsed in peace and harmony; and in the evening Bessie told me some of her most enchaining stories, and sang me some of her sweetest songs. Even for me life had its gleams of sunshine.
-
-

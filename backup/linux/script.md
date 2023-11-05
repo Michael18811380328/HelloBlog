@@ -1,10 +1,10 @@
-# Bash脚本
+# Bash 脚本
 
 ## 变量
 
 ### 概述
 
-Bash脚本之中，可以自定义变量。变量使用等号赋值，等号前后都不能有空格。
+Bash 脚本之中，可以自定义变量。变量使用等号赋值，等号前后都不能有空格。
 
 ```bash
 $ a=3
@@ -17,7 +17,7 @@ $ echo $a
 3
 ```
 
-Bash变量名是大小写敏感的。变量名如果后面还紧跟着其他字符，可以将其放在大括号中。
+Bash 变量名是大小写敏感的。变量名如果后面还紧跟着其他字符，可以将其放在大括号中。
 
 ```bash
 INIT_DIR="${HOME}/.dotfiles/bash"
@@ -37,7 +37,7 @@ Variable value is:
 Variable value is: Hello
 ```
 
-Bash变量是弱类型的，可以随时改为其他类型的值。如果变量的值是字符串，而且包含空格，那么需要用双引号包起来。另外，双引号中的变量会被扩展成对应的值，单引号没有变量扩展的功能。
+Bash 变量是弱类型的，可以随时改为其他类型的值。如果变量的值是字符串，而且包含空格，那么需要用双引号包起来。另外，双引号中的变量会被扩展成对应的值，单引号没有变量扩展的功能。
 
 ```bash
 echo "Your home: $HOME" # Your home: /Users/<username>
@@ -46,7 +46,7 @@ echo 'Your home: $HOME' # Your home: $HOME
 
 变量只对创建它的进程可见，因此使用上面这种方式声明的变量，都是本地变量。除非使用`export`命令，将变量输出到子进程。执行脚本会新建一个子进程，因此脚本之中的变量不会泄漏到它的执行环境。
 
-如果在Bash变量之前放上变量赋值语句，则该变量会输入子进程。
+如果在 Bash 变量之前放上变量赋值语句，则该变量会输入子进程。
 
 ```bash
 $ echo "$VAR5 / $VAR6"
@@ -212,13 +212,13 @@ echo ${filename%.*}
 
 - $PS1 提示符
 - $HOME 用户的主目录
-- $PATH 分号分隔的一组目录，shell会在这组目录里面寻找命令
-- $SHELL 当前使用的Shell
+- $PATH 分号分隔的一组目录，shell 会在这组目录里面寻找命令
+- $SHELL 当前使用的 Shell
 - $PWD 当前目录
-- $UID 当前用户的数字ID
-- $RANDOM 0到32767之间的一个数
-- $$ 当前进程的ID
-- $PPID 父进程的ID
+- $UID 当前用户的数字 ID
+- $RANDOM 0 到 32767 之间的一个数
+- $$ 当前进程的 ID
+- $PPID 父进程的 ID
 
 ```bash
 $ echo $$
@@ -233,17 +233,17 @@ $ exit
 
 ### 特殊变量
 
-- $? 特殊变量，表示上一个命令的输出结果，如果是0，表示运行成功。
+- $? 特殊变量，表示上一个命令的输出结果，如果是 0，表示运行成功。
 - `$*`或`$@` 全部参数，不含$0
 - $0 脚本名
 - $1 脚本的第一个参数
 - $2 脚本的第二个参数，以此类推，直到$9
-- ${10}...${N} 从10到N的参数
+- ${10}...${N} 从 10 到 N 的参数
 - $# 参数数组的大小，不含$0
-- $$ 当前进程的ID
-- $! 最近执行的背景线程的ID
+- $$ 当前进程的 ID
+- $! 最近执行的背景线程的 ID
 - $- 使用`set`命令的参数
-- $_ 上一个命令的最后一个参数。如果是shell脚本，就会给出绝对路径的文件名。
+- $\_ 上一个命令的最后一个参数。如果是 shell 脚本，就会给出绝对路径的文件名。
 
 `$-`的例子。
 
@@ -266,7 +266,7 @@ $ ./hellokitty.sh kitty
 hello kitty
 ```
 
-## if结构
+## if 结构
 
 ```bash
 if condition
@@ -361,7 +361,7 @@ array[4]="hello"
 element=${array[index]}
 ```
 
-圆括号用于新建一个子shell或者创造数组。
+圆括号用于新建一个子 shell 或者创造数组。
 
 ```bash
 $ pwd
@@ -401,7 +401,7 @@ $ if ! cd $outputdir; then echo "couldnt cd into output dir"; exit; fi
 $ # no error -  now we're in the directory testdir
 ```
 
-test是判断命令，也可以不把判断条件放在`[...]`之中。
+test 是判断命令，也可以不把判断条件放在`[...]`之中。
 
 ```bash
 if test $? -eq 0
@@ -417,15 +417,15 @@ if [ -s $file ]
 
 多个表达式的联合
 
-- `[ ! EXPR ]` 如果EXPR为false，则返回true
-- `[ (EXPR) ]` 返回EXPR的值.
-- `[ EXPR1 -a EXPR2 ]` 表达式1和表达式2同时为`true`，则返回`true`
-- `[ EXPR1 -o EXPR2 ]` 只要EXPR1或EXPR2有一个为true，则返回true。
-- `?(<PATTERN-LIST>)`	Matches zero or one occurrence of the given patterns
-- `*(<PATTERN-LIST>)`	Matches zero or more occurrences of the given patterns
-- `+(<PATTERN-LIST>)`	Matches one or more occurrences of the given patterns
-- `@(<PATTERN-LIST>)`	Matches one of the given patterns
-- `!(<PATTERN-LIST>)`	Matches anything except one of the given patterns
+- `[ ! EXPR ]` 如果 EXPR 为 false，则返回 true
+- `[ (EXPR) ]` 返回 EXPR 的值.
+- `[ EXPR1 -a EXPR2 ]` 表达式 1 和表达式 2 同时为`true`，则返回`true`
+- `[ EXPR1 -o EXPR2 ]` 只要 EXPR1 或 EXPR2 有一个为 true，则返回 true。
+- `?(<PATTERN-LIST>)` Matches zero or one occurrence of the given patterns
+- `*(<PATTERN-LIST>)` Matches zero or more occurrences of the given patterns
+- `+(<PATTERN-LIST>)` Matches one or more occurrences of the given patterns
+- `@(<PATTERN-LIST>)` Matches one of the given patterns
+- `!(<PATTERN-LIST>)` Matches anything except one of the given patterns
 
 ```bash
 $ rm -f !(survivior.txt)
@@ -504,47 +504,47 @@ esac;
 - < Is Less Than
 - <= Is Less Than Or Equal To
 - > Is Greater Than if
-- >= Is Greater Than Or Equal To
+- > = Is Greater Than Or Equal To
 
 常见的判断表达式。
 
-- `[ -a FILE ]`	如果路径存在，返回`true`
-- `[ -b FILE ]`	True if FILE exists and is a block-special file.
-- `[ -c FILE ]`	True if FILE exists and is a character-special file.
-- `[ -d FILE ]`	如果路径存在，而且是一个目录，返回`true`
-- `[ -e FILE ]`	如果路径存在，而且是一个目录或常规文件，返回`true`，否则返回`false`
-- `[ -f FILE ]`	如果路径存在，而且是一个常规文件，返回`true`，否则返回`false`
-- `[ -g FILE ]`	True if FILE exists and its SGID bit is set.
-- `[ -h FILE ]`	True if FILE exists and is a symbolic link.
-- `[ -k FILE ]`	True if FILE exists and its sticky bit is set.
-- `[ -L FILE ]` 如果文件存在且是符号链接，则返回true
-- `[ -p FILE ]`	True if FILE exists and is a named pipe (FIFO).
-- `[ -r FILE ]` 如果文件存在且可读，则返回true
-- `[ -s FILE ]` 如果文件存在，而且非空（size大于0），则返回true
-- `[ -t FD ]`	True if file descriptor FD is open and refers to a terminal.
-- `[ -u FILE ]`	True if FILE exists and its SUID (set user ID) bit is set.
-- `[ -w FILE ]` 如果文件存在且可写，则返回true
-- `[ -x FILE ]` 如果文件存在且可执行，则返回true
-- `[ -O FILE ]`	True if FILE exists and is owned by the effective user ID.
-- `[ -G FILE ]`	True if FILE exists and is owned by the effective group ID.
-- `[ -L FILE ]`	True if FILE exists and is a symbolic link.
-- `[ -N FILE ]`	True if FILE exists and has been modified since it was last read.
-- `[ -S FILE ]`	True if FILE exists and is a socket.
-- `[ FILE1 -nt FILE2 ]` 如果FILE1比FILE2更新（最近改动过），或者FILE1存在而FILE2不存在，则返回true
-- `[ FILE1 -ot FILE2 ]` 如果FILE1比FILE2更老，或FILE2存在而FILE1不存在，则返回true。
-- `[ FILE1 -ef FILE2 ]`	True if FILE1 and FILE2 refer to the same device and inode numbers.
-- `[ -o OPTIONNAME ]`	True if shell option "OPTIONNAME" is enabled.
-- `[ -z STRING ]`	如果参数字符串的长度为0，则返回`true`，否则返回`false`
-- `[ -n STRING ]` or `[ STRING ]` 如果"STRING"的长度是非零，则返回true
-- `[ STRING1 == STRING2 ]`	True if the strings are equal. "=" may be used instead of "==" for strict POSIX compliance.
-- `[ STRING1 != STRING2 ]`	True if the strings are not equal.
-- `[ STRING1 < STRING2 ]`	True if "STRING1" sorts before "STRING2" lexicographically in the current locale.
-- `[ STRING1 > STRING2 ]`	True if "STRING1" sorts after "STRING2" lexicographically in the current locale.
-- `[ ARG1 OP ARG2 ]`	"OP" is one of -eq, -ne, -lt, -le, -gt or -ge. These arithmetic binary operators return true if "ARG1" is equal to, not equal to, less than, less than or equal to, greater than, or greater than or equal to "ARG2", respectively. "ARG1" and "ARG2" are integers.
+- `[ -a FILE ]` 如果路径存在，返回`true`
+- `[ -b FILE ]` True if FILE exists and is a block-special file.
+- `[ -c FILE ]` True if FILE exists and is a character-special file.
+- `[ -d FILE ]` 如果路径存在，而且是一个目录，返回`true`
+- `[ -e FILE ]` 如果路径存在，而且是一个目录或常规文件，返回`true`，否则返回`false`
+- `[ -f FILE ]` 如果路径存在，而且是一个常规文件，返回`true`，否则返回`false`
+- `[ -g FILE ]` True if FILE exists and its SGID bit is set.
+- `[ -h FILE ]` True if FILE exists and is a symbolic link.
+- `[ -k FILE ]` True if FILE exists and its sticky bit is set.
+- `[ -L FILE ]` 如果文件存在且是符号链接，则返回 true
+- `[ -p FILE ]` True if FILE exists and is a named pipe (FIFO).
+- `[ -r FILE ]` 如果文件存在且可读，则返回 true
+- `[ -s FILE ]` 如果文件存在，而且非空（size 大于 0），则返回 true
+- `[ -t FD ]` True if file descriptor FD is open and refers to a terminal.
+- `[ -u FILE ]` True if FILE exists and its SUID (set user ID) bit is set.
+- `[ -w FILE ]` 如果文件存在且可写，则返回 true
+- `[ -x FILE ]` 如果文件存在且可执行，则返回 true
+- `[ -O FILE ]` True if FILE exists and is owned by the effective user ID.
+- `[ -G FILE ]` True if FILE exists and is owned by the effective group ID.
+- `[ -L FILE ]` True if FILE exists and is a symbolic link.
+- `[ -N FILE ]` True if FILE exists and has been modified since it was last read.
+- `[ -S FILE ]` True if FILE exists and is a socket.
+- `[ FILE1 -nt FILE2 ]` 如果 FILE1 比 FILE2 更新（最近改动过），或者 FILE1 存在而 FILE2 不存在，则返回 true
+- `[ FILE1 -ot FILE2 ]` 如果 FILE1 比 FILE2 更老，或 FILE2 存在而 FILE1 不存在，则返回 true。
+- `[ FILE1 -ef FILE2 ]` True if FILE1 and FILE2 refer to the same device and inode numbers.
+- `[ -o OPTIONNAME ]` True if shell option "OPTIONNAME" is enabled.
+- `[ -z STRING ]` 如果参数字符串的长度为 0，则返回`true`，否则返回`false`
+- `[ -n STRING ]` or `[ STRING ]` 如果"STRING"的长度是非零，则返回 true
+- `[ STRING1 == STRING2 ]` True if the strings are equal. "=" may be used instead of "==" for strict POSIX compliance.
+- `[ STRING1 != STRING2 ]` True if the strings are not equal.
+- `[ STRING1 < STRING2 ]` True if "STRING1" sorts before "STRING2" lexicographically in the current locale.
+- `[ STRING1 > STRING2 ]` True if "STRING1" sorts after "STRING2" lexicographically in the current locale.
+- `[ ARG1 OP ARG2 ]` "OP" is one of -eq, -ne, -lt, -le, -gt or -ge. These arithmetic binary operators return true if "ARG1" is equal to, not equal to, less than, less than or equal to, greater than, or greater than or equal to "ARG2", respectively. "ARG1" and "ARG2" are integers.
 
 ## 循环
 
-for循环
+for 循环
 
 ```bash
 # 单行
@@ -583,7 +583,7 @@ for (( i = 0; i < 10; i++ )); do
 done
 ```
 
-while循环则是只要满足某个条件，就一直循环下去。
+while 循环则是只要满足某个条件，就一直循环下去。
 
 ```bash
 # 单行
@@ -634,9 +634,9 @@ for (( i = 0; i < 10; i++ )); do
 done
 ```
 
-## select命令
+## select 命令
 
-select命令用于在屏幕上显示一组选项，供用户选择。它跟`for`循环的语法很相似。
+select 命令用于在屏幕上显示一组选项，供用户选择。它跟`for`循环的语法很相似。
 
 ```bash
 select answer in elem1 elem2 ... elemN
@@ -679,7 +679,7 @@ Enter the package name: bash-handbook
 
 ## 正则运算符
 
-`=~`是Bash的正则运算符，左侧运算数为等待验证的值，右侧为一个正则表达式。
+`=~`是 Bash 的正则运算符，左侧运算数为等待验证的值，右侧为一个正则表达式。
 
 ```bash
 if [[ $digit =~ [0-9] ]]; then
@@ -715,24 +715,24 @@ done
 
 特殊字符
 
-- `*`	Matches any string, including the null string (empty string)
-- `?`	Matches any single character
-- `X`	Matches the character X which can be any character that has no special meaning
-- `\X`	Matches the character X, where the character's special meaning is stripped by the backslash
-- `\\`	Matches a backslash
+- `*` Matches any string, including the null string (empty string)
+- `?` Matches any single character
+- `X` Matches the character X which can be any character that has no special meaning
+- `\X` Matches the character X, where the character's special meaning is stripped by the backslash
+- `\\` Matches a backslash
 
 正则表达式的方括号。
 
-- `[XYZ]`	The "normal" bracket expression, matching either X, Y or Z
-- `[X-Z]`	A range expression: Matching all the characters from X to Y (your current locale, defines how the characters are sorted!)
-- `[[:class:]]`	Matches all the characters defined by a POSIX® character class: alnum, alpha, ascii, blank, cntrl, digit, graph, lower, print, punct, space, upper, word and xdigit
-- `[^…]`	A negating expression: It matches all the characters that are not in the bracket expression
-- `[!…]`	Equivalent to `[^…]`
+- `[XYZ]` The "normal" bracket expression, matching either X, Y or Z
+- `[X-Z]` A range expression: Matching all the characters from X to Y (your current locale, defines how the characters are sorted!)
+- `[[:class:]]` Matches all the characters defined by a POSIX® character class: alnum, alpha, ascii, blank, cntrl, digit, graph, lower, print, punct, space, upper, word and xdigit
+- `[^…]` A negating expression: It matches all the characters that are not in the bracket expression
+- `[!…]` Equivalent to `[^…]`
 - `[]...]` or `[-…]` Used to include the characters ] and - into the set, they need to be the first characters after the opening bracket
 
 ## 执行脚本命令
 
-在脚本中可以执行shell命令，有两种格式。
+在脚本中可以执行 shell 命令，有两种格式。
 
 ```bash
 $ d=$(pwd)
@@ -748,15 +748,15 @@ d=$( dirname $( readlink -m $0 ) )
 
 ## Process Substitution
 
-Process Substitution（进程替换）也是用来在脚本中执行Shell命令，但是该Shell命令的输入和输出都是以文件形式出现。它的形式是`<( )`。
+Process Substitution（进程替换）也是用来在脚本中执行 Shell 命令，但是该 Shell 命令的输入和输出都是以文件形式出现。它的形式是`<( )`。
 
 ```bash
 $ cat <( head -1 file.txt ) <( tail file.txt )
 ```
 
-上面命令中cat的参数必须是文件，所以使用“进程替换”。
+上面命令中 cat 的参数必须是文件，所以使用“进程替换”。
 
-大括号也可以用来执行shell命令。
+大括号也可以用来执行 shell 命令。
 
 ```bash
 $ for i in 1 2 3; do { echo "***"$i; sleep 60 & } done
@@ -764,18 +764,18 @@ $ for i in 1 2 3; do { echo "***"$i; sleep 60 & } done
 
 ## 多行字符串
 
-使用Here字符串，输出多行文本。
+使用 Here 字符串，输出多行文本。
 
 ```bash
 cat <<_EOF_
 
 Usage:
 
-$0 --inp [inputfile] --outputdir [dir]  --inst [number] --prefix [string] 
+$0 --inp [inputfile] --outputdir [dir]  --inst [number] --prefix [string]
 
 Required Arguments:
 
-  --inp         the input file 
+  --inp         the input file
 
 Options:
 
@@ -851,7 +851,7 @@ $ functionname arg1 arg2
 
 函数使用`return`命令退出，`return`命令的参数就是函数的退出码。如果`return`命令没有参数，那么函数的退出状态就是函数体内最后一个命令的退出状态。
 
-Bash提供一些特殊变量，用于读取函数变量。
+Bash 提供一些特殊变量，用于读取函数变量。
 
 - $# 参数个数
 - $@ 所有参数，等同于`$0 $1 ...`
@@ -902,7 +902,7 @@ $ alias name='unix command with options'
 
 ## 数组
 
-Bash可以使用数组表示一组值，每个值之间用空格分隔。数组从0开始计算位置。
+Bash 可以使用数组表示一组值，每个值之间用空格分隔。数组从 0 开始计算位置。
 
 ```bash
 fruits[0]=Apple

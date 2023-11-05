@@ -1,20 +1,18 @@
 # immutability-helper 插件的基本使用（附源码）
 
- 
-
 关注
 
-2019.01.07 12:38 字数 803 阅读 187评论 0喜欢 0
+2019.01.07 12:38 字数 803 阅读 187 评论 0 喜欢 0
 
 **本文介绍了 immutability-helper 插件的基本使用，详细介绍了相关 API 的用法及注意事项。**
 
-------
+---
 
 ## 概念
 
-先理解一下 Immutable 的概念，Immutable数据就是一旦创建，就不能更改的数据。每当对Immutable对象进行修改的时候，就会返回一个新的Immutable对象，以此来保证数据的不可变。但是由于 Immutable 的 API 和用法学习起来比较困难，所以可以使用 immutability-helper 这个工具来对原生JS对象进行操作。本文主要是对 immutability-helper 的用法做一个讲解。
+先理解一下 Immutable 的概念，Immutable 数据就是一旦创建，就不能更改的数据。每当对 Immutable 对象进行修改的时候，就会返回一个新的 Immutable 对象，以此来保证数据的不可变。但是由于 Immutable 的 API 和用法学习起来比较困难，所以可以使用 immutability-helper 这个工具来对原生 JS 对象进行操作。本文主要是对 immutability-helper 的用法做一个讲解。
 
-------
+---
 
 ## 源码
 
@@ -22,7 +20,7 @@
 
 欢迎 Star！欢迎 Watch！
 
-------
+---
 
 ## 注意事项总结
 
@@ -34,7 +32,7 @@
 - 任意 API 均可在多层结构内使用。可查看[扩展用法示例](https://www.jianshu.com/p/220e0271d2e4#扩展用法)
 - 可以同时执行多个 API 操作，但是请注意：**多个 API 在一个语句中执行时，只会执行最后一个！！！**。可查看[注意用法示例](https://www.jianshu.com/p/220e0271d2e4#注意用法)
 
-------
+---
 
 ## 常用 API
 
@@ -60,7 +58,7 @@
 
 - {$remove: array of strings} 从 Set 或 Map 中移除参数 array 中的键列表
 
-------
+---
 
 ## API 用法及示例
 
@@ -107,7 +105,7 @@ console.log('unshiftArray：', unshiftArray);   // => [ 'f', 'a', 'b', 'c', 'd',
  * 同数组的 splice 方法
  *      数组 arrays 中包含的是所有需要执行的操作集合
  *      元素 array 中第一个元素代表下标，第二个元素代表需要删除的个数，第三个元素代表需要插入到 initialArray 中的的元素
- * 
+ *
  * PS:  1、可以在 arrays 中执行多个集合；
  *      2、两个操作不是同时执行，而是按顺序执行，后面的操作会在前面一个操作的执行结果上执行
  */
@@ -227,7 +225,7 @@ const removeMap = update(initialMap, { $remove: ['color', 'alias'] });
 console.log('removeMap：', removeMap);  // => Map { 'id' => '1' }
 ```
 
-------
+---
 
 ## 扩展用法
 
@@ -248,7 +246,7 @@ const initialConfig = {
 // 多层结构内使用
 const multiConfig1 = update(initialConfig, { options: { color: { $set: 'pink' } } });
 console.log('multiConfig1：', multiConfig1);
-/* => 
+/* =>
 { width: 100,
   height: 100,
   options:
@@ -258,7 +256,7 @@ console.log('multiConfig1：', multiConfig1);
 */
 ```
 
-------
+---
 
 ## 注意用法
 
@@ -280,8 +278,8 @@ const initialConfig = {
 
 // 例子：只会执行最后的设置 color 属性的操作
 const multiConfig2 = update(initialConfig, { options: { $push: [ { color: 'deepPink', shape: 'Triangle' } ] }, options: { color: { $set: 'pink' } } });
-console.log('multiConfig2：', multiConfig2);    
-/* => 
+console.log('multiConfig2：', multiConfig2);
+/* =>
 { width: 100,
   height: 100,
   options:

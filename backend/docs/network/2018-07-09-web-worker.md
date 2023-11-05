@@ -39,16 +39,16 @@ Worker 线程无法读取本地文件，即不能打开本机的文件系统（`
 主线程采用`new`命令，调用`Worker()`构造函数，新建一个 Worker 线程。
 
 ```javascript
-var worker = new Worker('work.js');
+var worker = new Worker("work.js");
 ```
 
-`Worker()`构造函数的参数是一个脚本文件，该文件就是 Worker 线程所要执行的任务。由于 Worker 不能读取本地文件，所以这个脚本必须来自网络。如果下载没有成功（比如404错误），Worker 就会默默地失败。
+`Worker()`构造函数的参数是一个脚本文件，该文件就是 Worker 线程所要执行的任务。由于 Worker 不能读取本地文件，所以这个脚本必须来自网络。如果下载没有成功（比如 404 错误），Worker 就会默默地失败。
 
 然后，主线程调用`worker.postMessage()`方法，向 Worker 发消息。
 
 ```javascript
-worker.postMessage('Hello World');
-worker.postMessage({method: 'echo', args: ['Work']});
+worker.postMessage("Hello World");
+worker.postMessage({ method: "echo", args: ["Work"] });
 ```
 
 `worker.postMessage()`方法的参数，就是主线程传给 Worker 的数据。它可以是各种数据类型，包括二进制数据。
@@ -57,13 +57,13 @@ worker.postMessage({method: 'echo', args: ['Work']});
 
 ```javascript
 worker.onmessage = function (event) {
-  console.log('Received message ' + event.data);
+  console.log("Received message " + event.data);
   doSomething();
-}
+};
 
 function doSomething() {
   // 执行任务
-  worker.postMessage('Work done!');
+  worker.postMessage("Work done!");
 }
 ```
 
@@ -80,23 +80,35 @@ worker.terminate();
 Worker 线程内部需要有一个监听函数，监听`message`事件。
 
 ```javascript
-self.addEventListener('message', function (e) {
-  self.postMessage('You said: ' + e.data);
-}, false);
+self.addEventListener(
+  "message",
+  function (e) {
+    self.postMessage("You said: " + e.data);
+  },
+  false
+);
 ```
 
 上面代码中，`self`代表子线程自身，即子线程的全局对象。因此，等同于下面两种写法。
 
 ```javascript
 // 写法一
-this.addEventListener('message', function (e) {
-  this.postMessage('You said: ' + e.data);
-}, false);
+this.addEventListener(
+  "message",
+  function (e) {
+    this.postMessage("You said: " + e.data);
+  },
+  false
+);
 
 // 写法二
-addEventListener('message', function (e) {
-  postMessage('You said: ' + e.data);
-}, false);
+addEventListener(
+  "message",
+  function (e) {
+    postMessage("You said: " + e.data);
+  },
+  false
+);
 ```
 
 除了使用`self.addEventListener()`指定监听函数，也可以使用`self.onmessage`指定。监听函数的参数是一个事件对象，它的`data`属性包含主线程发来的数据。`self.postMessage()`方法用来向主线程发送消息。
@@ -104,20 +116,24 @@ addEventListener('message', function (e) {
 根据主线程发来的数据，Worker 线程可以调用不同的方法，下面是一个例子。
 
 ```javascript
-self.addEventListener('message', function (e) {
-  var data = e.data;
-  switch (data.cmd) {
-    case 'start':
-      self.postMessage('WORKER STARTED: ' + data.msg);
-      break;
-    case 'stop':
-      self.postMessage('WORKER STOPPED: ' + data.msg);
-      self.close(); // Terminates the worker.
-      break;
-    default:
-      self.postMessage('Unknown command: ' + data.msg);
-  };
-}, false);
+self.addEventListener(
+  "message",
+  function (e) {
+    var data = e.data;
+    switch (data.cmd) {
+      case "start":
+        self.postMessage("WORKER STARTED: " + data.msg);
+        break;
+      case "stop":
+        self.postMessage("WORKER STOPPED: " + data.msg);
+        self.close(); // Terminates the worker.
+        break;
+      default:
+        self.postMessage("Unknown command: " + data.msg);
+    }
+  },
+  false
+);
 ```
 
 上面代码中，`self.close()`用于在 Worker 内部关闭自身。
@@ -127,13 +143,13 @@ self.addEventListener('message', function (e) {
 Worker 内部如果要加载其他脚本，有一个专门的方法`importScripts()`。
 
 ```javascript
-importScripts('script1.js');
+importScripts("script1.js");
 ```
 
 该方法可以同时加载多个脚本。
 
 ```javascript
-importScripts('script1.js', 'script2.js');
+importScripts("script1.js", "script2.js");
 ```
 
 ### 2.4 错误处理
@@ -142,13 +158,13 @@ importScripts('script1.js', 'script2.js');
 
 ```javascript
 worker.onerror(function (event) {
-  console.log([
-    'ERROR: Line ', e.lineno, ' in ', e.filename, ': ', e.message
-  ].join(''));
+  console.log(
+    ["ERROR: Line ", e.lineno, " in ", e.filename, ": ", e.message].join("")
+  );
 });
 
 // 或者
-worker.addEventListener('error', function (event) {
+worker.addEventListener("error", function (event) {
   // ...
 });
 ```
@@ -184,8 +200,12 @@ worker.postMessage(uInt8Array);
 // Worker 线程
 self.onmessage = function (e) {
   var uInt8Array = e.data;
-  postMessage('Inside worker.js: uInt8Array.toString() = ' + uInt8Array.toString());
-  postMessage('Inside worker.js: uInt8Array.byteLength = ' + uInt8Array.byteLength);
+  postMessage(
+    "Inside worker.js: uInt8Array.toString() = " + uInt8Array.toString()
+  );
+  postMessage(
+    "Inside worker.js: uInt8Array.byteLength = " + uInt8Array.byteLength
+  );
 };
 ```
 
@@ -223,7 +243,7 @@ worker.postMessage(ab, [ab]);
 然后，读取这一段嵌入页面的脚本，用 Worker 来处理。
 
 ```javascript
-var blob = new Blob([document.querySelector('#worker').textContent]);
+var blob = new Blob([document.querySelector("#worker").textContent]);
 var url = window.URL.createObjectURL(blob);
 var worker = new Worker(url);
 
@@ -274,14 +294,14 @@ pollingWorker.postMessage('init');
 
 ## 六、实例： Worker 新建 Worker
 
-Worker 线程内部还能再新建 Worker 线程。下面的例子是将一个计算密集的任务，分配到10个 Worker。
+Worker 线程内部还能再新建 Worker 线程。下面的例子是将一个计算密集的任务，分配到 10 个 Worker。
 
 主线程代码如下。
 
 ```javascript
-var worker = new Worker('worker.js');
+var worker = new Worker("worker.js");
 worker.onmessage = function (event) {
-  document.getElementById('result').textContent = event.data;
+  document.getElementById("result").textContent = event.data;
 };
 ```
 
@@ -298,7 +318,7 @@ var items_per_worker = 1000000;
 var result = 0;
 var pending_workers = num_workers;
 for (var i = 0; i < num_workers; i += 1) {
-  var worker = new Worker('core.js');
+  var worker = new Worker("core.js");
   worker.postMessage(i * items_per_worker);
   worker.postMessage((i + 1) * items_per_worker);
   worker.onmessage = storeResult;
@@ -308,12 +328,11 @@ for (var i = 0; i < num_workers; i += 1) {
 function storeResult(event) {
   result += event.data;
   pending_workers -= 1;
-  if (pending_workers <= 0)
-    postMessage(result); // finished!
+  if (pending_workers <= 0) postMessage(result); // finished!
 }
 ```
 
-上面代码中，Worker 线程内部新建了10个 Worker 线程，并且依次向这10个 Worker 发送消息，告知了计算的起点和终点。计算任务脚本的代码如下。
+上面代码中，Worker 线程内部新建了 10 个 Worker 线程，并且依次向这 10 个 Worker 发送消息，告知了计算的起点和终点。计算任务脚本的代码如下。
 
 ```javascript
 // core.js
@@ -356,10 +375,10 @@ var myWorker = new Worker(jsUrl, options);
 
 ```javascript
 // 主线程
-var myWorker = new Worker('worker.js', { name : 'myWorker' });
+var myWorker = new Worker("worker.js", { name: "myWorker" });
 
 // Worker 线程
-self.name // myWorker
+self.name; // myWorker
 ```
 
 `Worker()`构造函数返回一个 Worker 线程对象，用来供主线程操作 Worker。Worker 线程对象的属性和方法如下。
@@ -384,4 +403,3 @@ Worker 线程有一些自己的全局属性和方法。
 > - self.importScripts()：加载 JS 脚本。
 
 （完）
-

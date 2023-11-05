@@ -209,5 +209,3 @@ Bessie, when she heard this narrative, sighed and said, “Poor Miss Jane is to 
 “Yes, I doat on Miss Georgiana!” cried the fervent Abbot. “Little darling!—with her long curls and her blue eyes, and such a sweet colour as she has; just as if she were painted!—Bessie, I could fancy a Welsh rabbit for supper.”
 
 “So could I—with a roast onion. Come, we’ll go down.” They went.
-
-

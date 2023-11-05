@@ -1,23 +1,23 @@
 # React 高阶 API
 
-使用方法：`react` 是React库的入口点。如果你通过 `<script>` 标签加载React，这些高阶API可用于 `React` 全局。如果你使用ES6，你可以使用 `import React from 'react'` 。如果你使用ES5，你可以使用 `var React = require('react')` 。
+使用方法：`react` 是 React 库的入口点。如果你通过 `<script>` 标签加载 React，这些高阶 API 可用于 `React` 全局。如果你使用 ES6，你可以使用 `import React from 'react'` 。如果你使用 ES5，你可以使用 `var React = require('react')` 。
 
 ## 概览
 
 ### Components
 
-React 组件可以让你把UI分割为独立、可复用的片段，并将每一片段视为相互独立的部分。
+React 组件可以让你把 UI 分割为独立、可复用的片段，并将每一片段视为相互独立的部分。
 
-React组件可以通过继承 `React.Component` 或 `React.PureComponent` 来定义。
+React 组件可以通过继承 `React.Component` 或 `React.PureComponent` 来定义。
 
 - [`React.Component`](https://react.docschina.org/docs/react-api.html#react.component)
 - [`React.PureComponent`](https://react.docschina.org/docs/react-api.html#react.purecomponent)
 
-如果不用ES6类，你可以使用 `create-react-class` 模块。参阅 [Using React without JSX](https://react.docschina.org/docs/react-without-es6.html) 了解更多信息。
+如果不用 ES6 类，你可以使用 `create-react-class` 模块。参阅 [Using React without JSX](https://react.docschina.org/docs/react-without-es6.html) 了解更多信息。
 
 ### Creating React Elements
 
-推荐 [使用JSX](https://react.docschina.org/docs/introducing-jsx.html) 描述你的UI外观。每个JSX元素仅是调用 [`React.createElement`](https://react.docschina.org/docs/react-api.html#createelement) 的语法糖。如果使用了JSX，你通常不会直接调用以下方法。
+推荐 [使用 JSX](https://react.docschina.org/docs/introducing-jsx.html) 描述你的 UI 外观。每个 JSX 元素仅是调用 [`React.createElement`](https://react.docschina.org/docs/react-api.html#createelement) 的语法糖。如果使用了 JSX，你通常不会直接调用以下方法。
 
 - [`createElement()`](https://react.docschina.org/docs/react-api.html#createelement)
 - [`createFactory()`](https://react.docschina.org/docs/react-api.html#createfactory)
@@ -26,7 +26,7 @@ React组件可以通过继承 `React.Component` 或 `React.PureComponent` 来定
 
 ### Transforming Elements
 
-`React` 同时也提供了其他API：
+`React` 同时也提供了其他 API：
 
 - [`cloneElement()`](https://react.docschina.org/docs/react-api.html#cloneelement)
 - [`isValidElement()`](https://react.docschina.org/docs/react-api.html#isvalidelement)
@@ -42,13 +42,11 @@ React组件可以通过继承 `React.Component` 或 `React.PureComponent` 来定
 
 - [`React.forwardRef`](https://react.docschina.org/docs/react-api.html#reactforwardref)
 
-
-
 ## Reference
 
 ### `React.Component`
 
-用 [ES6 类](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes) 定义时，`React.Component`是React组件的基类。
+用 [ES6 类](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes) 定义时，`React.Component`是 React 组件的基类。
 
 ```js
 class Greeting extends React.Component {
@@ -60,19 +58,19 @@ class Greeting extends React.Component {
 
 有关 `React.Component` 的方法和属性列表，请参阅 [`React.Component API Reference`](https://react.docschina.org/docs/react-component.html)。
 
-------
+---
 
 ### `React.PureComponent`
 
-`React.PureComponent` 与 [`React.Component`](https://react.docschina.org/docs/react-api.html#react.component) 几乎完全相同，但 `React.PureComponent`通过prop和state的浅对比来实现 [`shouldComponentUpdate()`](https://react.docschina.org/docs/react-component.html#shouldcomponentupdate)。
+`React.PureComponent` 与 [`React.Component`](https://react.docschina.org/docs/react-api.html#react.component) 几乎完全相同，但 `React.PureComponent`通过 prop 和 state 的浅对比来实现 [`shouldComponentUpdate()`](https://react.docschina.org/docs/react-component.html#shouldcomponentupdate)。
 
-如果React组件的 `render()` 函数在给定相同的props和state下渲染为相同的结果，在某些场景下你可以使用 `React.PureComponent` 来提升性能。
+如果 React 组件的 `render()` 函数在给定相同的 props 和 state 下渲染为相同的结果，在某些场景下你可以使用 `React.PureComponent` 来提升性能。
 
 > Note
 
-> `React.PureComponent` 的 `shouldComponentUpdate()` 只会对对象进行浅对比。如果对象包含复杂的数据结构，它可能会因深层的数据不一致而产生错误的否定判断(表现为对象深层的数据已改变视图却没有更新, 原文：false-negatives)。当你期望只拥有简单的props和state时，才去继承 `PureComponent` ，或者在你知道深层的数据结构已经发生改变时使用 [`forceUpdate()`](https://react.docschina.org/docs/react-component.html#forceupdate) 。或者，考虑使用 [不可变对象](https://facebook.github.io/immutable-js/) 来促进嵌套数据的快速比较。
+> `React.PureComponent` 的 `shouldComponentUpdate()` 只会对对象进行浅对比。如果对象包含复杂的数据结构，它可能会因深层的数据不一致而产生错误的否定判断(表现为对象深层的  数据已改变视图却没有更新, 原文：false-negatives)。当你期望只拥有简单的 props 和 state 时，才去继承 `PureComponent` ，或者在你知道深层的数据结构已经发生改变时使用 [`forceUpdate()`](https://react.docschina.org/docs/react-component.html#forceupdate) 。或者，考虑使用 [不可变对象](https://facebook.github.io/immutable-js/) 来促进嵌套数据的快速比较。
 >
-> 此外,`React.PureComponent` 的 `shouldComponentUpate()` 会忽略整个组件的子级。请确保所有的子级组件也是”Pure”的。
+> 此外,`React.PureComponent` 的 `shouldComponentUpate()` 会忽略整个组件的子级。请确保所有的子级组件  也是”Pure”的。
 
 ### `createElement()`
 
@@ -84,13 +82,13 @@ React.createElement(
 )
 ```
 
-根据给定的类型创建并返回新的 [`React element`](https://react.docschina.org/docs/rendering-elements.html) 。参数type既可以是一个html标签名称字符串(例如`'div'` 或 `'span'` )，也可以是一个 [`React component`](https://react.docschina.org/docs/components-and-props.html) 类型(一个类或一个函数)。
+根据给定的类型创建并返回新的 [`React element`](https://react.docschina.org/docs/rendering-elements.html) 。参数 type 既可以是一个 html 标签名称字符串(例如`'div'` 或 `'span'` )，也可以是一个 [`React component`](https://react.docschina.org/docs/components-and-props.html) 类型(一个类或一个函数)。
 
-`React.DOM` 提供了DOM组件的 `React.createElement()` 的便捷包装。举个例子，`React.DOM.a(...)` 是 `React.createELement('a', ...)` 的一个便捷包装。这个用法被认为是过时的，我们推荐您使用JSX，或者直接使用 `React.createElement()` 。
+`React.DOM` 提供了 DOM 组件的 `React.createElement()` 的便捷包装。举个例子，`React.DOM.a(...)` 是 `React.createELement('a', ...)` 的一个便捷包装。这个用法被认为是过时的，我们推荐您使用 JSX，或者直接使用 `React.createElement()` 。
 
-用 [`JSX`](https://react.docschina.org/docs/introducing-jsx.html) 编写的代码会被转换成用 `React.createElement()` 实现。如果使用了JSX，你通常不会直接调用 `React.createElement()` 。参阅 [`React Without JSX`](https://react.docschina.org/docs/react-without-jsx.html) 了解更多。
+用  [`JSX`](https://react.docschina.org/docs/introducing-jsx.html) 编写的代码会被转换成用 `React.createElement()` 实现。如果使用了 JSX，你  通常不会直接调用 `React.createElement()` 。参阅 [`React Without JSX`](https://react.docschina.org/docs/react-without-jsx.html) 了解更多。
 
-------
+---
 
 ### `cloneElement()`
 
@@ -102,7 +100,7 @@ React.cloneElement(
 )
 ```
 
-以 `element` 作为起点，克隆并返回一个新的React元素(React Element)。生成的元素将会拥有原始元素props与新props的浅合并。新的子级会替换现有的子级。来自原始元素的 `key` 和 `ref` 将会保留。
+以 `element` 作为起点，克隆并返回一个新的 React 元素(React Element)。生成的元素将会拥有原始元素 props 与新 props 的浅合并。新的子级会替换现有的子级。来自原始元素的 `key` 和 `ref` 将会保留。
 
 `React.cloneElement()` 几乎相当于：
 
@@ -110,11 +108,11 @@ React.cloneElement(
 <element.type {...element.props} {...props}>{children}</element.type>
 ```
 
-然而，它也保留了 `ref`。这意味着，如果你通过 `ref` 获取到子级组件时，不会一不小心从祖先组件里窃取了它。你将获得与你新元素相同的 `ref` 。
+然而，它也保留了  `ref`。这意味着，如果你通过 `ref` 获取到子级组件时，不会一不小心从祖先组件里  窃取  了它。你将获得与你新元素相同的 `ref` 。
 
-这个API是一个替换已弃用的 `React.addons.cloneWithProps()` 的方案。
+这个 API 是一个替换已弃用的 `React.addons.cloneWithProps()` 的方案。
 
-------
+---
 
 ### `createFactory()`
 
@@ -122,13 +120,13 @@ React.cloneElement(
 React.createFactory(type)
 ```
 
-根据给定的类型返回一个创建React元素的函数。类似 [`React.createElement`](https://react.docschina.org/docs/react-api.html#createElement) ，参数type既可以一个html标签名称字符串，也可以是一个 [`React component`](https://react.docschina.org/docs/components-and-props.html) 类型(一个类或时一个函数)。
+根据给定的类型返回一个创建 React 元素的函数。类似 [`React.createElement`](https://react.docschina.org/docs/react-api.html#createElement) ，参数 type 既可以一个 html 标签  名称字符串，也可以是一个 [`React component`](https://react.docschina.org/docs/components-and-props.html) 类型(一个类或时一个函数)。
 
-这个方法过时了，我们推荐你使用JSX或直接使用 `React.createElement()` 来替代它。
+这个方法过时了，我们推荐你使用 JSX 或直接使用 `React.createElement()` 来替代它。
 
-如果使用了JSX，你通常不会直接调用 `React.createFactory()` 。参阅 [`React Without JSX`](https://react.docschina.org/docs/react-without-jsx.html)了解更多 。
+如果使用了 JSX，你通常不会直接调用  `React.createFactory()` 。参阅 [`React Without JSX`](https://react.docschina.org/docs/react-without-jsx.html)了解更多 。
 
-------
+---
 
 ### `isValidElement()`
 
@@ -136,10 +134,9 @@ React.createFactory(type)
 React.isValidElement(object)
 ```
 
-验证对象是否是一个React元素。返回 `true` 或 `false` 。
+验证对象是否是一个 React 元素。返回 `true` 或 `false` 。
 
-------
-
+---
 
 遍历数组的很重要的部分
 
@@ -153,7 +150,7 @@ React.isValidElement(object)
 React.Children.map(children, function[(thisArg)])
 ```
 
-在包含在 `children` 里的每个子级上调用函数，调用的函数的 `this` 设置为 `thisArg` 。如果 `children` 是一个嵌套的对象或数组，它将被遍历。如果 `children` 是 `null` 或 `undefined`，返回 `null` 或 `undefined` 而不是一个空数组。
+在  包含在 `children` 里的每个子级上调用函数，调用的函数的 `this` 设置为 `thisArg` 。如果 `children` 是一个嵌套的对象或数组，它将被遍历。如果 `children` 是 `null` 或 `undefined`，返回 `null` 或 `undefined` 而不是一个空数组。
 
 `React.Children.forEach`
 
@@ -185,11 +182,11 @@ React.Children.only(children)
 React.Children.toArray(children)
 ```
 
-返回以赋key给每个子级 `child` 的扁平数组形式来组成不透明的 `children` 数据结构。如果你打算在你的渲染方法里操纵子级集合这很有用，特别是你想在 `this.props.children` 传下之前对它重新排序或切割。
+返回以赋 key 给每个子级 `child` 的扁平数组形式来组成不透明的 `children` 数据结构。如果你打算在你的渲染方法里操纵子级集合这很有用，特别是你想在 `this.props.children` 传下之前对它重新排序或切割。
 
 > Note:
 >
-> 当children是扁平列表时，`React.Children.toArray()` 改变key来保留嵌套数组的语义。也就是说，为了在展开时保留嵌套数组的语义，`toArray` 会自动的给数组中每个 key 加了上前缀，以便将每个元素的key被限定到包含它的输入数组。
+> 当 children 是扁平列表时，`React.Children.toArray()` 改变 key 来保留嵌套数组的语义。也就是说，为了在展开时保留嵌套数组的语义，`toArray` 会自动的给数组中每个 key 加了上前缀，以便将每个元素的 key 被限定到包含它的输入数组。
 
 ### `React.forwardRef`
 
@@ -201,7 +198,7 @@ function enhance(Component) {
     // ...
 
     render() {
-      const {forwardedRef, ...rest} = this.props;
+      const { forwardedRef, ...rest } = this.props;
 
       // Assign the custom prop "forwardedRef" as a ref
       return <Component ref={forwardedRef} {...rest} />;
@@ -223,17 +220,15 @@ function enhance(Component) {
 }
 ```
 
-
-
 # React.Component
 
-组件能够让你将UI分割成独立的、可重用的部分，并对每一部分单独考量。[`React`](https://react.docschina.org/docs/react-api.html)提供了`React.Component` 。
+组件能够让你将 UI 分割成独立的、可重用的部分，并对每一部分单独考量。[`React`](https://react.docschina.org/docs/react-api.html)提供了`React.Component` 。
 
 ## 概览
 
 `React.Component`是一个抽象基础类，因此直接引用`React.Component`几乎没意义。相反，你通常会继承自它，并至少定义一个[`render()`](https://react.docschina.org/docs/react-component.html#render)方法。
 
-通常你定义一个React组件相当于一个纯[JavaScript类](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes)：
+通常你定义一个 React 组件相当于一个纯[JavaScript 类](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes)：
 
 ```
 class Greeting extends React.Component {
@@ -251,7 +246,7 @@ class Greeting extends React.Component {
 
 #### 装配
 
-这些方法会在组件实例被创建和插入DOM中时被调用：
+这些方法会在组件实例被创建和插入 DOM 中时被调用：
 
 - [`constructor()`](https://react.docschina.org/docs/react-component.html#constructor)
 - [`static getDerivedStateFromProps()`](https://react.docschina.org/docs/react-component.html#static-getderivedstatefromprops)
@@ -273,7 +268,7 @@ class Greeting extends React.Component {
 
 #### 卸载
 
-当一个组件被从DOM中移除时，该方法被调用：
+当一个组件被从 DOM 中移除时，该方法被调用：
 
 - [`componentWillUnmount()`](https://react.docschina.org/docs/react-component.html#componentwillunmount)
 
@@ -283,9 +278,9 @@ class Greeting extends React.Component {
 
 - [`componentDidCatch()`](https://react.docschina.org/docs/react-component.html#componentdidcatch)
 
-### 其他API
+### 其他 API
 
-每一个组件还提供了其他的API：
+每一个组件还提供了其他的 API：
 
 - [`setState()`](https://react.docschina.org/docs/react-component.html#setstate)
 - [`forceUpdate()`](https://react.docschina.org/docs/react-component.html#forceupdate)
@@ -300,8 +295,6 @@ class Greeting extends React.Component {
 - [`props`](https://react.docschina.org/docs/react-component.html#props)
 - [`state`](https://react.docschina.org/docs/react-component.html#state)
 
-
-
 ## 参考
 
 ### `render()`
@@ -314,7 +307,7 @@ render()
 
 当被调用时，其应该检查`this.props` 和 `this.state`并返回以下类型中的一个:
 
-- **React元素。** 通常是由 JSX 创建。该元素可能是一个原生DOM组件的表示，如`<div />`，或者是一个你定义的合成组件。
+- **React 元素。** 通常是由 JSX 创建。该元素可能是一个原生 DOM 组件的表示，如`<div />`，或者是一个你定义的合成组件。
 - **字符串和数字。** 这些将被渲染为 DOM 中的 text node。
 - **Portals。** 由 [`ReactDOM.createPortal`](https://react.docschina.org/docs/portals.html) 创建。
 - `null`。 什么都不渲染。
@@ -326,7 +319,7 @@ render()
 
 > 注意
 >
-> 若 [`shouldComponentUpdate()`](https://react.docschina.org/docs/react-component.html#shouldcomponentupdate)返回false，`render()`函数将不会被调用。
+> 若 [`shouldComponentUpdate()`](https://react.docschina.org/docs/react-component.html#shouldcomponentupdate)返回 false，`render()`函数将不会被调用。
 
 ### `constructor()`
 
@@ -334,9 +327,9 @@ render()
 constructor(props)
 ```
 
-React组件的构造函数将会在装配之前被调用。当为一个`React.Component`子类定义构造函数时，你应该在任何其他的表达式之前调用`super(props)`。否则，`this.props`在构造函数中将是未定义，并可能引发异常。
+React 组件的构造函数将会在装配之前被调用。当为一个`React.Component`子类定义构造函数时，你应该在任何其他的表达式之前调用`super(props)`。否则，`this.props`在构造函数中将是未定义，并可能引发异常。
 
-==构造函数是初始化状态的合适位置==。若你不初始化状态且不绑定方法，那你也不需要为你的React组件定义一个构造函数。
+==构造函数是初始化状态的合适位置==。若你不初始化状态且不绑定方法，那你也不需要为你的 React 组件定义一个构造函数。
 
 可以==基于属性来初始化状态==。这样有效地“分离（forks）”属性并根据初始属性设置状态。这有一个有效的`React.Component`子类构造函数的例子：
 
@@ -353,7 +346,7 @@ constructor(props) {
 
 若你通过使用它们为状态“分离”属性，你可能也想要实现[`UNSAFE_componentWillReceiveProps(nextProps)`](https://react.docschina.org/docs/react-component.html#componentwillreceiveprops)以保持最新的状态。但状态提升通常来说更容易以及更少的异常。
 
-------
+---
 
 ### `static getDerivedStateFromProps()`
 
@@ -361,13 +354,13 @@ constructor(props) {
 static getDerivedStateFromProps(nextProps, prevState)
 ```
 
-组件实例化后和接受新属性时将会调用`getDerivedStateFromProps`。它应该返回一个对象来更新状态，或者返回null来表明新属性不需要更新任何状态。
+组件实例化后和接受新属性时将会调用`getDerivedStateFromProps`。它应该返回一个对象来更新状态，或者返回 null 来表明新属性不需要更新任何状态。
 
 注意，如果父组件导致了组件的重新渲染，即使属性没有更新，这一方法也会被调用。如果你只想处理变化，你可能想去比较新旧值。
 
 调用`this.setState()` 通常不会触发 `getDerivedStateFromProps()`。
 
-------
+---
 
 ### `UNSAFE_componentWillMount()`
 
@@ -383,9 +376,9 @@ UNSAFE_componentWillMount()
 
 > 注意
 >
-> 这一生命周期之前叫做`componentWillMount`。这一名字在17版前都有效。可以使用[`rename-unsafe-lifecycles` codemod](https://github.com/reactjs/react-codemod#rename-unsafe-lifecycles)来自动更新你的组件。
+> 这一生命周期之前叫做`componentWillMount`。这一名字在 17 版前都有效。可以使用[`rename-unsafe-lifecycles` codemod](https://github.com/reactjs/react-codemod#rename-unsafe-lifecycles)来自动更新你的组件。
 
-------
+---
 
 ### `componentDidMount()`
 
@@ -393,15 +386,15 @@ UNSAFE_componentWillMount()
 componentDidMount()
 ```
 
-`componentDidMount()`在组件被装配后立即调用。初始化使得DOM节点应该进行到这里。==若你需要从远端加载数据，这是一个适合实现网络请求的地方。在该方法里设置状态将会触发重渲==。
+`componentDidMount()`在组件被装配后立即调用。初始化使得 DOM 节点应该进行到这里。==若你需要从远端加载数据，这是一个适合实现网络请求的地方。在该方法里设置状态将会触发重渲==。
 
 这一方法是一个发起任何绑定的好地方（addeventlistener）,别忘了在`componentWillUnmount()取消`。
 
 ==在这个方法中调用`setState()`将会触发一次额外的渲染，但是它将在浏览器刷新屏幕之前发生==。这保证了即使`render()`将会调用两次，==但用户不会看到中间状态==。谨慎使用这一模式，因为它常==导致性能问题==。
 
-然而，它对于像==模态框(Modal)和工具提示框==这样的例子是必须的。这时，在渲染依赖==DOM节点的尺寸或者位置的视图==前，你需要先测量这些节点。(获取当前按钮的位置 需要通过ref获取节点的尺寸或者位置，然后进一步计算)
+然而，它对于像==模态框(Modal)和工具提示框==这样的例子是必须的。这时，在渲染依赖==DOM 节点的尺寸或者位置的视图==前，你需要先测量这些节点。(获取当前按钮的位置 需要通过 ref 获取节点的尺寸或者位置，然后进一步计算)
 
-------
+---
 
 ### `UNSAFE_componentWillReceiveProps()`
 
@@ -415,15 +408,15 @@ UNSAFE_componentWillReceiveProps(nextProps)
 
 `UNSAFE_componentWillReceiveProps()`在装配了的组件接收到新属性前调用。若你需要更新状态响应属性改变（例如，重置它），你可能需对比`this.props`和`nextProps`并在该方法中使用`this.setState()`处理状态改变。
 
-注意==即使属性未有任何改变，React可能也会调用该方法==，因此若你想要处理改变，请确保比较当前和之后的值。这可能会发生在当父组件引起你的组件重渲。
+注意==即使属性未有任何改变，React 可能也会调用该方法==，因此若你想要处理改变，请确保比较当前和之后的值。这可能会发生在当父组件引起你的组件重渲。
 
-在 [装配](https://react.docschina.org/docs/react-component.html#mounting)期间，React并不会调用带有初始属性的`UNSAFE_componentWillReceiveProps`方法。其仅会调用该方法如果某些组件的属性可能更新。调用`this.setState`通常不会触发`UNSAFE_componentWillReceiveProps`。
+在 [装配](https://react.docschina.org/docs/react-component.html#mounting)期间，React 并不会调用带有初始属性的`UNSAFE_componentWillReceiveProps`方法。其仅会调用该方法如果某些组件的属性可能更新。调用`this.setState`通常不会触发`UNSAFE_componentWillReceiveProps`。
 
 > 注意
 >
-> 这一生命周期之前叫做`componentWillReceiveProps`。这一名字在17版前都有效。可以使用[`rename-unsafe-lifecycles` codemod](https://github.com/reactjs/react-codemod#rename-unsafe-lifecycles)来自动更新你的组件。
+> 这一生命周期之前叫做`componentWillReceiveProps`。这一名字在 17 版前都有效。可以使用[`rename-unsafe-lifecycles` codemod](https://github.com/reactjs/react-codemod#rename-unsafe-lifecycles)来自动更新你的组件。
 
-------
+---
 
 ### `shouldComponentUpdate()`
 
@@ -431,17 +424,17 @@ UNSAFE_componentWillReceiveProps(nextProps)
 shouldComponentUpdate(nextProps, nextState)
 ```
 
-使用`shouldComponentUpdate()`以让React知道当前状态或属性的改变是否不影响组件的输出。默认行为是在每一次状态的改变重渲，在大部分情况下你应该依赖于默认行为。
+使用`shouldComponentUpdate()`以让 React 知道当前状态或属性的改变是否不影响组件的输出。默认行为是在每一次状态的改变重渲，在大部分情况下你应该依赖于默认行为。
 
 当接收到新属性或状态时，`shouldComponentUpdate()` 在渲染前被调用。默认为`true`。该方法并不会在初始化渲染或当使用`forceUpdate()`时被调用。
 
 当他们状态改变时，返回`false` 并不能阻止子组件重渲。
 
-当前，若`shouldComponentUpdate()`返回`false`，而后[`UNSAFE_componentWillUpdate()`](https://react.docschina.org/docs/react-component.html#componentwillupdate)，[`render()`](https://react.docschina.org/docs/react-component.html#render)， 和 [`componentDidUpdate()`](https://react.docschina.org/docs/react-component.html#componentdidupdate)将不会被调用。注意，在未来React可能会将`shouldComponentUpdate()`作为一个线索而不是一个严格指令，返回`false`可能仍然使得组件重渲。
+当前，若`shouldComponentUpdate()`返回`false`，而后[`UNSAFE_componentWillUpdate()`](https://react.docschina.org/docs/react-component.html#componentwillupdate)，[`render()`](https://react.docschina.org/docs/react-component.html#render)， 和 [`componentDidUpdate()`](https://react.docschina.org/docs/react-component.html#componentdidupdate)将不会被调用。注意，在未来 React 可能会将`shouldComponentUpdate()`作为一个线索而不是一个严格指令，返回`false`可能仍然使得组件重渲。
 
-在观察后，若你判定一个具体的组件很慢，你可能需要调整其从[`React.PureComponent`](https://react.docschina.org/docs/react-api.html#react.purecomponent)继承，其实现了带有浅属性和状态比较的`shouldComponentUpdate()`。若你确信想要手写，你可能需要用`this.props`和`nextProps`以及`this.state` 和 `nextState`比较，并返回`false`以告诉React更新可以被忽略。
+在观察后，若你判定一个具体的组件很慢，你可能需要调整其从[`React.PureComponent`](https://react.docschina.org/docs/react-api.html#react.purecomponent)继承，其实现了带有浅属性和状态比较的`shouldComponentUpdate()`。若你确信想要手写，你可能需要用`this.props`和`nextProps`以及`this.state` 和 `nextState`比较，并返回`false`以告诉 React 更新可以被忽略。
 
-------
+---
 
 ### `UNSAFE_componentWillUpdate()`
 
@@ -455,17 +448,17 @@ UNSAFE_componentWillUpdate(nextProps, nextState)
 
 > 注意
 >
-> 这一生命周期之前叫做`componentWillUpdate`。这一名字在17版前都有效。可以使用[`rename-unsafe-lifecycles` codemod](https://github.com/reactjs/react-codemod#rename-unsafe-lifecycles)来自动更新你的组件。
+> 这一生命周期之前叫做`componentWillUpdate`。这一名字在 17 版前都有效。可以使用[`rename-unsafe-lifecycles` codemod](https://github.com/reactjs/react-codemod#rename-unsafe-lifecycles)来自动更新你的组件。
 
 > 注意
 >
-> 若[`shouldComponentUpdate()`](https://react.docschina.org/docs/react-component.html#shouldcomponentupdate)返回false，`UNSAFE_componentWillUpdate()`将不会被调用。
+> 若[`shouldComponentUpdate()`](https://react.docschina.org/docs/react-component.html#shouldcomponentupdate)返回 false，`UNSAFE_componentWillUpdate()`将不会被调用。
 
-------
+---
 
 ### `getSnapshotBeforeUpdate()`
 
-`getSnapshotBeforeUpdate()`在最新的渲染输出提交给DOM前将会立即调用。它让你的组件能在当前的值可能要改变前获得它们。这一生命周期返回的任何值将会 作为参数被传递给`componentDidUpdate()`。
+`getSnapshotBeforeUpdate()`在最新的渲染输出提交给 DOM 前将会立即调用。它让你的组件能在当前的值可能要改变前获得它们。这一生命周期返回的任何值将会 作为参数被传递给`componentDidUpdate()`。
 
 例如：
 
@@ -492,16 +485,14 @@ class ScrollingList extends React.Component {
   }
 
   render() {
-    return (
-      <div ref={this.listRef}>{/* ...contents... */}</div>
-    );
+    return <div ref={this.listRef}>{/* ...contents... */}</div>;
   }
 }
 ```
 
 在上面的例子中，为了支持异步渲染，在`getSnapshotBeforeUpdate` 中读取`scrollHeight`而不是`componentWillUpdate`，这点很重要。由于异步渲染，在“渲染”时期（如`componentWillUpdate`和`render`）和“提交”时期（如`getSnapshotBeforeUpdate`和`componentDidUpdate`）间可能会存在延迟。如果一个用户在这期间做了像改变浏览器尺寸的事，从`componentWillUpdate`中读出的`scrollHeight`值将是滞后的。
 
-------
+---
 
 ### `componentDidUpdate()`
 
@@ -511,13 +502,13 @@ componentDidUpdate(prevProps, prevState)
 
 `componentDidUpdate()`会在更新发生后立即被调用。该方法并不会在初始化渲染时调用。
 
-当组件被更新时，使用该方法是操作DOM的一次机会。这也是一个适合发送请求的地方，要是你对比了当前属性和之前属性（例如，如果属性没有改变那么请求也就没必要了）。
+当组件被更新时，使用该方法是操作 DOM 的一次机会。这也是一个适合发送请求的地方，要是你对比了当前属性和之前属性（例如，如果属性没有改变那么请求也就没必要了）。
 
 > 注意
 >
-> 若[`shouldComponentUpdate()`](https://react.docschina.org/docs/react-component.html#shouldcomponentupdate)返回false，`componentDidUpdate()`将不会被调用。
+> 若[`shouldComponentUpdate()`](https://react.docschina.org/docs/react-component.html#shouldcomponentupdate)返回 false，`componentDidUpdate()`将不会被调用。
 
-------
+---
 
 ### `componentWillUnmount()`
 
@@ -525,9 +516,9 @@ componentDidUpdate(prevProps, prevState)
 componentWillUnmount()
 ```
 
-`componentWillUnmount()`在组件被卸载和销毁之前立刻调用。可以在该方法里处理任何必要的清理工作，例如解绑定时器，取消网络请求，清理任何在`componentDidMount`环节创建的DOM元素。
+`componentWillUnmount()`在组件被卸载和销毁之前立刻调用。可以在该方法里处理任何必要的清理工作，例如解绑定时器，取消网络请求，清理任何在`componentDidMount`环节创建的 DOM 元素。
 
-------
+---
 
 ### `componentDidCatch()`
 
@@ -535,17 +526,17 @@ componentWillUnmount()
 componentDidCatch(error, info)
 ```
 
-错误边界是React组件，并不是损坏的组件树。错误边界捕捉发生在子组件树中任意地方的JavaScript错误，打印错误日志，并且显示回退的用户界面。错误边界捕捉渲染期间、在生命周期方法中和在它们之下整棵树的构造函数中的错误。
+错误边界是 React 组件，并不是损坏的组件树。错误边界捕捉发生在子组件树中任意地方的 JavaScript 错误，打印错误日志，并且显示回退的用户界面。错误边界捕捉渲染期间、在生命周期方法中和在它们之下整棵树的构造函数中的错误。
 
-如果定义了这一生命周期方法，一个类组件将成为一个错误边界。在错误边界中调用`setState()`让你捕捉当前树之下未处理的JavaScript错误，并显示回退的用户界面。只使用错误边界来恢复异常，而不要尝试将它们用于控制流。
+如果定义了这一生命周期方法，一个类组件将成为一个错误边界。在错误边界中调用`setState()`让你捕捉当前树之下未处理的 JavaScript 错误，并显示回退的用户界面。只使用错误边界来恢复异常，而不要尝试将它们用于控制流。
 
-详情请见[*React 16中的错误处理*](https://react.docschina.org/blog/2017/07/26/error-handling-in-react-16.html)。
+详情请见[_React 16 中的错误处理_](https://react.docschina.org/blog/2017/07/26/error-handling-in-react-16.html)。
 
 > 注意
 >
 > 错误边界只捕捉树中发生在它们**之下**组件里的错误。一个错误边界并不能捕捉它自己内部的错误。
 
-------
+---
 
 ### `setState()`
 
@@ -553,15 +544,15 @@ componentDidCatch(error, info)
 setState(updater, [callback])
 ```
 
-`setState()`将需要处理的变化塞入（译者注：setState源码中将一个需要改变的变化存放到组件的state对象中，采用队列处理）组件的state对象中， 并告诉该组件及其子组件需要用更新的状态来重新渲染。这是用于==响应事件处理和服务端响应的更新用户界面的主要方式==。
+`setState()`将需要处理的变化塞入（译者注：setState 源码中将一个需要改变的变化存放到组件的 state 对象中，采用队列处理）组件的 state 对象中， 并告诉该组件及其子组件需要用更新的状态来重新渲染。这是用于==响应事件处理和服务端响应的更新用户界面的主要方式==。
 
-将`setState()`认为是一次*请求*而不是一次立即执行更新组件的命令。为了更为可观的性能，React可能会推迟它，稍后会一次性更新这些组件。React不会保证在setState之后，能够立刻拿到改变的结果。
+将`setState()`认为是一次*请求*而不是一次立即执行更新组件的命令。为了更为可观的性能，React 可能会推迟它，稍后会一次性更新这些组件。React 不会保证在 setState 之后，能够立刻拿到改变的结果。
 
 `setState()`不是立刻更新组件。其可能是==批处理或推迟更新==。这使得在调用`setState()`后立刻读取`this.state`的一个潜在陷阱。代替地，使用`componentDidUpdate`或一个`setState`==回调==（`setState(updater, callback)`），当中的每个方法都会保证在更新被应用之后触发。若你需要基于之前的状态来设置状态，阅读下面关于`updater`参数的介绍。
 
 ==除非`shouldComponentUpdate()` 返回`false`，否则`setState()`永远都会导致重渲==。若使用可变对象同时条件渲染逻辑无法在`shouldComponentUpdate()`中实现，仅当新状态不同于之前状态时调用`setState()`，将避免不必要的重渲。
 
-------------------------------------------------------------------------------
+---
 
 第一个函数是带签名的`updater`函数：
 
@@ -577,7 +568,7 @@ this.setState((prevState, props) => {
 });
 ```
 
-updater函数接收到的`prevState` 和 `props`保证都是最新的。updater的输出是和`prevState`的浅合并。
+updater 函数接收到的`prevState` 和 `props`保证都是最新的。updater 的输出是和`prevState`的浅合并。
 
 `setState()`的第二个参数是一个可选地回调函数，其将会在`setState`执行完成同时组件被重渲之后执行。通常，对于这类逻辑，我们推荐使用`componentDidUpdate`。
 
@@ -604,7 +595,7 @@ Object.assign(
 )
 ```
 
-之后的调用在同一周期中将会重写之前调用的值，因此数量仅会被加一。若之后的状态依赖于之前的状态，我们推荐使用updater函数形式：
+之后的调用在同一周期中将会重写之前调用的值，因此数量仅会被加一。若之后的状态依赖于之前的状态，我们推荐使用 updater 函数形式：
 
 ```
 this.setState((prevState) => {
@@ -614,7 +605,7 @@ this.setState((prevState) => {
 
 更多细节，查看[State & 生命周期指南](https://react.docschina.org/docs/state-and-lifecycle.html)。
 
-------
+---
 
 ### `forceUpdate()`
 
@@ -622,15 +613,13 @@ this.setState((prevState) => {
 component.forceUpdate(callback)
 ```
 
-默认情况，当你的组件或状态发生改变，你的组件将会重渲。若你的`render()`方法依赖其他数据，你可以通过调用`forceUpdate()`来告诉React组件需要重渲。
+默认情况，当你的组件或状态发生改变，你的组件将会重渲。若你的`render()`方法依赖其他数据，你可以通过调用`forceUpdate()`来告诉 React 组件需要重渲。
 
-调用`forceUpdate()`将会导致组件的 `render()`方法被调用，并忽略`shouldComponentUpdate()`。这将会触发每一个子组件的生命周期方法，涵盖，每个子组件的`shouldComponentUpdate()` 方法。若当标签改变，React仅会更新DOM。
+调用`forceUpdate()`将会导致组件的 `render()`方法被调用，并忽略`shouldComponentUpdate()`。这将会触发每一个子组件的生命周期方法，涵盖，每个子组件的`shouldComponentUpdate()` 方法。若当标签改变，React 仅会更新 DOM。
 
 通常你应该尝试避免所有`forceUpdate()` 的用法并仅在`render()`函数里从`this.props`和`this.state`读取数据。
 
-------
-
-
+---
 
 ## 类属性
 
@@ -646,7 +635,7 @@ class CustomButton extends React.Component {
 }
 
 CustomButton.defaultProps = {
-  color: 'blue'
+  color: "blue",
 };
 ```
 
@@ -658,7 +647,7 @@ CustomButton.defaultProps = {
   }
 ```
 
-若`props.color`设为null，则其值则为null：
+若`props.color`设为 null，则其值则为 null：
 
 ```
   render() {
@@ -666,13 +655,13 @@ CustomButton.defaultProps = {
   }
 ```
 
-------
+---
 
 ### `displayName`
 
-`displayName`被用在调试信息中。JSX会自动设置该值；查看[深入JSX](https://react.docschina.org/docs/jsx-in-depth.html)。
+`displayName`被用在调试信息中。JSX 会自动设置该值；查看[深入 JSX](https://react.docschina.org/docs/jsx-in-depth.html)。
 
-------
+---
 
 ## 实例属性
 
@@ -680,29 +669,25 @@ CustomButton.defaultProps = {
 
 `this.props`包含了组件该调用者定义的属性。查看[组件 & Props](https://react.docschina.org/docs/components-and-props.html)关于属性的介绍。
 
-特别地，`this.props.children`是一个特别属性，其通常由JSX表达式中的子标签定义，而不是标签本身。
+特别地，`this.props.children`是一个特别属性，其通常由 JSX 表达式中的子标签定义，而不是标签本身。
 
 ### `state`
 
-状态是该组件的特定数据，其可能改变多次。状态由用户定义，且其应为纯JavaScript对象。
+状态是该组件的特定数据，其可能改变多次。状态由用户定义，且其应为纯 JavaScript 对象。
 
-若你不在`render()`方法中使用它，其不应该该被放在状态上。例如，你可直接将timer IDs放在实例上。
+若你不在`render()`方法中使用它，其不应该该被放在状态上。例如，你可直接将 timer IDs 放在实例上。
 
 查看[State & 生命周期](https://react.docschina.org/docs/state-and-lifecycle.html)了解更多关于状态的信息。
 
 永远不要直接改变`this.state`，因为调用`setState()`会替换你之前做的改变。将`this.state`当成不可变的。
 
-
-
-
-
 # ReactDOM
 
-如果你用一个`<script>`标签导入React, 所有的顶阶的API都能在`ReactDOM`的全局范围内被调用。 如果你用的是 npm搭配ES6标准，你可以用`import ReactDOM from 'react-dom'`。如果是npm和ES5，你可以用`var ReactDOM = require('react-dom')`。
+如果你用一个`<script>`标签导入 React, 所有的顶阶的 API 都能在`ReactDOM`的全局范围内被调用。 如果你用的是 npm 搭配 ES6 标准，你可以用`import ReactDOM from 'react-dom'`。如果是 npm 和 ES5，你可以用`var ReactDOM = require('react-dom')`。
 
 ## 总览
 
-`react-dom`这个软件包提供了针对DOM的方法，可以在你应用的顶级域中调用，也可以在有需要的情况下用作跳出React模型的出口。你的大部分组件都不应该需要使用这个包。
+`react-dom`这个软件包提供了针对 DOM 的方法，可以在你应用的顶级域中调用，也可以在有需要的情况下用作跳出 React 模型的出口。你的大部分组件都不应该需要使用这个包。
 
 - [`render()`](https://react.docschina.org/docs/react-dom.html#render)
 - [`unmountComponentAtNode()`](https://react.docschina.org/docs/react-dom.html#unmountcomponentatnode)
@@ -710,15 +695,15 @@ CustomButton.defaultProps = {
 
 ### 浏览器兼容
 
-React兼容所有常用的浏览器，包括IE9及以上的版本。
+React 兼容所有常用的浏览器，包括 IE9 及以上的版本。
 
 > 注意
 >
-> 我们不支持那些不兼容ES5方法的老版浏览器，但如果你的应用包含了polyfill，例如[es5-shim 和 es5-sham](https://github.com/es-shims/es5-shim)，你可能会发现你的应用仍然可以在这些浏览器中正常运行。如果你选择这么干，你就只能孤军奋战了。
+> 我们不支持那些不兼容 ES5 方法的老版浏览器，但如果你的应用包含了 polyfill，例如[es5-shim 和 es5-sham](https://github.com/es-shims/es5-shim)，你可能会发现你的应用仍然可以在这些浏览器中正常运行。如果你选择这么干，你就只能孤军奋战了。
 
-------
+---
 
-## ==常用API==
+## ==常用 API==
 
 ### `render()`
 
@@ -730,21 +715,21 @@ ReactDOM.render(
 )
 ```
 
-渲染一个React元素，添加到位于提供的`container`里的DOM元素中，并返回这个组件的一个 [引用](https://react.docschina.org/docs/more-about-refs.html) (或者对于[无状态组件](https://react.docschina.org/docs/components-and-props.html#functional-and-class-components)返回`null`).
+渲染一个 React 元素，添加到位于提供的`container`里的 DOM 元素中，并返回这个组件的一个 [引用](https://react.docschina.org/docs/more-about-refs.html) (或者对于[无状态组件](https://react.docschina.org/docs/components-and-props.html#functional-and-class-components)返回`null`).
 
-如果这个React元素之前已经被渲染到`container`里去了，这段代码就会进行一次更新，并且只会改变那些反映元素最新状态所必须的DOM元素。
+如果这个 React 元素之前已经被渲染到`container`里去了，这段代码就会进行一次更新，并且只会改变那些反映元素最新状态所必须的 DOM 元素。
 
 回调函数是可选的。如果你提供了，程序会在渲染或更新之后执行这个函数。
 
 > 注意:
 >
-> `ReactDOM.render()` 控制你传进来的容器节点里的的内容。第一次被调用时，内部所有已经存在的DOM元素都会被替换掉。==之后的调用会使用React的DOM比较算法进行高效的更新。==
+> `ReactDOM.render()` 控制你传进来的容器节点里的的内容。第一次被调用时，内部所有已经存在的 DOM 元素都会被替换掉。==之后的调用会使用 React 的 DOM 比较算法进行高效的更新。==
 >
-> `ReactDOM.render()`不会修改容器节点（只修改容器的子项）。你可以在不覆盖已有子节点的情况下添加一个组件到已有的DOM节点中去。
+> `ReactDOM.render()`不会修改容器节点（只修改容器的子项）。你可以在不覆盖已有子节点的情况下添加一个组件到已有的 DOM 节点中去。
 >
-> `ReactDOM.render()` 目前会返回一个引用， 指向 `ReactComponent`的根实例。但是这个返回值是历史遗留，应该避免使用。因为未来版本的React可能会在某些情况下进行异步渲染。如果你真的需要一个指向 `ReactComponent` 的根实例的引用，推荐的方法是添加一个 [callback ref](https://react.docschina.org/docs/more-about-refs.html#the-ref-callback-attribute) 到根元素上。
+> `ReactDOM.render()` 目前会返回一个引用， 指向 `ReactComponent`的根实例。但是这个返回值是历史遗留，应该避免使用。因为未来版本的 React 可能会在某些情况下进行异步渲染。如果你真的需要一个指向 `ReactComponent` 的根实例的引用，推荐的方法是添加一个 [callback ref](https://react.docschina.org/docs/more-about-refs.html#the-ref-callback-attribute) 到根元素上。
 
-------
+---
 
 ### `unmountComponentAtNode()`
 
@@ -752,9 +737,9 @@ ReactDOM.render(
 ReactDOM.unmountComponentAtNode(container)
 ```
 
-从DOM元素中移除已挂载的React组件，清除它的事件处理器和state。如果容器内没有挂载任何组件，这个函数什么都不会干。 有组件被卸载的时候返回`true`，没有组件可供卸载时返回 `false`。
+从 DOM 元素中移除已挂载的 React 组件，清除它的事件处理器和 state。如果容器内没有挂载任何组件，这个函数什么都不会干。 有组件被卸载的时候返回`true`，没有组件可供卸载时返回 `false`。
 
-------
+---
 
 ### `findDOMNode()`
 
@@ -762,32 +747,30 @@ ReactDOM.unmountComponentAtNode(container)
 ReactDOM.findDOMNode(component)
 ```
 
-如果这个组件已经被挂载到DOM中，函数会返回对应的浏览器中生成的DOM元素 。 当你需要从DOM中读取值时，比如表单的值，或者计算DOM元素的尺寸，这个函数会非常有用。 **大多数情况下，你可以添加一个指向DOM节点的引用，从而完全避免使用findDOMNode 这个函数.** 当 `render` 返回 `null` 或者 `false` 时, `findDOMNode` 也返回 `null`.
+如果这个组件已经被挂载到 DOM 中，函数会返回对应的浏览器中生成的 DOM 元素 。 当你需要从 DOM 中读取值时，比如表单的值，或者计算 DOM 元素的尺寸，这个函数会非常有用。 **大多数情况下，你可以添加一个指向 DOM 节点的引用，从而完全避免使用 findDOMNode 这个函数.** 当 `render` 返回 `null` 或者 `false` 时, `findDOMNode` 也返回 `null`.
 
 > 注意:
 >
-> `findDOMNode` 是用于操作底层DOM节点的备用方案。在大部分情况下都不提倡使用这个方案，因为它破坏了组件的抽象化。
+> `findDOMNode` 是用于操作底层 DOM 节点的备用方案。在大部分情况下都不提倡使用这个方案，因为它破坏了组件的抽象化。
 >
-> `findDOMNode` 只对挂载过的组件有效（也就是已经添加到DOM中去的组件）。如果你试图对一个未挂载的组件调用这个函数 （比如在一个还未创建的组件的 `render()` 函数中中调用 `findDOMNode()`），程序会抛出一个异常。
+> `findDOMNode` 只对挂载过的组件有效（也就是已经添加到 DOM 中去的组件）。如果你试图对一个未挂载的组件调用这个函数 （比如在一个还未创建的组件的 `render()` 函数中中调用 `findDOMNode()`），程序会抛出一个异常。
 >
 > `findDOMNode` 不能用于函数式的组件中。
 
-
-
 # ReactDOMServer
 
-如果你通过 `<script>` 标签加载React，这些高阶API可用于 `ReactDOMServer` 全局。如果你使用ES6，你可以写成 `import ReactDOMServer from 'react-dom/server'`。如果你使用ES5，你可以写成 `var ReactDOMServer = require('react-dom/server')`。
+如果你通过 `<script>` 标签加载 React，这些高阶 API 可用于 `ReactDOMServer` 全局。如果你使用 ES6，你可以写成 `import ReactDOMServer from 'react-dom/server'`。如果你使用 ES5，你可以写成 `var ReactDOMServer = require('react-dom/server')`。
 
 ## 概览
 
 `ReactDOMServer` 类可以让你==在服务端渲染你的组件==。
 
-PS：componentWillMount的内容在服务端渲染代码。ComponentDidMount在浏览器渲染代码。尽量使用后面的生命周期函数。
+PS：componentWillMount 的内容在服务端渲染代码。ComponentDidMount 在浏览器渲染代码。尽量使用后面的生命周期函数。
 
 - [`renderToString()`](https://react.docschina.org/docs/react-dom-server.html#rendertostring)
 - [`renderToStaticMarkup()`](https://react.docschina.org/docs/react-dom-server.html#rendertostaticmarkup)
 
-------
+---
 
 ## Reference
 
@@ -797,11 +780,11 @@ PS：componentWillMount的内容在服务端渲染代码。ComponentDidMount在�
 ReactDOMServer.renderToString(element)
 ```
 
-把一个React元素渲染为原始的HTML。这个方法最好只在服务端使用。React将会返回一段HTML字符串。你可以用这个方法在服务端生成HTML，并根据初始请求发送标记来加快页面的加载速度，同时让搜索引擎可以抓取你的页面来达到优化SEO的目的。
+把一个 React 元素渲染为原始的 HTML。这个方法最好只在服务端使用。React 将会返回一段 HTML 字符串。你可以用这个方法在服务端生成 HTML，并根据初始请求发送标记来加快页面的加载速度，同时让搜索引擎可以抓取你的页面来达到优化 SEO 的目的。
 
-如果在一个已经有了服务端渲染标记的节点上调用 [`ReactDOM.render()`](https://react.docschina.org/docs/react-dom.html#render) ，React将保留该节点，仅作绑定事件处理，这会让你有一个非常高效的初次加载体验。
+如果在一个已经有了服务端渲染标记的节点上调用 [`ReactDOM.render()`](https://react.docschina.org/docs/react-dom.html#render) ，React 将保留该节点，仅作绑定事件处理，这会让你有一个非常高效的初次加载体验。
 
-------
+---
 
 ### `renderToStaticMarkup()`
 
@@ -809,37 +792,35 @@ ReactDOMServer.renderToString(element)
 ReactDOMServer.renderToStaticMarkup(element)
 ```
 
-类似 [`renderToString`](https://react.docschina.org/docs/react-dom-server.html#rendertostring)，但是不会创建额外的DOM属性，例如 `data-reactid` 这些仅在React内部使用的属性。如果你希望把React当作一个简单的静态页面生成器来使用，这很有用，因为去掉额外的属性可以节省很多字节。
-
-
+类似 [`renderToString`](https://react.docschina.org/docs/react-dom-server.html#rendertostring)，但是不会创建额外的 DOM 属性，例如 `data-reactid` 这些仅在 React 内部使用的属性。如果你希望把 React 当作一个简单的静态页面生成器来使用，这很有用，因为去掉额外的属性可以节省很多字节。
 
 # ==DOM Elements==
 
-React实现了一套与浏览器无关的DOM系统，兼顾了性能和跨浏览器的兼容性。借此机会，我们清理了浏览器DOM实现中一些不一致的问题。
+React 实现了一套与浏览器无关的 DOM 系统，兼顾了性能和跨浏览器的兼容性。借此机会，我们清理了浏览器 DOM 实现中一些不一致的问题。
 
-在React中，所有的DOM特性和属性（包括事件处理函数）都是小驼峰命名法命名。比如说，与HTML中的`tabindex`属性对应的React实现命名则是`tabIndex`。`aria-*`和`data-*`属性是例外的，一律使用小写字母命名。
+在 React 中，所有的 DOM 特性和属性（包括事件处理函数）都是小驼峰命名法命名。比如说，与 HTML 中的`tabindex`属性对应的 React 实现命名则是`tabIndex`。`aria-*`和`data-*`属性是例外的，一律使用小写字母命名。
 
-## React和HTML DOM属性的区别
+## React 和 HTML DOM 属性的区别
 
-有许多的属性在React和Html之间行为是不一样的
+有许多的属性在 React 和 Html 之间行为是不一样的
 
-### checked属性
+### checked 属性
 
-`<input>`标签type属性值为`checkbox`或`radio`时，支持`checked`属性。这对于构建受控组件很有用。与之相对`defaultChecked`这是非受控组件的属性，用来设定对应组件首次加载时是否选中状态。
+`<input>`标签 type 属性值为`checkbox`或`radio`时，支持`checked`属性。这对于构建受控组件很有用。与之相对`defaultChecked`这是非受控组件的属性，用来设定对应组件首次加载时是否选中状态。
 
 ### 类名属性
 
-在React中，使用`className`属性指定一个CSS类。这个特性适用于所有的常规DOM节点和SVG元素，比如`<div>`，`<a>`和其它的元素。
+在 React 中，使用`className`属性指定一个 CSS 类。这个特性适用于所有的常规 DOM 节点和 SVG 元素，比如`<div>`，`<a>`和其它的元素。
 
-如果你在React中使用Web组件（这是一种不常见的使用方式），请使用`class`属性。
+如果你在 React 中使用 Web 组件（这是一种不常见的使用方式），请使用`class`属性。
 
-### ==dangerouslySetInnerHTML函数==
+### ==dangerouslySetInnerHTML 函数==
 
-`dangerouslySetInnerHTML`是React提供的替换浏览器DOM中的`innerHTML`接口的一个函数。一般而言，使用JS代码设置HTML文档的内容是危险的，因为这样很容易把你的用户信息暴露给[跨站脚本](https://en.wikipedia.org/wiki/Cross-site_scripting)攻击.所以，你虽然可以直接在React中设置html的内容，但你要使用 `dangerouslySetInnerHTML` 并向该函数传递一个含有`__html`键的对象，用来提醒你自己这样做很危险。例如：
+`dangerouslySetInnerHTML`是 React 提供的替换浏览器 DOM 中的`innerHTML`接口的一个函数。一般而言，使用 JS 代码设置 HTML 文档的内容是危险的，因为这样很容易把你的用户信息暴露给[跨站脚本](https://en.wikipedia.org/wiki/Cross-site_scripting)攻击.所以，你虽然可以直接在 React 中设置 html 的内容，但你要使用 `dangerouslySetInnerHTML` 并向该函数传递一个含有`__html`键的对象，用来提醒你自己这样做很危险。例如：
 
 ```js
 function createMarkup() {
-  return {__html: 'First &middot; Second'};
+  return { __html: "First &middot; Second" };
 }
 
 function MyComponent() {
@@ -849,19 +830,19 @@ function MyComponent() {
 
 ### htmlFor
 
-因为在javascript中`for`是一个保留字，所以React元素使用 `htmlFor`代替。
+因为在 javascript 中`for`是一个保留字，所以 React 元素使用 `htmlFor`代替。
 
-### onChange函数
+### onChange 函数
 
-`onChange`事件处理函数的表现正如你所期望的：==无论form表单何时发生变化，这个事件都会被触发==。我们特意不使用浏览器已有的默认行为，因为`onChange`在浏览器中的表现和这个名字不相称，而且==React真实依靠这个事件实现了对用户输入的实时响应处理==。
+`onChange`事件处理函数的表现正如你所期望的：==无论 form 表单何时发生变化，这个事件都会被触发==。我们特意不使用浏览器已有的默认行为，因为`onChange`在浏览器中的表现和这个名字不相称，而且==React 真实依靠这个事件实现了对用户输入的实时响应处理==。
 
 ### selected
 
 The `selected` attribute is supported by `<option>` components. You can use it to set whether the component is selected. This is useful for building controlled components.`<option>`组件支持`selected`属性。你可以使用该属性设定组件是否选中的状态。这对构建受控组件很有用。
 
-### style属性
+### style 属性
 
-`style`属性接受一个键为小驼峰命名法命名的javascript对象作为值，而不是像css字符串。这和DOM中style属性接受javascript对象对象key的命名方式保持一致性，更高效而且能够防止跨站脚本（XSS）的安全漏洞。例如：
+`style`属性接受一个键为小驼峰命名法命名的 javascript 对象作为值，而不是像 css 字符串。这和 DOM 中 style 属性接受 javascript 对象对象 key 的命名方式保持一致性，更高效而且能够防止跨站脚本（XSS）的安全漏洞。例如：
 
 ```
 const divStyle = {
@@ -887,27 +868,27 @@ function ComponentWithTransition() {
 }
 ```
 
-样式key使用小驼峰命名法是为了和JS访问DOM特性对对象的处理保持一致性（例如 `node.style.backgroundImage`）。浏览器后缀[除了`ms`](http://www.andismith.com/blog/2012/02/modernizr-prefixed/)以外，都应该以大写字母开头。这就是为什么`WebkitTransition`有一个大写字母`W`。
+样式 key 使用小驼峰命名法是为了和 JS 访问 DOM 特性对对象的处理保持一致性（例如 `node.style.backgroundImage`）。浏览器后缀[除了`ms`](http://www.andismith.com/blog/2012/02/modernizr-prefixed/)以外，都应该以大写字母开头。这就是为什么`WebkitTransition`有一个大写字母`W`。
 
 ### suppressContentEditableWarning
 
-一般来说，当一个拥有子节点的元素被标记为`contentEditable`时，React会发出一个警告信息，因为此时`contentEditable`是无效的。这个属性会触发这样的警告信息。一般不要使用这个属性，除非你要构建一个类似[Draft.js](https://facebook.github.io/draft-js/)这样需要手动处理`contentEditable`属性的库。
+一般来说，当一个拥有子节点的元素被标记为`contentEditable`时，React 会发出一个警告信息，因为此时`contentEditable`是无效的。这个属性会触发这样的警告信息。一般不要使用这个属性，除非你要构建一个类似[Draft.js](https://facebook.github.io/draft-js/)这样需要手动处理`contentEditable`属性的库。
 
 ### value
 
 `<input>` 和 `<textarea>` 组件都支持`value`属性。你可以使用该属性设置组件的值。这对构建受控组件非常有用。`defaultValue`属性对应的是非受控组件的属性，用来设置组件第一次加载时的值。
 
-## 所有受支持的HTML属性
+## 所有受支持的 HTML 属性
 
-React支持以下所有的属性，同时也==支持所有的`data-*` 和 `aria-*`属性==：
+React 支持以下所有的属性，同时也==支持所有的`data-*` 和 `aria-*`属性==：
 
-React也支持以下这些RDFa属性（有几个RDFa属性和HTML属性重叠，所以不包含在以下列表中）：
+React 也支持以下这些 RDFa 属性（有几个 RDFa 属性和 HTML 属性重叠，所以不包含在以下列表中）：
 
 ```
 about datatype inlist prefix property resource typeof vocab
 ```
 
-而且，React也支持下列非标准属性：
+而且，React 也支持下列非标准属性：
 
 - `autoCapitalize autoCorrect` for Mobile Safari.
 - `color` for `<link rel="mask-icon" />` in Safari.
@@ -916,17 +897,15 @@ about datatype inlist prefix property resource typeof vocab
 - `unselectable` for Internet Explorer.
 - `results autoSave` for WebKit/Blink input fields of type `search`.
 
-
-
 # 合成事件
 
-此参考指南记录了构成React事件系统的一部分的`SyntheticEvent`封装器。
+此参考指南记录了构成 React 事件系统的一部分的`SyntheticEvent`封装器。
 
 您的事件处理函数将会接收`SyntheticEvent`的实例，一个基于浏览器原生事件的跨浏览器实现。它拥有和浏览器原生事件一样的接口，包括`stopPropagation()`和`preventDefault()`，除了那些所有浏览器功能一样的事件。
 
 如果由于某些原因，你得使用一些底层的浏览器事件，只需用`nativeEvent`的属性就能找到。每个`SyntheicEvent`对象都有如下属性：
 
-> 敲黑板： 由于在v0.14版本中，事件处理函数返回`false`不会再阻止事件传播, 所以必须得手动触发`e.stopPropagation()`和`e.preventDefault()` 方法。
+> 敲黑板： 由于在 v0.14 版本中，事件处理函数返回`false`不会再阻止事件传播, 所以必须得手动触发`e.stopPropagation()`和`e.preventDefault()` 方法。
 
 ### 事件池
 
@@ -938,16 +917,16 @@ function onClick(event) {
   console.log(event.type); // => "click"
   const eventType = event.type; // => "click"
 
-  setTimeout(function() {
+  setTimeout(function () {
     console.log(event.type); // => null
     console.log(eventType); // => "click"
   }, 0);
 
   // Won't work. this.state.clickEvent will only contain null values.
-  this.setState({clickEvent: event});
+  this.setState({ clickEvent: event });
 
   // You can still export event properties.
-  this.setState({eventType: event.type});
+  this.setState({ eventType: event.type });
 }
 ```
 
@@ -957,7 +936,7 @@ function onClick(event) {
 
 ## 支持的事件
 
-React标准化了事件，使其在不同的浏览器中拥有一致的属性。
+React 标准化了事件，使其在不同的浏览器中拥有一致的属性。
 
 下面的事件处理函数由冒泡阶段的事件触发。在事件名后面加`Capture`就能在事件捕获阶段注册事件处理函数。举个例子，你可以使用`onClickCapture`代替`onClick`在事件捕获阶段来处理点击事件。
 
@@ -975,7 +954,7 @@ onCopy onCut onPaste
 DOMDataTransfer clipboardData
 ```
 
-------
+---
 
 ### Composition Events
 
@@ -991,7 +970,7 @@ onCompositionEnd onCompositionStart onCompositionUpdate
 string data
 ```
 
-------
+---
 
 ### Keyboard Events
 
@@ -1018,7 +997,7 @@ boolean shiftKey
 number which
 ```
 
-------
+---
 
 ### Focus Events
 
@@ -1028,7 +1007,7 @@ number which
 onFocus onBlur
 ```
 
-这些焦点事件适用于React DOM中的所有元素，而不仅仅是表单元素。
+这些焦点事件适用于 React DOM 中的所有元素，而不仅仅是表单元素。
 
 属性:
 
@@ -1036,7 +1015,7 @@ onFocus onBlur
 DOMEventTarget relatedTarget
 ```
 
-------
+---
 
 ### Form Events
 
@@ -1046,9 +1025,9 @@ DOMEventTarget relatedTarget
 onChange onInput onSubmit
 ```
 
-查阅[表单](https://react.docschina.org/docs/forms.html)了解关于onChange事件的更多细节.
+查阅[表单](https://react.docschina.org/docs/forms.html)了解关于 onChange 事件的更多细节.
 
-------
+---
 
 ### Mouse Events
 
@@ -1081,7 +1060,7 @@ number screenY
 boolean shiftKey
 ```
 
-------
+---
 
 ### Selection Events
 
@@ -1091,7 +1070,7 @@ boolean shiftKey
 onSelect
 ```
 
-------
+---
 
 ### Touch Events
 
@@ -1114,7 +1093,7 @@ DOMTouchList targetTouches
 DOMTouchList touches
 ```
 
-------
+---
 
 ### UI Events
 
@@ -1131,7 +1110,7 @@ number detail
 DOMAbstractView view
 ```
 
-------
+---
 
 ### Wheel Events
 
@@ -1150,20 +1129,20 @@ number deltaY
 number deltaZ
 ```
 
-------
+---
 
 ### Media Events
 
 事件名:
 
 ```
-onAbort onCanPlay onCanPlayThrough onDurationChange onEmptied onEncrypted 
-onEnded onError onLoadedData onLoadedMetadata onLoadStart onPause onPlay 
-onPlaying onProgress onRateChange onSeeked onSeeking onStalled onSuspend 
+onAbort onCanPlay onCanPlayThrough onDurationChange onEmptied onEncrypted
+onEnded onError onLoadedData onLoadedMetadata onLoadStart onPause onPlay
+onPlaying onProgress onRateChange onSeeked onSeeking onStalled onSuspend
 onTimeUpdate onVolumeChange onWaiting
 ```
 
-------
+---
 
 ### Image Events
 
@@ -1173,7 +1152,7 @@ onTimeUpdate onVolumeChange onWaiting
 onLoad onError
 ```
 
-------
+---
 
 ### Animation Events
 
@@ -1191,7 +1170,7 @@ string pseudoElement
 float elapsedTime
 ```
 
-------
+---
 
 ### Transition Events
 
@@ -1209,7 +1188,7 @@ string pseudoElement
 float elapsedTime
 ```
 
-------
+---
 
 ### Other Events
 
@@ -1218,8 +1197,6 @@ float elapsedTime
 ```
 onToggle
 ```
-
-
 
 # Test Utilities
 
@@ -1302,7 +1279,7 @@ ReactTestUtils.Simulate.keyDown(node, {key: "Enter", keyCode: 13, which: 13});
 >
 > You will have to provide any event property that you’re using in your component (e.g. keyCode, which, etc…) as React is not creating any of these for you.
 
-------
+---
 
 ### `renderIntoDocument()`
 
@@ -1316,7 +1293,7 @@ Render a React element into a detached DOM node in the document. **This function
 >
 > You will need to have `window`, `window.document` and `window.document.createElement`globally available **before** you import `React`. Otherwise React will think it can’t access the DOM and methods like `setState` won’t work.
 
-------
+---
 
 ### `mockComponent()`
 
@@ -1333,7 +1310,7 @@ Pass a mocked component module to this method to augment it with useful methods 
 >
 > `mockComponent()` is a legacy API. We recommend using [shallow rendering](https://react.docschina.org/docs/test-utils.html#shallow-rendering) or [`jest.mock()`](https://facebook.github.io/jest/docs/en/tutorial-react-native.html#mock-native-modules-using-jestmock) instead.
 
-------
+---
 
 ### `isElement()`
 
@@ -1343,7 +1320,7 @@ isElement(element)
 
 Returns `true` if `element` is any React element.
 
-------
+---
 
 ### `isElementOfType()`
 
@@ -1356,7 +1333,7 @@ isElementOfType(
 
 Returns `true` if `element` is a React element whose type is of a React `componentClass`.
 
-------
+---
 
 ### `isDOMComponent()`
 
@@ -1366,7 +1343,7 @@ isDOMComponent(instance)
 
 Returns `true` if `instance` is a DOM component (such as a `<div>` or `<span>`).
 
-------
+---
 
 ### `isCompositeComponent()`
 
@@ -1376,7 +1353,7 @@ isCompositeComponent(instance)
 
 Returns `true` if `instance` is a user-defined component, such as a class or a function.
 
-------
+---
 
 ### `isCompositeComponentWithType()`
 
@@ -1389,7 +1366,7 @@ isCompositeComponentWithType(
 
 Returns `true` if `instance` is a component whose type is of a React `componentClass`.
 
-------
+---
 
 ### `findAllInRenderedTree()`
 
@@ -1402,7 +1379,7 @@ findAllInRenderedTree(
 
 Traverse all components in `tree` and accumulate all components where `test(component)`is `true`. This is not that useful on its own, but it’s used as a primitive for other test utils.
 
-------
+---
 
 ### `scryRenderedDOMComponentsWithClass()`
 
@@ -1415,7 +1392,7 @@ scryRenderedDOMComponentsWithClass(
 
 Finds all DOM elements of components in the rendered tree that are DOM components with the class name matching `className`.
 
-------
+---
 
 ### `findRenderedDOMComponentWithClass()`
 
@@ -1428,7 +1405,7 @@ findRenderedDOMComponentWithClass(
 
 Like [`scryRenderedDOMComponentsWithClass()`](https://react.docschina.org/docs/test-utils.html#scryrendereddomcomponentswithclass) but expects there to be one result, and returns that one result, or throws exception if there is any other number of matches besides one.
 
-------
+---
 
 ### `scryRenderedDOMComponentsWithTag()`
 
@@ -1441,7 +1418,7 @@ scryRenderedDOMComponentsWithTag(
 
 Finds all DOM elements of components in the rendered tree that are DOM components with the tag name matching `tagName`.
 
-------
+---
 
 ### `findRenderedDOMComponentWithTag()`
 
@@ -1454,7 +1431,7 @@ findRenderedDOMComponentWithTag(
 
 Like [`scryRenderedDOMComponentsWithTag()`](https://react.docschina.org/docs/test-utils.html#scryrendereddomcomponentswithtag) but expects there to be one result, and returns that one result, or throws exception if there is any other number of matches besides one.
 
-------
+---
 
 ### `scryRenderedComponentsWithType()`
 
@@ -1467,7 +1444,7 @@ scryRenderedComponentsWithType(
 
 Finds all instances of components with type equal to `componentClass`.
 
-------
+---
 
 ### `findRenderedComponentWithType()`
 
@@ -1479,8 +1456,6 @@ findRenderedComponentWithType(
 ```
 
 Same as [`scryRenderedComponentsWithType()`](https://react.docschina.org/docs/test-utils.html#scryrenderedcomponentswithtype) but expects there to be one result and returns that one result, or throws exception if there is any other number of matches besides one.
-
- 
 
 # 浅层渲染
 
@@ -1511,17 +1486,17 @@ function MyComponent() {
 你可以断言(assert)：
 
 ```js
-import ShallowRenderer from 'react-test-renderer/shallow';
+import ShallowRenderer from "react-test-renderer/shallow";
 
 // in your test:
 const renderer = new ShallowRenderer();
 renderer.render(<MyComponent />);
 const result = renderer.getRenderOutput();
 
-expect(result.type).toBe('div');
+expect(result.type).toBe("div");
 expect(result.props.children).toEqual([
   <span className="heading">Title</span>,
-  <Subcomponent foo="bar" />
+  <Subcomponent foo="bar" />,
 ]);
 ```
 
@@ -1547,8 +1522,6 @@ expect(result.props.children).toEqual([
 
 [编辑本页面](https://github.com/discountry/react/tree/master/content/docs/addons-shallow-renderer.md)
 
-
-
 # Test Renderer
 
 **Importing**
@@ -1560,9 +1533,9 @@ const TestRenderer = require('react-test-renderer'); // ES5 with npm
 
 ## 概览
 
-该包提供了一个React的渲染器，可以用来将 React 组件渲染成纯 JavaScript 对象，不需要依赖于 DOM 和原生移动环境。
+该包提供了一个 React 的渲染器，可以用来将 React 组件渲染成纯 JavaScript 对象，不需要依赖于 DOM 和原生移动环境。
 
-本质上，该包可以在无需使用浏览器或[jsdom](https://github.com/tmpvar/jsdom)的情况下，轻松地抓取由 React DOM 或 React Native渲染出的平台视图层次结构（类似于DOM树）。
+本质上，该包可以在无需使用浏览器或[jsdom](https://github.com/tmpvar/jsdom)的情况下，轻松地抓取由 React DOM 或 React Native 渲染出的平台视图层次结构（类似于 DOM 树）。
 
 示例：
 
@@ -1671,7 +1644,7 @@ testRenderer.toTree()
 testRenderer.update(element)
 ```
 
-使用新的根元素重新渲染内存中的树。它模拟根元素的一次React更新。如果新的元素和之前的元素有相同的 type 和 key，该树将会被更新；否则，它将重挂载一个新树。
+使用新的根元素重新渲染内存中的树。它模拟根元素的一次 React 更新。如果新的元素和之前的元素有相同的 type 和 key，该树将会被更新；否则，它将重挂载一个新树。
 
 ### `testRenderer.unmount()`
 
@@ -1787,7 +1760,7 @@ testInstance.children
 
 ## Ideas
 
-您可以将 `createNodeMock` 函数作为选项（option）传递给 `TestRenderer.create`，可以自行模拟refs。`createNodeMock` 接受当前元素作为参数，并且返回一个模拟的 ref 对象。当您要测试一个依赖于 refs 的组件时，它十分有用。
+您可以将 `createNodeMock` 函数作为选项（option）传递给 `TestRenderer.create`，可以自行模拟 refs。`createNodeMock` 接受当前元素作为参数，并且返回一个模拟的 ref 对象。当您要测试一个依赖于 refs 的组件时，它十分有用。
 
 ```
 import TestRenderer from 'react-test-renderer';
@@ -1827,8 +1800,6 @@ expect(focused).toBe(true);
 
 [编辑本页面](https://github.com/discountry/react/tree/master/content/docs/reference-test-renderer.md)
 
-
-
 # JavaScript 环境要求
 
 React 16 依赖集合类型 [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map) 和 [Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set)。若你要支持老式的可能未提供原生支持的浏览器和设备（例如 IE < 11），考虑在你的应用库中包含一个全局的 polyfill，例如 [core-js](https://github.com/zloirock/core-js) 或 [babel-polyfill](https://babeljs.io/docs/usage/polyfill/)。
@@ -1856,23 +1827,21 @@ import 'raf/polyfill';
 
 # React 术语表
 
-## ES6, ES2015, ES2016等
+## ES6, ES2015, ES2016 等
 
-这些缩略词都是指最新版本的ECMAScript语言规范标准，而JavaScript语言是它们的一个实现。ES6版本（也被称为ES2015）包括许多新特性，如：箭头函数、类(class)、模板字面量、`let` 和 `const` 变量声明等。你可以在[这里](https://en.wikipedia.org/wiki/ECMAScript#Versions)了解更多版本新特性。
+这些缩略词都是指最新版本的 ECMAScript 语言规范标准，而 JavaScript 语言是它们的一个实现。ES6 版本（也被称为 ES2015）包括许多新特性，如：箭头函数、类(class)、模板字面量、`let` 和 `const` 变量声明等。你可以在[这里](https://en.wikipedia.org/wiki/ECMAScript#Versions)了解更多版本新特性。
 
 ## 编译器 Compilers
 
-JavaScript编译器用于转换JavaScript代码，并用其它格式返回JavaScript代码。最常见的用例是采用ES6语法编写代码并将其转换为旧版浏览器能够识别的语法。 React最常用的编译器是[Babel](https://babeljs.io/)。
+JavaScript 编译器用于转换 JavaScript 代码，并用其它格式返回 JavaScript 代码。最常见的用例是采用 ES6 语法编写代码并将其转换为旧版浏览器能够识别的语法。 React 最常用的编译器是[Babel](https://babeljs.io/)。
 
 ## 打包工具 Bundlers
 
-开发中将JavaScript和CSS代码编写为单独的模块（通常为数百个），打包工具会针对浏览器将它们组合并优化为几个文件。[Webpack](https://webpack.js.org/)和[Browserify](http://browserify.org/)是在React应用程序中常用的打包工具。
-
-
+开发中将 JavaScript 和 CSS 代码编写为单独的模块（通常为数百个），打包工具会针对浏览器将它们组合并优化为几个文件。[Webpack](https://webpack.js.org/)和[Browserify](http://browserify.org/)是在 React 应用程序中常用的打包工具。
 
 ## 元素 [Elements](https://react.docschina.org/docs/rendering-elements.html)
 
-React元素是React应用程序的最小单位。初学者很可能把元素的定义和定义内涵更广的“组件”给搞混了。元素用来描述界面上的任何东西。 React 元素都是immutable不可变的。
+React 元素是 React 应用程序的最小单位。初学者很可能把元素的定义和定义内涵更广的“组件”给搞混了。元素用来描述界面上的任何东西。 React 元素都是 immutable 不可变的。
 
 ```
 const element = <h1>Hello, world</h1>;
@@ -1882,7 +1851,7 @@ const element = <h1>Hello, world</h1>;
 
 ## 组件 [Components](https://react.docschina.org/docs/components-and-props.html)
 
-React组件是小的，可复用的代码片段，它返回一个React元素用于渲染页面。 定义一个组件最简单的方式是使用JavaScript函数，它返回一个React元素：
+React 组件是小的，可复用的代码片段，它返回一个 React 元素用于渲染页面。 定义一个组件最简单的方式是使用 JavaScript 函数，它返回一个 React 元素：
 
 ```
 function Welcome(props) {
@@ -1900,11 +1869,11 @@ class Welcome extends React.Component {
 }
 ```
 
-组件可以按照功能分解成不同的部件，并在其他组件中使用。组件可以返回其他组件，数组，字符串或数字。当你的UI中有一部分重复使用了好几次（比如，Button、Panel、Avatar），或者其自身就足够复杂（比如，App、FeedStory、Comment），类似这些都是抽象成一个可复用组件的绝佳选择，这也是一个比较好的做法。 组件名称应始终以大写字母开头 (`<Wrapper/>` **而不是** `<wrapper/>`)。参见 [这里](https://react.docschina.org/docs/components-and-props.html#rendering-a-component)获取更多有关渲染组件的信息。
+组件可以按照功能分解成不同的部件，并在其他组件中使用。组件可以返回其他组件，数组，字符串或数字。当你的 UI 中有一部分重复使用了好几次（比如，Button、Panel、Avatar），或者其自身就足够复杂（比如，App、FeedStory、Comment），类似这些都是抽象成一个可复用组件的绝佳选择，这也是一个比较好的做法。 组件名称应始终以大写字母开头 (`<Wrapper/>` **而不是** `<wrapper/>`)。参见 [这里](https://react.docschina.org/docs/components-and-props.html#rendering-a-component)获取更多有关渲染组件的信息。
 
 ### [`props`](https://react.docschina.org/docs/components-and-props.html)
 
-`props`是React组件的输入内容。 它们是从父组件传递给子组件的数据。
+`props`是 React 组件的输入内容。 它们是从父组件传递给子组件的数据。
 
 请记住，`props` 是只读的。 不应该以任何方式修改它们：
 
@@ -1951,37 +1920,37 @@ class Welcome extends React.Component {
 
 ## 生命周期函数
 
-生命周期函数是在组件的不同阶段可执行自定义功能的钩子。当组件被创建并插入到DOM中时，可用函数([mounting](https://react.docschina.org/docs/react-component.html#mounting))，组件更新，以及从DOM卸载或移除组件时可以使用对应的生命周期函数。
+生命周期函数是在组件的不同阶段可执行自定义功能的钩子。当组件被创建并插入到 DOM 中时，可用函数([mounting](https://react.docschina.org/docs/react-component.html#mounting))，组件更新，以及从 DOM 卸载或移除组件时可以使用对应的生命周期函数。
 
 ## 受控 & 非受控组件
 
-React有两种不同的方法来处理表单输入。
+React 有两种不同的方法来处理表单输入。
 
-值由React控制的输入表单元素称为*受控组件*。当用户将数据输入到受控组件中时，会触发状态改变的事件处理程序，并且你的代码将决定输入是否有效（使用更新的值重新渲染）。如果你不重新渲染，那么表单元素将保持不变。
+值由 React 控制的输入表单元素称为*受控组件*。当用户将数据输入到受控组件中时，会触发状态改变的事件处理程序，并且你的代码将决定输入是否有效（使用更新的值重新渲染）。如果你不重新渲染，那么表单元素将保持不变。
 
-*非受控制组件*的表单元素在React之外工作。当用户将数据输入到表单域（输入框，下拉菜单等）时，不需要React做任何事情，更新的数据就会被呈现出来。这也意味着你不能强迫表单域都有一个确定的值。
+*非受控制组件*的表单元素在 React 之外工作。当用户将数据输入到表单域（输入框，下拉菜单等）时，不需要 React 做任何事情，更新的数据就会被呈现出来。这也意味着你不能强迫表单域都有一个确定的值。
 
 在大多数情况下，你应该使用受控组件。
 
 ## 键值
 
-“键值”是创建元素数组时需要包含的特殊字符串属性。键值可以帮助React识别哪些元素被更改，添加或删除。因此你应当给数组中的每一个元素赋予一个确定的标识。
+“键值”是创建元素数组时需要包含的特殊字符串属性。键值可以帮助 React 识别哪些元素被更改，添加或删除。因此你应当给数组中的每一个元素赋予一个确定的标识。
 
-确定的标识键值对于重新渲染很重要，这样React才可以确定何时添加，删除或重新排序元素。不要把类似由`Math.random()`生成的值赋给键值。在理想情况下，键值应该对应于来自数据的唯一且稳定的标识符，例如`post.id`。
+确定的标识键值对于重新渲染很重要，这样 React 才可以确定何时添加，删除或重新排序元素。不要把类似由`Math.random()`生成的值赋给键值。在理想情况下，键值应该对应于来自数据的唯一且稳定的标识符，例如`post.id`。
 
 ## Refs
-React支持一个可以附加到任何组件的特殊属性`ref`。`ref`属性可以是一个字符串或一个回调函数。当`ref`属性是一个回调函数时，函数接收底层DOM元素或类实例（取决于元素的类型）作为参数。这使你可以直接访问DOM元素或组件实例。
 
-不要过度使用 Refs。如果你发现自己经常在应用程序中使用refs来“搞事情”，请考虑使用[状态提升](https://react.docschina.org/docs/lifting-state-up.html)。
+React 支持一个可以附加到任何组件的特殊属性`ref`。`ref`属性可以是一个字符串或一个回调函数。当`ref`属性是一个回调函数时，函数接收底层 DOM 元素或类实例（取决于元素的类型）作为参数。这使你可以直接访问 DOM 元素或组件实例。
+
+不要过度使用 Refs。如果你发现自己经常在应用程序中使用 refs 来“搞事情”，请考虑使用[状态提升](https://react.docschina.org/docs/lifting-state-up.html)。
 
 ## 事件
 
-React元素的事件处理和DOM元素的很相似。但是有一点语法上的不同:
+React 元素的事件处理和 DOM 元素的很相似。但是有一点语法上的不同:
 
-- React事件绑定属性的命名采用驼峰式写法，而不是小写。
-- 如果采用 JSX 的语法你需要传入一个函数作为事件处理函数，而不是一个字符串(DOM元素的写法)
+- React 事件绑定属性的命名采用驼峰式写法，而不是小写。
+- 如果采用 JSX 的语法你需要传入一个函数作为事件处理函数，而不是一个字符串(DOM 元素的写法)
 
 ## 协调
 
-当一个组件的props或状态发生变化时，React通过比较新返回的元素和先前渲染的元素来决定是否需要实际的DOM更新。当它们不相等时，React将更新DOM。 这个过程被称为“协调”。
-
+当一个组件的 props 或状态发生变化时，React 通过比较新返回的元素和先前渲染的元素来决定是否需要实际的 DOM 更新。当它们不相等时，React 将更新 DOM。 这个过程被称为“协调”。

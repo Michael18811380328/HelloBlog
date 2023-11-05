@@ -18,11 +18,10 @@
 
 先获取镜像，然后创建容器，然后进入容器进行操作
 
-### MAC安装
+### MAC 安装
 
 本地已经安装（支持 brew 或者安装包安装）
 
 https://www.runoob.com/docker/macos-docker-install.html
 
 可以更改国内的镜像地址，安装镜像速度更快（**http://hub-mirror.c.163.com**）
-

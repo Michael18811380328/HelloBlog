@@ -3,73 +3,71 @@
 // 遍历二叉树：左节点 自身 右节点
 
 function BinarySearchTree() {
-  
-  let Node = function(key) {
+  let Node = function (key) {
     this.key = key;
     this.left = null;
     this.right = null;
-  }
+  };
 
   this.root = null;
 
-  this.insert = function(key) {
+  this.insert = function (key) {
     let newNode = new Node(key);
     if (root === null) {
       root = newNode;
     } else {
       insertNode(root, newNode);
     }
-  }
+  };
 
-  let insertNode = function(node, newNode) {
+  let insertNode = function (node, newNode) {
     if (newNode.key < node.key) {
       if (node.left === null) {
         node.left = newNode;
       } else {
         insertNode(node.left, newNode);
       }
-    }
-    else {
+    } else {
       if (node.right === null) {
         node.right = newNode;
       } else {
         insertNode(node.right, newNode);
       }
     }
-  }
+  };
 
   // 中序遍历
-  this.inOrderTraverse = function(callback) {
+  this.inOrderTraverse = function (callback) {
     inOrderTraverseNode(root, callback);
-  }
-  let inOrderTraverseNode = function(root, callback) {
+  };
+  let inOrderTraverseNode = function (root, callback) {
     if (node !== null) {
       inOrderTraverseNode(node.left);
       callback(node.key);
       inOrderTraverseNode(node.right);
     }
-  }
+  };
 
   // 先序遍历 后续遍历
-  let preOrderTraverseNode = function(root, fn) {
+  let preOrderTraverseNode = function (root, fn) {
     if (root !== null) {
       fn(root.key);
       preOrderTraverseNode(root.left);
       preOrderTraverseNode(root.right);
     }
-  }
-  let postOrderTraverseNode = function(node, fn) {
+  };
+  let postOrderTraverseNode = function (node, fn) {
     if (node.key !== null) {
       postOrderTraverseNode(node.left);
       postOrderTraverseNode(node.right);
       fn(node.key);
     }
-  }
+  };
 
-  this.min = function() {
+  this.min = function () {
     return minNode(root);
-  }
-  let minNode = function(node) {
+  };
+  let minNode = function (node) {
     if (node) {
       while (node.left !== null) {
         node = node.left;
@@ -77,12 +75,12 @@ function BinarySearchTree() {
       return node.key;
     }
     return null;
-  }
+  };
 
-  this.max = function() {
+  this.max = function () {
     return maxNode(root);
-  }
-  let maxNode = function(node) {
+  };
+  let maxNode = function (node) {
     if (node) {
       while (node.right) {
         node = node.right;
@@ -90,43 +88,39 @@ function BinarySearchTree() {
       return node.key;
     }
     return null;
-  }
+  };
 
-  this.search = function(key) {
+  this.search = function (key) {
     return searchNode(root, key);
-  }
-  let searchNode = function(node, key) {
+  };
+  let searchNode = function (node, key) {
     if (node === null) {
       return false;
     }
     if (key < node.key) {
       searchNode(node.left, key);
-    }
-    else if (key > node.key) {
+    } else if (key > node.key) {
       searchNode(node.right, key);
-    }
-    else if (key === node.key) {
+    } else if (key === node.key) {
       return true;
     }
-  }
+  };
 
   // remove node
-  this.remove = function(key) {
+  this.remove = function (key) {
     root = removeNode(root, key);
-  }
-  let removeNode = function(node, key) {
+  };
+  let removeNode = function (node, key) {
     if (node === null) {
       return null;
     }
     if (key < node.key) {
       node.left = removeNode(node.left, key);
       return node;
-    }
-    else if (key > node.key) {
+    } else if (key > node.key) {
       node.right = removeNode(node.right, key);
       return node;
-    }
-    else if (key === node.key) {
+    } else if (key === node.key) {
       if (node.left === null && node.right === null) {
         node = null;
         return node;
@@ -144,5 +138,5 @@ function BinarySearchTree() {
       node.right = removeNode(node.right, aux.key);
       return node;
     }
-  }
+  };
 }

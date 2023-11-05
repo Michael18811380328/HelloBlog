@@ -2,13 +2,13 @@
 
 ## 介绍
 
-Flask 依赖两个外部库：[Werkzeug](http://werkzeug.pocoo.org/) 和 [Jinja2](http://jinja.pocoo.org/2/) 。 Werkzeug 是一个 WSGI（在 Web 应用和多种服务器之间的标准 Python 接口) 工具集。Jinja2 负责渲染模板。你首先需要 Python 2.6 或更高的版本，所以请确认有一个最新的 Python 2.x 安装。 在 Python 3 中使用 Flask 请参考： [*Python 3 支持*](http://docs.jinkan.org/docs/flask/python3.html#python3-support) 。
+Flask 依赖两个外部库：[Werkzeug](http://werkzeug.pocoo.org/) 和 [Jinja2](http://jinja.pocoo.org/2/) 。 Werkzeug 是一个 WSGI（在 Web 应用和多种服务器之间的标准 Python 接口) 工具集。Jinja2 负责渲染模板。你首先需要 Python 2.6 或更高的版本，所以请确认有一个最新的 Python 2.x 安装。 在 Python 3 中使用 Flask 请参考： [_Python 3 支持_](http://docs.jinkan.org/docs/flask/python3.html#python3-support) 。
 
 ## 安装方法一：virtualenv(虚拟环境安装)
 
 你很可能想在开发中用上 virtualenv，如果你有生产环境的 shell 权限，你同样会乐于在生产环境中使用它。
 
-virtualenv 解决了什么问题？如果你像我一样喜欢 Python，不仅会在采用 Flask 的Web 应用中用上 virtualenv，在别的项目中你也会想用上它。你拥有的项目越多，同时使用不同版本的 Python 工作的可能性也就越大，或者起码需要不同版本的 Python 库。悲惨现实是：常常会有库破坏向后兼容性，然而正经应用不采用外部库的可能微乎其微。当在你的项目中，出现两个或更多依赖性冲突时，你会怎么做？
+virtualenv 解决了什么问题？如果你像我一样喜欢 Python，不仅会在采用 Flask 的 Web 应用中用上 virtualenv，在别的项目中你也会想用上它。你拥有的项目越多，同时使用不同版本的 Python 工作的可能性也就越大，或者起码需要不同版本的 Python 库。悲惨现实是：常常会有库破坏向后兼容性，然而正经应用不采用外部库的可能微乎其微。当在你的项目中，出现两个或更多依赖性冲突时，你会怎么做？
 
 virtualenv 拯救世界！virtualenv 为每个不同项目提供一份 Python 安装。它并没有真正安装多个 Python 副本，但是它确实提供了一种巧妙的方式来让各项目环境保持独立。让我们来看看 virtualenv 是怎么工作的。
 
@@ -73,7 +73,7 @@ if __name__ == '__main__':
 
 把它保存为 hello.py （或是类似的），然后用 Python 解释器来运行。 确保你的应用文件名不是 flask.py ，因为这将与 Flask 本身冲突。
 
-```bash 
+```bash
 python hello.py
  * Running on http://127.0.0.1:5000/
 ```
@@ -83,8 +83,8 @@ python hello.py
 那么，这段代码做了什么？
 
 1. 首先，我们导入了 [`Flask`](http://docs.jinkan.org/docs/flask/api.html#flask.Flask) 类。这个类的实例将会是我们的 WSGI 应用程序。
-2. 接下来，我们创建一个该类的实例，第一个参数是应用模块或者包的名称。 如果你使用单一的模块（如本例），你应该使用 __name__ ，因为模块的名称将会因其作为单独应用启动还是作为模块导入而有不同（ 也即是 `'__main__'` 或实际的导入名）。这是必须的，这样 Flask 才知道到哪去找模板、静态文件等等。详情见 [`Flask`](http://docs.jinkan.org/docs/flask/api.html#flask.Flask)的文档。
-3. 然后，我们使用 [`route()`](http://docs.jinkan.org/docs/flask/api.html#flask.Flask.route) 装饰器告诉 Flask 什么样的URL 能触发我们的函数。
+2. 接下来，我们创建一个该类的实例，第一个参数是应用模块或者包的名称。 如果你使用单一的模块（如本例），你应该使用 **name** ，因为模块的名称将会因其作为单独应用启动还是作为模块导入而有不同（ 也即是 `'__main__'` 或实际的导入名）。这是必须的，这样 Flask 才知道到哪去找模板、静态文件等等。详情见 [`Flask`](http://docs.jinkan.org/docs/flask/api.html#flask.Flask)的文档。
+3. 然后，我们使用 [`route()`](http://docs.jinkan.org/docs/flask/api.html#flask.Flask.route) 装饰器告诉 Flask 什么样的 URL 能触发我们的函数。
 4. 这个函数的名字也在生成 URL 时被特定的函数采用，这个函数返回我们想要显示在用户浏览器中的信息。
 5. 最后我们用 [`run()`](http://docs.jinkan.org/docs/flask/api.html#flask.Flask.run) 函数来让应用运行在本地服务器上。 其中 `if __name__ =='__main__':` 确保服务器只会在该脚本被 Python 解释器直接执行的时候才会运行，而不是作为模块导入的时候。
 
@@ -99,8 +99,6 @@ app.run(host='0.0.0.0')
 ```
 
 这会让操作系统监听所有公网 IP。
-
-
 
 ## 调试模式
 
@@ -125,8 +123,6 @@ app.run(debug=True)
 
 尽管交互式调试器在允许 fork 的环境中无法正常使用（也即在生产服务器上正常使用几乎是不可能的），但它依然允许执行任意代码。这使它成为一个巨大的安全隐患，因此它 **绝对不能用于生产环境** 。
 
-
-
 ## 路由
 
 现代 Web 应用的 URL 十分优雅，易于人们辨识记忆，这一点对于那些面向使用低速网络连接移动设备访问的应用特别有用。如果可以不访问索引页，而是直接访问想要的那个页面，他们多半会笑逐颜开而再度光顾。
@@ -145,9 +141,7 @@ def hello():
     return 'Hello World'
 ```
 
-
-
-### URL传参 
+### URL 传参
 
 要给 URL 添加变量部分，你可以把这些特殊的字段标记为 `<variable_name>` ， 这个部分将会作为命名参数传递到你的函数。规则可以用 `<converter:variable_name>` 指定一个可选的转换器。这里有一些不错的例子:
 
@@ -186,13 +180,11 @@ def about():
     return 'The about page'
 ```
 
-虽然它们看起来着实相似，但它们结尾斜线的使用在 URL *定义* 中不同。 第一种情况中，指向 projects 的规范 URL 尾端有一个斜线。这种感觉很像在文件系统中的文件夹。访问一个结尾不带斜线的 URL 会被 Flask 重定向到带斜线的规范 URL 去。
+虽然它们看起来着实相似，但它们结尾斜线的使用在 URL _定义_ 中不同。 第一种情况中，指向 projects 的规范 URL 尾端有一个斜线。这种感觉很像在文件系统中的文件夹。访问一个结尾不带斜线的 URL 会被 Flask 重定向到带斜线的规范 URL 去。
 
 然而，第二种情况的 URL 结尾不带斜线，类似 UNIX-like 系统下的文件的路径名。访问结尾带斜线的 URL 会产生一个 404 “Not Found” 错误。
 
 这个行为使得在遗忘尾斜线时，允许关联的 URL 接任工作，与 Apache 和其它的服务器的行为并无二异。此外，也保证了 URL 的唯一，有助于避免搜索引擎索引同一个页面两次。
-
-
 
 ### 构造 URL
 
@@ -222,15 +214,13 @@ def about():
 /user/John%20Doe
 ```
 
-（这里也用到了 [`test_request_context()`](http://docs.jinkan.org/docs/flask/api.html#flask.Flask.test_request_context) 方法，下面会解释。即使我们正在通过 Python 的 shell 进行交互，它依然会告诉 Flask 要表现为正在处理一个请求。请看下面的解释。 [*环境局部变量*](http://docs.jinkan.org/docs/flask/quickstart.html#context-locals) ）
+（这里也用到了 [`test_request_context()`](http://docs.jinkan.org/docs/flask/api.html#flask.Flask.test_request_context) 方法，下面会解释。即使我们正在通过 Python 的 shell 进行交互，它依然会告诉 Flask 要表现为正在处理一个请求。请看下面的解释。 [_环境局部变量_](http://docs.jinkan.org/docs/flask/quickstart.html#context-locals) ）
 
 为什么你要构建 URL 而非在模板中硬编码？这里有三个绝妙的理由：
 
 1. 反向构建通常比硬编码的描述性更好。更重要的是，它允许你一次性修改 URL， 而不是到处边找边改。
 2. URL 构建会转义特殊字符和 Unicode 数据，免去你很多麻烦。
 3. 如果你的应用不位于 URL 的根路径（比如，在 `/myapplication` 下，而不是 `/` ），[`url_for()`](http://docs.jinkan.org/docs/flask/api.html#flask.url_for) 会妥善处理这个问题。
-
-
 
 ### HTTP 方法
 
@@ -249,22 +239,19 @@ def login():
 
 你不知道一个 HTTP 方法是什么？不必担心，这里会简要介绍 HTTP 方法和它们为什么重要：
 
-HTTP 方法（也经常被叫做“谓词”）告知服务器，客户端想对请求的页面 *做* 些什么。下面的都是非常常见的方法：
+HTTP 方法（也经常被叫做“谓词”）告知服务器，客户端想对请求的页面 _做_ 些什么。下面的都是非常常见的方法：
 
-- GET：浏览器告知服务器：只 *获取* 页面上的信息并发给我。这是最常用的方法。
+- GET：浏览器告知服务器：只 _获取_ 页面上的信息并发给我。这是最常用的方法。
 
-- HEAD：浏览器告诉服务器：欲获取信息，但是只关心 *消息头* 。应用应像处理 GET 请求一样来处理它，但是不分发实际内容。在 Flask 中你完全无需 人工 干预，底层的 Werkzeug 库已经替你打点好了。
+- HEAD：浏览器告诉服务器：欲获取信息，但是只关心 _消息头_ 。应用应像处理 GET 请求一样来处理它，但是不分发实际内容。在 Flask 中你完全无需 人工 干预，底层的 Werkzeug 库已经替你打点好了。
 
-- POST：浏览器告诉服务器：想在 URL 上 *发布* 新信息。并且，服务器必须确保 数据已存储且仅存储一次。这是 HTML 表单通常发送数据到服务器的方法。
+- POST：浏览器告诉服务器：想在 URL 上 _发布_ 新信息。并且，服务器必须确保 数据已存储且仅存储一次。这是 HTML 表单通常发送数据到服务器的方法。
 
-- PUT：类似 POST 但是服务器可能触发了存储过程多次，多次覆盖掉旧值。你可 能会问这有什么用，当然这是有原因的。考虑到传输中连接可能会丢失，在 这种 情况下浏览器和服务器之间的系统可能安全地第二次接收请求，而 不破坏其它东西。因为 POST它只触发一次，所以用 POST 是不可能的。
+- PUT：类似 POST 但是服务器可能触发了存储过程多次，多次覆盖掉旧值。你可 能会问这有什么用，当然这是有原因的。考虑到传输中连接可能会丢失，在 这种 情况下浏览器和服务器之间的系统可能安全地第二次接收请求，而 不破坏其它东西。因为 POST 它只触发一次，所以用 POST 是不可能的。
 
 - DELETE：删除给定位置的信息。
 
 - OPTIONS：给客户端提供一个敏捷的途径来弄清这个 URL 支持哪些 HTTP 方法。 从 Flask 0.6 开始，实现了自动处理。.
-
-
-
 
 ## 静态文件
 
@@ -277,8 +264,6 @@ url_for('static', filename='style.css')
 ```
 
 这个文件应该存储在文件系统上的 `static/style.css` 。
-
-
 
 ## 模板渲染
 
@@ -319,18 +304,18 @@ Flask 会在 templates 文件夹里寻找模板。所以，如果你的应用是
 这里有一个模板实例：
 
 ```html
-<!doctype html>
+<!DOCTYPE html>
 <title>Hello from Flask</title>
 {% if name %}
-  <h1>Hello {{ name }}!</h1>
+<h1>Hello {{ name }}!</h1>
 {% else %}
-  <h1>Hello World!</h1>
+<h1>Hello World!</h1>
 {% endif %}
 ```
 
 在模板里，你也可以访问 [`request`](http://docs.jinkan.org/docs/flask/api.html#flask.request) 、 [`session`](http://docs.jinkan.org/docs/flask/api.html#flask.session) 和 [`g`](http://docs.jinkan.org/docs/flask/api.html#flask.g) [[1\]](http://docs.jinkan.org/docs/flask/quickstart.html#id10) 对象， 以及[`get_flashed_messages()`](http://docs.jinkan.org/docs/flask/api.html#flask.get_flashed_messages) 函数。
 
-模板继承让模板用起来相当顺手。如欲了解继承的工作机理，请跳转到 [*模板继承*](http://docs.jinkan.org/docs/flask/patterns/templateinheritance.html#template-inheritance) 模式的文档。最起码，模板继承能使特定元素 （比如页眉、导航栏和页脚）可以出现在所有的页面。
+模板继承让模板用起来相当顺手。如欲了解继承的工作机理，请跳转到 [_模板继承_](http://docs.jinkan.org/docs/flask/patterns/templateinheritance.html#template-inheritance) 模式的文档。最起码，模板继承能使特定元素 （比如页眉、导航栏和页脚）可以出现在所有的页面。
 
 自动转义功能默认是开启的，所以如果 name 包含 HTML ，它将会被自动转义。如果你能信任一个变量，并且你知道它是安全的（例如一个模块把 Wiki 标记转换为 HTML），你可以用 `Markup` 类或 `|safe` 过滤器在模板中把它标记为安全的。在 Jinja 2 文档中，你会看到更多的例子。
 
@@ -346,13 +331,11 @@ Markup(u'&lt;blink&gt;hacker&lt;/blink&gt;')
 u'Marked up \xbb HTML'
 ```
 
-*在 0.5 版更改:* 自动转义不再在所有模板中启用。下列扩展名的模板会触发自动转义：`.html` 、 `.htm` 、`.xml` 、 `.xhtml` 。从字符串加载的模板会禁用自动转义。
+_在 0.5 版更改:_ 自动转义不再在所有模板中启用。下列扩展名的模板会触发自动转义：`.html` 、 `.htm` 、`.xml` 、 `.xhtml` 。从字符串加载的模板会禁用自动转义。
 
-| [[1\]](http://docs.jinkan.org/docs/flask/quickstart.html#id9) | 不确定 [`g`](http://docs.jinkan.org/docs/flask/api.html#flask.g) 对象是什么？它允许你按需存储信息， 查看（ [`g`](http://docs.jinkan.org/docs/flask/api.html#flask.g) ）对象的文档和 [*在 Flask 中使用 SQLite 3*](http://docs.jinkan.org/docs/flask/patterns/sqlite3.html#sqlite3) 的文档以获取更多信息。 |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-|                                                              |                                                              |
-
-
+| [[1\]](http://docs.jinkan.org/docs/flask/quickstart.html#id9) | 不确定 [`g`](http://docs.jinkan.org/docs/flask/api.html#flask.g) 对象是什么？它允许你按需存储信息， 查看（ [`g`](http://docs.jinkan.org/docs/flask/api.html#flask.g) ）对象的文档和 [_在 Flask 中使用 SQLite 3_](http://docs.jinkan.org/docs/flask/patterns/sqlite3.html#sqlite3) 的文档以获取更多信息。 |
+| ------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|                                                               |                                                                                                                                                                                                                                                                                                          |
 
 ## 访问请求数据
 
@@ -389,8 +372,6 @@ with app.request_context(environ):
     assert request.method == 'POST'
 ```
 
-
-
 ### 请求对象
 
 API 章节对请求对象作了详尽阐述（参见 [`request`](http://docs.jinkan.org/docs/flask/api.html#flask.request) ），因此这里不会赘述。此处宽泛介绍一些最常用的操作。首先从 flask 模块里导入它:
@@ -425,8 +406,6 @@ searchword = request.args.get('q', '')
 
 我们推荐用 get 来访问 URL 参数或捕获 KeyError ，因为用户可能会修改 URL，向他们展现一个 400 bad request 页面会影响用户体验。
 
-
-
 ### 文件上传
 
 用 Flask 处理文件上传很简单。只要确保你没忘记在 HTML 表单中设置`enctype="multipart/form-data"` 属性，不然你的浏览器根本不会发送文件。
@@ -458,11 +437,9 @@ def upload_file():
     ...
 ```
 
-
-
 ### Cookies
 
-你可以通过 [`cookies`](http://docs.jinkan.org/docs/flask/api.html#flask.Request.cookies) 属性来访问 Cookies，用响应对象的 [`set_cookie`](http://docs.jinkan.org/docs/flask/api.html#flask.Response.set_cookie) 方法来设置 Cookies。请求对象的 [`cookies`](http://docs.jinkan.org/docs/flask/api.html#flask.Request.cookies) 属性是一个内容为客户端提交的所有 Cookies 的字典。如果你想使用会话，请不要直接使用 Cookies，请参考 [*会话*](http://docs.jinkan.org/docs/flask/quickstart.html#sessions) 一节。在 Flask 中，已经注意处理了一些 Cookies 安全细节。
+你可以通过 [`cookies`](http://docs.jinkan.org/docs/flask/api.html#flask.Request.cookies) 属性来访问 Cookies，用响应对象的 [`set_cookie`](http://docs.jinkan.org/docs/flask/api.html#flask.Response.set_cookie) 方法来设置 Cookies。请求对象的 [`cookies`](http://docs.jinkan.org/docs/flask/api.html#flask.Request.cookies) 属性是一个内容为客户端提交的所有 Cookies 的字典。如果你想使用会话，请不要直接使用 Cookies，请参考 [_会话_](http://docs.jinkan.org/docs/flask/quickstart.html#sessions) 一节。在 Flask 中，已经注意处理了一些 Cookies 安全细节。
 
 读取 cookies:
 
@@ -490,11 +467,9 @@ def index():
 
 可注意到的是，Cookies 是设置在响应对象上的。由于通常视图函数只是返回字符串，之后 Flask 将字符串转换为响应对象。如果你要显式地转换，你可以使用[`make_response()`](http://docs.jinkan.org/docs/flask/api.html#flask.make_response) 函数然后再进行修改。
 
-有时候你想设置 Cookie，但响应对象不能醋在。这可以利用 [*延迟请求回调*](http://docs.jinkan.org/docs/flask/patterns/deferredcallbacks.html#deferred-callbacks) 模式实现。
+有时候你想设置 Cookie，但响应对象不能醋在。这可以利用 [_延迟请求回调_](http://docs.jinkan.org/docs/flask/patterns/deferredcallbacks.html#deferred-callbacks) 模式实现。
 
-为此，也可以阅读 [*关于响应*](http://docs.jinkan.org/docs/flask/quickstart.html#about-responses) 。
-
-
+为此，也可以阅读 [_关于响应_](http://docs.jinkan.org/docs/flask/quickstart.html#about-responses) 。
 
 ## 重定向和错误
 
@@ -527,11 +502,9 @@ def page_not_found(error):
 
 注意 [`render_template()`](http://docs.jinkan.org/docs/flask/api.html#flask.render_template) 调用之后的 `404` 。这告诉 Flask，该页的错误代码是 404 ，即没有找到。默认为 200，也就是一切正常。
 
-
-
 ## 关于响应
 
-视图函数的返回值会被自动转换为一个响应对象。如果返回值是一个字符串， 它被转换为该字符串为主体的、状态码为 `200 OK``的 、 MIME 类型是 ``text/html` 的响应对象。Flask 把返回值转换为响应对象的逻辑是这样：
+视图函数的返回值会被自动转换为一个响应对象。如果返回值是一个字符串， 它被转换为该字符串为主体的、状态码为 ` 200 OK``的 、 MIME 类型是 ``text/html ` 的响应对象。Flask 把返回值转换为响应对象的逻辑是这样：
 
 1. 如果返回的是一个合法的响应对象，它会从视图直接返回。
 2. 如果返回的是一个字符串，响应对象会用字符串数据和默认参数创建。
@@ -557,8 +530,6 @@ def not_found(error):
     resp.headers['X-Something'] = 'A value'
     return resp
 ```
-
-
 
 ## 会话
 
@@ -619,11 +590,11 @@ app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
 
 反馈，是良好的应用和用户界面的重要构成。如果用户得不到足够的反馈，他们很可能开始厌恶这个应用。 Flask 提供了消息闪现系统，可以简单地给用户反馈。 消息闪现系统通常会在请求结束时记录信息，并在下一个（且仅在下一个）请求中访问记录的信息。展现这些消息通常结合要模板布局。
 
-使用 [`flash()`](http://docs.jinkan.org/docs/flask/api.html#flask.flash) 方法可以闪现一条消息。要操作消息本身，请使用[`get_flashed_messages()`](http://docs.jinkan.org/docs/flask/api.html#flask.get_flashed_messages) 函数，并且在模板中也可以使用。完整的例子见 [*消息闪现*](http://docs.jinkan.org/docs/flask/patterns/flashing.html#message-flashing-pattern) 部分。
+使用 [`flash()`](http://docs.jinkan.org/docs/flask/api.html#flask.flash) 方法可以闪现一条消息。要操作消息本身，请使用[`get_flashed_messages()`](http://docs.jinkan.org/docs/flask/api.html#flask.get_flashed_messages) 函数，并且在模板中也可以使用。完整的例子见 [_消息闪现_](http://docs.jinkan.org/docs/flask/patterns/flashing.html#message-flashing-pattern) 部分。
 
 ## 日志记录
 
-*0.3 新版功能.*
+_0.3 新版功能._
 
 有时候你会处于这样一种境地，你处理的数据本应该是正确的，但实际上不是。 比如，你会有一些向服务器发送请求的客户端代码，但请求显然是畸形的。这可能是用户篡改了数据，或是客户端代码的粗制滥造。大多数情况下，正常地返回 `400 Bad Request` 就可以了，但是有时候不能这么做，并且要让代码继续运行。
 
@@ -639,8 +610,6 @@ app.logger.error('An error occurred')
 
 附带的 [`logger`](http://docs.jinkan.org/docs/flask/api.html#flask.Flask.logger) 是一个标准日志类 [`Logger`](http://docs.python.org/dev/library/logging.html#logging.Logger) ，所以更多信息请查阅 [logging 的文档](http://docs.python.org/library/logging.html) 。
 
-
-
 ## 整合 WSGI 中间件
 
 如果你想给你的应用添加 WSGI 中间件，你可以封装内部 WSGI 应用。例如若是你想用 Werkzeug 包中的某个中间件来应付 lighttpd 中的 bugs ，可以这样做:
@@ -649,7 +618,6 @@ app.logger.error('An error occurred')
 from werkzeug.contrib.fixers import LighttpdCGIRootFix
 app.wsgi_app = LighttpdCGIRootFix(app.wsgi_app)
 ```
-
 
 ## 部署到 Web 服务器
 
@@ -664,5 +632,4 @@ app.wsgi_app = LighttpdCGIRootFix(app.wsgi_app)
 - [在 Google App Engine 上部署 Flask](https://github.com/kamalgill/flask-appengine-template)
 - [用 Localtunnel 共享你的本地服务器](http://flask.pocoo.org/snippets/89/)
 
-如果你有自己的主机，并且准备自己托管，参见 [*部署选择*](http://docs.jinkan.org/docs/flask/deploying/index.html#deployment) 章节。
-
+如果你有自己的主机，并且准备自己托管，参见 [_部署选择_](http://docs.jinkan.org/docs/flask/deploying/index.html#deployment) 章节。

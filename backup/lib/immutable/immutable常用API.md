@@ -1,12 +1,12 @@
-## immutable.js 在React、Redux中的实践以及常用API简介
+## immutable.js 在 React、Redux 中的实践以及常用 API 简介
 
 ### 简介
 
-这个immutable Data 是什么鬼，有什么优点，好处等等，我就不赘述了，这篇[Immutable 详解及 React 中实践](https://zhuanlan.zhihu.com/p/20295971?columnSlug=purerender)讲的很透彻。
+这个 immutable Data 是什么鬼，有什么优点，好处等等，我就不赘述了，这篇[Immutable 详解及 React 中实践](https://zhuanlan.zhihu.com/p/20295971?columnSlug=purerender)讲的很透彻。
 
 ### 一个说明不可变的例子
 
-这个可变和不可变是相对于 JavaScript原生引用类型来说的。
+这个可变和不可变是相对于 JavaScript 原生引用类型来说的。
 
 ```
 // 原生对象
@@ -60,14 +60,14 @@ console.log(a2.get('c') === b2.get('c')); //true
 
 好吧，上面那么多乐行常用的也就是 `List`和`Map`，顶多再加个`Seq`。
 
-### 几个重要的API
+### 几个重要的 API
 
-先来说说几个重要的API吧，也是最常用的。
+先来说说几个重要的 API 吧，也是最常用的。
 
 #### fromJS()
 
-`fromJS()` 是最最最常用的将原生JS数据转换为ImmutableJS数据的转换方法。使用方式类似于 `JSON.parse()`，接收两个参数：`json` 数据和 `reviver` 函数。
-在不传递`reviver`函数的情况下，默认将原生JS的`Array`转为`List`，`Object`转为`Map`.
+`fromJS()` 是最最最常用的将原生 JS 数据转换为 ImmutableJS 数据的转换方法。使用方式类似于 `JSON.parse()`，接收两个参数：`json` 数据和 `reviver` 函数。
+在不传递`reviver`函数的情况下，默认将原生 JS 的`Array`转为`List`，`Object`转为`Map`.
 
 ```
 // 常见
@@ -112,9 +112,9 @@ function fromJSDefault(json) {
 
 先来看官网的一段话：
 
-> immutable数据应该被当作值而不是对象，值是表示该事件在特定时刻的状态。这个原则对理解不可变数据的适当使用是最重要的。为了将Immutable.js数据视为值，就必须使用`Immutable.is()`函数或`.equals()`方法来确定值相等，而不是确定对象引用标识的 `===` 操作符。
+> immutable 数据应该被当作值而不是对象，值是表示该事件在特定时刻的状态。这个原则对理解不可变数据的适当使用是最重要的。为了将 Immutable.js 数据视为值，就必须使用`Immutable.is()`函数或`.equals()`方法来确定值相等，而不是确定对象引用标识的 `===` 操作符。
 
-所以`toJS()`就是用来对两个immutable对象进行值比较的。使用方式类似于 `Object.is(obj1, obj2)`，接收两个参数。
+所以`toJS()`就是用来对两个 immutable 对象进行值比较的。使用方式类似于 `Object.is(obj1, obj2)`，接收两个参数。
 
 ```
 const map1 = Immutable.Map({a:1, b:1, c:1});
@@ -217,7 +217,7 @@ console.log(Map().toJS()); // {}
 console.log(Map({key: "value"}).toJS()); // {key: "value"}
 ```
 
-同Key覆盖问题
+同 Key 覆盖问题
 
 ```
 //最后的{key: value2} 覆盖了前面的 {key: value}
@@ -257,18 +257,18 @@ console.log(List.of({x:1}, 2, [3], 4).toJS()); // [{x:1}, 2, [3], 4]
 
 #### 判断是否是一个`Map`或者`List`
 
-!@#### Map判断
+!@#### Map 判断
 
-判断是否是一个Map , 对原生Object不生效
+判断是否是一个 Map , 对原生 Object 不生效
 
 ```
 console.log(Map.isMap({})); // false
 console.log(Map.isMap(Map({}))); // true
 ```
 
-!@#### List判断
+!@#### List 判断
 
-判断是否是一个List , 对原生Array不生效
+判断是否是一个 List , 对原生 Array 不生效
 
 ```
 console.log(List.isList([])); // false
@@ -363,7 +363,7 @@ console.log(Immutable.fromJS([1, 2, 3, {a: 45, b: 64}]).setIn(['3', 'a'], 1000).
 console.log(Immutable.fromJS([1, 2, 3]).insert(1, 1.5).toJS()); // [ 1, 1.5, 2, 3 ]
 ```
 
-!@### 设置size
+!@### 设置 size
 
 默认值`undefined`
 
@@ -674,7 +674,7 @@ console.log(Immutable.fromJS({a: {a1: 222}, b: {a1: 11}, c: {a1: 33}, d: {a1: 54
 
 !@### keys() values() entries()
 
-获取ES6 `Iterable` 迭代器。
+获取 ES6 `Iterable` 迭代器。
 
 ```
 // List
@@ -717,7 +717,7 @@ for (let i of entries) {
 
 !@### slice()
 
-和原生Array `slice()`用法一致。
+和原生 Array `slice()`用法一致。
 
 ```
 // List
@@ -987,7 +987,7 @@ console.log($test.mergeDeepWith((prev, next)=> {
 
 #### jonin() 转换为字符串
 
-使用方式和原生Array的`joni()`一样。
+使用方式和原生 Array 的`joni()`一样。
 
 ```
 // List
@@ -1005,7 +1005,7 @@ console.log(Immutable.fromJS([]).isEmpty()); // true
 console.log(Immutable.fromJS({}).isEmpty()); // true
 ```
 
-#### has() hasIn() 检查是否有某个key
+#### has() hasIn() 检查是否有某个 key
 
 ```
 // List
@@ -1142,7 +1142,7 @@ console.log(Immutable.fromJS({b: {a: 2}, a: {a: 88}, c: {a: 3}, d: {a: 5}}).sort
 
 #### flatten() 平铺
 
-参数默认情况下，`false` 深度平铺，`true` 浅度平铺1层。
+参数默认情况下，`false` 深度平铺，`true` 浅度平铺 1 层。
 
 ```
 // List
@@ -1228,7 +1228,7 @@ console.log(Immutable.fromJS({b: 2, a: [1, 2, 2]}).toObject());// {b: 2, a: List
 // 就是一直在用的 toJS(); 不到万不得已，尽量不用。
 ```
 
-!@### 转换为其他ImmutableJS数据类型
+!@### 转换为其他 ImmutableJS 数据类型
 
 暂时不做详细介绍。
 
@@ -1249,11 +1249,11 @@ $list.push(4).push(5).push(6);
 console.log($list1.toJS());// [1, 2, 3, 4, 5, 6]
 ```
 
-在上面的代码中，进行三次`push()`操作，会分别产生三个`List`，其中头两次中间`List`明显是冗余的，我们其实只关心最后一次产生的`List`，这种情况就产生了冗余操作，为了消除这种冗余的操作，减少其中的性能损耗，我们可以先暂时把`$list1`变成非immutable的，这样我们进行`push`操作时就不会产生冗余的中间`List`。
+在上面的代码中，进行三次`push()`操作，会分别产生三个`List`，其中头两次中间`List`明显是冗余的，我们其实只关心最后一次产生的`List`，这种情况就产生了冗余操作，为了消除这种冗余的操作，减少其中的性能损耗，我们可以先暂时把`$list1`变成非 immutable 的，这样我们进行`push`操作时就不会产生冗余的中间`List`。
 
 这里面有性能比较：[stack overflow 中的一个问题](http://stackoverflow.com/questions/28510753/when-should-i-use-withmutations-on-a-map-in-immutable-js)
 。
-在把Immutable类型的数据，转为可变的之后，只有部分操作方法会返回可变的数据，其他操作方法仍然会返回immutable数据，但是这些方法应该就够用了。
+在把 Immutable 类型的数据，转为可变的之后，只有部分操作方法会返回可变的数据，其他操作方法仍然会返回 immutable 数据，但是这些方法应该就够用了。
 
 ```
 // Map: set(), merge()
@@ -1327,13 +1327,13 @@ console.log($test4 === $test3, Immutable.is($test4, $test3));// true true
 console.log($test4.toJS(), $test5.toJS(), $test4 === $test5, Immutable.is($test4, $test5));// {b: 234, a: Array[3]} {b: 123, a: Array[3]} [234, 2, 3] false false
 ```
 
-### 和React Redux 架构的结合
+### 和 React Redux 架构的结合
 
-利用 immutable.js 不可变的特性，可以极大的优化React render的冗余执行。React 官方提供的`PureRenderMixin`是浅比较，具体的不用细说，网上一查一堆。
+利用 immutable.js 不可变的特性，可以极大的优化 React render 的冗余执行。React 官方提供的`PureRenderMixin`是浅比较，具体的不用细说，网上一查一堆。
 
 #### immutable-pure-render-decorator
 
-专门针对immutable的`PureRenderMixin`，用来装饰React组件。
+专门针对 immutable 的`PureRenderMixin`，用来装饰 React 组件。
 
 ```
 import {React} from 'base';
@@ -1363,9 +1363,9 @@ export default class PartA extends React.Component {
 }
 ```
 
-#### 优化shouldComponentUpdate()
+#### 优化 shouldComponentUpdate()
 
-我们都知道官方提供的`React.addons.PureRenderMixin`提供的`shouldComponentUpdate()`，只能进行浅比较，对于引用类型`Object`、`Array`比较无力，而如果使用Immutable的`Map`和`List`替换`Object`、`Array`，则可以使用`Immutable.is()`来比较两个引用类型，从而补充了`React.addons.PureRenderMixin`的漏洞。
+我们都知道官方提供的`React.addons.PureRenderMixin`提供的`shouldComponentUpdate()`，只能进行浅比较，对于引用类型`Object`、`Array`比较无力，而如果使用 Immutable 的`Map`和`List`替换`Object`、`Array`，则可以使用`Immutable.is()`来比较两个引用类型，从而补充了`React.addons.PureRenderMixin`的漏洞。
 
 !@### immutable-pure-render-decorator 源码
 
@@ -1373,7 +1373,7 @@ export default class PartA extends React.Component {
 
 #### 高阶组件封装
 
-对于使用immutable.js的项目，在应用公共组件的时候，由于公共组件的内部实现一定是原生JS数据，所以我们只能传递原生JS数据到公共组件，但是如果转换成了原生JS数据，就又会出现"`React.addons.PureRenderMixin`提供的`shouldComponentUpdate()`是浅比较"问题，对此可以使用下面的高阶组件进行封装。
+对于使用 immutable.js 的项目，在应用公共组件的时候，由于公共组件的内部实现一定是原生 JS 数据，所以我们只能传递原生 JS 数据到公共组件，但是如果转换成了原生 JS 数据，就又会出现"`React.addons.PureRenderMixin`提供的`shouldComponentUpdate()`是浅比较"问题，对此可以使用下面的高阶组件进行封装。
 
 ```
 /**

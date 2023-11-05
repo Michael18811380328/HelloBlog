@@ -20,7 +20,6 @@ var howElliptical = 1;
 var aA = null;
 var oDiv = null;
 
-
 /**
  * 主函数
  * 参数 空
@@ -49,14 +48,14 @@ function main() {
   sineCosine(a, b, c);
   for (var j = 0; j < mcList.length; j++) {
     var rx1 = mcList[j].cx;
-    var ry1 = mcList[j].cy * ca + mcList[j].cz * (-sa);
+    var ry1 = mcList[j].cy * ca + mcList[j].cz * -sa;
     var rz1 = mcList[j].cy * sa + mcList[j].cz * ca;
 
     var rx2 = rx1 * cb + rz1 * sb;
     var ry2 = ry1;
-    var rz2 = rx1 * (-sb) + rz1 * cb;
+    var rz2 = rx1 * -sb + rz1 * cb;
 
-    var rx3 = rx2 * cc + ry2 * (-sc);
+    var rx3 = rx2 * cc + ry2 * -sc;
     var ry3 = rx2 * sc + ry2 * cc;
     var rz3 = rz2;
 
@@ -66,7 +65,7 @@ function main() {
 
     per = d / (d + rz3);
 
-    mcList[j].x = (howElliptical * rx3 * per) - (howElliptical * 2);
+    mcList[j].x = howElliptical * rx3 * per - howElliptical * 2;
     mcList[j].y = ry3 * per;
     mcList[j].scale = per;
     mcList[j].alpha = per;
@@ -87,7 +86,7 @@ function depthSort() {
   for (i = 0; i < aA.length; i++) {
     aTmp.push(aA[i]);
   }
-  aTmp.sort(function(vItem1, vItem2) {
+  aTmp.sort(function (vItem1, vItem2) {
     if (vItem1.cz > vItem2.cz) {
       return -1;
     } else if (vItem1.cz < vItem2.cz) {
@@ -103,7 +102,7 @@ function depthSort() {
 
 /**
  * 设置全部节点的位置
- */ 
+ */
 function positionAll() {
   var phi = 0;
   var theta = 0;
@@ -116,7 +115,7 @@ function positionAll() {
   for (i = 0; i < aA.length; i++) {
     aTmp.push(aA[i]);
   }
-  aTmp.sort(function() {
+  aTmp.sort(function () {
     return Math.random() < 0.5 ? 1 : -1;
   });
   for (i = 0; i < aTmp.length; i++) {
@@ -130,28 +129,36 @@ function positionAll() {
       phi = Math.acos(-1 + (2 * i - 1) / max);
       theta = Math.sqrt(max * Math.PI) * phi;
     } else {
-      phi = Math.random() * (Math.PI);
+      phi = Math.random() * Math.PI;
       theta = Math.random() * (2 * Math.PI);
     }
     mcList[i - 1].cx = radius * Math.cos(theta) * Math.sin(phi);
     mcList[i - 1].cy = radius * Math.sin(theta) * Math.sin(phi);
     mcList[i - 1].cz = radius * Math.cos(phi);
 
-    aA[i - 1].style.left = mcList[i - 1].cx + oDiv.offsetWidth / 2 - mcList[i - 1].offsetWidth / 2 + 'px';
-    aA[i - 1].style.top = mcList[i - 1].cy + oDiv.offsetHeight / 2 - mcList[i - 1].offsetHeight / 2 + 'px';
+    aA[i - 1].style.left =
+      mcList[i - 1].cx +
+      oDiv.offsetWidth / 2 -
+      mcList[i - 1].offsetWidth / 2 +
+      "px";
+    aA[i - 1].style.top =
+      mcList[i - 1].cy +
+      oDiv.offsetHeight / 2 -
+      mcList[i - 1].offsetHeight / 2 +
+      "px";
   }
 }
 
 /**
  * 执行位置函数
- */ 
+ */
 function doPosition() {
   var l = oDiv.offsetWidth / 2;
   var t = oDiv.offsetHeight / 2;
-  // 获取 left top 
+  // 获取 left top
   for (var i = 0; i < mcList.length; i++) {
-    aA[i].style.left = mcList[i].cx + l - mcList[i].offsetWidth / 2 + 'px';
-    aA[i].style.top = mcList[i].cy + t - mcList[i].offsetHeight / 2 + 'px';
+    aA[i].style.left = mcList[i].cx + l - mcList[i].offsetWidth / 2 + "px";
+    aA[i].style.top = mcList[i].cy + t - mcList[i].offsetHeight / 2 + "px";
     //aA[i].style.fontSize=Math.ceil(12*mcList[i].scale/2)+8+'px';
     aA[i].style.filter = "alpha(opacity=" + 100 * mcList[i].alpha + ")";
     aA[i].style.opacity = mcList[i].alpha;
@@ -174,7 +181,7 @@ function sineCosine(a, b, c) {
 }
 
 // 界面加载后执行
-$(document).ready(function() {
+$(document).ready(function () {
   var i = 0;
   var oTag = null;
 
@@ -182,31 +189,31 @@ $(document).ready(function() {
   // 这里是数据（不同词云占的比例）
   // 可以从服务器获取或者从本地读取
   let data = {
-    "Python": 69.153,
-    "Java": 59.546,
-    "JavaScript": 40.135,
+    Python: 69.153,
+    Java: 59.546,
+    JavaScript: 40.135,
     "C++": 32.78,
     "C#": 19.546,
-    "others": 12.6
+    others: 12.6,
   };
 
   // 存放不同属性的数组
   var items = [];
   // 给不同属性的文字设置不同的字体大小
-  $.each(data, function(key, val) {
+  $.each(data, function (key, val) {
     items.push("<a href=#  style=font-size:" + val + "px>" + key + "</a>");
   });
   // 设置不同属性的样式，并放在Body上面
   $("<div/>", {
-    "id": "div1",
+    id: "div1",
     style: "border:solid 2px black",
     ALIGN: "center",
-    html: items.join("")
+    html: items.join(""),
   }).appendTo("body");
 
   // 获取DIV节点和A链接
-  oDiv = document.getElementById('div1');
-  aA = oDiv.getElementsByTagName('a');
+  oDiv = document.getElementById("div1");
+  aA = oDiv.getElementsByTagName("a");
 
   // 设置每个A节点获取偏移量，并放在数组中
   for (i = 0; i < aA.length; i++) {
@@ -223,13 +230,13 @@ $(document).ready(function() {
   positionAll();
 
   // 监听鼠标事件，改变全局的状态
-  oDiv.οnmοuseοver = function() {
+  oDiv.οnmοuseοver = function () {
     active = true;
   };
-  oDiv.οnmοuseοut = function() {
+  oDiv.οnmοuseοut = function () {
     active = false;
   };
-  oDiv.οnmοusemοve = function(ev) {
+  oDiv.οnmοusemοve = function (ev) {
     var oEvent = window.event || ev;
     mouseX = oEvent.clientX - (oDiv.offsetLeft + oDiv.offsetWidth / 2);
     mouseY = oEvent.clientY - (oDiv.offsetTop + oDiv.offsetHeight / 2);

@@ -1,4 +1,4 @@
-# Linux常用操作
+# Linux 常用操作
 
 ## 用户操作
 
@@ -39,7 +39,7 @@ $ groups [userID]
 $ cat /etc/group
 ```
 
-/etc/group文件的记录格式如下。
+/etc/group 文件的记录格式如下。
 
 ```
 group_name:passwd:GID:user_list
@@ -50,11 +50,11 @@ group_name:passwd:GID:user_list
 1. 用户组名称；
 2. 用户组密码；
 3. GID
-4. 用户列表，每个用户之间用,号分割；本字段可以为空；如果字段为空表示用户组为GID的用户名；
+4. 用户列表，每个用户之间用,号分割；本字段可以为空；如果字段为空表示用户组为 GID 的用户名；
 
-## 挂载USB盘
+## 挂载 USB 盘
 
-（1）将USB盘插入电脑
+（1）将 USB 盘插入电脑
 
 （2）列出所有储存设备。
 
@@ -62,7 +62,7 @@ group_name:passwd:GID:user_list
 $ sudo fdisk -l
 ```
 
-你会看到储存盘都是`/dev/sdXN`的形式，其中X是盘号，N是分区号。
+你会看到储存盘都是`/dev/sdXN`的形式，其中 X 是盘号，N 是分区号。
 
 （3）在文件系统中创建一个挂载点。
 
@@ -70,14 +70,14 @@ $ sudo fdisk -l
 $ sudo mkdir /media/externaldrive
 ```
 
-（4） 此时，只有root用户才能读取U盘，因此要将U盘变为所有用户都可以读取。
+（4） 此时，只有 root 用户才能读取 U 盘，因此要将 U 盘变为所有用户都可以读取。
 
 ```bash
 $ sudo chgrp -R users /media/externaldrive
 $ sudo chmod -R g+w /media/externaldrive
 ```
 
-（5）挂载USB盘。
+（5）挂载 USB 盘。
 
 ```bash
 sudo mount [/dev/sdXN] /media/externaldrive
@@ -93,8 +93,8 @@ $ sudo dd if=debian-*-netinst.iso of=/dev/sdX
 
 信号是进程间的一种通信机制，用于内核向某个进程发送消息。
 
-- SIGTERM信号表示内核要求进程终止，进程可以自行退出，也可以不理会这个信号。
-- SIGKILL信号用于立即终止进程，进程不能忽略该信号。
+- SIGTERM 信号表示内核要求进程终止，进程可以自行退出，也可以不理会这个信号。
+- SIGKILL 信号用于立即终止进程，进程不能忽略该信号。
 
 ```bash
 # 发出SIGTERM
@@ -122,20 +122,20 @@ $ nmcli dev wifi connect <name> password <password>
 
 ## 截图
 
-xfce截图。
+xfce 截图。
 
 ```bash
 $ xfce4-screenshooter -f
 ```
 
-Gnome截图。
+Gnome 截图。
 
 ```bash
 $ gnome-panel-screenshot
 $ gnome-panel-screenshot --delay 10
 ```
 
-ImageMagick截图。
+ImageMagick 截图。
 
 ```bash
 $ import MyScreenshot.png
@@ -156,7 +156,7 @@ $ sleep 15; import -window root MyScreenshot3.png; gimp MyScreenshot3.png
 $ import -window root -resize 500 AnotherScreenshot.png
 ```
 
-scrot截图
+scrot 截图
 
 ```bash
 # 安装
@@ -168,13 +168,13 @@ $ scrot MyScreenshot.png
 $ scrot -q 85 -d 5 screenshot.png && gimp screenshot.png &
 ```
 
-GIMP也可以用来截图，命令为`File —> Acquire —> Screen Shot`。
+GIMP 也可以用来截图，命令为`File —> Acquire —> Screen Shot`。
 
 ## Crontab 定时任务
 
-crontab是UNIX下用来执行定时任务的一个守护进程。它可以定时执行某些脚本。
+crontab 是 UNIX 下用来执行定时任务的一个守护进程。它可以定时执行某些脚本。
 
-crontab的格式如下。
+crontab 的格式如下。
 
 ```bash
 MIN HOUR DOM MON DOW CMD
@@ -187,7 +187,7 @@ MIN HOUR DOM MON DOW CMD
 - DOW：每周的第几天，0-6
 - CMD：需要执行的命令或脚本
 
-下面的命令可以进入contab的编辑模式。
+下面的命令可以进入 contab 的编辑模式。
 
 ```bash
 # 进入crontab编辑模式
@@ -228,7 +228,7 @@ $ crontab -i -r
 
 （1）watch
 
-`watch`周期性执行一个命令，输出结果。默认情况下，该命令每隔2秒就执行一次。
+`watch`周期性执行一个命令，输出结果。默认情况下，该命令每隔 2 秒就执行一次。
 
 ```bash
 # 每隔2秒，清理一下内存
@@ -241,11 +241,11 @@ $ watch -n 10 script.sh
 `watch`命令的参数
 
 - -n - 指定两次执行之间间隔的秒数
-- -b – 如果命令的退出码非0，则喇叭响一下
-- -c – 解释ANSI的颜色码
+- -b – 如果命令的退出码非 0，则喇叭响一下
+- -c – 解释 ANSI 的颜色码
 - -d – 对输出结果发生变化的部分高亮显示
 
-（2）sleep命令
+（2）sleep 命令
 
 `sleep`命令可以指定暂停多少秒之后，再继续执行。
 
@@ -256,4 +256,3 @@ $ for i in {1..10}; do echo -n "This is a test in loop $i "; date ; sleep 5; don
 # while循环
 $ while true; do echo -n "This is a test of while loop";date ; sleep 5; done
 ```
-

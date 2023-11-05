@@ -302,4 +302,3 @@ rsearch = RandomizedSearchCV(estimator=knn,
                              rsearch.fit(X_train, y_train) random_state=5)
 print(rsearch.best_score_)
 ```
-

@@ -12,20 +12,19 @@ function linkedList() {
   // 第一个节点的引用存储（head）
   let head = null;
   // 需要加入列表的项，具有node节点和指针（指向下一个空节点）
-  let Node = function(ele) {
+  let Node = function (ele) {
     this.element = ele;
     this.next = null;
   };
   // API
 
-  this.append = function(ele) {
+  this.append = function (ele) {
     let node = new Node(ele);
     let current;
     if (head === null) {
       // 如果列表是空，添加第一个元素
       head = node;
-    }
-    else {
+    } else {
       current = head;
       // 循环列表找到最后一项
       while (current.next) {
@@ -34,11 +33,11 @@ function linkedList() {
       // 将最后一项的next赋值为node，建立链接
       current.next = node;
     }
-    length ++;// 更新链表的长度
+    length++; // 更新链表的长度
   };
 
   // 链表相关API操作不熟练
-  this.insert = function(position, ele) {
+  this.insert = function (position, ele) {
     if (position >= 0 && position <= length) {
       let node = new Node(ele);
       let current = head;
@@ -47,8 +46,7 @@ function linkedList() {
       if (position === 0) {
         node.next = current;
         head = node;
-      }
-      else {
+      } else {
         while (index++ < current) {
           previous = current;
           current = current.next;
@@ -56,66 +54,63 @@ function linkedList() {
         node.next = current;
         previous.next = node;
       }
-      length ++;
+      length++;
       return true;
-    }
-    else {
+    } else {
       return false;
     }
   };
 
-  this.removeAt = function(position) {
+  this.removeAt = function (position) {
     if (position > -1 && position < length) {
       let current = head;
       let previous;
       let index = 0;
       if (position === 0) {
         head = current.next;
-      }
-      else {
+      } else {
         while (index++ < position) {
           previous = current;
           current = current.next;
         }
         previous.next = current.next;
       }
-      length --;
+      length--;
       return current.element;
-    }
-    else {
+    } else {
       return null;
     }
   };
 
-  this.indexOf = function(ele) {
+  this.indexOf = function (ele) {
     let current = head;
     let index = -1;
     while (current) {
       if (ele === current.element) {
         return index;
       }
-      index ++;
+      index++;
       current = current.next;
     }
     return -1;
   };
 
-  this.remove = function(ele) {
+  this.remove = function (ele) {
     let index = this.indexOf(ele);
     return this.removeAt(index);
   };
 
-  this.isEmpty = function() {
+  this.isEmpty = function () {
     return length == 0;
   };
 
-  this.size = function() {
+  this.size = function () {
     return length;
   };
 
-  this.toString = function() {
+  this.toString = function () {
     let current = head;
-    let string = '';
+    let string = "";
     while (current) {
       string = current.element;
       current = current.next;
@@ -124,9 +119,9 @@ function linkedList() {
   };
 
   // 列表使用了node类，所以需要重写继承于对象的toString方法，只输出元素的值。
-  this.getHead = function() {
+  this.getHead = function () {
     return head;
-  }
+  };
 }
 
 // test append API
@@ -135,15 +130,13 @@ list.append(15);
 list.append(10);
 list.print();
 
-
 // 2.双向链表
 // 单向链表只有向下一个节点的链接，双向链表是双向的，可以向上一个节点或者下一个节点进行链接。具有双向的指针。
 // 双向链表中可以从头到尾或者从尾到头迭代列表；在单向链表中，如果迭代链表过程中错过了要找的元素，需要从头迭代链表。
 // API的主要变动：创建新的元素节点是相同的，需要同时改变前后两个指针的指向。
 
 function DoubleLinkedList() {
-
-  let Node = function(ele) {
+  let Node = function (ele) {
     this.element = ele;
     this.next = null;
     this.prev = null;
@@ -181,9 +174,9 @@ function DoubleLinkedList() {
       node.next = current;
       previous.next = previous;
     }
-    length ++;
+    length++;
     return true;
-  }
+  };
 
   this.removeAt = (position) => {
     // 检查临界值
@@ -197,7 +190,7 @@ function DoubleLinkedList() {
       head = current.next;
       // ...
     }
-  }
-};
+  };
+}
 
 // 改进：如果position大于length/2，最好从尾部开始迭代，改进性能；

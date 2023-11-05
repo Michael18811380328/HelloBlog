@@ -18,18 +18,17 @@
 
 ### 项目使用
 
-主要使用下面三个第三方库。jquery使用CDN实现，其他的可以执行 npm install 安装到本地环境
+主要使用下面三个第三方库。jquery 使用 CDN 实现，其他的可以执行 npm install 安装到本地环境
 
-~~~html
+```html
 <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
 <script src="./node_modules/jszip/dist/jszip.min.js"></script>
 <script src="./node_modules/file-saver/dist/FileSaver.min.js"></script>
-~~~
+```
 
 ### 主要代码
 
-
-~~~js
+```js
 // 全局创建 zip 对象
 var zip = new JSZip();
 
@@ -50,30 +49,30 @@ $.ajax({
         download(urls[j]);
       }
     }
-  }
+  },
 });
 
 // 下载每一个子文件，异步把下载好的文件存储到压缩对象中
 function download(url) {
   var xhr = new XMLHttpRequest();
-  xhr.open('GET', url, true);
+  xhr.open("GET", url, true);
   xhr.setRequestHeader("Cache-Control", "no-cache");
-  xhr.setRequestHeader("If-Modified-Since","0");
+  xhr.setRequestHeader("If-Modified-Since", "0");
   xhr.responseType = "blob";
 
-  xhr.onload = function() {
+  xhr.onload = function () {
     if (this.status == 200) {
       var blob = this.response;
       zipFile(blob);
     }
-    $("#export").attr("disabled",false);
-  }
+    $("#export").attr("disabled", false);
+  };
   xhr.send();
 }
 
 // 压缩文件（当压缩的文件数量等于全部文件数量，压缩完成，开始下载压缩包）
 function zipFile(blob) {
-  zip.file(urlLength + "Hello.doc", blob);      
+  zip.file(urlLength + "Hello.doc", blob);
   zipLength++;
   if (zipLength === urlLength) {
     console.log(zipLength);
@@ -84,12 +83,11 @@ function zipFile(blob) {
 // 产生压缩包并保存到本地
 function downLoadZip() {
   // zip.folder("docs");
-  zip.generateAsync({type:"blob"}).then(function(content) {
+  zip.generateAsync({ type: "blob" }).then(function (content) {
     saveAs(content, "example.zip");
   });
 }
-~~~
-
+```
 
 ### 参考博客
 

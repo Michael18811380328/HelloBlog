@@ -10,6 +10,7 @@ var default_list = [
   'book/docs',
   'personal/docs',
   'images/docs',
+  'react/docs',
 ];
 
 // 如果有传参，直接使用传参；否则使用默认全部的参数

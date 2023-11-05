@@ -4,7 +4,7 @@
 
 命令行由 Shell 提供。各种命令通过 Shell，传递给操作系统的内核。学习命令行就是在学习 Shell。
 
-Shell 有好几种，目前最常用是 [Bash](https://en.wikipedia.org/wiki/Bash_&lpar;Unix_shell&rpar;) 和 [zsh](https://en.wikipedia.org/wiki/Z_shell)。但是，在我看来，它们都不如 [Fish Shell](http://fishshell.com/) 好用。
+Shell 有好几种，目前最常用是 [Bash](<https://en.wikipedia.org/wiki/Bash_(Unix_shell)>) 和 [zsh](https://en.wikipedia.org/wiki/Z_shell)。但是，在我看来，它们都不如 [Fish Shell](http://fishshell.com/) 好用。
 
 五年前，我第一次尝试 Fish，感到很惊艳，一直用到现在。本文介绍 Fish 的主要特点，希望你也来尝试它。
 
@@ -55,6 +55,7 @@ $ help
 $ <span style="color:red;">mkd</span>
 
 # 有效命令为蓝色
+
 $ <span style="color: blue;">mkdir</span>
 </code></pre></blockquote>
 
@@ -75,9 +76,11 @@ Fish 会自动在光标后面给出建议，表示可能的选项，颜色为灰
 $ /bin/h<span style="color: gray;text-decoration: underline;">o</span><span style="color: gray;">stname</span>
 
 # 参数建议
+
 $ grep --i<span style="color: gray;">gnore-case</span>
 
 # 路径建议
+
 $ ls <span style="color: blue;text-decoration: underline;">no</span><span style="color: gray;">de_modules</span>
 </code></pre></blockquote>
 
@@ -101,7 +104,7 @@ $ vi[按下 Tab 键]
 vi (Executable link, 2.7MB)
 view (Vi IMproved, 一个程序员的文本编辑器)
 viewer.py (Executable, 967B)
-viewres  (Graphical class browser for Xt)
+viewres (Graphical class browser for Xt)
 …and 12 more rows
 </code></pre></blockquote>
 
@@ -112,10 +115,10 @@ viewres  (Graphical class browser for Xt)
 <blockquote><pre><code class="language-bash">
 $ ls -l[按下 Tab 键]
 
--l1  (List one file per line)
--lA  (Show hidden except . and ..)  
--la  (Show hidden)
--lB  (Ignore files ending with ~)
+-l1 (List one file per line)
+-lA (Show hidden except . and ..)  
+-la (Show hidden)
+-lB (Ignore files ending with ~)
 …and 16 more rows```
 </code></pre></blockquote>
 

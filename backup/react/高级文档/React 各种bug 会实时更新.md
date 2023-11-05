@@ -1,4 +1,4 @@
-# React 各种bug
+# React 各种 bug
 
 ### BUG1
 
@@ -50,7 +50,7 @@ static propTypes = {
 ```
 
 不要写错了。
-[prop-types](https://links.jianshu.com/go?to=%5Bhttp%3A%2F%2Fnpm.taobao.org%2Fpackage%2Fprop-types%5D(http%3A%2F%2Fnpm.taobao.org%2Fpackage%2Fprop-types))
+[prop-types](<https://links.jianshu.com/go?to=%5Bhttp%3A%2F%2Fnpm.taobao.org%2Fpackage%2Fprop-types%5D(http%3A%2F%2Fnpm.taobao.org%2Fpackage%2Fprop-types)>)
 
 ### BUG3
 
@@ -67,8 +67,6 @@ Module parse failed: C:\Users\玉丽\AppData\Roaming\npm\node_modules\roadhog\no
  npm install @babel/core @babel/preset-env
 ```
 
-
-
 ### BUG4
 
 ```
@@ -83,8 +81,6 @@ Build failed: The 'decorators' plugin requires a 'decoratorsBeforeExport' option
 npm install --save 2.5.0-beta.1
 ```
 
-
-
 ### BUG5
 
 ```
@@ -97,8 +93,6 @@ Module build failed: ReferenceError: Unknown plugin "transform-runtime" specifie
  npm install --save babel-plugin-transform-runtime
 ```
 
-
-
 ### BUG6
 
 ```
@@ -108,7 +102,7 @@ Module build failed: ReferenceError: Unknown plugin "transform-class-properties"
 需要安装依赖：
 
 ```
-npm install 
+npm install
 babel-plugin-transform-class-properties
 babel-plugin-transform-decorators-legacy
 babel-plugin-transform-export-extensions
@@ -116,8 +110,6 @@ babel-plugin-transform-object-rest-spread
 babel-preset-env
 --save-dev
 ```
-
-
 
 ### BUG7
 
@@ -142,8 +134,6 @@ npm i @babel/runtime@7.0.0-beta.55 --save
 
 我觉的这条思路可以应对所有找不到包内部方法的问题。
 
-
-
 ### BUG8
 
 ```
@@ -154,9 +144,7 @@ Failed to minify the bundle. Error: 0.0f3f4c41.async.js from UglifyJs
 
 但是有些 npm 包不遵守这个约定，没有转成 es5 就发上去，比如 [query-string@6](https://links.jianshu.com/go?to=https%3A%2F%2Fgithub.com%2Fsindresorhus%2Fquery-string%2Fblob%2F597f14a%2Findex.js%23L8%3A31)。然后压缩工具 uglify 又只支持 es5 的语法，遇到 `const`、`let`、`()=>` 类似的语法，就抛错了。
 
-原文看这里的[async.js from UglifyJs](https://links.jianshu.com/go?to=%5Bhttps%3A%2F%2Fgithub.com%2Fsorrycc%2Fblog%2Fissues%2F68%5D(https%3A%2F%2Fgithub.com%2Fsorrycc%2Fblog%2Fissues%2F68))
-
-
+原文看这里的[async.js from UglifyJs](<https://links.jianshu.com/go?to=%5Bhttps%3A%2F%2Fgithub.com%2Fsorrycc%2Fblog%2Fissues%2F68%5D(https%3A%2F%2Fgithub.com%2Fsorrycc%2Fblog%2Fissues%2F68)>)
 
 ### BUG
 
@@ -189,7 +177,7 @@ React-native Android: Error calling AppRegistry.runApplication
 adb reverse tcp:8081 tcp:8081
 ```
 
-然后重新reload
+然后重新 reload
 
 [stackoverflow](https://links.jianshu.com/go?to=https%3A%2F%2Fstackoverflow.com%2Fquestions%2F43776638%2Freact-native-android-error-calling-appregistry-runapplication)这个问题的地址！
 
@@ -214,7 +202,7 @@ app has read-write permissions
 Module AppRegistry is not a registered callable module (calling runApplicati
 ```
 
-由于是发生在IOS端，网上找到的方法通通都是android的，切换了project就好了，在xcode里!!!
+由于是发生在 IOS 端，网上找到的方法通通都是 android 的，切换了 project 就好了，在 xcode 里!!!
 
 ### BUG
 
@@ -222,7 +210,7 @@ Module AppRegistry is not a registered callable module (calling runApplicati
 Migration is required due to the following errors
 ```
 
-这个发生的情况是android上面的app是很久之前的代码，好久没有更新了，然后点击reload就会爆出这个错误，解决办法就是删掉重新安装，就可以了！！
+这个发生的情况是 android 上面的 app 是很久之前的代码，好久没有更新了，然后点击 reload 就会爆出这个错误，解决办法就是删掉重新安装，就可以了！！
 
 ### BUG
 
@@ -243,7 +231,7 @@ This error can also happen due to a require() error during initialization or fai
  Application ReactP has not been registered.
 ```
 
-就是在你其实注册App的地方，你写错了，比如：
+就是在你其实注册 App 的地方，你写错了，比如：
 
 ```
 AppRegistry.registerComponent('AppleReactNative', () => App)
@@ -416,7 +404,7 @@ https://stackoverflow.com/questions/34919111/how-to-debug-this-error-uncaught-in
 
 ### BUG
 
-如果一个包安装了很多次还是会出现不能加载的resolve的bug，有可能会是需要安装制定版本的包 下面是npm 的常用命令
+如果一个包安装了很多次还是会出现不能加载的 resolve 的 bug，有可能会是需要安装制定版本的包 下面是 npm 的常用命令
 
 ```
 npm install <name>安装nodejs的依赖包
@@ -441,7 +429,7 @@ Babel 6 regeneratorRuntime is not defined
 
 解决办法：
 
-首先babel基础包(不安装额外东西)并不是支持完整的es6语言，加上浏览器也不是支持所有的es6语言，如果你写的es6语言刚好撞上这样的情况了.
+首先 babel 基础包(不安装额外东西)并不是支持完整的 es6 语言，加上浏览器也不是支持所有的 es6 语言，如果你写的 es6 语言刚好撞上这样的情况了.
 
 ```
 那么就需要babel的拓展包(Polyfill),网址链接描述
@@ -454,7 +442,7 @@ Babel 6 regeneratorRuntime is not defined
 
 上面是网上的解决版本。
 链接:
-[ES6 写法报错regeneratorRuntime is not defined](https://links.jianshu.com/go?to=https%3A%2F%2Fsegmentfault.com%2Fq%2F1010000006801859)
+[ES6 写法报错 regeneratorRuntime is not defined](https://links.jianshu.com/go?to=https%3A%2F%2Fsegmentfault.com%2Fq%2F1010000006801859)
 扩展:
 [StackOverFlow Babel 6 regeneratorRuntime is not defined](https://links.jianshu.com/go?to=https%3A%2F%2Fstackoverflow.com%2Fquestions%2F33527653%2Fbabel-6-regeneratorruntime-is-not-defined)
 我这边的解决办法
@@ -463,13 +451,13 @@ Babel 6 regeneratorRuntime is not defined
         recordPatientBitrth: ["regenerator-runtime/runtime", path.join(PATHS.entry, 'RecordPatientBirth.js')],
 ```
 
-在入口的地方添加regenerator-runtime/runtime以申明！
+在入口的地方添加 regenerator-runtime/runtime 以申明！
 
 ### BUG
 
 Cannot read property 'split' of undefine
 
-这个问题你应该调用调用的split是否为空，空的话就会报错，就像下面的例子，item.body为空就会报这个错，恩，低级错误。
+这个问题你应该调用调用的 split 是否为空，空的话就会报错，就像下面的例子，item.body 为空就会报这个错，恩，低级错误。
 
 ```
 let arr = item.body.splic(',');
@@ -499,7 +487,7 @@ VM20008:7 Warning: setState(...): Cannot update during an existing state transit
 
 这个错误的出现往往都是直接浏览器直接卡爆了，出现问题的原因其实非常简单。
 
-你在render方法里面进行了state的操作，造成的结果就是一直在不断的render，值得卡爆！
+你在 render 方法里面进行了 state 的操作，造成的结果就是一直在不断的 render，值得卡爆！
 
 还有一个错误也是描述这个的。
 
@@ -531,7 +519,7 @@ ReactDebugTool.js:173 Uncaught (in promise) RangeError: Maximum call stack size 
 </Modal>
 ```
 
-比如你在一个Modal里直接调用方法`onClose={this.onClickCloseImage()}`,然后在这个方法里还修改了`state`:
+比如你在一个 Modal 里直接调用方法`onClose={this.onClickCloseImage()}`,然后在这个方法里还修改了`state`:
 
 ```
 onClickCloseImage(){
@@ -580,7 +568,7 @@ warning.js:33 Warning: Each child in an array or iterator should have a unique "
 ```
 
 这个`BUG`或者说是警告的信息可以直接在它给出的连接地址里找到问题的答案，这里我也列举一下为什么我们要给遍历的元素添加一个`key`的键。是因为：
-**键可帮助React识别哪些项目已更改，添加或删除，**所以需要。
+**键可帮助 React 识别哪些项目已更改，添加或删除，**所以需要。
 
 解决办法：你可以用你数据的`id`来设置
 
@@ -658,11 +646,11 @@ function NumberList(props) {
 }
 ```
 
-这个key值必须在`list`中，必须是唯一的。同时要记住，如果你本来就想要这个值，那么你必须用另外的一个明确的值来传递，而不能获取这个`key`.
+这个 key 值必须在`list`中，必须是唯一的。同时要记住，如果你本来就想要这个值，那么你必须用另外的一个明确的值来传递，而不能获取这个`key`.
 
-### 使用SCSS造成样式冲突的问题
+### 使用 SCSS 造成样式冲突的问题
 
-非常抱歉，我并没有找到一个好的办法，我的做法是每一个SCSS文件都使用它独有的开头来做标记。
+非常抱歉，我并没有找到一个好的办法，我的做法是每一个 SCSS 文件都使用它独有的开头来做标记。
 
 ```
 @import "../../../../static/css/commons/base_layout";
@@ -688,10 +676,8 @@ Message from debugger: Terminated due to signal 9
 解决办法：搜索`NSCameraUsageDescription`,然后配置一下：
 例如：
 
-[xcode8 iOS10上关于NSPhotoLibraryUsageDescription NSCameraUsageDescription 等问题](https://www.jianshu.com/p/78411e82e8fd)
+[xcode8 iOS10 上关于 NSPhotoLibraryUsageDescription NSCameraUsageDescription 等问题](https://www.jianshu.com/p/78411e82e8fd)
 OK...
-
-
 
 Requiring unknown module "1360".If you are sure the module is there, try restarting Metro Bundler. You may also want to run `yarn`, or `npm install` (depending on your environment).
 
@@ -699,7 +685,7 @@ Requiring unknown module "1360".If you are sure the module is there, try restart
 
 ### TypeError
 
-undefined is not a function (evaluating '_iterator[typeof Symbol === 'function' ? Symbol.iterator : '@@iterator'](https://www.jianshu.com/p/28534cc5b757)')
+undefined is not a function (evaluating '\_iterator[typeof Symbol === 'function' ? Symbol.iterator : '@@iterator'](https://www.jianshu.com/p/28534cc5b757)')
 
 出现这个问题是因为`react native`不支持遍历的问题，例如下面的代码：
 
@@ -725,7 +711,7 @@ for(let i = 0;i<current_month_data.length;i++){
         }
 ```
 
-### 错误 
+### 错误
 
 ReactNative: Exception in native call com.facebook.react.uimanager.IllegalViewOperationException: Unexpected view type nested under text node: class com.facebook.react.uimanager.LayoutShadowNode
 
@@ -765,7 +751,7 @@ ReactNative: Exception in native call com.facebook.react.uimanager.IllegalViewOp
                                                                              at java.lang.Thread.run(Thread.java:761)
 ```
 
-这个bug真的很懵逼，定位不到在哪里，所以这里提供一个思路，那就是注释代码，注释你`render`里的代码，哪行错误找哪里。而造成上面错误的原因是因为：
+这个 bug 真的很懵逼，定位不到在哪里，所以这里提供一个思路，那就是注释代码，注释你`render`里的代码，哪行错误找哪里。而造成上面错误的原因是因为：
 
 ```
 //星期标题
@@ -781,7 +767,7 @@ ReactNative: Exception in native call com.facebook.react.uimanager.IllegalViewOp
     }
 ```
 
-我把View这里替换成了Text。
+我把 View 这里替换成了 Text。
 
 07-04 00:28:15.008 31157-6351/com.zrk_user_client E/unknown:ReactNative: Exception in native call java.lang.RuntimeException: Cannot add a child that doesn't have a YogaNode to a parent without a measure function! (Trying to add a 'RCTRawText
 
@@ -803,21 +789,17 @@ npm config set registry https://registry.npm.taobao.org
 npm config set disturl https://npm.taobao.org/dist
 ```
 
-如果不行，我们可以在init的时候制定版本号，就像这样：
+如果不行，我们可以在 init 的时候制定版本号，就像这样：
 
 ```
 react-native init demo --verbose --version 0.38.0
 ```
 
-
-
-Realm数据库IOS端下载不下来，xcode一直在build
+Realm 数据库 IOS 端下载不下来，xcode 一直在 build
 
 解决方案，手动下载，然后复制进去。
 
 ### 'config.h' file not found
-
-
 
 ![img](https://upload-images.jianshu.io/upload_images/788601-7b6437f795690fd6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000/format/webp)
 
@@ -836,7 +818,7 @@ cd node_modules/react-native/third-party/glog-0.3.4
 
 JSON value '<null>' of type NSNull cannot be converted to NSString
 
-[google搜索出来的答案](https://links.jianshu.com/go?to=https%3A%2F%2Fgithub.com%2Ffacebook%2Freact-native%2Fissues%2F11140)
+[google 搜索出来的答案](https://links.jianshu.com/go?to=https%3A%2F%2Fgithub.com%2Ffacebook%2Freact-native%2Fissues%2F11140)
 
 话说现在百度真是越来越堕落了，简直不能忍啊。
 

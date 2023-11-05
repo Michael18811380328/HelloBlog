@@ -1,24 +1,23 @@
-var canvas = document.getElementById('canvas'),
-  ctx = canvas.getContext('2d'),
-  w = canvas.width = window.innerWidth,
-  h = canvas.height = window.innerHeight,
-
+var canvas = document.getElementById("canvas"),
+  ctx = canvas.getContext("2d"),
+  w = (canvas.width = window.innerWidth),
+  h = (canvas.height = window.innerHeight),
   hue = 217,
   stars = [],
   count = 0,
   maxStars = 1300; //星星数量
 
-var canvas2 = document.createElement('canvas'),
-  ctx2 = canvas2.getContext('2d');
+var canvas2 = document.createElement("canvas"),
+  ctx2 = canvas2.getContext("2d");
 canvas2.width = 100;
 canvas2.height = 100;
 
 var half = canvas2.width / 2,
   gradient2 = ctx2.createRadialGradient(half, half, 0, half, half, half);
-gradient2.addColorStop(0.025, '#CCC');
-gradient2.addColorStop(0.1, 'hsl(' + hue + ', 61%, 33%)');
-gradient2.addColorStop(0.25, 'hsl(' + hue + ', 64%, 6%)');
-gradient2.addColorStop(1, 'transparent');
+gradient2.addColorStop(0.025, "#CCC");
+gradient2.addColorStop(0.1, "hsl(" + hue + ", 61%, 33%)");
+gradient2.addColorStop(0.25, "hsl(" + hue + ", 64%, 6%)");
+gradient2.addColorStop(1, "transparent");
 
 ctx2.fillStyle = gradient2;
 ctx2.beginPath();
@@ -49,8 +48,7 @@ function maxOrbit(x, y) {
   //星星移动范围，值越大范围越小，
 }
 
-var Star = function() {
-
+var Star = function () {
   this.orbitRadius = random(maxOrbit(w, h));
   this.radius = random(60, this.orbitRadius) / 8;
   //星星大小
@@ -63,9 +61,9 @@ var Star = function() {
 
   count++;
   stars[count] = this;
-}
+};
 
-Star.prototype.draw = function() {
+Star.prototype.draw = function () {
   var x = Math.sin(this.timePassed) * this.orbitRadius + this.orbitX,
     y = Math.cos(this.timePassed) * this.orbitRadius + this.orbitY,
     twinkle = random(10);
@@ -77,25 +75,31 @@ Star.prototype.draw = function() {
   }
 
   ctx.globalAlpha = this.alpha;
-  ctx.drawImage(canvas2, x - this.radius / 2, y - this.radius / 2, this.radius, this.radius);
+  ctx.drawImage(
+    canvas2,
+    x - this.radius / 2,
+    y - this.radius / 2,
+    this.radius,
+    this.radius
+  );
   this.timePassed += this.speed;
-}
+};
 
 for (var i = 0; i < maxStars; i++) {
   new Star();
 }
 
 function animation() {
-  ctx.globalCompositeOperation = 'source-over';
+  ctx.globalCompositeOperation = "source-over";
   ctx.globalAlpha = 0.5; //尾巴
-  ctx.fillStyle = 'hsla(' + hue + ', 64%, 6%, 2)';
-  ctx.fillRect(0, 0, w, h)
+  ctx.fillStyle = "hsla(" + hue + ", 64%, 6%, 2)";
+  ctx.fillRect(0, 0, w, h);
 
-  ctx.globalCompositeOperation = 'lighter';
+  ctx.globalCompositeOperation = "lighter";
   for (var i = 1, l = stars.length; i < l; i++) {
     stars[i].draw();
     canvas2.style.cssText = "display:none";
-  };
+  }
 
   window.requestAnimationFrame(animation);
 }

@@ -89,5 +89,3 @@ He ran headlong at me: I felt him grasp my hair and my shoulder: he had closed w
 Then Mrs. Reed subjoined—
 
 “Take her away to the red-room, and lock her in there.” Four hands were immediately laid upon me, and I was borne upstairs.
-
-

@@ -121,5 +121,3 @@ She kissed me, and I her, and we both soon slumbered.
 When I awoke it was day: an unusual movement roused me; I looked up; I was in somebody’s arms; the nurse held me; she was carrying me through the passage back to the dormitory. I was not reprimanded for leaving my bed; people had something else to think about; no explanation was afforded then to my many questions; but a day or two afterwards I learned that Miss Temple, on returning to her own room at dawn, had found me laid in the little crib; my face against Helen Burns’s shoulder, my arms round her neck. I was asleep, and Helen was—dead.
 
 Her grave is in Brocklebridge churchyard: for fifteen years after her death it was only covered by a grassy mound; but now a grey marble tablet marks the spot, inscribed with her name, and the word “Resurgam.”
-
-

@@ -31,13 +31,14 @@ page {
 }
 
 .hide {
-  display: none!important;
+  display: none !important;
 }
 
 .container,
 input,
 button {
-  font: 14px "Helvetica Neue", "Hiragino Sans GB", "Microsoft YaHei", Arial, sans-serif;
+  font: 14px "Helvetica Neue", "Hiragino Sans GB", "Microsoft YaHei", Arial,
+    sans-serif;
 }
 
 .container {
@@ -50,21 +51,21 @@ button {
   border-radius: 3px;
   padding: 5px 10px;
 }
-.nodata{
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 100%;
+.nodata {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }
 
-.nodata_img{
-	display: block;
-	width: 45px;
-	height: 45px;
+.nodata_img {
+  display: block;
+  width: 45px;
+  height: 45px;
 }
 
-.nodata_text{
-	color:#dedede;
-	font-size: 12px;
-	padding-left: 10px;
+.nodata_text {
+  color: #dedede;
+  font-size: 12px;
+  padding-left: 10px;
 }

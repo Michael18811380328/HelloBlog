@@ -1,6 +1,6 @@
 ### Text-Runner 插件说明
 
-主要功能：是一个文档工具，使得文档内容可以执行，使用 JS 将一段HTML标签中的内容进行提取分析，获取内部的节点和类型。类似功能在python可以实现。Test runner for text
+主要功能：是一个文档工具，使得文档内容可以执行，使用 JS 将一段 HTML 标签中的内容进行提取分析，获取内部的节点和类型。类似功能在 python 可以实现。Test runner for text
 
 运行前需要执行 npm install.
 
@@ -16,7 +16,7 @@ readme-driven development: documentation is your product prototype and drives it
 
 #### run 运行记录
 
-~~~bash
+```bash
 # 打开项目文件夹
 Daniels-MBP:desktop seafile$ cd test
 
@@ -78,7 +78,7 @@ To create a new "helloworld" activity type,
 run "text-run add helloworld"
 
 > 1 | <a textrun="helloworld"></a>
-  2 | 
+  2 |
 
 1 errors, 1 activities in 1 files, 26ms
 
@@ -164,7 +164,7 @@ AstNodeList [
 test.md:1 -- Hello world
 
 Success! 1 activities in 1 files, 17ms
-Daniels-MBP:test seafile$ 
+Daniels-MBP:test seafile$
 Daniels-MBP:test seafile$ node_modules/.bin/text-run test.md
 This code runs inside the "hello-world" block implementation.
 I found these elements in your document:
@@ -287,6 +287,6 @@ Daniels-MBP:test seafile$ node_modules/.bin/text-run version
 TextRunner v3.6.0
 Daniels-MBP:test seafile$ node_modules/.bin/text-run cd test.md
 file or directory does not exist: cd
-Daniels-MBP:test seafile$ node_modules/.bin/text-run 
+Daniels-MBP:test seafile$ node_modules/.bin/text-run
 
-~~~
+```

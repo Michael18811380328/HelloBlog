@@ -2,7 +2,7 @@
 
 作者： [阮一峰](https://www.ruanyifeng.com/)
 
-日期： [2018年2月27日](https://www.ruanyifeng.com/blog/2018/02/)
+日期： [2018 年 2 月 27 日](https://www.ruanyifeng.com/blog/2018/02/)
 
 春节前，我看到 Nginx [加入](https://hg.nginx.org/nginx/rev/641306096f5b)了 HTTP/2 的 server push 功能，就很想试一下。
 
@@ -150,7 +150,7 @@ Nginx 的最大作用，就是搭建一个 Web Server。有了容器，只要一
 > - `-x509`：生成自签名证书。
 > - `-nodes`：跳过为证书设置密码的阶段，这样 Nginx 才可以直接打开证书。
 > - `-days 365`：证书有效期为一年。
-> - `-newkey rsa:2048`：生成一个新的私钥，采用的算法是2048位的 RSA。
+> - `-newkey rsa:2048`：生成一个新的私钥，采用的算法是 2048 位的 RSA。
 > - `-keyout`：新生成的私钥文件为当前目录下的`example.key`。
 > - `-out`：新生成的证书文件为当前目录下的`example.crt`。
 
@@ -183,17 +183,17 @@ Nginx 的最大作用，就是搭建一个 Web Server。有了容器，只要一
 > server {
 >     listen 443 ssl http2;
 >     server_name  localhost;
-> 
+>
 >     ssl                      on;
 >     ssl_certificate          /etc/nginx/certs/example.crt;
 >     ssl_certificate_key      /etc/nginx/certs/example.key;
-> 
+>
 >     ssl_session_timeout  5m;
-> 
+>
 >     ssl_ciphers HIGH:!aNULL:!MD5;
 >     ssl_protocols SSLv3 TLSv1 TLSv1.1 TLSv1.2;
 >     ssl_prefer_server_ciphers   on;
-> 
+>
 >     location / {
 >         root   /usr/share/nginx/html;
 >         index  index.html index.htm;
@@ -215,7 +215,7 @@ Nginx 的最大作用，就是搭建一个 Web Server。有了容器，只要一
 >   nginx
 > ```
 
-上面命令中，不仅映射了容器的80端口，还映射了443端口，这是 HTTPS 的专用端口。
+上面命令中，不仅映射了容器的 80 端口，还映射了 443 端口，这是 HTTPS 的专用端口。
 
 打开浏览器，访问 https://127.0.0.2:8081/ 。因为使用了自签名证书，浏览器会提示不安全。不要去管它，选择继续访问，应该就可以看到 Hello World 了。
 

@@ -4,15 +4,15 @@
 
 // npm install mysql
 
-var connection = require('./utils.js');
+var connection = require("./utils.js");
 
-connection.query('SELECT 1 + 1 AS solution', function (error, results, fields) {
+connection.query("SELECT 1 + 1 AS solution", function (error, results, fields) {
   if (error) throw error;
-  console.log('The solution is: ', results[0].solution);
+  console.log("The solution is: ", results[0].solution);
 });
 
-connection.query('SELECT * FROM websites', function (error, results, fields) {
+connection.query("SELECT * FROM websites", function (error, results, fields) {
   if (error) throw error;
-  console.log('The solution is: ', results);
-  console.log('The solution is: ', fields);
+  console.log("The solution is: ", results);
+  console.log("The solution is: ", fields);
 });

@@ -1,8 +1,8 @@
-# Linux的应用工具
+# Linux 的应用工具
 
 ## PdfTk
 
-PdfTk用于修改PDF文件。
+PdfTk 用于修改 PDF 文件。
 
 ```bash
 # 合并两个PDF
@@ -11,7 +11,7 @@ $ pdftk input1.pdf input2.pdf cat output output.pdf
 
 ## ffmpeg
 
-ffmpeg用于音频和视频的操作。
+ffmpeg 用于音频和视频的操作。
 
 ```bash
 # 查看多媒体文件信息
@@ -44,7 +44,7 @@ $ ffmpeg -f x11grab -r 10 -s 1600x900 -i :0.0+0,0 -vcodec libx264 -preset ultraf
 
 ## Sox
 
-SoX用于从麦克风录制音频。
+SoX 用于从麦克风录制音频。
 
 ```bash
 # 44.1kHz抽样，录制16位音频成FLAC格式
@@ -72,5 +72,3 @@ Finally combine the audio (AAC) and screen (MP4) to produce an MP4 video:
 ```
 $ ffmpeg -i test-screen.mp4 -i test-audio.aac -absf aac_adtstoasc -vcodec copy -acodec copy test-video.mp4
 ```
-
-

@@ -1,5 +1,5 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from "react";
+import ReactDOM from "react-dom";
 /**
  * if there is a father and several sons
  * we can change son though father.chiuldren
@@ -24,7 +24,6 @@ const another = React.cloneElement(element, {
 });
 
 class RadioGroup extends React.Component {
-
   constructor(props) {
     super(props);
   }
@@ -36,13 +35,9 @@ class RadioGroup extends React.Component {
         name: name,
       });
     });
-  }
+  };
 
   render() {
-    return (
-      <div className="outer-container">
-        {this.renderChildren()}
-      </div>
-    );
+    return <div className="outer-container">{this.renderChildren()}</div>;
   }
 }

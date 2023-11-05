@@ -169,5 +169,3 @@ There was one in the room; Bessie went and opened it, and then asked me to sit d
 “Very likely,” I returned; “or perhaps clerk or agent to a wine- merchant.”
 
 Bessie and I conversed about old times an hour longer, and then she was obliged to leave me: I saw her again for a few minutes the next morning at Lowton, while I was waiting for the coach. We parted finally at the door of the Brocklehurst Arms there: each went her separate way; she set off for the brow of Lowood Fell to meet the conveyance which was to take her back to Gateshead, I mounted the vehicle which was to bear me to new duties and a new life in the unknown environs of Millcote.
-
-

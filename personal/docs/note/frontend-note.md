@@ -233,38 +233,6 @@ console.log(Array.from(str.matchAll(/hello/g)));
 
 - match 和 exec 返回值一致，参数和方法换位
 
-
-
-### 6 字符编码问题
-
-常见字符串的编码格式：ASCII 码，Unicode，UTF-8 编码，GB2312 编码，这几个的区别
-
-前端和编码相关的函数：escape() encodeURI() encodeURIComponent() 和对应的三个解密函数，区别和适应情况
-
-https://www.ruanyifeng.com/blog/2007/10/ascii_unicode_and_utf-8.html
-https://www.cnblogs.com/luckyuns/p/6396701.html
-
-四种类型编码简单理解：
-
-- ASCII 码是最早的英文和控制码对应的编码，0-127，需要记住大写A-Za-z对应的编码范围(065到090，097到122) 不支持中文
-- Unicode：因为 ASCII 无法表示各种编码，所以出现了 Unicode，大概有几万，可以代表世界上很多的语言表情符号等等，有对应的官方介绍全部的编码，也有不少的标准
-- UTF-8：是 Unicode 的一个类似子集，也有 UTF-16 UTF-32 等编码。文件声明部分会写 coding=utf-8
-- GB2313 是简体字的编码，还有繁体字等等，前端使用不多
-
-前端三个字符串转换函数和加密函数：因为浏览器 URL 中不允许某些特殊符号，所以需要把特殊符号转换成编码，例如 ; 等
-
-根据 MDN 介绍和知乎高赞：
-https://www.zhihu.com/question/21861899
-https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/escape
-
-- escape 转义字符串，不推荐使用，未来可能废弃
-- encodeURI 转义特殊字符串（不转换某些符号，例如 http:// 不转换）
-- encodeURIComponennt 转义特殊字符串（特殊符号全部转换，例如 http:// 会转换）
-- 
-具体使用：我们在发送请求时，URL 中可能有参数含有特殊符号（例如文件名用户名等用户输入）需要使用 encodeURIComponent 转义，然后拼接成 URL
-
-
-
 ### 7 MVC 架构的好处
 
 MVC架构的好处：model 是数据层，View 是视图层，Controller 是控制层。
@@ -352,59 +320,6 @@ class AnimationFrame {
 
 
 
-### 10 raf 库
-
-requestAnimationFrame 的 polyfill（简化操作，处理浏览器兼容性）
-
-https://github.com/chrisdickinson/raf#readme
-
-~~~js
-const raf = require('raf')
-
-function callback() {
-  // animation function
-}
-
-var handle = raf(callback);
-handle();
-raf.cancel(handle);
-~~~
-
-
-
-### 11 跨域与 window.postMessage()
-
-参考链接：https://blog.csdn.net/qq_38128179/article/details/84956552
-
-跨域：协议不同、域名不同、端口号不同，会产生跨域。跨域：不同域之间不能访问 cookie、localStorage，不能操作 DOM，不能发送请求(无法向非同源地址发送 AJAX 请求)等。可能在多层 iframe 中出现，或者页面新打开一个窗口等。
-
-解决跨域方法：
-
-1、如果主域和子域是同一个公司维护，那么设置 document.domain 
-
-2、跨文档通信 window.postMessage() ，父窗口向子窗口发送消息，子窗口监听message事件。
-
-~~~js
-// father url is test.com
-let sonWindow = window.open('http://baidu.com', 'title');
-
-// 父窗口向子窗口发送消息
-sonWindow.postMessage('这是信息', 'http://baidu.com');
-
-// 子窗口监听message事件，获取消息
-window.addEventListener('message', (e) => {
-  // e.source === 'test.com'
-  // e.origin === 'baidu.com'
-  // e.data === '这是信息'
-});
-~~~
-
-3、JSONP: 网页通过添加一个`<script>元素`，向服务器请求 JSON 数据，服务器收到请求后，将数据放在一个指定名字的回调函数的参数位置传回来
-
-4、CORS (cross origin resource share 跨域资源共享) 需要前端请求加入参数，后端配置 Access-Control-Allow-Origin 
-
-
-
 ### 12 移动端真机调试
 
 真机和电脑连接，打开 USB 调试模式，打开最新版本的谷歌浏览器。
@@ -412,12 +327,6 @@ window.addEventListener('message', (e) => {
 电脑上打开谷歌浏览器，访问 chrome://inspect/#devices，即可进行基本的调试功能。
 
 如果不能使用，可以断开连接，重新开启手机的开发者 USB 调试模式。
-
-
-
-### 13 扩展运算符复制数组
-
-扩展运算符可以复制数组或者对象。如果数组的每一项是引用类型，那么不会深复制，只会复制指向数组的指针。所以不能使用扩展运算符对数组或者对象进行深拷贝（深拷贝最好使用 deepcopy）。
 
 
 
@@ -583,34 +492,6 @@ function factorial(num){
 
 
 
-### 31 浏览器自动跳转问题
-
-总结一下问题的解决过程
-
-因为页面跳转，默认想到的是 JS window.open 或者 HTML A 标签，然后产品报错误导了方向，恰好近期改动了这部分JS代码
-
-1、首先产品反馈，这个是 ”链接公式-rollup-添加“fx公式引用的（单选类型）“ 把自己绕到了链接公式 roolup 这部分功能，一直排查是否是 JS 的问题。
-
-2、测试不同的浏览器，都会自动刷新。排除浏览器的兼容性问题。然后通过 console.log 保留日志分析，这个数据基本正常。
-
-3、开始判断是用户行为，还是 JS 逻辑问题。设置一个定时器，自动更改 JS 代码，然后不出错。证明 JS 链接公式没问题，主要问题在用户点击。
-
-4、逐步排查点击事件，然后不是当前组件，而是内部的选择器组件中的问题。把点击事件的默认行为改掉，就不出错了。但是内部的选择是公共组件，其他使用公共组件的地方是正常的，最好不改动公共组件。
-
-5、找到使用这个组件的地方，外部为了样式，加了一个 Form，然后点击事件触发了表单提交，页面就刷新了。
-
-6、更改：把 Form 改成 DIV 就不会跳转了。其他的情况也可能是这个问题。
-
-
-
-### 32 TAB 跳转实现有两种方法
-
-- HTML 设置 button 或者 input，浏览器会自动 TAB——这是默认的做法，效果比较灵活
-
-- 通过JS ，然后通过 state 控制状态，设置 currentTab，然后设置对应的样式，这样可以记录上一次的位置（这种需要把浏览器默认的 TAB 事件去掉，例如界面中还有其他的button，那么点击 Tab 还会触发按钮的交互改变）。问题：如果界面中按钮的数量是动态变化的，就需要动态计算 currentTab 这样比较麻烦。
-
-
-
 
 
 ### 35 React 代码用户体验优化
@@ -732,24 +613,6 @@ git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Crese
 
 
 
-### 45 升级 axios 版本问题
-
-造成 jest 单元测试不通过的解决
-
-本质原因：早期 axios 是 common-js 打包的，新版本没有支持 common-js 打包。Jest 执行单元测试在 node 环境下，不支持 es6语法，所以 import axios 就会报错。解决思路是，把 import 语法替换掉
-
-```js
-moduleNameMapper: {
-	'^axios$': require.resolve('axios'),
-},
-```
-
-就是 module name 映射关系，把 import axios 变成 require.resolve('axios') 这样 Jest 就可以测试通过了
-
-其他参考 https://juejin.cn/post/6898738304754286605
-
-
-
 ### 46 TS 细节
 
 //@ts-ignore 作用是忽略下一行的 TS 类型检查。类似 // eslint disable next line 是一个跳过格式检查的方法，可以处理少数代码问题，不推荐大量使用。
@@ -769,16 +632,8 @@ python 内置的 SimpleHttpServer 本地开发服务器（可以调试 index.htm
 
 i18n 的基础配置和使用。
 
-HTMLtoCanvas 第三方库学习；canvas.toDataUrl('image/png', 1.0)  配置：allowTaint taintTest allowCORS 等。主要使用场景：统计中 canvas 导出生成 PNG，主页看板娘的 canvas 拍照显示成 png 的功能。
-
 1. Axios 两个配置 baseURL 和 headers 含义
-
-2. 鲁棒性-代码或者服务在不良环境下的稳定性，如果某个上下游服务延迟，或者高并发，是否有配套方案解决这个问题？例如支付宝接口的响应时间延迟，表现在线上就是淘宝支付的商品未付款。如果判断网络情况不好，需要自动降级或者友好提示
-
-3. Es6 iteraror 迭代器，实际使用不多，主要是对可遍历对象进行循环（array, set map string 等）
-
-4. 前端刮刮乐的实现，canvas API，先创建一个矩形灰色区域，然后监听鼠标点击事件，绘制新的区域，和第一个区域求差值即可，鼠标按下后，监听鼠标移动事件。鼠标抬起后，清空鼠标移动事件。关键是 canvas 的属性和 API，实际没有使用。
-
+2. Es6 iteraror 迭代器，实际使用不多，主要是对可遍历对象进行循环（array, set map string 等）
 5. 项目看懂5个文件
 
    - [x] universalAPI 这是 dtable-web 对应的接口，包括大部分API，使用 appToken。可能会继续调用 dtable-db 的接口（归档视图）。获取上传链接的三种情况：表单上传图片链接；表单上传普通背景图片链接；表格上传图片或文件链接。然后再调用上传图片即可（data parent_dir）。提交表单的五个参数（table_name page_id row_data, linked_rows, new_linked_rows）。
@@ -811,15 +666,7 @@ console.log(arr.reduce(fn, 0)); // 15，原始数组不改变
 
 使用 reduce 实现 map 的功能
 
-### 4 React
 
-Props 和 子组件更新：如果一个子组件的 state 是父组件的 props 计算出来，那么当父组件的 props 变化后，子组件必须更改 state。否则界面无法更改成最新的状态。最佳方案：store 和 view 完全分离，React jsx 只负责渲染组件。
-
-setState 在react合成事件(onClick)和JS代码中是异步的；在原生JS事件（addeventListener）和定时器中是同步的、第一个参数可以是对象，或者是一个函数（返回新的state对象）。
-
-componentDidUpdate 阶段，React 组件重新渲染，但是真实 DOM 的 redraw 还没有完成，所以更改 top 不会产生动画。设置CSS无效。解决：setTimeout 后，DOM 主线程的 redraw 已经执行完，新增的行真实 DOM 已经渲染到界面上，更改 top 值，render tree 重新生成，动画效果可以显示（其他CSS样式类似）。行排序动画遇到这个坑（在 componentDidUpdate 阶段设置 top ，动画无效）参考：https://blog.csdn.net/huangpin815/article/details/80023480
-
-react 中强制更新组件，this.forceUpdate() 尽量避免使用，最好使用 state 或者 props 数据驱动更新
 
 
 
@@ -849,7 +696,21 @@ for...in... 可以循环数组的项，以及对象上的函数等（包括原�
 
 
 
-### 7 性能优化
+
+
+### 4 React
+
+Props 和 子组件更新：如果一个子组件的 state 是父组件的 props 计算出来，那么当父组件的 props 变化后，子组件必须更改 state。否则界面无法更改成最新的状态。最佳方案：store 和 view 完全分离，React jsx 只负责渲染组件。
+
+setState 在react合成事件(onClick)和JS代码中是异步的；在原生JS事件（addeventListener）和定时器中是同步的、第一个参数可以是对象，或者是一个函数（返回新的state对象）。
+
+componentDidUpdate 阶段，React 组件重新渲染，但是真实 DOM 的 redraw 还没有完成，所以更改 top 不会产生动画。设置CSS无效。解决：setTimeout 后，DOM 主线程的 redraw 已经执行完，新增的行真实 DOM 已经渲染到界面上，更改 top 值，render tree 重新生成，动画效果可以显示（其他CSS样式类似）。行排序动画遇到这个坑（在 componentDidUpdate 阶段设置 top ，动画无效）参考：https://blog.csdn.net/huangpin815/article/details/80023480
+
+react 中强制更新组件，this.forceUpdate() 尽量避免使用，最好使用 state 或者 props 数据驱动更新
+
+
+
+### 7 React 性能优化
 
 React中，性能优化的目标是减少不必要的渲染
 
@@ -918,6 +779,10 @@ http://www.chromium.org/getting-involved/dev-channel
 ### 39 React PureComponent
 
 PureComponent 和 Component 的主要区别：内部实现了shouldComponentUpdate这个生命周期方法（如果props相同，组件不更新），适应于视图层显示界面（数据简单处理，或者不包括数据处理）。这里只会对 Props 进行浅对比，如果是复杂对象会出错。这个会影响到子组件的对比，所以最好使用在显示界面（不会继续向下传递数据流）。
+
+
+
+
 
 
 ### 40 VUE VS React 对比
@@ -997,14 +862,6 @@ flex布局中，怎样在一个container中放置nav栏？
 笔记：input file 上传后，应该清空一个 input 的值(input.value = '')，这样再次上传同名文件是正常的。
 
 
-
-### 7 重构 UI 组件的感想
-
-1、项目开始前，就应该约定各种组件的规范，后期更改很麻烦，还可能有未知的错误和问题
-
-2、自己写公共组件一定注意细节，这里需要多看官方组件的源代码，看看别人怎么写的。
-
-为什么要写自己的组件？能不能使用传参优化已有的组件，避免造轮子是最好的，也要有造轮子的能力
 
 ### 8 大公司和小公司区别
 

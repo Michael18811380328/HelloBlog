@@ -2,7 +2,7 @@
 
 官网链接：https://nodemon.io/
 
-Nodemon 会监测代码的变动并热启动服务器，适合于node开发环境，可以取代传统的node。
+Nodemon 会监测代码的变动并热启动服务器，适合于 node 开发环境，可以取代传统的 node。
 
 Nodemon is a utility that will monitor for any changes in your source and automatically restart your server. Perfect for development. Install it using [npm](https://npmjs.org/package/nodemon).
 
@@ -23,4 +23,3 @@ npm install -g nodemon
 - Requirable in node apps.
 
 Read the full [documentation](https://github.com/remy/nodemon#nodemon).
-

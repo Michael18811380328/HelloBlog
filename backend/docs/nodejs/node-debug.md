@@ -4,7 +4,7 @@ JavaScript 程序越来越复杂，调试工具的重要性日益凸显。客户
 
 ![](http://www.ruanyifeng.com/blogimg/asset/2018/bg2018031901.png)
 
-2016年，Node 决定将 Chrome 浏览器的“开发者工具”作为官方的调试工具，使得 Node 脚本也可以使用图形界面调试，这大大方便了开发者。
+2016 年，Node 决定将 Chrome 浏览器的“开发者工具”作为官方的调试工具，使得 Node 脚本也可以使用图形界面调试，这大大方便了开发者。
 
 本文介绍如何使用 Node 脚本的调试工具。
 
@@ -28,28 +28,27 @@ $ npm install --save koa koa-route
 
 ```javascript
 // app.js
-const Koa = require('koa');
-const router = require('koa-route');
+const Koa = require("koa");
+const router = require("koa-route");
 
 const app = new Koa();
 
-const main = ctx => {
-  ctx.response.body = 'Hello World';
+const main = (ctx) => {
+  ctx.response.body = "Hello World";
 };
 
 const welcome = (ctx, name) => {
-  ctx.response.body = 'Hello ' + name;
+  ctx.response.body = "Hello " + name;
 };
 
-app.use(router.get('/', main));
-app.use(router.get('/:name', welcome));
+app.use(router.get("/", main));
+app.use(router.get("/:name", welcome));
 
 app.listen(3000);
-console.log('listening on port 3000');
+console.log("listening on port 3000");
 ```
 
 上面代码是一个简单的 Web 应用，指定了两个路由，访问后会显示一行欢迎信息。如果想详细了解代码的详细含义，可以参考 [Koa 教程](http://www.ruanyifeng.com/blog/2017/08/koa.html)。
-
 
 ## 二、启动开发者工具
 
@@ -98,10 +97,10 @@ listening on port 3000
 
 ![](http://www.ruanyifeng.com/blogimg/asset/2018/bg2018031906.png)
 
-在第11行（也就是下面这一行）的行号上点一下，就设置了一个断点。
+在第 11 行（也就是下面这一行）的行号上点一下，就设置了一个断点。
 
 ```javascript
-ctx.response.body = 'Hello ' + name;
+ctx.response.body = "Hello " + name;
 ```
 
 ![](http://www.ruanyifeng.com/blogimg/asset/2018/bg2018031907.png)
@@ -165,7 +164,7 @@ $ node app.js
 然后，在另一个命令行窗口，查找上面脚本的进程号。
 
 ```bash
-$ ps ax | grep app.js 
+$ ps ax | grep app.js
 
 30464 pts/11   Sl+    0:00 node app.js
 30541 pts/12   S+     0:00 grep app.js

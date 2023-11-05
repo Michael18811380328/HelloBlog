@@ -1,4 +1,4 @@
-# Ruby标准开发环境部署
+# Ruby 标准开发环境部署
 
 ![img](https://csdnimg.cn/release/blogv2/dist/pc/img/reprint.png)
 
@@ -8,13 +8,13 @@
 
 版权
 
-##### 工程师小C的小店[我也想开通小店](https://mp.csdn.net/console/MyShop)
+##### 工程师小 C 的小店[我也想开通小店](https://mp.csdn.net/console/MyShop)
 
-[![img](https://csdn-test-oss.oss-cn-beijing.aliyuncs.com/images/20210402024431.jpeg)Python编程三剑客：Python编程从入门到实践第2版+快速上手第2版+极客编程（套装共3册）*作者：[美\] 埃里克·马瑟斯（Eric Matthes）**出版社：人民邮电出版社**好评：100.0%* *销售量：37**￥149*](javascript:;)[更多](javascript:;)
+[![img](https://csdn-test-oss.oss-cn-beijing.aliyuncs.com/images/20210402024431.jpeg)Python 编程三剑客：Python 编程从入门到实践第 2 版+快速上手第 2 版+极客编程（套装共 3 册）_作者：[美\] 埃里克·马瑟斯（Eric Matthes）**出版社：人民邮电出版社**好评：100.0%_ _销售量：37\*\*￥ 149_](javascript:;)[更多](javascript:;)
 
-## Ruby环境安装
+## Ruby 环境安装
 
-> 有时候用到了ruby，所以整理出来标准的ruby安装流程，这里并没有采用tar包安装，诸多不便，所以这样一份标准部署流程，已加入部署流程里，整理出来
+> 有时候用到了 ruby，所以整理出来标准的 ruby 安装流程，这里并没有采用 tar 包安装，诸多不便，所以这样一份标准部署流程，已加入部署流程里，整理出来
 
 ### 安装依赖
 
@@ -22,9 +22,9 @@
 yum groupinstall -y 'development tools'
 ```
 
-### 安装RVM
+### 安装 RVM
 
-> 这个一共ruby管理工具，可以管理不同版本的ruby，同时还可以使用ruby源来安装软件。
+> 这个一共 ruby 管理工具，可以管理不同版本的 ruby，同时还可以使用 ruby 源来安装软件。
 
 ```
     curl -L get.rvm.io | bash -s stable
@@ -40,7 +40,7 @@ sed -i 's!ftp.ruby-lang.org/pub/ruby!ruby.taobao.org/mirrors/ruby!' /usr/local/r
 
 
 
- 
+
 
 
 
@@ -56,7 +56,7 @@ rvm install ruby-2.1.0    #安装指定ruby版本
 
 
 
- 
+
 
 
 
@@ -69,7 +69,7 @@ rvm use 2.1.0 --default
 
 ### gemset
 
-> RVM的虚拟环境，概念类似于python中的virtualenv，具体介绍请移步[virtualenv](http://my.oschina.net/songmingming/blog/225667)
+> RVM 的虚拟环境，概念类似于 python 中的 virtualenv，具体介绍请移步[virtualenv](http://my.oschina.net/songmingming/blog/225667)
 
 ```
 # Usage: rvm gemset [create/use] [name]
@@ -92,7 +92,7 @@ rvm gemset create myapp
 
 
 
- 
+
 
 
 
@@ -104,7 +104,7 @@ rvm gemset use    myapp
 
 
 
- 
+
 
 
 
@@ -120,7 +120,7 @@ rvm use 2.1.0@myapp --create
 
 
 
- 
+
 
 
 
@@ -136,7 +136,7 @@ rvm gemset empty myapp
 
 
 
- 
+
 
 
 
@@ -151,11 +151,11 @@ rvm gemset empty myapp
 rvm gemset delete myapp
 ```
 
-> 更多关于RVM的请查看这里 https://www.digitalocean.com/community/tutorials/how-to-use-rvm-to-manage-ruby-installations-and-environments-on-a-vps
+> 更多关于 RVM 的请查看这里 https://www.digitalocean.com/community/tutorials/how-to-use-rvm-to-manage-ruby-installations-and-environments-on-a-vps
 
 ### GEM
 
-> 类似CentOS下的yum，用来安装各种Ruby软件。这个是需要你装好Ruby，才会有的工具。
+> 类似 CentOS 下的 yum，用来安装各种 Ruby 软件。这个是需要你装好 Ruby，才会有的工具。
 
 ```
 gem -v ：查看版本
@@ -190,7 +190,7 @@ gem uninstall gem_name ：卸载
 
 
 
- 
+
 
 
 
@@ -218,7 +218,7 @@ $ gem install rails
 
 
 
- 
+
 
 
 

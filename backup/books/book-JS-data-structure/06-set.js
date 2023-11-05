@@ -5,7 +5,7 @@ function Set() {
   this.has = (value) => {
     // for-in 循环会遍历到继承的属性，不仅仅是自身的属性
     return items.hasOwnProperty(value);
-  }
+  };
 
   this.add = (value) => {
     if (!this.has(value)) {
@@ -13,7 +13,7 @@ function Set() {
       return true;
     }
     return false;
-  }
+  };
 
   this.remove = (value) => {
     if (this.has(value)) {
@@ -22,16 +22,16 @@ function Set() {
       return true;
     }
     return false;
-  }
+  };
 
   this.clear = () => {
     items = {};
-  }
+  };
 
   // es6
   this.size = () => {
     return Object.keys(items).length;
-  }
+  };
 
   // es3写法获取对象属性的个数
   this.sizeLegancy = () => {
@@ -42,11 +42,11 @@ function Set() {
       }
     }
     return count;
-  }
+  };
 
   this.value = () => {
     return Object.keys(items);
-  }
+  };
 
   this.unionSet = (set) => {
     let unionSet = new Set();
@@ -59,7 +59,7 @@ function Set() {
       unionSet.add(values[j]);
     }
     return unionSet;
-  }
+  };
 
   this.interSet = (otherSet) => {
     let inertSet = new Set();
@@ -70,7 +70,7 @@ function Set() {
       }
     }
     return interSet;
-  }
+  };
 
   this.difference = (otherSet) => {
     let diffSet = new Set();
@@ -81,7 +81,7 @@ function Set() {
       }
     }
     return diffSet;
-  }
+  };
 
   this.sebSet = (otherSet) => {
     if (this.size() > otherSet.size()) return false;
@@ -90,8 +90,7 @@ function Set() {
       if (!otherSet.has(values[i])) return false;
     }
     return true;
-  }
-
+  };
 }
 
 let set = new Set();

@@ -30,7 +30,7 @@ On hiring, take a chance with that candidate with potential but with little expe
 >
 > — Matt Rickard (@mattrickard)
 >
->  August 18, 2021
+> August 18, 2021
 
 On ideas, don't give up when things aren't living up to your standards（达到你的标准） — every great idea started with a spark（来自于一个火花）.
 
@@ -40,7 +40,7 @@ On motivation, use the right time scale. Everything looks flat over a small enou
 
 On starting in last place, know that slope always beats y-intercept in the long run.
 
-------
+---
 
 John Ousterhout, a CS professor at Stanford, uses this idea in his lectures. You can find some of his lecture transcripts（演讲稿） [here](https://www.quora.com/What-are-the-most-profound-life-lessons-from-Stanford-Professor-John-Ousterhout).
 
@@ -69,4 +69,3 @@ John Ousterhout, a CS professor at Stanford, uses this idea in his lectures. You
 同一个道理，在招聘时，有潜力但经验不足的候选人，长期来看，比经验丰富但潜力不足的候选人，对公司更有帮助。
 
 总之，当事情没有达到你的目标时，不要放弃，每一个伟大的事业都始于一个小小的念头。学习一项新技能，每天进步一点点，短时间内，一切看起来都是老样子，但是随着时间的推移，改进会持续累积起来，进步会越来越明显。
-

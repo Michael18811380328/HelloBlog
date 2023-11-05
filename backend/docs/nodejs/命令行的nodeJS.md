@@ -4,7 +4,7 @@
 
 Node.js 作为目前最热门的开发工具之一，怎样使用它开发命令行程序，是 Web 开发者应该掌握的技能。
 
-最近，Npm的网志有一组[系列文章](http://blog.npmjs.org/post/118810260230/building-a-simple-command-line-tool-with-npm)，我觉得写得非常好。下面就是我在它的基础上扩展的教程，应该是目前最好的解决方案了。
+最近，Npm 的网志有一组[系列文章](http://blog.npmjs.org/post/118810260230/building-a-simple-command-line-tool-with-npm)，我觉得写得非常好。下面就是我在它的基础上扩展的教程，应该是目前最好的解决方案了。
 
 ## 一、可执行脚本
 
@@ -14,7 +14,7 @@ Node.js 作为目前最热门的开发工具之一，怎样使用它开发命令
 
 ```javascript
 #!/usr/bin/env node
-console.log('hello world');
+console.log("hello world");
 ```
 
 然后，修改 hello 的权限。
@@ -60,7 +60,7 @@ hello world
 
 ```javascript
 #!/usr/bin/env node
-console.log('hello ', process.argv[2]);
+console.log("hello ", process.argv[2]);
 ```
 
 执行时，直接在脚本文件后面，加上参数即可。
@@ -77,9 +77,9 @@ hello tom
 ```javascript
 #!/usr/bin/env node
 var name = process.argv[2];
-var exec = require('child_process').exec;
+var exec = require("child_process").exec;
 
-var child = exec('echo hello ' + name, function(err, stdout, stderr) {
+var child = exec("echo hello " + name, function (err, stdout, stderr) {
   if (err) throw err;
   console.log(stdout);
 });
@@ -113,26 +113,26 @@ shell.exec("echo hello " + name);
 上面代码是 shelljs 的本地模式，即通过 exec 方法执行 shell 命令。此外还有全局模式，允许直接在脚本中写 shell 命令。
 
 ```javascript
-require('shelljs/global');
- 
-if (!which('git')) {
-  echo('Sorry, this script requires git');
+require("shelljs/global");
+
+if (!which("git")) {
+  echo("Sorry, this script requires git");
   exit(1);
 }
- 
-mkdir('-p', 'out/Release');
-cp('-R', 'stuff/*', 'out/Release');
- 
-cd('lib');
-ls('*.js').forEach(function(file) {
-  sed('-i', 'BUILD_VERSION', 'v0.1.2', file);
-  sed('-i', /.*REMOVE_THIS_LINE.*\n/, '', file);
-  sed('-i', /.*REPLACE_LINE_WITH_MACRO.*\n/, cat('macro.js'), file);
+
+mkdir("-p", "out/Release");
+cp("-R", "stuff/*", "out/Release");
+
+cd("lib");
+ls("*.js").forEach(function (file) {
+  sed("-i", "BUILD_VERSION", "v0.1.2", file);
+  sed("-i", /.*REMOVE_THIS_LINE.*\n/, "", file);
+  sed("-i", /.*REPLACE_LINE_WITH_MACRO.*\n/, cat("macro.js"), file);
 });
-cd('..');
- 
+cd("..");
+
 if (exec('git commit -am "Auto-commit"').code !== 0) {
-  echo('Error: Git commit failed');
+  echo("Error: Git commit failed");
   exit(1);
 }
 ```
@@ -149,9 +149,9 @@ yargs 模块提供 argv 对象，用来读取命令行参数。请看改写后�
 
 ```javascript
 #!/usr/bin/env node
-var argv = require('yargs').argv;
- 
-console.log('hello ', argv.name);
+var argv = require("yargs").argv;
+
+console.log("hello ", argv.name);
 ```
 
 使用时，下面两种用法都可以。
@@ -175,11 +175,9 @@ hello tom
 
 ```javascript
 #!/usr/bin/env node
-var argv = require('yargs')
-  .alias('n', 'name')
-  .argv;
- 
-console.log('hello ', argv.n);
+var argv = require("yargs").alias("n", "name").argv;
+
+console.log("hello ", argv.n);
 ```
 
 这样一来，短参数和长参数就都可以使用了。
@@ -191,13 +189,13 @@ $ hello --name tom
 hello tom
 ```
 
-argv 对象有一个下划线（_）属性，可以获取非连词线开头的参数。
+argv 对象有一个下划线（\_）属性，可以获取非连词线开头的参数。
 
 ```javascript
 #!/usr/bin/env node
-var argv = require('yargs').argv;
+var argv = require("yargs").argv;
 
-console.log('hello ', argv.n);
+console.log("hello ", argv.n);
 console.log(argv._);
 ```
 
@@ -211,7 +209,7 @@ hello  tom
 
 ## 六、命令行参数的配置
 
-yargs 模块还提供3个方法，用来配置命令行参数。
+yargs 模块还提供 3 个方法，用来配置命令行参数。
 
 > - demand：是否必选
 > - default：默认值
@@ -219,13 +217,12 @@ yargs 模块还提供3个方法，用来配置命令行参数。
 
 ```javascript
 #!/usr/bin/env node
-var argv = require('yargs')
-  .demand(['n'])
-  .default({n: 'tom'})
-  .describe({n: 'your name'})
-  .argv;
+var argv = require("yargs")
+  .demand(["n"])
+  .default({ n: "tom" })
+  .describe({ n: "your name" }).argv;
 
-console.log('hello ', argv.n);
+console.log("hello ", argv.n);
 ```
 
 上面代码指定 n 参数不可省略，默认值为 tom，并给出一行提示。
@@ -234,28 +231,24 @@ options 方法允许将所有这些配置写进一个对象。
 
 ```javascript
 #!/usr/bin/env node
-var argv = require('yargs')
-  .option('n', {
-    alias : 'name',
-    demand: true,
-    default: 'tom',
-    describe: 'your name',
-    type: 'string'
-  })
-  .argv;
+var argv = require("yargs").option("n", {
+  alias: "name",
+  demand: true,
+  default: "tom",
+  describe: "your name",
+  type: "string",
+}).argv;
 
-console.log('hello ', argv.n);
+console.log("hello ", argv.n);
 ```
 
 有时，某些参数不需要值，只起到一个开关作用，这时可以用 boolean 方法指定这些参数返回布尔值。
 
 ```javascript
 #!/usr/bin/env node
-var argv = require('yargs')
-  .boolean(['n'])
-  .argv;
+var argv = require("yargs").boolean(["n"]).argv;
 
-console.log('hello ', argv.n);
+console.log("hello ", argv.n);
 ```
 
 上面代码中，参数 n 总是返回一个布尔值，用法如下。
@@ -273,13 +266,11 @@ boolean 方法也可以作为属性，写入 option 对象。
 
 ```javascript
 #!/usr/bin/env node
-var argv = require('yargs')
-  .option('n', {
-    boolean: true
-  })
-  .argv;
+var argv = require("yargs").option("n", {
+  boolean: true,
+}).argv;
 
-console.log('hello ', argv.n);
+console.log("hello ", argv.n);
 ```
 
 ## 七、帮助信息
@@ -293,22 +284,21 @@ yargs 模块提供以下方法，生成帮助信息。
 
 ```javascript
 #!/usr/bin/env node
-var argv = require('yargs')
-  .option('f', {
-    alias : 'name',
+var argv = require("yargs")
+  .option("f", {
+    alias: "name",
     demand: true,
-    default: 'tom',
-    describe: 'your name',
-    type: 'string'
+    default: "tom",
+    describe: "your name",
+    type: "string",
   })
-  .usage('Usage: hello [options]')
-  .example('hello -n tom', 'say hello to Tom')
-  .help('h')
-  .alias('h', 'help')
-  .epilog('copyright 2015')
-  .argv;
+  .usage("Usage: hello [options]")
+  .example("hello -n tom", "say hello to Tom")
+  .help("h")
+  .alias("h", "help")
+  .epilog("copyright 2015").argv;
 
-console.log('hello ', argv.n);
+console.log("hello ", argv.n);
 ```
 
 执行结果如下。
@@ -334,16 +324,15 @@ yargs 模块还允许通过 command 方法，设置 Git 风格的子命令。
 
 ```javascript
 #!/usr/bin/env node
-var argv = require('yargs')
+var argv = require("yargs")
   .command("morning", "good morning", function (yargs) {
     console.log("Good Morning");
   })
   .command("evening", "good evening", function (yargs) {
     console.log("Good Evening");
-  })
-  .argv;
+  }).argv;
 
-console.log('hello ', argv.n);
+console.log("hello ", argv.n);
 ```
 
 用法如下。
@@ -358,39 +347,40 @@ hello tom
 
 ```javascript
 #!/usr/bin/env node
-require('shelljs/global');
-var argv = require('yargs')
+require("shelljs/global");
+var argv = require("yargs")
   .command("morning", "good morning", function (yargs) {
     echo("Good Morning");
   })
   .command("evening", "good evening", function (yargs) {
     echo("Good Evening");
-  })
-  .argv;
+  }).argv;
 
-console.log('hello ', argv.n);
+console.log("hello ", argv.n);
 ```
 
 每个子命令往往有自己的参数，这时就需要在回调函数中单独指定。回调函数中，要先用 reset 方法重置 yargs 对象。
 
 ```javascript
 #!/usr/bin/env node
-require('shelljs/global');
-var argv = require('yargs')
-  .command("morning", "good morning", function (yargs) {  
+require("shelljs/global");
+var argv = require("yargs").command(
+  "morning",
+  "good morning",
+  function (yargs) {
     echo("Good Morning");
-    var argv = yargs.reset()
+    var argv = yargs
+      .reset()
       .option("m", {
         alias: "message",
-        description: "provide any sentence"
+        description: "provide any sentence",
       })
       .help("h")
-      .alias("h", "help")
-      .argv;
+      .alias("h", "help").argv;
 
     echo(argv.m);
-  })
-  .argv;
+  }
+).argv;
 ```
 
 用法如下。
@@ -423,12 +413,12 @@ Unix 允许程序之间使用管道重定向数据。
 $ ps aux | grep 'node'
 ```
 
-脚本可以通过监听标准输入的data 事件，获取重定向的数据。
+脚本可以通过监听标准输入的 data 事件，获取重定向的数据。
 
 ```javascript
 process.stdin.resume();
-process.stdin.setEncoding('utf8');
-process.stdin.on('data', function(data) {
+process.stdin.setEncoding("utf8");
+process.stdin.on("data", function (data) {
   process.stdout.write(data);
 });
 ```
@@ -445,8 +435,8 @@ hello foo
 操作系统可以向执行中的进程发送信号，process 对象能够监听信号事件。
 
 ```javascript
-process.on('SIGINT', function () {
-  console.log('Got a SIGINT');
+process.on("SIGINT", function () {
+  console.log("Got a SIGINT");
   process.exit(0);
 });
 ```
@@ -458,4 +448,3 @@ $ kill -s SIGINT [process_id]
 ```
 
 （完）
-

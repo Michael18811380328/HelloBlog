@@ -1,6 +1,6 @@
-Emoji表情
-=========
-将对应emoji表情的符号码复制后输入你的markdown文本即可显示emoji表情。
+# Emoji 表情
+
+将对应 emoji 表情的符号码复制后输入你的 markdown 文本即可显示 emoji 表情。
 如`:blush:`，显示为:blush:
 
 ## 人物

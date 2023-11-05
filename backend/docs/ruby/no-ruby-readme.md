@@ -10,7 +10,7 @@ He has often said that he is “trying to make Ruby natural, not simple,” in a
 
 Building on this, he adds:
 
->  Ruby is simple in appearance, but is very complex inside, just like our human body1.
+> Ruby is simple in appearance, but is very complex inside, just like our human body1.
 
 ### About Ruby’s Growth
 
@@ -28,7 +28,7 @@ Initially, Matz looked at other languages to find an ideal syntax. Recalling his
 
 In Ruby, everything is an object. Every bit of information and code can be given their own properties and actions. Object-oriented programming calls properties by the name instance variables and actions are known as methods. Ruby’s pure object-oriented approach is most commonly demonstrated by a bit of code which applies an action to a number.
 
-5.times { print "We *love* Ruby -- it's outrageous!" }
+5.times { print "We _love_ Ruby -- it's outrageous!" }
 In many languages, numbers and other primitive types are not objects. Ruby follows the influence of the Smalltalk language by giving methods and instance variables to all of its types. This eases one’s use of Ruby, since rules applying to objects apply to all of Ruby.
 
 ### Ruby’s Flexibility
@@ -37,7 +37,7 @@ Ruby is seen as a flexible language, since it allows its users to freely alter i
 
 For example, addition is performed with the plus (+) operator. But, if you’d rather use the readable word plus, you could add such a method to Ruby’s builtin Numeric class.
 
-~~~ruby
+```ruby
 class Numeric
   def plus(x)
     self.+(x)
@@ -46,7 +46,7 @@ end
 
 y = 5.plus 6
 # y is now equal to 11
-~~~
+```
 
 Ruby’s operators are syntactic sugar for methods. You can redefine them as well.
 
@@ -55,12 +55,12 @@ Ruby’s block are also seen as a source of great flexibility. A programmer can 
 
 Blocks are inspired by functional languages. Matz said, “in Ruby closures, I wanted to respect the Lisp culture3.”
 
-~~~ruby
+```ruby
 search_engines =
   %w[Google Yahoo MSN].map do |engine|
     "http://www." + engine.downcase + ".com"
   end
-~~~
+```
 
 In the above code, the block is described inside the do ... end construct. The map method applies the block to the provided list of words. Many other methods in Ruby leave a hole open for a coder to write their own block to fill in the details of what that method should do.
 
@@ -70,11 +70,11 @@ Unlike many object-oriented languages, Ruby features single inheritance only, on
 
 Classes can mixin a module and receive all its methods for free. For example, any class which implements the each method can mixin the Enumerable module, which adds a pile of methods that use each for looping.
 
-~~~ruby
+```ruby
 class MyArray
   include Enumerable
 end
-~~~
+```
 
 Generally, Rubyists see this as a much clearer way than multiple inheritance, which is complex and can be too restrictive.
 
@@ -82,11 +82,11 @@ Generally, Rubyists see this as a much clearer way than multiple inheritance, wh
 
 While Ruby often uses very limited punctuation and usually prefers English keywords, some punctuation is used to decorate Ruby. Ruby needs no variable declarations. It uses simple naming conventions to denote the scope of variables.
 
-~~~ruby
+```ruby
 var could be a local variable.
 @var is an instance variable.
 $var is a global variable.
-~~~
+```
 
 These sigils enhance readability by allowing the programmer to easily identify the roles of each variable. It also becomes unnecessary to use a tiresome self. prepended to every instance member.
 
@@ -112,7 +112,7 @@ Ruby, as a language, has a few different implementations. This page has been dis
 
 Here’s a list:
 
-~~~markdown
+```markdown
 JRuby is Ruby atop the JVM (Java Virtual Machine), utilizing the JVM’s optimizing JIT compilers, garbage collectors, concurrent threads, tool ecosystem, and vast collection of libraries.
 Rubinius is ‘Ruby written in Ruby’. Built on top of LLVM, Rubinius sports a nifty virtual machine that other languages are being built on top of, too.
 TruffleRuby is a high performance Ruby implementation on top of GraalVM.
@@ -121,7 +121,7 @@ IronRuby is an implementation “tightly integrated with the .NET Framework”.
 MagLev is “a fast, stable, Ruby implementation with integrated object persistence and distributed shared cache”.
 Cardinal is a “Ruby compiler for Parrot Virtual Machine” (Perl 6).
 For a more complete list, see Awesome Rubies.
-~~~
+```
 
 ### References
 

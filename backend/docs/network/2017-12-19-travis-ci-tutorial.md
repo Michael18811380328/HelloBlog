@@ -1,4 +1,3 @@
-
 # 持续集成服务 Travis CI 教程
 
 写代码只是软件开发的一小部分，更多的时间往往花在构建（build）和测试（test）上面。
@@ -47,7 +46,7 @@ script: true
 
 上面代码中，设置了两个字段。`language`字段指定了默认运行环境，这里设定使用 Python 环境。`script`字段指定要运行的脚本，`script: true`表示不执行任何脚本，状态直接设为成功。
 
-Travis 默认提供的运行环境，请参考[官方文档](https://docs.travis-ci.com/user/languages) 。目前一共支持31种语言，以后还会不断增加。
+Travis 默认提供的运行环境，请参考[官方文档](https://docs.travis-ci.com/user/languages) 。目前一共支持 31 种语言，以后还会不断增加。
 
 下面是一个稍微复杂一点的`.travis.yml`。
 
@@ -103,8 +102,8 @@ script: bundle exec thor build
 
 ```yml
 script:
-- command1
-- command2
+  - command1
+  - command2
 ```
 
 注意，`script`与`install`不一样，如果`command1`失败，`command2`会继续执行。但是，整个构建阶段的状态是失败。
@@ -153,7 +152,7 @@ deploy:
 
 ### 4.5 钩子方法
 
-Travis 为上面这些阶段提供了7个钩子。
+Travis 为上面这些阶段提供了 7 个钩子。
 
 > - before_install：install 阶段之前执行
 > - before_script：script 阶段之前执行
@@ -262,7 +261,7 @@ $ travis encrypt SOMEVAR=secretvalue --add
 安装命令行客户端以后，使用下面的命令登入 Travis CI。
 
 ```bash
-$ travis login 
+$ travis login
 ```
 
 然后，进入项目的根目录，使用`travis encrypt-file`命令加密那些想要加密的文件。
@@ -368,7 +367,7 @@ deploy:
     script: npm run index-content
     on:
       branch: master
-```     
+```
 
 https://oncletom.io/2016/travis-ssh-deploy/
 
@@ -384,7 +383,8 @@ after_success:
   - git remote add deploy DEPLOY_REPO_URI_GOES_HERE
   - git push deploy
 ```
-  - 
+
+-
 
 ```yaml
 deploy:
@@ -402,17 +402,15 @@ env:
   global:
     - "FTP_USER=user"
     - "FTP_PASSWORD=password"
-after_success:
-    "curl --ftp-create-dirs -T uploadfilename -u $FTP_USER:$FTP_PASSWORD ftp://sitename.com/directory/myfile"
-``` 
+after_success: "curl --ftp-create-dirs -T uploadfilename -u $FTP_USER:$FTP_PASSWORD ftp://sitename.com/directory/myfile"
+```
 
 ```yaml
 env:
   global:
     - "FTP_USER=user"
     - "FTP_PASSWORD=password"
-after_success:
-    "curl -T index.html -u $FTP_USER:$FTP_PASSWORD ftp://wecodetheweb.com/public_html/"
+after_success: "curl -T index.html -u $FTP_USER:$FTP_PASSWORD ftp://wecodetheweb.com/public_html/"
 ```
 
 加密 https://docs.travis-ci.com/user/encryption-keys/
@@ -422,11 +420,8 @@ env:
   global:
     - secure: fjlZRoknWj6+UA8U65B+TZmFQv71PdsIc..
     - secure: XDdTZHvlVWMjpYgzMPKIEeRu+8namsdex..
-after_success:
-    "curl -T index.html -u $FTP_USER:$FTP_PASSWORD ftp://wecodetheweb.com/public_html/"
+after_success: "curl -T index.html -u $FTP_USER:$FTP_PASSWORD ftp://wecodetheweb.com/public_html/"
 ```
-
-
 
 ```yaml
 deploy:
@@ -461,7 +456,7 @@ deploy:
   on:
     tags: true
     all_branches: true
-```          
+```
 
 ## 参考链接
 

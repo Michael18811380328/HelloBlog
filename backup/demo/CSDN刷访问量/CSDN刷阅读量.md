@@ -1,21 +1,21 @@
-应该使用爬虫，不过很多人python不方便，这里就使用 JS 刷阅读量了。
+应该使用爬虫，不过很多人 python 不方便，这里就使用 JS 刷阅读量了。
 
 1、首先把界面中的标题部分获取
 
 打开控制台并输入下面的代码
 
-~~~js
+```js
 let doms = document.querySelectorAll('h4');
 let arr = ;
 for (let i = 0; i < doms.length; i++){
 	arr.push(domsi.innerHTML);
 }
 copy(arr);
-~~~
+```
 
 2、然后构成一个字符串
 
-~~~html
+```html
 <a href=\"https://blog.csdn.net/weixin_41697143/article/details/81049778\" target=\"_blank\">Web前端开发标准规范总结</a>
 <a href=\"https://blog.csdn.net/weixin_41697143/article/details/81049809\" target=\"_blank\">最全面计算机英语单词列表（一）</a>
 <a href=\"https://blog.csdn.net/weixin_41697143/article/details/88622936\" target=\"_blank\">CSS-界面滚动时不显示滚动条</a>
@@ -188,13 +188,12 @@ copy(arr);
 <a href=\"https://blog.csdn.net/weixin_41697143/article/details/104551377\" target=\"_blank\">React 的 PureComponent 与 Component 区别</a>
 <a href=\"https://blog.csdn.net/weixin_41697143/article/details/104820998\" target=\"_blank\">window-onbeforeunload 的使用</a>
 
-~~~
+```
 
 3、把字符串中的链接全部获取，存放在一个数组中（字符串操作）
 
-~~~js
-let arr =
-[
+```js
+let arr = [
   "https://blog.csdn.net/weixin_41697143/article/details/81049778",
   "https://blog.csdn.net/weixin_41697143/article/details/81049809",
   "https://blog.csdn.net/weixin_41697143/article/details/88622936",
@@ -365,50 +364,53 @@ let arr =
   "https://blog.csdn.net/weixin_41697143/article/details/103305339",
   "https://blog.csdn.net/weixin_41697143/article/details/103305841",
   "https://blog.csdn.net/weixin_41697143/article/details/104551377",
-  "https://blog.csdn.net/weixin_41697143/article/details/104820998"
+  "https://blog.csdn.net/weixin_41697143/article/details/104820998",
 ];
-~~~
+```
 
-4、然后自己创建一个iframe，然后使用循环反复调用
+4、然后自己创建一个 iframe，然后使用循环反复调用
 
-现在数组的长度是171，那么可以设置间隔时间
+现在数组的长度是 171，那么可以设置间隔时间
 
-（每个IP每天可以访问的次数有限，所以可以通过不同的终端不同的IP访问）
+（每个 IP 每天可以访问的次数有限，所以可以通过不同的终端不同的 IP 访问）
 
-~~~html
+```html
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Document</title>
-</head>
-<body>
-  <iframe src="https://blog.csdn.net/weixin_41697143/article/details/81049778" width="800" height="600"></iframe> 
-  <script src="http://libs.baidu.com/jquery/2.0.0/jquery.js"></script>
-  <script type="text/javascript">
-    // 这里给定一个数组（全部文章链接的数组）
-    let a = [
-      "https://blog.csdn.net/weixin_41697143/article/details/103305339",
-      "https://blog.csdn.net/weixin_41697143/article/details/103305841",
-      "https://blog.csdn.net/weixin_41697143/article/details/104551377",
-      "https://blog.csdn.net/weixin_41697143/article/details/104820998"
-    ];
-    
-    var len = a.length;
-    var current = 0;
-    console.log(len);
-    
-    let timer = setInterval(function(){
-      console.log(a[current]);
-      $('iframe').attr('src', a[current]);
-      // $('iframe').attr('src', $('iframe').attr('src'));
-      current++;
-      if (current === len - 1) {
-        clearInterval(timer);
-      }
-    }, 1000);
-  </script>
-</body>
-</html>
-~~~
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+  </head>
+  <body>
+    <iframe
+      src="https://blog.csdn.net/weixin_41697143/article/details/81049778"
+      width="800"
+      height="600"
+    ></iframe>
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.js"></script>
+    <script type="text/javascript">
+      // 这里给定一个数组（全部文章链接的数组）
+      let a = [
+        "https://blog.csdn.net/weixin_41697143/article/details/103305339",
+        "https://blog.csdn.net/weixin_41697143/article/details/103305841",
+        "https://blog.csdn.net/weixin_41697143/article/details/104551377",
+        "https://blog.csdn.net/weixin_41697143/article/details/104820998",
+      ];
 
+      var len = a.length;
+      var current = 0;
+      console.log(len);
+
+      let timer = setInterval(function () {
+        console.log(a[current]);
+        $("iframe").attr("src", a[current]);
+        // $('iframe').attr('src', $('iframe').attr('src'));
+        current++;
+        if (current === len - 1) {
+          clearInterval(timer);
+        }
+      }, 1000);
+    </script>
+  </body>
+</html>
+```

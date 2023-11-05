@@ -4,26 +4,26 @@
 function Stack() {
   // 属性和方法的声明
   let items = [];
-  this.push = function(element) {
+  this.push = function (element) {
     items.push(element);
   };
-  this.pop = function() {
+  this.pop = function () {
     return items.pop();
   };
-  this.peek = function() {
+  this.peek = function () {
     return items[items.length - 1];
   };
   // peek 返回栈顶的元素，不对栈进行修改
-  this.isEmpty = function() {
+  this.isEmpty = function () {
     return items.length === 0;
   };
-  this.size = function() {
+  this.size = function () {
     return items.length;
   };
-  this.clear = function() {
+  this.clear = function () {
     items = [];
   };
-  this.print = function() {
+  this.print = function () {
     console.log(items.toString());
   };
 }
@@ -44,7 +44,7 @@ console.log(stack.isEmpty());
 function divideBy2(decNumber) {
   let remStack = new Stack();
   let rem;
-  let binary = '';
+  let binary = "";
   // 创建初始化栈对象、余数、二进制的字符串
   while (decNumber > 0) {
     rem = Math.floor(decNumber % 2);
@@ -66,20 +66,20 @@ baseConverter = (decNumber, base) => {
   // 初始化存储器
   let remStack = new Stack();
   let rem;
-  let baseString = '';
-  const digit = '0123456789ABCDEF';
+  let baseString = "";
+  const digit = "0123456789ABCDEF";
   while (decNumber > 0) {
     rem = Math.floor(decNumber % base);
     remStack.push(rem);
     decNumber = Math.floor(decNumber / base);
   }
-  while (!remStack.isEmpty()){
+  while (!remStack.isEmpty()) {
     let index = remStack.pop();
     baseString += digit[index];
     // 将索引对应的字符（十六进制）进行截取获取返回值
     // 如果是八进制不需要考虑这种情况-直接返回8的余数即可
   }
   return baseString;
-}
+};
 
 console.log(baseConverter(31, 16));

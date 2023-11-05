@@ -4,7 +4,6 @@ sleep = (numberMillis) => {
   var exitTime = now.getTime() + numberMillis;
   while (this.state.loading == true) {
     now = new Date();
-    if (now.getTime() > exitTime)
-    return;
+    if (now.getTime() > exitTime) return;
   }
-}
+};
