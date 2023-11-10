@@ -60,6 +60,7 @@
 - 'nodejs-笔记': 'note/nodejs-笔记.md'
 - 'think-note': 'note/think-note.md'
 - '产品-笔记': 'note/产品-笔记.md'
+- '全面深入了解大模型': 'note/全面深入了解大模型.md'
 - '后端-笔记': 'note/后端-笔记.md'
 - '奇技淫巧-笔记': 'note/奇技淫巧-笔记.md'
 - '工程化-笔记': 'note/工程化-笔记.md'

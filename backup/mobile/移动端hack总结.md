@@ -709,8 +709,6 @@ rem 是非常好用的一个属性，可以根据 html 来设定基准值，而�
             }, 800);
     }
 
-
-
 需要注意的是 如果是 android chrome 25 版本以后，在 iframe src 不会发送请求，
 原因如下<https://developers.google.com/chrome/mobile/docs/intents> ，通过 location href 使用 intent 机制拉起客户端可行并且当前页面不跳转。
 

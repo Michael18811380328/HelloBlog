@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    h1 {
+        text-align: center;
+    }
+    #container {
+        width: 400px;
+        height: 100px;
+        position: relative;
+        left: 50%;
+        transform: translate(-50%, 0);
+    }
+
+    .back, canvas {
+        position: absolute;
+        width: 400px;
+        height: 100px;
+        left: 0;
+        top: 0;
+        text-align: center;
+        font-size: 25px;
+        line-height: 100px;
+        color: deeppink;
+    }
+
+  </style>
+</head>
+<body>
+  <h1>刮刮乐</h1>
+  <div id="container">
+      <div class="back">二等奖</div>
+      <!-- 如果背景是图片，那么这里再加一个图片 -->
+      <canvas id="canvas" width="400" height="100"></canvas>
+  </div>
+
+  <script>
+    // 避免选中背景的文字（二等奖）
+    document.addEventListener("selectstart", function (e) {
+        e.preventDefault();
+    });
+
+    // 前景灰色蒙版 canvas
+    let canvas = document.querySelector("#canvas");
+    let ctx = canvas.getContext('2d');
+    ctx.fillStyle = 'darkgray';
+    ctx.fillRect(0, 0, 400, 100);
+
+    // 判断当前状态是否点击
+    let isDraw = false;
+    canvas.onmousedown = function () {
+        isDraw = true;
+    }
+
+    let containerDom = document.querySelector('#container');
+
+    canvas.onmousemove = function (e) {
+        // 鼠标按下时，刮奖
+        if (isDraw) {
+            let x = e.pageX - containerDom.offsetLeft + containerDom.offsetWidth / 2;
+            let y = e.pageY - containerDom.offsetTop;
+            ctx.beginPath();
+            // 绘制圆形：xy 是圆心坐标，r 是半径，0, 2 * Math.PI 是开始的角度和结束的角度
+            ctx.arc(x, y, 30, 0, 2 * Math.PI);
+            // 关键： globalCompositeOperation = type 这个属性设定了在画新图形时采用的遮盖策略
+            // 具体属性参考：https://www.jianshu.com/p/ff425bfa6f41
+            ctx.globalCompositeOperation = 'destination-out';
+            ctx.fill();
+            ctx.closePath();
+        }
+    }
+
+    document.onmouseup = function () {
+        isDraw = false;
+    }
+
+    // 中奖情况
+    let arr = [
+        { content: '一等奖：一个大嘴巴子', p: 0.1 },
+        { content: '二等奖：两个大嘴巴子', p: 0.2 },
+        { content: '三等奖：三个大嘴巴子', p: 0.3 }
+    ];
+    let tmp = Math.random();
+    let backImageDom = document.querySelector('.back');
+    if (tmp < arr[0].p) {
+        backImageDom.innerHTML = arr[0].content;
+    } else if (tmp < arr[1].p) {
+        backImageDom.innerHTML = arr[1].content;
+    } else if (tmp < arr[2].p) {
+        backImageDom.innerHTML = arr[2].content;
+    }
+  </script>
+</body>
+</html>

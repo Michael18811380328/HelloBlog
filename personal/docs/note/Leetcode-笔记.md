@@ -1,5 +1,5 @@
 # Leetcode笔记 
- 
+
 ## 0277 1267. 统计参与通信的服务器
 
 
@@ -46,7 +46,7 @@ var countServers = function(grid) {
 
 
 
-   
+
 ## 0279 2778. 特殊元素平方和
 
 
@@ -76,7 +76,7 @@ var sumOfSquares = function(nums) {
 
 
 
-   
+
 ## 0280 2784. 检查数组是否是好的
 
 
@@ -112,7 +112,7 @@ var isGood = function(nums) {
 
 
 
-   
+
 ## 0282 2824. 统计和小于目标的下标对数目
 
 
@@ -172,7 +172,7 @@ class Solution:
 
 
 
-   
+
 ## 0275 2815. 数组中的最大数对和
 
 
@@ -231,7 +231,7 @@ var maxSum = function(nums) {
 
 
 
-   
+
 ## 0276 2811. 判断是否能拆分数组
 
 

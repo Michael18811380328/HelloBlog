@@ -93,6 +93,7 @@ nav:
         - '算法-笔记': 'note/算法-笔记.md'
         - '计算机网络-笔记': 'note/计算机网络-笔记.md'
         - '运营-笔记': 'note/运营-笔记.md'
+        - '全面深入了解大模型': 'note/全面深入了解大模型.md'
     - 笔记(新版):
         - 'Element.scrollIntoView()': 'new/Element.scrollIntoView().md'
         - 'LAMP平台的部署及应用': 'new/LAMP平台的部署及应用.md'

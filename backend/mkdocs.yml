@@ -166,6 +166,7 @@ nav:
       - "机器学习-Scikit-learn 基础": "python/机器学习-Scikit-learn 基础.md"
       - "机器学习-入门": "python/机器学习-入门.md"
       - "机器学习-视频笔记": "python/机器学习-视频笔记.md"
+      - 'linux-basic': 'python/linux-basic.md'
   - ruby:
       - "RVM": "ruby/RVM.md"
       - "Ruby标准开发环境部署": "ruby/Ruby标准开发环境部署.md"

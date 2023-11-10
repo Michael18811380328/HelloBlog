@@ -50,12 +50,10 @@ class HttpService {
       let { dtable_uuid } = req.params;
       let payload = decodeAuthorization(req.headers.authorization, dtable_uuid);
       if (!payload) {
-        res
-          .status(403)
-          .send({
-            error_msg:
-              "You don't have permission to get data from the current table.",
-          });
+        res.status(403).send({
+          error_msg:
+            "You don't have permission to get data from the current table.",
+        });
         return;
       }
 
@@ -89,12 +87,10 @@ class HttpService {
       let { dtable_uuid } = req.params;
       let payload = decodeAuthorization(req.headers.authorization, dtable_uuid);
       if (!payload) {
-        res
-          .status(403)
-          .send({
-            error_msg:
-              "You don't have permission to get data from the current table.",
-          });
+        res.status(403).send({
+          error_msg:
+            "You don't have permission to get data from the current table.",
+        });
         return;
       }
 
@@ -140,12 +136,10 @@ class HttpService {
       let { dtable_uuid } = req.params;
       let payload = decodeAuthorization(req.headers.authorization, dtable_uuid);
       if (!payload) {
-        res
-          .status(403)
-          .send({
-            error_msg:
-              "You don't have permission to get data from the current table.",
-          });
+        res.status(403).send({
+          error_msg:
+            "You don't have permission to get data from the current table.",
+        });
         return;
       }
       let dtableManager = appContext.getDTableManager();
@@ -238,12 +232,10 @@ class HttpService {
       let { dtable_uuid } = req.params;
       let payload = decodeAuthorization(req.headers.authorization, dtable_uuid);
       if (!payload || payload.permission !== "rw") {
-        res
-          .status(403)
-          .send({
-            error_msg:
-              "You don't have permission to get data from the current table.",
-          });
+        res.status(403).send({
+          error_msg:
+            "You don't have permission to get data from the current table.",
+        });
         return;
       }
       let { username, app_name } = payload;
@@ -294,12 +286,10 @@ class HttpService {
       let { dtable_uuid } = req.params;
       let payload = decodeAuthorization(req.headers.authorization, dtable_uuid);
       if (!payload || payload.permission !== "rw") {
-        res
-          .status(403)
-          .send({
-            error_msg:
-              "You don't have permission to get data from the current table.",
-          });
+        res.status(403).send({
+          error_msg:
+            "You don't have permission to get data from the current table.",
+        });
         return;
       }
       let { username, app_name } = payload;
@@ -350,12 +340,10 @@ class HttpService {
       let { dtable_uuid } = req.params;
       let payload = decodeAuthorization(req.headers.authorization, dtable_uuid);
       if (!payload || payload.permission !== "rw") {
-        res
-          .status(403)
-          .send({
-            error_msg:
-              "You don't have permission to get data from the current table.",
-          });
+        res.status(403).send({
+          error_msg:
+            "You don't have permission to get data from the current table.",
+        });
         return;
       }
       let { username, app_name } = payload;
@@ -404,12 +392,10 @@ class HttpService {
       let { dtable_uuid } = req.params;
       let payload = decodeAuthorization(req.headers.authorization, dtable_uuid);
       if (!payload) {
-        res
-          .status(403)
-          .send({
-            error_msg:
-              "You don't have permission to get data from the current table.",
-          });
+        res.status(403).send({
+          error_msg:
+            "You don't have permission to get data from the current table.",
+        });
         return;
       }
       let dtableManager = appContext.getDTableManager();
@@ -511,12 +497,10 @@ class HttpService {
       let { dtable_uuid } = req.params;
       let payload = decodeAuthorization(req.headers.authorization, dtable_uuid);
       if (!payload) {
-        res
-          .status(403)
-          .send({
-            error_msg:
-              "You don't have permission to get data from the current table.",
-          });
+        res.status(403).send({
+          error_msg:
+            "You don't have permission to get data from the current table.",
+        });
         return;
       }
       DtableUtils.queryDtableOperations(
@@ -547,11 +531,9 @@ class HttpService {
       let { dtable_uuid } = req.params;
       let payload = decodeAuthorization(req.headers.authorization, dtable_uuid);
       if (!payload || payload.permission !== "rw") {
-        res
-          .status(403)
-          .send({
-            error_msg: "You don't have permission to update the current table.",
-          });
+        res.status(403).send({
+          error_msg: "You don't have permission to update the current table.",
+        });
         return;
       }
 
@@ -654,11 +636,9 @@ class HttpService {
               comment.dtable_uuid !== dtable_uuid ||
               comment.author !== payload.username
             ) {
-              res
-                .status(403)
-                .send({
-                  error_msg: "You don't have permission to delete comment",
-                });
+              res.status(403).send({
+                error_msg: "You don't have permission to delete comment",
+              });
               return;
             }
             commentManager.deleteRowComment(comment_id, (err) => {
@@ -707,11 +687,9 @@ class HttpService {
           dtable_uuid
         );
         if (!payload || payload.permission !== "rw") {
-          res
-            .status(403)
-            .send({
-              error_msg: "You don't have permission to update the comment",
-            });
+          res.status(403).send({
+            error_msg: "You don't have permission to update the comment",
+          });
           return;
         }
         // resource check and exec sql
@@ -751,19 +729,15 @@ class HttpService {
               return;
             }
             if (comment.dtable_uuid !== dtable_uuid) {
-              res
-                .status(403)
-                .send({
-                  error_msg: "You don't have permission to update the comment",
-                });
+              res.status(403).send({
+                error_msg: "You don't have permission to update the comment",
+              });
               return;
             }
             if (comment.author !== payload.username && options.comment) {
-              res
-                .status(403)
-                .send({
-                  error_msg: "You don't have permission to edit comment",
-                });
+              res.status(403).send({
+                error_msg: "You don't have permission to edit comment",
+              });
               return;
             }
             commentManager.updateRowComment(
@@ -851,11 +825,9 @@ class HttpService {
               return;
             }
             if (comment.dtable_uuid !== dtable_uuid) {
-              res
-                .status(403)
-                .send({
-                  error_msg: "You don't have permission to get the comment",
-                });
+              res.status(403).send({
+                error_msg: "You don't have permission to get the comment",
+              });
               return;
             }
             res.send(comment);
@@ -1042,12 +1014,10 @@ class HttpService {
       let { dtable_uuid } = req.params;
       let payload = decodeAuthorization(req.headers.authorization, dtable_uuid);
       if (!payload) {
-        res
-          .status(403)
-          .send({
-            error_msg:
-              "You don't have permission to access the table's comments.",
-          });
+        res.status(403).send({
+          error_msg:
+            "You don't have permission to access the table's comments.",
+        });
         return;
       }
       let dtableManager = appContext.getDTableManager();
@@ -1189,11 +1159,9 @@ class HttpService {
       let { dtable_uuid } = req.params;
       let payload = decodeAuthorization(req.headers.authorization, dtable_uuid);
       if (!payload) {
-        res
-          .status(403)
-          .send({
-            error_msg: "You don't have permission to get deleted rows.",
-          });
+        res.status(403).send({
+          error_msg: "You don't have permission to get deleted rows.",
+        });
         return;
       }
 
@@ -1247,12 +1215,10 @@ class HttpService {
       let { dtable_uuid } = req.params;
       let payload = decodeAuthorization(req.headers.authorization, dtable_uuid);
       if (!payload) {
-        res
-          .status(403)
-          .send({
-            error_msg:
-              "You don't have permission to access the table's notifications.",
-          });
+        res.status(403).send({
+          error_msg:
+            "You don't have permission to access the table's notifications.",
+        });
         return;
       }
 
@@ -1304,12 +1270,10 @@ class HttpService {
       let { dtable_uuid } = req.params;
       let payload = decodeAuthorization(req.headers.authorization, dtable_uuid);
       if (!payload) {
-        res
-          .status(403)
-          .send({
-            error_msg:
-              "You don't have permission to access the table's notifications.",
-          });
+        res.status(403).send({
+          error_msg:
+            "You don't have permission to access the table's notifications.",
+        });
         return;
       }
 
@@ -1378,12 +1342,10 @@ class HttpService {
       let { dtable_uuid } = req.params;
       let payload = decodeAuthorization(req.headers.authorization, dtable_uuid);
       if (!payload) {
-        res
-          .status(403)
-          .send({
-            error_msg:
-              "You don't have permission to access the table's notifications.",
-          });
+        res.status(403).send({
+          error_msg:
+            "You don't have permission to access the table's notifications.",
+        });
         return;
       }
 
@@ -1443,12 +1405,10 @@ class HttpService {
           dtable_uuid
         );
         if (!payload) {
-          res
-            .status(403)
-            .send({
-              error_msg:
-                "You don't have permission to access the table's notifications.",
-            });
+          res.status(403).send({
+            error_msg:
+              "You don't have permission to access the table's notifications.",
+          });
           return;
         }
 
@@ -1476,11 +1436,9 @@ class HttpService {
                 return;
               }
               if (!notification) {
-                res
-                  .status(404)
-                  .send({
-                    error_msg: `notification ${notification_id} not found.`,
-                  });
+                res.status(404).send({
+                  error_msg: `notification ${notification_id} not found.`,
+                });
                 return;
               }
               notificationManager.updateNotification(
@@ -1507,12 +1465,10 @@ class HttpService {
       let { dtable_uuid } = req.params;
       let payload = decodeAuthorization(req.headers.authorization, dtable_uuid);
       if (!payload) {
-        res
-          .status(403)
-          .send({
-            error_msg:
-              "You don't have permission to access the table's notifications.",
-          });
+        res.status(403).send({
+          error_msg:
+            "You don't have permission to access the table's notifications.",
+        });
         return;
       }
 
