@@ -8,7 +8,7 @@ ruby install gem
 gem install jekyll
 
 mkdir test
-jelyll new bolb
+jekyll new bolb
 ```
 
 ```bash

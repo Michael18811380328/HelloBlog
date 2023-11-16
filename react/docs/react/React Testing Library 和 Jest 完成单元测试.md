@@ -1,12 +1,8 @@
-# [使用 React Testing Library 和 Jest 完成单元测试](https://segmentfault.com/a/1190000022054307)
+# 使用 React Testing Library 和 Jest 完成单元测试
 
-[![img](https://avatar-static.segmentfault.com/114/968/1149689230-5cbd2a8c4397a_big64)**joking_zhang**](https://segmentfault.com/u/joking_zhang)发布于 2020-03-18
+原作者 joking_zhang https://segmentfault.com/u/joking_zhang 发布于 2020-03-18
 
-
-
-
-
-https://segmentfault.com/a/1190000022054307
+原文链接 https://segmentfault.com/a/1190000022054307
 
 # 引言
 
@@ -26,15 +22,18 @@ https://segmentfault.com/a/1190000022054307
   - 测试分级为小型、中型、大型。
   - 创建冒烟测试集合（主流程测试用例）。
   - 标记哪些测试是非确定性的测试（测试结果不唯一）。
+
 - 级别2
   - 如果有测试运行结果为红色（失败❌）就不会发布。
   - 每次代码提交之前都要求通过冒烟测试。（自测，简单走下主流程）
   - 各种类型的整体代码覆盖率要大于50%。
   - 小型测试的覆盖率要大于10%。
+
 - 级别3
   - 所有重要的代码变更都要经过测试。
   - 小型测试的覆盖率大于50%。
   - 新增重要功能都要通过集成测试的验证。
+
 - 级别4
   - 在提交任何新代码之前都会自动运行冒烟测试。
   - 冒烟测试必须在30分钟内运行完毕。
@@ -42,6 +41,7 @@ https://segmentfault.com/a/1190000022054307
   - 总体测试覆盖率应该不小于40%。
   - 小型测试的代码覆盖率应该不小于25%。
   - 所有重要的功能都应该被集成测试验证到。
+
 - 级别5
   - 对每一个重要的缺陷修复都要增加一个测试用例与之对应。
   - 积极使用可用的代码分析工具。
@@ -62,7 +62,7 @@ https://segmentfault.com/a/1190000022054307
 
 ##### counter.js
 
-```
+```js
 // counter.js
 import React from "react";
 
@@ -86,7 +86,7 @@ export default Counter;
 
 ##### counter-enzyme.test.js
 
-```
+```js
 // counter-enzyme.test.js
 import React from "react";
 import { shallow } from "enzyme";
@@ -109,7 +109,7 @@ describe("<Counter />", () => {
 
 ##### counter-rtl.test.js
 
-```
+```js
 // counter-rtl.test.js
 import React from "react";
 import { render, fireEvent } from "@testing-library/react";
@@ -141,7 +141,7 @@ describe("<Counter />", () => {
 
 ##### counter.js
 
-```
+```js
 // counter.js
 export default class Counter extends React.Component {
   state = { count: 0 };
@@ -165,7 +165,7 @@ export default class Counter extends React.Component {
 
 ##### counter.js
 
-```
+```js
 // counter.js
 import React, { useState } from "react";
 
@@ -193,7 +193,7 @@ ShallowWrapper::state() can only be called on class components
 
 ##### counter-enzyme.test.js
 
-```
+```js
 import React from "react";
 import { shallow } from "enzyme";
 
@@ -235,7 +235,7 @@ describe("<Counter />", () => {
 
 几乎所有的测试都是这样写的。首先，您要**编排(初始化)**您的代码，以便为接下来的步骤做好一切准备。然后，您**执行**用户应该执行的步骤(例如单击)。最后，您对应该发生的事情进行**断言**。
 
-```
+```js
 import React from "react";
 import { render, fireEvent } from "@testing-library/react";
 
@@ -271,7 +271,7 @@ describe("<Counter />", () => {
 
 渲染组件可以使用 RTL's API 的 `render` 方法完成。签名如下：
 
-```
+```js
 function render(
   ui: React.ReactElement,
   options?: Omit<RenderOptions, 'queries'>
@@ -321,7 +321,7 @@ fireEvent(node: HTMLElement, event: Event)
 
 我们的例子相当简单，因为我们只是想点击一个按钮，所以我们只需:
 
-```
+```js
 fireEvent.click(incrementButton);
 // OR
 fireEvent.click(decrementButton);
@@ -354,7 +354,7 @@ expect(counter.textContent).toEqual("0");
 
 ##### App.test.js
 
-```
+```js
 import React from 'react'
 import {render, cleanup} from '@testing-library/react'
 import App from '../App'
@@ -384,7 +384,7 @@ npm test
 
 ##### App.test.js.snap
 
-```
+```js
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`should take a snapshot 1`] = `
@@ -408,7 +408,7 @@ exports[`should take a snapshot 1`] = `
 
 ##### TestElements.js
 
-```
+```js
 import React from 'react'
 
 const TestElements = () => {
@@ -432,7 +432,7 @@ const TestElements = () => {
 
 ##### TestElements.test.js
 
-```
+```js
 import React from 'react';
 import "@testing-library/jest-dom/extend-expect";
 import { render, cleanup } from '@testing-library/react';
@@ -466,7 +466,7 @@ afterEach(cleanup);
 
 在编写单元测试之前，让我们首先看下 `TestEvents.js` 是什么样子的。
 
-```
+```js
 import React from 'react'
 
 const TestEvents = () => {
@@ -488,7 +488,7 @@ return (
 
 当我们点击按钮时，测试计数器的增减是否正确:
 
-```
+```js
 import React from 'react';
 import "@testing-library/jest-dom/extend-expect";
 import { render, cleanup, fireEvent } from '@testing-library/react';
@@ -529,7 +529,7 @@ import TestEvents from '../components/TestEvents'
 
 现在，让我们检查 `TestAsync.js` 文件。
 
-```
+```js
 import React from 'react'
 
 const TestAsync = () => {
@@ -559,7 +559,7 @@ return (
 
 ##### TestAsync.test.js
 
-```
+```js
 import React from 'react';
 import "@testing-library/jest-dom/extend-expect";
 import { render, cleanup, fireEvent, waitForElement } from '@testing-library/react';
@@ -595,7 +595,7 @@ afterEach(cleanup);
 
 ##### TestRedux.js
 
-```
+```js
 import React from 'react'
 import { connect } from 'react-redux'
 
@@ -618,7 +618,7 @@ export default connect(state => ({ counter: state.count }))(TestRedux)
 
 ##### store/reducer.js
 
-```
+```js
 export const initialState = {
     count: 0,
   }
@@ -646,7 +646,7 @@ export const initialState = {
 
 测试初始状态是否为0:
 
-```
+```js
 import React from 'react'
 import "@testing-library/jest-dom/extend-expect";
 import { createStore } from 'redux'
@@ -707,7 +707,7 @@ it('checks initial state is equal to 0', () => {
 
 让我们检查一下 `TextContext.js` 是什么样子的。
 
-```
+```js
 import React from "react"
 
 export const CounterContext = React.createContext()
@@ -744,7 +744,7 @@ export default CounterProvider
 
 ##### TextContext.test.js
 
-```
+```js
 import React from 'react'
 import "@testing-library/jest-dom/extend-expect";
 import { render, cleanup,  fireEvent } from '@testing-library/react'
@@ -797,7 +797,7 @@ it('increments the counter', () => {
 
 ##### TestRouter.js
 
-```
+```js
 import React from 'react'
 
 import { Link, Route, Switch,  useParams } from 'react-router-dom'
@@ -838,7 +838,7 @@ export default TestRouter
 
 ##### TestRouter.test.js
 
-```
+```js
 import React from 'react'
 import "@testing-library/jest-dom/extend-expect";
 import { Router } from 'react-router-dom'
@@ -859,28 +859,22 @@ const renderWithRouter = (component) => {
 }
 
 it('should render the home page', () => {
-
   const { container, getByTestId } = renderWithRouter(<TestRouter />) 
   const navbar = getByTestId('navbar')
   const link = getByTestId('home-link')
-
   expect(container.innerHTML).toMatch('Home page')
   expect(navbar).toContainElement(link)
 })
 
 it('should navigate to the about page', ()=> {
     const { container, getByTestId } = renderWithRouter(<TestRouter />) 
-  
     fireEvent.click(getByTestId('about-link'))
-  
     expect(container.innerHTML).toMatch('About page')
   })
   
   it('should navigate to the contact page with the params', ()=> {
     const { container, getByTestId } = renderWithRouter(<TestRouter />) 
-     
     fireEvent.click(getByTestId('contact-link'))
-     
     expect(container.innerHTML).toMatch('John Doe')
   })
 ```
@@ -901,7 +895,7 @@ it('should navigate to the about page', ()=> {
 
 让我们检查一下 `TestRouter.js` 是什么样子的。
 
-```
+```js
 import React from 'react'
 import axios from 'axios'
 
@@ -937,7 +931,7 @@ export default TestAxios
 
 ##### TextAxios.test.js
 
-```
+```js
 import React from 'react'
 import "@testing-library/jest-dom/extend-expect";
 import { render, waitForElement, fireEvent } from '@testing-library/react'
@@ -947,24 +941,18 @@ import TestAxios from '../components/TestAxios'
 jest.mock('axios')
 
 it('should display a loading text', () => {
-
- const { getByTestId } = render(<TestAxios />)
-
+  const { getByTestId } = render(<TestAxios />)
   expect(getByTestId('loading')).toHaveTextContent('Loading...')
 })
 
 it('should load and display the data', async () => {
   const url = '/greeting'
   const { getByTestId } = render(<TestAxios url={url} />)
-
   axiosMock.get.mockResolvedValueOnce({
     data: { greeting: 'hello there' },
   })
-
   fireEvent.click(getByTestId('fetch-data'))
-
   const greetingData = await waitForElement(() => getByTestId('show-data'))
-
   expect(axiosMock.get).toHaveBeenCalledTimes(1)
   expect(axiosMock.get).toHaveBeenCalledWith(url)
   expect(greetingData).toHaveTextContent('hello there')
@@ -998,10 +986,9 @@ it('should load and display the data', async () => {
 - [How to Start Testing Your React Apps Using the React Testing Library and Jest](https://www.freecodecamp.org/news/8-simple-steps-to-start-testing-react-apps-using-react-testing-library-and-jest/)
 - [Test React apps with React Testing Library](https://thomlom.dev/test-react-testing-library/)
 
-[单元测试](https://segmentfault.com/t/单元测试)[test](https://segmentfault.com/t/test)[react.js](https://segmentfault.com/t/react.js)[jest](https://segmentfault.com/t/jest)
+[单元测试](https://segmentfault.com/t/单元测试)
+[test](https://segmentfault.com/t/test)
+[react.js](https://segmentfault.com/t/react.js)
+[jest](https://segmentfault.com/t/jest)
 
 阅读 8.5k发布于 2020-03-18
-
-赞33收藏19
-
-[分享](https://segmentfault.com/a/1190000022054307#)

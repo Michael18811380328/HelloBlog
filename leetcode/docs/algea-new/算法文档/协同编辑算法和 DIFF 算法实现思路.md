@@ -40,12 +40,15 @@ const e = 50;
 
 那么 e 就是数组新增的一项，b 内容发生变化，需要手动比较，判断保留 master 还是使用新的 code
 
-~~~js
+~~~diff
 * const a = 10;
+
 - const b = 20;
 + const b = 20;
+
 * const c = 30;
 * const d = 40;
+
 + const e = 50;
 ~~~
 

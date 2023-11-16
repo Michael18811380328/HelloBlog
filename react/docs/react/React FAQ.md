@@ -2,7 +2,7 @@
 
 如果在render阶段执行绑定，不管使用 bind(this) 还是箭头函数，都不利于性能（会在渲染时创建一个新函数）
 
-现在很多代码在render阶段设置箭头函数处理，这样不利于性能，应当避免这种写法。
+现在很多代码在render阶段设置箭头函数处理，这样不利于性能，应当避免这种写法——实际上很多项目都是这样，这个性能差的不算多。
 
 ~~~js
 <button onClick={this.handleClick.bind(this)}></button>
@@ -13,16 +13,14 @@
 
 ~~~js
 <button onClick={this.handleClick()}></button>
-// 这样在渲染过程函数直接执行
+// 错误使用，这样在渲染时，直接执行函数
 ~~~
-
-
 
 ### 事件处理函数的传参
 
 给事件处理的回调函数传递参数的两种方法（通常需要传递数组中的某项参数）
 
-方法一：通过箭头函数传递参数
+方法一：通过箭头函数传递参数（常用）
 
 ~~~js
 {this.state.array.map((item, index) => {
@@ -46,8 +44,6 @@ handleClick = (event) => {
 }
 ~~~
 
-
-
 ### 避免函数多次调用
 
 例如想要防止`onClick`或者`onScroll`这样的事件处理程序的回调被触发的太快，那么可以限制执行回调的速度，可以通过以下几种方式做到这点：
@@ -57,7 +53,6 @@ handleClick = (event) => {
 - **requestAnimationFrame**:基于[`requestAnimationFrame`](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame)来进行更改 (例如 [`raf-schd`](https://github.com/alexreardon/raf-schd))
 
 可以看这个比较`throttle`和`debounce`的[可视化页面](http://demo.nimius.net/debounce_throttle/)
-
 
 
 ### 节流函数和防抖函数
