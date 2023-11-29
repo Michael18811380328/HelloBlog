@@ -1,4 +1,4 @@
-## video-js 说明
+# video-js 说明
 
 Video.js is a web video player built from the ground up for an HTML5 world. It supports HTML5 and Flash video, as well as YouTube and Vimeo (through [plugins](https://videojs.com/plugins/)). It supports video playback on desktops and mobile devices. 
 

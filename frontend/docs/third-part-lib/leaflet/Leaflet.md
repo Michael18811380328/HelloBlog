@@ -1,5 +1,7 @@
 # Leaflet
 
+
+
 Leaflet is the leading open-source JavaScript library for **mobile-friendly interactive maps**. Weighing just about 39 KB of gzipped JS plus 4 KB of gzipped CSS code, it has all the mapping [features](http://leafletjs.com/#features) most developers ever need.
 
 Leaflet is designed with *simplicity*, *performance* and *usability* in mind. It works efficiently across all major desktop and mobile platforms out of the box, taking advantage of HTML5 and CSS3 on modern browsers while being accessible on older ones too. It can be extended with a huge amount of [plugins](http://leafletjs.com/plugins.html), has a beautiful, easy to use and [well-documented](http://leafletjs.com/reference.html) API and a simple, readable [source code](https://github.com/Leaflet/Leaflet) that is a joy to [contribute](https://github.com/Leaflet/Leaflet/blob/master/CONTRIBUTING.md) to.
@@ -12,19 +14,19 @@ We're happy to meet new contributors. If you want to **get involved** with Leafl
 ### an open-source JavaScript library for mobile-friendly interactive maps
 
 - Overview
--  
+
 
 - [Tutorials](https://leafletjs.com/examples.html)
--  
+
 
 - [Docs](https://leafletjs.com/reference-1.6.0.html)
--  
+
 
 - [Download](https://leafletjs.com/download.html)
--  
+
 
 - [Plugins](https://leafletjs.com/plugins.html)
--  
+
 
 - [Blog](https://leafletjs.com/blog.html)
 

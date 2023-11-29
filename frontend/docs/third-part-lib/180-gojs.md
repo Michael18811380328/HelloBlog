@@ -2,6 +2,8 @@
 
 官网链接 https://gojs.net/latest/index.html
 
+A Web Framework for Rapidly Building Interactive Diagrams
+
 ### 一、前言
 
 GoJS是一个绘制矢量图的前端库。Gojs提供了很多API给我们使用，下面只是提供完成关系图表（如下图）的某种方法，用其他方法也可以实现同样的效果。

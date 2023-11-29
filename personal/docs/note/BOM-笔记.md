@@ -169,57 +169,6 @@ dom 树 + css 就是 render tree 渲染树，类似 PS 中多个图层，然后�
 
 
    
-## 0210 canvas 有哪些方法
-
-
-```html
-<canvas id="can" width="500" height="500"></canvas>
-
-```
-
-具体方法
-
-```javascript
-//常用方法
-var can = document.getElementById('can');
-var cvs = can.ContentText("2d");
-
-cvs.moveTo(0,0);
-cvs.lineTo(500,500);
-cvs.stroke();
-cvs.strokeWidth = 5;
-cvs.lineStyle = "red";
-cvs.closePath();
-cvs.clearPath();
-
-cvs.fillStyle = "blue";
-cvs.fill();
-
-cvs.strokeRest(0,0,200,200);
-cvs.fillRect(200,200,100,100);
-cvs.clearRect(0,0,cvs.width,cvs.height);
-
-lineCap: butt square round
-lineJoin: miter bevel round
-
-//虚线
-cvs.setLineDash([x,y,z,p]);
-cvs.getLineDash();
-cvs.lineDashOffset = 2;
-//偏移量
-
-//绘制汉字
-strokeText();描边文字
-fillText();填充汉字
-textAlign = "left/right/center";
-textBaseline = "top/bottom/middle";
-//垂直对齐方式
-
-```
-
-
-
-   
 ## 0251 浏览器自动跳转到另一个页面的问题
 
 
@@ -249,18 +198,19 @@ textBaseline = "top/bottom/middle";
 ## 0252 TAB 跳转实现有两种方法
 
 
-1. HTML 设置 button 或者 input，浏览器会自动 TAB——这是浏览器默认的做法，效果比较灵活。
-2. JS ，然后通过 state 控制状态，设置 currentTab，然后设置对应的样式，这样可以记录上一次的位置（这种需要把浏览器默认的 TAB 事件去掉，例如界面中还有其他的button，那么点击 Tab 还会触发按钮的交互改变）。问题：如果界面中按钮的数量是动态变化的，就需要动态计算 currentTab 这样比较麻烦。
+HTML 设置 button 或者 input，浏览器会自动 TAB——这是浏览器默认的做法，效果比较灵活。
+
+JS ，然后通过 state 控制状态，设置 currentTab，然后设置对应的样式，这样可以记录上一次的位置（这种需要把浏览器默认的 TAB 事件去掉，例如界面中还有其他的button，那么点击 Tab 还会触发按钮的交互改变）。问题：如果界面中按钮的数量是动态变化的，就需要动态计算 currentTab，这样比较麻烦。
 
 
 
    
-## 0258 线上如何避免前端缓存
+## 0258 如何避免前端缓存
 
 
 缓存的原理：当浏览器请求资源文件时，优先检查本地是否有相同的资源，如果有资源就不需要请求服务器了。
 
-线上避免缓存方法，给固定的资源加上时间戳。
+生产环境下避免缓存方法，给固定的资源加上时间戳。
 
 静态资源：如果是一次性的变化，直接加一个随机数 ?v=xxx 即可（全局样式 and-design）
 

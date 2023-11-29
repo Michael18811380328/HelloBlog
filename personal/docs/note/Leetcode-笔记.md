@@ -1,9 +1,9 @@
 # Leetcode笔记 
-
+ 
 ## 0277 1267. 统计参与通信的服务器
 
 
-没有同步到代码中，周末一起弄
+
 
 基本思路：循环矩阵，哈希表计数，一次可以写出来
 
@@ -46,11 +46,10 @@ var countServers = function(grid) {
 
 
 
-
+   
 ## 0279 2778. 特殊元素平方和
 
 
-没有同步到代码中，周末一起弄
 
 简单，循环数组，直接写出来
 
@@ -76,11 +75,11 @@ var sumOfSquares = function(nums) {
 
 
 
-
+   
 ## 0280 2784. 检查数组是否是好的
 
 
-没有同步到代码中，周末一起弄
+
 
 <https://leetcode.cn/problems/check-if-array-is-good/description/> 
 
@@ -112,11 +111,11 @@ var isGood = function(nums) {
 
 
 
-
+   
 ## 0282 2824. 统计和小于目标的下标对数目
 
 
-没有同步到代码中，周末一起弄
+
 
 <https://leetcode.cn/problems/count-pairs-whose-sum-is-less-than-target/description/> 
 
@@ -172,7 +171,7 @@ class Solution:
 
 
 
-
+   
 ## 0275 2815. 数组中的最大数对和
 
 
@@ -231,7 +230,7 @@ var maxSum = function(nums) {
 
 
 
-
+   
 ## 0276 2811. 判断是否能拆分数组
 
 
@@ -385,6 +384,188 @@ https\://leetcode.cn/problems/check-if-it-is-possible-to-split-array/solutions/2
  或者是脑筋急转弯
 
 https\://leetcode.cn/problems/check-if-it-is-possible-to-split-array/solutions/2375178/nao-jin-ji-zhuan-wan-by-endlesscheng-0l19/
+
+
+
+   
+## 0290 1052.爱生气的书店老板
+
+
+运行通过
+
+<https://leetcode.cn/problems/grumpy-bookstore-owner/> 
+
+```
+/*
+ * @lc app=leetcode.cn id=1052 lang=javascript
+ * [1052] 爱生气的书店老板-滑动窗口
+ */
+
+/**
+ * @param {number[]} customers
+ * @param {number[]} grumpy
+ * @param {number} minutes
+ * @return {number}
+ * 最大顾客数 = 各种情况下都不生气的顾客（staticValue） + 老板心情好时不生气的顾客（slide window, max）
+ */
+var maxSatisfied = function(customers, grumpy, minutes) {
+  const len = customers.length;
+  // 各种情况下都不生气的顾客（固定值）
+  let staticValue = 0;
+  for (let i = 0; i < len; i++) {
+    // 不生气 0 时，有效的顾客
+    if (grumpy[i] === 0) {
+      staticValue += (customers[i]);
+    }
+  }
+  // 计算窗口初始化的最大值
+  let max = 0;
+  let curr = 0;
+  for (let i = 0; i < minutes; i++) {
+    if (grumpy[i] === 1) {
+      curr += customers[i];
+    }
+  }
+  // 这是窗口初始化的最大值
+  max = curr;
+  // 滑动窗口开始
+  for (let i = minutes; i < len; i++) {
+    if (grumpy[i] === 1) {
+      curr += customers[i];
+    }
+    if (grumpy[i - minutes] === 1) {
+      curr -= customers[i - minutes];
+    }
+    if (curr > max) {
+      max = curr;
+    }
+  }
+  return staticValue + max;
+};
+
+```
+
+单元测试
+
+```
+// console.log(maxSatisfied([4,10,10], [1,1,0], 2) === 24);
+// console.log(maxSatisfied([3], [1], 1) === 3);
+// console.log(maxSatisfied([1], [1], 1) === 1);
+// console.log(maxSatisfied([1,0,1,2,1,1,2,5,2,2,2,1], [0,1,0,1,0,1,0,1,0,0,1,1], 5) === 17);
+// console.log(maxSatisfied([1,0,1,2,1,1,7,5], [0,1,0,1,0,1,0,1], 3) === 16);
+// console.log(maxSatisfied([2,6,6,9], [0,0,1,1], 1) === 17);
+
+// python 解答 https://zhuanlan.zhihu.com/p/352407806
+
+```
+
+
+
+   
+## 0291 2682. 找出转圈游戏输家
+
+
+运行通过
+
+数组循环，注意特殊情况就行
+
+<https://leetcode.cn/problems/find-the-losers-of-the-circular-game/description/> 
+
+```javascript
+/**
+ * @param {number} n
+ * @param {number} k
+ * @return {number[]}
+ */
+var circularGameLosers = function(n, k) {
+    let dict = {};
+    dict[1] = true;
+    let index = 1; // 当前球的位置
+    // 循环，直到某个朋友接到球
+    // 中间某个人接到球，就记录在字典中
+    for (let i = 1; i < 10000; i++) {
+        let time = i * k;
+        index = (index + time) % n;
+        // 如果转了一圈，就是最后一个数字
+        if (index === 0) {
+            index = n;
+        }
+        // 有人第二次接到球，游戏结束
+        if (dict[index]) {
+            break;
+        } else {
+            dict[index] = true;
+        }
+    }
+    // 把全部字典的键遍历一次，然后求差值，就是结果数组
+    let result = [];
+    for (let i = 2; i <= n; i++) {
+        if (!dict[i]) {
+            result.push(i);
+        }
+    }
+    return result;
+};
+
+// console.log(circularGameLosers(5, 2)); // [4,5]
+// console.log(circularGameLosers(4, 4)); // [2,3,4]
+// console.log(circularGameLosers(2, 1)); // []
+// console.log(circularGameLosers(5, 3)); // [2,3]
+
+```
+
+
+
+   
+## 0292 1146 快照数组 SnapshotArray
+
+
+有一定难度
+
+<https://leetcode.cn/problems/snapshot-array/solutions/2016347/zhi-ji-lu-xiu-gai-by-masx200-zguh/> 
+
+因为操作比较多，需要综合考虑空间复杂度和时间复杂度，所以需要字典存储+二分查找
+
+```javascript
+// 解法三：优化，字典数组+二分查找（时间复杂度和空间复杂度都可以满足）
+// https://leetcode-cn.com/problems/snapshot-array/solution/zi-jie-leetcode1146kuai-zhao-shu-zu-by-user7746o/
+
+let SnapshotArray = function(length) {
+  // 这里必须 fill 否则 map 会跳过
+  this.arr = new Array(length).fill(0).map(() => new Map());
+  this.snapId = 0;
+};
+
+SnapshotArray.prototype.set = function(index, val) {
+  this.arr[index].set(this.snapId, val);
+};
+
+SnapshotArray.prototype.snap = function() {
+  this.snapId++;
+  return this.snapId - 1;
+};
+
+SnapshotArray.prototype.get = function(index, snap_id) {
+  // 找到这个数的所有记录
+  let snapIds = [...this.arr[index].keys()]
+  // 二分查找，找到 <= snap_id 的值
+  let start = 0;
+  let end = snapIds.length - 1;
+  let mid;
+  while (start <= end) {
+    mid = Math.floor((start + end) / 2);
+    if (snapIds[mid] < snap_id) {
+      start = mid + 1;
+    } else if (snapIds[mid] > snap_id) {
+      end = mid - 1;
+    } else if (snapIds[mid] === snap_id) {
+      return this.arr[index].get(snap_id);
+    }
+  }
+  return this.arr[index].get(snapIds[start - 1]) || null;
+};
+
+```
 
 
 

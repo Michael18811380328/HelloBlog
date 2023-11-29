@@ -1,6 +1,6 @@
-## README.md
 
-## 📈 μPlot
+
+# 📈 μPlot
 
 A small ([< 25 KB min](https://github.com/leeoniya/uPlot/tree/master/dist/uPlot.iife.min.js)), [fast](https://github.com/leeoniya/uPlot#performance) chart for time series, lines, areas, ohlc & bars *(MIT Licensed)*
 

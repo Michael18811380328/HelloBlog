@@ -1337,7 +1337,7 @@ JSON 的三种格式
 
   常用方法：
 
-  JSON.parse() 把 JSON 转换成 JS
+  JSON.parse 把 JSON 转换成 JS
 
   JSON.stringify 把 JS 数据类型转换成 JSON（字符串）
 
@@ -1374,6 +1374,60 @@ export const getValueLength = (str) => {
 ```
 
 统一码（Unicode），也叫万国码、单一码，由[统一码联盟](https://baike.baidu.com/item/%E7%BB%9F%E4%B8%80%E7%A0%81%E8%81%94%E7%9B%9F/3694574?fromModule=lemma_inlink)开发，是[计算机科学领域](https://baike.baidu.com/item/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E9%A2%86%E5%9F%9F/12650606?fromModule=lemma_inlink)里的一项业界标准，包括[字符集](https://baike.baidu.com/item/%E5%AD%97%E7%AC%A6%E9%9B%86/946585?fromModule=lemma_inlink)、[编码方案](https://baike.baidu.com/item/%E7%BC%96%E7%A0%81%E6%96%B9%E6%A1%88/20835369?fromModule=lemma_inlink)等。统一码是为了解决传统的[字符编码](https://baike.baidu.com/item/%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81/8446880?fromModule=lemma_inlink)方案的局限而产生的，它为每种语言中的每个字符设定了统一并且唯一的[二进制编码](https://baike.baidu.com/item/%E4%BA%8C%E8%BF%9B%E5%88%B6%E7%BC%96%E7%A0%81/1758517?fromModule=lemma_inlink)，以满足跨语言、[跨平台](https://baike.baidu.com/item/%E8%B7%A8%E5%B9%B3%E5%8F%B0/8558902?fromModule=lemma_inlink)进行文本转换、处理的要求。
+
+
+
+   
+## 0271 中文输入法 onChange 事件处理
+
+
+问题：输入中文时，会频繁触发 onChange 事件，如果事件绑定了搜索函数（API）性能很差
+
+处理：连续输入中文过程中，不向服务器搜索；完成输入后，发送请求向服务器搜索（类似节流函数）
+
+使用 compositionStart 和 compositionEnd 事件，处理中文输入的开始和结束
+
+注意 Chrome 浏览器的兼容性问题
+
+```javascript
+let isComposition = false
+const isChrome = navigator.userAgent.indexOf('Chrome') > -1
+ 
+const Input = () => {
+
+  const handleComposition = (e) => {
+    if (e.type === 'compositionend') {
+      isComposition = false
+      if (isChrome) {
+        handleChange(e)
+      }
+    } else {
+      isComposition = true
+    }
+  }
+  
+  const handleChange = (e) => {
+    if (!isComposition) {
+      const inputValue = e.target.value
+      console.log(inputValue) // send API request
+    }
+  }
+  
+  return (
+    <input
+      type="text"
+      onCompositionStart={handleComposition}
+      onCompositionEnd={handleComposition}
+      onChange={handleChange}
+    />
+  )
+}
+ 
+export default Input
+
+```
+
+参考链接：<https://blog.csdn.net/xjun0812/article/details/128440372> 
 
 
 

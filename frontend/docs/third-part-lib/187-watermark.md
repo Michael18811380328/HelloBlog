@@ -35,9 +35,9 @@ if (enableWatermark) {
 
 
 
-下面是开发文档
+# watermark
 
-# [watermark](https://github.com/saucxs/watermark)
+https://github.com/saucxs/watermark
 
 
 `watermark.js`是一个给B/S网站系统加一个很浅的水印插件，确保系统的保密性，安全性，降低数据泄密风险。
@@ -153,6 +153,7 @@ watermark.init({ watermark_txt: "测试水印"});
               "watermark_angle":15,//水印倾斜度数
         }
     }
+    
     <<<
     error
     {

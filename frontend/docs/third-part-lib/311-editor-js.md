@@ -2,6 +2,8 @@
 
 Editor.js 是一个在线富文本编辑器 官网链接：https://editorjs.io/
 
+star 21K
+
 1. 导入编辑器库 Install Editor.js 
 2. 编辑器初始化 Configure and initialise the Editor
 3. 安装工具 Install and Tools 

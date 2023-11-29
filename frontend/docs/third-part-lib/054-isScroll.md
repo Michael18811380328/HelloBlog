@@ -1,5 +1,9 @@
 # isScroll 
 
+Smooth scrolling for the web
+
+使用人数 13K
+
 https://github.com/cubiq/iscroll
 
 # iScroll, smooth scrolling for the web
