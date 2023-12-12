@@ -48,6 +48,9 @@ markdown_extensions:
 # use this plugin will increase build time and decrease browser render time
 plugins:
   - search # necessary for search to work
+  - git-revision-date-localized
+  - git-authors
+  - git-committers
   - minify:
       minify_html: false
       minify_js: true
@@ -132,43 +135,6 @@ nav:
       - "命令行的nodeJS": "nodejs/命令行的nodeJS.md"
       - "廖雪峰 NodeJS": "nodejs/廖雪峰 NodeJS.md"
       - "谈谈Node中的常见概念": "nodejs/谈谈Node中的常见概念.md"
-  - python:
-      - "01-Detect mobile devices with Django and Python 3": "python/01-Detect mobile devices with Django and Python 3.md"
-      - "02-pandas": "python/02-pandas.md"
-      - "03-搭建python3开发环境": "python/03-搭建python3开发环境.md"
-      - "04-matplotlib": "python/04-matplotlib.md"
-      - "05-numpy": "python/05-numpy.md"
-      - "06-docker-basic-use": "python/06-docker-basic-use.md"
-      - "07-seaborn": "python/07-seaborn.md"
-      - "08-黑马程序员-linux基础": "python/08-黑马程序员-linux基础.md"
-      - "09-Python3 序列解包": "python/09-Python3 序列解包.md"
-      - "10-UnicodeDecodeError utf8 codec cant decode invalid start byte": "python/10-UnicodeDecodeError utf8 codec cant decode invalid start byte.md"
-      - "11-黑马程序员-python基础": "python/11-黑马程序员-python基础.md"
-      - "Docker 入门教程": "python/Docker 入门教程.md"
-      - "Docker 微服务教程": "python/Docker 微服务教程.md"
-      - "Docker笔记": "python/Docker笔记.md"
-      - "Nginx 容器教程": "python/Nginx 容器教程.md"
-      - "Python SimpleHTTPServer": "python/Python SimpleHTTPServer.md"
-      - "Python3 多线程": "python/Python3 多线程.md"
-      - "Simple Minecraft-inspired program using Python and Pyglet": "python/Simple Minecraft-inspired program using Python and Pyglet.md"
-      - "no-Django入门": "python/no-Django入门.md"
-      - "no-Docker-download": "python/no-Docker-download.md"
-      - "no-curl": "python/no-curl.md"
-      - "no-django 常见问题": "python/no-django 常见问题.md"
-      - "no-django-basic": "python/no-django-basic.md"
-      - "no-docker 常见操作": "python/no-docker 常见操作.md"
-      - "no-docker-basic-RYF": "python/no-docker-basic-RYF.md"
-      - "no-docker-learn": "python/no-docker-learn.md"
-      - "no-docker-pro-learning": "python/no-docker-pro-learning.md"
-      - "no-flask-basic": "python/no-flask-basic.md"
-      - "no-flask网易云课堂笔记": "python/no-flask网易云课堂笔记.md"
-      - "no-linux-learing": "python/no-linux-learing.md"
-      - "no-使用 Mkdocs 在 Github 上快速部署文章": "python/no-使用 Mkdocs 在 Github 上快速部署文章.md"
-      - "python3-subporcess 子进程管理模块": "python/python3-subporcess 子进程管理模块.md"
-      - "机器学习-Scikit-learn 基础": "python/机器学习-Scikit-learn 基础.md"
-      - "机器学习-入门": "python/机器学习-入门.md"
-      - "机器学习-视频笔记": "python/机器学习-视频笔记.md"
-      - 'linux-basic': 'python/linux-basic.md'
   - ruby:
       - "RVM": "ruby/RVM.md"
       - "Ruby标准开发环境部署": "ruby/Ruby标准开发环境部署.md"

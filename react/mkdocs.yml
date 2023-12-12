@@ -47,6 +47,9 @@ markdown_extensions:
 # use this plugin will increase build time and decrease browser render time
 plugins:
     - search # necessary for search to work
+    - git-revision-date-localized
+    - git-authors
+    - git-committers
     - minify:
         minify_html: false
         minify_js: true

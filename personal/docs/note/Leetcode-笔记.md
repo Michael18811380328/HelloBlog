@@ -517,7 +517,7 @@ var circularGameLosers = function(n, k) {
 
 
    
-## 0292 1146 快照数组 SnapshotArray
+## 0292 1146. 快照数组 SnapshotArray
 
 
 有一定难度
