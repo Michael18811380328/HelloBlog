@@ -580,4 +580,189 @@ gap属性是用来设置网格行与列之间的间隙，该属性是 row-gap() 
 
 
 
+   
+## 0301 如何不让用户选择文本
+
+
+1、设置 user-select：none 可以不让普通用户选择文本。
+
+2、高级百度文库：实现不能复制的技术，可能是先实现 dom 节点，然后 htmltocanvas 转换成 canvas 避免了浏览器打开复制文本内容。
+
+3、界面增加水印，避免用户用其他软件文字识别等。
+
+理论上，只要是显示在屏幕上的内容，并可以通过摄像截图转换成图片，那么必然可以提取文本，这个是 JS 层面无法实现的。
+
+
+
+   
+## 0316 改变 placeholder 的字体颜色大小
+
+
+这个方法也就在 PC 端可以，兼容性不太好
+
+```css
+input::-webkit-input-placeholder { 
+    /* WebKit browsers */ 
+    font-size:14px;
+    color: #333;
+}
+
+input::-moz-placeholder { 
+    /* Mozilla Firefox 19+ */ 
+    font-size:14px;
+    color: #333;
+}
+
+input:-ms-input-placeholder { 
+    /* Internet Explorer 10+ */ 
+    font-size:14px;
+    color: #333;
+}
+
+
+```
+
+
+
+   
+## 0317 audio元素和video元素在ios和andriod中无法自动播放
+
+
+原因：因为各大浏览器都为了节省流量，做出了优化，在用户没有行为动作时（交互）不予许自动播放；
+
+```html
+/* 音频，写法一 */
+
+<audio src="music/bg.mp3" autoplay loop controls>你的浏览器还不支持哦</audio>
+
+/* 音频，写法二 */
+<audio controls="controls"> 
+    <source src="music/bg.ogg" type="audio/ogg"></source>
+    <source src="music/bg.mp3" type="audio/mpeg"></source>
+    优先播放音乐bg.ogg，不支持在播放bg.mp3
+</audio>
+
+```
+
+js
+
+```javascript
+//JS绑定自动播放（操作window时，播放音乐）
+
+$(window).one('touchstart', function(){
+    music.play();
+})
+
+//微信下兼容处理
+document.addEventListener("WeixinJSBridgeReady", function () {
+    music.play();
+}, false);
+
+//小结
+//1.audio元素的autoplay属性在IOS及Android上无法使用，在PC端正常；
+//2.audio元素没有设置controls时，在IOS及Android会占据空间大小，而在PC端Chrome是不会占据任何空间；
+//3.注意不要遗漏微信的兼容处理需要引用微信JS；
+
+```
+
+
+
+   
+## 0320 消除 transition 闪屏
+
+
+消除 transition 闪屏
+
+```
+.css {
+  -webkit-transform-style: preserve-3d;
+  -webkit-backface-visibility: hidden;
+  -webkit-perspective: 1000;
+}
+
+```
+
+过渡动画（在没有启动硬件加速的情况下）会出现抖动的现象， 以上的解决方案只是改变视角来启动硬件加速的一种方式；启动硬件加速的另外一种方式：
+
+```
+.css {
+  -webkit-transform: translate3d(0,0,0);
+  -moz-transform: translate3d(0,0,0);
+  -ms-transform: translate3d(0,0,0);
+  transform: translate3d(0,0,0);
+}
+
+```
+
+启动硬件加速最常用的方式：translate3d、translateZ、transformopacity 
+
+属性/过渡动画（需要动画执行的过程中才会创建合成层，动画没有开始或结束后元素还会回到之前的状态）
+
+will-chang 属性（这个比较偏僻），一般配合opacity与translate使用（而且经测试，除了上述可以引发硬件加速的属性外，其它属性并不会变成复合层）。
+
+弊端：硬件加速会导致 CPU 性能占用量过大，电池电量消耗加大 ；因此尽量避免泛滥使用硬件加速。
+
+
+
+   
+## 0323 有哪些 meta 标签
+
+
+常用
+
+```html
+<!-- 设置缩放 -->
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimal-ui" />
+
+<!-- 可隐藏地址栏，仅针对IOS的Safari（注：IOS7.0版本以后，safari上已看不到效果） -->
+<meta name="apple-mobile-web-app-capable" content="yes" />
+
+<!-- 仅针对IOS的Safari顶端状态条的样式（可选default/black/black-translucent ） -->
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+<!-- IOS中禁用将数字识别为电话号码/忽略Android平台中对邮箱地址的识别 -->
+<meta name="format-detection"content="telephone=no, email=no" />
+
+```
+
+其他
+
+```html
+<!-- 启用360浏览器的极速模式(webkit) -->
+<meta name="renderer" content="webkit">
+
+<!-- 避免IE使用兼容模式 -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<!-- 针对手持设备优化，主要是针对一些老的不识别viewport的浏览器，比如黑莓 -->
+<meta name="HandheldFriendly" content="true">
+
+<!-- 微软的老式浏览器 -->
+<meta name="MobileOptimized" content="320">
+
+<!-- uc强制竖屏 -->
+<meta name="screen-orientation" content="portrait">
+
+<!-- QQ强制竖屏 -->
+<meta name="x5-orientation" content="portrait">
+
+<!-- UC强制全屏 -->
+<meta name="full-screen" content="yes">
+
+<!-- QQ强制全屏 -->
+<meta name="x5-fullscreen" content="true">
+
+<!-- UC应用模式 -->
+<meta name="browsermode" content="application">
+
+<!-- QQ应用模式 -->
+<meta name="x5-page-mode" content="app">
+
+<!-- windows phone 点击无高光 -->
+<meta name="msapplication-tap-highlight" content="no">
+
+```
+
+
+
   

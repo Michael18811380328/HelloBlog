@@ -10,7 +10,7 @@ mysql 数据库的简单介绍，安装配置 MYSQL，基本的 SQL 命令。
 
 SQL：一种编程语言，strcutured query language 结构化的查询语言，主要用于数据库中的增删改查
 
-```mysql
+```sql
 select * from db
 ```
 
@@ -95,7 +95,7 @@ Mac 的文件路径是 /usr/local/mysql/my.cof 默认的配置文件是空的
 
 可以配置字符集，缓存大小等
 
-```mysql
+```sql
 [client]
 default-character-set=utf8
 # 添加字符集，避免乱码
@@ -122,7 +122,7 @@ Warning: Changing a readonly file
 
 ## 04 数据库操作
 
-```mysql
+```sql
 show databases;
 create database gc;
 drop database gc;
@@ -160,7 +160,7 @@ database 包括 tables 表中每一行就是一条数据；列就是不同的字
 
 创建表，删除表，描述表结构
 
-```mysql
+```sql
 CREATE TABLE account(
   id bigint(20),
   createTime datetime,
@@ -191,7 +191,7 @@ drop table gc;
 
 表重命名
 
-```mysql
+```sql
 alter table 表名 rename 新表名
 ```
 
@@ -199,7 +199,7 @@ alter table 表名 rename 新表名
 
 增加删除表的列
 
-```mysql
+```sql
 alter table 表名 add 新列名 列数据类型 not null default 1;
 # 后面的 not null default 1 是可选参数
 alter table 表名 drop 已有列名;
@@ -207,7 +207,7 @@ alter table 表名 drop 已有列名;
 
 修改列名或者数据类型: 可以单独修改列名后者数据类型，可以一起修改列名和数据类型
 
-```mysql
+```sql
 alter table 表名 change 旧列名 新列名 新的数据类型
 ```
 
@@ -217,7 +217,7 @@ alter table 表名 change 旧列名 新列名 新的数据类型
 
 增加（插入）表数据
 
-```mysql
+```sql
 insert into 表名 values(key1, key2, key3...)
 insert into tableName (column1, column2) values(key1, key2)
 ```
@@ -226,7 +226,7 @@ insert into tableName (column1, column2) values(key1, key2)
 
 查询表数据
 
-```mysql
+```sql
 select * from 表名
 select 列名1, 列名2 from 表名
 ```
@@ -235,7 +235,7 @@ select 列名1, 列名2 from 表名
 
 如果筛选过程中有重复的数据，那么可以加上关键字 distinct 去除重复的行。下面的查询结果中，如果 name 和 age 相同的数据有多行，那么结果中只显示一行
 
-```mysql
+```sql
 select distinct name,age from gc;
 ```
 
@@ -243,7 +243,7 @@ select distinct name,age from gc;
 
 升序或者降序
 
-```mysql
+```sql
 # 查询结果排序(升序或者降序) order by columnName desc/asc
 select * from gc order by id asc;
 # 将查询的结果按照ID升序的情况进行排序
@@ -254,7 +254,7 @@ select * from gc order by age asc, name desc;
 
 使用 limit 截取查询结果（类似于 splice 函数）limit 第一个参数是开始的位置（默认是 0，可以不选），第二个参数是截取的数量。
 
-```mysql
+```sql
 select * from gc [where name is not null] [order by id asc] limit 5;
 select * from gc [where name is not null] [order by id asc] limit 3, 5;
 # 中括号内部是可选参数（order必须在where后面）
@@ -266,7 +266,7 @@ select * from gc [where name is not null] [order by id asc] limit 3, 5;
 
 可以在一个表中查询数据，select \* from table， 然后把查询的结果插入到另一个表中（数据迁移会用到）
 
-```mysql
+```sql
 insert into account values(10);
 insert into account select name, age from oldAccount;
 ```
@@ -277,7 +277,7 @@ update tableName set columnName = newValue where XXX
 
 如果使用 where 添加，那么修改满足条件的部分；否则修改整列的数据；
 
-```mysql
+```sql
 update account set name = 'Tom', email = '123@qq.com' where id = 1;
 ```
 
@@ -287,7 +287,7 @@ update account set name = 'Tom', email = '123@qq.com' where id = 1;
 
 使用 where 对搜索结果筛选
 
-```mysql
+```sql
 select * from tableName where title = 't';
 # 查询条件可以是大于，小于，等于，不等于，或者between范围
 # 可以通过 and or 进行多元选择，括号增加优先级
@@ -295,19 +295,19 @@ select * from tableName where title = 't';
 
 注意：判断相等是 = 不是两个等号
 
-```mysql
+```sql
 select * from gc where name = 'Michael' and (id = 20 or id = 22);
 ```
 
 判断 null 是特殊的，需要通过 is is not 判断，不能通过 = != 判断
 
-```mysql
+```sql
 select * from gc where email is null and name is not null;
 ```
 
 #### in 范围（离散）
 
-```mysql
+```sql
 select * from account where id in (value1, value2...);
 select * from account where id in (select id from oldAccount where id  < 10);
 ```
@@ -316,8 +316,9 @@ select * from account where id in (select id from oldAccount where id  < 10);
 
 #### between 范围（连续）
 
-```mysql
+```sql
 select * from account where id between 5 and 10;
+
 # 这里的选择是[5, 10]
 select * from account where id not between 5 and 10;
 ```
@@ -326,19 +327,19 @@ select * from account where id not between 5 and 10;
 
 like 字符串的模糊匹配
 
-```mysql
+```sql
 select * from account where name like '%ab%';
 ```
 
 ilike 不区分大小写进行模糊匹配
 
-```mysql
+```sql
 select * from account where name ilike '%mike%';
 ```
 
 或者使用 lower 函数处理搜索值，也可以实现大小写不敏感
 
-```mysql
+```sql
 select * from account where name like lower('%mike%');
 ```
 

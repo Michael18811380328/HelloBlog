@@ -482,7 +482,9 @@ Boolean('false') //true
 
 > `typeof` 操作符返回数据类型，但是由于 `javascript` 设计的历史原因，`typeof` 现已经不能满足我们现在对于类型判断的要求了
 
+~~~js
 ValueClassType"foo"Stringstringnew String("foo")Stringobject1.2Numbernumbernew Number(1.2)NumberobjecttrueBooleanbooleannew Boolean(true)Booleanobjectnew Date()Dateobjectnew Error()Errorobject[1,2,3]Arrayobjectnew Array(1, 2, 3)Arrayobjectnew Function("")Functionfunctio/abc/gRegExpobject (function in Nitro/V8)new RegExp("meow")RegExpobject (function in Nitro/V8){}Objectobjectnew Object()Objectobjectnullnullobject
+~~~
 
 我们可以看到，`typeof` 不能区分对象的数组和日期，还会把 `null` 判断成对象，那我们一般是什么时候用 `typeof` 呢。我们可以用来判断一个已经定义的变量是否被赋值。
 

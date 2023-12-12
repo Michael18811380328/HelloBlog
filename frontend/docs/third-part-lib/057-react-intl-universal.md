@@ -1,12 +1,8 @@
-## Work at Alibaba 加入我们
 
-[Join us as a frontend engineer in Alibaba group!](https://github.com/alibaba/react-intl-universal/issues/41)
 
 # react-intl-universal
 
-[react-intl-universal](https://github.com/alibaba/react-intl-universal) is a React internationalization package developed by [Alibaba Group](http://www.alibabagroup.com/).
-
-[![npm](https://camo.githubusercontent.com/b9fa06636914402ecccc92f14d9a1ce86d3056518a47d08925e696f221e0bcb2/68747470733a2f2f696d672e736869656c64732e696f2f6e706d2f64742f72656163742d696e746c2d756e6976657273616c2e737667)](https://www.npmjs.com/package/react-intl-universal) [![npm](https://camo.githubusercontent.com/15fed1addf37af9fbad4f9400d7d5c5947cfa2beeb392984ea6828d3e4c6697e/68747470733a2f2f696d672e736869656c64732e696f2f6e706d2f762f72656163742d696e746c2d756e6976657273616c2e737667)](https://www.npmjs.com/package/react-intl-universal) [![npm](https://camo.githubusercontent.com/ef95ed9d203d0ec7532f126f3b98cce0baa8dd301d8c45f9aad69f5061d07219/68747470733a2f2f696d672e736869656c64732e696f2f6e706d2f6c2f72656163742d696e746c2d756e6976657273616c2e737667)](https://github.com/alibaba/react-intl-universal/blob/master/LICENSE.md)
+[react-intl-universal](https://github.com/alibaba/react-intl-universal) is a React internationalization package developed by Alibaba Group
 
 ## Features
 
@@ -442,8 +438,3 @@ if(typeof Promise!=="function"){document.write('<script src="//f.alicdn.com/es6-
 
 - [react-intl-universal-pseudo-converter](https://github.com/ceszare/react-intl-universal-pseudo-converter): A [pseudo-localization](https://en.wikipedia.org/wiki/Pseudolocalization) tool for testing internationalization.
 
-## License
-
-This software is free to use under the BSD license.
-
-## Keywords

@@ -323,4 +323,115 @@ note.md
 
 
 
+   
+## 0322 复制内容时，如何增加“版权所有”?
+
+
+有些网页为了尊重原创，复制的文本 都会被加上一段来源说明，是如何做到的呢？
+
+大致思路：
+
+1、答案区域监听copy事件，并阻止这个事件的默认行为。
+
+2、获取选中的内容（window.getSelection()）加上版权信息，然后设置到剪切板（clipboarddata.setData()）。
+
+注意：复制文本到剪切板中，API 有兼容性，参考 <https://juejin.cn/post/7306764402736676901> 
+
+禁止复制
+
+```javascript
+  componentDidMount() {
+    document.addEventListener('copy', this.onCopy);
+  }
+
+  // 禁止复制
+  onCopy = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    alert('版权所有，禁止复制!');
+  }
+
+```
+
+可以复制，加上信息
+
+```javascript
+  // 复制到剪切板
+  onCopy = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    // https://www.runoob.com/jsref/met-win-getselection.html
+    const selectedText = window.getSelection().toString();
+    const info = `
+      \n
+      作者：某某某
+      链接：https://www.zhihu.com/
+      来源：知乎
+      著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+    `;
+    if (selectedText.includes(info)) return;
+    // clipboarddata.setData() 有浏览器兼容性，所以换一种方式实现
+    // https://juejin.cn/post/7306764402736676901
+    this.copyText(selectedText + info);
+  }
+
+  copyText = (text) => {
+    const textarea = document.createElement('textarea');
+    textarea.value = text;
+    textarea.style.position = 'absolute';
+    textarea.style.opacity = '0';
+    document.body.appendChild(textarea);
+    textarea.select();
+    document.execCommand('copy');
+    document.body.removeChild(textarea);
+  };
+
+```
+
+
+
+   
+## 0318 JS 判断设备来源
+
+
+
+
+```javascript
+// 判断移动端设备
+
+function deviceType(){
+  var ua = navigator.userAgent;
+  var agent = ["Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod"];    
+  for(var i=0; i<len,len = agent.length; i++){
+    if(ua.indexOf(agent[i])>0){         
+      break;
+    }
+  }
+}
+
+deviceType();
+
+window.addEventListener('resize', function(){
+  deviceType();
+})
+
+// 判断微信浏览器
+function isWeixin(){
+  var ua = navigator.userAgent.toLowerCase();
+  if(ua.match(/MicroMessenger/i)=='micromessenger'){
+    return true;
+  }else{
+    return false;
+  }
+}
+
+```
+
+
+
+   
+## 0319 
+
+
+
   

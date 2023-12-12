@@ -60,10 +60,10 @@ Redux 是用来处理状态管理的一个工具库
 
 
    
-## 0037 Redox的reduce函数为什么不能做异步操作
+## 0037 Redux 的 reduce 函数为什么不能做异步操作
 
 
-Relax的设计理念就是reducer函数是一个纯函数
+Redux 的设计理念：reducer函数是一个纯函数
 
 redux 有三个主要的理念
 
@@ -75,8 +75,7 @@ redux 有三个主要的理念
 
 正是这个设计的理念就决定了reducer 函数必须是一个纯函数，而不能返回一个 promise 或者 settimeout 等不确定的内容
 
-
-Next state = reducer(current state, action)
+`Next state = reducer(current state, action)`
 
 
 
@@ -84,19 +83,9 @@ Next state = reducer(current state, action)
 ## 0040 在 react 中为什么 prop 是只读的
 
 
-1、react 的设计理念是单向数据流，就是从父组件传递 props 给子组件，所以说这个 this.props 是不可更改的
+1、react 的设计理念是单向数据流，就是从父组件传递 props 给子组件，所以说 this.props 不可更改
 
-2、如果子组件想要更改父组件传递的prop，是通过回调函数来更改父组件的state，然后父组件重新渲染，传递给子组件的propose就会变化，实现子组件和父组件的通信
-
-
-
-   
-## 0062 Redux 中 reducer 为什么是一个纯函数
-
-
-重复题目
-
-
+2、如果子组件想要更改父组件传递的 prop，是通过回调函数来更改父组件的 state，然后父组件重新渲染，传递给子组件的 props 就会变化，实现子组件和父组件的通信
 
 
 
@@ -125,7 +114,7 @@ es6 string -> es6 AST babel -> es5 AST -> es5 string 执行
 
 
    
-## 0088 react-router 当中link标签和a标签的区别是什么
+## 0088 react-router 中 link 标签和 a 标签的区别是什么
 
 
 <https://blog.csdn.net/zhangwenok/article/details/127207814> 
@@ -139,7 +128,7 @@ a 标签就是普通的跳转，整个页面需要刷新，用户视觉效果不
 
 
    
-## 0097 React-VUE 的diff算法，从n^3优化到n具体原理是什么
+## 0097 React-VUE 的 diff 算法，从 n^3 优化到 n，具体原理是什么
 
 
 1、Diff 算法介绍
@@ -369,12 +358,14 @@ forceupdate什么时候使用
 props state 更新时渲染组件
 如何避免没有用处的渲染？ Pure component should component update memo
    
-## 0154 Set state有几个函数？分别是同步的还是异步的，具体怎么执行
+## 0154 setState有几个参数？同步还是异步？
 
+
+setState 有两个参数，分别是同步的还是异步的，具体怎么执行
 
 第一个参数是对象，新更新的状态
 
-第二个是回调函数
+第二个是回调函数，是异步执行的（组件状态更新后，再执行这个函数）
 
 
 
@@ -383,9 +374,17 @@ props state 更新时渲染组件
 
 
 第1种从上到下使用props和state是
+
+
 第2种使用refs或者回调函数，从下向上
+
+
 第3种在react router当中使用location或者context
-第4种使用redux或mobx进行传承
+
+
+第4种使用redux或mobx进行传参
+
+
 
    
 ## 0156 函数式组件和类组件的区别怎么选择
@@ -396,27 +395,36 @@ props state 更新时渲染组件
 函数式组件比较简单，没有生命周期函数，使用hooks来模拟生命周期函数，适合状态比较简单的若干个情况
 整体的性能没有太大差距
    
-## 0157 Use state 的具体，use effect
+## 0157 useState 和 useEffect 具体使用
 
 
-Use state 表示初始化状态
+useState 表示初始化状态
 
-Use effect对应三个生命周期函数
+useEffect 对应三个生命周期函数
 
-ComponentDidMount component will a mount component did update
+componentDidMount componentWillUnmount componentDidUpdate
 
 这里最好补充一个具体的案例
 
 
 
    
-## 0158 React项目性能优化
+## 0158 React 项目性能优化
 
 
 第一网络请求优化（包括图片懒加载）
+
+
 第二原生js的优化，包括算法，缓存，从时间和空间分析
+
+
 第三，react 组件 方面的优化 减少不必要的渲染，有三种方法。 Should component update pure component reactmemo
+
+
 第4种对于移动端分片渲染或者列表渲染
+
+
+
    
 ## 0159 react and react-dom 的具体区别
 
@@ -425,6 +433,28 @@ React 是框架的主要功能，只要用到 jsx 或者 Component 等属性，�
 
 react-dom 是操作 dom 的工具，例如想把某个react组件挂载到根节点上，或者找到某个节点，可以使用这个库
 
+官方：<https://react.docschina.org/reference/react-dom> 
+
+当前项目中，主要的内置方法如下
+
+```javascript
+import ReactDOM from 'react-dom';
+
+// 把组件挂载到某个 DOM 节点内部
+ReactDOM.render(<App/>, document.getElementById('wrapper'));
+
+// 把组件从某个节点上卸载
+ReactDOM.unmountComponentAtNode(widgetWrapper);
+
+// 可以在渲染元素时将元素渲染到网页中的指定位置(例如 APP 渲染到根节点，对话框渲染到遮罩节点)
+ReactDOM.createPortal(this.props.children, this.el);
+    
+// 可以获取 类式组件 实例对应的浏览器 DOM 节点(此 API 将在未来的 React 主要版本中被移除)
+// https://react.docschina.org/reference/react-dom/findDOMNode#alternatives
+ReactDOM.findDOMNode(this.headerCell);
+
+```
+
 
 
    
@@ -432,7 +462,11 @@ react-dom 是操作 dom 的工具，例如想把某个react组件挂载到根节
 
 
 可以实现组件的嵌套和高阶组件
-高建组件需要使用forwardref实现或者在获取自组件
+
+高阶组件需要使用 forwardRef 实现，或者再获取自组件
+
+
+
    
 ## 0161 redux的具体操作
 
@@ -462,7 +496,7 @@ mapStateToProps 把父组件的 state 作为 props 传递给子组件
 
 
    
-## 0164 React root的具体使用
+## 0164 React hooks 的具体使用
 
 
 useState

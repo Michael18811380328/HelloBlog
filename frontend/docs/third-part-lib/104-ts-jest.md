@@ -1,4 +1,10 @@
-# Installing ts-jest
+# ts-jest
+
+第三方库 ts-jest 测试 TS 项目
+
+官方链接：https://www.npmjs.com/package/ts-jest
+
+周下载量1000W，可以放心使用
 
 `ts-jest` is a Typescript preprocessor for Jest pre-processor. You’ll need both Jest and TypeScript installed inside your project.
 
@@ -12,12 +18,6 @@ Using `npm`:
 
 ```
 npm install --save-dev jest typescript ts-jest
-```
-
-Using `yarn`:
-
-```
-yarn add --dev jest typescript ts-jest
 ```
 
 ## Jest config file
@@ -34,18 +34,7 @@ Using `npm`:
 npx ts-jest config:init
 ```
 
-Using `yarn`:
-
-```
-yarn ts-jest config:init
-```
 
 This will create a basic Jest configuration file which will make Jest know about your `.ts` files and handle them correctly.
 
 You can also use the `jest --init` command (prefixed with either `npx` or `yarn` depending on what you’re using) to have more options related to Jest. However, answer `no` to the Jest question about whether or not to enable Typescript. Instead, add the line: `preset: "ts-jest"` to the `jest.config.js` file afterwards.
-
-### Customizing
-
-For customizing jest, please follow their [official guide online](https://jestjs.io/docs/en/configuration.html).
-
-`ts-jest` specific options can be found [here](https://kulshekhar.github.io/ts-jest/user/config).

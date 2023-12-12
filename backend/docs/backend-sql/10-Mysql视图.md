@@ -1,6 +1,6 @@
 # Mysql 中的视图
 
-视图是基于一个或多个基本表的查询结果的虚拟表。它是一个逻辑概念，不实际存储数据，但可以像基本表一样使用。视图是通过SELECT语句创建的，并可以对其进行查询、插入、更新和删除等操作。
+视图是基于一个或多个基本表的查询结果的虚拟表。它是一个逻辑概念，不实际存储数据，但可以像基本表一样使用。视图是通过 SELECT 语句创建的，并可以对其进行查询、插入、更新和删除等操作。
 
 视图的主要作用是简化复杂查询和保护数据的安全性。通过创建视图，可以隐藏底层表结构和数据，只暴露需要的信息给用户。视图还可以将多个表的数据合并到一个虚拟表中，简化查询操作。
 
@@ -22,7 +22,7 @@
 
 查询效率：视图的查询效率可能会低于直接查询基本表，因为视图需要在查询时动态生成结果。
 
-更新限制：由于视图是基于基本表的查询结果，对视图的更新操作可能会受到限制。例如，视图中使用了聚合函数或GROUP BY子句，则不能对视图进行更新。
+更新限制：由于视图是基于基本表的查询结果，对视图的更新操作可能会受到限制。例如，视图中使用了聚合函数或 GROUP BY 子句，则不能对视图进行更新。
 
 存储空间：虽然视图不存储实际数据，但是需要占用一定的存储空间来保存查询定义。
 
@@ -40,16 +40,16 @@
 
 视图的增删和表类似
 
-~~~sql
+```sql
 CREATE VIEW view_name AS
 SELECT column1, column2
 FROM table1, table2
 WHERE conditions;
-~~~
+```
 
 案例
 
-~~~sql
+```sql
 create table t(quantity int, price int);
 
 insert into t values (3,50);
@@ -59,9 +59,7 @@ create view view_t as select quantity,price,quantity*price from t;
 select * from view_t;
 
 CREATE VIEW view_t2(qty,price,total) AS SELECT quantity,price,quantity*price FROM t;
-~~~
-
-
+```
 
 ## 参考链接
 
