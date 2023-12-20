@@ -2,8 +2,6 @@
 
 https://github.com/hijiangtao/FE-Cookbook
 
-[![GitHub contributors](https://camo.githubusercontent.com/1083c2e0c00f32fe3bf507267f65f7edb03cf0c3e8af058492a18c14219852ec/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f636f6e7472696275746f72732f68696a69616e6774616f2f46452d436f6f6b626f6f6b2e737667)](https://github.com/hijiangtao/FE-Cookbook/blob/master) [![GitHub issues](https://camo.githubusercontent.com/508446ad21fa94ef1b99f223ef03c4dd852cb4045f256fc548d186bd9eb9bcd0/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f6973737565732f68696a69616e6774616f2f46452d436f6f6b626f6f6b2e737667)](https://github.com/hijiangtao/FE-Cookbook/blob/master) [![PRs Welcome](https://camo.githubusercontent.com/b0ad703a46e8b249ef2a969ab95b2cb361a2866ecb8fe18495a2229f5847102d/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f5052732d77656c636f6d652d627269676874677265656e2e737667)](https://github.com/hijiangtao/FE-Cookbook#contribute) [![license](https://camo.githubusercontent.com/4f347860295126121ebd76c758868e606ef4b9bd505de52af12986df4658eb19/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f6c6963656e73652f68696a69616e6774616f2f46452d436f6f6b626f6f6b2e737667)](https://github.com/hijiangtao/FE-Cookbook/blob/master) [![Travis](https://camo.githubusercontent.com/f8158013a306aa9c8f07c71359117aad7821552e10572affea21fad97c5089fa/68747470733a2f2f696d672e736869656c64732e696f2f7472617669732f68696a69616e6774616f2f46452d436f6f6b626f6f6b2f6d61737465722e737667)](https://github.com/hijiangtao/FE-Cookbook/blob/master)
-
 在从事前端开发的时光中，从日常大牛的博客、动态中能零零散散看到不少好的技术文章，同时也看了不少前端书籍，包括《JavaScript 高级程序设计》、《JavaScript 语言精粹》、《HTML5高级程序设计》、《You Don't Know JS》系列、《CSS揭秘》等等，也针对很多方面的问题进行了细致的探索和查漏补缺，比如 CSS3 弹性盒布局、Hybrid App 唤起实现、Web 加载渲染性能、WebAssembly 等等，因此想通过这个项目把个人持续关注的前端相关内容汇总收集，一方面方便自己和其他同学日后查看、另一方面希望与有同样兴趣的同学一起将该项目完善壮大。
 
 本项目持续更新中，如果觉得有用欢迎给项目添加 Star；如果觉得有任何需要改进或者需要完善的地方，欢迎贡献代码提请 PR，针对无冲突的内容我会快速合并。希望为前端圈贡献一些自己的力量。
@@ -190,15 +188,3 @@ https://github.com/hijiangtao/FE-Cookbook
 
 - [Docker 核心技术与实现原理](https://draveness.me/docker)
 - [关系型数据库工作原理](http://blog.jobbole.com/100349/)
-
-## Contribute
-
-非常欢迎为该项目增加内容，共同完善前端技术整理。请 Fork 之后提交代码后发起 PR。
-
-## LICENSE
-
-Apache 2.0
-
-## Contact
-
-Joe Jiang, [Email](mailto:hijiangtao@gmail.com)

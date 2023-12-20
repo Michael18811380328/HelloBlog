@@ -11,7 +11,10 @@
 终端进入目标文件夹：
 
 ```bash
-$ http-server -c-1   （⚠️只输入http-server的话，更新了代码后，页面不会同步更新）
+$ http-server -c-1
+# （只输入http-server的话，更新了代码后，页面不会同步更新）
+# `-c`设置缓存控制最大标头的缓存时间（以秒为单位），例如“-c10”为10秒（默认为“3600”）。要禁用缓存，请使用“-c-1”。
+
 Starting up http-server, serving ./
 Available on:
   http://127.0.0.1:8080
