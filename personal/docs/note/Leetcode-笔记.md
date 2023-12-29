@@ -3,9 +3,7 @@
 ## 0277 1267. 统计参与通信的服务器
 
 
-
-
-基本思路：循环矩阵，哈希表计数，一次可以写出来
+简单：循环矩阵，哈希表计数，一次可以写出来
 
 <https://leetcode.cn/problems/count-servers-that-communicate/description/> 
 
@@ -19,6 +17,9 @@
  * 这个可以实现，性能略有点差
  */
 
+```
+
+```javascript
 var countServers = function(grid) {
     let rowDict = {};
     let columnDict = {};
@@ -50,7 +51,6 @@ var countServers = function(grid) {
 ## 0279 2778. 特殊元素平方和
 
 
-
 简单，循环数组，直接写出来
 
 <https://leetcode.cn/problems/sum-of-squares-of-special-elements/description/> 
@@ -60,11 +60,15 @@ var countServers = function(grid) {
  * @param {number[]} nums
  * @return {number}
  */
+
+```
+
+```javascript
 var sumOfSquares = function(nums) {
     const len = nums.length;
     let result = 0;
     for (let i = 0; i < len; i++) {
-        if (len % (i + 1) ===0) {
+        if (len % (i + 1) === 0) {
             result += (nums[i] * nums[i]);
         }
     }
@@ -79,17 +83,11 @@ var sumOfSquares = function(nums) {
 ## 0280 2784. 检查数组是否是好的
 
 
-
-
 <https://leetcode.cn/problems/check-if-array-is-good/description/> 
 
 简单，数组循环，直接写出来
 
 ```javascript
-/**
- * @param {number[]} nums
- * @return {boolean}
- */
 var isGood = function(nums) {
     const len = nums.length;
     nums = nums.sort((a, b) => a > b ? 1 : -1);
@@ -175,11 +173,9 @@ class Solution:
 ## 0275 2815. 数组中的最大数对和
 
 
-
+简单：考点：数组循环+哈希表，可以直接做出来
 
 <https://leetcode.cn/problems/max-pair-sum-in-an-array/description/> 
-
-考点：数组循环+哈希表，难度简单，可以直接做出来
 
 思路：第一次循环，计算每一个数字的位数最大值，并存放在哈希表中。第二次直接双重循环数组，判断每一个数对是否满足条件；如果满足条件就求和，然后计算和的最大值。时间复杂度是 N^2 。这个思路比较好理解。
 
@@ -233,6 +229,8 @@ var maxSum = function(nums) {
    
 ## 0276 2811. 判断是否能拆分数组
 
+
+困难
 
 <https://leetcode.cn/problems/check-if-it-is-possible-to-split-array/description/> 
 
@@ -391,16 +389,11 @@ https\://leetcode.cn/problems/check-if-it-is-possible-to-split-array/solutions/2
 ## 0290 1052.爱生气的书店老板
 
 
-运行通过
+困难，运行通过
 
 <https://leetcode.cn/problems/grumpy-bookstore-owner/> 
 
-```
-/*
- * @lc app=leetcode.cn id=1052 lang=javascript
- * [1052] 爱生气的书店老板-滑动窗口
- */
-
+```javascript
 /**
  * @param {number[]} customers
  * @param {number[]} grumpy
@@ -408,6 +401,10 @@ https\://leetcode.cn/problems/check-if-it-is-possible-to-split-array/solutions/2
  * @return {number}
  * 最大顾客数 = 各种情况下都不生气的顾客（staticValue） + 老板心情好时不生气的顾客（slide window, max）
  */
+
+```
+
+```javascript
 var maxSatisfied = function(customers, grumpy, minutes) {
   const len = customers.length;
   // 各种情况下都不生气的顾客（固定值）
@@ -465,7 +462,7 @@ var maxSatisfied = function(customers, grumpy, minutes) {
 ## 0291 2682. 找出转圈游戏输家
 
 
-运行通过
+中等，运行通过
 
 数组循环，注意特殊情况就行
 
@@ -520,7 +517,7 @@ var circularGameLosers = function(n, k) {
 ## 0292 1146. 快照数组 SnapshotArray
 
 
-有一定难度
+困难
 
 <https://leetcode.cn/problems/snapshot-array/solutions/2016347/zhi-ji-lu-xiu-gai-by-masx200-zguh/> 
 

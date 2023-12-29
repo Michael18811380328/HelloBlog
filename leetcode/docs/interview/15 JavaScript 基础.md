@@ -2,32 +2,6 @@
 
 > 注意：每道题前面出现的 (xx) 数字代表这道题出现的频次，此 JS 基础是基于 30+ 篇前端面经整理出的问题和对应的回答、参考链接等。文章内容为拿到 Offer 的本人整理。
 
-## （2）问：0.1 + 0.2 === 0.3 嘛？为什么？
-
-JavaScirpt 使用 Number 类型来表示数字（整数或浮点数），遵循 IEEE 754 标准，通过 64 位来表示一个数字（1 + 11 + 52）
-
-- 1 符号位，0 表示正数，1 表示负数 s
-- 11 指数位（e）
-- 52 尾数，小数部分（即有效数字）
-
-最大安全数字：Number.MAX_SAFE_INTEGER = Math.pow(2, 53) - 1，转换成整数就是 16 位，所以 0.1 === 0.1，是因为通过 toPrecision(16) 去有效位之后，两者是相等的。
-
-在两数相加时，会先转换成二进制，0.1 和 0.2 转换成二进制的时候尾数会发生无限循环，然后进行对阶运算，JS 引擎对二进制进行截断，所以造成精度丢失。
-
-所以总结：**精度丢失可能出现在进制转换和对阶运算中**
-
-### 参考链接
-
-- [juejin.im/post/5b90e0…](https://juejin.im/post/5b90e00e6fb9a05cf9080dff)
-
-## （4）问：JS 数据类型
-
-基本类型：Number、Boolean、String、null、undefined、symbol（ES6 新增的），BigInt（ES2020） 引用类型：Object，对象子类型（Array，Function）
-
-### 参考链接
-
-- [juejin.im/post/5b2b0a…](https://juejin.im/post/5b2b0a6051882574de4f3d96)
-- [developer.mozilla.org/zh-CN/docs/…](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Data_structures)
 
 ## 问：JS 整数是怎么表示的？
 
@@ -467,18 +441,6 @@ class MyPromise {
 
 ```
 
-## 问：js脚本加载问题，async、defer问题
-
-- 如果依赖其他脚本和 DOM 结果，使用 defer
-- 如果与 DOM 和其他脚本依赖不强时，使用 async
-
-### 参考资料
-
-- [mp.weixin.qq.com/s/pw5lfFeNa…](https://mp.weixin.qq.com/s/pw5lfFeNagmjFj45ygl2dQ)
-
-## 问：如何判断一个对象是不是空对象？
-
-Object.keys(obj).length === 0
 
 手写题：在线编程，getUrlParams(url,key); 就是很简单的获取url的某个参数的问题，但要考虑边界情况，多个返回值等等
 
@@ -491,48 +453,11 @@ Object.keys(obj).length === 0
 
 `<script src=’xxx’ ’xxx’/>` onload 是所以加载完成之后执行的
 
-## 问：怎么加事件监听，两种
-
-onclick 和 addEventListener
 
 ## 问：事件传播机制（事件流）
 
 冒泡和捕获
 
-## （4）问：说一下原型链和原型链的继承吧
-
-- 所有普通的 [[Prototype]] 链最终都会指向内置的 Object.prototype，其包含了 JavaScript 中许多通用的功能
-- 为什么能创建 “类”，借助一种特殊的属性：所有的函数默认都会拥有一个名为 prototype 的共有且不可枚举的属性，它会指向另外一个对象，这个对象通常被称为函数的原型
-
-```javascript
-function Person(name) {
-  this.name = name;
-}
-
-Person.prototype.constructor = Person
-
-```
-
-- 在发生 new 构造函数调用时，会将创建的新对象的 [[Prototype]] 链接到 Person.prototype 指向的对象，这个机制就被称为原型链继承
-- 方法定义在原型上，属性定义在构造函数上
-- 首先要说一下 JS 原型和实例的关系：每个构造函数 （constructor）都有一个原型对象（prototype），这个原型对象包含一个指向此构造函数的指针属性，通过 new 进行构造函数调用生成的实例，此实例包含一个指向原型对象的指针，也就是通过 [[Prototype]] 链接到了这个原型对象
-- 然后说一下 JS 中属性的查找：当我们试图引用实例对象的某个属性时，是按照这样的方式去查找的，首先查找实例对象上是否有这个属性，如果没有找到，就去构造这个实例对象的构造函数的 prototype 所指向的对象上去查找，如果还找不到，就从这个 prototype 对象所指向的构造函数的 prototype 原型对象上去查找
-- 什么是原型链：这样逐级查找形似一个链条，且通过 [[Prototype]] 属性链接，所以被称为原型链
-- 什么是原型链继承，类比类的继承：当有两个构造函数 A 和 B，将一个构造函数 A 的原型对象的，通过其 [[Prototype]] 属性链接到另外一个 B 构造函数的原型对象时，这个过程被称之为原型继承。
-
-### 标准答案更正确的解释
-
-**什么是原型链？**
-
-当对象查找一个属性的时候，如果没有在自身找到，那么就会查找自身的原型，如果原型还没有找到，那么会继续查找原型的原型，直到找到 Object.prototype 的原型时，此时原型为 null，查找停止。 这种通过 通过原型链接的逐级向上的查找链被称为原型链
-
-**什么是原型继承？**
-
-一个对象可以使用另外一个对象的属性或者方法，就称之为继承。具体是通过将这个对象的原型设置为另外一个对象，这样根据原型链的规则，如果查找一个对象属性且在自身不存在时，就会查找另外一个对象，相当于一个对象可以使用另外一个对象的属性和方法了。
-
-### 参考链接
-
-- [zhuanlan.zhihu.com/p/35790971](https://zhuanlan.zhihu.com/p/35790971)
 
 ## 问：说下对 JS 的了解吧
 
@@ -549,24 +474,6 @@ JS 严格意义上来说分为：语言标准部分（ECMAScript）+ 宿主环�
 - 在浏览器宿主环境包括 DOM + BOM 等
 - 在 Node，宿主环境包括一些文件、数据库、网络、与操作系统的交互等
 
-## 问：数组能够调用的函数有那些？
-
-- push
-- pop
-- splice
-- slice
-- shift
-- unshift
-- sort
-- find
-- findIndex
-- map/filter/reduce 等函数式编程方法
-- 还有一些原型链上的方法：toString/valudOf
-
-## 问：如何判断数组类型
-
-Array.isArray
-
 ## 问： 函数中的arguments是数组吗？类数组转数组的方法了解一下？
 
 是类数组，是属于鸭子类型的范畴，长得像数组，
@@ -574,10 +481,6 @@ Array.isArray
 - ... 运算符
 - Array.from
 - Array.prototype.slice.apply(arguments)
-
-## 问：用过 TypeScript 吗？它的作用是什么？
-
-为 JS 添加类型支持，以及提供最新版的 ES 语法的支持，是的利于团队协作和排错，开发大型项目
 
 ## 问：PWA使用过吗？serviceWorker的使用原理是啥？
 
@@ -772,11 +675,9 @@ Array.from(new Set([1, 1, 2, 2]))
 
 let 会产生临时性死区，在当前的执行上下文中，会进行变量提升，但是未被初始化，所以在执行上下文执行阶段，执行代码如果还没有执行到变量赋值，就引用此变量就会报错，此变量未初始化。
 
-## 问：变量提升
+## 问：
 
-函数在运行的时候，会首先创建执行上下文，然后将执行上下文入栈，然后当此执行上下文处于栈顶时，开始运行执行上下文。
-
-在创建执行上下文的过程中会做三件事：创建变量对象，创建作用域链，确定 this 指向，其中创建变量对象的过程中，首先会为 arguments 创建一个属性，值为 arguments，然后会扫码 function 函数声明，创建一个同名属性，值为函数的引用，接着会扫码 var 变量声明，创建一个同名属性，值为 undefined，这就是变量提升 ** **问：**如何看待 PWA App、原生 App 以及 Flutter 和 React Native 这种前端驱动的开发模式？
+** **问：**如何看待 PWA App、原生 App 以及 Flutter 和 React Native 这种前端驱动的开发模式？
 
 ## instance 如何使用
 

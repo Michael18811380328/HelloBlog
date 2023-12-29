@@ -10,11 +10,11 @@ var _hmt = _hmt || [];
 
   var me = document.createElement("meta");
   me.name = "keywords";
-  me.content = "Michael18811380328 前端 后端 安冰 js python 博客";
+  me.content = "Michael18811380328 前端 后端 js python 博客";
   s.parentNode.insertBefore(me, s);
 
   var met = document.createElement("meta");
   met.name = "description";
-  met.content = "安冰的个人网站 Michael An Personal Website Michael18811380328";
+  met.content = "个人网站 Michael An Personal Website Michael18811380328";
   s.parentNode.insertBefore(met, s);
 })();

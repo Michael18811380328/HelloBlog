@@ -9,8 +9,6 @@
 
 一般运用于界面滚动等时间触发比较频繁的
 
-<https://juejin.cn/post/7080357881798721566> 
-
 ```javascript
 /*
  * @des                               防抖函数
@@ -19,6 +17,10 @@
  * @param  {Boolen}    false          触发时是否立即执行一次，默认不执行
  * @return {Function}                 A new debounce function
  */
+
+```
+
+```javascript
 const debounce = (callback, delay = 200, im = false) => {
   let timeoutID = null
   return function() {
@@ -36,7 +38,6 @@ const debounce = (callback, delay = 200, im = false) => {
     }, delay)
   }
 }
-
 
 /*
  * @des                               节流函数
@@ -65,7 +66,6 @@ const throttle = (callback, delay = 200, im = false) => {
     }
   }
 }
-
 
 ```
 
@@ -268,6 +268,16 @@ var 声明变量直接绑定在全局作用当中，直接通过 window.x 可以
 
 let const 声明的变量都在局部的作用域中, 并没有绑定到全局变量当中，所以在全局变量上无法访问对应的变量。
 
+全名
+
+let: 允许你声明一个作用域被限制在块级中的变量、语句或者表达式 let 绑定不受变量提升的约束，这意味着let声明不会被提升到当前，该变量处于从块开始到初始化处理的"暂存死区"。
+
+var: 声明变量的作用域限制在其声明位置的上下文中，而非声明变量总是全局的, 由于变量声明（以及其他声明）总是在任意代码执行之前处理的，所以在代码中的任意位置声明变量总是等效于在代码开头声明。
+
+const 声明创建一个值的只读引用 (即指针)，
+
+这里就要介绍下 JS 常用类型: String、Number、Boolean、Array、Object、Null、Undefined。其中基本类型有 Undefined、Null、Boolean、Number、String，保存在栈中；复合类型 有 Array、Object ，保存在堆中； 基本数据当值发生改变时，那么其对应的指针也将发生改变，故造成 const申明基本数据类型时，再将其值改变时，将会造成报错， 例如 const a = 3 ; a = 5 时 将会报错；但是如果是复合类型时，如果只改变复合类型的其中某个Value项时， 将还是正常使用；
+
 
 
    
@@ -351,7 +361,7 @@ function fn() {
 
 Sleep函数外部可以使用then或者async await实现具体的下一步操作
 
-```
+```javascript
 function sleep(fn, times) {
 	return new Promise(() => {
 	    setTimeout(() => fn(), times)
@@ -1418,6 +1428,173 @@ export default Input
 ```
 
 参考链接：<https://blog.csdn.net/xjun0812/article/details/128440372> 
+
+
+
+   
+## 0307 JS 数据类型
+
+
+基本类型：Number、Boolean、String、null、undefined
+
+引用类型：Object，对象子类型（Array，Function）
+
+symbol（ES6 新增的），BigInt（ES2020） 
+
+参考链接
+
+<https://juejin.im/post/5b2b0a6051882574de4f3d96>
+
+<https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Data_structures>
+
+
+
+   
+## 0308 0.1 + 0.2 === 0.3 ?
+
+
+JavaScirpt 使用 Number 类型来表示数字（整数或浮点数），遵循 IEEE 754 标准，通过 64 位来表示一个数字（1 + 11 + 52）
+
+\- 1 符号位，0 表示正数，1 表示负数 s
+
+\- 11 指数位（e）
+
+\- 52 尾数，小数部分（即有效数字）
+
+最大安全数字：Number.MAX_SAFE_INTEGER = Math.pow(2, 53) - 1，转换成整数就是 16 位，所以 0.1 === 0.1，是因为通过 toPrecision(16) 去有效位之后，两者是相等的。
+
+在两数相加时，会先转换成二进制，0.1 和 0.2 转换成二进制的时候尾数会发生无限循环，然后进行对阶运算，JS 引擎对二进制进行截断，所以造成精度丢失。
+
+所以总结：精度丢失可能出现在进制转换和对阶运算中
+
+<https://juejin.im/post/5b90e00e6fb9a05cf9080dff>
+
+
+
+   
+## 0309 js脚本加载问题，async、defer问题
+
+
+如果依赖其他脚本和 DOM 结果，使用 defer
+
+如果与 DOM 和其他脚本依赖不强时，使用 async
+
+<https://mp.weixin.qq.com/s/pw5lfFeNagmjFj45ygl2dQ> 
+
+
+
+   
+## 0310 如何判断一个对象是不是空对象
+
+
+Object.keys(obj).length === 0
+
+
+
+
+
+   
+## 0311 怎么加事件监听，两种
+
+
+onclick 和 addEventListener
+
+
+
+
+
+   
+## 0312 说一下原型链和原型链的继承吧(常考)
+
+
+所有普通的 \[\[Prototype]] 链最终都会指向内置的 Object.prototype，其包含了 JavaScript 中许多通用的功能
+
+为什么能创建 “类”，借助一种特殊的属性：所有的函数默认都会拥有一个名为 prototype 的共有且不可枚举的属性，它会指向另外一个对象，这个对象通常被称为函数的原型
+
+```
+function Person(name) {
+  this.name = name;
+}
+
+Person.prototype.constructor = Person
+
+```
+
+\- 在发生 new 构造函数调用时，会将创建的新对象的 \[\[Prototype]] 链接到 Person.prototype 指向的对象，这个机制就被称为原型链继承
+
+\- 方法定义在原型上，属性定义在构造函数上
+
+\- 首先要说一下 JS 原型和实例的关系：每个构造函数 （constructor）都有一个原型对象（prototype），这个原型对象包含一个指向此构造函数的指针属性，通过 new 进行构造函数调用生成的实例，此实例包含一个指向原型对象的指针，也就是通过 \[\[Prototype]] 链接到了这个原型对象
+
+\- 然后说一下 JS 中属性的查找：当我们试图引用实例对象的某个属性时，是按照这样的方式去查找的，首先查找实例对象上是否有这个属性，如果没有找到，就去构造这个实例对象的构造函数的 prototype 所指向的对象上去查找，如果还找不到，就从这个 prototype 对象所指向的构造函数的 prototype 原型对象上去查找
+
+\- 什么是原型链：这样逐级查找形似一个链条，且通过 \[\[Prototype]] 属性链接，所以被称为原型链
+
+\- 什么是原型链继承，类比类的继承：当有两个构造函数 A 和 B，将一个构造函数 A 的原型对象的，通过其 \[\[Prototype]] 属性链接到另外一个 B 构造函数的原型对象时，这个过程被称之为原型继承。
+
+标准答案更正确的解释
+
+什么是原型链：当对象查找一个属性的时候，如果没有在自身找到，那么就会查找自身的原型，如果原型还没有找到，那么会继续查找原型的原型，直到找到 Object.prototype 的原型时，此时原型为 null，查找停止。 这种通过 通过原型链接的逐级向上的查找链被称为原型链
+
+什么是原型继承：一个对象可以使用另外一个对象的属性或者方法，就称之为继承。具体是通过将这个对象的原型设置为另外一个对象，这样根据原型链的规则，如果查找一个对象属性且在自身不存在时，就会查找另外一个对象，相当于一个对象可以使用另外一个对象的属性和方法了。
+
+<https://zhuanlan.zhihu.com/p/35790971> 
+
+
+
+   
+## 0313 数组常用 API
+
+
+```
+- push
+- pop
+- splice
+- slice
+- shift
+- unshift
+- sort
+- find
+- findIndex
+- map/filter/reduce 等函数式编程方法
+- 还有一些原型链上的方法：toString/valudOf
+
+```
+
+ES6 的语法
+
+```
+includes
+
+```
+
+
+
+   
+## 0314 变量提升
+
+
+函数在运行的时候，会首先创建执行上下文，然后将执行上下文入栈，然后当此执行上下文处于栈顶时，开始运行执行上下文。
+
+在创建执行上下文的过程中会做三件事：创建变量对象，创建作用域链，确定 this 指向，其中创建变量对象的过程中，首先会为 arguments 创建一个属性，值为 arguments，然后会扫码 function 函数声明，创建一个同名属性，值为函数的引用，接着会扫码 var 变量声明，创建一个同名属性，值为 undefined，这就是变量提升 
+
+
+
+
+
+   
+## 0321 快速的让一个数组乱序
+
+
+随机数
+
+```javascript
+var arr = [1,2,3,4,5,6,7,8,9,10];
+arr.sort(function(){
+    return Math.random() - 0.5;
+})
+
+```
 
 
 
