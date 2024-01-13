@@ -288,7 +288,7 @@ create table user(
 
 desc user;
 
-show craete table user;
+show create table user;
 
 alter table user add/modify/change/drop xxx;
 
@@ -1135,7 +1135,7 @@ create table dept (
 insert into dept(name) values('产品部'), ('销售部'), ('行政部');
 
 # 创建员工表（子表）
-craete tabel emp(
+create tabel emp(
 	id int auto_increment primary key,
 	name varchar(50) not null unique,
 	age int(2) check(age > 0 && age < 100),
@@ -1247,7 +1247,7 @@ alter table 子表名 add constraint 外键名称 foreign key （子表中的外
 ```sql
 # 学生表
 create table student(
-	id int auto_increment primary key,
+  id int auto_increment primary key,
   name varchar(10),
   number varchar(10) comment '学号',
 );
@@ -1256,7 +1256,7 @@ insert into student values(null, 'Mike', '001'), (null, 'John', '002'), (null, '
 
 # 课程表
 create table course(
-	id int auto_increment primary key,
+  id int auto_increment primary key,
   name varchar(10),
 );
 
@@ -1264,7 +1264,7 @@ insert into course values(null, 'Java'), (null, 'PHP'), (null, 'JS');
 
 # 多对多关系，创建关联表
 create table student_course(
-	id int auto_increment primary key,
+  id int auto_increment primary key,
   studentid int not null,
   courseid int not null,
   # 创建外键和两个表的关联关系
@@ -1278,26 +1278,20 @@ insert into student_course values(null, 1, 1), (null, 1, 2), (null, 1, 3);
 
 一对一的关系（用户表和用户详情表的关系）
 
-
-
 用户表存放基础字段，用户详情表存放某个领域字段，以提升存储的查询效率。
-
-
 
 解决：一个表中插入外键，并设置外键唯一（unique）
 
-
-
 ```sql
 create table user_basic(
-	id int auto_increment primary key,
+  id int auto_increment primary key,
   name varchar(10),
   age int,
   gender char(1),
 ) comment '用户基本信息表';
 
-craete table user_detail(
-	id int auto_increment primary key,
+create table user_detail(
+  id int auto_increment primary key,
   degree varchar(20),
   major varchar(50),
   # 外键
@@ -1408,14 +1402,618 @@ select d.*, e.* from department as d left join employee as e on e.dept_id = d.id
 
 
 
+### 41-41. 基础-多表查询-自连接
+自连接：一个表的连接关系。
+
+自连接可以支持内连接，也可以支持外连接。
+
+使用语法：
+
+```sql
+SELECT * FROM TABLE1 A, TABLE1 B WHERE A.NAME = B.BOSS_NAME; 
+
+```
+
+实际案例：员工表中，找到用户和对应的领导关系并输出。
+
+```sql
+# 内连接查询领导和员工对应的信息
+select a.name '员工', b.name '领导' from emp a, emp b where a.manager_id = b.id;
+
+```
+
+如果需要查询结果包括顶层领导（即 manager_id is null），那么需要左外连接实现
+
+```sql
+select a.name '员工', b.name '领导' from emp a left join emp b on a.manager_id = b.id;
+
+```
+
+
+
+
 ### 42-42. 基础-多表查询-联合查询 union
+联合查询：就是把两个 SQL 语句查询两个表（并列查询关系），如果结果的列一样(列数一样，字段类型一样)，直接合并到一起。
+
+不去重就使用 union all，去重就使用 union
+
+```
+SELECT city FROM customers
+UNION
+SELECT city FROM suppliers;
+
+```
+
+实际案例
+
+```
+select * from employee1 where salary < 10000
+union all
+select * from employee2 where age > 40;
+
+```
+
 > 参考链接：<https://www.runoob.com/mysql/mysql-union-operation.html> 
 
 
 
 
+### 43-43. 基础-多表查询-子查询介绍
+子查询：一个 select 语句嵌套另一个 select 语句，嵌套查询
+
+子查询外部的 sql 语句，可以是 select insert update delete 语句。内部的查询语句是 select 。
+
+根据子查询结果的分类（4）：
+
+一行一列（就是一个值）：标量子查询
+
+多行：行子查询
+
+多列：列子查询
+
+多行多列：表子查询
+
+
+
+
+
+
+### 44-44. 基础-多表查询-标量子查询
+标量子查询：查询结果是一个值的情况。
+
+先把查询需求，拆分成两个查询语句，然后再实现子查询结构
+
+```sql
+# 查询销售部员工的全部信息
+select id from dept where name = '销售部';
+select * from emp where dept_id = '20';
+
+select * from emp where dept = (select id from dept where name = '销售部');
+
+select * from emp where entry_date > (select entry_date from emp where name = 'Mike');
+
+```
+
+
+
+
+### 45-45. 基础-多表查询-列子查询
+列子查询：子查询返回的结果是一列
+
+常用操作符：in, not in, any, some, all 不能直接使用 max 等函数处理。some = any 
+
+```sql
+# 需求1：查询销售部或者技术部全部员工信息
+
+select id from dept where name = '销售部' or name = '技术部';
+
+select * from emp where empt_id in (2, 4);
+
+# 组合起来就是
+select * from emp where empt_id in (select id from dept where name = '销售部' or name = '技术部');
+
+```
+
+实例2
+
+```sql
+# 查询比财务部全部人员工资都高的人, 分成三步实现
+
+select id from dept where id = '财务部';
+
+select salary from emp where dept_id = (select id from dept where id = '财务部');
+
+select * from emp where salary > all (select salary from emp where dept_id = (select id from dept where id = '财务部'));
+
+# 查询比财务部全部人员任意一个工资高的人, 需要把 all 改成 any 或者 some
+select * from emp where salary > any (select salary from emp where dept_id = (select id from dept where id = '财务部'));
+
+```
+
+
+
+
+### 46-46. 基础-多表查询-行子查询
+行子查询：
+
+子查询结果是一行的情况
+
+```
+select * from table2 where (字段1， 字段2) =（select 字段1， 字段2 from table1）
+
+```
+
+```
+# 需求：查询与小明薪资和领导相同的其他员工
+
+select salary, managerid from emp where name = 'Mike'; # 10000, 3
+
+select * from emp where salary = 10000 and managerid = '3';
+
+# 换一种写法
+select * from emp where (salary, managerid) = (10000, '3');
+
+# 结合第一句的查询结果，写成一句 sql
+select * from emp where (salary, managerid) = (select salary, managerid from emp where name = 'Mike');
+
+```
+
+
+
+
+### 47-47. 基础-多表查询-表子查询
+表子查询，在行子查询的基础上，增加多行即可，变成 in
+
+```
+select * from table2 where (字段1， 字段2) in（select 字段1， 字段2 from table1）
+
+```
+
+需求1：查询与 Tom Mike 薪资和领导相同的其他员工（结合上一节的案例）
+
+```
+select * from emp where (salary, managerid) in (select salary, managerid from emp where name = 'Mike' or name = 'Tom');
+
+```
+
+需求2：一个表的表子查询，继续作为另一个 sql 查询的表
+
+```sql
+select * from emp where entrydate > '2022';
+
+select * from (select * from emp where entrydate > '2022') AS e left join dept AS d ON e.dept_id = d.id;
+
+```
+
+
+
+
+### 48-48. 基础-多表查询-练习1
+根据需求完成案例练习（多表查询）
+
+#### 准备
+
+需要三个表：员工表、部门表、薪资等级表。
+
+员工表和部门表是已有的表。部门表有主键，员工表有对应的外键。
+
+其中薪资等级表，表示不同阶段薪资员工的等级。薪资登记表和其他的表没有关联的外键。
+
+```sql
+create table salgrade (
+	grade int comment '评级，例如12345',
+	losal int comment 'low sale 下限',
+	hisal int comment 'high sale 上限',
+) comment '薪资登记表';
+
+insert into salgrade values (1, 0, 10000);
+insert into salgrade values (2, 10000, 50000);
+insert into salgrade values (3, 50000, 100000);
+
+```
+
+#### 案例1
+
+需求：查询员工姓名、年龄、部门（需要隐式内连接）
+
+表：员工表 emp、部门表 dept
+
+连接条件：emp.dept_id = dept.id
+
+```sql
+select e.name, e.age, d.name from emp e, dept d where e.dept_id = d.id;
+
+```
+
+#### 案例2
+
+需求：查询员工姓名、年龄、部门（需要显式内连接）年龄小于 30岁
+
+表：员工表 emp、部门表 dept
+
+连接条件：emp.dept_id = dept.id
+
+```sql
+select e.name, e.age, d.name from emp e inner join dept d on e.dept_id = d.id where e.age < 30;
+
+```
+
+#### 案例3
+
+需求 查询非空部门的 ID 和名称（部门必须有人），注意 distinct
+
+表：员工表 emp、部门表 dept
+
+连接条件：emp.dept_id = dept.id
+
+```sql
+select distinct d.name, d.id from emp e, dept d where e.dept_id = d.id;
+
+```
+
+#### 案例4
+
+需求 查询年龄大于40岁的员工，以及归属的部门信息
+
+表：员工表 emp、部门表 dept
+
+连接条件：emp.dept_id = dept.id
+
+```sql
+select e.*, d.name from emp as e left join dept as d on e.dept_id = d.id where e.age > 40;
+
+```
+
+#### 案例5
+
+需求 查询所有员工的工资级别
+
+表：员工表 emp 薪资等级表 salgrade
+
+连接条件：无外键，所以 emp.salary > salgrade.losal and emp.salary \<= salgrade.hisal
+
+```sql
+select e.*, s.level from emp e, salgrade s where e.salary > s.losal and e.salary <= s.hisal;
+
+# 优化语句
+select e.*, s.level from emp e, salgrade s where e.salary between e.salary and s.hisal;
+
+```
+
+
+
+
+### 49-49. 基础-多表查询-练习2
+根据需求完成案例练习（多表查询）7 个案例
+
+#### 案例6
+
+查询研发部所有员工信息和工资等级
+
+表 emp dept salgrade
+
+```sql
+select e.*, d.name, s.level from emp e, dept d, salgrade s where (e.dept_id = d.id) and (e.salary between s.losal and s.hisal) and (d.name = '研发部');
+
+# 如果条件比较多，可以格式化一下
+select
+	e.*,
+	d.name,
+	s.level
+from
+	emp e,
+	dept d,
+	salgrade s
+where (e.dept_id = d.id)
+	and (e.salary between s.losal and s.hisal)
+	and (d.name = '研发部');
+
+```
+
+#### 案例7
+
+查询研发部员工的平均工资
+
+表：emp, dept
+
+```sql
+select avg(e.salary) from emp e, dept d where emp.dept_id = d.id and d.name = '研发部';
+
+```
+
+#### 案例8
+
+查询工资比 Mike 高的员工信息
+
+表 emp
+
+```sql
+# 第一步获取 mike 的工资，然后联合查询
+select e.salary from emp e where e.name = 'Mike';
+
+select * from emp e where e.salary > (select e.salary from emp e where e.name = 'Mike');
+
+```
+
+#### 案例9
+
+查询比平均工资高的员工信息
+
+表 emp
+
+```sql
+# 第一步获取平均工资
+select avg(salary) from emp;
+
+select * from emp where emp.salary > (select avg(salary) from emp);
+
+```
+
+#### 案例10
+
+查询低于本部门平均工资的员工信息
+
+表 emp
+
+```sql
+# 查询某部门的平均工资
+select avg(e.salary) from emp e where e.dept_id = 1;
+
+# 查询本部门低于平均工资的员工信息
+select * from emp e2 where e2.salary < (select avg(e1.salary) from emp e1 where e1.dept_id = e2.dept_id);
+
+```
+
+#### 案例11
+
+查询所有部门信息，并统计部门的人数
+
+```sql
+# 查询某一个部门的人数（类似案例10）
+select count(*) from emp e1 where e1.dept_id = 1;
+
+select d.id, d.name, (select count(*) from emp where emp.dept_id = d.id) '部门人数' from dept d;
+
+```
+
+#### 案例12
+
+多对多的查询情况（学生和选课表）
+
+查询所有学生的选课情况
+
+表 student course 是多对多，所以有中间表 student_course
+
+连接条件 student 和 course 有主键，student_course 有外键
+
+查询条件 student.id = student_course.student_id, sourse.id = student_course.course_id
+
+```sql
+select s.name, c.name from student s, course c, student_course sc where s.id = sc.student_id and c.id = sc.course_id;
+
+```
+
+
+
+
+### 50-50. 基础-多表查询-小结
+#### 多表关系
+
+* 一对多：多的一方设置外键，关联到少的一方的主键。例如用户和评论表。
+* 多对多：专门建立中间表，存放两个外键，关联到两个主表的主键。例如学生和选课表。
+* 一对一：设置一个表外键（UNIQUE 确保一对一），关联到主表的主键。例如用户表和用户受教育表。
+
+#### 多表查询
+
+1、内连接：查询两个表交集（inner join）
+
+隐式 (table1，table2 where)：select \* from table1, table2 where table1.id = table2.id 
+
+显式（table1 inner join table2, on）: select \* from table1 inner join table2 on table1.id = table2.id 
+
+2、外连接：查询两个表并集（left join/right join）
+
+3、自连接：select \* from table1 as a, table1 as b where ...
+
+4、子查询：select 多层嵌套。根据查询结果分成：标量子查询、列子查询、行子查询、表子查询
+
+
+
+
+
+
+
+
 ### 51-51. 基础-事务-简介
+事务介绍
+
+事务操作
+
+事务四大特性（考点）
+
+并发事务造成3个问题
+
+事务隔离的四个级别
+
+#### 事务概述
+
+事务是一组操作的集合，是一个最小的不可分割的工作单位，事务可以用来维护数据库的完整性，保证成批的 SQL 语句要么全部执行，要么全部不执行。
+
+MySQL 事务主要用于处理操作量大，复杂度高的数据。事务是一组SQL语句的执行，它们被视为一个单独的工作单元。
+
+事务用来管理 **insert、update、delete** 语句。
+
 > 其他参考：<https://www.runoob.com/mysql/mysql-transaction.html> 
+
+案例：两个人银行卡转账，第一个人账户减少，第二个人账户增加，这是一个事务
+
+默认 mysql 是自动提交事务（执行一个 DML 语句，mysql 会立即隐式提交事务）
+
+
+
+
+### 52-52. 基础-事务-操作演示
+实际案例：转账操作：
+
+```sql
+# 1 查询 mike 用户存在，且余额大于1000（todo）
+select * from account where name = 'mike';
+
+# 2 mike 账户减少1000
+update account set money = money - 1000 where name = 'mike';
+
+# 3 amy 账户增加1000
+update account set money = money + 1000 where name = 'amy';
+
+```
+
+设置事务的提交方式，然后执行 SQL，执行正确就提交事务，执行错误就回滚事务。
+
+```sql
+# 第一种方法：设置当前会话的事务
+SELECT @@autocommit;
+SET @@autocommit = 0;
+
+# 第二章方法：
+start transaction;
+
+commit;
+
+rollback;
+
+```
+
+那么增加了事务后的转账操作
+
+```sql
+start transaction;
+
+# 1 查询 mike 用户存在，且余额大于1000（todo）
+select﻿ ﻿*﻿ ﻿from﻿ account ﻿where﻿ name ﻿=﻿ ﻿'mike'﻿;
+
+﻿
+# 2 mike 账户减少1000
+update﻿ account ﻿set﻿ money ﻿=﻿ money ﻿-﻿ ﻿1000﻿ ﻿where﻿ name ﻿=﻿ ﻿'mike'﻿;
+
+﻿
+# 3 amy 账户增加1000
+update﻿ account ﻿set﻿ money ﻿=﻿ money ﻿+﻿ ﻿1000﻿ ﻿where﻿ name ﻿=﻿ ﻿'amy'﻿;
+
+
+# 如果执行成功，提交事务
+commit﻿;
+
+# 如果执行失败（mike 金额小于1000，扣款失败），不提交事务
+rollback﻿;
+
+```
+
+
+
+
+### 53-53. 基础-事务-四大特性ACID
+事务是必须满足4个条件（ACID）：
+
+原子性（**A**tomicity，或称不可分割性）：事务是不可分割的最小操作单元。要么全部成功，要么全部失败。
+
+一致性（**C**onsistency）：所有的操作执行结果一致，要么执行成功，要么执行失败。事务完成后，底层数据要么全部更新，要么全部不变。
+
+隔离性（**I**solation，又称独立性）：数据库系统提供的隔离系统，保证并发的事务可以正常运行。
+
+持久性（**D**urability）：事务一旦提交或者回滚，默认直接写入硬盘，就是写入持久层（硬盘上的文件）。
+
+
+
+
+### 54-54. 基础-事务-并发事务问题
+事务并发，可能造成3个问题，所以使用事务隔离级别避免这三个问题
+
+并发状态下，不同事务读取数据库时，可能存在冲突或者错误。
+
+* 脏读：一个事务读取到另一个事务没有提交的数据
+* 不可重复读：A事务读取一个数据，B事务修改了数据，A事务读取同一个数据，数据不同。
+* 幻读：A事务查询行不存在，B事务插入了一行，A事务继续插入行报错，A事务查询航但是不存在，出现行的幻读。
+
+![](https://cloud.seatable.cn/workspace/81910/asset/b0de7002-5abf-48b9-b07b-ba7033be74a7/images/auto-upload/image-1703988216105.png)
+
+
+
+
+### 55-55. 基础-事务-并发事务演示及隔离级别
+不同的事务隔离级别，有四种
+
+![](https://cloud.seatable.cn/workspace/81910/asset/b0de7002-5abf-48b9-b07b-ba7033be74a7/images/auto-upload/image-1703988539332.png)
+
+```
+查看事务隔离级别
+select @@transaction_isolation;
+
+设置事务隔离级别
+set [session|global] transaction isolation level [repeatable read] 上面四选一
+
+```
+
+4、串行化：并发事务时，只允许一个事务操作（类似加锁，性能比较差）
+
+默认 mysql 的事件隔离级别不需要修改 
+
+事务隔离级别越高，安全性越好，性能越低。安全性最好的性能最差；安全性不太好的性能好。
+
+
+
+
+
+
+### 56-56. 基础-事务-小结
+1、事务是一组操作的集合，事务内的操作可以全部执行成功，否则全部执行失败。
+
+2、事务操作
+
+start transaction 开启事务
+
+commit 提交事务
+
+rollback 回滚事务
+
+3、事务的四大特征
+
+原子性
+
+一致性
+
+隔离性
+
+持久性
+
+4、事务并发问题：脏读、不可重复读、幻读
+
+5、事务隔离级别：读取未提交、读取已提交（oracle）、重复读（mysql）、序列化
+
+
+
+
+
+
+### 57-57. 基础篇总结
+基础篇知识框架
+
+```
+MYSQL 概述
+
+SQL 语法（DCL，DQL，DML）
+
+函数（文本函数、数学函数、日期函数）
+
+约束（外键约束，非空约束，唯一约束）
+
+多表查询（内连接，外连接，子查询）
+
+事务（属性，原子性，一致性，隔离性，持久性）
+
+```
+
+要求：掌握基本 SQL 概念，可以使用基本的增删改查语句。（不考虑性能问题）
+
 
 
 
