@@ -1439,13 +1439,46 @@ export default Input
 
 引用类型：Object，对象子类型（Array，Function）
 
-symbol（ES6 新增的），BigInt（ES2020） 
+symbol（ES6 新增的）: 表示独一无二的值，主要用于对象的属性，避免属性冲突，避免魔法字符串。
+
+```javascript
+let s = Symbol();
+let obj = {};
+obj.s = 10;
+
+```
+
+BigInt（ES2020） 它提供了一种方法来表示大于 `2^53 - 1` 的整数，详见另一个知识点
 
 参考链接
 
 <https://juejin.im/post/5b2b0a6051882574de4f3d96>
 
 <https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Data_structures>
+
+
+
+   
+## 0327 BigInt 是什么？
+
+
+BigInt（ES2020） 它提供了一种方法来表示大于 `2^53 - 1` 的整数（大于 9007 1992 5474 0991）
+
+可以用在一个整数字面量后面加 `n` 的方式定义一个 `BigInt` ，如：`10n`，或者调用函数 `BigInt()`（但不包含 `new` 运算符）并传递一个整数值或字符串值。
+
+```
+typeof 1n === "bigint"; // true
+typeof BigInt("1") === "bigint"; // true
+
+```
+
+BigInt 在某些方面类似于 Number ，但是也有几个关键的不同点：不能用于 Math 对象中的方法；不能和任何 Number 实例混合运算，两者必须转换成同一种类型。在两种类型来回转换时要小心，因为 `BigInt` 变量在转换成 Number 变量时可能会丢失精度。
+
+参考链接
+
+<https://developer.mozilla.org/zh-CN/docs/Glossary/BigInt> 
+
+实际项目还没有用到这么大的数字
 
 
 
@@ -1472,14 +1505,16 @@ JavaScirpt 使用 Number 类型来表示数字（整数或浮点数），遵循 
 
 
    
-## 0309 js脚本加载问题，async、defer问题
+## 0309 js 加载时 async、defer 的区别
 
 
-如果依赖其他脚本和 DOM 结果，使用 defer
+如果依赖其他脚本和 DOM 结果，使用 defer，先下载完所有defer再依次执行
 
-如果与 DOM 和其他脚本依赖不强时，使用 async
+如果与 DOM 和其他脚本依赖不强时，使用 async，先下载完先执行
 
 <https://mp.weixin.qq.com/s/pw5lfFeNagmjFj45ygl2dQ> 
+
+<https://zhuanlan.zhihu.com/p/622763093> 
 
 
 
@@ -1487,9 +1522,32 @@ JavaScirpt 使用 Number 类型来表示数字（整数或浮点数），遵循 
 ## 0310 如何判断一个对象是不是空对象
 
 
+判断对象是否为空
+
+```javascript
 Object.keys(obj).length === 0
 
+```
 
+```javascript
+// jquery
+
+/**
+ * Check whether the object is empty.
+ * The true will be returned if the "obj" is invalid.
+ * @param {object} obj
+ * @returns bool
+ */
+const isEmptyObject = (obj) => {
+  let name;
+  // eslint-disable-next-line
+  for (name in obj) {
+    return false;
+  }
+  return true;
+};
+
+```
 
 
 
@@ -1497,26 +1555,36 @@ Object.keys(obj).length === 0
 ## 0311 怎么加事件监听，两种
 
 
-onclick 和 addEventListener
-
-
+onclick 和 addEventListener 对比
 
 
 
    
-## 0312 说一下原型链和原型链的继承吧(常考)
+## 0312 原型链和原型链的继承
 
+
+标准答案
+
+什么是原型链：当对象查找一个属性的时候，如果没有在自身属性中找到，那么就会查找自身的原型，如果原型还没有找到，那么会继续查找原型的原型，直到找到 Object.prototype 的原型时，此时原型为 null，查找停止。 这种通过原型链接的逐级向上的查找链，被称为原型链。
+
+什么是原型继承：一个对象可以使用另外一个对象的属性或者方法，就称之为继承。具体是通过将这个对象的原型设置为另外一个对象，这样根据原型链的规则，如果查找一个对象属性且在自身不存在时，就会查找另外一个对象，相当于一个对象可以使用另外一个对象的属性和方法了。
+
+实际案例，class App extents React.Component 这样 APP 对象可以使用 Component 原型链的属性和方法
+
+<https://zhuanlan.zhihu.com/p/35790971> 
+
+其他补充：
 
 所有普通的 \[\[Prototype]] 链最终都会指向内置的 Object.prototype，其包含了 JavaScript 中许多通用的功能
 
 为什么能创建 “类”，借助一种特殊的属性：所有的函数默认都会拥有一个名为 prototype 的共有且不可枚举的属性，它会指向另外一个对象，这个对象通常被称为函数的原型
 
-```
+```javascript
 function Person(name) {
   this.name = name;
 }
 
-Person.prototype.constructor = Person
+Person.prototype.constructor = Person;
 
 ```
 
@@ -1526,19 +1594,11 @@ Person.prototype.constructor = Person
 
 \- 首先要说一下 JS 原型和实例的关系：每个构造函数 （constructor）都有一个原型对象（prototype），这个原型对象包含一个指向此构造函数的指针属性，通过 new 进行构造函数调用生成的实例，此实例包含一个指向原型对象的指针，也就是通过 \[\[Prototype]] 链接到了这个原型对象
 
-\- 然后说一下 JS 中属性的查找：当我们试图引用实例对象的某个属性时，是按照这样的方式去查找的，首先查找实例对象上是否有这个属性，如果没有找到，就去构造这个实例对象的构造函数的 prototype 所指向的对象上去查找，如果还找不到，就从这个 prototype 对象所指向的构造函数的 prototype 原型对象上去查找
+\- 然后说一下 JS 中属性的查找：当我们试图引用实例对象的某个属性时，首先查找实例对象上是否有这个属性，如果没有找到，就去构造这个实例对象的构造函数的 prototype 所指向的对象上去查找，如果还找不到，就从这个 prototype 对象所指向的构造函数的 prototype 原型对象上去查找
 
 \- 什么是原型链：这样逐级查找形似一个链条，且通过 \[\[Prototype]] 属性链接，所以被称为原型链
 
 \- 什么是原型链继承，类比类的继承：当有两个构造函数 A 和 B，将一个构造函数 A 的原型对象的，通过其 \[\[Prototype]] 属性链接到另外一个 B 构造函数的原型对象时，这个过程被称之为原型继承。
-
-标准答案更正确的解释
-
-什么是原型链：当对象查找一个属性的时候，如果没有在自身找到，那么就会查找自身的原型，如果原型还没有找到，那么会继续查找原型的原型，直到找到 Object.prototype 的原型时，此时原型为 null，查找停止。 这种通过 通过原型链接的逐级向上的查找链被称为原型链
-
-什么是原型继承：一个对象可以使用另外一个对象的属性或者方法，就称之为继承。具体是通过将这个对象的原型设置为另外一个对象，这样根据原型链的规则，如果查找一个对象属性且在自身不存在时，就会查找另外一个对象，相当于一个对象可以使用另外一个对象的属性和方法了。
-
-<https://zhuanlan.zhihu.com/p/35790971> 
 
 
 
@@ -1546,25 +1606,50 @@ Person.prototype.constructor = Person
 ## 0313 数组常用 API
 
 
-```
-- push
-- pop
-- splice
-- slice
-- shift
-- unshift
-- sort
-- find
-- findIndex
-- map/filter/reduce 等函数式编程方法
-- 还有一些原型链上的方法：toString/valudOf
+基础知识点
 
 ```
+push
 
-ES6 的语法
+pop
 
-```
+splice
+
+slice
+
+shift
+
+unshift
+
+sort
+
+find
+
+findIndex
+
+forEach
+
+map
+
+filter
+
+reduce
+
+toString
+
+valudOf
+
 includes
+
+indexOf
+
+lastIndexOf
+
+some
+
+any
+
+every
 
 ```
 
@@ -1576,9 +1661,9 @@ includes
 
 函数在运行的时候，会首先创建执行上下文，然后将执行上下文入栈，然后当此执行上下文处于栈顶时，开始运行执行上下文。
 
-在创建执行上下文的过程中会做三件事：创建变量对象，创建作用域链，确定 this 指向，其中创建变量对象的过程中，首先会为 arguments 创建一个属性，值为 arguments，然后会扫码 function 函数声明，创建一个同名属性，值为函数的引用，接着会扫码 var 变量声明，创建一个同名属性，值为 undefined，这就是变量提升 
+在创建执行上下文的过程中会做三件事：创建变量对象，创建作用域链，确定 this 指向
 
-
+其中创建变量对象的过程中，首先会为 arguments 创建一个属性，值为 arguments，然后会扫码 function 函数声明，创建一个同名属性，值为函数的引用，接着会扫码 var 变量声明，创建一个同名属性，值为 undefined，这就是变量提升
 
 
 
@@ -1586,13 +1671,14 @@ includes
 ## 0321 快速的让一个数组乱序
 
 
-随机数
+乱序数组
 
 ```javascript
-var arr = [1,2,3,4,5,6,7,8,9,10];
+let arr = [1,2,3,4,5,6,7,8,9,10];
+
 arr.sort(function(){
     return Math.random() - 0.5;
-})
+});
 
 ```
 

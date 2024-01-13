@@ -323,7 +323,7 @@ div:last-child {
   <body>
     <div>
       <img src="image" alt="" />
-      s<img src="image" alt="" />
+      <img src="image" alt="" />
     </div>
   </body>
 </html>

@@ -353,7 +353,7 @@ note.md
 
 ```
 
-可以复制，加上信息
+可以复制内容，加上版权信息
 
 ```javascript
   // 复制到剪切板
@@ -369,8 +369,11 @@ note.md
       来源：知乎
       著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
     `;
+    // 因为 copyText 会再次出发 copy 事件，那么会继续调用这个函数，这里确保只加入一次版权信息
     if (selectedText.includes(info)) return;
-    // clipboarddata.setData() 有浏览器兼容性，所以换一种方式实现
+    
+    // clipboarddata.setData(); // API 有浏览器兼容性，所以换一种方式实现
+    
     // https://juejin.cn/post/7306764402736676901
     this.copyText(selectedText + info);
   }
@@ -391,19 +394,19 @@ note.md
 
 
    
-## 0318 JS 判断设备来源
+## 0318 JS 判断移动端和微信
 
 
+判断移动端设备，基于 navigator.userAgent 
 
+其他情况直接搜索工具函数
 
 ```javascript
-// 判断移动端设备
-
 function deviceType(){
   var ua = navigator.userAgent;
   var agent = ["Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod"];    
-  for(var i=0; i<len,len = agent.length; i++){
-    if(ua.indexOf(agent[i])>0){         
+  for (var i=0; i<len,len = agent.length; i++) {
+    if (ua.indexOf(agent[i])>0){         
       break;
     }
   }
@@ -430,7 +433,177 @@ function isWeixin(){
 
 
    
-## 0319 
+## 0326 JS 如何调用摄像头录视频或者扫码
+
+
+第一步：使用 mediaDevices.getUserMedia 获取视频流
+
+第二步：如果是二维码，使用 ZXing.BrowserMultiFormatReader().decodeFromUri(imageDataUrl) 解析二维码
+
+```javascript
+// 创建一个新的MediaDevices对象
+const mediaDevices = navigator.mediaDevices;
+ 
+// 获取视频流并将其传输到video元素上显示
+function startScanning() {
+    const constraints = { video: true }; // 设置只需要视频流
+    
+    // https://developer.mozilla.org/zh-CN/docs/Web/API/MediaDevices/getUserMedia
+    mediaDevices.getUserMedia(constraints)
+        .then((stream) => {
+
+            // 本地创建扫描预览组件
+            const videoElement = document.getElementById('scanner-preview');
+            
+            if ('srcObject' in videoElement) {
+                videoElement.srcObject = stream;
+            } else {
+                videoElement.src = URL.createObjectURL(stream);
+            }
+            
+            // 开始读取条形码或二维码
+            decodeBarcode();
+        })
+        .catch((error) => {
+            console.log("无法打开相机：", error);
+        });
+}
+ 
+// 通过Canvas将图像转换为数据URL
+function getImageDataUrlFromVideo(elementId) {
+    return new Promise((resolve, reject) => {
+        const canvas = document.createElement('canvas');
+        const videoElement = document.getElementById(elementId);
+        const context = canvas.getContext('2d');
+        canvas.width = videoElement.clientWidth;
+        canvas.height = videoElement.clientHeight;
+        context.drawImage(videoElement, 0, 0, canvas.width, canvas.height);
+        resolve(canvas.toDataURL());
+    });
+}
+ 
+// 从图像中提取条形码或二维码信息
+async function decodeBarcode() {
+    try {
+        const imageDataUrl = await getImageDataUrlFromVideo('scanner-preview');
+        
+        // 这里可以根据自己的需求选择合适的库进行条形码/二维码解码操作
+        // 比如使用ZXing、Quagga等库
+        // 示例：使用ZXing库解码条形码
+        ZXing.BrowserMultiFormatReader().decodeFromUri(imageDataUrl).then((result) => {
+            console.log("解码结果：", result.text);
+        }).catch((err) => {
+            console.log("解码失败：", err);
+        });
+    } catch (error) {
+        console.log("获取图片数据URL时发生错误：", error);
+    }
+}
+
+startScanning();
+
+```
+
+
+
+   
+## 0331 双指事件如何实现
+
+
+问题：实际产品中，某个时刻，表格只能水平拖动或者垂直拖动，不支持触摸板同时水平垂直拖动。例如 seatable 的拖动效果，和 excel 或者 及时设计 https\://js.design/  的拖动效果。
+
+Mac 双指手势事件处理，同时左右滚动。mac 手势，同时滚动上下和左右的效果，这个看是否能支持。
+
+相关资料：双指特性
+
+> 1.在快速滑动过程中，deltaX、deltaY值的最初值的正负是与滑动方向不同的。
+>
+> 2.在缓慢滑动过程中，deltaX、deltaY值的值域是非常小的，一般在于\[-3, 3]。
+>
+> 3.在1s内，mousewheel事件大概触发100次左右。
+>
+> 4.滑动过程中，数值会有抖动问题。
+
+实际测试，代码在移动端可以生效，PC 端触摸板事件不会触发。移动端默认手势会缩放网页，这个操作时需要阻止默认事件。
+
+理论上及时设计这样的效果可以做出来，但是还不清楚实现的原理。
+
+```javascript
+import React, { Component } from 'react'
+
+export default class App extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      tip: '',
+    };
+  }
+
+  componentDidMount() {
+    window.addEventListener('touchstart', this.handleStart);
+    window.addEventListener('touchmove', this.handleMove);
+    window.addEventListener('touchend', this.handleEnd);
+    this.initialDistance = undefined;
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('touchstart', this.handleStart);
+    window.removeEventListener('touchmove', this.handleMove);
+    window.removeEventListener('touchend', this.handleEnd);
+    this.initialDistance = undefined;
+  }
+
+  handleStart = (event) => {
+    if (event.touches.length === 2) { // 只有当同时按下了两根手指才会进入此条件判断
+      var touch1 = event.touches[0];
+      var touch2 = event.touches[1];
+      // 计算初始两根手指之间的距离
+      this.initialDistance = Math.sqrt((touch1.clientX - touch2.clientX) ** 2 + (touch1.clientY - touch2.clientY) ** 2);
+      this.setState({
+        tip: '手势开始',
+      })
+    }
+  }
+
+  handleMove = (event) => {
+    event.preventDefault();
+    // 是否阻止默认的网页缩放
+    if (event.touches.length >= 2 && this.initialDistance !== undefined) { // 确保已经开始记录初始距离
+      var touch1 = event.touches[0];
+      var touch2 = event.touches[1];
+      // 计算当前两根手指之间的距离
+      var currentDistance = Math.sqrt((touch1.clientX - touch2.clientX) ** 2 + (touch1.clientY - touch2.clientY) ** 2);
+      // 比较当前与初始距离的差值，判断是否发生了放大或缩小手势
+      if ((currentDistance / this.initialDistance > 1 || currentDistance < this.initialDistance)) {
+        // 这里可以编写其他处理放大手势的代码
+        this.setState({
+          tip: '放大手势',
+        })
+      } else if (currentDistance / this.initialDistance < 1 || currentDistance > this.initialDistance) {
+        // 这里可以编写其他处理缩小手势的代码
+        this.setState({
+          tip: '缩小手势',
+        })
+      }
+    }
+  }
+
+  handleEnd = (event) => {
+    this.initialDistance = undefined; // 重置初始距离，等待新的手势
+    this.setState({
+      tip: '无手势',
+    })
+  }
+
+  render() {
+    return (
+      <div>{this.state.tip}</div>
+    )
+  }
+}
+
+```
 
 
 

@@ -598,41 +598,36 @@ gap属性是用来设置网格行与列之间的间隙，该属性是 row-gap() 
 ## 0316 改变 placeholder 的字体颜色大小
 
 
-这个方法也就在 PC 端可以，兼容性不太好
+这个方法也就在 PC 端可以，移动端兼容性不太好
 
 ```css
 input::-webkit-input-placeholder { 
-    /* WebKit browsers */ 
     font-size:14px;
     color: #333;
 }
 
 input::-moz-placeholder { 
-    /* Mozilla Firefox 19+ */ 
     font-size:14px;
     color: #333;
 }
 
 input:-ms-input-placeholder { 
-    /* Internet Explorer 10+ */ 
     font-size:14px;
     color: #333;
 }
-
 
 ```
 
 
 
    
-## 0317 audio元素和video元素在ios和andriod中无法自动播放
+## 0317 audio 和 video 在 ios 和 andriod 中无法自动播放
 
 
 原因：因为各大浏览器都为了节省流量，做出了优化，在用户没有行为动作时（交互）不予许自动播放；
 
 ```html
 /* 音频，写法一 */
-
 <audio src="music/bg.mp3" autoplay loop controls>你的浏览器还不支持哦</audio>
 
 /* 音频，写法二 */
@@ -647,13 +642,12 @@ input:-ms-input-placeholder {
 js
 
 ```javascript
-//JS绑定自动播放（操作window时，播放音乐）
-
+// JS绑定自动播放（监听点击事件，播放音乐）
 $(window).one('touchstart', function(){
     music.play();
 })
 
-//微信下兼容处理
+// 微信兼容处理
 document.addEventListener("WeixinJSBridgeReady", function () {
     music.play();
 }, false);
@@ -661,9 +655,11 @@ document.addEventListener("WeixinJSBridgeReady", function () {
 //小结
 //1.audio元素的autoplay属性在IOS及Android上无法使用，在PC端正常；
 //2.audio元素没有设置controls时，在IOS及Android会占据空间大小，而在PC端Chrome是不会占据任何空间；
-//3.注意不要遗漏微信的兼容处理需要引用微信JS；
+//3.注意不要遗漏微信的兼容处理，需要引用微信JS；
 
 ```
+
+这个问题实际没有遇到过
 
 
 
@@ -673,7 +669,7 @@ document.addEventListener("WeixinJSBridgeReady", function () {
 
 消除 transition 闪屏
 
-```
+```css
 .css {
   -webkit-transform-style: preserve-3d;
   -webkit-backface-visibility: hidden;
@@ -684,7 +680,7 @@ document.addEventListener("WeixinJSBridgeReady", function () {
 
 过渡动画（在没有启动硬件加速的情况下）会出现抖动的现象， 以上的解决方案只是改变视角来启动硬件加速的一种方式；启动硬件加速的另外一种方式：
 
-```
+```css
 .css {
   -webkit-transform: translate3d(0,0,0);
   -moz-transform: translate3d(0,0,0);
@@ -694,13 +690,11 @@ document.addEventListener("WeixinJSBridgeReady", function () {
 
 ```
 
-启动硬件加速最常用的方式：translate3d、translateZ、transformopacity 
+启动硬件加速最常用的方式：translate3d、translateZ、transform、opacity
 
 属性/过渡动画（需要动画执行的过程中才会创建合成层，动画没有开始或结束后元素还会回到之前的状态）
 
-will-chang 属性（这个比较偏僻），一般配合opacity与translate使用（而且经测试，除了上述可以引发硬件加速的属性外，其它属性并不会变成复合层）。
-
-弊端：硬件加速会导致 CPU 性能占用量过大，电池电量消耗加大 ；因此尽量避免泛滥使用硬件加速。
+will-change 属性（这个比较偏僻），一般配合opacity与translate使用（而且经测试，除了上述可以引发硬件加速的属性外，其它属性并不会变成复合层）。参考：<https://developer.mozilla.org/zh-CN/docs/Web/CSS/will-change> 弊端：硬件加速会导致 CPU 性能占用量过大，电池电量消耗加大 ；因此尽量避免泛滥使用硬件加速。
 
 
 
