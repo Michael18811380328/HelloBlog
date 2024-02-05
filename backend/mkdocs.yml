@@ -73,68 +73,40 @@ extra_javascript:
 nav:
   - 介绍: "index.md"
   - 数据库:
-      - '01-redis': 'backend-sql/01-redis.md'
-      - '02-阿里云MySQL入门': 'backend-sql/02-阿里云MySQL入门.md'
-      - '03-数据库概念': 'backend-sql/03-数据库概念.md'
-      - '04-单点登录SSO': 'backend-sql/04-单点登录SSO.md'
-      - '05-websocket': 'backend-sql/05-websocket.md'
-      - '06-socket-io': 'backend-sql/06-socket-io.md'
-      - '07-SQLite-API-Python': 'backend-sql/07-SQLite-API-Python.md'
-      - '08-进程和线程': 'backend-sql/08-进程和线程.md'
-      - '09-进程与线程的一个简单解释': 'backend-sql/09-进程与线程的一个简单解释.md'
-      - '10-Mysql视图': 'backend-sql/10-Mysql视图.md'
-      - '20-深入MySQL数据库': 'backend-sql/20-深入MySQL数据库.md'
-      - '21-Mac-安装-python-mysql-报错': 'backend-sql/21-Mac-安装-python-mysql-报错.md'
-      - '22-Python操作 MySQL数据库': 'backend-sql/22-Python操作 MySQL数据库.md'
-      - '23-Mac pip install mysql-python': 'backend-sql/23-Mac pip install mysql-python.md'
-      - '24-node连接Mysql报错': 'backend-sql/24-node连接Mysql报错.md'
-      - '25-mysql支持emoji表情储存': 'backend-sql/25-mysql支持emoji表情储存.md'
-      - '26-数据库多表链接': 'backend-sql/26-数据库多表链接.md'
+    - '01-redis': 'backend-sql/01-redis.md'
+    - '02-阿里云MySQL入门': 'backend-sql/02-阿里云MySQL入门.md'
+    - '03-数据库概念': 'backend-sql/03-数据库概念.md'
+    - '04-单点登录SSO': 'backend-sql/04-单点登录SSO.md'
+    - '05-websocket': 'backend-sql/05-websocket.md'
+    - '06-socket-io': 'backend-sql/06-socket-io.md'
+    - '07-SQLite-API-Python': 'backend-sql/07-SQLite-API-Python.md'
+    - '08-进程和线程': 'backend-sql/08-进程和线程.md'
+    - '09-进程与线程的一个简单解释': 'backend-sql/09-进程与线程的一个简单解释.md'
+    - '10-Mysql视图': 'backend-sql/10-Mysql视图.md'
+    - '20-深入MySQL数据库': 'backend-sql/20-深入MySQL数据库.md'
+    - '21-Mac-安装-python-mysql-报错': 'backend-sql/21-Mac-安装-python-mysql-报错.md'
+    - '22-Python操作 MySQL数据库': 'backend-sql/22-Python操作 MySQL数据库.md'
+    - '23-Mac pip install mysql-python': 'backend-sql/23-Mac pip install mysql-python.md'
+    - '24-node连接Mysql报错': 'backend-sql/24-node连接Mysql报错.md'
+    - '25-mysql支持emoji表情储存': 'backend-sql/25-mysql支持emoji表情储存.md'
+    - '26-数据库多表链接': 'backend-sql/26-数据库多表链接.md'
 
   - NodeJS:
-      - "01-Node.js 教程": "nodejs/01-Node.js 教程.md"
-      - "02-Node.js 安装配置": "nodejs/02-Node.js 安装配置.md"
-      - "03-Node.js 创建第一个应用": "nodejs/03-Node.js 创建第一个应用.md"
-      - "04-NPM 使用介绍": "nodejs/04-NPM 使用介绍.md"
-      - "05-Node.js REPL(交互式解释器)": "nodejs/05-Node.js REPL(交互式解释器).md"
-      - "06-Node.js 回调函数": "nodejs/06-Node.js 回调函数.md"
-      - "07-Node.js 事件循环": "nodejs/07-Node.js 事件循环.md"
-      - "08-Node.js EventEmitter": "nodejs/08-Node.js EventEmitter.md"
-      - "09-Node.js Buffer(缓冲区)": "nodejs/09-Node.js Buffer(缓冲区).md"
-      - "10-Node.js Stream(流)": "nodejs/10-Node.js Stream(流).md"
-      - "11-Node.js模块系统": "nodejs/11-Node.js模块系统.md"
-      - "12-Node.js 函数": "nodejs/12-Node.js 函数.md"
-      - "13-Node.js 路由": "nodejs/13-Node.js 路由.md"
-      - "14-Node.js 全局对象": "nodejs/14-Node.js 全局对象.md"
-      - "15-Node.js 常用工具": "nodejs/15-Node.js 常用工具.md"
-      - "16-Node.js 文件系统": "nodejs/16-Node.js 文件系统.md"
-      - "17-Node.js GETPOST请求": "nodejs/17-Node.js GETPOST请求.md"
-      - "18-Node.js 工具模块": "nodejs/18-Node.js 工具模块.md"
-      - "19-Node.js Web 模块": "nodejs/19-Node.js Web 模块.md"
-      - "20-Node.js Express 框架": "nodejs/20-Node.js Express 框架.md"
-      - "21-Node.js RESTful API": "nodejs/21-Node.js RESTful API.md"
-      - "22-Node.js 多进程": "nodejs/22-Node.js 多进程.md"
-      - "23-Node.js JXcore 打包": "nodejs/23-Node.js JXcore 打包.md"
-      - "24-Node.js 连接 MySQL": "nodejs/24-Node.js 连接 MySQL.md"
-      - "25-Node.js 连接 MongoDB": "nodejs/25-Node.js 连接 MongoDB.md"
-      - "Koa框架": "nodejs/Koa框架.md"
-      - "Mysql 数据库和连接池": "nodejs/Mysql 数据库和连接池.md"
-      - "Node 下 LDAP 实现": "nodejs/Node 下 LDAP 实现.md"
-      - "Node-LDAP": "nodejs/Node-LDAP.md"
-      - "Node.js-fs文档": "nodejs/Node.js-fs文档.md"
-      - "Node.js-path": "nodejs/Node.js-path.md"
-      - "Node.js-全局变量": "nodejs/Node.js-全局变量.md"
-      - "Node.js使用Nodemailer发送邮件": "nodejs/Node.js使用Nodemailer发送邮件.md"
-      - "NodeJS": "nodejs/NodeJS.md"
-      - "fs.createReadStream": "nodejs/fs.createReadStream.md"
-      - "node-debug": "nodejs/node-debug.md"
-      - "nodeJS+mysql+连接池": "nodejs/nodeJS+mysql+连接池.md"
-      - "README": "nodejs/nodeJS高频词/README.md"
-      - "node定时器": "nodejs/node定时器.md"
-      - "使用nodejs连接mysql数据库实现增删改查": "nodejs/使用nodejs连接mysql数据库实现增删改查.md"
-      - "命令行的nodeJS": "nodejs/命令行的nodeJS.md"
-      - "廖雪峰 NodeJS": "nodejs/廖雪峰 NodeJS.md"
-      - "谈谈Node中的常见概念": "nodejs/谈谈Node中的常见概念.md"
+      - 'Node 下 LDAP 实现': 'nodejs/Node 下 LDAP 实现.md'
+      - 'Node-LDAP': 'nodejs/Node-LDAP.md'
+      - 'Node.js-path': 'nodejs/Node.js-path.md'
+      - 'Node.js-全局变量': 'nodejs/Node.js-全局变量.md'
+      - 'Node.js使用Nodemailer发送邮件': 'nodejs/Node.js使用Nodemailer发送邮件.md'
+      - 'NodeJS中进程和线程': 'nodejs/NodeJS中进程和线程.md'
+      - 'fs.createReadStream': 'nodejs/fs.createReadStream.md'
+      - 'node-debug': 'nodejs/node-debug.md'
+      - 'nodeJS+mysql+连接池': 'nodejs/nodeJS+mysql+连接池.md'
+      - 'README': 'nodejs/nodeJS高频词/README.md'
+      - 'node定时器': 'nodejs/node定时器.md'
+      - '使用nodejs连接mysql数据库实现增删改查': 'nodejs/使用nodejs连接mysql数据库实现增删改查.md'
+      - '命令行的nodeJS': 'nodejs/命令行的nodeJS.md'
+      - '廖雪峰 NodeJS': 'nodejs/廖雪峰 NodeJS.md'
+      - '谈谈Node中的常见概念': 'nodejs/谈谈Node中的常见概念.md'
   - ruby:
       - "RVM": "ruby/RVM.md"
       - "Ruby标准开发环境部署": "ruby/Ruby标准开发环境部署.md"

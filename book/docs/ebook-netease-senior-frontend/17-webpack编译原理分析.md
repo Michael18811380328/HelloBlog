@@ -1,8 +1,11 @@
 # 17 webpack构建分析
 
 【课程主题】从源码探究构建工具之手动实现webpack
+
 1、webpack基本使用：从模块谈起，到底什么是webpack
+
 2、打包文件分析：分析bundile.min.js源码
+
 3、读完源码我们来写简易webpack
 
 ### webpack 在哪里使用
