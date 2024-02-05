@@ -12,7 +12,7 @@ React-router 解决问题：UI与URL解耦
 
 使用Link组件后，URL会更新，界面不需要重载，React组件会被重新渲染。
 
-Link 组件通过 to 属性设置界面的切换。实际上，Link渲染成 A 标签，to属性可以作为href。Link 组件最终会渲染为 HTML 标签 <a>，它的 to、query、hash 属性会被组合在一起并渲染为 href 属性。虽然 Link 被渲染为超链接，但在内部实现上使用脚本拦截了浏览器的默认行为，然后调用了history.pushState 方法。
+Link 组件通过 to 属性设置界面的切换。实际上，Link渲染成 A 标签，to属性可以作为href。Link 组件最终会渲染为 HTML 标签 `<a>`，它的 to、query、hash 属性会被组合在一起并渲染为 href 属性。虽然 Link 被渲染为超链接，但在内部实现上使用脚本拦截了浏览器的默认行为，然后调用了history.pushState 方法。
 
 To 通常可以使字符串或者对象
 

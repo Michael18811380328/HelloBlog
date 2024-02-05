@@ -1213,61 +1213,51 @@ class EventBus {
 
 
    
-## 0202 基础面试题目
+## 0340 正则表达式的特殊符号区别
 
 
-如果是第一轮的笔试，这是必须会背过的部分
+对比 \`/^\[a-z0-9]\[a-z]+$/\`和 \`/^\[a-z0-9]\[a-z]\*$/\`的区别？
 
-手写
+也就是 + 和 \* 的区别
 
-1.节流，防抖。
+星号表示：匹配前面的子表达式零次或多次。
 
-2.冒泡排序，快速排序——要求直接写出来
+加号表示：匹配前面的子表达式一次或多次。
 
-```javascript
-function bubbleSort(arr) {
-  const len = arr.length;
-  for (let i = 0; i < len; i++) {
-    for (let j = i; j < len; j++) {
-      // compare arr[i] and arr[j] and change their position
-      if (arr[i] > arr[j]) {
-        let tmp = arr[i];
-        arr[i] = arr[j];
-        arr[j] = tmp;
-      }
-    }
-  }
-  return arr;
-}
+点表示：匹配除换行符 \\n 之外的任何单字符。
 
-function quickSort(arr) {
-  if (arr.length <= 1) {
-    return arr;
-  }
-  let left = [];
-  let right = [];
-  let tmp = arr[0];
-  for (let i = 1; i < arr.length; i++) {
-    if (arr[i] > tmp) {
-      right.push(arr[i]);
-    } else {
-      left.push(arr[i]);
-    }
-  }
-  return quickSort(left).concat(tmp).concat(quickSort(right));
-}
+详细参考：<https://www.runoob.com/regexp/regexp-syntax.html> 
 
-```
+这些知识点都记过，最好熟练使用。
 
-3.定位都有哪些
 
-4promise用法
 
-5.es6的用法
+   
+## 0352 jsonp
 
-6.redux
 
-7.sass用过了什么。
+jsonp: jsonp的核心原理是利用script标签没有同源限制的方式，可以发送跨域的get请求（只能发送get请求）。script标签中的src属性将请求参数和当前请求的回调函数名拼接在链接上。最终由服务端接收到请求之后拼接成前端可执行的字符串的形式返回。这个结果字符串最终会在前端的script标签中解析并执行。
+
+实际考的不多
+
+手写实现 jsonp 参考：<https://blog.csdn.net/imagine_tion/article/details/115475157> 
+
+
+
+   
+## 0354 export 有多少情况
+
+
+<https://developer.mozilla.org/zh-CN/docs/web/javascript/reference/statements/export> 
+
+<https://zh-hans.react.dev/learn/importing-and-exporting-components> 
+
+组件的导出方式决定了其导入方式。默认导出和具名导出。
+
+| 语法     | 导出语句                                | 导入语句                                  |
+| :----- | :---------------------------------- | :------------------------------------ |
+| 导出默认组件 | export default function Button() {} | import Button from './Button.js';     |
+| 导出具名组件 | export function Button() {}         | import { Button } from './Button.js'; |
 
 
 

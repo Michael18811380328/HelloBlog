@@ -3,6 +3,7 @@
 ## 一，安装
 
 windows平台下官网直接下载安装就好了，centos下安装步骤：
+
 配置MongoDB的yum源
 
 ~~~bash
@@ -26,7 +27,7 @@ enabled=1
 
 启动停止MongoDB
 
-~~~bash
+~~~
 启动mongodb ：systemctl start mongod.service
 停止mongodb ：systemctl stop mongod.service
 查到mongodb的状态：systemctl status mongod.service
@@ -142,3 +143,4 @@ User.create(saveData, function (err, data) {
 ~~~
 
 更多详细操作见mongoose官方文档http://www.mongoosejs.net/
+

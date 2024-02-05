@@ -2,6 +2,16 @@
 
 webpack版本是4；目标是：自己可以看懂90%的配置文件，并自定义plugin和loader
 
+Webpack 不同等级的使用者：
+
+初级：可以通过CLI搭建基本的webpack并打包项目
+
+中级：可以更改一部分配置文件（loader plugin）
+
+高级：使用webpack解决项目的问题
+
+2024年备注：webpack5 已经使用在生产项目，注意更新知识体系
+
 ## 01 环境与目录
 
 环境分类：开发、测试、生产
@@ -249,11 +259,11 @@ const webpackConfig = merge(baseWebpackConfig, {
 
 常用插件 plugins，下面依次介绍
 
-- webpack.DefinePlugin 再打包阶段定义全局变量
-- webpack.HashedModuledsPlugin 保持 module.id 稳定
-- webpack.NoEmitOnErrorsPlugin 屏蔽错误
+- webpack.DefinePlugin 在打包阶段定义全局变量
+- webpack.HashedModuledsPlugin 保持 module.id 稳定，第三方库避免重复打包
+- webpack.NoEmitOnErrorsPlugin 屏蔽打包时的错误，浏览器可以显示界面
 - webpack.providePlugin 提供库
-- copy-webpack-plugin 可以帮助拷贝内容
+- copy-webpack-plugin 帮助手动拷贝内容（未打包的字体图标或者图片）
 
 ### webpack.DefinePlugin 
 
@@ -294,6 +304,27 @@ module.exports = {
 };
 ~~~
 
+练习
+
+~~~js
+plugins: [
+    new webpack.DefinePlugin({
+        'process.env': env
+    }),
+    new UglifyJsPlugin({
+        uglifyOptions: {
+            compress: {
+                warnings: false
+            }
+        },
+        sourceMap: config.build.productionSourceMap,
+        parallel: true
+    }),
+]
+~~~
+
+插件都放在 plugins 数组中，创建一个插件的实例
+
 ### webpack.HashedModuleIdsPlugin
 
 保持模块的 module.id 稳定
@@ -331,7 +362,7 @@ const webpackConfig = merge(baseWebpackConfig, {
 
 这个插件在上面已经使用了。如果代码出现问题，webpack 默认不会继续编译，显示错误。这个插件可以继续编译并让浏览器显示（操作更友好）。
 
-### webpack.providePlugin 提供库
+### webpack.providePlugin
 
 如果我们在全局中使用某些库，例如jquery，可以使用这个插件
 
@@ -355,7 +386,9 @@ plugins: [
 ]
 ~~~
 
-### copy-webpack-plugin 可以帮助拷贝内容
+### copy-webpack-plugin
+
+可以帮助拷贝内容
 
 这个插件不是自带的，需要安装
 
@@ -375,6 +408,8 @@ plugins: [
   ])
 ],
 ~~~
+
+
 
 ## 03 优化的内容
 
@@ -482,7 +517,7 @@ plugins: [
 
 可以使用dtable这样的大项目测试一下编译的时间
 
-## 03 webpack 中常见的问题解决方法
+## 03 webpack 中常见问题
 
 如果对模块内容进行处理：loader 是首选方案；
 
@@ -547,3 +582,68 @@ make 周期需要处理很多编译的配置，新手不好做，done 周期直�
 loader 是对某一类文件进行处理（css-loader sass-loader）
 
 plugin 是监听到 webpack 的某个过程（make）执行的一个操作（webpack插件系统的生命周期）
+
+
+
+### 环境和目录
+
+这部分和 01 有重复
+
+- 开发环境（dev）webpack.dev.conf.js
+- 测试环境（test）Test.js 打包测试文件，而不是打包业务代码
+- 生产环境（prod）
+
+对应不同的配置文件
+
+基本配置文件：webpack.base.conf.js (主要是loaders) vue-loader, babel-loader, url-loader(handle image file jpg), url-loader(handle meida file mp4)
+
+在不同环境中，把基本配置和特定环境的配置项目 merge 成一个配置文件。
+
+例如：生产环境下执行下面的操作
+
+~~~bash
+node build.js
+~~~
+
+JS内部使用 webpack.base.conf.js and webpack.prod.conf.js 合并文件，从 config 中拿出  index.js and pro.env 中的环境变量，然后进行生产环境下面的打包。
+
+~~~js
+const ora = require('ora');
+const rm = require('rimraf');
+const path = require('path');
+const chalk = require('chalk');
+const webpack = require('webpack');
+const config = require('../config');
+const webpackConfig = require('./webpack.prod.conf.js');
+
+const spinner = ora('building starting');
+spinner.start();
+
+// delete dist dir
+rm(path.join(config.build.assetsRoot, config.build.assetsSubDirectory), err => {
+    if (err) {
+        throw err;
+    }
+    // start webpack 
+    webpack(webpackConfig, (err, stats) => {
+        spinner.stop();
+        if (err) {
+            throw err;
+        }
+        process.stdout.write(stats.toString({
+            colors: true,
+            modules: false,
+            children: false, // ts-loader set it true
+            chunks: false,
+            chunkModules: false
+        }) + '\n\n');
+        if (stats.hasErrors()) {
+            console.log(chalk.red('build with error.\n'));
+            process.exit(1);
+        }
+        console.log(chalk.cyan('build complete.\n'));
+    });
+});
+~~~
+
+

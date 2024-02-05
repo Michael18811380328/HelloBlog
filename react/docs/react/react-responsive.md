@@ -1,15 +1,13 @@
 # react-responsive
 
-You can use this jsx tag rather media query in css. 
-
-And it make mobile web page more convenient.
+可以使用这个库代替 css 的媒体查询，更方便的处理移动端网页。
 
 ~~~bash
 # install
 npm install react-responsive --save
 ~~~
 
-basic use
+基本使用
 
 ~~~jsx
 import MediaQuery form 'react-responsive';
@@ -54,7 +52,4 @@ const Example = () => {
 export default Example;
 ~~~
 
-browser support
-
-Don't support old IE（<9）
 

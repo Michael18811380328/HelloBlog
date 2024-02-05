@@ -32,14 +32,13 @@ setState 就是更新 state 固定的方法
 
 Redux 是用来处理状态管理的一个工具库
 
+把对应的 actions 进行 dispatch
 
-把对应的actions进行dispatch
-
-然后所有的状态都存放在store中
+然后所有的状态都存放在 store 中
 
 对全局进行一个统一的状态管理
 
-大型项目当中使用比较多
+参考链接：<https://www.zhihu.com/question/41312576> 
 
 
 
@@ -505,17 +504,21 @@ useEffect
 
 useRefs
 
+这个范围比较广，这里要求明白常用的主要作用，具体细节可以单独搞
+
 
 
    
 ## 0165 UseMemo 和 useCallback 区别
 
 
-概括：memo、useMemo、useCallBack主要用于避免React Hooks中的重复渲染，作为性能优化的一种手段，三者需要组合并结合场景使用。
+主要用于避免组件或者函数重复渲染
+
+作为性能优化的一种手段，三者需要组合并结合场景使用。
 
 ### React.memo()
 
-如果你的组件在相同 props 的情况下渲染相同的结果，那么你可以通过将其包装在`React.memo`中调用，以此通过记忆组件渲染结果的方式来提高组件的性能表现。这意味着在这种情况下，React 将跳过渲染组件的操作并直接复用最近一次渲染的结果。[React memo官方文档](https://link.zhihu.com/?target=https%3A//zh-hans.reactjs.org/docs/react-api.html%23reactmemo)
+如果组件在相同 props 的情况下，渲染相同的结果，那么你可以通过将其包装在`React.memo`中调用，以此通过记忆组件渲染结果的方式来提高组件的性能表现。这意味着在这种情况下，React 将跳过渲染组件的操作并直接复用最近一次渲染的结果。[React memo官方文档](https://link.zhihu.com/?target=https%3A//zh-hans.reactjs.org/docs/react-api.html%23reactmemo)
 
 与Class Component中的PureComponent类似，在React Hooks中，可以通过memo来避免组件的重复渲染。
 
@@ -567,7 +570,11 @@ useCallBack：useMemo的语法糖
 
 > 把内联回调函数及依赖项数组作为参数传入`useCallback`，它将返回该回调函数的 memoized 版本，该回调函数仅在某个依赖项改变时才会更新。当你把回调函数传递给经过优化的并使用引用相等性去避免非必要渲染（例如`shouldComponentUpdate`）的子组件时，它将非常有用。[React useCallBack官方文档](https://link.zhihu.com/?target=https%3A//zh-hans.reactjs.org/docs/hooks-reference.html%23usecallback)
 
-useCallBack和useMemo唯一的区别是：useMemo返回的是传入的回调函数的执行结果（dom或者返回值），useCallBack返回的是传入的回调函数。本质上就是useMemo的语法糖。
+useCallBack和useMemo唯一的区别是：useMemo返回的是传入的回调函数的执行结果（dom或者返回值），
+
+useCallBack返回的是传入的回调函数。
+
+本质上就是useMemo的语法糖。
 
 ```javascript
 import { useContext, memo } from "react";
@@ -595,7 +602,6 @@ const Child = memo((fun) => {
   return <div onClick={fun}></div>
 });
 
-
 ```
 
 ### 总结
@@ -604,6 +610,10 @@ const Child = memo((fun) => {
 2. useMemo、useCallBack通过浅比较依赖数组项中的变量，判断对应变量/function需不需要重新生成
 3. useMemo、useCallBack不要滥用，需要结合具体场景
 
+React.memo 避免不同组件更新后，避免频繁更新，用于组件中的渲染（类似 shouldComponentUpdate）
+
+React.useCallback 用于组件内部 state update 后，避免内部函数重新计算
+
 ### 参考链接
 
 <https://juejin.cn/post/7107943235099557896> 
@@ -611,6 +621,392 @@ const Child = memo((fun) => {
 <https://zhuanlan.zhihu.com/p/545578633> 
 
 <https://blog.csdn.net/weixin_45269534/article/details/131416114> 
+
+
+
+   
+## 0350 你知道哪些 React hooks
+
+
+* `useState`：用于管理功能组件中的状态。
+* `useEffect`：用于在功能组件中执行副作用，例如从服务器获取数据，或监听订阅事件。
+* `useContext`：用于访问功能组件内的 React 上下文的值。
+* `useRef`：用于创建对跨渲染持续存在的元素或值的可变引用。
+* `useCallback`：用于记忆函数以防止不必要的重新渲染。
+* `useMemo`：用于记忆值，使用缓存减少昂贵的计算，来提高性能。
+* `useReducer`：用于通过  reducer函数管理状态，类似于 [Redux](https://www.zhihu.com/search?q=Redux&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra=%7B%22sourceType%22%3A%22answer%22%2C%22sourceId%22%3A3248392880%7D) 的工作原理。
+* `useLayoutEffect`：与useEffect类似，但效果在所有DOM突变后同步运行。
+
+这些 hooks 提供了强大的工具来管理状态、处理副作用，以及重用 React 功能组件中的逻辑。
+
+
+
+   
+## 0358 什么是虚拟DOM
+
+
+虚拟 DOM 是 React 中的一个概念，其中创建实际 DOM（文档对象模型）的轻量级虚拟，表示并将其存储在内存中。它是一种用于优化 Web 应用程序性能的编程技术。
+
+当 React 组件的数据或状态发生更改时，虚拟 DOM 会被更新，而不是直接操作真实 DOM。然后，虚拟 DOM 计算组件的先前状态和更新状态之间的差异，称为“比较”过程。
+
+一旦识别出差异，React 就会高效地仅更新真实 DOM 的必要部分，以反映更改。这种方法最大限度地减少了实际 DOM 操作的数量，并提高了应用程序的整体性能。
+
+通过使用 [虚拟 DOM](https://www.zhihu.com/search?q=%E8%99%9A%E6%8B%9F%20DOM&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra=%7B%22sourceType%22%3A%22answer%22%2C%22sourceId%22%3A3248392880%7D)，React 提供了一种创建动态和交互式用户界面的方法，同时确保最佳效率和渲染速度。
+
+
+
+   
+## 0359 useState 是什么
+
+
+`useState`返回一个状态值和一个更新它的函数。
+
+在初始渲染期间，返回的状态与作为第一个参数传递的值匹配。该`setState`函数用于更新状态。它采用新的状态值作为参数，并对组件的重新渲染进行排队。该`setState`函数还可以接受回调函数作为参数，该函数将之前的状态值作为参数。[了解更多](https://link.zhihu.com/?target=https%3A//react.dev/reference/react/useState)
+
+
+
+   
+## 0360 useEffect 是什么
+
+
+`useEffect` 钩子允许在功能组件中执行副作用。 在功能组件的主体（即 React 渲染阶段）中不允许使用突变、订阅、定时器、日志记录和其他副作用。这可能会导致混乱的错误和用户界面的不一致。
+
+因此，建议使用 useEffect。传递给 useEffect 的函数将在呈现提交到屏幕后执行，或者如果您将依赖关系数组作为第二个参数传递，那么每当其中一个依赖关系发生变化时，该函数就会被调用。
+
+```javascript
+useEffect(() => {
+  // send ajax request
+  console.log('Logging something');
+  
+  // handle event
+}, [])
+
+```
+
+
+
+   
+## 0361 useEffect  如何跟踪功能组件的卸载
+
+
+通常，`useEffect` 创建的资源需要在组件离开屏幕前进行清理或重置，例如订阅或计时器标识符。 
+
+为此，传递给 `useEffect` 的函数可以返回一个清理函数。清理函数将在组件从用户界面移除之前运行，以防止内存泄漏。
+
+此外，如果组件渲染多次（通常是这种情况），则会在执行下一个效果之前清理前一个效果。
+
+```javascript
+useEffect(() => {
+
+  function handleChange(value) {
+    setValue(value);
+  }
+  
+  SomeAPI.doFunction(id, handleChange);
+
+  return function cleanup() {
+    SomeAPI.undoFunction(id, handleChange);
+  };
+})
+
+```
+
+
+
+   
+## 0371 useRef 是什么
+
+
+`useRef` 返回一个可修改的 ref 对象，即一个属性。
+
+该对象的当前值由传递的参数初始化。
+
+返回的对象将在组件的整个生命周期内持续存在，不会因呈现而改变。
+
+通常的使用情况是以命令式方式访问后代对象。
+
+也就是说，我们可以使用 ref 明确地引用 DOM 元素。
+
+```javascript
+const App = () => {
+  const inputRef = useRef(null);
+
+  const buttonClick = () => {
+    inputRef.current.focus();
+  }
+
+  return (
+    <>
+      <input ref={inputRef} type="text" />
+      <button onClick={buttonClick}>Focus on input tag</button>
+    </>
+  )
+}
+
+```
+
+
+
+   
+## 0367 useMemo 是什么
+
+
+用于缓存和记忆计算结果。计算结果。`useMemo` 仅在任何依赖项的值发生变化时才会重新计算记忆值。这种优化有助于避免昂贵的计算。
+
+对于第一个参数，函数接受一个执行计算的回调，对于第二个参数，函数接受一个依赖关系数组，只有当至少一个依赖关系发生变化时，函数才会重新执行计算。
+
+```javascript
+const memoValue = useMemo(() => computeFunc(paramA, paramB), [paramA, paramB]);
+
+```
+
+
+
+   
+## 0368 useCallback 是什么
+
+
+`useCallback` 钩子将返回，回调函数的记忆化版本，只有当其中一个依赖项的值发生变化时，回调才会发生变化。 
+
+这在将回调传递给子组件时，非常有用，可以防止不必要的渲染。
+
+```javascript
+const callbackValue = useCallback(() => computeFunc(paramA, paramB), [paramA, paramB]);
+
+```
+
+
+
+   
+## 0362 Redux 中的 reducer 是什么
+
+
+`reducer`是一个纯函数，以 `state` 和 `action` 为参数。
+
+在`reducer`中，我们会跟踪接收到的操作类型，并根据它修改状态，返回一个新的状态对象。
+
+```javascript
+export default function appReducer(state = initialState, action) {
+
+  // The reducer normally looks at the action type field to decide what happens
+  
+  switch (action.type) {
+    // Do something here based on the different types of actions
+    default:
+      // If this reducer doesn't recognize the action type, or doesn't
+      // care about this specific action, return the existing state unchanged
+      return state;
+  }
+}
+
+```
+
+
+
+   
+## 0363 Redux 实现了哪种模式
+
+
+Redux 实现了[Flux 模式](https://www.zhihu.com/search?q=Flux%20%E6%A8%A1%E5%BC%8F&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra=%7B%22sourceType%22%3A%22answer%22%2C%22sourceId%22%3A3248392880%7D)，它是应用程序的可预测状态管理模式。
+
+它通过引入**单向数据流**，和**状态的集中存储**，来帮助管理应用程序的状态。[了解更多](https://link.zhihu.com/?target=https%3A//www.newline.co/fullstack-react/30-days-of-react/day-18/%23%3A~%3Atext%3DFlux%2520is%2520a%2520pattern%2520for%2Cdefault%2520method%2520for%2520handling%2520data.)
+
+
+
+   
+## 0364 Mobx 实现哪种模式
+
+
+Mobx 实现了[观察者模式](https://www.zhihu.com/search?q=%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra=%7B%22sourceType%22%3A%22answer%22%2C%22sourceId%22%3A3248392880%7D)，也称为发布-订阅模式。[了解更多](https://link.zhihu.com/?target=https%3A//www.patterns.dev/posts/observer-pattern)
+
+Mobx 提供了类似`observable`和的装饰器`computed`来定义可观察的状态和反应函数。用action修饰的动作用于修改状态，确保跟踪所有更改。
+
+Mobx 还提供自动依赖跟踪、不同类型的反应、对反应性的细粒度控制，以及通过 [mobx-react 包](https://www.zhihu.com/search?q=mobx-react%20%E5%8C%85&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra=%7B%22sourceType%22%3A%22answer%22%2C%22sourceId%22%3A3248392880%7D)与 React 无缝集成。
+
+总体而言，Mobx 通过根据可观察状态的变化，自动执行更新过程，来简化状态管理。
+
+
+
+   
+## 0365 如何访问Mobx状态下的变量
+
+
+可以通过使用装饰器 `observable` 将变量定义为可观察来访问状态中的变量
+
+```javascript
+import { observable, computed } from 'mobx';
+
+class MyStore {
+  @observable myVariable = 'Hello Mobx';
+
+  @computed get capitalizedVariable() {
+    return this.myVariable.toUpperCase();
+  }
+}
+
+const store = new MyStore();
+console.log(store.capitalizedVariable); // Output: HELLO MOBX
+
+store.myVariable = 'Hi Mobx';
+console.log(store.capitalizedVariable); // Output: HI MOBX
+
+```
+
+在本例中，`myVariable` 使用 `observable` 装饰器定义为可观测变量。然后就可以使用 `store.myVariable` 访问该变量。对 `myVariable` 所做的任何更改都会自动触发依赖组件或反应的更新。[了解更多](https://link.zhihu.com/?target=https%3A//mobx.js.org/actions.html)
+
+
+
+   
+## 0366 Redux和Mobx有什么区别
+
+
+* Redux 是一种更简单、更有主见的状态管理库，它遵循严格的单向数据流，并提倡不变性。它需要更多的模板代码和显式更新，但与 React 的集成度很高。
+* Mobx 提供的 API 更灵活、更直观，模板代码更少。它允许你直接修改状态，并自动跟踪变化以获得更好的性能。
+
+在 Redux 和 Mobx 之间做出选择取决于您的具体需求和偏好。
+
+
+
+
+
+   
+## 0369 useMemo 和 useCallback 有什么区别
+
+
+`useMemo`用于记忆计算结果，而`useCallback`用于记忆函数本身。
+
+* `useMemo`如果依赖项未更改，则缓存计算值并在后续渲染时返回该值。
+* `useCallback`缓存函数本身并返回相同的实例，除非依赖项已更改。
+
+
+
+   
+## 0370 什么是React上下文
+
+
+React Context 是一项功能，它提供了一种在组件树中传递数据的方法，而无需在每一层手动传递 props。
+
+它允许您创建一个全局状态，树中的任何组件都可以访问该状态，无论其位置如何。
+
+当您需要在多个未通过 props 直接连接的组件之间共享数据时，上下文就非常有用。
+
+React Context API 由三个主要部分组成：
+
+1. createContext（创建上下文）： 该函数用于创建新的上下文对象。
+2. Context.Provider： 该组件用于为上下文提供值。它封装了需要访问该值的组件。
+3. Context.Consumer 或 useContext 钩子： 该组件或钩子用于从上下文中获取值。它可以在上下文提供者的任何组件中使用。
+
+通过使用 React Context，可以避免 props 透传（通过多级组件传递props），并在更高层次上轻松管理状态，从而使代码更有条理、更高效。[了解更多](https://link.zhihu.com/?target=https%3A//react.dev/learn/passing-data-deeply-with-context)
+
+在典型的 React 应用程序中，数据是使用 props 从上到下（从父组件到子组件）传递的。但是，这种使用方法对于某些类型的 props（例如全局属性 语言、界面主题）来说可能过于繁琐，因为这些 props 必须传递给应用程序中的许多组件。
+
+上下文提供了一种在组件间共享此类数据的方法，而无需明确地将 props 传递到树的每一层。 树的每一级传递 props。当上下文值发生变化时，调用 useContext 的组件总是会被重新渲染。上下文值发生变化时，调用 useContext 的组件总是会被重新渲染。如果重新渲染组件的成本很高，可以使用 [memoization](https://www.zhihu.com/search?q=memoization&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra=%7B%22sourceType%22%3A%22answer%22%2C%22sourceId%22%3A3248392880%7D) 对其进行优化。
+
+```javascript
+const App = () => {
+  const theme = useContext(ThemeContext);
+
+  return (
+    <div style={{ color: theme.palette.primary.main }}>
+      Some div
+    </div>
+  );
+}
+
+```
+
+
+
+   
+## 0372 什么是自定义钩子
+
+
+自定义钩子是一种允许您在不同组件之间重复使用逻辑的功能。它是一种封装可重用逻辑的方法，以便在多个组件之间轻松共享和重用。自定义钩子是通常以 \*use \* 开头的函数，可在需要时调用其他钩子。
+
+自定义钩子的规则
+
+* 钩子名称以 "use "开头。
+* 如有需要，请使用现有钩子。
+* 不要有条件地调用钩子。
+* 将可重复使用的逻辑提取到自定义钩子中。
+* 自定义钩子必须是纯函数。
+* 自定义钩子可以返回值或其他钩子。
+* 以描述性的方式命名自定义钩子。
+
+```javascript
+import { useEffect } from 'react';
+
+export const useClickOutside = ({ currDOM, onClickOutside }, deps) => {
+  useEffect(() => {
+    const onMousedown = (event) => {
+      if (currDOM && event && currDOM.contains(event.target)) {
+        return;
+      }
+      onClickOutside && onClickOutside(event);
+    };
+    document.addEventListener('mousedown', onMousedown);
+    return () => {
+      document.removeEventListener('mousedown', onMousedown);
+    };
+
+  // eslint-disable-next-line
+  }, deps || []);
+};
+
+```
+
+
+
+   
+## 0374 什么是 linters
+
+
+Linters 是用于检查源代码是否存在潜在错误、错误、风格不一致和可维护性问题的工具。它们帮助执行编码标准并确保整个代码库的代码质量和一致性。
+
+Linters 的工作原理是扫描源代码并将其与一组预定义的规则或指南进行比较。这些规则可以包括语法和格式约定、最佳实践、潜在错误和代码异味。当 linter 发现违反规则时，它会生成警告或错误，突出显示需要注意的特定行或多行代码。
+
+使用 linter 可以带来几个好处：
+
+1. 代码质量：Linter 有助于识别和防止潜在的错误、代码异味和反模式，从而提高代码质量。
+2. 一致性：Linter 强制执行编码约定和风格指南，确保整个代码库的格式和代码结构一致，即使多个开发人员正在处理同一个项目时也是如此。
+3. 可维护性：通过尽早发现问题并促进良好的编码实践，linter 有助于代码的可维护性，使理解、修改和扩展代码库变得更容易。
+4. 效率：Linter 可以通过自动化代码审查流程并在常见错误在开发或生产过程中引起问题之前发现它们，从而节省开发人员的时间。
+
+一些流行的 linter 包括用于 JavaScript 的 ESLint 以及用于 CSS 和 Sass 的 Stylelint
+
+
+
+   
+## 0375 你知道哪些项目架构
+
+
+有多种用于构建 [React 项目](https://www.zhihu.com/search?q=React%20%E9%A1%B9%E7%9B%AE&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra=%7B%22sourceType%22%3A%22answer%22%2C%22sourceId%22%3A3248392880%7D)的架构解决方案和模式。一些受欢迎的包括：
+
+* MVC（模型-视图-控制器） ：MVC 是一种传统的架构模式，它将应用程序分为三个主要组件 - 模型、视图和控制器。React 可以在 View 层中使用来渲染 UI，而其他库或框架可以用于 Model 和 Controller 层。
+* Flux：Flux是Facebook专门针对React应用程序推出的应用程序架构。它遵循单向数据流，其中数据沿单个方向流动，从而更容易理解和调试应用程序的状态更改。
+* 原子设计：原子设计并不是 React 特有的，而是一种将 UI 划分为更小、可重用组件的设计方法。它鼓励构建小型、独立且可以组合以创建更复杂的 UI 的组件。
+* 容器和组件模式：该模式将表示（组件）与逻辑和状态管理（容器）分开。组件负责渲染 UI，而容器则处理业务逻辑和状态管理。
+* 功能切片设计：它是一种用于组织和构建 React 应用程序的现代架构方法。它旨在通过根据功能或模块划分应用程序代码库来解决可扩展性、可维护性和可重用性的挑战。
+
+
+
+
+
+   
+## 0376 什么是特征切片设计
+
+
+它是一种用于组织和构建 React 应用程序的现代架构方法。它根据功能或模块，划分应用程序代码库，来解决可扩展性、可维护性和可重用性的挑战。
+
+在功能切片设计中，应用程序的每个功能或模块，都组织到一个单独的目录中，其中包含所有必要的组件、操作、reducers 和其他相关文件。
+
+这有助于保持代码库的模块化和隔离性，使其更易于开发、测试和维护。
+
+功能切片设计促进了关注点的清晰分离，并将功能封装在各个功能中。
+
+这允许不同的团队或开发人员独立地处理不同的功能，而不必担心冲突或依赖性。
+
+![](https://cloud.seatable.cn/workspace/32/asset/e82c7317-556e-45c4-8b5d-092331cd8977/images/auto-upload/image-1707009948481.png)
 
 
 
