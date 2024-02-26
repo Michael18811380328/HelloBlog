@@ -84,19 +84,54 @@ function Profile(props) {
 
 
 
-
-
-
-
-
-
 # 脱围机制 Escape Hatches
 
+使用非 react 内部方法，处理需要的功能（例如处理界面滚动，处理视频播放，需要使用原生 JS 实现）
 
+~~~js
+// video 元素
+if (isPlaying) {
+  ref.current.play();
+} else {
+  ref.current.pause();
+}
+~~~
 
+实际上，不使用 React 的方法，如何实现其他功能？
 
+1、组件属性？使用 useRef 存储
 
+2、操作 DOM 节点（获取计算尺寸位置等）；当State变化时，操作 DOM 节点
 
+在渲染时，尽量计算，不要使用新的 State（name = firstName + lastName）
+
+React 不允许组件访问其他组件的 DOM 节点。甚至自己的子组件也不行 使用 forwardRef API 可以实现这个功能
+
+~~~js
+const MyInput = forwardRef((props, ref) => {
+ return <input {...props} ref={ref} />;
+});
+~~~
+
+没有依赖数组作为第二个参数，与依赖数组位空数组 [] 的行为是不一致的：
+
+~~~js
+useEffect(() => {
+ // 这里的代码会在每次渲染后执行
+});
+
+useEffect(() => {
+ // 这里的代码只会在组件挂载后执行
+}, []);
+
+useEffect(() => {
+ //这里的代码只会在每次渲染后，并且 a 或 b 的值与上次渲染不一致时执行
+}, [a, b]);
+~~~
+
+这部分写的比较啰嗦，确实案例和细节很多，有些专有名词比较多。
+
+看了前4小节
 
 
 
