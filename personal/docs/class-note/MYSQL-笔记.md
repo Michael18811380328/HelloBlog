@@ -1,5 +1,5 @@
 
-# 黑马-MYSQL
+# MYSQL
 
 原始教程链接: https://www.bilibili.com/video/BV1Kr4y1i7ru/?vd_source=2d5bdee7ea59486ed4aa4a9b10020224
 
@@ -94,7 +94,7 @@ show databases;
 
 create database if not exists hello default charset utf8mb4;
 
-use hello;
+use hello; 
 
 # 查询当前所在的数据库的信息，如果当前没有进入数据库，那么返回 Null
 select database();
@@ -119,10 +119,10 @@ utf8mb4：字符较多，优先使用这个字符集
 show tables;
 
 # 描述当前表的结构
-desc test;
+desc users;
 
 # 查询指定表的建表语句
-show create table test;
+show create table users;
 
 ```
 
@@ -140,8 +140,6 @@ create table novel_user(
 注意：字段和数据类型之间没有冒号，最后一个字段后面没有逗号
 
 创建成功后，类似数据库，可以查看创建语句（也能看到评论）
-
-
 
 
 
@@ -230,7 +228,7 @@ create table employee (
 ### 9-09. 基础-SQL-DDL-表操作-修改&删除
 表操作
 
-```
+```sql
 # 增加字段
 alter table employee add gender char(1) comment '男 女';
 
@@ -245,7 +243,7 @@ alter table employee gender;
 alter table employee rename to user;
 
 # 删除表
-drop table is exists user;
+drop table if exists user;
 
 # 删除原表并重新建一个空表
 truncate table user;
@@ -312,45 +310,42 @@ drop table user;
 ### 12-12. 基础-SQL-DML-插入
 Dml：Data manipulation language 数据操作语句，对数据库的表结构的数据记录，进行增删改。
 
-本小节添加数据：可以给指定的字段添加数据。
+添加数据：可以给指定的字段添加数据。
 
-```
+```sql
 insert into user (id，name) values (1，'mike'); 
 
 ```
 
 也可以给全部字段添加数据，但是实际上这样用的比较少。如果某个表要新加一个字段，这样的语句就会不能用。
 
-
 也可以一条 SQL 语句添加多个记录，只需要在后面用逗号进行隔开，就是批量添加数据。
-
 
 注意
 
-
 1 字段的顺序和添加数据的顺序应该一致。
-
 
 2 添加数据必须满足字段的数据类型和数据范围。例如如果设置了年龄字段是正数，那么就不能添加一个负数的年龄，如果添加了会报错。
 
-
-3 字符串和日期对象应该用引号进行包括。如果是用户自定义输入的语句，一定要进行转换，避免用户输入非法的 SQL语句执行sql输入这个在日常的开发中也之前遇过。
+3 字符串和日期对象，应该用引号。如果是用户自定义输入的语句，一定要进行转换，避免用户输入非法的 SQL语句执行sql注入（安全问题），这个在日常的开发中也之前遇过。
 
 
 
 
 ### 13-13. 基础-SQL-DML-更新和删除
-更新数据，修改语句可以加 where 条件也可以不加，如果不加条件的话，修改的是整个表的全部数据（通常不这么写）。
+更新数据，修改语句可以加 where 条件也可以不加。
+
+如果不加条件的话，修改的是整个表的全部数据（通常不这么写）。
 
 ```sql
-Update user set name='Mike'，age=10 where id >= 10;
+update user set name='Mike'，age=10 where id >= 10;
 
 ```
 
 删除数据，如果不加 where 就是删除全部的行（通常不这么写）。
 
 ```sql
-Delete from user where is is null
+delete from user where id is null
 
 ```
 
@@ -362,8 +357,10 @@ Delete from user where is is null
 
 ```sql
  insert into novel set value;
- update novel set name='mike', age=10 where is 10;
- delete from novel where ID is 10;
+ 
+ update novel set name='mike', age=10 where id is 10;
+ 
+ delete from novel where id is 10;
 
 ```
 
@@ -371,37 +368,30 @@ Delete from user where is is null
 
 
 ### 15-15. 基础-SQL-DQL-基础查询
-我们课程的数据还有我们资源的数据，当我们在访问官网的时候，这些数据都需要从数据库查询出来，然后在界面进行展示。所以 DQL 语句实际上是使用最多的情况。
+当我们在访问官网时，数据都需要从数据库查询出来，然后在界面进行展示。所以 DQL 语句是使用最多的情况。
 
 查询包括多个部分。
 
-
 基本查询。
 
-
-条件查询。 where
-
+条件查询。where
 
 聚合函数。count max min avg sum
 
-
 分组查询。group by
-
 
 排序查询。order by
 
-
 分页查询。limit
-
-
 
 ```sql
 select * from novel;
+
 select name, price from novel;
 
 ```
 
-加上 distinct 字段可以对查询的结果进行去重。
+加上 distinct 字段，可以对查询的结果进行去重。
 
 ```sql
 select distinct email from novel;
@@ -416,10 +406,10 @@ select distinct email from novel;
 
 包括比较运算符（>=, !=）和逻辑运算符(&& ||)，特殊的还有 between in like ilike null。
 
-```
-Select  from user where age in（18，20，40）
+```sql
+Select xxx from user where age in（18, 20, 40）;
  
-Select  from user where age between 10 and 20
+Select xxx from user where age between 10 and 20;
 
 ```
 
@@ -433,7 +423,7 @@ Select  from user where age between 10 and 20
 
 COLLATE utf8mb4_general_ci; 表示不区分大小写
 
-```
+```sql
 # 查找昵称以 Peter 结尾的用户
 select * from users where nickname like '%Peter';
 
@@ -456,7 +446,7 @@ select * from users where nickname like 'peter%' COLLATE utf8mb4_general_ci;
 聚合函数。将一列数据作为一个整体进行纵向计算。
 
 ```
-Select 聚合函数(字段)  From table
+Select 聚合函数(字段) From table
 
 ```
 
@@ -481,7 +471,7 @@ select max(age) from employee;
 
 select min(age) from employee;
 
-select ave(salary) form employee;
+select avg(salary) from employee;
 
 select sum(car_number) from employee;
 
@@ -569,9 +559,9 @@ select * from product order by price ASC NULLS LAST;
 # 5 处理字符集排序
 
 # 如果默认字符集是 gbk 汉字编码字符集，直接排序。
-# 如果字符集是 utf-8 需要先转换成 gbk 再排序。
-
 select * from users order by nickname;
+
+# 如果字符集是 utf-8 需要先转换成 gbk 再排序。
 select * from users order by convert(nickname using gbk);
 
 ```
@@ -611,12 +601,12 @@ select * from comments limit 20, 20；
 5个实际案例，重在练习
 
 ```sql
-# 1、查询年龄时 20， 21， 22， 23 岁女员工的信息
-select * from employee where gender = '女' and name in(20, 21, 22, 23);
+# 1、查询年龄 20， 21， 22， 23 岁女员工的信息
+select * from employee where gender = '女' and age in(20, 21, 22, 23);
 
 
 # 2、查询男，20-40岁之间，姓名是三个字的员工信息
-select * from employee where gender = '男' and ( age between 20 and 40 ) and name like '___';
+select * from employee where gender = '男' and (age between 20 and 40) and name like '___';
 
 
 # 3、查询：年龄小于60岁，男性和女性的人数
@@ -663,8 +653,8 @@ limit 分页参数
 
 ```sql
 from table as table1
-where table1.age >10
-group by name having age <30
+where table1.age > 10
+group by name having age < 30
 select name，count(name)
 order by salary asc
 limit 20,10
@@ -710,7 +700,7 @@ LIMIT
 
 
 
-### 24-24. 基础-SQL-DCL-用户管理-
+### 24-24. 基础-SQL-DCL-用户管理
 data control language 数据控制语句，用于管理数据库用户，控制用户访问数据库的权限。
 
 数据库的用户在 mysql 这个数据库中存放
@@ -746,7 +736,7 @@ drop user 'mike'@'localhost';
 
 
 
-### 25-25. 基础-SQL-DCL-权限控制-
+### 25-25. 基础-SQL-DCL-权限控制
 可以设置某个用户对于某个数据库和某个表的权限
 
 可以使用通配符表示全部数据库和全部表（实际上不会这样做）
@@ -813,26 +803,33 @@ revoke all on novel.comments from 'julia'@'*';
 
 
 ### 27-27. 基础-函数-字符串函数
-### 函数
+#### 函数
 
 这里指的是 mysql 内置函数，不需要我们手写函数，需要知道内置函数的使用。
 
 函数分为：字符串函数、数值函数、日期函数、逻辑函数（流程函数）
 
-### 字符串函数
+#### 字符串函数
 
 可以更新数据库表中的字符串信息
 
-```
-concat(str1, str2, str3) 拼接字符串
-lower upper
-lpad rpad 左右补齐
+```sql
+# 拼接字符串
+concat(str1, str2, str3) 
+lower
+upper
+
+# 左右补齐
+lpad
+rpad
+
 trim
-substring(str, start, length) 截取字符串
+# 截取字符串
+substring(str, start, length) 
 
 ```
 
-案例
+#### 案例
 
 1、原来表格中序号都是12345，现在需要在前面补0
 
@@ -868,8 +865,6 @@ select substring('Hello world', 1, 5); # Hello
 select trim(' Hello ');
 
 ```
-
-
 
 
 
@@ -947,10 +942,28 @@ select name, datediff(currdate(), entrydate) as 'entrydays' from employee order 
 
 ```
 
+TODO：时区设置
+
+实际问题：mysql 服务器设置的默认市区是 System 系统时间，如果 mysql 中设置的时间是伦敦时区，那么如果在东八区运行的服务，就可能产生不一样的时间。
+
+```sql
+SELECT @@global.time_zone;
+
+SELECT @@session.time_zone; 
+
+-- 现在这个会报错，看一下是为什么
+-- Query 1 ERROR at Line 5: : Unknown or incorrect time zone: 'Asia/Shanghai'
+-- 可能是数据库系统表中缺少对应的时区字段
+SET time_zone = 'Asia/Shanghai';
+
+```
+
+参考：<https://blog.csdn.net/weixin_44816664/article/details/132766459> 
 
 
 
-### 30-30. 基础-函数-流程函数
+
+### 30-30. 基础-函数-逻辑函数
 实际上是逻辑函数
 
 if 
@@ -1047,14 +1060,14 @@ case...when...then...else...end
 
 约束：设置一定的规范，约束限制表中的字段的数据。
 
-约束的目的：数据正确性有效性完整性
+约束的目的：数据正确性、有效性、完整性
 
 约束分类
 
 * 非空约束 NOT NULL
 * 唯一约束（身份证，手机号）UNIQUE
 * 主键约束 PRIMARY KEY，一行数据唯一标识，非空且唯一
-* 外检约束 FOREIGN KEY，让两个表建立联系，保证数据一致性完整性
+* 外键约束 FOREIGN KEY，让两个表建立联系，保证数据一致性完整性
 * 默认约束 DEFAULT
 * 检查约束 CHECK
 
@@ -1109,14 +1122,14 @@ INSERT INTO user(username, age, status, gender) values ('Tony', -20, '1', '1');
 ### 34-34. 基础-约束-外键约束
 ### 外键约束
 
-外键：保证了两张表的完整性和一致性，建立表的联系。如果没有外键，那么就是现在的情况，多个表互相独立，不方便管理，就失去了 mysql 的意义。父表中删除某些数据，子表中原始的数据不会自动更新，所以需要外键。
+外键：保证了两张表的完整性和一致性，建立表的联系。父表中更新某些数据，子表中原始的数据不会自动更新，所以需要外键。如果没有外键，那么多个表互相独立，不方便管理，就失去了 mysql 的意义。
 
-外键约束：在父表和子表中，都设置主键，然后把父表的主键，作为字表的外键，就实现了外键约束。这个过程需要建立约束的 SQL 语句。
+外键约束：在父表和子表中，都设置主键，然后把父表的主键，作为子表的外键，就实现了外键约束。这个过程需要建立约束的 SQL 语句。
 
 语句
 
 ```sql
-ALTER TABLE 子表 ADD CONSTRAINT 外键名称 FOREIGN KEY (子表中的外键) REFRENCES 主表(主表的主键);
+ALTER TABLE 子表 ADD CONSTRAINT 外键名称 FOREIGN KEY (子表中的外键) REFERENCES 主表(主表的主键);
 
 ALTER TABLE 子表 DROP FOREIGN KEY 外键名称；
 
@@ -1128,14 +1141,14 @@ ALTER TABLE 子表 DROP FOREIGN KEY 外键名称；
 # 创建部门表（父表）
 create table dept (
 	id int auto_increment primary key,
-	name varchar(10) not_null
+	name varchar(10) not null
 ) comment '部门表，父表';
 
 # 增加部门
 insert into dept(name) values('产品部'), ('销售部'), ('行政部');
 
 # 创建员工表（子表）
-create tabel emp(
+create table emp(
 	id int auto_increment primary key,
 	name varchar(50) not null unique,
 	age int(2) check(age > 0 && age < 100),
@@ -1150,7 +1163,7 @@ create tabel emp(
 insert into emp(id, name, age, job, salary, entrydate, manager_id, dept_id) values ('1', 'mike', 20, 'saler', 20000, '2022-01-01', 1, 1);
 
 # 创建部门表和员工表的外键约束
-alter table emp add constraint emp_dept_foreign_key foreigh key (dept_id) refrences dept(id);
+alter table emp add constraint emp_dept_foreign_key foreign key (dept_id) references dept(id);
 
 # 建立约束后，如果在主表内删除 id 但是子表中使用了这个 id, 那么会显示删除错误，SQL 语句不能执行
 
@@ -1272,7 +1285,7 @@ create table student_course(
   constraint fk_studentid foreign key(studentid) references student (id),
 ) comment '学生课程中间表';
 
-insert into student_course values(null, 1, 1), (null, 1, 2), (null, 1, 3);  
+insert into student_course values(null, 1, 1), (null, 1, 2), (null, 1, 3);
 
 ```
 
@@ -1437,7 +1450,7 @@ select a.name '员工', b.name '领导' from emp a left join emp b on a.manager_
 
 不去重就使用 union all，去重就使用 union
 
-```
+```sql
 SELECT city FROM customers
 UNION
 SELECT city FROM suppliers;
@@ -1446,7 +1459,7 @@ SELECT city FROM suppliers;
 
 实际案例
 
-```
+```sql
 select * from employee1 where salary < 10000
 union all
 select * from employee2 where age > 40;
@@ -1465,15 +1478,10 @@ select * from employee2 where age > 40;
 
 根据子查询结果的分类（4）：
 
-一行一列（就是一个值）：标量子查询
-
-多行：行子查询
-
-多列：列子查询
-
-多行多列：表子查询
-
-
+* 一行一列（就是一个值）：标量子查询
+* 多行：行子查询
+* 多列：列子查询
+* 多行多列：表子查询
 
 
 
@@ -1538,12 +1546,12 @@ select * from emp where salary > any (select salary from emp where dept_id = (se
 
 子查询结果是一行的情况
 
-```
+```sql
 select * from table2 where (字段1， 字段2) =（select 字段1， 字段2 from table1）
 
 ```
 
-```
+```sql
 # 需求：查询与小明薪资和领导相同的其他员工
 
 select salary, managerid from emp where name = 'Mike'; # 10000, 3
@@ -1564,14 +1572,14 @@ select * from emp where (salary, managerid) = (select salary, managerid from emp
 ### 47-47. 基础-多表查询-表子查询
 表子查询，在行子查询的基础上，增加多行即可，变成 in
 
-```
+```sql
 select * from table2 where (字段1， 字段2) in（select 字段1， 字段2 from table1）
 
 ```
 
 需求1：查询与 Tom Mike 薪资和领导相同的其他员工（结合上一节的案例）
 
-```
+```sql
 select * from emp where (salary, managerid) in (select salary, managerid from emp where name = 'Mike' or name = 'Tom');
 
 ```
@@ -1856,8 +1864,9 @@ MySQL 事务主要用于处理操作量大，复杂度高的数据。事务是�
 实际案例：转账操作：
 
 ```sql
-# 1 查询 mike 用户存在，且余额大于1000（todo）
-select * from account where name = 'mike';
+# 1 查询 mike 用户存在，且余额大于1000; 查询 amy 用户存在
+select * from account where name = 'mike' and money > 1000;
+select * from account where name = 'amy'; 
 
 # 2 mike 账户减少1000
 update account set money = money - 1000 where name = 'mike';
@@ -1893,11 +1902,11 @@ select﻿ ﻿*﻿ ﻿from﻿ account ﻿where﻿ name ﻿=﻿ ﻿'mike'﻿;
 
 ﻿
 # 2 mike 账户减少1000
-update﻿ account ﻿set﻿ money ﻿=﻿ money ﻿-﻿ ﻿1000﻿ ﻿where﻿ name ﻿=﻿ ﻿'mike'﻿;
+update﻿ account ﻿set﻿ money ﻿=﻿ money ﻿-﻿ ﻿1000﻿ ﻿where﻿ name ﻿=﻿ ﻿'Mike'﻿;
 
 ﻿
 # 3 amy 账户增加1000
-update﻿ account ﻿set﻿ money ﻿=﻿ money ﻿+﻿ ﻿1000﻿ ﻿where﻿ name ﻿=﻿ ﻿'amy'﻿;
+update﻿ account ﻿set﻿ money ﻿=﻿ money ﻿+﻿ ﻿1000﻿ ﻿where﻿ name ﻿=﻿ ﻿'Amy'﻿;
 
 
 # 如果执行成功，提交事务
@@ -1940,7 +1949,7 @@ rollback﻿;
 
 
 ### 55-55. 基础-事务-并发事务演示及隔离级别
-不同的事务隔离级别，有四种
+有四种事务隔离级别
 
 ![](https://cloud.seatable.cn/workspace/81910/asset/b0de7002-5abf-48b9-b07b-ba7033be74a7/images/auto-upload/image-1703988539332.png)
 
@@ -1958,8 +1967,6 @@ set [session|global] transaction isolation level [repeatable read] 上面四选�
 默认 mysql 的事件隔离级别不需要修改 
 
 事务隔离级别越高，安全性越好，性能越低。安全性最好的性能最差；安全性不太好的性能好。
-
-
 
 
 
@@ -2013,6 +2020,181 @@ SQL 语法（DCL，DQL，DML）
 ```
 
 要求：掌握基本 SQL 概念，可以使用基本的增删改查语句。（不考虑性能问题）
+
+
+
+
+### 58-01. 进阶-课程介绍
+mysql 进阶篇的主要内容
+
+* 存储引擎-innoDB
+* 索引
+* SQL 优化
+* 视图、存储过程、触发器
+* 锁
+* mysql 管理
+
+
+
+
+### 59-02. 进阶-存储引擎-MySQL体系结构
+MYSQL 服务器内部体系结构，分成四层：
+
+客户端中（PHP python Ruby）调用第一层的API完成交互
+
+1、连接层：mysql 的 API，支持用户登录验证，权限验证，连接限制、缓存、内存检查等。
+
+2、服务层：mysql 服务器的核心功能，SQL 接口、SQL 解析器、缓存、SQL 查询优化器、函数
+
+3、引擎层：mysql 服务器和存储引擎进行通信，不同存储引擎有不同的功能（内存、索引、存储管理）
+
+4、存储层：把数据写入到文件系统中，完成与存储引擎的交互
+
+
+
+
+
+![](https://cloud.seatable.cn/workspace/81910/asset/b0de7002-5abf-48b9-b07b-ba7033be74a7/images/auto-upload/image-1704153556510.png)
+
+
+
+
+### 60-03. 进阶-存储引擎-简介
+引擎：mysql 存储数据、建立索引、查询更新数据的底层实现方式。存储引擎基于表结构，也称为表类型。一个数据库中不同表可以选择不同的存储引擎。
+
+```sql
+# 查询建表语句
+show create table account;
+
+# 创建表，指定存储引擎类型（或者使用默认的 innodb）
+create table emp (
+	id int,
+	name varchar(10)
+) engine=INNODB 
+
+
+# 查询当前支持的引擎和特征
+show engines;
+
+```
+
+其他的引擎：MyISAM Memory
+
+
+
+
+
+
+### 61-04. 进阶-存储引擎-InnoDB介绍
+存储引擎的特点
+
+InnoDB: 当前 mysql 使用的高性能和高可靠性的存储引擎，三个特点：
+
+1、支持事务：DML 操作遵循 ACID 模型（插入、更新、删除）（ACID 原子性，一致性、隔离性、持久性）
+
+2、支持外键（外键约束，保证数据完整性和正确性）
+
+3、支持行级锁（提高并发访问性能）
+
+对应磁盘的 xxx.ibd 文件，文件存储表结构、数据、索引
+
+InnoDB 逻辑存储结构：TableSpace Segment Extent(每一个1M) Page（每一个16k） Row 五层
+
+
+
+
+### 62-05. 进阶-存储引擎-MyISAM和Memory
+本节介绍另外两个存储引擎：MyISAM Memory
+
+#### MyISAM
+
+不支持事务、不支持外键、不支持行锁。支持表锁，访问速度快。分成三个文件存储表结构信息、表数据、表索引。
+
+#### Memory
+
+在内存中存放，只能存放临时数据和缓存，默认是哈希索引，只有 sdi 文件，存储表的结构
+
+![](https://cloud.seatable.cn/workspace/81910/asset/b0de7002-5abf-48b9-b07b-ba7033be74a7/images/auto-upload/image-1704201477556.png)
+
+
+
+
+### 63-06. 进阶-存储引擎-选择
+MYSQL 这里学三种存储引擎。
+
+* 默认使用 InnoDB 存储引擎（实际使用最多）
+* MyISAM 是早期的引擎，现在被 MongoDB 替代，详细课程 <https://www.bilibili.com/video/BV1bJ411x7mq/?> 
+* Memory 被 redis 替代，详细课程 <https://www.bilibili.com/video/BV1cr4y1671t/> 
+
+这些都是单独的课程和内容，内容也比较多，后续有机会再学
+
+如何选择存储引擎？根据应用的特点选择合适的引擎。如果应用系统复杂，可以选择多种引擎（一个表对应一个引擎，一个数据库中可以对应多个引擎）
+
+下面是三个引擎的具体对比，后两个了解即可。
+
+![](https://cloud.seatable.cn/workspace/81910/asset/b0de7002-5abf-48b9-b07b-ba7033be74a7/images/auto-upload/image-1704192458018.png)
+
+
+
+
+### 64-07. 进阶-存储引擎-小结
+存储引擎小结：
+
+1、MYSQL 服务器四层体系结构：连接层、服务层、引擎层、存储层
+
+2、存储引擎介绍
+
+```sql
+show engines;
+
+craete table emp() engine=INNODB;
+
+```
+
+3、innodb 相对于 MyIsam 的优点：支持外键、支持事务、支持行级锁
+
+4、存储引擎使用：innodb 对于数据和事务要求较高的核心业务，其他的引擎用于日志等非核心业务（实际使用其他数据库完成）
+
+
+
+
+### 66-09. 进阶-索引-概述
+参考链接：<https://www.runoob.com/mysql/mysql-index.html> 
+
+#### 为什么使用索引
+
+当数据量比较大时，查询原始表速度较慢，增加索引后可以大大加快查询速度。
+
+索引实际上就是一个指针，指向真实的数据，执行 DQL 语句时，不需要查询原始表，查询索引表即可获取数据。
+
+#### 怎样建立索引
+
+在一个数据库表中，选择 where 查询的一列或者多列，作为索引的列。类似从数组中遍历一个数据，和从对象中映射一个数据，索引就是对象的键。
+
+语句：在 students 表中的 name 字段，建立一个索引，索引名称是 idx_name。
+
+```sql
+CREATE INDEX idx_name ON students (name);
+
+```
+
+#### 索引的问题
+
+索引实际是一个表，建立索引页需要一定时间。索引表自身也会占用一些空间，所以索引不是越多越好。
+
+当原始表中增删改一些数据，对应索引表也需要更改数据（使查询加快，但是增删改变慢）。
+
+
+
+
+### 121-64. 进阶-锁-介绍
+基本情况：
+
+当多条语句执行时，为了避免同时更改一个数据，mysql 设置了锁。
+
+当某一个语句执行时，先锁定当前的表或者行，执行耗时。期间其他的语句执行时，发现对象是锁定的，所以暂停执行。当第一个语句执行完成，解锁，后续的语句才能执行。这就是锁的基本概念。
+
+存在的问题和优化（例如慢查询）：某些语句执行时会锁定整个表，这样就会阻塞其他语句执行，造成查询慢等情况。这种情况可以增加索引，让表锁变成行锁，加快查询的速度。
 
 
 
