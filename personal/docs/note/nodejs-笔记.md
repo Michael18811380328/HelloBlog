@@ -234,4 +234,27 @@ process.exec(command, function(err, stdout, stderr) {
 
 
 
+   
+## 0384 express 如何实现跨域
+
+
+设置跨域
+
+```javascript
+const express = require('express');
+const app = express();
+
+// cross origin
+app.all('*', (req, res, next) => {
+	res.header('Access-Control-Allow-Origin', '*');
+	res.header('Access-Control-Allow-Headers', 'Content-Type');
+	res.header('Access-Control-Allow-Methods', '*');
+	res.header('Content-Type', 'application/json;charset=utf-8');
+	next();
+});
+
+```
+
+
+
   

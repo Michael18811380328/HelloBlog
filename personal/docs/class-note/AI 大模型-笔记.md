@@ -3,7 +3,17 @@
 
 原始教程链接: https://aistudio.baidu.com/education/group/info/28604
 
-### 概述
+## 概述
+
+
+#### AI 概述
+
+<https://www.zhihu.com/question/599713780/answer/3055040756>
+
+介绍了 GPT1-4的论文和主要变化，深度学习等概念，目前论文下载好了，阅读难度比较大。整体上需要扎实的 Python 基础，扎实的数据结构和算法基础，扎实的统计概率基础等。直接学习核心原理比较困难，学习思维以及 python 基本的逻辑是很重要的。个人目标：AI 如何提升程序员的工作效率？如何在其他场景中使用这个技术？争取自己做出一个 demo，可以部署在小说阅读器项目中
+
+#### 学习资料
+
 各种资料，选择最好的
 
 <https://www.zhihu.com/education/video-course/1556316449043668992> 
@@ -13,7 +23,7 @@
 
 
 
-### 知乎-01使用 Assistant 搭建 AI 助手
+## 知乎-01使用 Assistant 搭建 AI 助手
 链接：<https://www.zhihu.com/education/training/course-detail/1744009771047370752> 
 
 来源：知乎在线视频，简单介绍 GPT assistant 如何搭建一个 AI 助手，概述 + demo
@@ -241,14 +251,58 @@ if prompt := st.chat_input():
 
 
 
-### 知乎-02大模型核心概述 + LangChain
+## 知乎-02大模型核心概述 + LangChain
 ### Prompt Engineer 提示词工程
 
 prompt 告诉大模型要做什么
 
 怎样用在代码中（单轮问答，多轮交互）
 
+#### 案例
+
+```python
+def example():
+  instruction = """帮我写一个课程框架,主题是react.js课程框架,200字."""
+  prompt = f"""{instruction}"""
+  response = getResponse(prompt)
+  print(response)
+
+# 基于 prompt 生成文本
+def getResponse(prompt, model='gpt-3.5-turbo-16k-0613'):
+  # messages 列表（存放对话信息）
+  # 目前支持单轮对话
+  messages = [
+    {
+      'role': 'user',
+      'content': prompt,
+    }
+  ]
+  response = openai.ChatCompletion.create(
+    model=model,
+    messages=messages,
+    temperature=0,
+  )
+  return response.choices[0].message['content']
+
+```
+
+API 中主要的参数和说明：
+
+model: 使用 GPT 的模型，默认是 gpt3.5 模型
+
+messages: 对话数组。role 表示角色，支持 user, assistant, system 三种情况。assistant 表示 GPT 返回来的信息。system 表示环境系统变量，系统预先设置的信息。例如：你现在是一个化学老师，只能解答化学有关的问题。
+
+tempetature: 温度，temperature 表示随机性，0最小，2最大，默认较小值0。如果给到 1.8 那么答案天马行空。
+
+这里还有其他的参数，根据官方文档使用
+
+#### 注意点：
+
+* 内容审核：harassment: true or false 对于不同类型骚扰如何处理
+
 ### LangChain 大模型 pyhton 框架
+
+LangChain 是一个面向大模型的开发框架，使用简单配置即可实现复杂的 AI 应用。内部封装了很多组件（网络模块）。可以把大模型和外部数据结合起来，输入自己的知识库，定制化大模型。
 
 中文文档：<https://www.langchain.com.cn/> 
 
@@ -260,12 +314,200 @@ prompt 告诉大模型要做什么
 
 关键申请一个 OPENAI_API_KEY 然后直接调用即可 
 
+#### IO 模块
+
+这里的 IO 和计算机的 IO 输入设备输出设备无关，指的是向大模型输入和输出的模块，就是应用和大模型的接口。
+
+* prompts：可以直接处理多种模型，不需要考虑不同模型的差异化，减少了程序员处理工作
+* outputs: 解析输出的结果，分成普通的 LLM 和对话式的 chat_model，如下
+* language model： 使用哪种语言模型进行解析
+
+```python
+# prompts：可以直接处理多种模型
+from langchain import PromptTemplate
+
+prompt_template = PromptTemplate.from_template(
+	"Tell me a {adj} joke about {content}."
+)
+
+prompt_template.format(adj="funny", content="kids")
+
+```
+
+```python
+# model = LLM
+prompt_template.format(adj="funny", content="kids")
+
+from langchain.llms import OpenAI
+
+llm = OpenAI()
+
+print(llm.predict('Hello, '))
+
+```
+
+```python
+# model = chat_models
+from langchain.chat_models import ChatOpenAI
+
+chat_model = ChatOpenAI()
+
+print(chat_model.predict('Hello, '))
+
+```
+
+![](https://cloud.seatable.cn/workspace/81910/asset/b0de7002-5abf-48b9-b07b-ba7033be74a7/images/auto-upload/image-1709388527210.png)
+
+#### 数据连接模块
+
+![](https://cloud.seatable.cn/workspace/81910/asset/b0de7002-5abf-48b9-b07b-ba7033be74a7/images/auto-upload/image-1709388589136.png)
+
+load: 加载数据，支持多种格式 Document loader(cvs, html, file, json, pdf)
+
+```python
+from langchain.document_loaders import PyPDFLoader
+
+loader = PyPDFLoader("test.pdf")
+pages = loader.load_and_split()
+
+print(pages[0].page_content)
+
+```
+
+transform: split（把数据切成块，就是上面的 split() 函数） + translate(把输入翻译成指定语言)
+
+embed: 数据向量化，模型无法直接阅读文本或者字符串，只能处理数值。所以使用机器学习的方法，从数据中进行特征值提取，变成一个高维的数据（向量或者张量）
+
+store：把向量存储后，和已有的数据集中的向量进行对比，比较相似程度，找到最相似的结果（判别）相似度的计算原理：两个点的距离是欧氏距离，两个向量的距离是余弦距离。
+
+![](https://cloud.seatable.cn/workspace/81910/asset/b0de7002-5abf-48b9-b07b-ba7033be74a7/images/auto-upload/image-1709389282902.png)
+
+memory 模块：记忆化模块：与多轮对话强相关。使用已有的对话，训练出下一个结果。把下一个结果 message 作为参数（或者处理后的结果），继续询问大模型，就是记忆化模块。类似上下文处理。
+
+```python
+from langchain.memory import ConversationBufferMemory
+
+history = ConversationBufferMemory()
+history.save_context({'input': 'hello'}, {'output': 'hi'})
+
+# 注意：这里需要传参，是空的字典
+print(history.load_memory_viriables({}))
+
+history = ConversationBufferMemory()
+history.save_context({'input': 'hi'}, {'output': 'hello'})
+
+# 输出两轮对话
+print(history.load_memory_viriables({}))
+
+```
+
+处理特别长的对话，使用另一个方法，增加最大队列长度
+
+```python
+from langchain.memory import ConversationBufferWindowMemory
+
+window = ConversationBufferWindowMemory(k=3)
+
+window.save_context({'input': 'hi'}, {'output': 'hi'});
+window.save_context({'input': 'hi'}, {'output': 'hi'});
+window.save_context({'input': 'hi'}, {'output': 'hi'});
+window.save_context({'input': 'hi'}, {'output': 'hi'});
+window.save_context({'input': 'hi'}, {'output': 'hi'});
+
+print(window.load_memory_variables({})) #3
+
+
+# 总结前几轮的对话结果
+from langchain.memory import ConversationSummaryMemory
+from langchain.llms import OpenAI
+
+memory = ConversationSummaryMemory(
+	llm=OpenAI(tempetature=0)
+)
+
+memory.save_context(
+	{'input': 'hello'},
+	{'output': 'hello, I am your AI assistant'}
+)
+
+print(memory.load_memory_variables({}))
+
+
+```
+
 ### Fine-tuning 微调
 
+一般人和团队，没有时间和能力去从头训练一个大模型，所以就基于已有大模型进行微调。
+
+![](https://cloud.seatable.cn/workspace/81910/asset/b0de7002-5abf-48b9-b07b-ba7033be74a7/images/auto-upload/image-1709391223422.png)
+
+```python
+from finetune import ModifiedTrainer, data_collator
+from transformers import TrainingArguments
+
+training_args = TrainingArguments(
+	"output",
+	fp16 = True,
+	gradient_accumulation_steps = 1,
+	seed = 0,
+	data_seed = 0,
+	group_by_length = False,
+)
+
+trainer = ModifiedTrainer(
+	model=model,
+	train_dataset=dataset,
+	args=training_args,
+	data_collator=data_collator
+)
+
+trainer.train()
+
+
+```
 
 
 
-### 百度-1. 开始构建你的优质Prompt
+
+
+
+## 陆奇-新范式新时代新机会
+<https://miracleplus.feishu.cn/file/TGKRbW4yrosqmixCtprcUlAynzg> 
+
+陆奇最新演讲《新范式新时代新机会》完整PPT.pdf 可以扫码查看视频回放
+
+#### 新时代新范式
+
+最下面一层是技术发展史，技术的发展促进了模型的变化
+
+第一阶段：信息系统（计算机仅仅存储信息+人类观察总结模型+人类和环境交互）
+
+第二阶段：模型系统（计算机把数据整理成一部分知识模型，例如百度地图会把基础的 GPS 和坐标转换成地图和导航，实际还需要人类和环境交互）
+
+第三阶段：行动系统（计算机支持大模型，把很多知识模型整合成大模型，信息-模型-行动）例如自动驾驶，智能化更通用。
+
+![](https://cloud.seatable.cn/workspace/81910/asset/b0de7002-5abf-48b9-b07b-ba7033be74a7/images/auto-upload/image-1709953034247.png)
+
+![](https://cloud.seatable.cn/workspace/81910/asset/b0de7002-5abf-48b9-b07b-ba7033be74a7/images/auto-upload/image-1709956184126.png)
+
+![](https://cloud.seatable.cn/workspace/81910/asset/b0de7002-5abf-48b9-b07b-ba7033be74a7/images/auto-upload/image-1709956190929.png)
+
+![](https://cloud.seatable.cn/workspace/81910/asset/b0de7002-5abf-48b9-b07b-ba7033be74a7/images/auto-upload/image-1709956212209.png)
+
+新范式下面有很多新机会
+
+技术层面和对应的新产品
+
+![](https://cloud.seatable.cn/workspace/81910/asset/b0de7002-5abf-48b9-b07b-ba7033be74a7/images/auto-upload/image-1709957285261.png)
+
+![](https://cloud.seatable.cn/workspace/81910/asset/b0de7002-5abf-48b9-b07b-ba7033be74a7/images/auto-upload/image-1709957292863.png)
+
+后半部分是创业团队的发展过程
+
+
+
+
+## 百度-1. 开始构建你的优质Prompt
 <https://aistudio.baidu.com/education/lessonvideo/5168098> 
 
 ### 概念

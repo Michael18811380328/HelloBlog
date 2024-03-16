@@ -17,17 +17,19 @@ EMC表示块级上下文
 ## 0052 如何实现一个DIV居中
 
 
-三种
+块级元素三种居中方法
 
-```
+```css
 display: flex;
 align-itmes: center;
 justify-content: center;
 
+
 position: absolute;
 y: 50%
 x: 50%;
-transform: translate(-50%, -50%)
+transform: translate(-50%, -50%);
+
 
 display: grid
 align-itmes: center;
@@ -35,7 +37,14 @@ justify-content: center;
 
 ```
 
-扩展，怎样实现文本居中？
+实现文本居中
+
+```css
+height: 20px;
+line-height: 20px;
+text-align: center;
+
+```
 
 
 
@@ -93,7 +102,7 @@ window.devicePixelRatio = 物理像素 / CSS像素
 
 先放大、后缩小：在目标元素的后面追加一个 ::after 伪元素，让这个元素布局为 absolute 之后、整个伸展开铺在目标元素上，然后把它的宽和高都设置为目标元素的两倍，border值设为 1px。接着借助 CSS 动画特效中的放缩能力，把整个伪元素缩小为原来的 50%。此时，伪元素的宽高刚好可以和原有的目标元素对齐，而 border 也缩小为了 1px 的二分之一，间接地实现了 0.5px 的效果。
 
-```
+```css
 #container[data-device="2"] {
     position: relative;
 }
@@ -112,18 +121,20 @@ window.devicePixelRatio = 物理像素 / CSS像素
     }
 }
 
-
 ```
 
 ### 解决2：viewport 缩放来解决
 
 界面整体改变缩放
 
-\<meta name="viewport" content="initial-scale=0.5, maximum-scale=0.5, minimum-scale=0.5, user-scalable=no">
+```html
+<meta name="viewport" content="initial-scale=0.5, maximum-scale=0.5, minimum-scale=0.5, user-scalable=no"/>
+
+```
 
 这里针对像素比为2的页面，把整个页面缩放为了原来的1/2大小。这样，本来占用2个物理像素的 1px 样式，现在占用的就是标准的一个物理像素。根据像素比的不同，这个缩放比例可以被计算为不同的值，用 js 代码实现如下：
 
-```
+```javascript
 const scale = 1 / window.devicePixelRatio;
 // 这里 metaEl 指的是 meta 标签对应的 Dom
 
@@ -768,6 +779,30 @@ will-change 属性（这个比较偏僻），一般配合opacity与translate使�
 
 <!-- windows phone 点击无高光 -->
 <meta name="msapplication-tap-highlight" content="no">
+
+```
+
+
+
+   
+## 0387 打印网页没有颜色怎么处理
+
+
+CSS属性`print-color-adjust`：设置用户代理可以做什么，以优化该元素在输出设备上的外观。默认情况下，浏览器可以根据输出设备的类型和能力，对元素的外观进行任何必要和审慎的调整。
+
+print-color-adjust: economy; // 经济节省的。表示允许对元素进行它认为适当和谨慎的调整，以便为它被渲染的设备优化输出，在打印时，浏览器可能会选择不使用所有的背景图像，并调整文本颜色，以确保对比度最适合在白纸上阅读，作为默认情况，可能造成无法打印颜色。
+
+print-color-adjust: exact; //准确。该元素的内容是经过特别精心设计的，以重要的方式使用颜色、图像和样式，基本保证原始样式打印。
+
+参考：<https://juejin.cn/post/7244788137410347063> 
+
+```css
+@media print{
+  *{
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}
 
 ```
 

@@ -1674,4 +1674,50 @@ arr.sort(function(){
 
 
 
+   
+## 0382 URLSearchParams 是什么
+
+
+<https://developer.mozilla.org/zh-CN/docs/Web/API/URLSearchParams> 
+
+URLSearchParams 是 JS 内置对象
+
+可以取代 qs 第三方库，管理查询字符串
+
+```javascript
+var paramsString = "q=URLUtils.searchParams&topic=api";
+var searchParams = new URLSearchParams(paramsString);
+
+for (let p of searchParams) {
+  console.log(p);
+}
+
+searchParams.has("topic") === true; // true
+searchParams.get("topic") === "api"; // true
+searchParams.getAll("topic"); // ["api"]
+searchParams.get("foo") === null; // true
+
+searchParams.append("topic", "webdev");
+searchParams.toString(); // "q=URLUtils.searchParams&topic=api&topic=webdev"
+
+searchParams.set("topic", "More webdev");
+searchParams.toString(); // "q=URLUtils.searchParams&topic=More+webdev"
+
+searchParams.delete("topic");
+searchParams.toString(); // "q=URLUtils.searchParams"
+
+```
+
+
+
+   
+## 0386 如何判断一个对象或者数组是空
+
+
+1、Object.keys(obj).length === 0
+
+2、JSON.stringify(obj).length === 2
+
+
+
   
