@@ -19,14 +19,6 @@
 
 
    
-## 0019 setState 输出和使用
-
-
-setState 就是更新 state 固定的方法
-
-
-
-   
 ## 0024 Redux 的设计思路
 
 
@@ -99,7 +91,7 @@ es6 string -> es6 AST babel -> es5 AST -> es5 string 执行
 
 
    
-## 0078 VUE React 父子组件的生命周期函数执行顺序
+## 0078 React 父子组件的生命周期函数执行顺序
 
 
 父子组件执行生命周期函数的过程，就是 DOM 节点树从上到下执行渲染的过程。
@@ -207,7 +199,9 @@ class myComponent extends React.Component
 <input ref={this.inputRef} />
 
 this.inputRef = React.createRef();
+
 this.inputRef.current
+
 // 获取对应的DOM结构
 
 ```
@@ -218,11 +212,14 @@ this.inputRef.current
 
 添加 Ref：不能直接添加，需要使用 forwardRef，或者将函数组件转成类组件
 
-function CustomTextInput(props) { return \<div>\</div> }
+```javascript
+function CustomTextInput(props) { return <div></div> }
+
+```
 
 子组件通过回调函数形式把自身的Ref传给父组件
 
-```javascript
+```html
 // children
 <input ref={this.props.innerInputRef} />
 
@@ -325,15 +322,10 @@ Stop immediate preparation是什么意思。表示阻止当前事件的冒泡，
 
 Rem的三种创建方式
 
-类组件中可以直接创建
-
-函数组件中怎么创建，使用forward ref 创建
-
-在高阶组建中可以使用forward方法创建
-
-在 hook 中可以使用user F来创建
-
-记忆方法是321
+* 类组件中可以直接创建
+* 函数组件中怎么创建，使用 forwardRef 创建
+* 在高阶组件中可以使用 forward 方法创建
+* 在 hook 中可以使用 useRef 来创建
 
 转发 ref
 
@@ -348,14 +340,23 @@ hooks中的软ref
 
 
 组建挂载阶段，组建更新阶段，组建卸载阶段
+
 废弃的三个函数和新增的两个函数
+
+hooks 时代，上面的内容过时了，使用 useEffect 可以实现类似的功能
+
+
+
    
 ## 0153 组件什么时候更新？
 
 
-forceupdate什么时候使用
+避免频繁使用 forceupdate，会渲染组件
 props state 更新时渲染组件
-如何避免没有用处的渲染？ Pure component should component update memo
+如何避免没有用处的渲染？ PureComponent shouldComponentUpdate React.memo
+
+
+
    
 ## 0154 setState有几个参数？同步还是异步？
 
@@ -390,20 +391,22 @@ setState 有两个参数，分别是同步的还是异步的，具体怎么执�
 
 
 函数式组件和类组件的主要区别
+
 类组件比较复杂，有着status和生命周期函数，不能使用hooks适合一个比较复杂的组件或者顶层组件，这个各种生命周期函数使用较多的情况
+
 函数式组件比较简单，没有生命周期函数，使用hooks来模拟生命周期函数，适合状态比较简单的若干个情况
+
 整体的性能没有太大差距
+
+
+
    
 ## 0157 useState 和 useEffect 具体使用
 
 
-useState 表示初始化状态
+useState 状态管理 = setState
 
-useEffect 对应三个生命周期函数
-
-componentDidMount componentWillUnmount componentDidUpdate
-
-这里最好补充一个具体的案例
+useEffect 对应三个生命周期函数: componentDidMount componentWillUnmount componentDidUpdate
 
 
 
