@@ -83,11 +83,11 @@ lsof -i:3000
 ```
 COMMAND     PID    USER   FD   TYPE             DEVICE SIZE/OFF NODE NAME
 
-Google      504 seafile   52u  IPv4 0xff1d750e3e6d9b31      0t0  TCP localhost:52303->localhost:hbci (ESTABLISHED)
+Google      504 mike   52u  IPv4 0xff1d750e3e6d9b31      0t0  TCP localhost:52303->localhost:hbci (ESTABLISHED)
 
-node      61822 seafile   26u  IPv4 0xff1d750e3f499099      0t0  TCP *:hbci (LISTEN)
+node      61822 
 
-node      61822 seafile   27u  IPv4 0xff1d750e3f4525c9      0t0  TCP localhost:hbci->localhost:52303 (ESTABLISHED)
+node      61822 mike  27u  IPv4 0xff1d750e3f4525c9      0t0  TCP localhost:hbci->localhost:52303 (ESTABLISHED)
 
 ```
 
@@ -98,8 +98,6 @@ COMMAND： 进程的名称
 PID：   进程ID
 
 USER: 	运行进程的用户
-
-
 
    
 ## 0118 tree 命令
@@ -143,7 +141,7 @@ aux 是参数，具体说明如下
 
 a 显示现行终端机下的所有程序，包括其他用户的程序。
 
-u 以用户为主的格式来显示程序状况。 
+u 以用户为主的格式来显示程序状况。
 
 x 显示所有程序，不以终端机来区分。
 
@@ -155,9 +153,9 @@ ps aux | grep Visual
 ```
 USER               PID  %CPU %MEM      VSZ    RSS   TT  STAT STARTED      TIME COMMAND
 
-seafile           2795   0.0  0.2 441880528  16784   ??  S    一10上午   0:08.85 /Applications/Visual Studio Code.app/Contents/Frameworks/Code Helper.app/Contents/MacOS/Code Helper --type=utility --utility-sub-type=network.mojom.NetworkService --lang=zh-CN --service-sandbox-type=network --user-data-dir=/Users/seafile/Library/Application Support/Code --standard-schemes=vscode-webview,vscode-file --enable-sandbox --secure-schemes=vscode-webview,vscode-file --bypasscsp-schemes --cors-schemes=vscode-webview,vscode-file --fetch-schemes=vscode-webview,vscode-file --service-worker-schemes=vscode-webview --streaming-schemes --shared-files --field-trial-handle=1718379636,r,16462742083976417338,2502042514352757159,262144 --disable-features=CalculateNativeWinOcclusion,SpareRendererForSitePerProcess --seatbelt-client=39
+mike           2795   0.0  0.2 441880528  16784   ??  S    一10上午   0:08.85 /Applications/Visual Studio Code.app/Contents/Frameworks/Code Helper.app/Contents/MacOS/Code Helper --type=utility --utility-sub-type=network.mojom.NetworkService --lang=zh-CN --service-sandbox-type=network --user-data-dir=/Users/mike/Library/Application Support/Code --standard-schemes=vscode-webview,vscode-file --enable-sandbox --secure-schemes=vscode-webview,vscode-file --bypasscsp-schemes --cors-schemes=vscode-webview,vscode-file --fetch-schemes=vscode-webview,vscode-file --service-worker-schemes=vscode-webview --streaming-schemes --shared-files --field-trial-handle=1718379636,r,16462742083976417338,2502042514352757159,262144 --disable-features=CalculateNativeWinOcclusion,SpareRendererForSitePerProcess --seatbelt-client=39
 
-seafile           2793   0.0  0.0 441597680   2080   ??  S    一10上午   0:00.10 /Applications/Visual Studio Code.app/Contents/Frameworks/Electron Framework.framework/Helpers/chrome_crashpad_handler --no-rate-limit --monitor-self-annotation=ptype=crashpad-handler --database=/Users/seafile/Library/Application Support/Code/Crashpad --url=appcenter://code?aid=de75e3cc-e22f-4f42-a03f-1409c21d8af8&uid=b710c932-bbde-4d20-bce2-e0f7fb455fad&iid=b710c932-bbde-4d20-bce2-e0f7fb455fad&sid=b710c932-bbde-4d20-bce2-e0f7fb455fad --annotation=_companyName=Microsoft --annotation=_productName=VSCode --annotation=_version=1.83.1 --annotation=plat=OS X --annotation=prod=Electron --annotation=ver=25.8.4 --handshake-fd=26
+mike           2793   0.0  0.0 441597680   2080   ??  S    一10上午   0:00.10 /Applications/Visual Studio Code.app/Contents/Frameworks/Electron Framework.framework/Helpers/chrome_crashpad_handler --no-rate-limit --monitor-self-annotation=ptype=crashpad-handler --database=/Users/mike/Library/Application Support/Code/Crashpad --url=appcenter://code?aid=de75e3cc-e22f-4f42-a03f-1409c21d8af8&uid=b710c932-bbde-4d20-bce2-e0f7fb455fad&iid=b710c932-bbde-4d20-bce2-e0f7fb455fad&sid=b710c932-bbde-4d20-bce2-e0f7fb455fad --annotation=_companyName=Microsoft --annotation=_productName=VSCode --annotation=_version=1.83.1 --annotation=plat=OS X --annotation=prod=Electron --annotation=ver=25.8.4 --handshake-fd=26
 
 ```
 
@@ -187,7 +185,7 @@ S 	可中断睡眠 Sleep
 
 D	不可中断睡眠
 
-T 	停止的进程 
+T 	停止的进程
 
 Z 	僵尸进程
 
@@ -207,11 +205,9 @@ Ss  s进程的领导者，父进程
 
 R+	+表示是前台的进程组
 
-S\< \<优先级较高的进程 	
+S< <优先级较高的进程
 
 SN  N优先级较低的进程
-
-
 
    
 ## 0207 CLI and GUI 是什么

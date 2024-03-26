@@ -37,7 +37,7 @@ console.log( __filename );
 
 ```
 $ node main.js
-/Users/seafile/Desktop/index.js
+/index.js
 ```
 
 ## \_\_dirname
@@ -57,7 +57,6 @@ console.log( __dirname );
 
 ```
 $ node main.js
-/Users/seafile/Desktop
 ```
 
 ## setTimeout(cb, ms)

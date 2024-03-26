@@ -2,8 +2,8 @@
 
 # set environment variables
 export CCNET_CONF_DIR=/data/conf
-export SEAFILE_CONF_DIR=/data/conf/seafile-data
-export PYTHONPATH=/data/dev/libsearpc:/data/dev/ccnet-pro-server/python:/data/dev/seafile-pro-server/python:$PYTHONPATH
+export CONF_DIR=/data/conf/data
+export PYTHONPATH=/data/dev/libsearpc:/data/dev/ccnet-pro-server/python:/pro-server/python:$PYTHONPATH
 export LOG_DIR=/data/logs
 export DTABLE_SERVER_CONFIG=config/config.json
 export DTABLE_SERVER_LOG_LEVEL=info

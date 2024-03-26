@@ -26,8 +26,8 @@ class App extends Component {
 		return (
 			<div className="App">
 				<header className="App-header">
-				<img src={ logo } className="APP-logo" alt="logo">
-				<h1 className="App-title">I like React</h1>
+                    <img src={ logo } className="APP-logo" alt="logo"/>
+                    <h1 className="App-title">I like React</h1>
 				</header>
 				<p className="App-intro">
 					To get started, edit <code> src </code> and save to reload.
@@ -38,7 +38,7 @@ class App extends Component {
 }
 
 
-///ES6 使用class实现构造函数和继承的功能
+// ES6 使用class实现构造函数和继承的功能
 class Person {
 
     // 使用构造器设置静态属性
@@ -51,6 +51,8 @@ class Person {
         console.log(this.name);
     }
 }
+
+
 class Manager extends Person() {
     constructor(password) {
         super(name, value);
@@ -60,6 +62,8 @@ class Manager extends Person() {
         console.log(this.password);
     }
 }
+
+
 // 类相当于实例的原型，所有在类中定义的方法，都会被实例继承。如果在一个方法前加上static，那么该方法不会被继承，而是直接通过类调用，就是静态方法。——目前见过的生产代码很少有这种情况。
 
 var manager1 = new Manager("tom", true, 123456);
@@ -90,13 +94,10 @@ class Manager extends Person {
     }
 }
 
-var manager2 = new Manager("Marry", "male", "seafile");
-
-
+var manager2 = new Manager("Marry", "male");
 
 // es6 解构赋值 批量从数组、对象、字符串中提取属性并创建变量
-let [a, b, c] = [1, 2, 3];
-console.log(a === 1);
+
 // 数组：变量与数组个数对应，空缺变量就是undefined，嵌套数组也可以解构
 
 // 对象解构赋值使用最多
@@ -104,15 +105,15 @@ let obj = {
     name: "Mike",
     sex: "female"
 }
-let { name: name, sex: sex } = obj;
 // 如果对象的属性和变量名一致(通常一致)，可以简化写法
 let { name, sex } = obj;
-console.log(name); //Mike
+console.log(name, sex); //Mike
 
 // 在函数中，可以选择传入一部分参数
-fucntion show(a, b, c) {
+function show(a, b, c) {
     console.log(b);
 }
+
 show({
     a: 1,
     b: 2,
@@ -128,7 +129,7 @@ var myCanvas = document.querySelector("#mycanvas");
 var ctx = myCanvas.getContext("2d");
 
 // basic methods
-ctx beginPath();
+ctx.beginPath();
 ctx.fillStyle = "red";
 ctx.arc(100, 100, 50, 0, Math.PI*2, true);
 ctx.closePath();

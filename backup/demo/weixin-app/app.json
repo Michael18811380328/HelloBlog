@@ -3,7 +3,7 @@
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "SeaTable",
+    "navigationBarTitleText": "",
     "navigationBarTextStyle": "black"
   },
   "style": "v2",

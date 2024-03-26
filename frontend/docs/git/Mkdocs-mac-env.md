@@ -122,7 +122,7 @@ theme:
   name: material
   # icon:
   logo: assets/logo32_32.png
-  favicon: assets/seatable-favicon.ico
+  favicon: assets/favicon.ico
   # features:
     # - tabs
   palette:
@@ -138,7 +138,7 @@ plugins:
 extra:
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/seatable/seatable-scripts/
+      link: https://github.com/scripts/
 
 # 扩展（可选）
 markdown_extensions:

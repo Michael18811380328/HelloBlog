@@ -373,7 +373,7 @@ class Text extends React.Component {
   
   handleSubmit = (e) => {
     e.preventDefault();
-    seafile.addComment(this.state.value).then((res) => {
+    addComment(this.state.value).then((res) => {
       console.log(res.data.success);
     })
   }

@@ -400,20 +400,6 @@ JSON.stringify(value[, replacer[, space]])
 
 
 
-### 18 parseInt  函数
-
-parseInt(number, index) 
-
-函数作用：把一个变量转换成整数
-
-参数：第一个是传入的变量，第二个是转换的进制（可选参数），默认是10进制。'2' 转换1进制是 NaN，’3‘ 转换为2进制是 NaN 
-
-如果什么也不传，那么也返回 NaN
-
-例题： `[1,2,3].map(parseInt)`，结果是 `[1, NaN, NaN]`
-
-
-
 ### 19 正则表达式问题
 
 使用构造函数创建正则表达式，如果传参有特殊符号，可能报错 ’invalid-regular-expression‘
@@ -443,63 +429,6 @@ console.log(reg); // /\[\]/gi
 
 
 
-### 29 arguments.callee 使用
-
-使用转转反侧法计算两个数的最大公约数时，看到这样一个代码
-
-~~~js
-function gcd(a, b) {
-    if (a % b === 0) {
-        return b;
-    }
-    return arguments.callee(b, a % b);
-}
-console.log(gcd(28, 12)); // 4
-console.log(gcd(7890, 123456)); // 6
-console.log(gcd(5, 13)); // 1 （公约数为1说明两数互质）
-~~~
-
-其中 arguments.callee 不会经常使用，这个属性未来可能废弃，查询资料如下：
-
-Arguments 表示函数的参数。arguments 有一个属性 cellee 表示函数参数的指针（指向当前的函数）那么这样写相当于递归调用函数。这样写的好处：如果函数名变化后，函数内部的代码不需要改动（arguments.callee），主要在递归调用函数中使用。
-
-例子：我们使用这个优化一下斐波那契函数：
-
-原函数递归调用
-
-~~~js
-function factorial(num){
-  if (num <= 1) {         
-    return 1;     
-  } else {         
-    return num * factorial(num - 1);
-  } 
-}
-~~~
-
-使用 arguements.callee 的函数
-~~~js
-function factorial(num){    
-  if (num <=1) {         
-    return 1;     
-  } else {
-    return num * arguments.callee(num - 1);
-  } 
-}
-~~~
-
-这个方法在 eslint 中弃用，原因：访问 arguments 是个很昂贵的操作，因为它是个很大的对象，每次递归调用时都需要重新创建，影响浏览器的性能，还会影响闭包。
-
-
-
-
-
-### 35 React 代码用户体验优化
-
-- 输入框，对话框打开后自动聚焦（如果是原生的输入框，设置ref，聚焦；如果是合成组件，直接使用组件的autofocus聚焦），点击esc关闭对话框等
-- 表单内部点击 Tab 可以进行跳转
-- 使用 title 属性，alt 属性进行标识
-
 
 
 ### 38 VScode 清除多余空行
@@ -509,14 +438,6 @@ function factorial(num){
 ```js
 ^\s*(?=\r?$)\n
 ```
-
-
-
-### 40 中文输入法
-
-手机输入法中，大部分都是 229 无法直接监听符号或者字母（后退正常）其他键已经被输入法封装了，所以Keycode无效。
-
-PC端中如果是中文输入法，那么键盘事件监听到的字母键 keycode 也是 229，这个也需要注意。
 
 
 
@@ -629,8 +550,7 @@ git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Crese
 
 python 内置的 SimpleHttpServer 本地开发服务器（可以调试 index.html）；
 
-
-i18n 的基础配置和使用。
+- i18n 的基础配置和使用。
 
 1. Axios 两个配置 baseURL 和 headers 含义
 2. Es6 iteraror 迭代器，实际使用不多，主要是对可遍历对象进行循环（array, set map string 等）
@@ -710,22 +630,6 @@ react 中强制更新组件，this.forceUpdate() 尽量避免使用，最好使�
 
 
 
-### 7 React 性能优化
-
-React中，性能优化的目标是减少不必要的渲染
-
-内置方法：使用 shouldComponentUpdate 判断 state props 变化时，是否更新组件；使用 PureComponent 设置纯组件，如果是纯组件，那么组件内部自动浅对比 props 然后进行渲染，这个PureComponent 会继承到子组件中，所以需要在叶节点中使用这个组件。如果是函数组件使用 React.memo() 优化（实际没用到）。
-
-手动优化：减少父组件向子组件的不必要的Props；减少State的使用，尽量使用属性，避免不必要的渲染；如果是引用类型，那么需要 clone 复制新对象，实现组件更新。
-
-
-
-### 8 Ref 是 null 的 bug
-
-有些情况下，this.ref.current 是 null，无法直接获取DOM节点。通常问题的原因是，在界面初始化时，还没有渲染这个节点，所以DOM获取不到，获取到的是 null。通常在事件回调函数中调用是没问题的，但是在 render 或者 DidMount 阶段中获取可能获取不到。
-
-
-
 ### 9 setState 传递对象和函数
 
 setState 执行是异步的，如果传递对象，可能会产生错误.
@@ -773,12 +677,6 @@ http://www.chromium.org/getting-involved/dev-channel
 早期版本的调试步骤参考：https://www.yuque.com/wuchendi/fe/winwechat 具体需要下载一个 dev 的包，然后可以打开调试台
 
 最新的 windows 微信版本支持 ES6，所以不需要做兼容处理
-
-
-
-### 39 React PureComponent
-
-PureComponent 和 Component 的主要区别：内部实现了shouldComponentUpdate这个生命周期方法（如果props相同，组件不更新），适应于视图层显示界面（数据简单处理，或者不包括数据处理）。这里只会对 Props 进行浅对比，如果是复杂对象会出错。这个会影响到子组件的对比，所以最好使用在显示界面（不会继续向下传递数据流）。
 
 
 
@@ -873,8 +771,8 @@ flex布局中，怎样在一个container中放置nav栏？
 
 - 本地浏览器支持跨域操作（后端服务和前端页面不在一个端口，但是需要请求登录）：更改本地浏览器配置。可以设置 webpack 支持代理，但是设置后无效，可能和 webpack 版本有关，所以直接使用命令行打开浏览器（增加参数打开）参考：https://blog.csdn.net/qq_41541368/article/details/104035074 扩展：直接写一个脚本，电脑开机后直接命令行执行，打开对应的程序，不需要手动双击每一个程序
 
-~~~js
-open -n /Applications/Google\ Chrome.app/ --args --disable-web-security  --user-data-dir=/Users/seafile/workroom/chrome-config
+~~~bash
+open -n /Applications/Google\ Chrome.app/ --args --disable-web-security  --user-data-dir=/Users/michael/workroom/chrome-config
 
 open /Applications/Google\ Chrome.app && open /Applications/Typora.app 
 ~~~
@@ -882,7 +780,7 @@ open /Applications/Google\ Chrome.app && open /Applications/Typora.app
 - 如果本地调试两个前端项目，一个项目需要使用另一个项目打包后的文件，可以直接写一个脚本，然后复制这个打包后的文件到另一个文件夹下面（npm link 也可以实现，但是可能存在缓存问题等等），所以写了这个联调脚本。本地联调测试脚本
 
 ~~~js
-"move": "npm run prepublishOnly && mv -f /dtable/es /Users/seafile/workroom/dev/dtable-/dtable-web/frontend/node_modules/@seafile/dtable",
+"move": "npm run prepublishOnly && mv -f /dtable/es /Users/michael/workroom/dev/dtable-/dtable-web/frontend/node_modules/@michael/dtable",
 ~~~
 
 #### 3 本地调试 server 项目跨域问题

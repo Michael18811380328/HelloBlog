@@ -90,7 +90,7 @@ This script will migrate a frontend folder to a compiling (or almost compiling) 
 It is recommended that you take the following steps before continuing...
 
 1. Make sure you have a clean git slate. Run `git status` to make sure you have no local changes that may get lost. Check in or stash your changes, then re-run this script.
-2. Check out a new branch for the migration. For example, `git checkout -b seafile--ts-migrate` if you're migrating several folders or `git checkout -b seafile--ts-migrate-.` if you're just migrating ./.
+2. Check out a new branch for the migration. For example, `git checkout -b --ts-migrate` if you're migrating several folders or `git checkout -b --ts-migrate-.` if you're just migrating ./.
 3. Make sure you're on the latest, clean master. `git fetch origin master && git reset --hard origin/master`
 4. Make sure you have the latest npm modules installed. `npm install` or `yarn install`
 

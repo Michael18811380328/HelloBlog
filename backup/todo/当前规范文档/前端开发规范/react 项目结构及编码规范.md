@@ -18,8 +18,6 @@
 	  .babelrc ------------------------------------ 是babel配置文件
 	  package.json -------------------------------- 项目依赖库文件
 
-**注：网页输入文件 /Users/shuntian/seafile/seafile-dev/data/dev/seahub/seahub/templates/base_for_react.html**
-	    
 	    
 
 ## 编码规范：

@@ -1714,10 +1714,55 @@ searchParams.toString(); // "q=URLUtils.searchParams"
 ## 0386 如何判断一个对象或者数组是空
 
 
-1、Object.keys(obj).length === 0
+test
 
-2、JSON.stringify(obj).length === 2
+```javascript
+Object.keys(obj).length === 0;
+JSON.stringify(obj).length === 2;
+```
 
+
+
+
+   
+## 0391 Event.isTrusted 是什么
+
+
+Event 接口的 **isTrusted** 属性是一个只读属性，它是一个布尔值。当事件是由用户行为生成的时候，这个属性的值为 `true` ，而当事件是由脚本创建、修改、通过 EventTarget.dispatchEvent() 派发的时候，这个属性的值为 `false` 。
+
+   
+## 0393 dbClick 不支持 IOS 设备怎么办
+
+
+iOS 兼容性问题，不支持 dbClick 事件，可以用两次单击事件模拟
+
+```javascript
+  onMobileDoubleClick = (event) => {
+    if (this.timer) {
+      clearTimeout(this.timer);
+      this.timer = null;
+    }
+    if (!event.isTrusted) {
+      return;
+    }
+    const { pageX, pageY } = event;
+    if (this.isWaitingForDoubleClick) {
+      this.isWaitingForDoubleClick = false;
+      const diffX = Math.abs(pageX - this.prevPosition.x);
+      const diffY = Math.abs(pageY - this.prevPosition.y);
+      if (diffX < 5 && diffY < 5) {
+        this.onCellDoubleClick(event);
+      }
+    } else {
+      this.prevPosition = { x: pageX, y: pageY };
+      event.stopPropagation();
+      this.isWaitingForDoubleClick = true;
+      this.timer = setTimeout(() => {
+        this.isWaitingForDoubleClick = false;
+      }, 200);
+    }
+  }
+```
 
 
   

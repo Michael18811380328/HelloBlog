@@ -4,8 +4,6 @@
 
 下面，以拖拽选项排列顺序为案例。
 
-PR: https://github.com/seafileltd/dtable/pull/360/files
-
 ## 文件结构及主要代码
 
 ### 拖拽容器 container

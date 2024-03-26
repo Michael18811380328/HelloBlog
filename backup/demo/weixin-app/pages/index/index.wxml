@@ -2,7 +2,7 @@
 <view class="main">
 
   <view class="header">
-    <image class="header-logo" mode="widthFix" src="/images/seatable-logo.png" />
+    <image class="header-logo" mode="widthFix" src="xxx.png" />
   </view>
 
   <view class="content">
@@ -11,8 +11,6 @@
       <view class="container">
         <view class="row">
           <view class="col-md">
-            <view class="mb-6 h2-md text-center">新一代在线协同表格和信息管理系统</view>
-            <text class="introduction text-center">SeaTable 是一款新型的在线协同表格和信息管理系统。它支持“文件”、“图片”、“单选项”、“协作人”、“计算公式”等丰富的数据类型。它帮助你用表格的形式来方便的组织和管理各类信息，同时又和专门的软件系统一样强大。它还可以按照你的需要进行扩展，实现数据处理的自动化和业务流程的自动化。</text>
             <view class="text-center">
               <button id="btn-weixin-login" class="btn-primary mt-6 mb-4" bindtap="weixinLogin">微信账号快捷登录</button>
               <button id="btn-password-login" class="btn-primary mb-4" bindtap="passwordLogin">账号密码登录</button>
@@ -60,7 +58,6 @@
     <view class="py-9 bg-orange-lightest">
       <view class="container text-center">
         <view class="h2-sm">移动端</view>
-        <text class="introduction mb-6">SeaTable 在移动端中也可以流畅的使用</text>
         <image class="illustration-lg" mode="widthFix" src="/images/mobile-terminal.png" />
       </view>
     </view>

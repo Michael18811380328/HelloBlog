@@ -1,4 +1,4 @@
-name: SeaTable Test CI
+name: Test CI
 
 on:
   push:
@@ -29,13 +29,11 @@ jobs:
 
       - name: clone and build
         run: |
-          git clone --depth=1 --branch=master git://github.com/haiwen/seafile-test-deploy /tmp/seafile-test-deploy
-          cd /tmp/seafile-test-deploy && git fetch origin python3:python3 && git checkout python3
+          git clone --depth=1 --branch=master 
           ./bootstrap.sh
 
       - name: clone and init dtable-web
         run: |
-          export CCNET_CONF_DIR=/tmp/ccnet SEAFILE_CONF_DIR=/tmp/seafile-data
           ./test/init-dtable-web.sh
 
       - name: run npm test

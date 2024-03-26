@@ -3,11 +3,11 @@ import { stringify } from "querystring";
 
 const DTABLE_WEB_SERVICE_URL = "http://127.0.0.1:8000";
 const DTABLE_SERVER_URL = "http://127.0.0.1:5000";
-const TEST_USER_EMAIL = "test@seafiletest.com";
+const TEST_USER_EMAIL = "";
 const TEST_USER_PASSWORD = "testtest";
-const TEST_READ_ONLY_USER_EMAIL = "for-read-only@seafiletest.com";
+const TEST_READ_ONLY_USER_EMAIL = "";
 const TEST_READ_ONLY_USER_PASSWORD = "testtest";
-const TEST_ADMIN_EMAIL = "admin@seafiletest.com";
+const TEST_ADMIN_EMAIL = "";
 const TEST_ADMIN_PASSWORD = "adminadmin";
 
 class TestHelperAPI {

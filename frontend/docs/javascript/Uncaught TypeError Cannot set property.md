@@ -4,14 +4,14 @@
 TypeError [ERR_INVALID_ARG_TYPE]: The "path" argument must be of type string. Received undefined
     at validateString (internal/validators.js:120:11)
     at Object.join (path.js:1039:7)
-    at noopServiceWorkerMiddleware (/Users/seafile/Desktop/code-seafile/seatable-plugin-timeline/node_modules/react-dev-utils/noopServiceWorkerMiddleware.js:14:26)
-    at Layer.handle [as handle_request] (/Users/seafile/Desktop/code-seafile/seatable-plugin-timeline/node_modules/express/lib/router/layer.js:95:5)
-    at trim_prefix (/Users/seafile/Desktop/code-seafile/seatable-plugin-timeline/node_modules/express/lib/router/index.js:317:13)
-    at /Users/seafile/Desktop/code-seafile/seatable-plugin-timeline/node_modules/express/lib/router/index.js:284:7
-    at Function.process_params (/Users/seafile/Desktop/code-seafile/seatable-plugin-timeline/node_modules/express/lib/router/index.js:335:12)
-    at next (/Users/seafile/Desktop/code-seafile/seatable-plugin-timeline/node_modules/express/lib/router/index.js:275:10)
-    at launchEditorMiddleware (/Users/seafile/Desktop/code-seafile/seatable-plugin-timeline/node_modules/react-dev-utils/errorOverlayMiddleware.js:20:7)
-    at Layer.handle [as handle_request] (/Users/seafile/Desktop/code-seafile/seatable-plugin-timeline/node_modules/express/lib/router/layer.js:95:5)
+    at noopServiceWorkerMiddleware (/node_modules/react-dev-utils/noopServiceWorkerMiddleware.js:14:26)
+    at Layer.handle [as handle_request] (/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/node_modules/express/lib/router/index.js:317:13)
+    at /node_modules/express/lib/router/index.js:284:7
+    at Function.process_params (/node_modules/express/lib/router/index.js:335:12)
+    at next (/node_modules/express/lib/router/index.js:275:10)
+    at launchEditorMiddleware (/node_modules/react-dev-utils/errorOverlayMiddleware.js:20:7)
+    at Layer.handle [as handle_request] (/node_modules/express/lib/router/layer.js:95:5)
 ```
 
 **直接翻译是：**

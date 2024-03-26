@@ -6,7 +6,7 @@ Page({
   // Share App
   onShareAppMessage(options) {
     return {
-      title: "邀请你使用SeaTable",
+      title: "邀请你使用",
       imageUrl: "/images/share-app.png",
       path: "/pages/index/index",
     };
