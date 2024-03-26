@@ -519,7 +519,7 @@ To 通常可以使字符串或者对象
 <Link to="/about">关于</Link>
 // 在当前URL的基础上增加一个/about
 
-<Link to="http://www.seafile.com/org/about" replace={true}></Link>
+<Link to="http://www.xxx.com/org/about" replace={true}></Link>
 // replace 属性：true 表示用新的地址替换原始地址，false表示在旧地址上添加字符串。默认是false。
 
 <Link to={{

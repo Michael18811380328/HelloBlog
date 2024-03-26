@@ -1,17 +1,14 @@
-#### canvas
-
-canvas is an important tool to draw a vector diagram under new HTML5 standard。
-recently,people use this method to make some Wechat small games. And all in all, these games gained such a large success.
-So, for most web coder, H5 and canvas is absolutely essential skill.
-Don't hesitate to learn to code!
+# canvas
 
 #### canvas 导入图片
 
 canvas 导入图形必须在图形加载之后导入。首先获取 ctx 和 img 对象。
 
+```js
 img.onload = function(){
-ctx.drawImage(参数)；
+	ctx.drawImage(parameters)；
 }
+```
 
 drawImage 参数具有三种情况：
 
@@ -34,16 +31,22 @@ drawImage 参数具有三种情况：
 #### canvas 保存回滚
 
 ctx.save();
+
 ctx.restore();
+
 保存当前状态（属性）恢复到之前的属性（线颜色、线宽度、线头形状）
 
 ctx.translate(100,100);
+
 平移坐标系（已存在的图形不受到影响，新图形的坐标在新坐标轴上绘制）
 
 ctx.rotate(Math.PI/6);
+
 旋转坐标系
 
 ctx.scale(0.5,0.5);
+
 缩放坐标系
 
 绘制旋转图像：将坐标轴放到图像的几何中心（width/2），设置时间函数，旋转坐标轴绘制新图形。
+

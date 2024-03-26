@@ -17,7 +17,7 @@
 
 ~~~html
 <iframe id="test1" title="detail1" src='http://www.baidu.com'></iframe>
-<iframe id="test2" title="detail2" src='http://www.seafile.com'></iframe>
+<iframe id="test2" title="detail2" src='http://www.xxx.com'></iframe>
 ~~~
 
 
@@ -64,7 +64,7 @@ for(var i = 0; i < a.length; i++) {
 
 ~~~html
 <iframe id="test1" title="detail1" src='http://www.baidu.com'></iframe>
-<iframe id="test2" title="detail2" src='http://www.seafile.com'></iframe>
+<iframe id="test2" title="detail2" src='http://www.xxx.com'></iframe>
 ~~~
 
 我们就可以根据下面的语句判断当前的 iframe 是哪一个（如果是 test1，那么显示XXX，如果是 test2，那么显示XXX）

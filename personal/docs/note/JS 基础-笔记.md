@@ -1236,11 +1236,14 @@ class EventBus {
 ## 0352 jsonp
 
 
-jsonp: jsonp的核心原理是利用script标签没有同源限制的方式，可以发送跨域的get请求（只能发送get请求）。script标签中的src属性将请求参数和当前请求的回调函数名拼接在链接上。最终由服务端接收到请求之后拼接成前端可执行的字符串的形式返回。这个结果字符串最终会在前端的script标签中解析并执行。
+jsonp: jsonp的核心原理是利用script标签没有同源限制的方式，可以发送跨域的get请求（只能发送get请求）。
 
-实际考的不多
+script标签中的src属性将请求参数和当前请求的回调函数名拼接在链接上。
 
-手写实现 jsonp 参考：<https://blog.csdn.net/imagine_tion/article/details/115475157> 
+最终由服务端接收到请求之后拼接成前端可执行的字符串的形式返回。
+
+这个结果字符串最终会在前端的script标签中解析并执行。
+
 
 
 
@@ -1714,10 +1717,84 @@ searchParams.toString(); // "q=URLUtils.searchParams"
 ## 0386 如何判断一个对象或者数组是空
 
 
-1、Object.keys(obj).length === 0
+判断对象是否为空
 
-2、JSON.stringify(obj).length === 2
+```javascript
+Object.keys(obj).length === 0;
 
+JSON.stringify(obj).length === 2;
+```
+
+判断数组是否为空，直接判断长度即可（已知参数必须为数组的前提）
+
+   
+## 0391 Event.isTrusted 是什么
+
+
+Event 接口的 **isTrusted** 属性是一个只读属性，它是一个布尔值。
+
+当事件是由用户真实行为生成的时候，这个属性的值为 `true` 
+
+而当事件是由脚本创建、修改、通过 EventTarget.dispatchEvent() 派发的时候，这个属性的值为 `false` 。
+
+   
+## 0393 dbClick 不支持 IOS 设备怎么办
+
+
+iOS 兼容性问题，不支持 dbClick 事件，可以用两次单击事件模拟双击事件。
+
+```javascript
+  onMobileDoubleClick = (event) => {
+    // 清空之前的定时器（200内点击，清空第一次的定时器）
+    if (this.timer) {
+      clearTimeout(this.timer);
+      this.timer = null;
+    }
+
+    // 如果是JS模拟事件，直接返回
+    if (!event.isTrusted) {
+      return;
+    }
+
+    // 获取当前点击的坐标
+    const { pageX, pageY } = event;
+
+    // 如果已经点了一次（等待第二次点击）
+    if (this.isWaitingForDoubleClick) {
+      this.isWaitingForDoubleClick = false;
+
+      // 判断前后两次点击的位置，如果点击同一个位置，就认为是双击
+      const diffX = Math.abs(pageX - this.prevPosition.x);
+      const diffY = Math.abs(pageY - this.prevPosition.y);
+      if (diffX < 5 && diffY < 5) {
+        this.onCellDoubleClick(event);
+      }
+    } else {
+      // 如果刚开始点击，记录下第一次的位置
+      this.prevPosition = { x: pageX, y: pageY };
+      event.stopPropagation();
+      this.isWaitingForDoubleClick = true;
+
+      // 如果 200ms 内没有再次点击，那么清空第一次的点击事件，就认为是单击
+      this.timer = setTimeout(() => {
+        this.isWaitingForDoubleClick = false;
+      }, 200);
+    }
+  }
+```
+
+
+   
+## 0411 setSelectionRange
+
+
+setSelectionRange 可以从一个被 focused 的 input 元素中选中特定范围的内容。
+
+例如下面选中 input 中的第2-5个字符
+
+```javascript
+input.setSelectionRange(2,5);
+```
 
 
   

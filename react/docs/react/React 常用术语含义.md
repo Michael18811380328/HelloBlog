@@ -29,7 +29,7 @@
 | Conditional Rendering   | 条件渲染        |
 | Operator                | 运算符          |
 | reuse                   | 复用            |
-| mock                    | 设计稿；设计手稿（个人认为属于模拟数据，用在测试中，mock data）          |
+| mock                    | 设计稿；设计手稿（测试模拟数据，mock data）        |
 | callback                | 回调函数        |
 | shallow rendering       | 浅层渲染        |
 | deprecated              | 废弃            |

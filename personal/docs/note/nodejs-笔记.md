@@ -252,9 +252,41 @@ app.all('*', (req, res, next) => {
 	res.header('Content-Type', 'application/json;charset=utf-8');
 	next();
 });
-
 ```
 
 
+   
+## 0343 nodejs 的异步 IO 是什么
+
+
+类似 ajax 请求，IO 操作（读写文件）比较耗时。
+
+所以类似 ajax 异步操作，IO 操作也可以异步实现，在回调函数中处理逻辑。服务器中，处理运算，处理读写文件可以异步执行，避免某个 IO 操作耗时过长，阻塞其他的任务执行。
+
+同步写法
+
+```javascript
+const fs = require('fs');
+
+const data = fs.readFileSync('./file.js');
+
+console.log(data);
+```
+
+```javascript
+const fs = require('fs')
+
+fs.readFile('./file.js',(err,data)=>{
+    console.log(err, data);
+    // null
+    // <Buffer 63 6f 6e 73 6f 6c 65 2e 6c 6f 67 28 27 68 77 6f 72 6c 64 27 29>
+})
+
+console.log(111) // 111
+```
+
+参考：<https://juejin.cn/post/7002106372200333319>
+
+相关知识还有：事件循环，线程池等，这部分目前了解概念。
 
   

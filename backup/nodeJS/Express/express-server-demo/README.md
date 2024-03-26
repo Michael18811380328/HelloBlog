@@ -11,7 +11,7 @@ express node server
   "host": "db",
   "user": "root",
   "password": "db_dev",
-  "database": "seahub",
+  "database": "",
   "port": 3306,
   "connection_limit": 10,
   "private_key": "M@O8VWUb81YvmtWLHGB2I_V7di5-@0p(MF*GrE!sIws23F$C",

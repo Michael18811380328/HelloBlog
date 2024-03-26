@@ -28,13 +28,13 @@ npm install ejs 支持 ejs 语法
 <head>
   <title><%=title %></title>
 </head>
+  
+<% code %> 把变量作为代码片段执行
+
+<%= html %> 把变量转换成 HTML 输出
+
+<%- string %> 把变量转换成字符串输出
 ```
-
-\<% code %> 把变量作为代码片段执行
-
-\<%= html %> 把变量转换成 HTML 输出
-
-\<%- string %> 把变量转换成字符串输出
 
 ### 2.2 主函数 app.js
 
@@ -92,7 +92,6 @@ config.json
   "password": "",
   "database": ""
 }
-
 ```
 
 app 接口函数
@@ -139,3 +138,4 @@ ftp 文件上传工具：vs-ftp-d very secure FTP deamon
 pm2 工具安装（类似于 nodemon 工具）
 
 域名购买等
+

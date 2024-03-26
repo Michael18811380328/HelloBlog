@@ -6,7 +6,8 @@
 
 **文章导览**
 
-![img](https://pic3.zhimg.com/50/v2-bbf5d30347a0a2c5f0245010f6bf6703_hd.jpg)![img](https://pic3.zhimg.com/80/v2-bbf5d30347a0a2c5f0245010f6bf6703_hd.jpg)
+![img](https://pic3.zhimg.com/50/v2-bbf5d30347a0a2c5f0245010f6bf6703_hd.jpg)
+
 
 **面试会问**
 
@@ -40,7 +41,7 @@ server.listen(3000, () => {
 
 运行上面代码后，以下为 Mac 系统自带的监控工具 “活动监视器” 所展示的效果，可以看到我们刚开启的 Nodejs 进程 7663
 
-![img](https://pic3.zhimg.com/50/v2-95bc9b749969ab866e5113c1dbd85894_hd.jpg)![img](https://pic3.zhimg.com/80/v2-95bc9b749969ab866e5113c1dbd85894_hd.jpg)
+![img](https://pic3.zhimg.com/50/v2-95bc9b749969ab866e5113c1dbd85894_hd.jpg)
 
 **线程**
 
@@ -235,7 +236,8 @@ if (cluster.isMaster) {
 
 **cluster 原理分析**
 
-![img](https://pic2.zhimg.com/50/v2-8b30871d873d39aa99a6526a9baa12a1_hd.jpg)![img](https://pic2.zhimg.com/80/v2-8b30871d873d39aa99a6526a9baa12a1_hd.jpg)
+![img](https://pic2.zhimg.com/50/v2-8b30871d873d39aa99a6526a9baa12a1_hd.jpg)
+
 
 cluster 模块调用 fork 方法来创建子进程，该方法与 child_process 中的 fork 是同一个方法。
 cluster 模块采用的是经典的主从模型，Cluster 会创建一个 master，然后根据你指定的数量复制出多个子进程，可以使用`cluster.isMaster`属性判断当前进程是 master 还是 worker(工作进程)。由 master 进程来管理所有的子进程，主进程不负责具体的任务处理，主要工作是负责调度和管理。
@@ -250,9 +252,9 @@ cluster 模块使用内置的负载均衡来更好地处理线程之间的压力
 
 cluster 模块的一个弊端：
 
-![img](https://pic2.zhimg.com/50/v2-11ac2e79c10a1206893cb47ea4b4e5be_hd.jpg)![img](https://pic2.zhimg.com/80/v2-11ac2e79c10a1206893cb47ea4b4e5be_hd.jpg)
+![img](https://pic2.zhimg.com/50/v2-11ac2e79c10a1206893cb47ea4b4e5be_hd.jpg)
 
-![img](https://pic2.zhimg.com/50/v2-8b30871d873d39aa99a6526a9baa12a1_hd.jpg)![img](https://pic2.zhimg.com/80/v2-8b30871d873d39aa99a6526a9baa12a1_hd.jpg)
+![img](https://pic2.zhimg.com/50/v2-8b30871d873d39aa99a6526a9baa12a1_hd.jpg)
 
 cluster 内部隐时的构建 TCP 服务器的方式来说对使用者确实简单和透明了很多，但是这种方式无法像使用 child_process 那样灵活，因为一直主进程只能管理一组相同的工作进程，而自行通过 child_process 来创建工作进程，一个主进程可以控制多组进程。原因是 child_process 操作子进程时，可以隐式的创建多个 TCP 服务器，对比上面的两幅图应该能理解我说的内容。
 
@@ -264,11 +266,11 @@ IPC 这个词我想大家并不陌生，不管那一张开发语言只要提到�
 
 IPC 创建和实现示意图
 
-![img](https://pic3.zhimg.com/50/v2-518e2ec8816885ce4fa45798d257e1f6_hd.jpg)![img](https://pic3.zhimg.com/80/v2-518e2ec8816885ce4fa45798d257e1f6_hd.jpg)
+![img](https://pic3.zhimg.com/50/v2-518e2ec8816885ce4fa45798d257e1f6_hd.jpg)
 
 IPC 通信管道是如何创建的
 
-![img](https://pic2.zhimg.com/50/v2-326116010971a13290994bc751f117c0_hd.jpg)![img](https://pic2.zhimg.com/80/v2-326116010971a13290994bc751f117c0_hd.jpg)
+![img](https://pic2.zhimg.com/50/v2-326116010971a13290994bc751f117c0_hd.jpg)
 
 父进程在实际创建子进程之前，会创建`IPC通道`并监听它，然后才`真正的`创建出`子进程`，这个过程中也会通过环境变量（NODE_CHANNEL_FD）告诉子进程这个 IPC 通道的文件描述符。子进程在启动的过程中，根据文件描述符去连接这个已存在的 IPC 通道，从而完成父子进程之间的连接。
 
@@ -288,7 +290,7 @@ IPC 通信管道是如何创建的
 
 结合句柄的发送与还原示意图更容易理解。
 
-![img](https://pic1.zhimg.com/50/v2-db1efb168a121ef3e04886906f0ad134_hd.jpg)![img](https://pic1.zhimg.com/80/v2-db1efb168a121ef3e04886906f0ad134_hd.jpg)
+![img](https://pic1.zhimg.com/50/v2-db1efb168a121ef3e04886906f0ad134_hd.jpg)
 
 `send()`方法在将消息发送到 IPC 管道前，实际将消息组装成了两个对象，一个参数是 hadler，另一个是 message。message 参数如下所示：
 
@@ -325,7 +327,7 @@ Node 进程之间只有消息传递，不会真正的传递对象，这种错觉
 
 我们自己实现一个多进程架构守护 Demo
 
-![img](https://pic1.zhimg.com/50/v2-c78c2de667d281aac9b86c9a12bc36a5_hd.jpg)![img](https://pic1.zhimg.com/80/v2-c78c2de667d281aac9b86c9a12bc36a5_hd.jpg)
+![img](https://pic1.zhimg.com/50/v2-c78c2de667d281aac9b86c9a12bc36a5_hd.jpg)
 
 编写主进程
 
@@ -554,7 +556,7 @@ Libuv 是一个跨平台的异步 IO 库，它结合了 UNIX 下的 libev 和 Wi
 
 libuv 架构图
 
-![img](https://pic1.zhimg.com/50/v2-33d8f3f57ae920023e23d8352b48a3b3_hd.jpg)![img](https://pic1.zhimg.com/80/v2-33d8f3f57ae920023e23d8352b48a3b3_hd.jpg)
+![img](https://pic1.zhimg.com/50/v2-33d8f3f57ae920023e23d8352b48a3b3_hd.jpg)
 
 在 Window 环境下，libuv 直接使用 Windows 的 IOCP 来实现异步 IO。在非 Windows 环境下，libuv 使用多线程来模拟异步 IO。
 
@@ -609,7 +611,7 @@ if (isMainThread) {
 
 由于 worker_thread 目前仍然处于实验阶段，所以启动时需要增加 --experimental-worker flag，运行后观察活动监视器，开启了 5 个子线程
 
-![img](https://pic3.zhimg.com/50/v2-57e87faa13c7a82a149a751d4fc76ec5_hd.jpg)![img](https://pic3.zhimg.com/80/v2-57e87faa13c7a82a149a751d4fc76ec5_hd.jpg)
+![img](https://pic3.zhimg.com/50/v2-57e87faa13c7a82a149a751d4fc76ec5_hd.jpg)
 
 **worker_thread 模块**
 
@@ -630,4 +632,4 @@ worker_thread 模块中有 4 个对象和 2 个类，可以自己去看上面的
 
 对比一下多线程与多进程：
 
-![img](https://pic1.zhimg.com/50/v2-814009934bc91d8d8e6a084dfef88c24_hd.jpg)![img](https://pic1.zhimg.com/80/v2-814009934bc91d8d8e6a084dfef88c24_hd.jpg)
+![img](https://pic1.zhimg.com/50/v2-814009934bc91d8d8e6a084dfef88c24_hd.jpg)

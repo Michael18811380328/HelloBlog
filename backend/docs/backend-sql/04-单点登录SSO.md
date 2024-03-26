@@ -8,7 +8,7 @@ Michael 笔记：
 
 1、一个系统登录流程：用户进入系统——未登录——跳转登录界面——用户名和密码发送——服务器端验证后，设置一个 cookie 发送到浏览器，设置一个 session 存放在服务器——用户再次请求（带上 cookie）——服务器验证 cookie 和 session 匹配后，就可以进行业务了。
 
-2、多个系统登录：如果一个大公司有很多系统，a.seafile.com, b.seafile.com,c.seafile.com。这些系统都需要登录，如果用户在不同系统间登录需要多次输入密码，用户体验很不好。所以使用 SSO (single sign on) 单点登录实现。
+2、多个系统登录：如果一个大公司有很多系统，a.baidu.com, b.baidu.com,c.baidu.com。这些系统都需要登录，如果用户在不同系统间登录需要多次输入密码，用户体验很不好。所以使用 SSO (single sign on) 单点登录实现。
 
 3、相同域名，不同子域名下的单点登录：在浏览器端，根据同源策略，不同子域名的 cookie 不能共享。所以设置 SSO 的域名为根域名。SSO 登录验证后，子域名可以访问根域名的 cookie，即可完成校验。在服务器端，可以设置多个子域名 session 共享（Spring-session）
 

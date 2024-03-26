@@ -1,5 +1,6 @@
 - 'JS-the-good-parts': 'book-JS-The-good-parts/JS-the-good-parts.md'
 - 'curry-function': 'book-JS-The-good-parts/curry-function.md'
+
 - '00-readme': 'book-JS-primer-code-design/00-readme.md'
 - '01-JavaScript 简介': 'book-JS-primer-code-design/01-JavaScript 简介.md'
 - '02-在HTML中使用 JavaScript': 'book-JS-primer-code-design/02-在HTML中使用 JavaScript.md'
@@ -12,6 +13,7 @@
 - '11-choose': 'book-JS-primer-code-design/11-choose.md'
 - '22-高级用法': 'book-JS-primer-code-design/22-高级用法.md'
 - '24-最佳实践': 'book-JS-primer-code-design/24-最佳实践.md'
+
 - '01-入门': 'ebook-JS-basic/01-入门.md'
 - '02-数据类型': 'ebook-JS-basic/02-数据类型.md'
 - '03-运算符': 'ebook-JS-basic/03-运算符.md'
@@ -27,6 +29,7 @@
 - '10-4-IndexedDB': 'ebook-JS-basic/10-4-IndexedDB.md'
 - '10-5-web-worker': 'ebook-JS-basic/10-5-web-worker.md'
 - '11-网页元素接口': 'ebook-JS-basic/11-网页元素接口.md'
+
 - '01-介绍': 'ebook-JSES6-RYF/01-介绍.md'
 - '02-变量赋值': 'ebook-JSES6-RYF/02-变量赋值.md'
 - '03-解构赋值': 'ebook-JSES6-RYF/03-解构赋值.md'
@@ -53,12 +56,16 @@
 - '24-Module 的加载实现': 'ebook-JSES6-RYF/24-Module 的加载实现.md'
 - '25-编程风格': 'ebook-JSES6-RYF/25-编程风格.md'
 - 'readme': 'ebook-JSES6-RYF/readme.md'
+
 - '计算机组成原理知识点总结': 'ebook-Principles of Computer Composition/计算机组成原理知识点总结.md'
+
 - '00': 'ebook-heima-nodejs/00.md'
 - '01': 'ebook-heima-nodejs/01.md'
 - '02': 'ebook-heima-nodejs/02.md'
 - '03': 'ebook-heima-nodejs/03.md'
+
 - 'JavaScript 秘密花园-zh': 'ebook-javascript-secret-garden/JavaScript 秘密花园-zh.md'
+
 - '01 性能优化': 'ebook-kaikeba-frontend/01 性能优化.md'
 - '02 前端测试': 'ebook-kaikeba-frontend/02 前端测试.md'
 - '03 设计模式': 'ebook-kaikeba-frontend/03 设计模式.md'
@@ -79,6 +86,7 @@
 - '18-webpack-06': 'ebook-kaikeba-frontend/18-webpack-06.md'
 - '19-前端安全-常见Web攻击': 'ebook-kaikeba-frontend/19-前端安全-常见Web攻击.md'
 - '20-前端安全-防御手段': 'ebook-kaikeba-frontend/20-前端安全-防御手段.md'
+
 - '02-v8引擎回收内存简介': 'ebook-netease-senior-frontend/02-v8引擎回收内存简介.md'
 - '03-node下面的Restful实现': 'ebook-netease-senior-frontend/03-node下面的Restful实现.md'
 - '04-编程思想的提升—如何提高我们代码的可扩展性': 'ebook-netease-senior-frontend/04-编程思想的提升—如何提高我们代码的可扩展性.md'
@@ -97,8 +105,8 @@
 - '21-ssr': 'ebook-netease-senior-frontend/21-ssr.md'
 - '24-单元测试如何做': 'ebook-netease-senior-frontend/24-单元测试如何做.md'
 - '25-基于NodeJS打造Web架构中间层': 'ebook-netease-senior-frontend/25-基于NodeJS打造Web架构中间层.md'
-- '26-webpack的高级技巧': 'ebook-netease-senior-frontend/26-webpack的高级技巧.md'
 - 'readme': 'ebook-netease-senior-frontend/readme.md'
+
 - '01 概述': 'ebook-network-basic/01 概述.md'
 - '02 物理层': 'ebook-network-basic/02 物理层.md'
 - '03 数据链路层': 'ebook-network-basic/03 数据链路层.md'
@@ -107,9 +115,13 @@
 - '06 应用层': 'ebook-network-basic/06 应用层.md'
 - 'readme': 'ebook-network-basic/readme.md'
 - 'todo 互联网协议入门-阮一峰': 'ebook-network-basic/todo 互联网协议入门-阮一峰.md'
+
 - '01': 'ebook-qianfeng-express/01.md'
+
 - 'nodeJS-basic': 'ebook-upguigu-nodejs/nodeJS-basic.md'
+
 - 'index': 'index.md'
+
 - 'H5C3从入门到精通': 'other/H5C3从入门到精通.md'
 - 'JS 数据结构': 'other/JS 数据结构.md'
 - 'data structure basic': 'other/data structure basic.md'

@@ -57,9 +57,3 @@ npm start
 
 ![img](https://user-gold-cdn.xitu.io/2019/10/26/16e03d93307a2e9b?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
 
-## 更多
-
-您还可以看看我的其他项目
-
-- [前端资源](https://github.com/abc-club/free-resources)
-- [前端监控项目](https://github.com/bombayjs)

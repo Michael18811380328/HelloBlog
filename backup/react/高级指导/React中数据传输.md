@@ -44,7 +44,7 @@ props 用于**初始化状态和渲染组件**两个功能。所以当组件实�
 
 ```js
 Item.defaultProps = {
-  item: "React Seafile",
+  item: "React",
 };
 // 默认参数
 Item.propTypes = {

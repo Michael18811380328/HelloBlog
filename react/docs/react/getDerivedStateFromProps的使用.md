@@ -1,4 +1,4 @@
-# React16新的getDerivedStateFromProps的使用
+# React16 新的 getDerivedStateFromProps
 
 在很长一段时间内，`componentWillReceiveProps`是在没有附加渲染的情况下更新状态的唯一方法。在版本16.3中，我们引入了一个全新的生命周期函数——`getDerivedStateFromProps`——用来替换`componentWillReceiveProps`，并用更安全的方式处理相同的场景。与此同时，我们意识到人们对如何使用这两种方法有很多误解，我们发现了一些反模式，这些错误导致了微妙而令人困惑的bug。在16.4中，有关`getDerivedStateFromProps`的修复使得派生状态更加可预测，因此错误使用的结果更容易被注意到。
 

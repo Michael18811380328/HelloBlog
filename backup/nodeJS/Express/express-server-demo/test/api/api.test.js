@@ -27,7 +27,7 @@ test("TEST DTABLE-WEB PING", () => {
 });
 
 describe("TEST API USED WITHIN A DTABLE", () => {
-  const TEST_DTABLE_NAME = "seafiletest";
+  const TEST_DTABLE_NAME = "";
   let authToken;
   let workspaceId;
   let dtableUUID;

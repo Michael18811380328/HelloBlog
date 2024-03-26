@@ -1,4 +1,4 @@
-## react-colorful
+# react-colorful
 
 这个库可以和用户交互
 

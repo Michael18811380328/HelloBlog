@@ -19,22 +19,6 @@
 
 
    
-## 0024 Redux 的设计思路
-
-
-Redux 是用来处理状态管理的一个工具库
-
-把对应的 actions 进行 dispatch
-
-然后所有的状态都存放在 store 中
-
-对全局进行一个统一的状态管理
-
-参考链接：<https://www.zhihu.com/question/41312576> 
-
-
-
-   
 ## 0032 虚拟dom和真实dom的性能对比
 
 
@@ -47,26 +31,6 @@ Redux 是用来处理状态管理的一个工具库
 虚拟dom的关键技术是用了diff算法，针对两个前后的dom tree 进行对比，这个在现代浏览器当中，消耗的时间是比较小的是可以接受的。
 
 性能的比较, 需要分场合,看具体的数据量和整体的时间，很难同时满足时间复杂度和空间复杂度。
-
-
-
-   
-## 0037 Redux 的 reduce 函数为什么不能做异步操作
-
-
-Redux 的设计理念：reducer函数是一个纯函数
-
-redux 有三个主要的理念
-
-1 state完全存储状态
-
-2 不能直接更改，是state需要通过action来更改state
-
-3 需要通过reduce函数纯函数来更改stake
-
-正是这个设计的理念就决定了reducer 函数必须是一个纯函数，而不能返回一个 promise 或者 settimeout 等不确定的内容
-
-`Next state = reducer(current state, action)`
 
 
 
@@ -373,18 +337,13 @@ setState 有两个参数，分别是同步的还是异步的，具体怎么执�
 ## 0155 react组件传值有几种方法
 
 
-第1种从上到下使用props和state是
+这里使用原生实现，不考虑状态管理库
 
+第1种从上到下使用props和state是
 
 第2种使用refs或者回调函数，从下向上
 
-
 第3种在react router当中使用location或者context
-
-
-第4种使用redux或mobx进行传参
-
-
 
    
 ## 0156 函数式组件和类组件的区别怎么选择
@@ -466,34 +425,6 @@ ReactDOM.findDOMNode(this.headerCell);
 可以实现组件的嵌套和高阶组件
 
 高阶组件需要使用 forwardRef 实现，或者再获取自组件
-
-
-
-   
-## 0161 redux的具体操作
-
-
-actions
-
-reducer
-
-store
-
-update whole app
-
-
-
-
-
-   
-## 0163 React redux 的具体操作
-
-
-mapStateToProps 把父组件的 state 作为 props 传递给子组件
-
-<https://zhuanlan.zhihu.com/p/26648239> 
-
-
 
 
 
@@ -632,17 +563,22 @@ React.useCallback 用于组件内部 state update 后，避免内部函数重新
 
 
 * `useState`：用于管理功能组件中的状态。
+
 * `useEffect`：用于在功能组件中执行副作用，例如从服务器获取数据，或监听订阅事件。
+
 * `useContext`：用于访问功能组件内的 React 上下文的值。
+
 * `useRef`：用于创建对跨渲染持续存在的元素或值的可变引用。
+
 * `useCallback`：用于记忆函数以防止不必要的重新渲染。
+
 * `useMemo`：用于记忆值，使用缓存减少昂贵的计算，来提高性能。
-* `useReducer`：用于通过  reducer函数管理状态，类似于 [Redux](https://www.zhihu.com/search?q=Redux&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra=%7B%22sourceType%22%3A%22answer%22%2C%22sourceId%22%3A3248392880%7D) 的工作原理。
+
+* `useReducer`：用于通过  reducer函数管理状态
+
 * `useLayoutEffect`：与useEffect类似，但效果在所有DOM突变后同步运行。
 
 这些 hooks 提供了强大的工具来管理状态、处理副作用，以及重用 React 功能组件中的逻辑。
-
-
 
    
 ## 0358 什么是虚拟DOM
@@ -781,42 +717,6 @@ const callbackValue = useCallback(() => computeFunc(paramA, paramB), [paramA, pa
 
 
    
-## 0362 Redux 中的 reducer 是什么
-
-
-`reducer`是一个纯函数，以 `state` 和 `action` 为参数。
-
-在`reducer`中，我们会跟踪接收到的操作类型，并根据它修改状态，返回一个新的状态对象。
-
-```javascript
-export default function appReducer(state = initialState, action) {
-
-  // The reducer normally looks at the action type field to decide what happens
-  
-  switch (action.type) {
-    // Do something here based on the different types of actions
-    default:
-      // If this reducer doesn't recognize the action type, or doesn't
-      // care about this specific action, return the existing state unchanged
-      return state;
-  }
-}
-
-```
-
-
-
-   
-## 0363 Redux 实现了哪种模式
-
-
-Redux 实现了[Flux 模式](https://www.zhihu.com/search?q=Flux%20%E6%A8%A1%E5%BC%8F&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra=%7B%22sourceType%22%3A%22answer%22%2C%22sourceId%22%3A3248392880%7D)，它是应用程序的可预测状态管理模式。
-
-它通过引入**单向数据流**，和**状态的集中存储**，来帮助管理应用程序的状态。[了解更多](https://link.zhihu.com/?target=https%3A//www.newline.co/fullstack-react/30-days-of-react/day-18/%23%3A~%3Atext%3DFlux%2520is%2520a%2520pattern%2520for%2Cdefault%2520method%2520for%2520handling%2520data.)
-
-
-
-   
 ## 0364 Mobx 实现哪种模式
 
 
@@ -856,19 +756,6 @@ console.log(store.capitalizedVariable); // Output: HI MOBX
 ```
 
 在本例中，`myVariable` 使用 `observable` 装饰器定义为可观测变量。然后就可以使用 `store.myVariable` 访问该变量。对 `myVariable` 所做的任何更改都会自动触发依赖组件或反应的更新。[了解更多](https://link.zhihu.com/?target=https%3A//mobx.js.org/actions.html)
-
-
-
-   
-## 0366 Redux和Mobx有什么区别
-
-
-* Redux 是一种更简单、更有主见的状态管理库，它遵循严格的单向数据流，并提倡不变性。它需要更多的模板代码和显式更新，但与 React 的集成度很高。
-* Mobx 提供的 API 更灵活、更直观，模板代码更少。它允许你直接修改状态，并自动跟踪变化以获得更好的性能。
-
-在 Redux 和 Mobx 之间做出选择取决于您的具体需求和偏好。
-
-
 
 
 
@@ -971,46 +858,13 @@ Linters 的工作原理是扫描源代码并将其与一组预定义的规则或
 使用 linter 可以带来几个好处：
 
 1. 代码质量：Linter 有助于识别和防止潜在的错误、代码异味和反模式，从而提高代码质量。
+
 2. 一致性：Linter 强制执行编码约定和风格指南，确保整个代码库的格式和代码结构一致，即使多个开发人员正在处理同一个项目时也是如此。
+
 3. 可维护性：通过尽早发现问题并促进良好的编码实践，linter 有助于代码的可维护性，使理解、修改和扩展代码库变得更容易。
+
 4. 效率：Linter 可以通过自动化代码审查流程并在常见错误在开发或生产过程中引起问题之前发现它们，从而节省开发人员的时间。
 
-一些流行的 linter 包括用于 JavaScript 的 ESLint 以及用于 CSS 和 Sass 的 Stylelint
-
-
-
-   
-## 0375 你知道哪些项目架构
-
-
-有多种用于构建 [React 项目](https://www.zhihu.com/search?q=React%20%E9%A1%B9%E7%9B%AE&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra=%7B%22sourceType%22%3A%22answer%22%2C%22sourceId%22%3A3248392880%7D)的架构解决方案和模式。一些受欢迎的包括：
-
-* MVC（模型-视图-控制器） ：MVC 是一种传统的架构模式，它将应用程序分为三个主要组件 - 模型、视图和控制器。React 可以在 View 层中使用来渲染 UI，而其他库或框架可以用于 Model 和 Controller 层。
-* Flux：Flux是Facebook专门针对React应用程序推出的应用程序架构。它遵循单向数据流，其中数据沿单个方向流动，从而更容易理解和调试应用程序的状态更改。
-* 原子设计：原子设计并不是 React 特有的，而是一种将 UI 划分为更小、可重用组件的设计方法。它鼓励构建小型、独立且可以组合以创建更复杂的 UI 的组件。
-* 容器和组件模式：该模式将表示（组件）与逻辑和状态管理（容器）分开。组件负责渲染 UI，而容器则处理业务逻辑和状态管理。
-* 功能切片设计：它是一种用于组织和构建 React 应用程序的现代架构方法。它旨在通过根据功能或模块划分应用程序代码库来解决可扩展性、可维护性和可重用性的挑战。
-
-
-
-
-
-   
-## 0376 什么是特征切片设计
-
-
-它是一种用于组织和构建 React 应用程序的现代架构方法。它根据功能或模块，划分应用程序代码库，来解决可扩展性、可维护性和可重用性的挑战。
-
-在功能切片设计中，应用程序的每个功能或模块，都组织到一个单独的目录中，其中包含所有必要的组件、操作、reducers 和其他相关文件。
-
-这有助于保持代码库的模块化和隔离性，使其更易于开发、测试和维护。
-
-功能切片设计促进了关注点的清晰分离，并将功能封装在各个功能中。
-
-这允许不同的团队或开发人员独立地处理不同的功能，而不必担心冲突或依赖性。
-
-![](https://cloud.seatable.cn/workspace/32/asset/e82c7317-556e-45c4-8b5d-092331cd8977/images/auto-upload/image-1707009948481.png)
-
-
+一些流行的 linter 包括用于 JavaScript 的 ESLint 以及用于 CSS 的 Stylelint
 
   

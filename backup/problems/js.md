@@ -1,12 +1,4 @@
-### 待学习
-
-##### 1、细节知识点
-
 ```js
-对于跨域，目前不管是 jsonp 还是其他方式，需要服务器端进行设置操作。浏览器单独操作无法直接跨域访问。个人的浏览器设置允许跨域可能造成安全问题。跨域，就是浏览器和服务器共同绕过同源策略的解决方案。
-
-父组件获取子组件的信息需要回调函数（onClick）这样可以把子组件传过去。当子组件变化后，将自组件传过去，获取子组件的属性等，更符合 react。
-
 由于 immutable 中的数据转换时是哈希，List 对象的size = 1;(实际内存中应该是undefined 和 Text)。这里需要serialize就会出现错误。解决方案：转化成JSON对象，再进行serialize即可避免这个问题。
 
 哈希表：实际底层语言设计数据存储时，会分配较多内存进行存储。如果数据进行扩容，内存可以直接增加。所以底层的内存分配是。对于List等数据结构，可能实际的size和显示的size不是一样的。
@@ -14,24 +6,7 @@
 对于三个栏目，中间宽度固定，两侧宽度变化；
 ```
 
-##### 2、编程思维
 
-```txt
-1. 自己日常敲代码，多写一点注释比较好。时间长了便于复习。注释多了可以删，但是少了就看不懂了。可以单独弄一个分支设置自己的代码（加注释的代码）；
-2. 函数逻辑：先处理异常的情况，将原始数据的异常情况处理掉，后面进行处理大量的情况。
-3. 如果出现问题（bug），首先分析算法是否合理（根据算法文档），之后看算法文档和算法的代码是否一致，最后进行修改。自己的代码和逻辑别人不一定清楚，所以需要写好文档。
-4. 关键在于JS和css的精通，以及现在打包工具等的常见使用，使用py进行HTML批量操作。
-```
-
-##### 5.代码格式规范 🦌
-
-```txt
-写代码就注意到格式问题，避免后期检查浪费时间
-JSON中键值对冒号后面有空格；
-if后面有空格，括号和大括号之间有空格，函数不同参数之间有空格。
-import最后一行需要加空行
-英文首个单词需要大写，后面的不需要大写(名词也不需要大写)
-```
 
 ##### 8.网络协议
 
@@ -43,7 +18,7 @@ WebSockets：一个在 TCP 连接上进行的全双工通信渠道的协议。TC
 
 HTTP 协议、HTTPS 协议、websocket 协议都是在 TCP/IP 协议基础上进行。
 
-HTTPS:SSL+HTTP
+
 
 ##### 9.JS 插件模板
 
@@ -70,35 +45,11 @@ https://github.com/gatsbyjs/gatsby
 这是一个 React 中在JS中编写CSS的仓库；
 ```
 
-##### 10.常见 ES6 名词
 
-docker 容器 ——类似于虚拟机
-
-```js
-function timeout(ms) {
-  return new Promise((resolve, reject) => {
-    setTimeout;
-  });
-}
-```
-
-脚手架 webpack
-
-数据结构 树结构
 
 ```js
 bug: ajax 发出 get 请求出现跨域问题：
 解决一：使用jquery 进行发送请求，使用 dataType:"jsonp",可以解决跨域的问题。请求返回的结果是json。出现语法错误。需要服务器端设置返回的结果。使用 jsonp 可以解决同源策略，但是服务器返回的结果仍然是json。需要使用函数类型包起来——前提是服务器和浏览器互相信任（不会发出错误的代码）。
-
-var props = { foo: x, bar: y };
-var component = <Component { ...props } />;
-
-解构赋值：使用...语法，将一个对象以键值对的形式，传入到一个组件中作为属性。等价于下面的表达方式。
-var component = <Component foo={x} bar={y} />
-
-在react中，如果针对一部分标签的属性是单属性(disabled checked)不能直接改变state从而设置属性变化，直接可以通过state控制整个 input 的变化。使用{ this.state.isDisabled ? <> : <> } 这样的方式控制组件变化。
-
-React 或者 Vue 中都需要注意：不需要在父组件和子组件中同时维护一个数据。如果多个组件可以对某一个属性进行修改，放到多个组件的公共父组件中，使用回调函数的形式进行修改（节省性能）。
 ```
 
 ##### 11、待学习
@@ -154,9 +105,6 @@ https://github.com/gka/chroma.js
 mdx-deck
 MDX-based presentation decks https://jxnblk.com/mdx-deck
 支持使用markdown语法输入处理网页界面；
-
-算法(深度学习笔记)
-https://github.com/imhuay/Algorithm_Interview_Notes-Chinese
 
 Awesome macOS open source applications
 MAC 系统开源软件

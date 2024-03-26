@@ -1,5 +1,7 @@
 # Create React App
 
+原文链接：https://create-react-app.dev/docs/getting-started
+
 Create React App is an officially supported way to create single-page React applications. It offers a modern build setup with no configuration.
 
 Create React App 是官方推荐的创建库。不需要任何的配置，直接完成创建打包。项目中直接把script脚本单独拿出来，进行自定义的配置。
@@ -99,9 +101,3 @@ Runs the test watcher in an interactive mode. By default, runs tests related to 
 Builds the app for production to the `build` folder. It correctly bundles React in production mode and optimizes the build for the best performance.The build is minified and the filenames include the hashes.Your app is ready to be deployed.
 
 在build中创建生产模式（最佳的性能）
-
-
-
-原文链接：
-
-https://create-react-app.dev/docs/getting-started

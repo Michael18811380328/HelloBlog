@@ -8,7 +8,7 @@
 
 | 项目           | 标准      | 说明                                                         |
 | -------------- | --------- | ------------------------------------------------------------ |
-| seahub前端模块 | ES Module | 前端react项目使用的模块需要符合ES Module规范，可以以import的方式导入 |
+| 前端模块 | ES Module | 前端react项目使用的模块需要符合ES Module规范，可以以import的方式导入 |
 | -server        | CommonJs  | node后端使用的模块需要符合CommonJS规范，可以以require 的方式导入 |
 
 ## 打包实现
