@@ -135,7 +135,6 @@ nav:
         - '21-ssr': 'ebook-netease-senior-frontend/21-ssr.md'
         - '24-单元测试如何做': 'ebook-netease-senior-frontend/24-单元测试如何做.md'
         - '25-基于NodeJS打造Web架构中间层': 'ebook-netease-senior-frontend/25-基于NodeJS打造Web架构中间层.md'
-        - '26-webpack的高级技巧': 'ebook-netease-senior-frontend/26-webpack的高级技巧.md'
         - 'readme': 'ebook-netease-senior-frontend/readme.md'
 
     - 开课吧前端高级工程师笔记:

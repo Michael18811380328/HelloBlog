@@ -1,4 +1,7 @@
 # Leetcode笔记 
+
+ 原始表格链接：https://cloud.seatable.cn/dtable/external-links/8fef1366ff844618a82f/
+
  
 ## 0215 0109. 有序链表转换成二叉搜索树
 

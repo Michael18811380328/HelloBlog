@@ -1,4 +1,7 @@
 # JS 基础笔记 
+
+ 原始表格链接：https://cloud.seatable.cn/dtable/external-links/8fef1366ff844618a82f/
+
  
 ## 0003 防抖和节流的区别，自己写代码实现
 
@@ -1796,5 +1799,51 @@ setSelectionRange 可以从一个被 focused 的 input 元素中选中特定范�
 input.setSelectionRange(2,5);
 ```
 
+
+   
+## 0420 判断对象的某个属性是否存在
+
+
+如果给定一个对象 obj，判断某个属性 name 是否存在?
+
+方法1 直接获取对象的属性是否为空
+
+```javascript
+let value = obj['name'];
+
+// 但是复杂的值需要处理
+if (!value && value !== 0 && value !== null && value !== false) {
+    console.log('不存在')
+}
+```
+
+
+方法2 Object.prototype.hasOwnProperty.call 判断某个属性是否存在
+
+避免判断对象中的值是 null undefined, 0 false ‘’ 这几种情况
+
+```javascript
+let obj = { a: null, b : '', c : false, d: undefined, e: 0 };
+
+Object.prototype.hasOwnProperty.call(obj, 'name');
+```
+
+如果是简单对象使用方法1，如果复杂对象使用方法2更好
+
+   
+## 0429 正则表达式怎么使用
+
+
+开始符号，结束符号 ^\$
+
+通配符 ？.
+
+\[0-9]\[a-z]\[A-Z] 匹配等
+
+正则表达式，这里循序渐进给出几个题目：<https://regexone.com/lesson/repeating_characters>
+
+正则表达式查询：<https://regexr.com/>
+
+​
 
   

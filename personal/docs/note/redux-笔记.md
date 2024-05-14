@@ -1,4 +1,7 @@
 # redux笔记 
+
+ 原始表格链接：https://cloud.seatable.cn/dtable/external-links/8fef1366ff844618a82f/
+
  
 ## 0024 Redux 的设计思路
 
@@ -104,12 +107,9 @@ Redux 实现了[Flux 模式](https://www.zhihu.com/search?q=Flux%20%E6%A8%A1%E5%
 
 
 * Redux 是一种更简单、更有主见的状态管理库，它遵循严格的单向数据流，并提倡不变性。它需要更多的模板代码和显式更新，但与 React 的集成度很高。
+
 * Mobx 提供的 API 更灵活、更直观，模板代码更少。它允许你直接修改状态，并自动跟踪变化以获得更好的性能。
 
-在 Redux 和 Mobx 之间做出选择取决于您的具体需求和偏好。
-
-
-
-
+在 Redux 和 Mobx 之间做出选择取决于具体需求和偏好
 
   

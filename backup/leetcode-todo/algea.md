@@ -55,7 +55,7 @@
 
 [【漫画】以后在有面试官问你AVL树，你就把这篇文章扔给他。](https://link.zhihu.com/?target=https%3A//mp.weixin.qq.com/s/dYP5-fM22BgM3viWg4V44A)
 
-[腾讯面试题：有了二叉查找树、平衡树为啥还需要红黑树？](https://link.zhihu.com/?target=https%3A//mp.weixin.qq.com/s/p_fEMMNjlnPbbwY9dDQMAQ)
+[面试题：有了二叉查找树、平衡树为啥还需要红黑树？](https://link.zhihu.com/?target=https%3A//mp.weixin.qq.com/s/p_fEMMNjlnPbbwY9dDQMAQ)
 
 
 

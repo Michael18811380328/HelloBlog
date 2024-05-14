@@ -1,4 +1,7 @@
 # BOM笔记 
+
+ 原始表格链接：https://cloud.seatable.cn/dtable/external-links/8fef1366ff844618a82f/
+
  
 ## 0022 重绘和回流是什么；如何进行优化
 
@@ -613,5 +616,41 @@ export default class App extends Component {
 ```
 
 
+
+   
+## 0427 移动端如何真机调试
+
+
+真机和电脑连接，打开 USB 调试模式，打开最新版本的谷歌浏览器。
+
+电脑上打开谷歌浏览器，访问 chrome://inspect/#devices，即可进行基本的调试功能。
+
+如果不能使用，可以断开连接，重新开启手机的开发者 USB 调试模式。
+
+其他方法参考：[https://michael18811380328.github.io/frontend/site/javascript/%E6%89%8B%E6%9C%BAweb%E5%89%8D%E7%AB%AF%E8%B0%83%E8%AF%95%E9%A1%B5%E9%9D%A2%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F/](https://michael18811380328.github.io/frontend/site/javascript/%E6%89%8B%E6%9C%BAweb%E5%89%8D%E7%AB%AF%E8%B0%83%E8%AF%95%E9%A1%B5%E9%9D%A2%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F/ "https://michael18811380328.github.io/frontend/site/javascript/%E6%89%8B%E6%9C%BAweb%E5%89%8D%E7%AB%AF%E8%B0%83%E8%AF%95%E9%A1%B5%E9%9D%A2%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F/")
+
+[https://github.com/jieyou/remote\_inspect\_web\_on\_real\_device](https://github.com/jieyou/remote_inspect_web_on_real_device "https://github.com/jieyou/remote_inspect_web_on_real_device")
+
+​
+
+   
+## 0428 微信兼容问题
+
+
+Windows 微信版本问题
+
+微信全部版本及发布时间：https\://weixin.qq.com/cgi-bin/readtemplate?lang=zh\_CN\&t=weixin\_faq\_list\&head=true
+
+* 早期版本中（3.0.0及之前）微信内核是 chrome 53 不支持很多 ES6 的语法，所以需要兼容
+
+* 3.0.0 之间到 3.3.5 之后的版本，没有逐一测试兼容性
+
+* 最新版本中（3.3.5及之后）微信内核变化后，支持 ES6 语法（不支持开发者工具，不确定内核的具体版本号）
+
+早期版本的调试步骤参考：https\://www\.yuque.com/wuchendi/fe/winwechat 具体需要下载一个 dev 的包，然后可以打开调试台
+
+最新的 windows 微信版本支持 ES6，所以不需要做兼容处理
+
+​
 
   

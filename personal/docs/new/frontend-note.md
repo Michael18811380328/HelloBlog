@@ -66,13 +66,7 @@ async function dbFuc(db) {
 
 参考链接：http://www.ruanyifeng.com/blog/2015/05/async.html
 
-### 2 在线学习平台
 
-正则表达式，这里循序渐进给出几个题目：https://regexone.com/lesson/repeating_characters
-
-正则表达式查询：https://regexr.com/
-
-SQL 语法学习 https://sqlzoo.net/wiki/SQL_Tutorial
 
 ### 3 FileReader
 
@@ -226,20 +220,9 @@ console.log(Array.from(str.matchAll(/hello/g)));
 小结：
 
 - indexOf lastIndexOf includes 是一组，字符串中找另一个字符串
-
 - search match 是字符串的方法，可以传字符串或者正则，一个返回 index，一个返回具体的结果
-
 - test 和 exec 是正则表达式的方法，返回布尔值或者具体的结果
-
 - match 和 exec 返回值一致，参数和方法换位
-
-### 7 MVC 架构的好处
-
-MVC架构的好处：model 是数据层，View 是视图层，Controller 是控制层。
-
-在实际项目中，model 是界面中实际的数据，例如上传的图片和行的信息。view 是界面中显示的按钮和控件，以及控制这些控件的 react 状态。Controller 是接口和API。如果一个引用做到 MVC 完全分离，然后不同模块完全分离，如果需要改动某个模块，或者界面样式，或者数据层，都不会影响其他的部分。
-
-例如，我们想把界面中的按钮改成输入框，那么直接更改 View 层即可，不需要改动 Model 层。如果项目的耦合性很强，可能数据划分不是很清楚。
 
 
 
@@ -317,16 +300,6 @@ class AnimationFrame {
   }
 }
 ~~~
-
-
-
-### 12 移动端真机调试
-
-真机和电脑连接，打开 USB 调试模式，打开最新版本的谷歌浏览器。
-
-电脑上打开谷歌浏览器，访问 chrome://inspect/#devices，即可进行基本的调试功能。
-
-如果不能使用，可以断开连接，重新开启手机的开发者 USB 调试模式。
 
 
 
@@ -666,20 +639,6 @@ http://www.chromium.org/getting-involved/dev-channel
 
 
 
-### 28 Windows 微信版本问题
-
-微信全部版本及发布时间：https://weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_faq_list&head=true
-
-- 早期版本中（3.0.0及之前）微信内核是 chrome 53 不支持很多 ES6 的语法，所以需要兼容
-- 3.0.0 之间到 3.3.5 之后的版本，没有逐一测试兼容性
-- 最新版本中（3.3.5及之后）微信内核变化后，支持 ES6 语法（不支持开发者工具，不确定内核的具体版本号）
-
-早期版本的调试步骤参考：https://www.yuque.com/wuchendi/fe/winwechat 具体需要下载一个 dev 的包，然后可以打开调试台
-
-最新的 windows 微信版本支持 ES6，所以不需要做兼容处理
-
-
-
 
 
 
@@ -724,8 +683,6 @@ android file transfer
 然后连接安卓手机即可显示对应的文件
 
 https://dl.google.com/dl/androidjumper/mtp/current/androidfiletransfer.dmg
-
-
 
 
 
@@ -798,3 +755,4 @@ open /Applications/Google\ Chrome.app && open /Applications/Typora.app
 ### op 执行逻辑
 
 服务器 Op 执行时的函数，最好不依赖全局变量。处理 OP 正常情况的逻辑，也有处理异常情况的逻辑（状态机模式），什么时候发出什么指令，本地或者服务器出现问题怎么操作等等。
+

@@ -1,4 +1,7 @@
 # Linux笔记 
+
+ 原始表格链接：https://cloud.seatable.cn/dtable/external-links/8fef1366ff844618a82f/
+
  
 ## 0114 ssh 命令
 
