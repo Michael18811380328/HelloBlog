@@ -2,8 +2,6 @@
 
 **在div编绎模式下插入图片，实现图文输入--示例**
 
-[![复制代码](https://common.cnblogs.com/images/copycode.gif)](javascript:void(0);)
-
 ```
 <!DOCTYPE html>
 <html lang="zh-CN">
@@ -43,10 +41,6 @@
           document.execCommand("insertimage", false, "images/touxiang.jpg");//填写真实图片地址，图片将会插入到编绎模式下的$('#div')中，位置在鼠标光标处
 }) })(); </script> </html>
 ```
-
-[![复制代码](https://common.cnblogs.com/images/copycode.gif)](javascript:void(0);)
-
- 
 
 
 document.execCommand()方法处理Html数据时常用语法格式如下:

@@ -190,6 +190,7 @@ nav:
         - 'todo-31-zxing-library 实现前端扫码功能': 'react-third-part-lib/todo-31-zxing-library 实现前端扫码功能.md'
         - 'todo-32-第三方库-react-photoswipe-gallery': 'react-third-part-lib/todo-32-第三方库-react-photoswipe-gallery.md'
         - 'todo-33-React-第三方库': 'react-third-part-lib/todo-33-React-第三方库.md'
+    - JS第三方库:
         - '000-dir': 'third-part-lib/000-dir.md'
         - '001-anv-g2': 'third-part-lib/001-anv-g2.md'
         - '003-antd-mobile': 'third-part-lib/003-antd-mobile.md'

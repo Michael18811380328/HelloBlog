@@ -38,13 +38,13 @@ last modify time 2024-04-12
 要使用 `webpack`，那么必然需要安装 `webpack`、`webpack-cli`:
 
 ```
-复制代码npm install webpack webpack-cli -D
+npm install webpack webpack-cli -D
 ```
 
 鉴于前端技术变更迅速，祭出本篇文章基于 `webpack` 的版本号:
 
 ```
-复制代码├── webpack@4.41.5 
+├── webpack@4.41.5 
 └── webpack-cli@3.3.10 
 ```
 
@@ -53,7 +53,7 @@ last modify time 2024-04-12
 新建 `src/index.js` 文件，我们在文件中随便写点什么:
 
 ```
-复制代码//index.js
+//index.js
 class Animal {
     constructor(name) {
         this.name = name;
@@ -75,7 +75,7 @@ const dog = new Animal('dog');
 查看 `dist/main.js` 文件，可以看到，`src/index.js` 并没有被转义为低版本的代码，这显然不是我们想要的。
 
 ```
-复制代码{
+{
     "./src/index.js":
         (function (module, exports) {
 
@@ -96,13 +96,13 @@ const dog = new Animal('dog');
 首先安装一下 `babel-loader`
 
 ```
-复制代码npm install babel-loader -D
+npm install babel-loader -D
 ```
 
 此外，我们还需要配置 `babel`，为此我们安装一下以下依赖:
 
 ```
-复制代码npm install @babel/core @babel/preset-env @babel/plugin-transform-runtime -D
+npm install @babel/core @babel/preset-env @babel/plugin-transform-runtime -D
 
 npm install @babel/runtime @babel/runtime-corejs3
 ```
@@ -112,7 +112,7 @@ npm install @babel/runtime @babel/runtime-corejs3
 新建 `webpack.config.js`，如下:
 
 ```
-复制代码//webpack.config.js
+//webpack.config.js
 module.exports = {
     module: {
         rules: [
@@ -135,7 +135,7 @@ module.exports = {
 配置如下：
 
 ```
-复制代码{
+{
     "presets": ["@babel/preset-env"],
     "plugins": [
         [
@@ -153,7 +153,7 @@ module.exports = {
 #### 在webpack中配置 babel
 
 ```
-复制代码//webpack.config.js
+//webpack.config.js
 module.exports = {
     // mode: 'development',
     module: {
@@ -187,7 +187,7 @@ module.exports = {
 - `loader` 的格式为:
 
 ```
-复制代码{
+{
     test: /\.jsx?$/,//匹配规则
     use: 'babel-loader'
 }
@@ -196,7 +196,7 @@ module.exports = {
 或者也可以像下面这样:
 
 ```
-复制代码//适用于只有一个 loader 的情况
+//适用于只有一个 loader 的情况
 {
     test: /\.jsx?$/,
     loader: 'babel-loader',
@@ -215,7 +215,7 @@ module.exports = {
 - `use` 数组的每一项既可以是字符串也可以是一个对象，当我们需要在`webpack` 的配置文件中对 `loader` 进行配置，就需要将其编写为一个对象，并且在此对象的 `options` 字段中进行配置，如：
 
 ```
-复制代码rules: [
+rules: [
     {
         test: /\.jsx?$/,
         use: {
@@ -238,7 +238,7 @@ module.exports = {
 将 `mode` 增加到 `webpack.config.js` 中:
 
 ```
-复制代码module.exports = {
+module.exports = {
     //....
     mode: "development",
     module: {
@@ -267,7 +267,7 @@ module.exports = {
 首先，安装一下插件:
 
 ```
-复制代码npm install html-webpack-plugin -D 
+npm install html-webpack-plugin -D 
 ```
 
 新建 `public` 目录，并在其中新建一个 `index.html` 文件( 文件内容使用 `html:5` 快捷生成即可)
@@ -275,7 +275,7 @@ module.exports = {
 修改 `webpack.config.js` 文件。
 
 ```
-复制代码//首先引入插件
+//首先引入插件
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
     //...
@@ -311,7 +311,7 @@ Let's Go!
 首先，我们在 `public` 目录下新增一个 `config.js` ( 文件名你喜欢叫什么就叫什么 )，将其内容设置为:
 
 ```
-复制代码//public/config.js 除了以下的配置之外，这里面还可以有许多其他配置，例如,pulicPath 的路径等等
+//public/config.js 除了以下的配置之外，这里面还可以有许多其他配置，例如,pulicPath 的路径等等
 module.exports = {
     dev: {
         template: {
@@ -333,7 +333,7 @@ module.exports = {
 现在，我们修改下我们的 `webpack.config.js`:
 
 ```
-复制代码//webpack.config.js
+//webpack.config.js
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const isDev = process.env.NODE_ENV === 'development';
 const config = require('./public/config')[isDev ? 'dev' : 'build'];
@@ -354,7 +354,7 @@ modue.exports = {
 相应的，我们需要修改下我们的 `public/index.html` 文件(嵌入的js和css并不存在，仅作为示意)：
 
 ```
-复制代码<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -379,8 +379,8 @@ modue.exports = {
 为了兼容Windows和Mac，我们先安装一下 `cross-env`:
 
 ```
-复制代码npm install cross-env -D
-复制代码{
+npm install cross-env -D
+{
     "scripts": {
         "dev": "cross-env NODE_ENV=development webpack",
         "build": "cross-env NODE_ENV=production webpack"
@@ -401,13 +401,13 @@ modue.exports = {
 话不多说，先装依赖:
 
 ```
-复制代码npm install webpack-dev-server -D
+npm install webpack-dev-server -D
 ```
 
 修改下咱们的 `package.json` 文件的 `scripts`：
 
 ```
-复制代码"scripts": {
+"scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dev-server",
     "build": "cross-env NODE_ENV=production webpack"
 },
@@ -422,7 +422,7 @@ Excuse me。怪我平时不认真咯，每次都乖乖的配个 `contentBase`，
 不过呢，我们还是可以在 `webpack.config.js` 中进行 `webpack-dev-server` 的其它配置，例如指定端口号，设置浏览器控制台消息，是否压缩等等:
 
 ```
-复制代码//webpack.config.js
+//webpack.config.js
 module.exports = {
     //...
     devServer: {
@@ -460,7 +460,7 @@ module.exports = {
 细心的小伙伴可能发现了一个小问题，我们在`src/index.js`中增加一句 `console.log('aaa')`：
 
 ```
-复制代码class Animal {
+class Animal {
     constructor(name) {
         this.name = name;
     }
@@ -490,7 +490,7 @@ console.log('aaa');
 对我而言，能够定位到源码的行即可，因此，综合构建速度，在开发模式下，我设置的 `devtool` 的值是 `cheap-module-eval-source-map`。
 
 ```
-复制代码//webpack.config.js
+//webpack.config.js
 module.exports = {
     devtool: 'cheap-module-eval-source-map' //开发环境下使用
 }
@@ -513,8 +513,8 @@ module.exports = {
 先安装一下需要使用的依赖:
 
 ```
-复制代码npm install style-loader less-loader css-loader postcss-loader autoprefixer less -D
-复制代码//webpack.config.js
+npm install style-loader less-loader css-loader postcss-loader autoprefixer less -D
+//webpack.config.js
 module.exports = {
     //...
     module: {
@@ -546,7 +546,7 @@ module.exports = {
 测试一下，新建一个 `less` 文件，`src/index.less`:
 
 ```
-复制代码//src/index.less
+//src/index.less
 @color: red;
 body{
     background: @color;
@@ -557,7 +557,7 @@ body{
 再在入口文件中引入此 `less`:
 
 ```
-复制代码//src/index.js
+//src/index.js
 import './index.less';
 ```
 
@@ -585,7 +585,7 @@ loader` 的执行顺序是从右向左执行的，也就是后面的 `loader` �
 现在的一切看起来都很完美，但是假设我们的文件中使用了本地的图片，例如:
 
 ```
-复制代码body{
+body{
     background: url('../images/thor.png');
 }
 ```
@@ -599,7 +599,7 @@ loader` 的执行顺序是从右向左执行的，也就是后面的 `loader` �
 首先安装依赖:
 
 ```
-复制代码npm install url-loader -D
+npm install url-loader -D
 ```
 
 
@@ -611,13 +611,13 @@ loader` 的执行顺序是从右向左执行的，也就是后面的 `loader` �
 安装 `url-loader` 的时候，控制台会提示你，还需要安装下 `file-loader`，听人家的话安装下就行(新版 `npm` 不会自动安装 `peerDependencies`)：
 
 ```
-复制代码npm install file-loader -D
+npm install file-loader -D
 ```
 
 在 `webpack.config.js` 中进行配置：
 
 ```
-复制代码//webpack.config.js
+//webpack.config.js
 module.exports = {
     //...
     modules: {
@@ -655,7 +655,7 @@ module.exports = {
 当然，你也可以通过 `options` 参数进行修改。
 
 ```
-复制代码//....
+//....
 use: [
     {
         loader: 'url-loader',
@@ -691,7 +691,7 @@ use: [
 不过还没完，如果你在 `public/index.html` 文件中，使用本地的图片，例如，我们修改一下 `public/index.html`：
 
 ```
-复制代码<img src="./a.jpg" />
+<img src="./a.jpg" />
 ```
 
 重启本地服务，虽然，控制台不会报错，但是你会发现，浏览器中根本加载不出这张图片，Why？因为构建之后，通过相对路径压根找不着这张图片呀。
@@ -703,13 +703,13 @@ How？怎么解决呢？
 安装 `html-withimg-loader` 来解决咯。
 
 ```
-复制代码npm install html-withimg-loader -D
+npm install html-withimg-loader -D
 ```
 
 修改 `webpack.config.js`：
 
 ```
-复制代码module.exports = {
+module.exports = {
     //...
     module: {
         rules: [
@@ -725,7 +725,7 @@ How？怎么解决呢？
 然后在我们的 `html` 中引入一张文件测试一下（图片地址自己写咯，这里只是示意）:
 
 ```
-复制代码<!-- index.html -->
+<!-- index.html -->
 <img src="./thor.jpeg" />
 ```
 
@@ -740,7 +740,7 @@ How？怎么解决呢？
 我当前 `file-loader` 的版本是 5.0.2，5版本之后，需要增加 `esModule` 属性：
 
 ```
-复制代码//webpack.config.js
+//webpack.config.js
 module.exports = {
     //...
     modules: {
@@ -767,7 +767,7 @@ module.exports = {
 话说使用 `html-withimg-loader` 处理图片之后，`html` 中就不能使用 `vm`, `ejs` 的模板了，如果想继续在 `html` 中使用 `<% if(htmlWebpackPlugin.options.config.header) { %>` 这样的语法，但是呢，又希望能使用本地图片，可不可以？鱼和熊掌都想要，虽然很多时候，能吃个鱼就不错了，但是这里是可以的哦，像下面这样编写图片的地址，并且删除`html-withimg-loader`的配置即可。
 
 ```
-复制代码<!-- index.html -->
+<!-- index.html -->
 <img src="<%= require('./thor.jpeg') %>" />
 ```
 
@@ -780,7 +780,7 @@ module.exports = {
 入口的字段为: `entry`
 
 ```
-复制代码//webpack.config.js
+//webpack.config.js
 module.exports = {
     entry: './src/index.js' //webpack的默认配置
 }
@@ -793,7 +793,7 @@ module.exports = {
 为数组时，表示有“多个主入口”，想要多个依赖文件一起注入时，会这样配置。例如:
 
 ```
-复制代码entry: [
+entry: [
     './src/polyfills.js',
     './src/index.js'
 ]
@@ -808,7 +808,7 @@ module.exports = {
 配置 `output` 选项可以控制 `webpack` 如何输出编译文件。
 
 ```
-复制代码const path = require('path');
+const path = require('path');
 module.exports = {
     entry: './src/index.js',
     output: {
@@ -826,7 +826,7 @@ module.exports = {
 除此之外呢，考虑到CDN缓存的问题，我们一般会给文件名加上 `hash`.
 
 ```
-复制代码//webpack.config.js
+//webpack.config.js
 module.exports = {
     output: {
         path: path.resolve(__dirname, 'dist'), //必须是绝对路径
@@ -847,13 +847,13 @@ module.exports = {
 安装依赖:
 
 ```
-复制代码npm install clean-webpack-plugin -D
+npm install clean-webpack-plugin -D
 ```
 
 以前，`clean-webpack-plugin` 是默认导出的，现在不是，所以引用的时候，需要注意一下。另外，现在构造函数接受的参数是一个对象，可缺省。
 
 ```
-复制代码//webpack.config.js
+//webpack.config.js
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
@@ -874,7 +874,7 @@ module.exports = {
 `clean-webpack-plugin` 为我们提供了参数 `cleanOnceBeforeBuildPatterns`。
 
 ```
-复制代码//webpack.config.js
+//webpack.config.js
 module.exports = {
     //...
     plugins: [

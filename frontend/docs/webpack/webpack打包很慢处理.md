@@ -87,7 +87,7 @@ module.exports = {
 -   new webpack.DefinePlugin({ "process.env.NODE_ENV": JSON.stringify("development") }),
 - ]
 }
-复制代码
+
 ```
 
 `production` 模式下，由于提供了`splitChunks`和`minimize`，所以基本零配置，代码就会自动分割、压缩、优化，同时 webpack 也会自动帮你 `Scope hoisting` 和 `Tree-shaking`。
@@ -102,7 +102,7 @@ module.exports = {
 -    new webpack.NoEmitOnErrorsPlugin()
 -  ]
 }
-复制代码
+
 ```
 
 webpack 一直以来最饱受诟病的就是其配置门槛极高，配置内容极其复杂和繁琐，容易让人从入门到放弃，而它的后起之秀如 rollup、parcel 等均在配置流程上做了极大的优化，做到开箱即用，所以`webpack 4` 也从中借鉴了不少经验来提升自身的配置效率。**愿世间再也不需要 webpack 配置工程师**。
@@ -130,7 +130,7 @@ throw new Error('Cyclic dependency' + nodeRep)
 ```
 <link href="/app.8945fbfc.css" rel="stylesheet">
 <link href="/chunk-elementUI.2db88087.css" rel="stylesheet">
-复制代码
+
 ```
 
 `app.css`被先加载了，之前写的样式覆盖就失效了，除非你使用`important`或者其它 css 权重的方式覆盖它，但这明显是不太合理的。 `vue-cli`正好也有这个相关 [issue](https://github.com/vuejs/vue-cli/issues/1978#issuecomment-409267484)，尤雨溪也在不使用`@next`版本的基础上 hack 了它，有兴趣的可以自己研究一下，本人在项目中直接使用了`@next`版本，也没遇到其它什么问题（除了不兼容 webpack 的 `prefetch/preload` 相关 [issue](https://github.com/jantimon/html-webpack-plugin/issues/934)）。两种方案都可以，自行选择。
@@ -170,7 +170,7 @@ throw new Error('Cyclic dependency' + nodeRep)
 optimization: {
   minimizer: [new OptimizeCSSAssetsPlugin()];
 }
-复制代码
+
 ```
 
 
@@ -192,7 +192,7 @@ new MiniCssExtractPlugin({
   filename: devMode ? "[name].css" : "[name].[hash].css",
   chunkFilename: devMode ? "[id].css" : "[id].[hash].css"
 });
-复制代码
+
 ```
 
 > 简单说明一下： `filename` 是指在你入口文件`entry`中引入生成出来的文件名，而`chunkname`是指那些未被在入口文件`entry`引入，但又通过按需加载（异步）模块的时候引入的文件。
@@ -255,14 +255,14 @@ new MiniCssExtractPlugin({
 
 ```
 module.exports = file => require("@/views/" + file + ".vue").default;
-复制代码
+
 ```
 
 生成环境：
 
 ```
 module.exports = file => () => import("@/views/" + file + ".vue");
-复制代码
+
 ```
 
 但由于 webpack `import`实现机制问题，会产生一定的副作用。如上面的写法就会导致`@/views/`下的 所有`.vue` 文件都会被打包。不管你是否被依赖引用了，会多打包一些可能永远都用不到 js 代码。 [相关 issue](https://github.com/PanJiaChen/vue-element-admin/issues/292)
@@ -279,7 +279,7 @@ module.exports = file => () => import("@/views/" + file + ".vue");
 
 ```
 "dev": "BABEL_ENV=development webpack-dev-server XXXX"
-复制代码
+
 ```
 
 接着在`.babelrc`只能加入`babel-plugin-dynamic-import-node`这个`plugins`，并让它只有在`development`模式中才生效。
@@ -292,14 +292,14 @@ module.exports = file => () => import("@/views/" + file + ".vue");
     }
   }
 }
-复制代码
+
 ```
 
 之后就大功告成了，路由只要像平时一样写就可以了。[文档](https://panjiachen.github.io/vue-element-admin-site/zh/guide/advanced/lazy-loading.html#新方案)
 
 ```
  { path: '/login', component: () => import('@/views/login/index')}
-复制代码
+
 ```
 
 这样能大大提升你热更新的速度。基本两百加页面也能在`2000ms`的热跟新完成，基本做到无感刷新。当然你的项目本身就不大页面也不多，完全没必要搞这些。**当你的页面变化跟不是你写代码速度的时候再考虑也不迟。**
@@ -362,7 +362,7 @@ module.exports = file => () => import("@/views/" + file + ".vue");
     }]
   ]
 }
-复制代码
+
 ```
 
 顺便说一下都 8102 年了，请不要在使用`babel-preset-esxxxx`系列了，请用`babel-preset-env`，相关文章 [再见，babel-preset-2015](https://zhuanlan.zhihu.com/p/29506685)。
@@ -483,7 +483,7 @@ splitChunks: {
     }
   }
 };
-复制代码
+
 ```
 
 
@@ -501,7 +501,7 @@ splitChunks: {
 
 - test: resolve("src/components")
 + test: resolve("src/components/global_components") //你注册全局组件的目录
-复制代码
+
 ```
 
 ### 博弈
@@ -540,7 +540,7 @@ new webpack.optimize.CommonsChunkPlugin({
   name: "manifest",
   minChunks: Infinity
 });
-复制代码
+
 ```
 
 现在只要一行配置就可以了
@@ -549,7 +549,7 @@ new webpack.optimize.CommonsChunkPlugin({
 {
   runtimeChunk: true;
 }
-复制代码
+
 ```
 
 它的作用是将包含`chunks 映射关系的 list`单独从 `app.js`里提取出来，因为每一个 chunk 的 id 基本都是基于内容 hash 出来的，所以你每次改动都会影响它，如果不将它提取出来的话，等于`app.js`每次都会改变。缓存就失效了。
@@ -577,7 +577,7 @@ new ScriptExtHtmlWebpackPlugin({
   //`runtime` must same as runtimeChunk name. default is `runtime`
   inline: /runtime\..*\.js$/
 });
-复制代码
+
 ```
 
 ### Module vs Chunk
@@ -600,14 +600,14 @@ new ScriptExtHtmlWebpackPlugin({
     JFUb: function(e, t, l) {}
   }
 ]);
-复制代码
+
 ```
 
 一个`module`还能跨`chunk`引用另一个`module`，比如我想在`app.js`里面需要引用 `chunkId`为`13`的模块`2700`可以这样引用：
 
 ```
 return n.e(13).then(n.bind(null, "27OO"));
-复制代码
+
 ```
 
 ### HashedModuleIdsPlugin
@@ -621,7 +621,7 @@ output: {
   path: path.join(__dirname, 'dist'),
   filename: '[name].[chunkhash].js',
 }
-复制代码
+
 ```
 
 我们在入口文件中随便引入一个新文件`test.js`
@@ -632,7 +632,7 @@ import "./test";
 
 //test.js
 console.log("apple");
-复制代码
+
 ```
 
 我们运行`npm run build`，发现了一件奇怪的事情，我只是多引入了一个文件，但发现有十几个文件发生了变化。这是为什么呢？
@@ -707,7 +707,7 @@ console.log("apple");
 
 ```
 recordsPath: path.join(__dirname, "records.json");
-复制代码
+
 ```
 
 对，只要这一行代码就能开启这个选项，并打包的时候会自动生成一个 JSON 文件。它含有 webpack 的 `records` 记录 - 即「用于存储跨多次构建(across multiple builds)的模块标识符」的数据片段。可以使用此文件来跟踪在每次构建之间的模块变化。
@@ -746,7 +746,7 @@ recordsPath: path.join(__dirname, "records.json");
       2
   }
 }
-复制代码
+
 ```
 
 我们和之前一样，在路由里面添加一个懒加载的页面，打包对比后发现 id 并不会像之前那样按照遍历到的顺序插入了，而是基于之前的 id 依次累加了。一般新增页面都会在末尾填写一个新 id，删除 chunk 的话，会将原来代表 chunk 的 id，保留，但不会再使用。
@@ -771,7 +771,7 @@ recordsPath: path.join(__dirname, "records.json");
 
 ```
 import(/* webpackChunkName: "my-chunk-name" */ "module");
-复制代码
+
 ```
 
 我们在结合 vue 的懒加载可以这样写。
@@ -781,7 +781,7 @@ import(/* webpackChunkName: "my-chunk-name" */ "module");
     path: '/test',
     component: () => import(/* webpackChunkName: "test" */ '@/views/test')
   },
-复制代码
+
 ```
 
 打包之后就生成了名为 `test`的 chunk 文件。
@@ -811,7 +811,7 @@ new webpack.NamedChunksPlugin(chunk => {
   }
   return chunk.modules.map(m => path.relative(m.context, m.request)).join("_");
 });
-复制代码
+
 ```
 
 适配 webpack4 和 vue 的新实现方案：
@@ -823,7 +823,7 @@ new webpack.NamedChunksPlugin(chunk => {
   }
   return Array.from(chunk.modulesIterable, m => m.id).join("_");
 });
-复制代码
+
 ```
 
 当然这个方案还是有一些弊端的因为 id 会可能很长，如果一个 chunk 依赖了很多个 module 的话，id 可能有几十位，所以我们还需要缩短一下它的长度。我们首先将拼接起来的 id hash 以下，而且要保证 hash 的结果位数也能太长，浪费字节，但太短又容易发生碰撞，所以最后我们我们选择 4 位长度，并且手动用 Set 做一下碰撞校验，发生碰撞的情况下位数加 1，直到碰撞为止。详细代码如下：
@@ -848,7 +848,7 @@ new webpack.NamedChunksPlugin(chunk => {
     return modules[0].id;
   }
 });
-复制代码
+
 ```
 
 我给 `vue-cli` 官方也提了一个相关 [issue](https://github.com/vuejs/vue-cli/issues/1916)尤雨溪最后也采纳了这个方案。 所以如果你现在下载最新 `vue-cli@3`上面啰嗦了半天的东西，其实都已经默认配置好了(但作者本人为了找到这个 hack 方法整整花了两天时间 o(╥﹏╥)o)。

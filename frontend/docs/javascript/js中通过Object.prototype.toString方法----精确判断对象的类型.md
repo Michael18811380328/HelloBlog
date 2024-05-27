@@ -10,9 +10,7 @@
 
 ### toString()方法和Object.prototype.toString.call()方法对比
 
-[![复制代码](https://common.cnblogs.com/images/copycode.gif)](javascript:void(0);)
-
-```
+```js
 var arr=[1,2];
 
 //直接对一个数组调用toString()
@@ -22,21 +20,19 @@ arr.toString();// "1,2"
 Object.prototype.toString.call(arr); //"[object Array]"
 ```
 
-[![复制代码](https://common.cnblogs.com/images/copycode.gif)](javascript:void(0);)
-
 Object.prototype中的toString方法是确实被继承下来了，但是很多东西总不会一层不变，作为儿子的数组重写了toString方法，所以直接调用数组对象上面的toString方法调用到的实际是重写后的方法，并不是Object.prototype中的toString方法。
 
 应用场景：如果没有应用场景讲这个也没啥用了，那到底有啥用呢？
 
 Object.prototype对象上的toString方法可以用来判断数据类型
 
-```
+```js
 Object.prototype.toString.call(arr); //"[object Array]"  判断是否是数组
 ```
 
 而重写后的toString方法可以把对象转换成字符串，还可以把数值转换成不同进制的数
 
-```
+```js
 [1,2].toString();// "1,2"  得到字符串
 
 (10).toString(2);//10进制转2进制 1010 ，如果1.toString(2)会报错，因为js会认为.是数字的小数点而不是调用符号
@@ -70,9 +66,7 @@ Array.prototype.toString.call(arr);
 
 JavaScript 中一切都是对象，任何都不例外，对所有值类型应用 Object.prototype.toString.call() 方法结果如下：
 
-[![复制代码](https://common.cnblogs.com/images/copycode.gif)](javascript:void(0);)
-
-```
+```js
 console.log(Object.prototype.toString.call(123));    //[object Number]
 console.log(Object.prototype.toString.call('123'));    //[object String]
 console.log(Object.prototype.toString.call(undefined));    //[object Undefined]

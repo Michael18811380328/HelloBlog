@@ -80,7 +80,7 @@ onhashchange 是为您排忧解难。[Window: hashchange event](https://develope
     </script>
 </body>
 </html>
-复制代码
+
 ```
 
 // 页面 B
@@ -99,7 +99,7 @@ onhashchange 是为您排忧解难。[Window: hashchange event](https://develope
     </script>
 </body>
 </html>
-复制代码
+
 ```
 
 效果展示
@@ -118,7 +118,7 @@ window.onbeforeunload = function (e) {
             localStorage.setItem("name","close");
             return '确定离开此页吗？';
         }
-复制代码
+
 ```
 
 好啦！这便是新页面被正常关闭情况下的传值问题的解答。如果页面是意外崩溃掉了呢？
@@ -202,7 +202,7 @@ B 页面意外崩溃，JS 都不会运行了，还如何将通知 A 页面呢？
     </script>
 </body>
 </html>
-复制代码
+
 ```
 
 // service-worker.js
@@ -245,7 +245,7 @@ this.addEventListener('message', (e) => {
     delete pages[data.id]
   }
 })
-复制代码
+
 ```
 
 效果展示：
@@ -288,7 +288,7 @@ Object.defineproperty() 监测的目标是对象，Dom 元素的属性集合[dom
 ```
 defineReactive(ob.value, key, val)
 ob.dep.notify()
-复制代码
+
 ```
 
 此节结尾，本瓜再抛一两个问题吧：
@@ -340,7 +340,7 @@ imgs.forEach(item => {
     // 监听目标元素
     observer.observe(item);
 });
-复制代码
+
 ```
 
 你还知道其他实现懒加载的方法吗？
@@ -363,7 +363,7 @@ imgs.forEach(item => {
 
 ```
 首屏位置调用 API 开始统计 -> 绑定首屏内所有图片的 load 事件 -> 页面加载完后判断图片是否在首屏内，找出加载最慢的一张 -> 首屏时间
-复制代码
+
 ```
 
 ### 白屏时间计算？
@@ -377,21 +377,21 @@ performance.timing.responseStart - performance.timing.navigationStart
 // or 在 chrome 高版本下
 
 (chrome.loadTimes().firstPaintTime - chrome.loadTimes().startLoadTime)*1000
-复制代码
+
 ```
 
 ### 用户可操作时间(即 document.ready)
 
 ```
 performance.timing.domContentLoadedEventEnd - performance.timing.navigationStart
-复制代码
+
 ```
 
 ### onload 总下载时间？
 
 ```
 performance.timing.loadEventEnd - performance.timing.navigationStart
-复制代码
+
 ```
 
 ## 小结

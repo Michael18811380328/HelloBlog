@@ -36,7 +36,7 @@
 
 举例说明，用一个类描述动物呼吸这个场景：
 
-[![复制代码](http://common.cnblogs.com/images/copycode.gif)](javascript:void(0);)
+
 
 ```
 class Animal{
@@ -54,7 +54,7 @@ public class Client{
 } 
 ```
 
-[![复制代码](http://common.cnblogs.com/images/copycode.gif)](javascript:void(0);)
+
 
 运行结果：
 
@@ -68,7 +68,7 @@ public class Client{
 
  
 
-[![复制代码](http://common.cnblogs.com/images/copycode.gif)](javascript:void(0);)
+
 
 ```
 class Terrestrial{
@@ -95,7 +95,7 @@ public class Client{
 }
 ```
 
-[![复制代码](http://common.cnblogs.com/images/copycode.gif)](javascript:void(0);)
+
 
 运行结果：
 
@@ -109,7 +109,7 @@ public class Client{
 
 我们会发现如果这样修改花销是很大的，除了将原来的类分解之外，还需要修改客户端。而直接修改类Animal来达成目的虽然违背了单一职责原则，但花销却小的多，代码如下：
 
-[![复制代码](http://common.cnblogs.com/images/copycode.gif)](javascript:void(0);)
+
 
 ```
 class Animal{
@@ -133,11 +133,11 @@ public class Client{
 } 
 ```
 
-[![复制代码](http://common.cnblogs.com/images/copycode.gif)](javascript:void(0);)
+
 
 可以看到，这种修改方式要简单的多。但是却存在着隐患：有一天需要将鱼分为呼吸淡水的鱼和呼吸海水的鱼，则又需要修改Animal类的breathe方法，而对原有代码的修改会对调用“猪”“牛”“羊”等相关功能带来风险，也许某一天你会发现程序运行的结果变为“牛呼吸水”了。这种修改方式直接在代码级别上违背了单一职责原则，虽然修改起来最简单，但隐患却是最大的。还有一种修改方式：
 
-[![复制代码](http://common.cnblogs.com/images/copycode.gif)](javascript:void(0);)
+
 
 ```
 class Animal{
@@ -161,7 +161,7 @@ public class Client{
 } 
 ```
 
-[![复制代码](http://common.cnblogs.com/images/copycode.gif)](javascript:void(0);)
+
 
 可以看到，这种修改方式没有改动原来的方法，而是在类中新加了一个方法，这样虽然也违背了单一职责原则，但在方法级别上却是符合单一职责原则的，因为它并没有动原来方法的代码。**这三种方式各有优缺点，那么在实际编程中，采用哪一中呢？其实这真的比较难说，需要根据实际情况来确定。我的原则是：只有逻辑足够简单，才可以在代码级别上违反单一职责原则；只有类中方法数量足够少，才可以在方法级别上违反单一职责原则；**
 
@@ -203,7 +203,7 @@ public class Client{
 
 举例说明继承的风险，我们需要完成一个两数相减的功能，由类A来负责。
 
-[![复制代码](http://common.cnblogs.com/images/copycode.gif)](javascript:void(0);)
+
 
 ```
 class A{
@@ -221,7 +221,7 @@ public class Client{
 } 
 ```
 
-[![复制代码](http://common.cnblogs.com/images/copycode.gif)](javascript:void(0);)
+
 
 运行结果：
 
@@ -236,7 +236,7 @@ public class Client{
 
 由于类A已经实现了第一个功能【两数相减】，所以类B继承类A后，只需要再完成第二个功能【两数相加，然后再加100】就可以了，代码如下：
 
-[![复制代码](http://common.cnblogs.com/images/copycode.gif)](javascript:void(0);)
+
 
 ```
 class B extends A{
@@ -259,7 +259,7 @@ public class Client{
 } 
 ```
 
-[![复制代码](http://common.cnblogs.com/images/copycode.gif)](javascript:void(0);)
+
 
 类B完成后，运行结果：
 
@@ -300,7 +300,7 @@ public class Client{
 
  
 
-[![复制代码](http://common.cnblogs.com/images/copycode.gif)](javascript:void(0);)
+
 
 ```
 class Book{
@@ -324,7 +324,7 @@ public class Client{
 } 
 ```
 
-[![复制代码](http://common.cnblogs.com/images/copycode.gif)](javascript:void(0);)
+
 
  
 
@@ -358,7 +358,7 @@ interface IReader{
 
 Mother类与接口IReader发生依赖关系，而Book和Newspaper都属于读物的范畴，他们各自都去实现IReader接口，这样就符合依赖倒置原则了，代码修改为：
 
-[![复制代码](http://common.cnblogs.com/images/copycode.gif)](javascript:void(0);)
+
 
 ```
 class Newspaper implements IReader {
@@ -388,7 +388,7 @@ public class Client{
 }
 ```
 
-[![复制代码](http://common.cnblogs.com/images/copycode.gif)](javascript:void(0);)
+
 
 运行结果：
 
@@ -434,7 +434,7 @@ public class Client{
 
 具体来说：类A依赖接口I中的方法1、方法2、方法3，类B是对类A依赖的实现。类C依赖接口I中的方法1、方法4、方法5，类D是对类C依赖的实现。对于类B和类D来说，虽然他们都存在着用不到的方法（也就是图中红色字体标记的方法），但由于实现了接口I，所以也必须要实现这些用不到的方法。对类图不熟悉的可以参照程序代码来理解，代码如下：
 
-[![复制代码](http://common.cnblogs.com/images/copycode.gif)](javascript:void(0);)
+
 
 ```
 interface I {
@@ -517,7 +517,7 @@ public class Client{
 } 
 ```
 
-[![复制代码](http://common.cnblogs.com/images/copycode.gif)](javascript:void(0);)
+
 
 可以看到，如果接口过于臃肿，只要接口中出现的方法，不管对依赖于它的类有没有用处，实现类中都必须去实现这些方法，这显然不是好的设计。如果将这个设计修改为符合接口隔离原则，就必须对接口I进行拆分。在这里我们将原有的接口I拆分为三个接口，拆分后的设计如图2所示：
 
@@ -527,7 +527,7 @@ public class Client{
 
 上述为遵循接口隔离原则的设计，代码如下：
 
-[![复制代码](http://common.cnblogs.com/images/copycode.gif)](javascript:void(0);)
+
 
 ```
 interface I1 {
@@ -593,7 +593,7 @@ class D implements I1, I3{
 } 
 ```
 
-[![复制代码](http://common.cnblogs.com/images/copycode.gif)](javascript:void(0);)
+
 
 **接口隔离原则的含义是：建立单一接口，不要建立庞大臃肿的接口，尽量细化接口，接口中的方法尽量少**。也就是说，我们要为各个类建立专用的接口，而不要试图去建立一个很庞大的接口供所有依赖它的类去调用。本文例子中，将一个庞大的接口变更为3个专用的接口所采用的就是接口隔离原则。在程序设计中，依赖几个专用的接口要比依赖一个综合的接口更灵活。接口是设计时对外部设定的“契约”，通过分散定义多个接口，可以预防外来变更的扩散，提高系统的灵活性和可维护性。
 
@@ -625,7 +625,7 @@ class D implements I1, I3{
 
 举一个例子：有一个集团公司，下属单位有分公司和直属部门，现在要求打印出所有下属单位的员工ID。先来看一下违反迪米特法则的设计。
 
-[![复制代码](http://common.cnblogs.com/images/copycode.gif)](javascript:void(0);)
+
 
 ```
 //总公司员工
@@ -697,11 +697,11 @@ public class Client{
 } 
 ```
 
-[![复制代码](http://common.cnblogs.com/images/copycode.gif)](javascript:void(0);)
+
 
 现在这个设计的主要问题出在CompanyManager中，根据迪米特法则，只与直接的朋友发生通信，而SubEmployee类并不是CompanyManager类的直接朋友（以局部变量出现的耦合不属于直接朋友），从逻辑上讲总公司只与他的分公司耦合就行了，与分公司的员工并没有任何联系，这样设计显然是增加了不必要的耦合。按照迪米特法则，应该避免类中出现这样非直接朋友关系的耦合。修改后的代码如下:
 
-[![复制代码](http://common.cnblogs.com/images/copycode.gif)](javascript:void(0);)
+
 
 ```
 class SubCompanyManager{
@@ -745,7 +745,7 @@ class CompanyManager{
 }
 ```
 
-[![复制代码](http://common.cnblogs.com/images/copycode.gif)](javascript:void(0);)
+
 
 修改后，为分公司增加了打印人员ID的方法，总公司直接调用来打印，从而避免了与分公司的员工发生耦合。
 

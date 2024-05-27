@@ -104,7 +104,7 @@ GraphQL 模式定义了可用于在服务器和客户端之间通信的类型。
 type Project {  id: ID  name: String!}type TodoItem {  id: ID  description: String!  isCompleted: Boolean!  dueDate: Date  project: Project}type TodoList {  totalCount: Int!  items: [TodoItem]!}type Query {  allTodos(limit: Int, offset: Int): TodoList!  todoByID(id: ID!): TodoItem}type Mutation {  createTodo(item: TodoItem!): TodoItem  deleteTodo(id: ID!): TodoItem  updateTodo(id: ID!, newItem: TodoItem!): TodoItem}schema {  query: Query  mutation: Mutation}
 ```
 
-复制代码
+
 
 底部的`schema`块是特定的，定义了前面描述的根类型`Query`和`Mutation`。此外，它非常简单：`type`块定义新的类型，每个块包含具有自己类型的字段定义。类型可以是非可选的，例如`String!`字段不能有空值，而`String`可以。字段也可以有命名参数，所以`TodoList!`类型的字段`allTodos(limit: Int, offset: Int): TodoList!`接受两个可选参数，而其本身的值是非可选的，这意味着它将始终返回一个不能为空的`TodoList`实例。然后，要查询所有待办事项的`id`和名称，你可以编写这样一个查询：
 
@@ -112,7 +112,7 @@ type Project {  id: ID  name: String!}type TodoItem {  id: ID  description: Stri
 query {  allTodos(limit: 5) {    totalCount    items {      id      description      isCompleted    }  }}
 ```
 
-复制代码
+
 
 GraphQL 客户端库根据模式自动解析和验证查询，然后将其发送到 GraphQL 服务器。请注意，`allTodos`字段的`offset`参数是缺失的。作为可选项，它的缺失意味着它有`null`值。如果服务器提供这种模式，文档中可能会声明，`null`偏移量意味着默认情况下应该返回第一页。响应可能是这样的：
 
@@ -120,7 +120,7 @@ GraphQL 客户端库根据模式自动解析和验证查询，然后将其发送
 {  "data": {    "allTodos": {      "totalCount": 42,      "items": [        {          "id": 1,          "description": "write a blogpost",          "isCompleted": true        },        {          "id": 2,          "description": "edit until looks good",          "isCompleted": true        },        {          "id": 2,          "description": "proofread",          "isCompleted": false        },        {          "id": 4,          "description": "publish on the website",          "isCompleted": false        },        {          "id": 5,          "description": "share",          "isCompleted": false        }      ]    }  }}
 ```
 
-复制代码
+
 
 如果你从查询中删除`isCompleted`字段，它将从结果中消失。或者你可以添加`project`字段，用其`id`和`name`来遍历关系。将`offset`参数添加到`allTodos`字段进行分页，这样`allTodos(count: 5, offset: 5)`将返回第二页。结果中提供了`totalCount`字段，这很有用，因为现在你知道总共有`42 / 5 = 9`页。但显然，如果不需要`totalCount`，你可以忽略它。查询可以完全控制将要接收的实际信息，但是底层的 GraphQL 基础设施还必须确保所有必需的字段和参数都在那里。如果你的 GraphQL 服务器足够聪明，它将不会对你不需要的字段运行数据库查询，而且有些库好到免费提供这种查询。此模式中的其他变体和查询也是如此：对输入进行类型检查和验证，并且基于查询，GraphQL 服务器知道期望的结果形状。本质上，所有通信都通过服务器上一个预定义的 URL（通常是`/graphql`）运行，借助一个简单的`POST`请求，其中包含序列化为 JSON 有效负载的查询。但是，你几乎从来都不需要接触如此低的抽象层。
 

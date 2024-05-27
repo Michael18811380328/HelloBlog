@@ -43,7 +43,6 @@ We're happy to meet new contributors. If you want to **get involved** with Leafl
       accessToken: 'pk.eyJ1IjoibWljaGFlbGFuIiwiYSI6ImNrOWNpcjloYjAxd3AzbG9haDkyaHFyYWcifQ.c7kTH74OsNMI9RoWxaTQ_Q'
       // 现在界面上是401没有权限（应该需要验证token）现在是动态的公钥，如果私有使用，需要申请
       // (in order to use tiles from Mapbox, you must also request an access token). 
-      // name: MichaelAn 密码 old 10 email: 24445
       // accessToken: 'your.mapbox.access.token'
       // https://account.mapbox.com/
     }).addTo(mymap);

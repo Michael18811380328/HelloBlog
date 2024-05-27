@@ -86,7 +86,7 @@ GET /graphql?query={ books(id:12) { authors { firstName, lastName } title, yearP
 GET /books/12
 ```
 
-复制代码
+
 
 这个请求可能会返回一个包含特定图书所有数据的对象，例如：
 
@@ -94,7 +94,7 @@ GET /books/12
 {   “title” : “The Hitchhiker's Guide to the Galaxy”,  “authorID”: 42,  “yearPublished” : 1978,  “length”: 208,  “genre”: “Science Fiction”}
 ```
 
-复制代码
+
 
 在我们的例子里，与相同的 GraphQL 查询相比，该响应有两个缺点：
 
@@ -107,7 +107,7 @@ GET /books/12
 GET /authors/42
 ```
 
-复制代码
+
 
 这个请求的响应应该包含我们正在查找的所有数据：
 
@@ -115,7 +115,7 @@ GET /authors/42
 {   “firstName” : “Douglas”,  “lastName”: “Adams”}
 ```
 
-复制代码
+
 
 现在我们已经有了需要的所有书籍和作者数据，响应解析由客户端完成。现在，前端应用程序必须将来自不同端点的数据组合在一起，用于实现期望的功能。总的来说，与 REST API 相比，GraphQL 提供的性能优势可以为前端开发人员带来回报。使用 GraphQL 规范创建服务器可能需要更多的设置以及编写预测性的服务器端逻辑来解析和处理请求。
 

@@ -11,7 +11,7 @@
 鉴于前端技术变更迅速，祭出本篇文章基于 `Webpack` 的版本号:
 
 ```
-复制代码├── webpack@4.41.5 
+├── webpack@4.41.5 
 └── webpack-cli@3.3.10 
 ```
 
@@ -40,7 +40,7 @@
 [speed-measure-webpack-plugin](https://link.juejin.cn/?target=https%3A%2F%2Fwww.npmjs.com%2Fpackage%2Fspeed-measure-webpack-plugin) 的使用很简单，可以直接用其来包裹 `Webpack` 的配置:
 
 ```
-复制代码//webpack.config.js
+//webpack.config.js
 const SpeedMeasurePlugin = require("speed-measure-webpack-plugin");
 const smp = new SpeedMeasurePlugin();
 
@@ -58,7 +58,7 @@ module.exports = smp.wrap(config);
 `exclude` 的优先级高于 `include`，在 `include` 和 `exclude` 中使用绝对路径数组，尽量避免 `exclude`，更倾向于使用 `include`。
 
 ```
-复制代码//webpack.config.js
+//webpack.config.js
 const path = require('path');
 module.exports = {
     //...
@@ -89,13 +89,13 @@ module.exports = {
 首先安装依赖：
 
 ```
-复制代码npm install cache-loader -D
+npm install cache-loader -D
 ```
 
 `cache-loader` 的配置很简单，放在其他 `loader` 之前即可。修改`Webpack` 的配置如下:
 
 ```
-复制代码module.exports = {
+module.exports = {
     //...
     
     module: {
@@ -129,13 +129,13 @@ module.exports = {
 首先需要安装 `happypack`:
 
 ```
-复制代码npm install happypack -D
+npm install happypack -D
 ```
 
 修改配置文件:
 
 ```
-复制代码const Happypack = require('happypack');
+const Happypack = require('happypack');
 module.exports = {
     //...
     module: {
@@ -180,7 +180,7 @@ module.exports = {
 说明：当 `postcss-loader` 配置在 `Happypack` 中，必须要在项目中创建 `postcss.config.js`。
 
 ```
-复制代码//postcss.config.js
+//postcss.config.js
 module.exports = {
     plugins: [
         require('autoprefixer')()
@@ -205,13 +205,13 @@ module.exports = {
 首先安装依赖：
 
 ```
-复制代码npm install thread-loader -D
+npm install thread-loader -D
 ```
 
 修改配置:
 
 ```
-复制代码module.exports = {
+module.exports = {
     module: {
         //我的项目中,babel-loader耗时比较长，所以我给它配置 thread-loader
         rules: [
@@ -241,13 +241,13 @@ module.exports = {
 首先安装依赖:
 
 ```
-复制代码npm install hard-source-webpack-plugin -D
+npm install hard-source-webpack-plugin -D
 ```
 
 修改 `webpack` 的配置：
 
 ```
-复制代码//webpack.config.js
+//webpack.config.js
 var HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 module.exports = {
     //...
@@ -274,7 +274,7 @@ module.exports = {
 [noParse](https://link.juejin.cn/?target=http%3A%2F%2Fwebpack.html.cn%2Fconfiguration%2Fmodule.html) 属性的值是一个正则表达式或者是一个 `function`。
 
 ```
-复制代码//webpack.config.js
+//webpack.config.js
 module.exports = {
     //...
     module: {
@@ -294,7 +294,7 @@ module.exports = {
 `resolve` 配置 `webpack` 如何寻找模块所对应的文件。假设我们确定模块都从根目录下的 `node_modules` 中查找，我们可以配置:
 
 ```
-复制代码//webpack.config.js
+//webpack.config.js
 const path = require('path');
 module.exports = {
     //...
@@ -317,7 +317,7 @@ module.exports = {
 例如: `moment` (2.24.0版本) 会将所有本地化内容和核心功能一起打包，我们就可以使用 `IgnorePlugin` 在打包时忽略本地化内容。
 
 ```
-复制代码//webpack.config.js
+//webpack.config.js
 module.exports = {
     //...
     plugins: [
@@ -330,7 +330,7 @@ module.exports = {
 在使用的时候，如果我们需要指定语言，那么需要我们手动的去引入语言包，例如，引入中文语言包:
 
 ```
-复制代码import moment from 'moment';
+import moment from 'moment';
 import 'moment/locale/zh-cn';// 手动引入
 ```
 
@@ -341,7 +341,7 @@ import 'moment/locale/zh-cn';// 手动引入
 我们可以将一些JS文件存储在 `CDN` 上(减少 `Webpack`打包出来的 `js` 体积)，在 `index.html` 中通过 `<script>` 标签引入，如:
 
 ```
-复制代码<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -359,7 +359,7 @@ import 'moment/locale/zh-cn';// 手动引入
 我们希望在使用时，仍然可以通过 `import` 的方式去引用(如 `import $ from 'jquery'`)，并且希望 `webpack` 不会对其进行打包，此时就可以配置 `externals`。
 
 ```
-复制代码//webpack.config.js
+//webpack.config.js
 module.exports = {
     //...
     externals: {
@@ -378,7 +378,7 @@ module.exports = {
 我们使用 `DllPlugin` 将不会频繁更新的库进行编译，当这些依赖的版本没有变化时，就不需要重新编译。我们新建一个 `webpack` 的配置文件，来专门用于编译动态链接库，例如名为: `webpack.config.dll.js`，这里我们将 `react` 和 `react-dom` 单独打包成一个动态链接库。
 
 ```
-复制代码//webpack.config.dll.js
+//webpack.config.dll.js
 const webpack = require('webpack');
 const path = require('path');
 
@@ -406,7 +406,7 @@ module.exports = {
 在 `package.json` 的 `scripts` 中增加:
 
 ```
-复制代码{
+{
     "scripts": {
         "dev": "NODE_ENV=development webpack-dev-server",
         "build": "NODE_ENV=production webpack",
@@ -418,7 +418,7 @@ module.exports = {
 执行 `npm run build:all`，可以看到 `dist` 目录如下，之所以将动态链接库单独放在 `dll` 目录下，主要是为了使用 `CleanWebpackPlugin` 更为方便的过滤掉动态链接库。
 
 ```
-复制代码dist
+dist
 └── dll
     ├── manifest.json
     └── react.dll.9dcd9d.js
@@ -429,7 +429,7 @@ module.exports = {
 修改 `webpack` 的主配置文件: `webpack.config.js` 的配置：
 
 ```
-复制代码//webpack.config.js
+//webpack.config.js
 const webpack = require('webpack');
 const path = require('path');
 module.exports = {
@@ -454,7 +454,7 @@ module.exports = {
 修改 `public/index.html` 文件，在其中引入 `react.dll.js`
 
 ```
-复制代码<script src="/dll/react.dll.9dcd9d.js"></script>
+<script src="/dll/react.dll.9dcd9d.js"></script>
 ```
 
 > 构建速度
@@ -480,7 +480,7 @@ module.exports = {
 抽离公共代码对于单页应用和多页应该在配置上没有什么区别，都是配置在 `optimization.splitChunks` 中。
 
 ```
-复制代码//webpack.config.js
+//webpack.config.js
 module.exports = {
     optimization: {
         splitChunks: {//分割代码块
@@ -521,7 +521,7 @@ module.exports = {
 `runtimeChunk` 的作用是将包含 `chunk` 映射关系的列表从 `main.js` 中抽离出来，在配置了 `splitChunk` 时，记得配置 `runtimeChunk`.
 
 ```
-复制代码module.exports = {
+module.exports = {
     //...
     optimization: {
         runtimeChunk: {
@@ -542,13 +542,13 @@ module.exports = {
 首先安装依赖：
 
 ```
-复制代码npm install webpack-bundle-analyzer -D
+npm install webpack-bundle-analyzer -D
 ```
 
 使用也很简单，修改下我们的配置：
 
 ```
-复制代码//webpack.config.prod.js
+//webpack.config.prod.js
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const merge = require('webpack-merge');
 const baseWebpackConfig = require('./webpack.config.base');
@@ -572,7 +572,7 @@ module.exports = merge(baseWebpackConfig, {
 进一步对 `vendor` 进行拆分，将 `vendor` 拆分成了4个(使用 `splitChunks` 进行拆分即可)。
 
 ```
-复制代码module.exports = {
+module.exports = {
     optimization: {
     concatenateModules: false,
     splitChunks: {//分割代码块
@@ -617,7 +617,7 @@ module.exports = merge(baseWebpackConfig, {
 如果使用ES6的`import` 语法，那么在生产环境下，会自动移除没有使用到的代码。
 
 ```
-复制代码//math.js
+//math.js
 const add = (a, b) => {
     console.log('aaaaaa')
     return a + b;
@@ -632,7 +632,7 @@ export {
     add,
     minus
 }
-复制代码//index.js
+//index.js
 import {add, minus} from './math';
 add(2,3);
 ```
@@ -662,7 +662,7 @@ add(2,3);
 因此我们可以在 `.babelrc` 中增加 `@babel/plugin-transform-runtime` 的配置。
 
 ```
-复制代码{
+{
     "presets": [],
     "plugins": [
         [

@@ -718,7 +718,7 @@ data control language 数据控制语句，用于管理数据库用户，控制�
 use mysql;
 select * from user;
 
-# 创建 mike 主机名为 localhost 密码是 123456
+# 创建 mike 主机名为 localhost
 create user 'mike'@'localhost' identified by '123456';
 
 # 修改

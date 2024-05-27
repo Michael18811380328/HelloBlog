@@ -109,7 +109,7 @@ dbcp 可能是使用最多的开源连接池，原因大概是因为配置方便
 
 我们来看 DBCP 的例子, 然后根据例子来分析:
 
-[![复制代码](https://common.cnblogs.com/images/copycode.gif)](<javascript:void(0);>)
+
 
 ```
 #连接设置
@@ -152,7 +152,7 @@ defaultTransactionIsolation=REPEATABLE_READ
 DBCP配置文件
 ```
 
-[![复制代码](https://common.cnblogs.com/images/copycode.gif)](<javascript:void(0);>)
+
 
 配置参数详解：
 
@@ -210,7 +210,7 @@ ConnectionPool.[Java](http://lib.csdn.net/base/javase)
 
 ConnectionPoolUtils.java
 
-[![复制代码](https://common.cnblogs.com/images/copycode.gif)](<javascript:void(0);>)
+
 
 ```
 /*连接池工具类，返回唯一的一个数据库连接池对象,单例模式*/
@@ -235,7 +235,7 @@ public class ConnectionPoolUtils {
 }
 ```
 
-[![复制代码](https://common.cnblogs.com/images/copycode.gif)](<javascript:void(0);>)
+
 
 ConnectionPoolTest.java
 
@@ -243,7 +243,7 @@ ConnectionPoolTest.java
 
 DBCPUtils:
 
-[![复制代码](https://common.cnblogs.com/images/copycode.gif)](<javascript:void(0);>)
+
 
 ```
 public class DBCPUtils {
@@ -290,7 +290,7 @@ public class DBCPUtils {
 }
 ```
 
-[![复制代码](https://common.cnblogs.com/images/copycode.gif)](<javascript:void(0);>)
+
 
 6.导入的 jar 包
 
