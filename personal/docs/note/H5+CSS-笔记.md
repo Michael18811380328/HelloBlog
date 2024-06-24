@@ -879,4 +879,117 @@ background-size 表示背景图片的尺寸：可以使用 px/%/container/cover
 
 如果项目需要使用，可以在 loader 中配置 less-loader 进行编译输出
 
+   
+## 0431 浏览器如何获取当前地址信息
+
+
+BOM 中有一个地理位置的 API
+
+navigator.geolocation.getCurrentPosition(onSuccess, onError, options) 可以获取当前的位置
+
+参考 MDN：[https://developer.mozilla.org/zh-CN/docs/Web/API/Geolocation](https://developer.mozilla.org/zh-CN/docs/Web/API/Geolocation "https://developer.mozilla.org/zh-CN/docs/Web/API/Geolocation")
+
+也可以实时监听当前设备的位置，watchPosition() clearWatch() 对应的回调函数获取实时的位置
+
+原理：浏览器获取设备的 GPS 定位信息，或者获取网络供应商 ISP 的位置。因为获取地理位置需要一定时间，所以函数是异步执行的，在回调函数中获取位置。
+
+在《JavaScript权威指南》犀牛书 22章第一节中有详细使用介绍
+
+```javascript
+var options = {
+  enableHighAccuracy: true,
+  timeout: 5000,
+  maximumAge: 0,
+};
+
+// 返回当前的经度纬度，定位精度（有些设别还有海拔和速度）
+function success(pos) {
+  var crd = pos.coords;
+  console.log("Your current position is:");
+  console.log("Latitude : " + crd.latitude);
+  console.log("Longitude: " + crd.longitude);
+  console.log("More or less " + crd.accuracy + " meters.");
+}
+
+function error(err) {
+  console.warn("ERROR(" + err.code + "): " + err.message);
+}
+
+navigator.geolocation.getCurrentPosition(success, error, options);
+```
+
+实际问题：
+
+无法获取位置：某些浏览器可能不支持，或者设置了不允许地理位置定位，那么需要改动浏览器配置信息才能获取到。通常手机上换几个浏览器，点击允许访问位置，可以获取到上面的信息。
+
+这个在特定的功能会使用，目前产品中用得不多。
+
+   
+## 0433 常用的动画效果有哪些？
+
+
+这里有动画效果：[https://enjoycss.com/1npo](https://enjoycss.com/1npo "https://enjoycss.com/1npo")
+
+   
+## 0436 如何设置夜间模式
+
+
+可以直接使用CSS媒体查询 perfers-color-scheme 判断当前用户是否将系统的主体色设置成暗色或者亮色。属性：light dart no-perference 偏好。
+
+```css
+@media (perfers-color-scheme: light) {
+  body {
+    background-color: white;
+  }
+}
+@media (perfers-color-scheme: dark) {
+  body {
+    background-color: black;
+  }
+}
+@media (perfers-color-scheme: no-perference) {
+  body {
+    background-color: white;
+  }
+}
+```
+
+也可以使用 JS 进行媒体查询，然后设置全局属性，通过类名更改样式
+
+```javascript
+const mode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)')
+
+if (mode && mode.matches) { 
+  document.body.classList.add('dark'); 
+} 
+// 监听主题切换事件 
+mode && mode.addEventListener('change', e => { 
+  if (e.matches) { 
+    document.body.classList.add('dark-bg'); 
+  } else { 
+    document.body.classList.remove('dark-bg');  
+  } 
+});
+```
+
+参考：
+
+[https://www.zhihu.com/question/437949548](https://www.zhihu.com/question/437949548 "https://www.zhihu.com/question/437949548")
+
+[https://developer.mozilla.org/zh-CN/docs/Web/CSS/@media/prefers-color-scheme](https://developer.mozilla.org/zh-CN/docs/Web/CSS/@media/prefers-color-scheme "https://developer.mozilla.org/zh-CN/docs/Web/CSS/@media/prefers-color-scheme")
+
+[https://developer.mozilla.org/zh-CN/docs/Web/API/Window/matchMedia](https://developer.mozilla.org/zh-CN/docs/Web/API/Window/matchMedia "https://developer.mozilla.org/zh-CN/docs/Web/API/Window/matchMedia")
+
+   
+## 0451 textarea 的高度自动变化
+
+
+* 默认加载时，设置高度是固定的（100px）然后溢出不显示
+
+* 点击编辑后，根据内容设置高度，然后设置溢出显示滚动条，这样方便编辑
+
+缺陷：点击编辑后，外部整体的高度会被撑开，可能有其他的问题
+
+​
+
   

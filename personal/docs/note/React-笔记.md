@@ -562,6 +562,34 @@ React.useCallback 用于组件内部 state update 后，避免内部函数重新
 
 
    
+## 0202 高阶组件传参和渲染
+
+
+如果存在高阶组件或者多层组件，如果父组件 props 发生变化，那么造成子组件的 卸载-再次加载，原始的状态就不能保存（例如 react-dnd 库）
+
+解决思路是：把需要变化的状态保存到父组件的属性中，不是 State，子组件加载，通过回调函数获取父组件的属性，这样就能避免全部子组件重新渲染。
+
+原文如下：
+
+问题描述：整体容器是可拖拽容器，每一个子元素打开菜单后，其他的不能打开菜单。
+
+如果直接父组件设置 state，那么由于高阶组件的关系，每一个子组件都会重新渲染，已经打开菜单的就会关闭，不行。
+
+所以，在父组件中设置属性；当一个子组件打开下拉菜单后，父组件设置false。其他菜单打开前，需要判断父组件的属性是否满足，这样不会造成子组件的频繁渲染，性能也较好。
+
+总结：react-dnd 或者高阶组件，可以存储属性，然后传递函数获取属性这样的方式传参。
+
+react 中尽量使用属性（避免全部子组件渲染）；然后考虑使用 state 状态。
+
+使用 react-dnd 时，如果一个父组件的状态改变，那么下面的子组件会全部改变，不会走 react 生命周期函数中更新的部分。
+
+这样就造成一些问题：例如 web 项目文件夹，点击菜单，会造成整个文件夹组件全部重新渲染，图片会出现闪动。
+
+react-dnd 使用了高阶组件，可能在 render 时，重新计算了组件，那么势必会去掉原来的组件，并使用新的组件，这样原来的组件自然不会走 componentWillMount 等生命周期函数。
+
+未来使用时，需要注意拖拽内容尽可能少，内部不要有图片或者其他请求的部分，减少性能损耗。
+
+   
 ## 0350 你知道哪些 React hooks
 
 
@@ -869,5 +897,49 @@ Linters 的工作原理是扫描源代码并将其与一组预定义的规则或
 4. 效率：Linter 可以通过自动化代码审查流程并在常见错误在开发或生产过程中引起问题之前发现它们，从而节省开发人员的时间。
 
 一些流行的 linter 包括用于 JavaScript 的 ESLint 以及用于 CSS 的 Stylelint
+
+   
+## 0454 VUE VS React 对比
+
+
+* 语法格式： vue 是单独的文件格式，一个文件包括了 js css HTML 全部，React 通常是 jsx 格式，JS 和 HTML 写在一个文件中，严格意义是 JSX，会通过 React 转换成JS代码，样式部分通过外部 css 文件控制（或者 less sass，下同）
+
+* 数据流：React 是单向数据流，也就是上层组件通过 state 存储数据，通过 props 传递给下层组件，下层组件不能直接更改上层组件的数据，通常通过回调函数或者 redux 等状态管理工具，改变整体的数据，触发组件的局部更新。Vue 早期双向数据流？
+
+* 使用场景：react 起源于国外 Facebook，所以大部分国外公司使用，VUE 作者 Evan You 主要是国内使用。其他对应的第三库也是类似的。国内，阿里巴巴很多项目都是 ts + react。
+
+* React-native 构建原生应用，实现一套代码多种应用；react 类式代码便于和 ts 结合使用
+
+* react 需要使用 PureComponent 或者 shouldComponentUpdate 手动进行 props 对比，否则可能造成大量不必要的重复渲染。VUE setter 和 getter 中已经处理了这部分逻辑。
+
+相同点：
+
+* 虚拟DOM，Diff 算法：
+
+* 响应式和组件化
+
+* key 的作用：再次渲染时，快速复用之前的 dom 节点，减少性能开销（key 唯一性确保 map 查找节点）
+
+* 这两个是核心库，路由和全局状态管理交给相关的库。(vue-router、vuex、react-router、redux）；构建工具：create-react-app or vue-cli&#x20;
+
+项目如何选择框架？
+
+* 根据团队人员熟练程度，根据已有项目的兼容情况
+
+* 小项目使用 vue 大项目使用 react；国际化项目使用 react；国内项目使用 vue；react 和对应的类型控制，团队人多时便于合作；vue 写法比较灵活，如果注释不完善，可能理解有一定困难。
+
+https\://juejin.cn/post/6844903668446134286
+
+   
+## 0467 React 细节
+
+
+Props 和 子组件更新：如果一个子组件的 state 是父组件的 props 计算出来，那么当父组件的 props 变化后，子组件必须更改 state。否则界面无法更改成最新的状态。最佳方案：store 和 view 完全分离，React jsx 只负责渲染组件。
+
+setState 在react合成事件(onClick)和JS代码中是异步的；在原生JS事件（addeventListener）和定时器中是同步的、第一个参数可以是对象，或者是一个函数（返回新的state对象）。
+
+componentDidUpdate 阶段，React 组件重新渲染，但是真实 DOM 的 redraw 还没有完成，所以更改 top 不会产生动画。设置CSS无效。解决：setTimeout 后，DOM 主线程的 redraw 已经执行完，新增的行真实 DOM 已经渲染到界面上，更改 top 值，render tree 重新生成，动画效果可以显示（其他CSS样式类似）。行排序动画遇到这个坑（在 componentDidUpdate 阶段设置 top ，动画无效）参考：https\://blog.csdn.net/huangpin815/article/details/80023480
+
+react 中强制更新组件，this.forceUpdate() 尽量避免使用，最好使用 state 或者 props 数据驱动更新
 
   

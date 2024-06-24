@@ -1846,4 +1846,395 @@ Object.prototype.hasOwnProperty.call(obj, 'name');
 
 ​
 
+   
+## 0437 怎样避免正则表达式报错
+
+
+使用构造函数创建正则表达式，如果传参有特殊符号，可能报错 ’invalid-regular-expression‘
+
+解决：先把字符串中的特殊符号转义，然后创建正则表达式
+
+```javascript
+// The special symbols should not be used as wildcards in regular expressions, need to be escaped into normal symbols
+const escapeRegExp = (value) => {
+  if (typeof value !== 'string') return '';
+  return value.replace(/[.\\[\]{}()|^$?*+]/g, '\\$&');
+};
+
+let value = '[]'
+let reg = new RegExp(escapeRegExp(value), 'ig');
+console.log(reg); // /\[\]/gi
+```
+
+​
+
+   
+## 0443 字符串正则表达式相关 API
+
+
+获取一个字符串中满足条件的全部子字符串（exec） reg.exec(str) 这里的 reg 需要先设置好，不能每次新建
+
+如果有满足的结果，那么继续循环查看下一个；否则返回 null
+
+```javascript
+var str = "我今年25岁明年26岁后年27岁前年24岁";
+var reg=/\d+/g;
+var tmp;
+while (tmp = reg.exec(str)) {
+  console.log(tmp[0])
+}
+```
+
+一共有6种方法（看字符串中是否有指定的子字符串）具体看另一篇笔记（判断字符串中是否包含某个字符串）
+
+* str.indexOf() return index
+
+* str.includes() return boolean
+
+* str.search(str) return index
+
+* str.match(str) return array or null
+
+* reg.test(str) return boolean
+
+* reg.exec(str) return array or null
+
+​
+
+#### 字符串查找的 6 个 API
+
+indexOf / lastIndexOf 返回满足的第一个或者最后一个的索引，未找到返回 -1
+
+```
+// str.indexOf(str) === number
+'Hello'.indexOf('e') === 1
+'Hello'.lastIndexOf('l') === 3
+```
+
+includes 返回布尔值
+
+```
+// str.includes(str) === bool
+'Hello'.includes('lo') === true
+```
+
+str.search(str | regexp) 返回满足条件的字符的索引
+
+```
+// str.search(str|reg) === number
+'Hello'.search('e') === 1
+'Hello'.search(/ll/) === 2
+```
+
+str.match(str | regexp)
+
+字符串和正则的返回值不同
+
+```
+'Helo Hello'.match('Hel') 
+// ['Hel', index: 0, input: 'Helo Hello', groups: undefined]
+
+'Helo Hello'.match(/HEL/ig) 
+// ['Hel', 'Hel']
+```
+
+str.matchAll(str | reg) 注意：返回值是一个迭代器，可以使用for…of…，扩展符(…)或Array.from() 处理
+
+```
+const str = 'hello javascript hello css';
+console.log(Array.from(str.matchAll(/hello/g)));
+// ['hello', index: 0, input: 'hello javascript hello css', groups: undefined],
+// ['hello', index: 17, input: 'hello javascript hello css', groups: undefined],
+```
+
+regexp.test(str)
+
+```
+/hel/ig.test('Hello') === true
+```
+
+regexp.exec(str)
+
+```
+/hel/ig.exec('Hello') === ['Hel', index: 0, input: 'Hello', groups: undefined]
+```
+
+小结：
+
+* indexOf lastIndexOf includes 是一组，字符串中找另一个字符串
+
+* search match 是字符串的方法，可以传字符串或者正则，一个返回 index，一个返回具体的结果
+
+* test 和 exec 是正则表达式的方法，返回布尔值或者具体的结果
+
+* match 和 exec 返回值一致，参数和方法换位
+
+​
+
+   
+## 0444 动画性能 requestAnimationFrame
+
+
+为什么使用：默认的动画使用 setInterval 处理，然后浏览器渲染的频率是 60 次每秒，所以代码如下。
+
+```javascript
+this.timer = setInterval(() => {
+  fn();
+}, 1000 / 60);
+
+// 停止动画
+clearInterval(this.timer);
+```
+
+这样写，JS 实际执行的间隔，和浏览器渲染重排的时间不一定完全吻合，性能可能不好。
+
+所以我们引入了 requestAnimationFrame，这样可以让JS执行的时间和浏览器渲染的时间一致，性能增加。
+
+```javascript
+function fn() {
+  // 动画逻辑 this.div.left = this.div.left + 10
+  if (time < 2000) {
+    this.timer = requestAnimationFrame(fn);
+  	// 两秒内，动画函数内部循环执行动画
+  }
+}
+fn();
+
+// 也可以外部强制关闭动画（键盘鼠标事件触发）
+cancel = () => {
+  cancelAnimationFrame(this.timer);
+}
+```
+
+```
+startAnimation = () => {
+  render();
+  requestAnimFrame(startAnimation);
+}
+```
+
+参考：
+
+<https://developer.mozilla.org/zh-CN/docs/Web/API/Window/requestAnimationFrame>
+
+<https://www.jianshu.com/p/fa5512dfb4f5>
+
+<http://www.ruanyifeng.com/blog/2015/09/web-page-performance-in-depth.html>
+
+<https://javascript.ruanyifeng.com/htmlapi/requestanimationframe.html>
+
+在某些老电脑上，requestAnimationFrame 是 60Hz 进行渲染，那么就是 16.67ms渲染一次，部分设备会卡，可以手动设置渲染时间。
+
+参考：<http://zhangchen915.com/index.php/archives/675/> &#x20;
+
+```javascript
+class AnimationFrame {
+  constructor(fps = 60, animate) {
+    this.requestID = 0;
+    this.fps = fps;
+    this.animate = animate;
+  }
+
+  start() {
+    let then = performance.now();
+    const interval = 1000 / this.fps;
+    const tolerance = 0.1;
+
+    const animateLoop = (now) => {
+      this.requestID = requestAnimationFrame(animateLoop);
+      const delta = now - then;
+
+      if (delta >= interval - tolerance) {
+        then = now - (delta % interval);
+        this.animate(delta);
+      }
+    };
+    this.requestID = requestAnimationFrame(animateLoop);
+  }
+
+  stop() {
+    cancelAnimationFrame(this.requestID);
+  }
+}
+```
+
+​
+
+   
+## 0445 循环中异步函数
+
+
+循环 forEach map 中，如果有异步函数，需要异步函数的结果，怎么实现？
+
+我们写一个node异步读取文件的例子，熟悉一下 async 的语法
+
+```
+var fs = require('fs');
+
+var readFile = function (fileName){
+  return new Promise(function (resolve, reject){
+    fs.readFile(fileName, function(error, data){
+      if (error) {
+        reject(error);
+      } else {
+        resolve(data);
+      }
+    });
+  });
+};
+
+var asyncReadFile = async function (){
+  var f1 = await readFile('/tmp/b.sh');
+  var f2 = await readFile('/tmp/a.sh');
+  console.log(f1.toString(), f2.toString());
+};
+```
+
+循环中使用异步方式，有两种方法
+
+第一个：改成 for 循环，内部使用 async await 实现——这个方式更好
+
+```
+async function dbFuc(db) {
+  let docs = [{}, {}, {}];
+  for (let doc of docs) {
+    await db.post(doc);
+  }
+}
+```
+
+第二种：使用 Promise.all 实现
+
+```
+async function dbFuc(db) {
+  let docs = [{}, {}, {}];
+  let promises = docs.map((doc) => db.post(doc));
+  let results = await Promise.all(promises);
+}
+
+// 或者使用下面的写法
+async function dbFuc(db) {
+  let docs = [{}, {}, {}];
+  let promises = docs.map((doc) => db.post(doc));
+  let results = [];
+  for (let promise of promises) {
+    results.push(await promise);
+  }
+}
+```
+
+参考链接：http\://www\.ruanyifeng.com/blog/2015/05/async.html
+
+​
+
+​
+
+   
+## 0446 setTimeout 避免循环打印
+
+
+### setTimeout 循环打印
+
+《你不知道的JS》第一部分第五章——闭包。经典的案例如下
+
+```javascript
+for (var i = 0; i < 10; i++) {
+  setTimeout(function() {
+    console.log(i);
+  }, i * 1000)
+}
+```
+
+这个会打印出10个10，如何解决？
+
+可以使用ES6的 let 形成块级作用域，这样可以正常打印
+
+```javascript
+for (var i = 0; i < 10; i++) {
+  (function() {
+    var j = i;
+    setTimeout(function() {
+      console.log(j + 1);
+    }, j)
+  })();
+}
+```
+
+或者使用 IIEF 创建临时的作用域，然后使用中间变量 j 缓存一下
+
+```javascript
+for (var i = 0; i < 10; i++) {
+  (function() {
+    var j = i;
+    setTimeout(function() {
+      console.log(j + 1);
+    }, j)
+  })();
+}
+```
+
+如果改成一个变量，可以把变量 i 作为参数，传入到 IEFF 中立即执行（创建了临时的函数作用域实现）
+
+```javascript
+for (var i = 0; i < 10; i++) {
+  (function(j) {
+    setTimeout(function() {
+      console.log(j + 1);
+    }, j)
+  })(i);
+}
+```
+
+​
+
+   
+## 0449 lodash思考
+
+
+lodash 的主要目的是封装了对象和数组的一些方法，主要功能和原生方法一致。类似于 Jquery 操作 DOM，lodash 操作 object array。主要适应于 ES3 的代码。在 ES6 中，API已经实现了很多方法。所以一般情况不需要使用这个库。主要使用的地方就是 throttle 节流函数，deepcopy 深复制对象等。可以不需要求数组的差集，数组均分等操作。
+
+其他：如果一个状态不是常用的状态，那么不需要把状态直接传递到底层组件，可以传递一个函数，底层组件增删改查获取属性（或者使用 redux 的设计思路）。
+
+   
+## 0450 stringify 函数
+
+
+作用：把JS对象或者数组，转换成JSON格式
+
+参数：value是必选参数，表示需要转换的对象或者数组；replacer 是可选参数，表示把对象转换成JSON的转换函数，可以选择null；space 表示JSON的缩进或者空格（数字表示空格数量，或者非数字\t）
+
+```
+JSON.stringify(value[, replacer[, space]])
+```
+
+​
+
+   
+## 0455 数字格式设置
+
+
+Intl.NumberFormat(locale, option).format(10000);
+
+这个内置方法，可以把一个数字转换成不同格式的货币，分隔符，单位，有效数字等。
+
+第一个参数是 locale 语言，例如传入德国，那么小数点和逗号是相反的设置。
+
+第二个参数是 option 可选参数，配置对象。对象的属性有 style currency unit 可以设置货币数字分隔符等。
+
+   
+## 0466 For-in 和 for-of
+
+
+### &#x20;For-in 和 for-of
+
+官方文档：https\://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/for...of
+
+传统的 for 循环有局限性，forEach 和 map 适应数组的循环，所以有了for in 和 for of 循环。
+
+for...of... 循环：可以循环可枚举对象（数组，对象，Map， set， 伪数组，构造器等），循环获取内部元素，可以使用break跳出，不能循环可枚举对象原型链上的属性和方法。
+
+for...in... 可以循环数组的项，以及对象上的函数等（包括原型链上的函数），使用前需要注意
+
+结论：遍历数组优先使用 for forEach map 处理，遍历对象优先使用 for...of... 获取对象的属性
+
   

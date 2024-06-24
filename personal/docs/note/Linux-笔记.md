@@ -527,4 +527,44 @@ telnet 代理，端口号 23；
 
 socks 全能代理，支持 http/tcp/udp 协议，标准端口是 1080
 
+   
+## 0435 Portainer
+
+
+[https://blog.csdn.net/m0\_67900727/article/details/123550536](https://blog.csdn.net/m0_67900727/article/details/123550536 "https://blog.csdn.net/m0_67900727/article/details/123550536")
+
+[https://blog.csdn.net/qq\_57761637/article/details/139063374](https://blog.csdn.net/qq_57761637/article/details/139063374 "https://blog.csdn.net/qq_57761637/article/details/139063374")
+
+docker 图形化管理工具配置
+
+目前本地运行时，注意 容器端口冲突 8000 9000
+
+执行命令
+
+docker run -p 9000:9000 -p 8000:8000 --name portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v /mydata/portainer/data:/data -d portainer/portainer
+
+1、docker 设置访问目录的权限，是否访问目录
+
+2、是否 /host\_mnt/my-data/portainer/data 这个路径没有权限创建，是否需要手动创建目录？是否存在安全问题
+
+   
+## 0439 nginx 入门参考
+
+
+https\://juejin.cn/post/6844904129987526663
+
+https\://zhuanlan.zhihu.com/p/34943332
+
+   
+## 0440 安卓手机连接苹果电脑传文件
+
+
+点击链接下载
+
+android file transfer
+
+然后连接安卓手机即可显示对应的文件
+
+https\://dl.google.com/dl/androidjumper/mtp/current/androidfiletransfer.dmg
+
   

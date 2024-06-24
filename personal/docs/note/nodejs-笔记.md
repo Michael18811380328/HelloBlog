@@ -6,13 +6,17 @@
 ## 0025 浏览器和node中的事件循环
 
 
-浏览器主要的同步和异步操作是 set time out 和 set interval
+浏览器主要的同步和异步操作是 setTimeout 和 setInterval
 
-主线程执行完后会执行任务队列当中的 set time out和 set interval
+主线程执行完后会执行任务队列当中的 setTimeout 和 setInterval
 
 node 当中是 event loop 主要分为宏任务和微任务，执行完一个宏任务，就会执行相应的微任务
 
+具体宏任务微任务的区别：[https://juejin.cn/post/7281192416077021236](https://juejin.cn/post/7281192416077021236 "https://juejin.cn/post/7281192416077021236")
 
+执行顺序： 同步任务 ---> 微任务 ---> 宏任务
+
+​
 
    
 ## 0094 vue 事件代理和元素绑定事件
@@ -56,7 +60,7 @@ This method is like the standard [app.METHOD()](https://expressjs.com/en/4x/api
 
 ### 中间件定义
 
-中间件的本质就是一个函数，在收到请求和返回相应的过程中做一些我们想做的事情。
+中间件的本质就是一个函数，在收到请求和返回响应的过程中，做一些我们想做的事情。
 
 ### 中间件作用
 
@@ -78,7 +82,7 @@ This method is like the standard [app.METHOD()](https://expressjs.com/en/4x/api
 
 伪代码如下
 
-```
+```javascript
 // 这个中间件带路径，表示满足 '*' 才能访问
 app.use('*', (request, response, next) => {
 	if （request.token）{
@@ -94,9 +98,7 @@ app.use('*', (request, response, next) => {
 
 因此，中间件的执行顺序很重要。
 
-<https://juejin.cn/post/6844903573663416334> 
-
-
+<https://juejin.cn/post/6844903573663416334>
 
    
 ## 0195 Express 常用中间件有哪些？
@@ -172,28 +174,52 @@ router.post(`/doc_uuid/`, multipartMiddleware, callback);
 ./src
 ├── _bin
 │   └── www 启动脚本（初始化 express 服务器，创建 web-socket 服务，文件自动保存服务，监听事件并写入日志）
+
+
 ├── api
 │   └── sea-server-api 请求后端的API，获取 token，获取上传下载链接，上传下载文件
+
+
 ├── app 全局 express 实例入口文件，处理POST请求格式，跨域，登录验证，路由，错误返回
+
+
 ├── dao 数据库操作
 │   └── operation-log 将操作日志写入数据库，获取当前 doc 悬挂的 operations
+
+
 ├── db-helper 数据库工具函数（数据库配置，创建连接池，执行查询，断开连接）
+
+
 ├── loggers
 │   └── index 日志打印工具函数（设置日志路径，日志级别）
+
+
 ├── middleware 中间件
 │   ├── auth 登录验证 jwtToken
 │   ├── cors 跨域
+
+
 ├── config 配置文件（数据库配置，服务器地址，端口号等）
+
+
 ├── constants 常量：服务器的基本 API 配置，最大缓存的操作数量
+
+
 ├── utils
 │   ├── index 工具函数（文件目录操作，时间转换，解析 URL）
 │   └── slate-utils 批量执行操作并更新最后修改人
+
+
 ├── route 服务端路由组件（文件内容和协作人的路由）
+
+
 用户管理
 ├── controllers ——不同路由执行的操作（具体操作在 managers 中实现）核心逻辑
 │   └── user-controller 客户端请求用户，返回当前 doc 中的协作人
 ├── managers
 │   └── users-manager 用户管理组件
+
+
 文件管理（核心）
 ├── controllers ——不同路由执行的操作（具体操作在 managers 中实现）核心逻辑
 │   ├── document-controller GET 和 POST 分别对应文档获取和保存
@@ -201,18 +227,21 @@ router.post(`/doc_uuid/`, multipartMiddleware, callback);
 │   ├── document-manager（文档对象管理器，全部文档的保存，更新，获取，新建）
 ├── models
 │   └── document 一个文档对象（包括自身属性和基本操作）
+
+
 操作管理（核心）
 ├── managers
 │   ├── operations-manager 操作管理（操作管理器对象存储1000条近期记录，其他的操作写入数据库，然后支持获取服务器和客户端的差距的操作-丢失获取）
+
+
 web-socket 服务（核心）
 └── wss
     ├── auth ws-jwt 登录认证
     ├── index web-socket 服务器主程序（用户进入房间，用户离开房间，更新文档，同步文档，断开连接，服务器错误处理等）
     └── io-helper ws-工具函数（离开进入房间，广播错误信息等）
-
 ```
 
-
+​
 
    
 ## 0203 nodejs 中输入 bash 命令
@@ -290,6 +319,6 @@ console.log(111) // 111
 
 参考：<https://juejin.cn/post/7002106372200333319>
 
-相关知识还有：事件循环，线程池等，这部分目前了解概念。
+相关知识还有：事件循环，线程池等
 
   

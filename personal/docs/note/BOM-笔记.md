@@ -653,4 +653,56 @@ Windows 微信版本问题
 
 ​
 
+   
+## 0438 移动端点击事件
+
+
+移动端点击事件
+
+1、click 会延迟 200-300ms 。默认移动端双击屏幕会放大缩小浏览器，所以 click 后会判断是否点击两次。默认的 dbClick 时间会去掉。
+
+2、移动端执行的是 touch 事件。touchstart, touchmove touchend 三个事件后，再触发 click 。如果已经监听 touch 事件，那么需要把默认的 click 事件去掉。时间对象 e 包括了很多点击的属性
+
+3、touch 对应的手势事件
+
+* 点按 touchstart touchend 间隔很小
+
+* 长按 touchstart touchend 间隔很大，且没有 touchmove 事件
+
+* 单指上划（下划）左右滑 touchstart touchend 间隔很大，有 touchmove 事件，然后通过移动的位置，判断滑动的方向
+
+```javascript
+endX = firstTouch.pageX;
+endY = firstTouch.pageY;
+
+// x方向移动大于y方向的移动，并且x方向的移动大于25个像素，表示在向左侧滑动
+if (Math.abs(endX - startX) >= Math.abs(endY - startY) && startX - endX >= 25){
+    handler.call(this, e);
+}
+```
+
+[https://www.jianshu.com/p/997b23232bb8](https://www.jianshu.com/p/997b23232bb8 "https://www.jianshu.com/p/997b23232bb8")
+
+[https://juejin.cn/post/6844903569141809166](https://juejin.cn/post/6844903569141809166 "https://juejin.cn/post/6844903569141809166")
+
+[https://juejin.cn/post/6844903506311118856](https://juejin.cn/post/6844903506311118856 "https://juejin.cn/post/6844903506311118856")
+
+   
+## 0452 谷歌浏览器历史版本
+
+
+这里是全部的谷歌浏览器版本，用于排查某一个版本的问题
+
+2011-2020 主要版本：https\://sourceforge.net/projects/osxportableapps/files/Chromium/
+
+https\://www\.applex.net/downloads/google-chrome-for-mac.25/history
+
+http\://www\.chromium.org/getting-involved/dev-channel
+
+   
+## 0453 移动端的键盘输入问题和切换界面问题
+
+
+移动端的键盘输入问题和切换界面问题；如果是一个界面内部的，不需要考虑；如果是新开的一个页面，需要考虑这个问题；目前的解决办法是，主动让 input 失去焦点，输入法自动关闭，再打开下一单页面（实际问题：移动端中，用户编辑过滤器时，先输入文本或者数字，移动端键盘打开，然后更改列，键盘没有及时关闭，样式错误）
+
   
