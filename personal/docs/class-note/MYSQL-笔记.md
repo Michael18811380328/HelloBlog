@@ -4,28 +4,39 @@
 原始教程链接: https://www.bilibili.com/video/BV1Kr4y1i7ru/?vd_source=2d5bdee7ea59486ed4aa4a9b10020224
 
 ### 1-01.MySQL课程介绍
+课程来源：哔哩哔哩
+
+集成后文档比较大，加载图片可能服务器返回 503 错误，所以可以点击链接访问原始网页：<https://cloud.seatable.cn/dtable/external-links/621babd7e22b4ceb88ec/>
+
 Mysql 课程介绍：分成三大部分
 
 * 基础 SQL 语言（函数、约束、事务、多表查询）
+
 * 进阶部分（锁，跨表搜索，索引、优化，InnoDB）
+
 * 运维实践（日志、分布式数据库集群、分库分表、读写分离）
 
 全部知识点：
 
 * 事务？事务的四大特征？事务的隔离级别？
+
 * 内连接，左外连接？
+
 * 存储引擎？InnoDB 和 MyISAM？索引是什么数据结构
+
 * Mysql 执行计划？
+
 * 什么情况索引失效？
+
 * 回表查询？
+
 * MVCC
+
 * 主从复制，读写分离，分库分表
 
 其他参考资料：
 
-> <https://www.runoob.com/mysql/mysql-tutorial.html> 
-
-
+> <https://www.runoob.com/mysql/mysql-tutorial.html>
 
 
 ### 2-02. 基础-课程内容&数据库相关概念
@@ -147,7 +158,7 @@ create table novel_user(
 ### 8-08. 基础-SQL-DDL-数据类型及案例
 字段数据类型，数值、字符串、日期三大类
 
-### 数值
+#### 数值
 
 有符号：signed 表示可以取正负数
 
@@ -171,7 +182,7 @@ age tinyint signed, 年龄是正整数，小于255即可，例如 30
 
 score double(4, 1), 分数可能是分数，精度是4位，分数是1为，例如 88.5
 
-### 字符串
+#### 字符串
 
 | 类型           | 大小    | 描述                  |
 | :----------- | :---- | :------------------ |
@@ -191,7 +202,7 @@ username varchar(50),
 
 gender char(1),
 
-### 日期类型
+#### 日期类型
 
 | 类型        | 格式                  | 描述      |
 | :-------- | :------------------ | :------ |
@@ -205,9 +216,9 @@ gender char(1),
 
 birthday date
 
-### 整体案例
+#### 整体案例
 
-```
+```sql
 create table employee (
 	id int,
 	username varchat(10),
@@ -217,12 +228,9 @@ create table employee (
 	idcard char(18),
 	entry_time date,
 )
-
 ```
 
 注意：字符串需要标明长度（10， 255）数值和时间已经有对应的格式，不需要标注长度。
-
-
 
 
 ### 9-09. 基础-SQL-DDL-表操作-修改&删除
@@ -314,7 +322,6 @@ Dml：Data manipulation language 数据操作语句，对数据库的表结构�
 
 ```sql
 insert into user (id，name) values (1，'mike'); 
-
 ```
 
 也可以给全部字段添加数据，但是实际上这样用的比较少。如果某个表要新加一个字段，这样的语句就会不能用。
@@ -328,8 +335,6 @@ insert into user (id，name) values (1，'mike');
 2 添加数据必须满足字段的数据类型和数据范围。例如如果设置了年龄字段是正数，那么就不能添加一个负数的年龄，如果添加了会报错。
 
 3 字符串和日期对象，应该用引号。如果是用户自定义输入的语句，一定要进行转换，避免用户输入非法的 SQL语句执行sql注入（安全问题），这个在日常的开发中也之前遇过。
-
-
 
 
 ### 13-13. 基础-SQL-DML-更新和删除
@@ -718,7 +723,7 @@ data control language 数据控制语句，用于管理数据库用户，控制�
 use mysql;
 select * from user;
 
-# 创建 mike 主机名为 localhost
+# 创建 mike 主机名为 localhost 密码是 123456
 create user 'mike'@'localhost' identified by '123456';
 
 # 修改
@@ -870,7 +875,7 @@ select trim(' Hello ');
 
 
 ### 28-28. 基础-函数-数值函数
-### 数值函数
+数值函数
 
 ```sql
 ceil();
@@ -899,11 +904,11 @@ select lpad(round(rand() * 100000, 0), 6, '0');
 
 ```
 
-
+​
 
 
 ### 29-29. 基础-函数-日期函数
-### 日期函数
+日期函数
 
 ```sql
 curdate();
@@ -958,9 +963,7 @@ SET time_zone = 'Asia/Shanghai';
 
 ```
 
-参考：<https://blog.csdn.net/weixin_44816664/article/details/132766459> 
-
-
+参考：<https://blog.csdn.net/weixin_44816664/article/details/132766459>
 
 
 ### 30-30. 基础-函数-逻辑函数
@@ -1056,7 +1059,7 @@ case...when...then...else...end
 
 
 ### 32-32. 基础-约束-概述
-### 约束的概念
+约束的概念
 
 约束：设置一定的规范，约束限制表中的字段的数据。
 
@@ -1065,29 +1068,32 @@ case...when...then...else...end
 约束分类
 
 * 非空约束 NOT NULL
+
 * 唯一约束（身份证，手机号）UNIQUE
+
 * 主键约束 PRIMARY KEY，一行数据唯一标识，非空且唯一
+
 * 外键约束 FOREIGN KEY，让两个表建立联系，保证数据一致性完整性
+
 * 默认约束 DEFAULT
+
 * 检查约束 CHECK
 
 约束作用于具体字段，在创建或者修改表时，增加约束
 
 
-
-
 ### 33-33. 基础-约束-演示
-### 常用约束条件演示
+常用约束条件演示
 
 用户表的需求
 
-| 字段名      | 含义   | 类型          | 约束条件      | 约束关键字                       |
-| :------- | :--- | :---------- | :-------- | :-------------------------- |
-| id       | 唯一标识 | int         | 主键，自增长    | PRIMARY_KEY, AUTO_INCREMENT |
-| username |      | varchar(10) | 唯一，不为空    | NOT NULL,UNIQUE             |
-| age      |      | int         | 检查 0——100 | CHECK                       |
-| status   |      | char(1)     | 默认值为 ‘1’  | DEFAULT                     |
-| gender   |      | char(1)     | 无         |                             |
+| 字段名      | 含义   | 类型          | 约束条件      | 约束关键字                         |
+| :------- | :--- | :---------- | :-------- | :---------------------------- |
+| id       | 唯一标识 | int         | 主键，自增长    | PRIMARY\_KEY, AUTO\_INCREMENT |
+| username |      | varchar(10) | 唯一，不为空    | NOT NULL,UNIQUE               |
+| age      |      | int         | 检查 0——100 | CHECK                         |
+| status   |      | char(1)     | 默认值为 ‘1’  | DEFAULT                       |
+| gender   |      | char(1)     | 无         |                               |
 
 建表语句
 
@@ -1117,10 +1123,8 @@ INSERT INTO user(username, age, status, gender) values ('Tony', -20, '1', '1');
 如果图形化界面，通常有对应的 GUI 可以勾选并设置字段的约束条件
 
 
-
-
 ### 34-34. 基础-约束-外键约束
-### 外键约束
+外键约束
 
 外键：保证了两张表的完整性和一致性，建立表的联系。父表中更新某些数据，子表中原始的数据不会自动更新，所以需要外键。如果没有外键，那么多个表互相独立，不方便管理，就失去了 mysql 的意义。
 
@@ -1132,7 +1136,6 @@ INSERT INTO user(username, age, status, gender) values ('Tony', -20, '1', '1');
 ALTER TABLE 子表 ADD CONSTRAINT 外键名称 FOREIGN KEY (子表中的外键) REFERENCES 主表(主表的主键);
 
 ALTER TABLE 子表 DROP FOREIGN KEY 外键名称；
-
 ```
 
 案例
@@ -1172,7 +1175,7 @@ alter table emp drop foreign key emp_dept_foreign_key;
 
 ```
 
-
+​
 
 
 ### 35-35. 基础-约束-外键删除更新行为
@@ -1229,7 +1232,7 @@ alter table 子表名 add constraint 外键名称 foreign key （子表中的外
 
 实际案例
 
-### 三种多表关系
+**三种多表关系**
 
 两个数据库表之间有三种关系
 
@@ -1241,17 +1244,17 @@ alter table 子表名 add constraint 外键名称 foreign key （子表中的外
 
 **2、多对多，就是用户表和图书表**
 
-一个用户可以拥有多个电子图书，同时每一本电子书可以被不同用户学习。此时需要新建一个中间表，分别设置用户表和图书表的外键。（user_book 用户图书关系表）
+一个用户可以拥有多个电子图书，同时每一本电子书可以被不同用户学习。此时需要新建一个中间表，分别设置用户表和图书表的外键。（user\_book 用户图书关系表）
 
 **3、一对一，就是用户表和用户详情表**
 
 如果某一个单表（用户）字段特别多，包括很多信息，那么通常会做单表拆分，拆成多个表格。例如用户的基本信息表，用户受教育信息表，用户家庭情况表等。这些表中，ID 都是唯一的，就是一对一的关系。此时需要设置一个外键，并设置外键唯一，即可解决一对一的关系。
 
-**总之：复杂的产品结构，先分析业务需求，拆分成不同模块，清楚逻辑关系，再完成 SQL 语句。**
+**总之：复杂的产品结构，先分析业务需求，拆分成不同模块，清楚逻辑关系，再完成 SQL 语句。​**
 
 （例如淘宝的购物车表，商品表，库存表等）（小说阅读器的用户表，图书表，评论表）
 
-#### 案例
+案例
 
 一对多的情况，已经在主键和外键部分演示过了，这里主要学习 多对多 和 一对一 的情况。
 
@@ -1314,7 +1317,7 @@ create table user_detail(
 
 ```
 
-
+​
 
 
 ### 38-38. 基础-多表查询-概述
@@ -2016,12 +2019,9 @@ SQL 语法（DCL，DQL，DML）
 多表查询（内连接，外连接，子查询）
 
 事务（属性，原子性，一致性，隔离性，持久性）
-
 ```
 
 要求：掌握基本 SQL 概念，可以使用基本的增删改查语句。（不考虑性能问题）
-
-
 
 
 ### 58-01. 进阶-课程介绍
@@ -2075,14 +2075,9 @@ create table emp (
 
 # 查询当前支持的引擎和特征
 show engines;
-
 ```
 
 其他的引擎：MyISAM Memory
-
-
-
-
 
 
 ### 61-04. 进阶-存储引擎-InnoDB介绍
@@ -2148,7 +2143,6 @@ MYSQL 这里学三种存储引擎。
 show engines;
 
 craete table emp() engine=INNODB;
-
 ```
 
 3、innodb 相对于 MyIsam 的优点：支持外键、支持事务、支持行级锁
@@ -2156,10 +2150,8 @@ craete table emp() engine=INNODB;
 4、存储引擎使用：innodb 对于数据和事务要求较高的核心业务，其他的引擎用于日志等非核心业务（实际使用其他数据库完成）
 
 
-
-
 ### 66-09. 进阶-索引-概述
-参考链接：<https://www.runoob.com/mysql/mysql-index.html> 
+参考链接：<https://www.runoob.com/mysql/mysql-index.html>
 
 #### 为什么使用索引
 
@@ -2171,11 +2163,10 @@ craete table emp() engine=INNODB;
 
 在一个数据库表中，选择 where 查询的一列或者多列，作为索引的列。类似从数组中遍历一个数据，和从对象中映射一个数据，索引就是对象的键。
 
-语句：在 students 表中的 name 字段，建立一个索引，索引名称是 idx_name。
+语句：在 students 表中的 name 字段，建立一个索引，索引名称是 idx\_name。
 
 ```sql
 CREATE INDEX idx_name ON students (name);
-
 ```
 
 #### 索引的问题
@@ -2183,8 +2174,6 @@ CREATE INDEX idx_name ON students (name);
 索引实际是一个表，建立索引页需要一定时间。索引表自身也会占用一些空间，所以索引不是越多越好。
 
 当原始表中增删改一些数据，对应索引表也需要更改数据（使查询加快，但是增删改变慢）。
-
-
 
 
 ### 121-64. 进阶-锁-介绍
@@ -2197,5 +2186,17 @@ CREATE INDEX idx_name ON students (name);
 存在的问题和优化（例如慢查询）：某些语句执行时会锁定整个表，这样就会阻塞其他语句执行，造成查询慢等情况。这种情况可以增加索引，让表锁变成行锁，加快查询的速度。
 
 
+
+
+### 158-06. 运维-主从复制-概述
+MySQL主从复制是一个复制解决方案，它允许数据从一个MySQL数据库服务器（主服务器）复制到一个或多个MySQL数据库服务器（从服务器）。
+
+
+### 163-11. 运维-分库分表-介绍
+分库分表是为了解决数据库性能瓶颈问题，通过将数据分散到多个库和表中来提高数据库的写入和查询性能。
+
+
+### 188-36. 运维-读写分离-介绍
+MySQL的读写分离是一种常见的数据库架构优化方法，通过配置主从同步实现数据的实时备份和读写分离，从而提升数据库的性能和可用性。
 
 

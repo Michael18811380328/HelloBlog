@@ -1,6 +1,6 @@
 # JS 基础笔记 
 
- 原始表格链接：https://cloud.seatable.cn/dtable/external-links/8fef1366ff844618a82f/
+ 原始表格链接：https://cloud.seatable.cn/dtable/external-links/59b453a8639945478de2/
 
  
 ## 0003 防抖和节流的区别，自己写代码实现
@@ -1872,13 +1872,13 @@ console.log(reg); // /\[\]/gi
 ## 0443 字符串正则表达式相关 API
 
 
-获取一个字符串中满足条件的全部子字符串（exec） reg.exec(str) 这里的 reg 需要先设置好，不能每次新建
+获取一个字符串中满足条件的全部子字符串（exec） reg.exec(str) 这里的 reg 需要先设置好，不需要每次新建
 
 如果有满足的结果，那么继续循环查看下一个；否则返回 null
 
 ```javascript
 var str = "我今年25岁明年26岁后年27岁前年24岁";
-var reg=/\d+/g;
+var reg = /\d+/g;
 var tmp;
 while (tmp = reg.exec(str)) {
   console.log(tmp[0])
@@ -1899,13 +1899,11 @@ while (tmp = reg.exec(str)) {
 
 * reg.exec(str) return array or null
 
-​
-
 #### 字符串查找的 6 个 API
 
 indexOf / lastIndexOf 返回满足的第一个或者最后一个的索引，未找到返回 -1
 
-```
+```javascript
 // str.indexOf(str) === number
 'Hello'.indexOf('e') === 1
 'Hello'.lastIndexOf('l') === 3
@@ -1913,14 +1911,14 @@ indexOf / lastIndexOf 返回满足的第一个或者最后一个的索引，未�
 
 includes 返回布尔值
 
-```
+```javascript
 // str.includes(str) === bool
 'Hello'.includes('lo') === true
 ```
 
 str.search(str | regexp) 返回满足条件的字符的索引
 
-```
+```javascript
 // str.search(str|reg) === number
 'Hello'.search('e') === 1
 'Hello'.search(/ll/) === 2
@@ -1930,7 +1928,7 @@ str.match(str | regexp)
 
 字符串和正则的返回值不同
 
-```
+```javascript
 'Helo Hello'.match('Hel') 
 // ['Hel', index: 0, input: 'Helo Hello', groups: undefined]
 
@@ -1940,7 +1938,7 @@ str.match(str | regexp)
 
 str.matchAll(str | reg) 注意：返回值是一个迭代器，可以使用for…of…，扩展符(…)或Array.from() 处理
 
-```
+```javascript
 const str = 'hello javascript hello css';
 console.log(Array.from(str.matchAll(/hello/g)));
 // ['hello', index: 0, input: 'hello javascript hello css', groups: undefined],
@@ -1949,13 +1947,13 @@ console.log(Array.from(str.matchAll(/hello/g)));
 
 regexp.test(str)
 
-```
+```javascript
 /hel/ig.test('Hello') === true
 ```
 
 regexp.exec(str)
 
-```
+```javascript
 /hel/ig.exec('Hello') === ['Hel', index: 0, input: 'Hello', groups: undefined]
 ```
 
@@ -2006,7 +2004,7 @@ cancel = () => {
 }
 ```
 
-```
+```javascript
 startAnimation = () => {
   render();
   requestAnimFrame(startAnimation);
@@ -2066,9 +2064,9 @@ class AnimationFrame {
 
 循环 forEach map 中，如果有异步函数，需要异步函数的结果，怎么实现？
 
-我们写一个node异步读取文件的例子，熟悉一下 async 的语法
+我们写一个node异步读取文件的例子，使用 async 的语法
 
-```
+```javascript
 var fs = require('fs');
 
 var readFile = function (fileName){
@@ -2094,7 +2092,7 @@ var asyncReadFile = async function (){
 
 第一个：改成 for 循环，内部使用 async await 实现——这个方式更好
 
-```
+```javascript
 async function dbFuc(db) {
   let docs = [{}, {}, {}];
   for (let doc of docs) {
@@ -2105,7 +2103,7 @@ async function dbFuc(db) {
 
 第二种：使用 Promise.all 实现
 
-```
+```javascript
 async function dbFuc(db) {
   let docs = [{}, {}, {}];
   let promises = docs.map((doc) => db.post(doc));
@@ -2123,77 +2121,15 @@ async function dbFuc(db) {
 }
 ```
 
-参考链接：http\://www\.ruanyifeng.com/blog/2015/05/async.html
-
-​
-
-​
-
-   
-## 0446 setTimeout 避免循环打印
-
-
-### setTimeout 循环打印
-
-《你不知道的JS》第一部分第五章——闭包。经典的案例如下
-
-```javascript
-for (var i = 0; i < 10; i++) {
-  setTimeout(function() {
-    console.log(i);
-  }, i * 1000)
-}
-```
-
-这个会打印出10个10，如何解决？
-
-可以使用ES6的 let 形成块级作用域，这样可以正常打印
-
-```javascript
-for (var i = 0; i < 10; i++) {
-  (function() {
-    var j = i;
-    setTimeout(function() {
-      console.log(j + 1);
-    }, j)
-  })();
-}
-```
-
-或者使用 IIEF 创建临时的作用域，然后使用中间变量 j 缓存一下
-
-```javascript
-for (var i = 0; i < 10; i++) {
-  (function() {
-    var j = i;
-    setTimeout(function() {
-      console.log(j + 1);
-    }, j)
-  })();
-}
-```
-
-如果改成一个变量，可以把变量 i 作为参数，传入到 IEFF 中立即执行（创建了临时的函数作用域实现）
-
-```javascript
-for (var i = 0; i < 10; i++) {
-  (function(j) {
-    setTimeout(function() {
-      console.log(j + 1);
-    }, j)
-  })(i);
-}
-```
-
-​
+参考链接：<http://www.ruanyifeng.com/blog/2015/05/async.html>
 
    
 ## 0449 lodash思考
 
 
-lodash 的主要目的是封装了对象和数组的一些方法，主要功能和原生方法一致。类似于 Jquery 操作 DOM，lodash 操作 object array。主要适应于 ES3 的代码。在 ES6 中，API已经实现了很多方法。所以一般情况不需要使用这个库。主要使用的地方就是 throttle 节流函数，deepcopy 深复制对象等。可以不需要求数组的差集，数组均分等操作。
+lodash 的主要目的是封装了对象和数组的一些方法，主要功能和原生方法一致。类似于 Jquery 操作 DOM，lodash 操作 object array。主要适应于 ES3 的代码。在 ES6 中，API已经实现了很多方法。一般不需要用。
 
-其他：如果一个状态不是常用的状态，那么不需要把状态直接传递到底层组件，可以传递一个函数，底层组件增删改查获取属性（或者使用 redux 的设计思路）。
+项目中使用了 throttle 节流函数，deepcopy 深复制对象。求数组的差集，数组均分等操作。
 
    
 ## 0450 stringify 函数
@@ -2203,14 +2139,14 @@ lodash 的主要目的是封装了对象和数组的一些方法，主要功能�
 
 参数：value是必选参数，表示需要转换的对象或者数组；replacer 是可选参数，表示把对象转换成JSON的转换函数，可以选择null；space 表示JSON的缩进或者空格（数字表示空格数量，或者非数字\t）
 
-```
+```javascript
 JSON.stringify(value[, replacer[, space]])
 ```
 
 ​
 
    
-## 0455 数字格式设置
+## 0455 欧洲数字格式设置
 
 
 Intl.NumberFormat(locale, option).format(10000);
@@ -2227,14 +2163,116 @@ Intl.NumberFormat(locale, option).format(10000);
 
 ### &#x20;For-in 和 for-of
 
-官方文档：https\://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/for...of
+官方文档：<https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/for...of>
 
-传统的 for 循环有局限性，forEach 和 map 适应数组的循环，所以有了for in 和 for of 循环。
+传统的 for 有局限，forEach 和 map 适应数组的循环，所以有了for in 和 for of 循环。
 
 for...of... 循环：可以循环可枚举对象（数组，对象，Map， set， 伪数组，构造器等），循环获取内部元素，可以使用break跳出，不能循环可枚举对象原型链上的属性和方法。
 
-for...in... 可以循环数组的项，以及对象上的函数等（包括原型链上的函数），使用前需要注意
+for...in... 可以对象（对象、数组、函数）（包括原型链上的属性），使用前需要注意
 
 结论：遍历数组优先使用 for forEach map 处理，遍历对象优先使用 for...of... 获取对象的属性
+
+hasOwnProperty 可以过滤掉原型链上的属性。
+
+```javascript
+for (const key in person) {
+  if (person.hasOwnProperty(key)) {
+    console.log(key, person[key]);
+  }
+}
+```
+
+参考：[https://blog.csdn.net/tyxjolin/article/details/130091368](https://blog.csdn.net/tyxjolin/article/details/130091368 "https://blog.csdn.net/tyxjolin/article/details/130091368")
+
+   
+## 0476 web worker
+
+
+参考这里：<https://juejin.cn/post/7139718200177983524>
+
+#### 原生语法实现
+
+src/app.js
+
+```javascript
+  const myWorker = new Worker('./worker.js');
+
+  myWorker.addEventListener('message', (e) => {
+    console.log(e.data);
+  });
+
+  // 给 worker 传递一个较大的数值，用于计算
+  myWorker.postMessage(table);
+```
+
+打包后放到 static/bundle.js 目录中
+
+然后 static/worker.js 代码如下
+
+```javascript
+self.addEventListener('message', (e) => {
+  self.postMessage('workder is starting');
+  const table = e.data;
+
+  // 模拟大运算量（对象转换）
+  console.time();
+  let resultArr = [];
+  for (let i = 0; i < 10000; i++) {
+    resultArr[i] = JSON.parse(JSON.stringify(JSON.parse(JSON.stringify(table))))
+  }
+  console.timeEnd();
+
+  self.postMessage('workder is ending');
+});
+```
+
+可以通过浏览器看到实际的计算过程。
+
+注意1：这里 app.js 和 worker.js 是单独打包后到 static 目录下面，打包后的代码互相引用才行，打包前不能直接引用（不能直接放在 src 目录下，否则提示错误）
+
+注意2：只能在浏览器中使用，Node 中不支持会报错，ReferenceError: Worker is not defined
+
+#### 第三方库 comlink 实现
+
+[https://github.com/GoogleChromeLabs/comlink](https://github.com/GoogleChromeLabs/comlink "https://github.com/GoogleChromeLabs/comlink")
+
+#### 集成到 react-webpack 开发环境
+
+webpack 4和更早的版本，需要 webpack 对应的 worker-loader 实现。
+
+webpack5 版本已经不需要 worker-loader，直接使用即可，编译后也正常使用，示例代码如下（self eslint 会报错，不能使用全局变量，忽略这个报错即可）
+
+参考：[https://webpack.js.org/guides/web-workers/](https://webpack.js.org/guides/web-workers/ "https://webpack.js.org/guides/web-workers/")
+
+index.js
+
+```javascript
+const worker = new Worker(new URL('./deep-thought.js', import.meta.url));
+worker.postMessage({
+  question:
+});
+worker.onmessage = ({ data: { answer } }) => {
+  console.log(answer);
+};
+```
+
+deep-thought.js
+
+```javascript
+self.onmessage = ({ data: { question } }) => {
+  self.postMessage({
+    answer: 42,
+  });
+};
+```
+
+在浏览器控制条中，可以看到主线程和工作线程的执行情况（下面模拟大量运算）
+
+![](https://cloud.seatable.cn/workspace/32/asset/e82c7317-556e-45c4-8b5d-092331cd8977/images/auto-upload/image-1720078532322.png)
+
+注：import.meta 是全局变量，给 JavaScript 模块暴露特定上下文的元数据属性的对象
+
+参考MDN [https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/import.meta](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/import.meta "https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/import.meta")
 
   

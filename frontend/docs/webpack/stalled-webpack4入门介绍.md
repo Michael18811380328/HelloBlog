@@ -1,5 +1,7 @@
 # 入门 Webpack
 
+Michael An: 原理类似，但是细节不一样，webpack4 到 webpack5 更新比较多。
+
 ### 写在前面的话
 
 2018年8月25日更新，此外用基于 webpack 4.17.1。

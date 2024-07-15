@@ -1,6 +1,6 @@
 # BOM笔记 
 
- 原始表格链接：https://cloud.seatable.cn/dtable/external-links/8fef1366ff844618a82f/
+ 原始表格链接：https://cloud.seatable.cn/dtable/external-links/59b453a8639945478de2/
 
  
 ## 0022 重绘和回流是什么；如何进行优化
@@ -639,7 +639,7 @@ export default class App extends Component {
 
 Windows 微信版本问题
 
-微信全部版本及发布时间：https\://weixin.qq.com/cgi-bin/readtemplate?lang=zh\_CN\&t=weixin\_faq\_list\&head=true
+微信全部版本及发布时间：<https://weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_faq_list&head=true>
 
 * 早期版本中（3.0.0及之前）微信内核是 chrome 53 不支持很多 ES6 的语法，所以需要兼容
 
@@ -647,7 +647,7 @@ Windows 微信版本问题
 
 * 最新版本中（3.3.5及之后）微信内核变化后，支持 ES6 语法（不支持开发者工具，不确定内核的具体版本号）
 
-早期版本的调试步骤参考：https\://www\.yuque.com/wuchendi/fe/winwechat 具体需要下载一个 dev 的包，然后可以打开调试台
+早期版本的调试步骤参考：<https://www.yuque.com/wuchendi/fe/winwechat> 需要下载 dev 包，然后可以打开调试台
 
 最新的 windows 微信版本支持 ES6，所以不需要做兼容处理
 
@@ -657,11 +657,11 @@ Windows 微信版本问题
 ## 0438 移动端点击事件
 
 
-移动端点击事件
+移动端点击事件和 PC 不同点：
 
-1、click 会延迟 200-300ms 。默认移动端双击屏幕会放大缩小浏览器，所以 click 后会判断是否点击两次。默认的 dbClick 时间会去掉。
+1、click 会延迟 200-300ms。默认双击屏幕会放大缩小浏览器，所以 click 后会判断是否点击两次。默认的 dbClick 事件会去掉。
 
-2、移动端执行的是 touch 事件。touchstart, touchmove touchend 三个事件后，再触发 click 。如果已经监听 touch 事件，那么需要把默认的 click 事件去掉。时间对象 e 包括了很多点击的属性
+2、移动端执行的是 touch 事件。touchstart, touchmove touchend 三个事件后，再触发 click。如果已经监听 touch 事件，那么需要把默认的 click 事件去掉。事件对象 event 包括了很多点击的属性。
 
 3、touch 对应的手势事件
 
@@ -675,7 +675,7 @@ Windows 微信版本问题
 endX = firstTouch.pageX;
 endY = firstTouch.pageY;
 
-// x方向移动大于y方向的移动，并且x方向的移动大于25个像素，表示在向左侧滑动
+// 判断手势：x方向移动大于y方向的移动，并且x方向的移动大于25个像素，表示在向左侧滑动
 if (Math.abs(endX - startX) >= Math.abs(endY - startY) && startX - endX >= 25){
     handler.call(this, e);
 }
@@ -693,16 +693,24 @@ if (Math.abs(endX - startX) >= Math.abs(endY - startY) && startX - endX >= 25){
 
 这里是全部的谷歌浏览器版本，用于排查某一个版本的问题
 
-2011-2020 主要版本：https\://sourceforge.net/projects/osxportableapps/files/Chromium/
+2011-2020 主要版本：
 
-https\://www\.applex.net/downloads/google-chrome-for-mac.25/history
+<https://sourceforge.net/projects/osxportableapps/files/Chromium/>
 
-http\://www\.chromium.org/getting-involved/dev-channel
+<https://www.applex.net/downloads/google-chrome-for-mac.25/history>
+
+<http://www.chromium.org/getting-involved/dev-channel>
 
    
-## 0453 移动端的键盘输入问题和切换界面问题
+## 0453 移动端 input 获取焦点问题
 
 
-移动端的键盘输入问题和切换界面问题；如果是一个界面内部的，不需要考虑；如果是新开的一个页面，需要考虑这个问题；目前的解决办法是，主动让 input 失去焦点，输入法自动关闭，再打开下一单页面（实际问题：移动端中，用户编辑过滤器时，先输入文本或者数字，移动端键盘打开，然后更改列，键盘没有及时关闭，样式错误）
+移动端的 input 获取焦点后，键盘自动弹出样式问题：
+
+如果是一个界面内部的，不需要考虑。
+
+如果是新开的一个页面，需要考虑这个问题。
+
+解决办法：JS 让 input 失去焦点，输入法自动关闭，再进行后续操作（打开新的页面等）。
 
   

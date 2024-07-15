@@ -8,6 +8,18 @@
 
 电子书链接：[https://cloud.seafile.com/f/54ee4bd82cb4440cbed4/](https://cloud.seafile.com/f/54ee4bd82cb4440cbed4/ "https://cloud.seafile.com/f/54ee4bd82cb4440cbed4/")
 
+​
+
+​
+
+​
+
+公众号作者
+
+[https://www.bilibili.com/video/BV1Zk4y137QQ/?spm\_id\_from=333.337.search-card.all.click\&vd\_source=2d5bdee7ea59486ed4aa4a9b10020224](https://www.bilibili.com/video/BV1Zk4y137QQ/?spm_id_from=333.337.search-card.all.click\&vd_source=2d5bdee7ea59486ed4aa4a9b10020224 "https://www.bilibili.com/video/BV1Zk4y137QQ/?spm_id_from=333.337.search-card.all.click\&vd_source=2d5bdee7ea59486ed4aa4a9b10020224")
+
+​
+
 
 ## 01 JavaScript 简介
 JS 早期时网页交互的程序语言，包括 ECMAScript、BOM、DOM 三部分。
@@ -16,19 +28,17 @@ ES分为多个版本，不同浏览器支持不同版本的ES，2021年大部分
 
 
 ## 02-在HTML中使用 JavaScript
+浏览器加载脚本的行为
+
 JS可以是自己服务器写的，也支持其他服务器上的脚本，需要注意是否安全，是否资源路径更改。
 
 不同前端框架下，可能按照功能模块集成，所以 Vue 和 JSX 看起来混合了 HTML 和  JS。
 
 默认 HTML 中按照从上到下的顺序执行 JS 脚本（不使用 defer 和 async 的情况下）。一般把 script 放在最后，先渲染DOM，再执行JS。
 
-script 标签属性：
-
-* async 表示异步下载，异步执行，执行的顺序可能变化（适用于外部资源）。因为异步下载，执行顺序不确定，所以避免异步脚本的互相干扰，避免异步脚本直接更改DOM。
-
-* defer 表示立即下载，但是按照上下文顺序正常执行（适用于外部资源）。
-
 noscript 标签可以在不支持JS的浏览器显示；支持JS的浏览器不显示。
+
+​
 
 
 ## 03-基本概念
@@ -246,9 +256,7 @@ encodeURIComponent 主要处理全部的符号并进行转义 decodeURIComponent
 
 
 ## 08-window
-​
-
-### 8.1 window 对象
+#### 8.1 window 对象
 
 #### 全局作用域
 
@@ -795,8 +803,6 @@ var DragDrop = function () {
 
 
 ## 24-最佳实践
-​
-
 ### 24.1 可维护性
 
 * 可维护性：可理解性、直观性、可适应性、可扩展性、可调试性。
@@ -920,5 +926,297 @@ var btn = document.getElementById("myButton");
 ```
 
 ​
+
+
+## 官方视频
+在线视频：图灵社区官方出品，内容不错；
+
+视频作者是本书译者，李松峰，360前端开发资深专家、前端TC委员、W3C代表
+
+[https://www.bilibili.com/video/BV1p541177F4/](https://www.bilibili.com/video/BV1p541177F4/ "https://www.bilibili.com/video/BV1p541177F4/")
+
+但是这个人不擅长讲课，念文字，犯困意义不大
+
+​
+
+
+## P1    1._2.1_脚本加载    23:55
+script 标签属性：
+
+1、async 表示异步下载，异步执行，执行的顺序可能变化（适用于外部资源）。因为异步下载，执行顺序不确定，所以避免异步脚本的互相干扰，避免异步脚本直接更改DOM。
+
+2、defer 表示立即下载，但是按照上下文顺序正常执行（适用于外部资源）。
+
+这两个属性决定了整体的脚本加载性能
+
+下面这个图重点理解（defer async 的关系）
+
+![](https://cloud.seatable.cn/workspace/81910/asset/b0de7002-5abf-48b9-b07b-ba7033be74a7/images/auto-upload/image-1719240032581.png)
+
+从左到右表示运行时间 runtime，五种 script 对应的执行时间
+
+绿色的线  parser 表示 HTML 解析
+
+蓝色的线  fetch 表示 script 获取
+
+红色的线 execution 表示 script 执行
+
+如果脚本内容和 DOM 结构有关，那么使用 defer 延迟执行；如果脚本内容和 DOM 无关，使用 async 异步执行。
+
+下面分析这五个线：
+
+——2.1 默认加载：先解析 HTML，遇到  script 立即 fetch，终端 HTML 解析，执行 JS 后继续解析 HTML
+
+——2.2 defer 延迟执行: 解析 HTML，遇到  script 立即 fetch。解析 HTML 后再执行 JS
+
+——2.3 async 异步执行：解析 HTML，遇到  script 立即 fetch。获取JS 后立即执行，之后继续解析 HTML
+
+——2.4 ES module 默认 defer 延迟执行。蓝色的线分叉，表示 es 入口模块，依赖不同的子模块。
+
+——2.5 ES module 异步执行：es 模块全部加载后，JS 立即执行。
+
+​
+
+3、src：source 的简写
+
+4、type:
+
+* text/javascript 常规JS脚本
+
+* module 模块（ES6模块）高级浏览器可以直接解析这个语法，所以加载这部分。IE11不支持module就不加载
+
+5、cross-origin 跨域 （CORS）相关属性，需要连接哪些标签可以跨域（跨源资源共享，一个服务器请求另一个服务器的资源）凭据模式：跨域请求是否包含凭据（cookie, Authothention 用户名和密码等）
+
+![](https://cloud.seatable.cn/workspace/81910/asset/b0de7002-5abf-48b9-b07b-ba7033be74a7/images/auto-upload/image-1719238681239.png)
+
+6、intergrity 完整性：子资源完整性（跨域的一个源，会请求其他的跨域脚本，这部分就是子资源）这里使用 sha384加密算法，验证对应资源的 hash 值是否正确，判断 CDN 上的资源是否正确。
+
+![](https://cloud.seatable.cn/workspace/81910/asset/b0de7002-5abf-48b9-b07b-ba7033be74a7/images/auto-upload/image-1719238698084.png)
+
+这两个属性和脚本安全性有关
+
+7、charset
+
+8、language
+
+
+## P2    2_3.3_变量声明    16:02
+var let const 声明变量的区别
+
+1、var 是函数作用域，let const 是块级作用域（if for 块内部的作用域）
+
+2、var 声明后，函数内部存在变量提升； let 不存在变量提升，有暂时性死区 TDZ（temparal dead zone）在变量声明前不能使用这个变量。
+
+3、传统 for 循环中，可以使用 let 不能使用 const（因为每次循环，i 递增）
+
+在 for...in 和 for...of 循环中，可以使用 const 声明变量
+
+具体区别，参考这里 [https://blog.csdn.net/tyxjolin/article/details/130091368](https://blog.csdn.net/tyxjolin/article/details/130091368 "https://blog.csdn.net/tyxjolin/article/details/130091368")
+
+
+## P3    3._4.2_执行上下文与作用域    19:29
+1、每一个执行上下文，都有一个关联的变量对象（variable object），上下文中需要的变量都存在于这个变量对象上面。无法从代码层面访问变量对象，实际程序运行时，后台数据会使用到变量对象。
+
+2、全局上下文，浏览器中就是 window
+
+3、执行上下文，在其所有代码执行完成后会销毁，包括定义在上面的变量和函数（全局上下文 window 在关闭网页或者退出浏览器时会被销毁）。
+
+4、执行上下文，数据结构上是一个栈。当代码进入函数时，函数上下文被 push 到作用域栈。当函数执行完毕后，函数上下文被 pop 到作用域栈。控制权返回给之前的执行上下文。函数的执行上下文，和对象的原型链类似，如果当前环境找不到变量，那么会沿着上下文栈或者原型链继续寻找。
+
+
+## P4    4._6.4_Map（映射）    17:03
+map 相对 Object 特殊的地方：
+
+#### 1、键的数据类型
+
+map 的键可以是任意的 JS 数据类型，Object 的键只能是字符串。实际使用一般不会使用特殊的数据类型。
+
+```text
+let m = new Map([[]]);
+m.has(undefined) === true
+m.get(undefined) === true
+```
+
+主要方法
+
+set()
+
+get()
+
+has()
+
+size()
+
+delete()
+
+clear()
+
+Map 内部使用 SameValueZero 比较，基本上是 === 比较，也存在一些特殊情况。NaN 互不相等，但是作为 map 的键是相等的（实际生产中不会使用 NaN 作为键）
+
+```text
+const a = 0 / ""; // NaN
+const b = 0 / ""; // NaN
+a === b // false
+
+const c = +0;
+const d = -0;
+c === d // true
+
+const m = new Map();
+m.set(a, 'hello');
+m.set(c, 'hi');
+
+m.get(b) // hello
+m.get(d) // hi
+```
+
+#### 2、键值对的顺序
+
+map 中键值对是有顺序的，Object 中键值对没有顺序（不同浏览器遍历的顺序不一样）
+
+可以使用 key, values, entries 遍历 map 的属性
+
+```text
+for (let pair of m.entries()) {
+    console.log(pair);
+}
+```
+
+map 也可以使用 forEach 遍历
+
+```text
+// 注意：这里顺序是反的，value, key 这与数组 forEach 保持一致
+m.forEach((value, key) => {
+    console.log(key, value);
+})
+```
+
+#### 3、选择 Object 还是选择 Map？
+
+日常工作中，使用 Object 和 Map 的性能差距不大。对于内存性能要求比较高的情况，有较大差别。
+
+1、Map 内存占用小50%
+
+2、Map 插入删除性能高
+
+3、Object 查找性能高
+
+​
+
+weakmap 了解即可，实际没有使用，键只能是对象（对象，数组等），其他的键会报错。
+
+
+## P5    5._6.6_Set（集合）    08:04
+set 集合和 map 映射的区别是：set.add(value), map.set(key, value)
+
+![](https://cloud.seatable.cn/workspace/81910/asset/b0de7002-5abf-48b9-b07b-ba7033be74a7/images/auto-upload/image-1719642665595.png)
+
+迭代 set 也是类似，使用 values() 直接迭代值
+
+![](https://cloud.seatable.cn/workspace/81910/asset/b0de7002-5abf-48b9-b07b-ba7033be74a7/images/auto-upload/image-1719642671752.png)
+
+
+## P8    8._8.4_JavaScript类(1)    27:09
+AI 总结（需要整理）：
+
+JavaScript中类的概念和使用。类在 ES6 中通过class关键字实现，只是语法糖,背后仍然使用原型和构造函数的机制。
+
+类的定义有声明和表达式两种方式,类的构造函数在实例化时会被调用。
+
+实例化后,类的普通方法会成为实例方法,并通过继承共享。
+
+类的实例可以通过原型对象来访问构造函数。类的实例化必须使用new关键字。
+
+​
+
+​
+
+JavaScript中类的概念和使用,包括声明、表达式和构造函数等,以及类的继承和方法的共享。
+
+类和继承的概念：类和继承的概念，类的声明和实例化，类的构造函数和实例方法。
+
+方法的共享：如何在JavaScript中实现方法的共享，包括静态方法和实例方法。
+
+如何通过类名来获取对应的构造函数，以及如何判断一个函数是否是构造函数。
+
+JavaScript中类定义的相关内容,包括构造函数、原型方法、静态方法和访问器等。
+
+类构造函数和实例原型
+
+添加公共字段和访问器方法
+
+静态成员和类方法
+
+迭代器和生成器、继承以及super关键字的使用,以及在不同位置的用法和含义。
+
+迭代器与生成器方法：生成器方法可以把类的实例变量变成可迭代的对象。
+
+继承：通过extends关键字来实现继承，保持相互兼容。
+
+关键字super：super关键字在不同位置有不同作用，需要注意。
+
+Java中继承和抽象类的概念,以及如何在派生类中显示定义构造函数和调用super。
+
+调用父类构造函数和显示定义构造函数
+
+抽象类和继承的使用
+
+静态访问器和类继承
+
+覆盖行为、混入模式和组合模式的概念和应用,强调组合模式在面向对象编程中的优势。
+
+介绍类混入和组合模式的概念和应用场景
+
+讲解在面向对象编程中应该尽量使用组合模式而不是继承或子类化
+
+组合模式的应用：介绍了组合模式在实际应用中的应用场景和代码实现
+
+
+## P22    22._27_工作者线程    26:31
+工作者线程
+
+#### 为什么引入工作者线程
+
+早期浏览器中，JS 执行和 DOM 渲染在一个线程实现，所以如果 JS 执行大量耗时的任务，就阻塞 DOM 渲染的执行。此时引入了工作线程，可以执行一些计算量较大的任务，不会造成主线程卡顿。其他事件循环、任务队列也是为此产生的。
+
+#### 工作者线程分类
+
+1 worker（主要介绍）
+
+2 shared worker（兼容性不太好）
+
+3 service worker&#x20;
+
+现在看到27分钟，翻译者讲的昏昏欲睡。。。
+
+<img src="https://cloud.seatable.cn/workspace/81910/asset/b0de7002-5abf-48b9-b07b-ba7033be74a7/images/auto-upload/image-1720236712016.png" alt="undefined" title="undefined" width="416" height="113" />
+
+![](https://cloud.seatable.cn/workspace/81910/asset/b0de7002-5abf-48b9-b07b-ba7033be74a7/images/auto-upload/image-1720256311147.png)
+
+![](https://cloud.seatable.cn/workspace/81910/asset/b0de7002-5abf-48b9-b07b-ba7033be74a7/images/auto-upload/image-1720256318448.png)
+
+![](https://cloud.seatable.cn/workspace/81910/asset/b0de7002-5abf-48b9-b07b-ba7033be74a7/images/auto-upload/image-1720256326219.png)
+
+
+## P23    23._14_DOM    20:00
+DOM 关键是数据结构
+
+从上到下看，是树结构，可以广度优先或者深度优先遍历。同一层级的节点之间，是双向链表结构。可以通过属性遍历同一级节点。
+
+实际工作中主要使用各种框架，很少直接操作 DOM 树节点。
+
+<img src="https://cloud.seatable.cn/workspace/81910/asset/b0de7002-5abf-48b9-b07b-ba7033be74a7/images/auto-upload/image-1719647810299.png" alt="undefined" title="undefined" width="673" height="504" />
+
+兼容性问题：IE9以前的节点需要考虑兼容性问题。
+
+![](https://cloud.seatable.cn/workspace/81910/asset/b0de7002-5abf-48b9-b07b-ba7033be74a7/images/auto-upload/image-1719647816405.png)
+
+获取元素节点，有两套 APIs
+
+1、传统的 getElementById, getElementByTagNames 这种获取的是动态的节点（也就是 doms 树变化后，结果变化）
+
+2、新版的 querySelectorAll 使用 css 选择器获取节点，获取后就是静态节点
+
+![](https://cloud.seatable.cn/workspace/81910/asset/b0de7002-5abf-48b9-b07b-ba7033be74a7/images/auto-upload/image-1719647822212.png)
 
 

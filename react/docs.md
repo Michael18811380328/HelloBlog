@@ -2,6 +2,7 @@
 - 'Create-React-App': 'react/Create-React-App.md'
 - 'React & Webpack': 'react/React & Webpack.md'
 - 'React 17 事件处理新特性': 'react/React 17 事件处理新特性.md'
+- 'React 18 超全升级指南': 'react/React 18 超全升级指南.md'
 - 'React FAQ': 'react/React FAQ.md'
 - 'React Fiber Architecture': 'react/React Fiber Architecture.md'
 - 'React Hook+TS4 最佳实践项目': 'react/React Hook+TS4 最佳实践项目.md'

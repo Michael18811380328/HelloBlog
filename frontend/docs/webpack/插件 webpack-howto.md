@@ -276,4 +276,3 @@ Take a look at a real world example on how a successful team is leveraging webpa
 ### webpack doesn't seem modular
 
 webpack is **extremely** modular. What makes webpack great is that it lets plugins inject themselves into more places in the build process when compared to alternatives like browserify and requirejs. Many things that may seem built into the core are just plugins that are loaded by default and can be overridden (i.e. the CommonJS require() parser).
-

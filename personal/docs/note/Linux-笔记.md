@@ -1,6 +1,6 @@
 # Linux笔记 
 
- 原始表格链接：https://cloud.seatable.cn/dtable/external-links/8fef1366ff844618a82f/
+ 原始表格链接：https://cloud.seatable.cn/dtable/external-links/59b453a8639945478de2/
 
  
 ## 0114 ssh 命令
@@ -541,30 +541,12 @@ docker 图形化管理工具配置
 
 执行命令
 
+```text
 docker run -p 9000:9000 -p 8000:8000 --name portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v /mydata/portainer/data:/data -d portainer/portainer
+```
 
 1、docker 设置访问目录的权限，是否访问目录
 
-2、是否 /host\_mnt/my-data/portainer/data 这个路径没有权限创建，是否需要手动创建目录？是否存在安全问题
-
-   
-## 0439 nginx 入门参考
-
-
-https\://juejin.cn/post/6844904129987526663
-
-https\://zhuanlan.zhihu.com/p/34943332
-
-   
-## 0440 安卓手机连接苹果电脑传文件
-
-
-点击链接下载
-
-android file transfer
-
-然后连接安卓手机即可显示对应的文件
-
-https\://dl.google.com/dl/androidjumper/mtp/current/androidfiletransfer.dmg
+2、路径是否正确? /host\_mnt/my-data/portainer/data 这个路径没有权限创建，是否需要手动创建目录，是否存在安全问题
 
   

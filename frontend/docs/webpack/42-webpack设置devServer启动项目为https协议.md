@@ -1,14 +1,12 @@
-# webpack如何设置devServer启动项目为https协议
+# webpack 设置 devServer 为 https 协议
 
 最近使用另一个第三方库 @zxing/library 需要 https 开发环境才能使用，默认 webpack-dev-server 开启的是 http 协议，所以需要改一下配置，才能调试这个功能。
-
-如果不清楚 http 和 https 的关系，可以先查一下其他资料。
 
 ## 1、改动 webpack 配置
 
 很简单，我们只需要改webpack的devServer的其中一项配置，即可实现启动项目的时候，默认是https协议
 
-~~~
+~~~js
 devServer: {
 	host: '0.0.0.0',
 	port: 8080,

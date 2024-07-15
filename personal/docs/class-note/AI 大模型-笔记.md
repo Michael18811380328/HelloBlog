@@ -4,7 +4,9 @@
 原始教程链接: https://aistudio.baidu.com/education/group/info/28604
 
 ## 概述
+课程来源：知乎云课堂+百度飞桨
 
+集成后文档比较大，加载图片可能服务器返回 503 错误，所以可以点击链接访问原始网页：<https://cloud.seatable.cn/dtable/external-links/621babd7e22b4ceb88ec/>
 
 #### AI 概述
 
@@ -16,11 +18,9 @@
 
 各种资料，选择最好的
 
-<https://www.zhihu.com/education/video-course/1556316449043668992> 
+<https://www.zhihu.com/education/video-course/1556316449043668992>
 
-<https://www.zhihu.com/education/learning> 
-
-
+<https://www.zhihu.com/education/learning>
 
 
 ## 知乎-01使用 Assistant 搭建 AI 助手

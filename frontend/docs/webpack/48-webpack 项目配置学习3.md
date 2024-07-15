@@ -1,6 +1,6 @@
 # 配置说明
 
-### 第三方依赖版本（dtable+editor）
+### 第三方依赖版本
 
 
 ~~~json
@@ -284,3 +284,4 @@ module.exports = {
 ### 附录
 
 babel-preset-env 说明：https://www.cnblogs.com/chyingp/p/understanding-babel-preset-env.html
+

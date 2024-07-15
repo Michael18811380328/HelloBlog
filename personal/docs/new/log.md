@@ -293,3 +293,4 @@ I haven't updated my English blog for a long time, because I have been writing s
 Recently I have been thinking about my future personal development, which path should I choose, and what should I do in order to achieve my huge goals? Specifically, how to use working time to improve learning efficiency scientifically, and how to arrange my free time to balance life and work? There are so many things to juggle that I have to do the top 30% and delete the last 70%. Focus on the important things and don't waste time on trivial matters.
 
 Hurry up! Don't waste time in a lazy life!
+

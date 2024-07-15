@@ -1,12 +1,16 @@
-# 样式错误分析
+# Ant-design 打包后样式错误分析
 
 ### 错误现象
 
-dtable-web 中，本地开发样式正常，但是 dev 上样式不正常（统计界面和表头样式不正常）
+某项目本地开发样式正常（npm run dev），上线后样式不正常（npm run build）
 
 ### 错误分析
 
-本地开发中，antd-mobile 对应的CSS在前，dtable 的 CSS 在后，界面可以正常显示；dev 上面，dtable CSS 编译后为 commons.buldle.css 在前，antd-mobile 直接由 less 编译成 css 未打包，在后面。所以自定义的样式被已有的 antd-mobile 的样式覆盖，样式错误。
+本地开发中，antd-mobile 对应的CSS在前，自定义的 CSS 在后，界面可以正常显示；
+
+打包集成到线上，自定义的CSS 编译后为 commons.buldle.css 在前，antd-mobile 直接由 less 编译成 css 未打包，在后面。
+
+所以自定义的样式被已有的 antd-mobile 的样式覆盖，样式错误。
 
 下面是错误的代码 webpack-config-dev.js
 
@@ -168,14 +172,14 @@ module: {
         loader: require.resolve(preProcessor),
         options: {
           sourceMap: true,
-          # 增加      javascriptEnabled: true,
+          // 增加 javascriptEnabled: true,
         },
       }
     );
   ]
 }
 
-// 修改下面的 less loader，在生产环境中可以判断，把less文件打包到 trunc.css 文件中。
+// 修改下面的 less loader，在生产环境中可以判断，把 less 文件打包到 trunk.css 文件中。
 {
   test: lessRegex,
     exclude: lessModuleRegex,
@@ -219,18 +223,12 @@ https://www.cnblogs.com/mydxy/articles/10157215.html
 
 https://www.cnblogs.com/ldld/p/6488830.html
 
+### 进一步思考
 
+打包到 bundle 中，那么其他的界面也会引用这个 bundle.css，就会影响其他界面的样式（body 的背景色）。
 
-现在的问题是：
-
-打包的bundle中，那么其他的界面也会引用这个 bundle.css，就会影响其他界面的样式（body 的背景色）
-
-现在还是原始的问题：按需加载。加载的部分中，不能有body的样式。
-
-原因：
+现在还是原始的问题：按需加载，加载的部分中，不能影响其他自定义的样式。
 
 antd-mobile 中引用任何一个组件时，都会引用 style/index.css 文件。所以，不管使用 less 还是使用 css，都会把这部分公共组件引入。目前没有特别好的办法（除非把每一个组件单独应用，然后把公共样式中不影响默认样式的部分拿过来）。
-
-
 
 less 部分有一个对应的按需加载的配置。这个插件根据需要的部分把CSS引入。但是这样打包后的CSS的顺序可能存在问题。所以现在不使用这个方法。如果自己日常使用时，可以使用部分引入的方法。

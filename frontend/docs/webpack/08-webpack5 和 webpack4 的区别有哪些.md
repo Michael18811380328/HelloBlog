@@ -1,4 +1,6 @@
-# webpack5 和 webpack4 的区别有哪些 ？
+# webpack5 和 webpack4 的区别有哪些
+
+原文链接：https://juejin.cn/post/6990869970385109005
 
 #### 1、Tree Shaking
 
@@ -8,14 +10,14 @@
 
 > minimize: true, 摇掉那些没有用的叶子
 
-```java
-  // webpack.config.js中
-  module.exports = {
-     optimization: {
-       usedExports: true, //只导出被使用的模块
-       minimize : true // 启动压缩
-     }
+```js
+// webpack.config.js中
+module.exports = {
+  optimization: {
+    usedExports: true, //只导出被使用的模块
+    minimize : true // 启动压缩
   }
+}
 ```
 
 由于 tree shaking 只支持 esmodule ，如果你打包出来的是 commonjs，此时 tree-shaking 就失效了。不过当前大家都用的是 vue，react 等框架，他们都是用 babel-loader 编译，以下配置就能够保证他一定是 esmodule
@@ -30,7 +32,7 @@ webpack5的 mode=“production” 自动开启 tree-shaking。
 
 > webpack4 上需要下载安装 terser-webpack-plugin 插件，并且需要以下配置：
 
-```scss
+```js
 const TerserPlugin = require('terser-webpack-plugin')
 
 module.exports = { 
@@ -47,8 +49,6 @@ optimization: {
       }
     }) ]
  }
-
-
 ```
 
 ##### 2.webpack5
@@ -57,16 +57,14 @@ optimization: {
 
 > 如果你要在开发环境使用，就用下面：
 
-```java
-  // webpack.config.js中
-  module.exports = {
-     optimization: {
-       usedExports: true, //只导出被使用的模块
-       minimize : true // 启动压缩
-     }
+```js
+// webpack.config.js中
+module.exports = {
+  optimization: {
+    usedExports: true, //只导出被使用的模块
+    minimize : true // 启动压缩
   }
-
-
+}
 ```
 
 ##### 3.js 压缩失效问题
@@ -75,7 +73,7 @@ optimization: {
 
 > npm install optimize-css-assets-webpack-plugin -D
 
-```css
+```js
 module.exports = { 
   optimization: { 
     minimizer: [ 
@@ -83,8 +81,6 @@ module.exports = {
     ]
   },
 }
-
-
 ```
 
 > 此时的压缩插件 optimize-css-assets-webpack-plugin 可以配置到 plugins 里面去，也可以如图配置到到 optimization 里面。区别如下：
@@ -97,7 +93,7 @@ optimize-css-assets-webpack-plugin 导致默认的 terser-webpack-plugin 就会�
 
 > npm install terser-webpack-plugin -D
 
-```scss
+```js
  optimization: {
     minimizer: [
       new TerserPlugin({
@@ -109,8 +105,6 @@ optimize-css-assets-webpack-plugin 导致默认的 terser-webpack-plugin 就会�
       new OptimiazeCssAssetPlugin(),
     ]
   },
-
-
 ```
 
 即便在 webpack5 中，你也要像 webpack4 中一样使用 js 压缩。
@@ -129,7 +123,7 @@ optimization.concatenateModules = true
 
 配置如下：
 
-```yaml
+```js
 module.exports = {
   optimization: {
     usedExports: true,
@@ -137,8 +131,6 @@ module.exports = {
     minimize: true
   }
 }
-
-
 ```
 
 此时配合 tree-shaking 你会发现打包的体积会减小很多。
@@ -165,7 +157,7 @@ module.exports = {
 
 此时，如果文件 getBBB 在外界没有用到，而 tree-shaking 又不能把它摇掉咋办？这个 getBBB 就是副作用。你或许要问 tree-shaking 为什么不能奈何他？原因就是：他在 utils/index.js 里面使用了。只能开启副作用特性。如下：
 
-```arduino
+```js
 // package.json中
 {
   name：“项目名称”,
@@ -183,8 +175,6 @@ module.exports = {
     sideEffects: true
   }
 }
-
-
 ```
 
 副作用开启：
@@ -203,7 +193,7 @@ module.exports = {
 
 > npm install hard-source-webpack-plugin -D
 
-```ini
+```js
 const HardSourceWebpackPlugin = require('hard-source-webpack-plugin') 
 
 module.exports = { 
@@ -211,8 +201,6 @@ plugins: [
   // 其它 plugin... 
   new HardSourceWebpackPlugin(), 
 ] }
-
-
 ```
 
 ###### 2. webpack5 缓存配置
@@ -221,7 +209,7 @@ webpack5 内部内置了 cache 缓存机制。直接配置即可。
 
 > cache 会在开发模式下被设置成 type： memory 而且会在生产模式把cache 给禁用掉。
 
-```java
+```js
 // webpack.config.js
 module.exports= {
   // 使用持久化缓存
@@ -321,7 +309,7 @@ const {merge} = require('webpack-merge');
 
 12、 使用 copy-webpack-plugin 的差别
 
-```java
+```js
 //webpack.config.js
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
@@ -344,10 +332,4 @@ module.exports = {
 ```
 
 webpack5 支持的新版本里面需要配置的更加清楚。
-
-
-作者：前端snow
-链接：https://juejin.cn/post/6990869970385109005
-来源：稀土掘金
-著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 
