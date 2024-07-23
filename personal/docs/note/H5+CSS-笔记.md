@@ -996,12 +996,12 @@ mode && mode.addEventListener('change', e => {
 ​
 
    
-## 0483 如何实现中间显示省略号
+## 0483 如何实现显示省略号
 
 
-![](https://cloud.seatable.cn/workspace/32/asset/e82c7317-556e-45c4-8b5d-092331cd8977/images/auto-upload/image-1720493831869.png)
+<img src="https://cloud.seatable.cn/workspace/32/asset/e82c7317-556e-45c4-8b5d-092331cd8977/images/auto-upload/image-1720493831869.png" alt="undefined" title="undefined" width="627" height="150" />
 
-需求1：如何实现名字很长，结尾显示省略号？
+需求1：如何实现名字很长，1行显示，结尾显示省略号？
 
 ```css
 .text-ellipsis {
@@ -1034,9 +1034,103 @@ mode && mode.addEventListener('change', e => {
 ```javascript
 let text = 'asdfghjkl999999999999999999999999.pdf';
 if (text.length > 5) {
-    text = text.slice(0, 5) + '...' + text.slice(-5); // 截断字符串并添加省略号
+    text = text.slice(0, 5) + '...' + text.slice(-5); // 截断字符串，中间添加省略号
 }
 // 'asdfg...9.pdf'
+```
+
+需求4：如何实现文件含有标签，名字较长时，中间显示省略号？
+
+容器总宽度= 文件标签宽度 + 文件名宽度
+
+文件名 = 文件名前半部分 + 省略号 + 文件名后半部分
+
+css 设置显示两行
+
+```css
+.container {
+  display: inline-block;
+  max-width: 100%;
+  /* 这里 N 行文本的高度 */
+  height: 34px;
+}
+
+.tags {
+    display: inline-block;
+}
+
+.file-name {
+  display: inline-block;
+  -webkit-box-orient: vertical; /* 内部纵向排列 */
+  word-wrap: break-word;
+}
+```
+
+JS 计算省略号的位置和新名称
+
+```javascript
+// 给定文件名和字体字号，计算实际显示的宽度（计算文件名实际的长度，大量使用存在性能问题）  
+getTextRenderWidth = (text, font) => {
+    const canvas = document.createElement('canvas');
+    const context = canvas.getContext('2d');
+    context.font = font || '14px Arial';
+    const metrics = context.measureText(text);
+    return metrics.width;
+  };
+
+// 给定文件名，计算渲染后的文件名
+// 例如：格点模式下文字应该占据两行方案.txt，返回 格点模式下文字...方案.txt
+  getRenderedText = (dirent) => {
+    // 这里获取容器的宽度 * 2，如果是N行文本，那么就是宽度 * N
+    const containerWidth = 230;
+    
+    // 计算文件标签占用的宽度（每一个是 16px, 左右之间重叠 8px）
+    let tagRenderWidth = 0;
+    if (dirent.file_tags && dirent.file_tags.length > 0) {
+      if (dirent.file_tags.length === 1) {
+        tagRenderWidth = 16;
+      } else {
+        tagRenderWidth = 16 + (dirent.file_tags.length - 1) * 8;
+      }
+    }
+    
+    // 计算实际文件名的最大宽度 = 容器宽度 - 标签宽度
+    let remainWidth = containerWidth - tagRenderWidth;
+
+    // 计算文件名全部渲染后的长度
+    let nameRenderWidth = this.getTextRenderWidth(dirent.name);
+    let showName = '';
+    
+    // 如果文件名实际渲染后的长度，大于容器宽度，那么显示省略号
+    if (nameRenderWidth > remainWidth) {
+      
+      // 需求是：省略号位于中间（后面有两个文字+文件后缀），那么可以计算文件后缀的位置，然后计算后面的名字，和前面的名字
+      let dotIndex = dirent.name.lastIndexOf('.');
+      let frontName = dirent.name.slice(0, dotIndex - 2);
+      let backName = dirent.name.slice(dotIndex - 2);
+        
+      // 后面的名称是文件后缀名，通常是 2-5个英文，.c .cpp .xmind 很少出现特别长的文件名，所以这里完全显示（不考虑自定义的极端后缀名）
+
+      // 计算后缀前面显示几个字符，如果是英文宽度是1，中文宽度是2，那么这里要求最后的英文数量不超过20，中文数量不超过10，这是经验值
+      //（理论上可以循环中计算每一个子字符串的渲染后的长度，但是性能不好）
+      let sum = 0;
+      for (let i = 0; i < frontName.length; i++) {
+        // Use charCodeAt(i) > 127 to check Chinese and English.
+        // English and symbols occupy 1 position, Chinese and others occupy 2 positions.
+        frontName.charCodeAt(i) > 127 ? (sum = sum + 2 ) : (sum = sum + 1);
+        // When sum position exceeds 20, back string will not be displayed.
+        if (sum > 20) {
+          frontName = frontName.slice(0, i) + '...';
+          break;
+        }
+      }
+      // 最后就是 前10个汉字（或者前20个字母）+ 省略号 + 后两个字符 + 文件后缀名
+      showName = frontName + backName;
+    } else {
+      showName = dirent.name;
+    }
+    return showName;
+  };
 ```
 
 ​

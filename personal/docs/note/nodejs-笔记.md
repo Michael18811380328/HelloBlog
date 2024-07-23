@@ -321,4 +321,319 @@ console.log(111) // 111
 
 相关知识还有：事件循环，线程池等
 
+   
+## 0486 nodejs 通过 spawn 执行操作系统命令
+
+
+nodejs 子进程调用操作系统的命令
+
+#### 使用 spawn 函数
+
+spawn 模块可以调用操作系统上的程序，例如 cmd python3&#x20;
+
+spawn(command, args, options)
+
+```javascript
+const spawn = require('child_process').spawn;
+
+const ls = spawn('ls', ['-lh', './']);
+ 
+ls.stdout.on('data', function(data){
+  console.log('stdout: ' + data);
+});
+ 
+ls.stderr.on('data', function(data){
+  console.log('stderr: ' + data);
+});
+ 
+ls.on('close', function(code){
+  console.log('child process exited with code ' + code);
+});
+```
+
+####
+
+#### 使用 exec 函数
+
+好处是直接传递回调函数，执行的代码比较少
+
+```javascript
+const { exec } = require('child_process');
+ 
+exec('echo "Hello, World!"', (error, stdout, stderr) => {
+  if (error) {
+    console.error(`执行的错误: ${error}`);
+    return;
+  }
+  console.log(`stdout: ${stdout}`);
+  if (stderr) {
+    console.error(`stderr: ${stderr}`);
+  }
+});
+```
+
+​
+
+   
+## 0485 nodejs 如何调用 python 函数
+
+
+很多时候，服务器需要使用 python 函数完成功能，那么需要 nodejs 调用 python 函数，具体有三种方案实现：
+
+1、使用子进程方式实现
+
+```python
+# script.py
+ 
+def greet(name):
+    return "Hello, " + name + "!"
+```
+
+js
+
+```javascript
+// node_script.js
+const { spawn } = require('child_process');
+ 
+function callPythonFunction(funcName, arg) {
+  const pythonProcess = spawn('python', ['script.py', funcName, arg]);
+ 
+  pythonProcess.stdout.on('data', (data) => {
+    console.log(`stdout: ${data}`);
+  });
+ 
+  pythonProcess.stderr.on('data', (data) => {
+    console.error(`stderr: ${data}`);
+  });
+ 
+  pythonProcess.on('close', (code) => {
+    console.log(`child process exited with code ${code}`);
+  });
+}
+ 
+callPythonFunction('greet', 'Node.js');
+```
+
+需要实际测试一下，现在父进程无法获取子进程的返回值，存在问题
+
+2、python 开启一个服务，nodejs 调用 python 的服务
+
+```python
+from flask import Flask, request
+
+app = Flask(__name__)
+
+@app.route('/process_string', methods=['POST'])
+def process_string():
+    data = request.get_json()  # 获取POST请求的JSON数据
+    dynamic_string = data.get('string', '')  # 从JSON数据中获取字符串
+
+    # 在这里处理你的动态字符串
+    processed_string = dynamic_string + ' 已经被处理过。'
+
+    return {'processed_string': processed_string}  # 返回处理过的字符串
+
+if __name__ == '__main__':
+    app.run(port=5000)  # 在5000端口上启动服务
+
+```
+
+3、调用第三方库，执行 python 脚本（字符串 Pyodide）
+
+```javascript
+const pyodide = require('pyodide');
+
+pyodide.runPythonAsync(`
+  def hello(name):
+    return f"Hello, {name}!"
+`).then((result) => {
+  console.log(result.result); // 输出：Hello, world!
+});
+```
+
+​
+
+   
+## 0538 debug
+
+
+node 打印日志 周下载量2亿
+
+A tiny JavaScript debugging utility modelled after Node.js core's debugging technique. Works in Node.js and web browsers.    &#x20;
+
+<https://www.npmjs.com/package/debug>
+
+```javascript
+// app
+let debug = require('debug')('http');
+let http = require('http');
+let name = 'My App';
+
+debug('booting %o', name);
+
+http.createServer(function(req, res){
+  debug(req.method + ' ' + req.url);
+  res.end('hello\n');
+}).listen(3000, function(){
+  debug('listening');
+});
+
+require('./worker');
+```
+
+```javascript
+// worker.js
+var a = require('debug')('worker:a');
+var b = require('debug')('worker:b');
+
+function work() {
+  a('doing lots of uninteresting work');
+  setTimeout(work, Math.random() * 1000);
+}
+
+work();
+
+function workb() {
+  b('doing some work');
+  setTimeout(workb, Math.random() * 2000);
+}
+
+workb();
+```
+
+​
+
+   
+## 0589 fs-extra8.1.0
+
+
+fs 的高级版本     https://www.npmjs.com/package/fs-extra
+   
+## 0634 express4.16.3
+
+
+中间层服务器     
+   
+## 0635 express-rate-limit5.1.3
+
+
+请求次数限制     
+   
+## 0638 log4js
+
+
+nodeJS 日志工具
+
+[https://www.npmjs.com/package/log4js](https://www.npmjs.com/package/log4js "https://www.npmjs.com/package/log4js")
+
+周下载量 400万，常用，可以创建不同级别的日志
+
+```javascript
+const log4js = require("log4js");
+
+log4js.configure({
+  appenders: { cheese: { type: "file", filename: "cheese.log" } },
+  categories: { default: { appenders: ["cheese"], level: "error" } },
+});
+
+const logger = log4js.getLogger("cheese");
+
+logger.trace("Entering cheese testing");
+logger.debug("Got cheese.");
+logger.info("Cheese is Comté.");
+logger.warn("Cheese is quite smelly.");
+logger.error("Cheese is too ripe!");
+logger.fatal("Cheese was breeding ground for listeria.");
+```
+
+​
+
+   
+## 0639 mysql
+
+
+nodeJS 的 mysql API
+
+[https://www.npmjs.com/package/mysql](https://www.npmjs.com/package/mysql "https://www.npmjs.com/package/mysql")
+
+```javascript
+var mysql      = require('mysql');
+
+var connection = mysql.createConnection({
+  host     : 'localhost',
+  user     : 'me',
+  password : 'secret',
+  database : 'my_db'
+});
+ 
+connection.connect();
+ 
+connection.query('SELECT 1 + 1 AS solution', function (error, results, fields) {
+  if (error) throw error;
+  console.log('The solution is: ', results[0].solution);
+});
+ 
+connection.end();
+```
+
+​
+
+   
+## 0640 redis
+
+
+nodeJS 的 redis API
+
+[https://www.npmjs.com/package/redis](https://www.npmjs.com/package/redis "https://www.npmjs.com/package/redis")
+
+开启  redis 服务
+
+```text
+docker run -p 6379:6379 -it redis/redis-stack-server:latest
+```
+
+nodejs 连接 redis
+
+```javascript
+import { createClient } from 'redis';
+
+const client = await createClient()
+  .on('error', err => console.log('Redis Client Error', err))
+  .connect();
+
+await client.set('key', 'value');
+
+const value = await client.get('key');
+
+await client.disconnect();
+```
+
+​
+
+   
+## 0642 response-time2.3.2
+
+
+HTTP 响应时间 nodejs 和 express 联合使用     
+   
+## 0654 nodemon
+
+
+nodemon is a tool that helps develop node.js based applications by automatically restarting the node application when file changes in the directory are detected.&#x20;
+
+当文件变化后，会自动重启 node 应用。
+
+<https://www.npmjs.com/package/nodemon>
+
+```text
+nodemon ./server.js localhost 8080
+```
+
+​
+
+   
+## 0655 rimraf3.0.2
+
+
+The UNIX command rm -rf for node.     https://www.npmjs.com/package/rimraf
   

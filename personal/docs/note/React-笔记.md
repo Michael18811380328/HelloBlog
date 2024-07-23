@@ -944,4 +944,18 @@ componentDidUpdate 阶段，React 组件重新渲染，但是真实 DOM 的 redr
 
 react 中强制更新组件，this.forceUpdate() 尽量避免使用，最好使用 state 或者 props 数据驱动更新，这样符合 react 的设计思路
 
+   
+## 0662 useImperativeHandle 是什么？
+
+
+useImperativeHandle，结合forwardRef 实现父组件调子组件的属性和方法
+
+[https://react.docschina.org/reference/react/useImperativeHandle](https://react.docschina.org/reference/react/useImperativeHandle "https://react.docschina.org/reference/react/useImperativeHandle")
+
+[https://juejin.cn/post/7074761729753743373](https://juejin.cn/post/7074761729753743373 "https://juejin.cn/post/7074761729753743373")
+
+待学习
+
+​
+
   

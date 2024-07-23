@@ -6,17 +6,25 @@
 
 第一次学习大概在 2019 年，第二次学习在 2024年。
 
-电子书链接：[https://cloud.seafile.com/f/54ee4bd82cb4440cbed4/](https://cloud.seafile.com/f/54ee4bd82cb4440cbed4/ "https://cloud.seafile.com/f/54ee4bd82cb4440cbed4/")
+#### 资料链接
 
-​
+电子书链接
 
-​
+[https://cloud.seafile.com/f/54ee4bd82cb4440cbed4/](https://cloud.seafile.com/f/54ee4bd82cb4440cbed4/ "https://cloud.seafile.com/f/54ee4bd82cb4440cbed4/")
 
-​
-
-公众号作者
+其他作者
 
 [https://www.bilibili.com/video/BV1Zk4y137QQ/?spm\_id\_from=333.337.search-card.all.click\&vd\_source=2d5bdee7ea59486ed4aa4a9b10020224](https://www.bilibili.com/video/BV1Zk4y137QQ/?spm_id_from=333.337.search-card.all.click\&vd_source=2d5bdee7ea59486ed4aa4a9b10020224 "https://www.bilibili.com/video/BV1Zk4y137QQ/?spm_id_from=333.337.search-card.all.click\&vd_source=2d5bdee7ea59486ed4aa4a9b10020224")
+
+#### 代码不完整性说明
+
+最早这个笔记是记录在 markdown 本地文件中，后续为了方便管理，直接复制粘贴到 seatable 中。但是长文本编辑器对某些代码片段粘贴有问题，所以造成了部分代码片段丢失，看起来笔记上下文不衔接。
+
+#### 个人感悟
+
+2020年前，这本书确实很经典，对于传统 JS 开发是不可获取的一本书。在 2020 年后，大部分场景都是在某个框架内开发（例如 react），所以很多技术细节不会用到，存在技术生疏的情况。总之，如果从事业务或者产品开发，这本书和《你不知道的JS》可以不看或者快速过一下，如果从事基础工具库或者框架开发，那么这些书的知识点建议熟练掌握。
+
+例如2018年我曾把构造函数、原型链等等学了好久，实际工作中，基本都是类组件，所以这部分就完全没用到过。当然，2024年新的技术又不断发展，也需要灵活学习更多更新的知识。
 
 ​
 
@@ -110,7 +118,7 @@ JS 中没有函数的重载（名称相同的函数，后一个会覆盖前一�
 
 
 ## 04-变量、作用域和内存
-变量
+#### 变量
 
 JS 变量可以在生命周期内的值和数据类型的变化
 
@@ -120,13 +128,13 @@ JS 分为基本类型和引用类型。基本类型存放在栈中，引用类�
 
 监测类型：typeof 判断简单类型 instanceof 判断复杂类型（或者使用 Array.isArray 判断数组，注意兼容性）
 
-作用域
+#### 作用域
 
 全局环境和函数环境，构成了全局作用域和函数作用域（局部作用域）。访问一个对象的属性时，通常会递归作用域链，直到找到这个属性为止。
 
 var 创建的变量没有块级作用域，let const 创建的变量有块级作用域。所以在循环中尽量使用 let，现在尽量避免使用 var 定义变量。
 
-GC
+#### GC
 
 GC：找出不使用的变量，然后释放。这个函数间隔执行。技术：标记清除，进入作用域时创建标记，退出作用域时清除标记。定时器会判断没有编辑的内存可以清除，实现 GC。
 
@@ -168,8 +176,6 @@ JavaScript 是一门具有自动垃圾收集机制的编程语言，开发人员
 
 
 ## 05-引用类型
-​
-
 #### 对象
 
 使用对象的属性前，可以先判断对象的属性是否存在。获取对象的属性：点语法，中括号语法。点语法适用于大部分情况，中括号语法适合属性是变量的情况。
@@ -190,7 +196,7 @@ JavaScript 是一门具有自动垃圾收集机制的编程语言，开发人员
 
 getFullYear getMonth getDate 返回年月日（月份需要加1）
 
-### Regexp
+#### Regexp
 
 reg.exec() 获取第一个满足正则表达式的数组（或者没有匹配的null）
 
@@ -324,7 +330,7 @@ history.go(-1)//后退一页
 
 * 浏览器检测
 
-## 能力监测
+#### 能力监测
 
 不是识别具体的浏览器，而是识别浏览器是否有某个 API。只要判断浏览器是否支持某个 API，就给出解决方案。
 
@@ -334,7 +340,7 @@ history.go(-1)//后退一页
 function isHostMethod(obj, property) {
 ```
 
-## 怪癖检测
+#### 怪癖检测
 
 检测浏览器存在什么特殊行为（例如 Safari 3 会枚举被隐藏的属性）
 
@@ -342,23 +348,15 @@ function isHostMethod(obj, property) {
 var hasEnumShadowQuick = function() {
 ```
 
-## 用户代理检测
+#### 用户代理检测
 
 电子欺骗：浏览器通过在用户代理中加入错误的信息，来欺骗服务器（例如爬虫模拟浏览器发送请求）
 
 用户代理种类繁多，UserAgent 可以识别内核版本、浏览器种类、操作系统、操作系统的具体版本，移动设备，游戏设别等。小公司通常不会处理各种各样的用户代理。详细代码100 行，用时再找。
 
-​
-
-​
-
-​
-
 
 ## 10-DOM
-​
-
-### 10.1 结点层次
+#### 10.1 结点层次
 
 #### 10.1.1 Node类型
 
@@ -375,12 +373,14 @@ document.getElementsByTagName('html')[0].nodeType
 例：Node.ELEMENT\_NODE这个值为1。(IE中无效，因为IE没有公开Node类型的构造函数，所以为了跨浏览器兼容，还是将nodeType于相应的数值进行比较)
 
 childNodes
+
 每个结点都有一个childNodes属性，其中保存着一个Nodelist对象，Nodelist是一个伪数组，用于保存一组有序的结点，可以通过位置来访问这些结点。(并非Array实例，他是基于DOM结构动态执行查询的结果)
 
 注意&#x20;
+
 在DOM中childNodes共5个节点类型：Element，Text，Attr，Comment，CDATASection。可用childNodes\[i].nodeType == ELEMENT 对childNodes进行过滤.
 
-```
+```javascript
 document.getElementsByTagName('html')[0].childNodes;  //类数组对象，保存一组有序的节点
 ```
 
@@ -442,19 +442,19 @@ document.createTextNode()
 
 DOM规定文档片段 document fragment是一种“轻量级”的文档，虽然不能把它直接添加到文档中，但是可以把它当成仓库使用。主要用来暂时存储Nodes，用于复制粘贴节点，或者保存上一步的节点。
 
-### 10.2 DOM操作技术
+#### 10.2 DOM操作技术
 
-```
+```javascript
 var divs = document.getElementsByTagName('div');
 ```
 
-以上代码，i永远也不会等于divs.length, 因为每次比较时，都将会对现有的div元素进行查询，因此每次div.length会随着i一起递增，永不相等。&#x20;
+以上代码，i永远也不会等于divs.length, 因为每次比较时，都将会对现有的 div 元素进行查询，因此每次 div.length 会随着i一起递增，永不相等。&#x20;
 
 因此要想迭代Nodelist及其近亲NamedNodeMap和HTMLCollection,则==必须考虑到这三者都是动态的集合==，会实时更新。所以，我们因该尽量减少对这三者的访问，而是将其值用变量缓存起来。
 
 总结
 
-```
+```javascript
 document.getElementById('id'); //只可以通过document调用
 ```
 
@@ -928,7 +928,7 @@ var btn = document.getElementById("myButton");
 ​
 
 
-## 官方视频
+## 第二部分 译者讲解视频
 在线视频：图灵社区官方出品，内容不错；
 
 视频作者是本书译者，李松峰，360前端开发资深专家、前端TC委员、W3C代表
@@ -937,10 +937,12 @@ var btn = document.getElementById("myButton");
 
 但是这个人不擅长讲课，念文字，犯困意义不大
 
+因为这个人估计是为了和出版社合作，完成任务一样，做的视频，并不是为了更多人观看，所以视频没有亮点。相对其他视频作者，大部分都是为了更多阅读量，所以这个看起来很卡。
+
 ​
 
 
-## P1    1._2.1_脚本加载    23:55
+## P1 脚本加载
 script 标签属性：
 
 1、async 表示异步下载，异步执行，执行的顺序可能变化（适用于外部资源）。因为异步下载，执行顺序不确定，所以避免异步脚本的互相干扰，避免异步脚本直接更改DOM。
@@ -955,11 +957,11 @@ script 标签属性：
 
 从左到右表示运行时间 runtime，五种 script 对应的执行时间
 
-绿色的线  parser 表示 HTML 解析
+* 绿色的线  parser 表示 HTML 解析
 
-蓝色的线  fetch 表示 script 获取
+* 蓝色的线  fetch 表示 script 获取
 
-红色的线 execution 表示 script 执行
+* 红色的线 execution 表示 script 执行
 
 如果脚本内容和 DOM 结构有关，那么使用 defer 延迟执行；如果脚本内容和 DOM 无关，使用 async 异步执行。
 
@@ -1000,7 +1002,7 @@ script 标签属性：
 8、language
 
 
-## P2    2_3.3_变量声明    16:02
+## P2 变量声明
 var let const 声明变量的区别
 
 1、var 是函数作用域，let const 是块级作用域（if for 块内部的作用域）
@@ -1014,7 +1016,7 @@ var let const 声明变量的区别
 具体区别，参考这里 [https://blog.csdn.net/tyxjolin/article/details/130091368](https://blog.csdn.net/tyxjolin/article/details/130091368 "https://blog.csdn.net/tyxjolin/article/details/130091368")
 
 
-## P3    3._4.2_执行上下文与作用域    19:29
+## P3  执行上下文与作用域
 1、每一个执行上下文，都有一个关联的变量对象（variable object），上下文中需要的变量都存在于这个变量对象上面。无法从代码层面访问变量对象，实际程序运行时，后台数据会使用到变量对象。
 
 2、全局上下文，浏览器中就是 window
@@ -1024,14 +1026,14 @@ var let const 声明变量的区别
 4、执行上下文，数据结构上是一个栈。当代码进入函数时，函数上下文被 push 到作用域栈。当函数执行完毕后，函数上下文被 pop 到作用域栈。控制权返回给之前的执行上下文。函数的执行上下文，和对象的原型链类似，如果当前环境找不到变量，那么会沿着上下文栈或者原型链继续寻找。
 
 
-## P4    4._6.4_Map（映射）    17:03
+## P4  Map（映射）
 map 相对 Object 特殊的地方：
 
 #### 1、键的数据类型
 
 map 的键可以是任意的 JS 数据类型，Object 的键只能是字符串。实际使用一般不会使用特殊的数据类型。
 
-```text
+```javascript
 let m = new Map([[]]);
 m.has(undefined) === true
 m.get(undefined) === true
@@ -1053,7 +1055,7 @@ clear()
 
 Map 内部使用 SameValueZero 比较，基本上是 === 比较，也存在一些特殊情况。NaN 互不相等，但是作为 map 的键是相等的（实际生产中不会使用 NaN 作为键）
 
-```text
+```javascript
 const a = 0 / ""; // NaN
 const b = 0 / ""; // NaN
 a === b // false
@@ -1076,7 +1078,7 @@ map 中键值对是有顺序的，Object 中键值对没有顺序（不同浏览
 
 可以使用 key, values, entries 遍历 map 的属性
 
-```text
+```javascript
 for (let pair of m.entries()) {
     console.log(pair);
 }
@@ -1084,7 +1086,7 @@ for (let pair of m.entries()) {
 
 map 也可以使用 forEach 遍历
 
-```text
+```javascript
 // 注意：这里顺序是反的，value, key 这与数组 forEach 保持一致
 m.forEach((value, key) => {
     console.log(key, value);
@@ -1101,12 +1103,10 @@ m.forEach((value, key) => {
 
 3、Object 查找性能高
 
-​
-
 weakmap 了解即可，实际没有使用，键只能是对象（对象，数组等），其他的键会报错。
 
 
-## P5    5._6.6_Set（集合）    08:04
+## P5 Set（集合）
 set 集合和 map 映射的区别是：set.add(value), map.set(key, value)
 
 ![](https://cloud.seatable.cn/workspace/81910/asset/b0de7002-5abf-48b9-b07b-ba7033be74a7/images/auto-upload/image-1719642665595.png)
@@ -1116,24 +1116,18 @@ set 集合和 map 映射的区别是：set.add(value), map.set(key, value)
 ![](https://cloud.seatable.cn/workspace/81910/asset/b0de7002-5abf-48b9-b07b-ba7033be74a7/images/auto-upload/image-1719642671752.png)
 
 
-## P8    8._8.4_JavaScript类(1)    27:09
-AI 总结（需要整理）：
+## P8 JavaScript类
+JavaScript中类的概念和使用。
 
-JavaScript中类的概念和使用。类在 ES6 中通过class关键字实现，只是语法糖,背后仍然使用原型和构造函数的机制。
+#### 类
 
-类的定义有声明和表达式两种方式,类的构造函数在实例化时会被调用。
+类在 ES6 中通过 class 关键字实现，只是语法糖，实际使用原型和构造函数的机制。
 
-实例化后,类的普通方法会成为实例方法,并通过继承共享。
+类的定义：有类声明、表达式两种方式；类的构造函数在实例化时会被调用。
 
-类的实例可以通过原型对象来访问构造函数。类的实例化必须使用new关键字。
+实例化后，类的普通方法会成为实例方法，并通过继承共享。
 
-​
-
-​
-
-JavaScript中类的概念和使用,包括声明、表达式和构造函数等,以及类的继承和方法的共享。
-
-类和继承的概念：类和继承的概念，类的声明和实例化，类的构造函数和实例方法。
+类的实例，可以通过原型对象来访问构造函数，类的实例化，必须使用 new 关键字。
 
 方法的共享：如何在JavaScript中实现方法的共享，包括静态方法和实例方法。
 
@@ -1141,21 +1135,15 @@ JavaScript中类的概念和使用,包括声明、表达式和构造函数等,�
 
 JavaScript中类定义的相关内容,包括构造函数、原型方法、静态方法和访问器等。
 
-类构造函数和实例原型
+#### 迭代器和生成器
 
-添加公共字段和访问器方法
+继承以及super关键字的使用。
 
-静态成员和类方法
-
-迭代器和生成器、继承以及super关键字的使用,以及在不同位置的用法和含义。
-
-迭代器与生成器方法：生成器方法可以把类的实例变量变成可迭代的对象。
+迭代器与生成器方法：生成器方法，可以把类的实例变量，变成可迭代的对象。
 
 继承：通过extends关键字来实现继承，保持相互兼容。
 
-关键字super：super关键字在不同位置有不同作用，需要注意。
-
-Java中继承和抽象类的概念,以及如何在派生类中显示定义构造函数和调用super。
+关键字 super：super 关键字在不同位置有不同作用，需要注意。
 
 调用父类构造函数和显示定义构造函数
 
@@ -1167,12 +1155,10 @@ Java中继承和抽象类的概念,以及如何在派生类中显示定义构造
 
 介绍类混入和组合模式的概念和应用场景
 
-讲解在面向对象编程中应该尽量使用组合模式而不是继承或子类化
-
-组合模式的应用：介绍了组合模式在实际应用中的应用场景和代码实现
+在面向对象编程中，应该尽量使用组合模式，而不是继承或子类化。
 
 
-## P22    22._27_工作者线程    26:31
+## P22 工作者线程
 工作者线程
 
 #### 为什么引入工作者线程
@@ -1187,7 +1173,7 @@ Java中继承和抽象类的概念,以及如何在派生类中显示定义构造
 
 3 service worker&#x20;
 
-现在看到27分钟，翻译者讲的昏昏欲睡。。。
+现在看到27分钟，讲师讲的昏昏欲睡。。。
 
 <img src="https://cloud.seatable.cn/workspace/81910/asset/b0de7002-5abf-48b9-b07b-ba7033be74a7/images/auto-upload/image-1720236712016.png" alt="undefined" title="undefined" width="416" height="113" />
 
@@ -1198,7 +1184,7 @@ Java中继承和抽象类的概念,以及如何在派生类中显示定义构造
 ![](https://cloud.seatable.cn/workspace/81910/asset/b0de7002-5abf-48b9-b07b-ba7033be74a7/images/auto-upload/image-1720256326219.png)
 
 
-## P23    23._14_DOM    20:00
+## P23 DOM
 DOM 关键是数据结构
 
 从上到下看，是树结构，可以广度优先或者深度优先遍历。同一层级的节点之间，是双向链表结构。可以通过属性遍历同一级节点。
