@@ -1,8 +1,7 @@
 var fs = require('fs');
 
-// 自动获取 markdown 文件路径脚本（v2）
+// 自动获取 markdown 文件路径脚本（v3）
 // 因为文档频繁改动，文件名和文件夹变化多，手动维护 mkdocs.yml 太麻烦，所以写了这个脚本
-// 缺点：把结果写入单独的 md 文件中，未来尝试直接写入 mkdocs 配置文件中
 var default_list = [
   'frontend/docs',
   'backend/docs',
@@ -27,6 +26,8 @@ for (var i = 0; i < dirList.length; i++) {
     if (!Array.isArray(files)) {
       return;
     }
+    const currentPath = father_path.replace('./' + dirList[i], '');
+    res.push(currentPath);
     for (let i = 0; i < files.length; i++) {
       if (files[i] === '.DS_Store' || files[i] === 'Dockerfile') {
         continue;
@@ -57,12 +58,26 @@ for (var i = 0; i < dirList.length; i++) {
   // './personal/docs/economy/xxx.md' to - 'xxx': 'economy/xxx.md'
   var result = '';
   for (let i = 0; i < res.length; i++) {
-    let curr = res[i];
-    curr = curr.replace(path + '/', '');
-    let right = curr;
-    let left = curr.slice(curr.lastIndexOf('/') + 1).replace('.md', '');
-    let all = `- '${left}': '${right}'\n`;
-    result += all;
+    // current item is markdown
+    if (res[i][0] === '.') {
+      let curr = res[i];
+      curr = curr.replace(path + '/', '');
+      let right = curr;
+      let left = curr.slice(curr.lastIndexOf('/') + 1).replace('.md', '');
+      let all = `        - '${left}': '${right}'\n`;
+      result += all;
+    }
+    // current item is dir
+    else {
+      if (res[i].length > 0) {
+        result += (`\n    - '${res[i].slice(1)}':\n`).replace(/[\']/ig, '');
+      }
+    }
   }
   fs.writeFileSync(dirList[i] + '.md', result);
+  // push result to mkdock.yml end
+  const setting_path = dirList[i].slice(0, dirList[i].indexOf('/')) + '/' + 'mkdocs.yml';
+  let setting = fs.readFileSync(setting_path, 'utf8');
+  setting += result;
+  fs.writeFileSync(setting_path, setting);
 }

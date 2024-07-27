@@ -319,7 +319,7 @@ render_bundle 是一个 Django 模板标签，用于在模板中引入Webpack打
 
 
    
-## 0487 Python3 版本如何选择，如何管理？
+## 0487 Python3 不同版本管理？
 
 
 #### 版本说明
@@ -330,7 +330,7 @@ python2 版本太老，不建议再使用。
 
 2024年 最新是 python3.12 版本。python 3.12 版本的更新说明：[https://docs.python.org/zh-cn/3/whatsnew/3.12.html](https://docs.python.org/zh-cn/3/whatsnew/3.12.html "https://docs.python.org/zh-cn/3/whatsnew/3.12.html")
 
-查阅资料，目前 3.12 版本还不稳定（预发布状态），建议使用 python3.7 ——python3.9 之间的稳定版本。
+目前 3.12 版本还不稳定（预发布状态），建议使用 python3.9 稳定版本。
 
 #### 版本管理
 
@@ -349,7 +349,7 @@ ls | grep python
 ​
 
    
-## 0490 Python 怎么连接数据库？SQLAlchemy
+## 0490 SQLAlchemy 连接数据库
 
 
 官方介绍：[https://docs.sqlalchemy.org/en/14/intro.html](https://docs.sqlalchemy.org/en/14/intro.html "https://docs.sqlalchemy.org/en/14/intro.html")
@@ -358,7 +358,9 @@ SQLAlchemy 是一个 Python 的 SQL 工具包以及数据库对象映射框架�
 
 核心逻辑：
 
-第一层：ORM 实现了关系型数据库转换成对象结构，python 层面不需要直接操作 SQL 语句，操作 Object 即可完成。ORM：对象关系映射（英语：Object Relational Mapping，简称ORM，或O/RM，或O/R mapping）
+第一层：ORM 实现了关系型数据库转换成对象结构，python 层面不需要直接操作 SQL 语句，操作 Object 即可完成。
+
+ORM：对象关系映射（英语：Object Relational Mapping，简称ORM，或O/RM，或O/R mapping）
 
 第二层：核心代码实现了 Schema, Types, SQL 语句，连接池，Dialect(方言，是指用于与特定数据库进行交互的配置选项)
 
@@ -455,20 +457,45 @@ class Activity():
 TODO：写一个案例到 helloPython 中，实际连接数据库练习
 
    
-## 0663 gevent 第三方库
+## 0663 gevent
 
 
 gevent：使用 greenlet 且基于协程的 Python 网络库。
 
-gevent is a [coroutine](https://en.wikipedia.org/wiki/Coroutine) -based [Python](http://python.org/) networking library that uses [greenlet](https://greenlet.readthedocs.io/) to provide a high-level synchronous API on top of the [libev](http://software.schmorp.de/pkg/libev.html) or [libuv](http://libuv.org/) event loop.
+gevent is a coroutine -based Python networking library that uses greenlet to provide a high-level synchronous API on top of the libev or libuv event loop.
+
+greenlet: [https://pypi.org/project/greenlet/](https://pypi.org/project/greenlet/ "https://pypi.org/project/greenlet/")
+
+gevent: [https://pypi.org/project/gevent/](https://pypi.org/project/gevent/ "https://pypi.org/project/gevent/")
 
    
-## 0664 pypandoc 第三方库
+## 0664 pypandoc
 
 
 [https://pypi.org/project/pypandoc/](https://pypi.org/project/pypandoc/ "https://pypi.org/project/pypandoc/")
 
+文件格式转换器，例如 txt 和 markdown 格式的转换
+
 Pypandoc provides a thin wrapper for [pandoc](https://pandoc.org/), a universal document converter.
+
+There are two basic ways to use pypandoc: with input files or with input strings.
+
+```python
+import pypandoc
+
+# With an input file: it will infer the input format from the filename
+output = pypandoc.convert_file('somefile.md', 'rst')
+
+# ...but you can overwrite the format via the `format` argument:
+output = pypandoc.convert_file('somefile.txt', 'rst', format='md')
+
+# alternatively you could just pass some string. In this case you need to
+# define the input format:
+output = pypandoc.convert_text('# some title', 'rst', format='md')
+# output == 'some title\r\n==========\r\n\r\n'
+```
+
+​
 
    
 ## 0665 html2text
@@ -476,7 +503,11 @@ Pypandoc provides a thin wrapper for [pandoc](https://pandoc.org/), a universal
 
 [https://pypi.org/project/html2text/](https://pypi.org/project/html2text/ "https://pypi.org/project/html2text/")
 
-html2text is a Python script that converts a page of HTML into clean, easy-to-read plain ASCII text. Better yet, that ASCII also happens to be valid Markdown (a text-to-HTML format).
+HTML转换成 MarkDown 格式的工具
+
+html2text is a Python script that converts a page of HTML into clean, easy-to-read plain ASCII text.
+
+Better yet, that ASCII also happens to be valid Markdown (a text-to-HTML format).
 
 `html2text`库可能无法完美转换所有HTML标签。实际测试，普通 div span 转换正常，复杂的代码块和扩展语法等不支持。
 
@@ -499,9 +530,6 @@ h = html2text.HTML2Text()
 h.ignore_links = True
 
 print h.handle("<p>Hello, <a href='https://www.google.com/earth/'>world</a>!")
-# Hello, world!
-
-print(h.handle("<p>Hello, <a href='https://www.google.com/earth/'>world</a>!"))
 # Hello, world!
 
 # Don't Ignore links anymore, I like links
@@ -551,12 +579,17 @@ python-docx is a Python library for reading, creating, and updating Microsoft W
 from docx import Document
 
 document = Document()
+
 document.add_paragraph("It was a dark and stormy night.")
+
 # docx.text.paragraph.Paragraph object at 0x10f19e760>
+
 document.save("dark-and-stormy.docx")
 
 document = Document("dark-and-stormy.docx")
+
 document.paragraphs[0].text
+
 # 'It was a dark and stormy night.'
 ```
 
@@ -568,20 +601,20 @@ document.paragraphs[0].text
 
 [https://pypi.org/project/PyMySQL/](https://pypi.org/project/PyMySQL/ "https://pypi.org/project/PyMySQL/")
 
+新建数据库表
+
 ```sql
 CREATE TABLE `users` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
     `email` varchar(255) COLLATE utf8_bin NOT NULL,
     `password` varchar(255) COLLATE utf8_bin NOT NULL,
     PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin
-AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin 
 ```
 
 ```python
 import pymysql.cursors
 
-# Connect to the database
 connection = pymysql.connect(host='localhost',
                              user='user',
                              password='passwd',
@@ -594,8 +627,7 @@ with connection:
         sql = "INSERT INTO `users` (`email`, `password`) VALUES (%s, %s)"
         cursor.execute(sql, ('webmaster@python.org', 'very-secret'))
 
-    # connection is not autocommit by default. So you must commit to save
-    # your changes.
+    # connection is not auto commit by default. So you must commit to save your change
     connection.commit()
 
     with connection.cursor() as cursor:
@@ -624,13 +656,175 @@ time.sleep(5)
 注意是秒，不是毫秒
 
    
+## 0683 python 读取本地文件
+
+
+Python 读取本地文件常见的方法：
+
+1、内置的open函数
+
+这种方法使用了上下文管理器（context manager）来自动关闭文件，读取文件内容存储在变量content中。
+
+```python
+with open('文件路径', 'r') as file:
+    content = file.read()
+```
+
+2、使用readlines方法逐行读取文件内容，并存储在列表中
+
+这种方法逐行读取文件内容存储在列表lines中，每一行作为一个元素
+
+```python
+with open('文件路径', 'r') as file:
+    lines = file.readlines()
+```
+
+3、使用readline方法逐行读取文件内容，并逐行处理
+
+```python
+with open('文件路径', 'r') as file:
+    line = file.readline()
+    while line:
+        # 处理当前行
+        ...
+        # 读取下一行
+        line = file.readline()
+```
+
+​
+
+   
 ## 0670 Beautiful Soup
 
 
-官方文档链接：[https://beautifulsoup.readthedocs.io/zh-cn/v4.4.0/#](https://beautifulsoup.readthedocs.io/zh-cn/v4.4.0/# "https://beautifulsoup.readthedocs.io/zh-cn/v4.4.0/#")
+官方文档链接
 
-个人总结和实际使用：
+[https://beautifulsoup.readthedocs.io/zh-cn/v4.4.0/#](https://beautifulsoup.readthedocs.io/zh-cn/v4.4.0/# "https://beautifulsoup.readthedocs.io/zh-cn/v4.4.0/#")
+
+个人总结：
 
 [https://michael18811380328.github.io/python/third-part-lib/001-Beautiful-Soup/](https://michael18811380328.github.io/python/third-part-lib/001-Beautiful-Soup/ "https://michael18811380328.github.io/python/third-part-lib/001-Beautiful-Soup/")
+
+实际使用:
+
+[https://github.com/Michael18811380328/HelloPython/tree/master/src/spider](https://github.com/Michael18811380328/HelloPython/tree/master/src/spider "https://github.com/Michael18811380328/HelloPython/tree/master/src/spider")
+
+   
+## 0684 python 提取高频词 jieba
+
+
+要在Python中提取高频词，可以使用`jieba`库进行中文分词，并使用`collections`库中的`Counter`类来统计词频。
+
+自然语言处理
+
+```python
+import jieba
+from collections import Counter
+ 
+# 输入文本
+text = "这里是一段中文文本，用于演示如何提取高频词。"
+ 
+# 使用jieba进行分词
+words = jieba.cut(text)
+ 
+# 转换为列表
+words = list(words)
+ 
+# 停用词列表
+stopwords = ['用于', '的', '是', '一段', '演示', '如何']
+ 
+# 移除停用词
+words = [word for word in words if word not in stopwords]
+ 
+# 统计词频
+word_counts = Counter(words)
+ 
+# 设定高频词阈值，例如出现超过2次
+threshold = 2
+ 
+# 提取高频词
+high_frequency_words = [word for word, count in word_counts.items() if count > threshold]
+ 
+print(high_frequency_words)
+```
+
+​
+
+   
+## 0685 python 提取高频词  nltk
+
+
+使用NLTK库来提取文本中的高频词（即词频统计中频率最高的词）。
+
+```python
+import nltk
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
+ 
+# 加载停用词（或者本地新建一个停用词库）
+nltk.download('stopwords')
+stop_words = set(stopwords.words('english'))
+ 
+# 示例文本
+text = "Python is a high-level, general-purpose, dynamic programming language. Python's design philosophy emphasizes code readability with its notable use of significant whitespace. Its language constructs and object-oriented approach aim to help programmers write clear, logical code for small and large-scale projects."
+ 
+# 进行词标记
+tokens = word_tokenize(text)
+ 
+# 移除停用词
+tokens = [token for token in tokens if token not in stop_words]
+ 
+# 计算词频
+freq_dist = nltk.FreqDist(tokens)
+ 
+# 提取高频词
+high_freq_words = [word for word in freq_dist.keys() if freq_dist[word] > 1]
+ 
+print(high_freq_words)
+```
+
+​
+
+   
+## 0686 collections
+
+
+[https://blog.csdn.net/peng78585/article/details/125387640](https://blog.csdn.net/peng78585/article/details/125387640 "https://blog.csdn.net/peng78585/article/details/125387640")
+
+[https://docs.python.org/zh-cn/3/library/collections.html#module-collections](https://docs.python.org/zh-cn/3/library/collections.html#module-collections "https://docs.python.org/zh-cn/3/library/collections.html#module-collections")
+
+主要用于统计和计数
+
+```python
+import jieba
+from collections import Counter
+ 
+text = "这里是一段中文文本，用于演示如何提取高频词。这里是一段中文文本，用于演示如何提取高频词。这里是一段中文文本，用于演示如何提取高频词。这里是一段中文文本，用于演示如何提取高频词。这里是一段中文文本，用于演示如何提取高频词。这里是一段中文文本，用于演示如何提取高频词。"
+ 
+# 使用 jieba 进行分词
+words = jieba.cut(text)
+ 
+# 转换为列表
+words = list(words)
+ 
+# 停用词列表
+stopwords = ['用于', '的', '是', '一段', '演示', '如何']
+ 
+# 移除停用词
+words = [word for word in words if word not in stopwords]
+ 
+# 统计词频
+word_counts = Counter(words)
+ 
+# 设定高频词阈值，例如出现超过2次
+threshold = 2
+ 
+# 提取高频词
+high_frequency_words = [word for word, count in word_counts.items() if count > threshold]
+ 
+print(high_frequency_words)
+```
+
+​
 
   

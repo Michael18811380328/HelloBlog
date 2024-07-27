@@ -9,7 +9,7 @@
 下载 github 上的依赖无效，需要换成国内的源
 
 ```text
-go env -w GOPROXY=https://goproxy.cn,direct 
+go env -w GOPROXY=https://goproxy.cn,direct
 ```
 
 ​

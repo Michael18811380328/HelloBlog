@@ -2222,7 +2222,7 @@ for (const key in person) {
 参考：[https://blog.csdn.net/tyxjolin/article/details/130091368](https://blog.csdn.net/tyxjolin/article/details/130091368 "https://blog.csdn.net/tyxjolin/article/details/130091368")
 
    
-## 0476 web worker
+## 0476 web worker 多线程
 
 
 参考这里：<https://juejin.cn/post/7139718200177983524>
@@ -2275,9 +2275,7 @@ self.addEventListener('message', (e) => {
 
 #### 集成到 react-webpack 开发环境
 
-webpack 4和更早的版本，需要 webpack 对应的 worker-loader 实现。
-
-webpack5 版本已经不需要 worker-loader，直接使用即可，编译后也正常使用，示例代码如下（self eslint 会报错，不能使用全局变量，忽略这个报错即可）
+webpack 4和更早的版本，需要 webpack 对应的 worker-loader 实现。webpack5 版本已经不需要 worker-loader，直接使用即可，编译后也正常使用，示例代码如下（self eslint 会报错，不能使用全局变量，忽略这个报错即可）
 
 参考：[https://webpack.js.org/guides/web-workers/](https://webpack.js.org/guides/web-workers/ "https://webpack.js.org/guides/web-workers/")
 
@@ -2285,9 +2283,9 @@ index.js
 
 ```javascript
 const worker = new Worker(new URL('./deep-thought.js', import.meta.url));
-worker.postMessage({
-  question:
-});
+
+worker.postMessage({ question });
+
 worker.onmessage = ({ data: { answer } }) => {
   console.log(answer);
 };

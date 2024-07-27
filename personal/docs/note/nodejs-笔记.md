@@ -322,7 +322,7 @@ console.log(111) // 111
 相关知识还有：事件循环，线程池等
 
    
-## 0486 nodejs 通过 spawn 执行操作系统命令
+## 0486 nodejs 如何执行操作系统命令？
 
 
 nodejs 子进程调用操作系统的命令
@@ -378,9 +378,11 @@ exec('echo "Hello, World!"', (error, stdout, stderr) => {
 ## 0485 nodejs 如何调用 python 函数
 
 
-很多时候，服务器需要使用 python 函数完成功能，那么需要 nodejs 调用 python 函数，具体有三种方案实现：
+nodejs 调用 python 函数，具体有三种方案实现：
 
 1、使用子进程方式实现
+
+这个适应于小型脚本，Python 不依赖其他的环境等
 
 ```python
 # script.py
@@ -414,9 +416,11 @@ function callPythonFunction(funcName, arg) {
 callPythonFunction('greet', 'Node.js');
 ```
 
-需要实际测试一下，现在父进程无法获取子进程的返回值，存在问题
+需要实际测试一下（现在父进程无法获取子进程的返回值，存在问题）
 
-2、python 开启一个服务，nodejs 调用 python 的服务
+2、python 开启一个服务，nodejs 调用 python 的服务。
+
+这个适应于大型服务，python node 是单独维护的项目
 
 ```python
 from flask import Flask, request
@@ -424,6 +428,7 @@ from flask import Flask, request
 app = Flask(__name__)
 
 @app.route('/process_string', methods=['POST'])
+
 def process_string():
     data = request.get_json()  # 获取POST请求的JSON数据
     dynamic_string = data.get('string', '')  # 从JSON数据中获取字符串
@@ -435,10 +440,11 @@ def process_string():
 
 if __name__ == '__main__':
     app.run(port=5000)  # 在5000端口上启动服务
-
 ```
 
 3、调用第三方库，执行 python 脚本（字符串 Pyodide）
+
+这种适应于简单一句调试，不适合大量使用（不利于Python脚本调试和改动）
 
 ```javascript
 const pyodide = require('pyodide');
@@ -503,21 +509,6 @@ workb();
 
 ​
 
-   
-## 0589 fs-extra8.1.0
-
-
-fs 的高级版本     https://www.npmjs.com/package/fs-extra
-   
-## 0634 express4.16.3
-
-
-中间层服务器     
-   
-## 0635 express-rate-limit5.1.3
-
-
-请求次数限制     
    
 ## 0638 log4js
 
@@ -611,11 +602,6 @@ await client.disconnect();
 ​
 
    
-## 0642 response-time2.3.2
-
-
-HTTP 响应时间 nodejs 和 express 联合使用     
-   
 ## 0654 nodemon
 
 
@@ -631,9 +617,4 @@ nodemon ./server.js localhost 8080
 
 ​
 
-   
-## 0655 rimraf3.0.2
-
-
-The UNIX command rm -rf for node.     https://www.npmjs.com/package/rimraf
   

@@ -945,16 +945,93 @@ componentDidUpdate 阶段，React 组件重新渲染，但是真实 DOM 的 redr
 react 中强制更新组件，this.forceUpdate() 尽量避免使用，最好使用 state 或者 props 数据驱动更新，这样符合 react 的设计思路
 
    
-## 0662 useImperativeHandle 是什么？
+## 0662 useImperativeHandle 有什么作用
 
 
-useImperativeHandle，结合forwardRef 实现父组件调子组件的属性和方法
+useImperativeHandle，结合 forwardRef，实现父组件调用子组件 dom 上某些属性和方法
+
+forwardRef 可用于函数式组件，父组件访问子组件内部的 dom
+
+缺点：会暴露内部整个 dom 的全部属性和方法
+
+```javascript
+import { forwardRef } from 'react';
+
+const MyInput = forwardRef(function MyInput(props, ref) {
+  return <input {...props} ref={ref} />;
+});
+```
+
+useImperativeHandle
+
+使用强制手柄-强制使用 dom 的某些方法，其他方法不会暴露
+
+```javascript
+import { forwardRef, useRef, useImperativeHandle } from 'react';
+
+const MyInput = forwardRef(function MyInput(props, ref) {
+
+  const inputRef = useRef(null);
+  useImperativeHandle(ref, () => {
+    return {
+      focus() {
+        inputRef.current.focus();
+      },
+      scrollIntoView() {
+        inputRef.current.scrollIntoView();
+      },
+    };
+  }, []);
+  
+  const inputRef = useRef(null);
+  useImperativeHandle(ref, () => {
+    return {
+      focus() {
+        inputRef.current.focus();
+      },
+      scrollIntoView() {
+        inputRef.current.scrollIntoView();
+      }
+    };
+  });
+
+  return <input {...props} ref={inputRef} />;
+});
+```
+
+父组件调用函数组件，调用 dom 上有限的方法
+
+```javascript
+import { useRef } from 'react';
+import MyInput from './MyInput.js';
+
+export default function Form() {
+  const ref = useRef(null);
+
+  function handleClick() {
+    ref.current.focus();
+    // 下方代码不起作用，因为 DOM 节点并未被暴露出来：
+    // ref.current.style.opacity = 0.5;
+  }
+
+  return (
+    <form>
+      <MyInput placeholder="Enter your name" ref={ref} />
+      <button type="button" onClick={handleClick}>
+        Edit
+      </button>
+    </form>
+  );
+}
+```
+
+​
 
 [https://react.docschina.org/reference/react/useImperativeHandle](https://react.docschina.org/reference/react/useImperativeHandle "https://react.docschina.org/reference/react/useImperativeHandle")
 
 [https://juejin.cn/post/7074761729753743373](https://juejin.cn/post/7074761729753743373 "https://juejin.cn/post/7074761729753743373")
 
-待学习
+​
 
 ​
 
