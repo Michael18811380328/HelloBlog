@@ -1,8 +1,8 @@
 # 1 浏览器插件 Monica
 
-https://chat.openai.com/ 这个未知原因无法访问？所以用 Monica 替代
+https://chat.openai.com/ 这个国内原因无法直接访问时，所以用 Monica 替代。
 
-Monica是Chrome扩展程序，是您的AI辅助驾驶员。您可以与Monica随时随地聊天，Monica可以帮助您轻松创建文案，并将文本插入任何位置。
+Monica是Chrome扩展程序，是AI辅助驾驶员。您可以与Monica随时随地聊天，Monica可以帮助您轻松创建文案，并将文本插入任何位置。
 
 因为官方的 chatGPT4 需要 token 和注册，这个插件每天提供30次免费查询。付费版本每月 60 元，有更多的查询次数。打开侧栏的快捷键是 command + M。
 
@@ -14,9 +14,7 @@ Monica是Chrome扩展程序，是您的AI辅助驾驶员。您可以与Monica随
 
 https://monica.im/billing
 
-提问：JavaScript 语言中，使用动态规划短发，解决斐波那契数列问题。
-
-（短发，写错了，应该是算法）
+提问：JavaScript 语言中，使用动态规划算法，解决斐波那契数列问题。
 
 回答如下，看起来非常智能
 
