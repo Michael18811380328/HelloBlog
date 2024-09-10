@@ -13,7 +13,3 @@
 [![gitbook-experience-editor-signin-with-github-401.png](https://upload-images.jianshu.io/upload_images/16648241-d068e9eb5203f042.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)](https://upload-images.jianshu.io/upload_images/16648241-d068e9eb5203f042.png?imageMogr2/auto-orient/strip|imageView2/2/w/1240)
 
 如果有兴趣了解 `gitbook-editor` 编辑器的基本使用,请参考 [gitbook editor 编辑器](https://snowdreams1006.github.io/myGitbook/experience/preview.html#gitbook-editor-编辑器).
-
-微信关注公众号
-
-[![微信公众号:雪之梦技术驿站](https://img2018.cnblogs.com/blog/1624839/201910/1624839-20191016111650853-1952770079.jpg)](https://img2018.cnblogs.com/blog/1624839/201910/1624839-20191016111650853-1952770079.jpg)

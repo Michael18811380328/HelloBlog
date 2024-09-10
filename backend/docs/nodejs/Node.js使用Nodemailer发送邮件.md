@@ -36,13 +36,13 @@ Nodemailer 的主要特点包括：
 
 首先，我们肯定是要下载安装 **注意：Node.js v6+**
 
-```
+```bash
 npm install nodemailer --save
 ```
 
 打开官网可以看见一个小例子
 
-```
+```js
 'use strict';
 const nodemailer = require('nodemailer');
 
@@ -91,7 +91,7 @@ nodemailer.createTestAccount((err, account) => {
 
 这里我使用了我的 qq 邮箱给 163 邮箱发送 email。
 
-```
+```js
 'use strict';
 
 const nodemailer = require('nodemailer');
@@ -145,8 +145,7 @@ transporter.sendMail(mailOptions, (error, info) => {
 
 这里我们就不演示 CC、BCC 了，请自行尝试。我们来试试发送附件
 
-```
-...
+```js
 // 只需添加attachments配置项即可
 attachments: [
     {   // utf-8 string as an attachment
@@ -158,10 +157,9 @@ attachments: [
       path: path.resolve(__dirname, 'ZenQcode.png'),
     }
   ]
-...
 ```
 
-发送 email，就可以收到一个内容为 hello world 的 text.txt 文件，以及一个我公众号的二维码。
+发送 email，就可以收到一个内容为 hello world 的 text.txt 文件。
 
 ## 好看的 HTML 邮件
 
@@ -169,7 +167,7 @@ HTML Email 编写指南: http://www.ruanyifeng.com/blog/2013/06/html_email.html
 
 这儿，我们使用 Foundation for Emails: https://foundation.zurb.com/emails.html的模板
 
-```
+```js
 'use strict';
 
 const nodemailer = require('nodemailer');
@@ -214,10 +212,8 @@ transporter.sendMail(mailOptions, (error, info) => {
 
 上面 email 中我们用了外链的图片，我们也可以使用附件的方式，将图片嵌入进去。给附件加个`cid`属性即可。
 
-```
-...
+```js
 let mailOptions = {
-  ...
   html: '<img src="cid:01">', // html body
   attachments: [
     {
@@ -227,7 +223,6 @@ let mailOptions = {
     }
   ]
 };
-...
 ```
 
 ### 使用模板引擎
@@ -251,7 +246,7 @@ _ejs 具体语法请参看官方文档_
 
 修改我们的 js 文件
 
-```
+```js
 ...
 const template = ejs.compile(fs.readFileSync(path.resolve(__dirname, 'email.ejs'), 'utf8'));
 

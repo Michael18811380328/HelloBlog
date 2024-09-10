@@ -207,7 +207,7 @@ Tootip写法：
 
 ```css
 <!--html-->
-<div class="box">嗨！点击菜单就可以关注兮兮公众号了哟~</div>
+<div class="box">嗨！点击菜单</div>
 /*--css--*/
 .box{
   position: relative;

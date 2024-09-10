@@ -678,12 +678,6 @@ add(2,3);
 
 ### 最后
 
-如果本文对你有帮助的话，给本文点个赞吧。
-
-> 关注公众号
-
-
-
 ![掘金使用](https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/3/14/170d9bf3c5cff80b~tplv-t2oaga2asx-jj-mark:3024:0:0:0:q75.png)
 
 

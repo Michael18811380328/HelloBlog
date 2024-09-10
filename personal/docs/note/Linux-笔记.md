@@ -135,6 +135,24 @@ tree -N -I "*.svg|*.png|*.jpg|*.gif|*.xmind" > tree-res.md
 
 
    
+## 0697 pbcopy 和 pbpaste 命令
+
+
+在 mac 终端中，可以使用 pbcopy 和 pbpaste 把内容复制粘贴到剪切板上，不需要手动复制粘贴内容
+
+```text
+cat ./demo.txt | pbcopy
+```
+
+或者
+
+```text
+pbpaste
+```
+
+​
+
+   
 ## 0119 ps aux 命令
 
 

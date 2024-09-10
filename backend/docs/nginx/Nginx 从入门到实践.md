@@ -1094,5 +1094,3 @@ server {
 > 9. [vue-router history模式nginx配置并配置静态资源缓存 | HolidayPenguin](https://link.juejin.cn/?target=https%3A%2F%2Fwww.holidaypenguin.com%2Fblob%2F2019-02-18-vue-router-history-mode-nginx-configuration-and-configuration-of-static-resource-cache%2F)
 > 10. [nginx重定向，全局https，SSL配置，反代配置参考](https://link.juejin.cn/?target=https%3A%2F%2Fblog.xinac.cn%2Farchives%2Fnginx%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE%E5%8F%82%E8%80%83%E5%A4%A7%E5%85%A8)
 > 11. [Nginx 入门教程](https://link.juejin.cn/?target=https%3A%2F%2Fxuexb.github.io%2Flearn-nginx%2F)
-
-PS：本人博客地址 [Github - SHERlocked93/blog](https://link.juejin.cn/?target=https%3A%2F%2Fgithub.com%2FSHERlocked93%2Fblog)，也欢迎大家关注我的公众号【前端下午茶】，一起加油吧~

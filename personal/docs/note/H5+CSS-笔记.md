@@ -530,6 +530,150 @@ white-space 用来处理空格的显示方式，通常用来处理省略号显�
 
 
    
+## 0698 input color 原生 HTML 选择颜色
+
+
+在网页中，可能会让用户选择颜色，进行自定义（文字颜色、背景色），有两种方案实现
+
+1、react-color 第三方库实现
+
+2、HTML input type=color 颜色选择器实现：这个依靠浏览器内置的颜色选择器实现的效果，最新版谷歌，火狐，Safari 都支持这个功能（选择组件的样式不一样）。好处是简单已操作，缺点是不同的浏览器实现组件效果不一样。
+
+参考：[https://www.w3school.com.cn/jsref/dom\_obj\_color.asp](https://www.w3school.com.cn/jsref/dom_obj_color.asp "https://www.w3school.com.cn/jsref/dom_obj_color.asp")
+
+```html
+<input type="color" id="myColor" onchange="onChange()"/>
+```
+
+可以主动获取，或者被动获取颜色的值 input.value
+
+```javascript
+    function myFunction() {
+      // click button to trigger this fn
+      var x = document.getElementById("myColor").value;
+    }
+
+    function onChange(e) {
+      var x = document.getElementById("myColor").value;
+    }
+```
+
+​
+
+   
+## 0699 input range 原生 HTML 选择范围
+
+
+[https://www.w3school.com.cn/jsref/dom\_obj\_range.asp](https://www.w3school.com.cn/jsref/dom_obj_range.asp "https://www.w3school.com.cn/jsref/dom_obj_range.asp")
+
+这是 H5 新加的属性
+
+HTML，这里注意 min max step 值，拖动后，可以改变 value，监听 onChange 可以获取实时的 value
+
+```html
+<input type="range" id="myInput" onchange="onChange()" min="0" max="100" step="10" value="20"/>
+```
+
+方法 stepUp stepDown，设置 dom 的 value
+
+```javascript
+document.getElementById("myInput").stepDown(50);
+document.getElementById("myInput").stepUp(100);
+```
+
+自定义背景色和样式
+
+```css
+    input[type="range"]::-webkit-slider-runnable-track {
+      background: yellow;
+    }
+    input[type="range"]::-webkit-slider-thumb {
+      background: blue;
+    }
+```
+
+​
+
+   
+## 0701 input week 原生 HTML 选择周
+
+
+[https://www.w3school.com.cn/jsref/dom\_obj\_week.asp](https://www.w3school.com.cn/jsref/dom_obj_week.asp "https://www.w3school.com.cn/jsref/dom_obj_week.asp")
+
+可以获取选择的周，例如  2024-W40
+
+周实际使用的不多
+
+```text
+<input type="week" id="myInput" onchange="onChange()" />
+```
+
+```text
+    function onChange(e) {
+      var x = document.getElementById("myInput").value;
+      console.log(x);
+    }
+```
+
+​
+
+   
+## 0703 input time 原生 HTML 选择时间
+
+
+可以选择时间，唯一不足就是视觉上不太好看
+
+```text
+<input type="time" id="myInput" onchange="onChange()" />
+```
+
+<img src="https://cloud.seatable.cn/workspace/32/asset/e82c7317-556e-45c4-8b5d-092331cd8977/images/auto-upload/image-1725610838357.png" alt="undefined" title="undefined" width="281" height="394" />
+
+   
+## 0705 原生 AbortController 中断请求
+
+
+需求：在一个单页面中，存在多个图库视图，点击第一个加载很多图片，点击第二个，需要取消第一个的全部加载，然后直接加载第二个的图片。如果使用 img 标签，请求会直接发出去，然后无法直接通过 JS 阻止请求发出。
+
+解决：
+
+**AbortController** 接口表示一个控制器对象，允许你根据需要中止一个或多个 Web 请求。你可以使用 [AbortController()](https://developer.mozilla.org/zh-CN/docs/Web/API/AbortController/AbortController "AbortController()") 构造函数创建一个新的 `AbortController` 对象。使用 [AbortSignal](https://developer.mozilla.org/zh-CN/docs/Web/API/AbortSignal) 对象可以完成与异步操作的通信。
+
+[https://developer.mozilla.org/zh-CN/docs/Web/API/AbortController](https://developer.mozilla.org/zh-CN/docs/Web/API/AbortController "https://developer.mozilla.org/zh-CN/docs/Web/API/AbortController")
+
+```javascript
+// 有两个按钮，下载和取消。点击下载后，发出请求；点击取消，如果还在下载中，那么就取消请求
+
+// 1、点击下载按钮，开始下载中断控制器对象，就终止下载
+downloadBtn.addEventListener("click", fetchVideo);
+
+// 2、点击取消按钮，如果存在 
+abortBtn.addEventListener("click", () => {
+  if (controller) {
+    controller.abort();
+    console.log("中止下载");
+  }
+});
+
+// 下载函数
+function fetchVideo() {
+  // 新建一个控制器对象，然后放在全局属性中
+  controller = new AbortController();
+  const signal = controller.signal;
+  // 下载时，第二个参数传递控制器对象（便于中断控制）
+  fetch(url, { signal })
+    .then((response) => {
+      console.log("下载完成", response);
+    })
+    .catch((err) => {
+      console.error(`下载错误：${err.message}`);
+    });
+}
+```
+
+​
+
+   
 ## 0247 如何实现文本超出显示省略号
 
 

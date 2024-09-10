@@ -945,6 +945,32 @@ componentDidUpdate 阶段，React 组件重新渲染，但是真实 DOM 的 redr
 react 中强制更新组件，this.forceUpdate() 尽量避免使用，最好使用 state 或者 props 数据驱动更新，这样符合 react 的设计思路
 
    
+## 0688 useState 的原理
+
+
+实际上就是类组件 this.setState 状态更新的语法糖
+
+内部底层的逻辑：[https://juejin.cn/post/7076456859611168776](https://juejin.cn/post/7076456859611168776 "https://juejin.cn/post/7076456859611168776")
+
+   
+## 0689 useEffect 和 useLayoutEffect 的区别
+
+
+* `useEffect` 是异步非阻塞，`useLayoutEffect` 是同步阻塞。
+
+* `useEffect` 是在浏览器绘制之后执行，`useLayoutEffect` 是在 DOM 变更之后，浏览器绘制前执行
+
+* `useLayoutEffect`和`componentDidMount`是等价的，会同步调用，阻塞渲染
+
+* 会影响到渲染的操作尽量放到 `useLayoutEffect`中去，避免出现闪烁问题
+
+* 优先使用 `useEffect`，因为它是异步执行的，不会阻塞渲染
+
+* `useLayoutEffect` 会阻塞 DOM 的渲染，避免过度使用
+
+参考：[https://juejin.cn/post/7240600121208504375](https://juejin.cn/post/7240600121208504375 "https://juejin.cn/post/7240600121208504375")
+
+   
 ## 0662 useImperativeHandle 有什么作用
 
 

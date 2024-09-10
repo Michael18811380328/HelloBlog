@@ -508,15 +508,9 @@ Copy* [English](en/)
 
 是不是很简单,后续还会有如何发布与导出等相关教程,今天先到这里,下次见!
 
-微信关注公众号
-
-[![微信公众号:雪之梦技术驿站](https://img2018.cnblogs.com/blog/1624839/201910/1624839-20191016111650853-1952770079.jpg)](https://img2018.cnblogs.com/blog/1624839/201910/1624839-20191016111650853-1952770079.jpg)
-
 作者：[ 雪之梦技术驿站](https://www.cnblogs.com/snowdreams1006/)
 
 出处：https://www.cnblogs.com/snowdreams1006/p/10649210.html
-
-版权：本站使用「[CC BY 4.0](https://creativecommons.org/licenses/by/4.0)」创作共享协议，转载请在文章明显位置注明作者及出处。
 
 分类: [gitbook 入门教程](https://www.cnblogs.com/snowdreams1006/category/1432768.html)
 

@@ -3,7 +3,7 @@ README
 该文件用来测试和展示书写README的各种markdown语法。GitHub的markdown语法在标准的markdown语法基础上做了扩充，称之为`GitHub Flavored Markdown`。简称`GFM`，GFM在GitHub上有广泛应用，除了README文件外，issues和wiki均支持markdown语法。
 
 ****
-	
+
 |Author|果冻虾仁|
 |---|---
 |E-mail|Jelly.K.Wang@qq.com
@@ -81,8 +81,6 @@ ___
 使用一对各三个的反引号：
 ```
 欢迎到访
-我是C++码农
-你可以在知乎、CSDN、简书搜索【果冻虾仁】找到我
 ```
 该语法也可以实现代码高亮，见[代码高亮](#代码高亮)
 ### 文字高亮
@@ -151,10 +149,10 @@ https://github.com/guodongxiaren/ImageCache/raw/master/Logo/foryou.gif
 |#|语法|效果|
 |---|----|-----|
 |1|`[我的博客](http://blog.csdn.net/guodongxiaren "悬停显示")`|[我的博客](http://blog.csdn.net/guodongxiaren "悬停显示")|
-|2|`[我的知乎][zhihu] `|[我的知乎][zhihu] |
+|2|`[test][test] `|[test][zhihu] |
 
 语法2由两部分组成：
-- 第一部分使用两个中括号，[ ]里的标识符（本例中zhihu），可以是数字，字母等的组合，标识符上下对应就行了（**姑且称之为URL标识符**）
+- 第一部分使用两个中括号，[ ]里的标识符（本例中test），可以是数字，字母等的组合，标识符上下对应就行了（**姑且称之为URL标识符**）
 - 第二部分标记实际URL。
 
 >使用URL标识符能达到复用的目的，一般把全文所有的URL标识符统一放在文章末尾，这样看起来比较干净。
@@ -249,7 +247,7 @@ https://github.com/guodongxiaren/ImageCache/raw/master/Logo/foryou.gif
 1. 这是一级的有序列表，数字1还是1
    1. 这是二级的有序列表，阿拉伯数字在显示的时候变成了罗马数字
       1. 这是三级的有序列表，数字在显示的时候变成了英文字母
-	 
+	
 
 ### 复选框列表
 #### 语法
@@ -394,3 +392,4 @@ GFM中可以显示的展示diff效果。使用绿色表示新增，红色表示�
 [weibo-logo]:/img/weibo.png "点击图片进入我的微博"
 [csdn-logo]:/img/csdn.png "我的CSDN博客"
 [foryou]:https://github.com/guodongxiaren/ImageCache/raw/master/Logo/foryou.gif
+
