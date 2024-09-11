@@ -57,6 +57,7 @@
         - '算法感悟': 'new/算法感悟.md'
 
     - note:
+        - 'AI-笔记': 'note/AI-笔记.md'
         - 'BOM-笔记': 'note/BOM-笔记.md'
         - 'Go-笔记': 'note/Go-笔记.md'
         - 'H5+CSS-笔记': 'note/H5+CSS-笔记.md'
