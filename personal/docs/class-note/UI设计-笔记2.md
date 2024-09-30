@@ -97,9 +97,9 @@
 
 ![](https://cloud.seatable.cn/workspace/81910/asset/b0de7002-5abf-48b9-b07b-ba7033be74a7/images/auto-upload/image-1710851820656.png)
 
-![](https://cloud.seatable.cn/workspace/81910/asset/b0de7002-5abf-48b9-b07b-ba7033be74a7/images/auto-upload/image-1710851829408.png)
+![](https://cloud.seatable.cn/workspace/81910/asset/b0de7002-5abf-48b9-b07b-ba7033be74a7/images/auto-upload/image-1727603390407.jpg)
 
-![](https://cloud.seatable.cn/workspace/81910/asset/b0de7002-5abf-48b9-b07b-ba7033be74a7/images/auto-upload/image-1710851844193.png)
+![](https://cloud.seatable.cn/workspace/81910/asset/b0de7002-5abf-48b9-b07b-ba7033be74a7/images/auto-upload/image-1727603398215.jpg)
 
 
 ### 20 过了20岁，就不能设计的像个小孩子了
@@ -188,6 +188,8 @@
 
 ### 27 设计教程｜设计遇到废图怎么办？一根线来解决
 使用 JS 的曲线工具，可以调整明度和暗度
+
+这样就使得边界对比更清晰
 
 ![](https://cloud.seatable.cn/workspace/81910/asset/b0de7002-5abf-48b9-b07b-ba7033be74a7/images/auto-upload/image-1711206236797.png)
 

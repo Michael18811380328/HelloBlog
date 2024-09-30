@@ -471,6 +471,42 @@ trainer.train()
 
 
 
+## 百度-1. 开始构建你的优质Prompt
+<https://aistudio.baidu.com/education/lessonvideo/5168098> 
+
+### 概念
+
+大模型：LLM 是基于深度学习训练的模型（类似一个函数集）
+
+提示词：Prompt 如何向大模型提问题，或者做出引导，让大模型更好的使用
+
+AI 大模型的价值：已经在艺术创作（文字，图片）获得很多成就，大模型数据集可以出售，也提供了很多新岗位
+
+大模型 Large-scale Model / Large Model
+
+大模型是指具有大规模、高维度、复杂性强等特点的机器学习模型。随着数据量的增加和计算能力的提升，大模型在自然语言处理、计算机视觉、语音识别等领域得到了广泛应用。大模型的训练需要大量的数据和计算资源，同时也需要对模型进行优化和压缩，以便在实际应用中能够高效地运行。在自然语言处理领域，大模型一般指大规模语言模型。
+
+### 历史发展
+
+传统模型：RNN、CNN 为主的神经网络算法（2012年）
+
+预训练模型：transformer 网络、Bert 和 GPT 1.0 为主（2020）、encoder
+
+大模型：GPT 3.0  decoder，LLM，自回归模型
+
+### 使用场景
+
+1、创建大模型：类似 GPT 和文心一言，从0到1创建基础大模型。
+
+2、基于已有大模型，训练适合某个行业或者某个企业的大模型。
+
+3、基于已有大模型的技术，创建 AI + 其他行业 APP 或者第三方应用（例如用在医疗，教育，美术，游戏行业等）。
+
+目前主要学习第二种和第三种使用场景。
+
+
+
+
 ## 陆奇-新范式新时代新机会
 <https://miracleplus.feishu.cn/file/TGKRbW4yrosqmixCtprcUlAynzg> 
 
@@ -507,39 +543,33 @@ trainer.train()
 
 
 
-## 百度-1. 开始构建你的优质Prompt
-<https://aistudio.baidu.com/education/lessonvideo/5168098> 
-
-### 概念
-
-大模型：LLM 是基于深度学习训练的模型（类似一个函数集）
-
-提示词：Prompt 如何向大模型提问题，或者做出引导，让大模型更好的使用
-
-AI 大模型的价值：已经在艺术创作（文字，图片）获得很多成就，大模型数据集可以出售，也提供了很多新岗位
-
-大模型 Large-scale Model / Large Model
-
-大模型是指具有大规模、高维度、复杂性强等特点的机器学习模型。随着数据量的增加和计算能力的提升，大模型在自然语言处理、计算机视觉、语音识别等领域得到了广泛应用。大模型的训练需要大量的数据和计算资源，同时也需要对模型进行优化和压缩，以便在实际应用中能够高效地运行。在自然语言处理领域，大模型一般指大规模语言模型。
-
-### 历史发展
-
-传统模型：RNN、CNN 为主的神经网络算法（2012年）
-
-预训练模型：transformer 网络、Bert 和 GPT 1.0 为主（2020）、encoder
-
-大模型：GPT 3.0  decoder，LLM，自回归模型
-
-### 使用场景
-
-1、创建大模型：类似 GPT 和文心一言，从0到1创建基础大模型。
-
-2、基于已有大模型，训练适合某个行业或者某个企业的大模型。
-
-3、基于已有大模型的技术，创建 AI + 其他行业 APP 或者第三方应用（例如用在医疗，教育，美术，游戏行业等）。
-
-目前主要学习第二种和第三种使用场景。
+## 稀土掘金大会 AIGC 部分
+* [ ] 大模型和 AIGC ：[https://juejin.cn/live/dmxyaigc006](https://juejin.cn/live/dmxyaigc006 "https://juejin.cn/live/dmxyaigc006")
 
 
+## 工具和教程
+本地的 AI 工具
+
+1、AI 网页版：这个账户使用谷歌邮箱登录，效果不错 [https://poe.com/chat/3g5krmx7rie573x6t6h](https://poe.com/chat/3g5krmx7rie573x6t6h "https://poe.com/chat/3g5krmx7rie573x6t6h") 需要翻墙
+
+2、ChatGPT for Google 浏览器插件，需要翻墙+会员才可以
+
+3、Monica 浏览器插件，需要翻墙+会员
+
+​
+
+学习网站
+
+1、百度飞桨网站：[https://aistudio.baidu.com/learn/center](https://aistudio.baidu.com/learn/center "https://aistudio.baidu.com/learn/center") 集合了百度AI的各种资料，视频学习材料等
+
+2、付费的 GPT API 工具 [http://www.DMXAPI.com](http://www.DMXAPI.com "http://www.DMXAPI.com")，LangChain 可以调用这个工具
+
+3、AI 视频教程资源：[https://www.ai360labs.com/playground/courseList](https://www.ai360labs.com/playground/courseList "https://www.ai360labs.com/playground/courseList")
+
+4、百度网盘下载的资料，下载很慢，最好直接在上面看，看一下然后可以删除
+
+国内优先看百度的（资料看B站）
+
+​
 
 

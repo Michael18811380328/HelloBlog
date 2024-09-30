@@ -124,7 +124,6 @@ nav:
         - '如何有效地报告 Bug': 'git/如何有效地报告 Bug.md'
         - '第三方工具 LOCALFORAGE': 'git/第三方工具 LOCALFORAGE.md'
         - 'index': 'index.md'
-
     - interview/01 技术题目-重要:
         - '知识体系': 'interview/01 技术题目-重要/知识体系.md'
 
@@ -152,12 +151,18 @@ nav:
         - '面试题及答案': 'interview/large-companies/面试题及答案.md'
 
     - javascript:
+        - '09-Resize Observer 介绍及原理浅析': 'javascript/09-Resize Observer 介绍及原理浅析.md'
         - '1 移动端前端适配方案（总结）': 'javascript/1 移动端前端适配方案（总结）.md'
         - '10-移动端开发教程-移动端事件': 'javascript/10-移动端开发教程-移动端事件.md'
+        - '11-常见的前端架构风格和案例': 'javascript/11-常见的前端架构风格和案例.md'
+        - '12-大型项目前端架构浅谈': 'javascript/12-大型项目前端架构浅谈.md'
+        - '14-web-worker': 'javascript/14-web-worker.md'
         - '2 前端移动端适配总结': 'javascript/2 前端移动端适配总结.md'
         - '2022年前端新技术汇总': 'javascript/2022年前端新技术汇总.md'
         - '3 移动端适配方案': 'javascript/3 移动端适配方案.md'
+        - '30-手把手教你用 vite + vue3 + ts + pinia + vueuse 打造企业级前端项目': 'javascript/30-手把手教你用 vite + vue3 + ts + pinia + vueuse 打造企业级前端项目.md'
         - '4 移动WEB前端开发资源整合': 'javascript/4 移动WEB前端开发资源整合.md'
+        - '40-网易云课堂 Service Worker 运用与实践': 'javascript/40-网易云课堂 Service Worker 运用与实践.md'
         - 'ActionSheet回调函数享元模式改进': 'javascript/ActionSheet回调函数享元模式改进.md'
         - 'CommonJS-AMD-CMD': 'javascript/CommonJS-AMD-CMD.md'
         - 'Creating and triggering events': 'javascript/Creating and triggering events.md'
@@ -223,7 +228,6 @@ nav:
         - 'ssh connect to host github.com port 22 Connection refused fatal Could not read from remote repository 报错解决': 'javascript/ssh connect to host github.com port 22 Connection refused fatal Could not read from remote repository 报错解决.md'
         - 'text-runner': 'javascript/text-runner.md'
         - 'video标签的poster属性图片铺满整个屏幕': 'javascript/video标签的poster属性图片铺满整个屏幕.md'
-        - 'web-worker': 'javascript/web-worker.md'
         - 'window.requestAnimationFrame': 'javascript/window.requestAnimationFrame.md'
         - '中文输入法composition': 'javascript/中文输入法composition.md'
         - '为JS 程序员准备的 ts': 'javascript/为JS 程序员准备的 ts.md'

@@ -683,10 +683,10 @@ Node versions 0.10.31 and 0.11.13 are buggy, don't use them (see #65, #77).
 ### request2.88.0
 http 网络请求工具     
 
-### socket.io2.2.0
+### socket.io
 socket 服务端程序     
 
-### uuid3.3.2
+### uuid
 生成 UUID     
 
 ### form-data2.5.1
@@ -910,13 +910,13 @@ React.render(<App />, document.getElementById('app'));
 ​
 
 
-### react-cookies0.1.0
+### react-cookies
 react 实现的 cookie 管理     代码没有开源，下载较少，不推荐使用
 
-### react-dnd2.6.0
+### react-dnd
 拖拽组件     
 
-### react-dnd-html5-backend2.6.0
+### react-dnd-html5-backend
 拖拽组件     
 
 ### react-i18next10.12.2
@@ -2040,20 +2040,79 @@ const UserSelectStyle = {
 ### autoprefixer
 自动增加 css 前缀，兼容不同版本浏览器
 
-### fs-extra8.1.0
-fs 的高级版本     https://www.npmjs.com/package/fs-extra
+### fs-extra
+fs 的高级版本
 
-### express4.16.3
+<https://www.npmjs.com/package/fs-extra>
+
+
+### express
 中间层服务器     
 
-### express-rate-limit5.1.3
+### express-rate-limit
 请求次数限制     
 
-### response-time2.3.2
+### response-time
 HTTP 响应时间 nodejs 和 express 联合使用     
 
-### rimraf3.0.2
+### rimraf
 The UNIX command rm -rf for node.     https://www.npmjs.com/package/rimraf
+
+### sharp
+[https://www.npmjs.com/package/sharp](https://www.npmjs.com/package/sharp "https://www.npmjs.com/package/sharp")
+
+nodejs 中图片工具库，可以生成特定的图片（批量生成随机图片），或者图片格式转换等等
+
+```javascript
+// npm install sharp
+const sharp = require('sharp');
+const fs = require('fs');
+const path = require('path');
+const util = require('util');
+ 
+const mkdir = util.promisify(fs.mkdir);
+const writeFile = util.promisify(fs.writeFile);
+ 
+const IMAGE_WIDTH = 800; // 图片宽度
+const IMAGE_HEIGHT = 600; // 图片高度
+const IMAGE_COUNT = 1000; // 图片数量
+const OUTPUT_DIR = 'random_images'; // 输出目录
+ 
+async function createRandomImage(filename) {
+  const red = Math.floor(Math.random() * 256);
+  const green = Math.floor(Math.random() * 256);
+  const blue = Math.floor(Math.random() * 256);
+ 
+  const image = await sharp({
+    create: {
+      width: IMAGE_WIDTH,
+      height: IMAGE_HEIGHT,
+      channels: 4,
+      background: { r: red, g: green, b: blue, alpha: 255 }
+    }
+  });
+ 
+  await image.toFile(filename);
+}
+ 
+async function main() {
+  try {
+    await mkdir(OUTPUT_DIR, { recursive: true });
+ 
+    for (let i = 0; i < IMAGE_COUNT; i++) {
+      const filename = path.join(OUTPUT_DIR, `${i}.png`);
+      await createRandomImage(filename);
+    }
+  } catch (error) {
+    console.error(error);
+  }
+}
+ 
+main();
+```
+
+​
+
 
 ### tesseract
 Tesseract 是一款由 Google 开发的开源 OCR（光学字符识别）库。它可以识别图片中的文字，并将其转换为可编辑的文本格式。
@@ -2062,6 +2121,8 @@ Tesseract 是一款由 Google 开发的开源 OCR（光学字符识别）库。�
 
 ```
 tesseract input.png output -l eng --oem 3 --psm 3 && echo "OCR Completed."
+
+tesseract 1.png output -l chi_sim --psm 6 && cat ./output.txt
 ```
 
 在这个命令中：

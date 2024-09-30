@@ -604,11 +604,11 @@ document.getElementById("myInput").stepUp(100);
 
 周实际使用的不多
 
-```text
+```html
 <input type="week" id="myInput" onchange="onChange()" />
 ```
 
-```text
+```javascript
     function onChange(e) {
       var x = document.getElementById("myInput").value;
       console.log(x);
@@ -623,7 +623,7 @@ document.getElementById("myInput").stepUp(100);
 
 可以选择时间，唯一不足就是视觉上不太好看
 
-```text
+```html
 <input type="time" id="myInput" onchange="onChange()" />
 ```
 

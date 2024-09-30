@@ -111,9 +111,11 @@ nav:
         - '基金基础知识-笔记': 'economy/基金基础知识-笔记.md'
         - '基金投资法': 'economy/基金投资法.md'
         - '基金法规-笔记': 'economy/基金法规-笔记.md'
+        - '宏观经济学-笔记': 'economy/宏观经济学-笔记.md'
         - '小狗钱钱': 'economy/小狗钱钱.md'
         - '小狗钱钱2': 'economy/小狗钱钱2.md'
         - '常用基金名词': 'economy/常用基金名词.md'
+        - '微观经济学-笔记': 'economy/微观经济学-笔记.md'
         - '经典书籍推荐': 'economy/经典书籍推荐.md'
         - '给年轻人的极简金融课程': 'economy/给年轻人的极简金融课程.md'
         - '致当下奋斗的青年': 'economy/致当下奋斗的青年.md'
@@ -130,6 +132,7 @@ nav:
         - '算法感悟': 'new/算法感悟.md'
 
     - note:
+        - 'AI-笔记': 'note/AI-笔记.md'
         - 'BOM-笔记': 'note/BOM-笔记.md'
         - 'Go-笔记': 'note/Go-笔记.md'
         - 'H5+CSS-笔记': 'note/H5+CSS-笔记.md'

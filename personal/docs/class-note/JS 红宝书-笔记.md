@@ -462,8 +462,6 @@ document.getElementById('id'); //只可以通过document调用
 
 
 ## 11-choose
-​
-
 ### 11.1 选择符
 
 document.querySelector() 查找符合标准的的第一个元素
@@ -471,8 +469,6 @@ document.querySelector() 查找符合标准的的第一个元素
 document.querySelectorAll() 查找符合标准的全部元素的集合
 
 括号中填写 css 选择器，比 getElementBy 更广泛。
-
-​
 
 ### 11.2 元素遍历
 
@@ -953,7 +949,7 @@ script 标签属性：
 
 下面这个图重点理解（defer async 的关系）
 
-![](https://cloud.seatable.cn/workspace/81910/asset/b0de7002-5abf-48b9-b07b-ba7033be74a7/images/auto-upload/image-1719240032581.png)
+![](https://cloud.seatable.cn/workspace/81910/asset/f2c15130-6d23-4209-88e2-7df9ec54ea39/images/auto-upload/image-1719240032581.png)
 
 从左到右表示运行时间 runtime，五种 script 对应的执行时间
 
@@ -989,11 +985,11 @@ script 标签属性：
 
 5、cross-origin 跨域 （CORS）相关属性，需要连接哪些标签可以跨域（跨源资源共享，一个服务器请求另一个服务器的资源）凭据模式：跨域请求是否包含凭据（cookie, Authothention 用户名和密码等）
 
-![](https://cloud.seatable.cn/workspace/81910/asset/b0de7002-5abf-48b9-b07b-ba7033be74a7/images/auto-upload/image-1719238681239.png)
+![](https://cloud.seatable.cn/workspace/81910/asset/f2c15130-6d23-4209-88e2-7df9ec54ea39/images/auto-upload/image-1719238681239.png)
 
 6、intergrity 完整性：子资源完整性（跨域的一个源，会请求其他的跨域脚本，这部分就是子资源）这里使用 sha384加密算法，验证对应资源的 hash 值是否正确，判断 CDN 上的资源是否正确。
 
-![](https://cloud.seatable.cn/workspace/81910/asset/b0de7002-5abf-48b9-b07b-ba7033be74a7/images/auto-upload/image-1719238698084.png)
+![](https://cloud.seatable.cn/workspace/81910/asset/f2c15130-6d23-4209-88e2-7df9ec54ea39/images/auto-upload/image-1719238698084.png)
 
 这两个属性和脚本安全性有关
 
@@ -1109,11 +1105,60 @@ weakmap 了解即可，实际没有使用，键只能是对象（对象，数组
 ## P5 Set（集合）
 set 集合和 map 映射的区别是：set.add(value), map.set(key, value)
 
-![](https://cloud.seatable.cn/workspace/81910/asset/b0de7002-5abf-48b9-b07b-ba7033be74a7/images/auto-upload/image-1719642665595.png)
+#### 6.6.1 基本 API
+
+使用 new 关键字和 set 构造函数可以创建一个空集合:
+
+```javascript
+const m = new Set ();
+```
+
+如果想在创建的同时初始化实例, 则可以给 Set 构造函数传如一个可迭代对象, 其中需要包含插入到新集合实例中的元素:
+
+```javascript
+// 使用数组初始化集合
+Const s1 = Dew Set(["vall","val2","val3"]);
+alert (s1.size) // 3
+
+// 使用自定义选代器初始化集合
+const s2 = new Set({
+  [Symbol.iterator]: function() {
+    yield "val1";
+    yield "val2";
+    yield "val3";
+  }
+})
+
+alert(s2.size); // 3
+```
+
+初始化之后，可以调用 API add() has() size() delete() clear()
+
+​
 
 迭代 set 也是类似，使用 values() 直接迭代值
 
-![](https://cloud.seatable.cn/workspace/81910/asset/b0de7002-5abf-48b9-b07b-ba7033be74a7/images/auto-upload/image-1719642671752.png)
+set 会维护值插入时的顺序，因此支持按顺序迭代。
+
+集合实例可以提供一个迭代器 ( Iterator )，能以插入顺序生成集合内容。
+
+可以通过 values() 方法及其别名方法 keys () (或者 Symbol.iterator 属性，它引用 values () ) 取得这个迭代器:
+
+```javascript
+const s = new Set(["val1", "val2", "Val3"]);
+alert(s.values === s[Symbol.iterator]); // true
+alert(s.keys === s[Symbol.icerator]);   // true
+
+for (Let value of s.values()) {
+  alert(value)
+}
+
+// val1
+// val2
+// val3
+```
+
+​
 
 
 ## P8 JavaScript类
@@ -1173,15 +1218,85 @@ JavaScript中类定义的相关内容,包括构造函数、原型方法、静态
 
 3 service worker&#x20;
 
-现在看到27分钟，讲师讲的昏昏欲睡。。。
+​
 
-<img src="https://cloud.seatable.cn/workspace/81910/asset/b0de7002-5abf-48b9-b07b-ba7033be74a7/images/auto-upload/image-1720236712016.png" alt="undefined" title="undefined" width="416" height="113" />
+口 使用专门的工作者线程执行后台任务
 
-![](https://cloud.seatable.cn/workspace/81910/asset/b0de7002-5abf-48b9-b07b-ba7033be74a7/images/auto-upload/image-1720256311147.png)
+口 使用共享的工作者线程
 
-![](https://cloud.seatable.cn/workspace/81910/asset/b0de7002-5abf-48b9-b07b-ba7033be74a7/images/auto-upload/image-1720256318448.png)
+口 通过服务工作者线程管理请求
 
-![](https://cloud.seatable.cn/workspace/81910/asset/b0de7002-5abf-48b9-b07b-ba7033be74a7/images/auto-upload/image-1720256326219.png)
+​
+
+1\. 专用工作者线程：专用工作者线程，通常简称为工作者线程、Web Worker 或 Worker，是一种实用的工具，可以让脚本单独创建一个 JavaScript 线程，以执行委托的任务。专用工作者线程，顾名思义，只能被创建它的页面使用。
+
+2\. 共享工作者线程共享：工作者线程与专用工作者线程非相似。主要区别：共享工作者线程，可以被多个不同的上下文使用，包括不同的页面。任何与脚本同源的其他脚本，都可以和共享工作者线程进行通信。
+
+3\. 服务工作者线程：服务工作者线程，与专用工作者线程，与共享工作者线程截然不同。它的主要用途是拦截、重定向和修改页面发出的请求，充当网络请求的仲裁者的角色。
+
+​
+
+#### WorkerGlobalScope 属性和方法
+
+self 上可用的属性是 windaow 对象上属性的严格子集。其中有些属性，会返回特定于工作者线程的版本。
+
+* navigator: 返回与工作者线程关联的 WorkerNavigator。
+
+* self: 返回 WorkerGlobalscope 对象。
+
+* location: 返回与工拉者线程关联的 WorkerLocation。
+
+* performance: 返回 (只包含特定属性和方法的 ) Performance 对象。
+
+* console: 返回与工作者线程关联的 console 对象; 对 API没有限制。
+
+* caches: 返回与工作者线程关联的 cachestorage 对象; 对API没有限制。
+
+* indaexedDB: 返回 IDBFactory 对象。
+
+* isSecurecontext: 返回布尔值，表示工作者线程上下文是否安全。
+
+* origin: 返回 WorkerGlobalscope 的源。
+
+类似地，self 对象上暴露的一些方法也是 window 上方法的子集。
+
+这些 self 上的方法也与 window 上对应的方法操作一样。
+
+* atob
+
+* btoa
+
+* clearIntetrval()
+
+* clearTimeout()
+
+* createImageBitmap()
+
+* fetch()
+
+* setInterval()
+
+* setTimeout()
+
+WorkerGlobalscope 还增加了新的全局方法 importscripts()，只在工作者线程内可用。本章稍后会介绍该方法。
+
+​
+
+#### 2. 工作者线程安全限制
+
+工作者线程的脚本文件只能从与父页面相同的源加载。&#x20;
+
+从其他源加载工作者线程的脚本文件会导致错误，如下所示。
+
+```javascript
+// 裳试基于 https://example.corm/worker.js 创建工作者线程
+const sameOriginWorker = new Worker ('./worker.js');
+
+// 尝试基于 https://untrusted.com/worker.js 创建工作者线程
+const remoteOriginWorker = new Worker ('https://untrusted.com/worker.js'):;
+```
+
+​
 
 
 ## P23 DOM
@@ -1191,11 +1306,35 @@ DOM 关键是数据结构
 
 实际工作中主要使用各种框架，很少直接操作 DOM 树节点。
 
-<img src="https://cloud.seatable.cn/workspace/81910/asset/b0de7002-5abf-48b9-b07b-ba7033be74a7/images/auto-upload/image-1719647810299.png" alt="undefined" title="undefined" width="673" height="504" />
+父节点和它的第一个及最后一个子节点也有专门属性: firstchild 和 lastchild，分别指回 childNodes 中的第一个和最后一个子节点。
+
+![](https://cloud.seatable.cn/workspace/81910/asset/f2c15130-6d23-4209-88e2-7df9ec54ea39/images/auto-upload/image-1722064444619.png)
+
+有了这些关系，childaNodes 属性的作用远远不止是必备属性那么简单了。 这是因为利用这些关系指针，几乎可以访问到文档树中的任何节点,而这种便利性是 chilaNodaes 的最大亮点。还有一个便利的方法是 haschilaNodes () ，这个方法如果返回 true 则说明节点有一个或多个子节点。相比查询childqNodaes 的 length 属性，这个方法无疑更方便。
 
 兼容性问题：IE9以前的节点需要考虑兼容性问题。
 
-![](https://cloud.seatable.cn/workspace/81910/asset/b0de7002-5abf-48b9-b07b-ba7033be74a7/images/auto-upload/image-1719647816405.png)
+IE9 之前的版本，不会把元素间的空格当成空白节点 , 而其他浏览需则会。
+
+这样就导致 childNodes 和 firstchild 等属性上的差异。为了弥补这个差异，同时不影响 DOM 规范，W3C 通过新的 Element Traversal 规范定义了一组新属性。
+
+Element Traversal API 为 DOM 元素添加了 5 个属性:
+
+口 childElementcount ，返回子元素数量 ( 不包含文本节点和注释 );
+
+口 firstElementChild，指回第一个 Element 类型的子元素 (Element 版 firstChild);
+
+口 lastElementChild，指向最后一个ELement 类型的子元素 (ELement 版 lastChild );
+
+口 previousElementSibling ，指加前一个 Element 类型的同胞元 素 ( Element 版 previousSibling );
+
+口 nextElementSibling，指向后一个Element 类型的同胞元素 (Element 版 nextsibling )。
+
+在支持的浏览器中，所有 DOM 元素都会有这些属性，为遍历 DOM 元素提供便利。
+
+这样开发者不用担心空白文本节点的问题了。
+
+​
 
 获取元素节点，有两套 APIs
 
@@ -1203,6 +1342,30 @@ DOM 关键是数据结构
 
 2、新版的 querySelectorAll 使用 css 选择器获取节点，获取后就是静态节点
 
-![](https://cloud.seatable.cn/workspace/81910/asset/b0de7002-5abf-48b9-b07b-ba7033be74a7/images/auto-upload/image-1719647822212.png)
+​
+
+JavaScript 库中最流行的一种能力就是根据 CSS 选择符的模式匹配 DOM 元素。比如，jQuery 就完全以 CSS 选择符查询 DOM 获取元素引用 , 而不是使用 getElementById()和 getElementsByTagName() 。
+
+Selectors API ( 参见 W3C 网站上的 Selectors API Level 1 ) 是 W3C 推荐标准，规定了浏览器厚生支持的 CSS 查询 API。支持这一特性的所有 JavaScript 库都会实现一个基本的 CSS 解析器,然后使用已有的 DOM 方法搜索文档并匹配目标节点。虽然库开发者在不断改进其性能，但 JavaScript 代码能做到的毕竟有限。通过浏览器原生支持这个 API，解析和遍历 DOM 树可以通过底层编译语言实现，性能也有了数量级的提升。
+
+Selectors API Level 1 的核心是两个方法: querySelector ()和 querySelectorAll() 。在兼容浏览器中，Document 类型和 Element 类型的实例上都会暴露这两个方法。
+
+Selectors API Level 2 规范在 Element 类型上新增了更多方法，比如 matches() 、find() 和findAll()。不过，目前还没有浏览器实现或宣称实现 find()和 findAll()。
+
+​
+
+#### 15.1.1   SuerySelector ()
+
+querySelector ()方法接收 CSS 选择符参数，返回匹配该模式的第一个后代元素，如果没有匹配项则返回 null。下面是一些例子:
+
+```javascript
+// 取得<body>元素
+1et body = document.querySelector ("body") ;
+
+// 取得 ID 为"myDiv"的元素
+1et myDiv = document.querySelector("#myDiv") ，
+```
+
+​
 
 

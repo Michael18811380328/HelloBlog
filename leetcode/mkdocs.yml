@@ -70,7 +70,6 @@ extra:
 
 # Page tree
 nav:
-
     - algea-new:
         - 'API 文档自动更新': 'algea-new/API 文档自动更新.md'
 

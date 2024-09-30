@@ -4,6 +4,8 @@
 原始教程链接: https://js.design/courses
 
 ### 00 介绍 托尼三三-设计公开课
+提示：文档比较大，一次性加载大量图片，可能服务器返回 503 错误，可以点击链接访问原始笔记网页：<https://cloud.seatable.cn/dtable/external-links/621babd7e22b4ceb88ec/>
+
 **设计问题一定有底层逻辑可以去解决**
 
 及时设计推荐的一个 UI 设计课程
@@ -14,7 +16,7 @@ UP: [托尼三三](https://space.bilibili.com/2142408)
 
 哔哩哔哩 课程链接：<https://www.bilibili.com/video/BV1uw411S77u/?spm_id_from=333.788&vd_source=2d5bdee7ea59486ed4aa4a9b10020224>
 
-集成后文档比较大，加载图片可能服务器返回 503 错误，所以可以点击链接访问原始网页：<https://cloud.seatable.cn/dtable/external-links/621babd7e22b4ceb88ec/>
+​
 
 
 ### 01 单一素材
@@ -22,17 +24,15 @@ UP: [托尼三三](https://space.bilibili.com/2142408)
 
 思路1：蹭经典的流量（椰树椰汁，茅台酒，杜蕾斯等经典背景图）
 
-![](https://cloud.seatable.cn/workspace/81910/asset/b0de7002-5abf-48b9-b07b-ba7033be74a7/images/auto-upload/image-1708849864964.png)
+![](https://cloud.seatable.cn/workspace/81910/asset/b0de7002-5abf-48b9-b07b-ba7033be74a7/images/auto-upload/image-1727603162069.jpg)
 
 思路2：如果产品很单调，那么尝试把主要的卖点显示到界面中央，这样可以突出产品本身的外形，以及产品的特点。
 
-![](https://cloud.seatable.cn/workspace/81910/asset/b0de7002-5abf-48b9-b07b-ba7033be74a7/images/auto-upload/image-1708849872240.png)
-
-
+![](https://cloud.seatable.cn/workspace/81910/asset/b0de7002-5abf-48b9-b07b-ba7033be74a7/images/auto-upload/image-1727603610033.jpg)
 
 
 ### 02 原图杂乱
-链接：<https://www.bilibili.com/video/BV1Qz4y1T7V5/?spm_id_from=333.788&vd_source=2d5bdee7ea59486ed4aa4a9b10020224> 
+链接：<https://www.bilibili.com/video/BV1Qz4y1T7V5/?spm_id_from=333.788&vd_source=2d5bdee7ea59486ed4aa4a9b10020224>
 
 如果客户提供的原始图片比较丑，怎么处理（例如色彩杂乱，背景杂乱）？
 
@@ -40,7 +40,7 @@ UP: [托尼三三](https://space.bilibili.com/2142408)
 
 实例1：找到用户的特出特点，以及蓝色，把其他部分使用蓝色块隐藏起来，并增加产品说明
 
-![](https://cloud.seatable.cn/workspace/81910/asset/b0de7002-5abf-48b9-b07b-ba7033be74a7/images/auto-upload/image-1708851305822.png)
+![](https://cloud.seatable.cn/workspace/81910/asset/b0de7002-5abf-48b9-b07b-ba7033be74a7/images/auto-upload/image-1727603631169.jpg)
 
 实例2：使用渐变色，藏起非重点
 
@@ -50,9 +50,7 @@ UP: [托尼三三](https://space.bilibili.com/2142408)
 
 注意，不同的颜色给人的感觉不一致，选择适合的产品主题色，全局的主题色尽量保持一致。
 
-![](https://cloud.seatable.cn/workspace/81910/asset/b0de7002-5abf-48b9-b07b-ba7033be74a7/images/auto-upload/image-1708851319992.png)
-
-
+![](https://cloud.seatable.cn/workspace/81910/asset/b0de7002-5abf-48b9-b07b-ba7033be74a7/images/auto-upload/image-1727603274985.jpg)
 
 
 ### 03 设计稿没有重点
@@ -154,7 +152,7 @@ AI 的发展，势必会取代很多低端程序员，低端 UI 设计师，低�
 
 左侧的设计稿比较平和，右侧的设计稿比较冲击。左侧的字体字号范围不大，色彩主要使用渐变色，没有明显反差，显得比较平和。投策设计稿颜色突变比较多，文字突变也比较多，给人一种视觉的冲击力。这里不能直接评价这两个设计稿哪个好，需要看具体的使用场景。
 
-<img src="https://cloud.seatable.cn/workspace/81910/asset/b0de7002-5abf-48b9-b07b-ba7033be74a7/images/auto-upload/image-1709966012261.png" width="596" height="null" />
+<img src="https://cloud.seatable.cn/workspace/81910/asset/b0de7002-5abf-48b9-b07b-ba7033be74a7/images/auto-upload/image-1709966012261.png" alt="" title="" width="596" height="" />
 
 视觉效果冲击力很低，可以通过三个方案优化
 
@@ -162,23 +160,21 @@ AI 的发展，势必会取代很多低端程序员，低端 UI 设计师，低�
 
 这里把产品+宣传语放大，然后不同图层叠层，形成对比，更有垂直的效果
 
-<img width="647" src="https://cloud.seatable.cn/workspace/81910/asset/b0de7002-5abf-48b9-b07b-ba7033be74a7/images/auto-upload/image-1709966329920.png" />
+![](https://cloud.seatable.cn/workspace/81910/asset/b0de7002-5abf-48b9-b07b-ba7033be74a7/images/auto-upload/image-1727603315186.jpg)
 
 2、主题倾斜+色块对比
 
 主题倾斜（对应文字布局倾斜）会更有冲击力
 
-<img width="313" src="https://cloud.seatable.cn/workspace/81910/asset/b0de7002-5abf-48b9-b07b-ba7033be74a7/images/auto-upload/image-1709966350313.png" /><img width="355" src="https://cloud.seatable.cn/workspace/81910/asset/b0de7002-5abf-48b9-b07b-ba7033be74a7/images/auto-upload/image-1709966358924.png" />
+<img src="https://cloud.seatable.cn/workspace/81910/asset/b0de7002-5abf-48b9-b07b-ba7033be74a7/images/auto-upload/image-1709966350313.png" alt="" title="" width="313" height="" /><img src="https://cloud.seatable.cn/workspace/81910/asset/b0de7002-5abf-48b9-b07b-ba7033be74a7/images/auto-upload/image-1709966358924.png" alt="" title="" width="355" height="" />
 
 3、几何+蒙版
 
 使用几何色块可以突出重点宣传语，使用蒙版去掉背景色中杂乱的效果
 
-<img width="605" src="https://cloud.seatable.cn/workspace/81910/asset/b0de7002-5abf-48b9-b07b-ba7033be74a7/images/auto-upload/image-1709966395723.png" />
+<img src="https://cloud.seatable.cn/workspace/81910/asset/b0de7002-5abf-48b9-b07b-ba7033be74a7/images/auto-upload/image-1709966395723.png" alt="" title="" width="605" height="" />
 
-<img width="600" src="https://cloud.seatable.cn/workspace/81910/asset/b0de7002-5abf-48b9-b07b-ba7033be74a7/images/auto-upload/image-1709966402393.png" />
-
-
+<img src="https://cloud.seatable.cn/workspace/81910/asset/b0de7002-5abf-48b9-b07b-ba7033be74a7/images/auto-upload/image-1727603339814.jpg" alt="" title="" width="602" height="319" />
 
 
 ### 08 AI 推进了设计行业发展
