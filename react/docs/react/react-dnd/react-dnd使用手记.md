@@ -116,52 +116,52 @@ import './App.css';
 const CardList = ['red', 'green', 'yellow', 'blue'];
 
 class App extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            cardList: CardList
-        }
-        this.moveCard = this.moveCard.bind(this)
-        this.findCard = this.findCard.bind(this)
+  constructor(props) {
+    super(props)
+    this.state = {
+      cardList: CardList
     }
+    this.moveCard = this.moveCard.bind(this)
+    this.findCard = this.findCard.bind(this)
+  }
 
-    moveCard(droppedId, target) {
-        let { cardList } = this.state;
-        let source = cardList.indexOf(droppedId);
-        cardList[source] = cardList[target];
-        cardList[target] = droppedId;
-        this.setState({
-            cardList
-        })
-    }
+  moveCard(droppedId, target) {
+    let { cardList } = this.state;
+    let source = cardList.indexOf(droppedId);
+    cardList[source] = cardList[target];
+    cardList[target] = droppedId;
+    this.setState({
+      cardList
+    })
+  }
 
-    findCard(id) {
-        let { cardList } = this.state;
-        const card = cardList.filter(c => c === id)[0]
-        return {
-            card,
-            index: cardList.indexOf(card),
-        }
+  findCard(id) {
+    let { cardList } = this.state;
+    const card = cardList.filter(c => c === id)[0]
+    return {
+      card,
+      index: cardList.indexOf(card),
     }
+  }
 
-    render() {
-        let { cardList } = this.state;
-        return (
-            <DragDropContextProvider backend={HTML5Backend}>
-                <div className="App">
-                    {cardList.map((item, index) => {
-                        return <Card
-                            className={item}
-                            id={item}
-                            index={index}
-                            moveCard={this.moveCard}
-                            findCard={this.findCard}
-                            key={item} />
-                    })}
-                </div>
-            </DragDropContextProvider>
-        );
-    }
+  render() {
+    let { cardList } = this.state;
+    return (
+      <DragDropContextProvider backend={HTML5Backend}>
+        <div className="App">
+          {cardList.map((item, index) => {
+            return <Card
+                     className={item}
+                     id={item}
+                     index={index}
+                     moveCard={this.moveCard}
+                     findCard={this.findCard}
+                     key={item} />
+          })}
+        </div>
+      </DragDropContextProvider>
+    );
+  }
 }
 
 export default App
@@ -176,57 +176,57 @@ import React, { Component } from 'react';
 import { DragSource, DropTarget } from 'react-dnd';
 
 const sourceSpec = {
-    beginDrag(props) {
-        return {
-            id: props.id,
-            index: props.index
-        }
-    },
-    // endDrag(props, monitor) {
-    //  const { id: droppedId, index } = monitor.getItem()
-    //  const didDrop = monitor.didDrop()
-    //  debugger
+  beginDrag(props) {
+    return {
+      id: props.id,
+      index: props.index
+    }
+  },
+  // endDrag(props, monitor) {
+  //  const { id: droppedId, index } = monitor.getItem()
+  //  const didDrop = monitor.didDrop()
+  //  debugger
 
-    //  if (!didDrop) {
-    //      props.moveCard(droppedId, index)
-    //  }
-    // },
+  //  if (!didDrop) {
+  //      props.moveCard(droppedId, index)
+  //  }
+  // },
 }
 
 const targetSpec = {
-    canDrop() {
-        return false
-    },
+  canDrop() {
+    return false
+  },
 
-    hover(props, monitor) {
-        const { id: draggedId } = monitor.getItem()
-        const { id: overId } = props
+  hover(props, monitor) {
+    const { id: draggedId } = monitor.getItem()
+    const { id: overId } = props
 
-        if (draggedId !== overId) {
-            const { index: overIndex } = props.findCard(overId);
-            props.moveCard(draggedId, overIndex)
-        }
-    },
+    if (draggedId !== overId) {
+      const { index: overIndex } = props.findCard(overId);
+      props.moveCard(draggedId, overIndex)
+    }
+  },
 }
 
 @DragSource('box', sourceSpec, (connect, monitor) => ({
-    connectDragSource: connect.dragSource(),
-    isDragging: monitor.isDragging(),
+  connectDragSource: connect.dragSource(),
+  isDragging: monitor.isDragging(),
 }))
 @DropTarget('box', targetSpec, connect => ({
-    connectDropTarget: connect.dropTarget(),
+  connectDropTarget: connect.dropTarget(),
 }))
 class Card extends Component {
-    // constructor(props){
-    //  super(props)
-    // }
-    render() {
-        let { connectDragSource, connectDropTarget, className } = this.props
+  // constructor(props){
+  //  super(props)
+  // }
+  render() {
+    let { connectDragSource, connectDropTarget, className } = this.props
 
-        return connectDropTarget(
-            (connectDragSource(<div className={className}></div>))
-        );
-    }
+    return connectDropTarget(
+      (connectDragSource(<div className={className}></div>))
+    );
+  }
 }
 
 export default Card;

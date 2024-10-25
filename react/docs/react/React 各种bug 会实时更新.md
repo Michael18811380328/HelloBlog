@@ -1,4 +1,6 @@
-# React 各种bug
+# React 各种bug和解答
+
+
 
 ### BUG2
 

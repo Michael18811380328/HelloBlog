@@ -2,7 +2,9 @@
 
 **注：** 本项目同时也托管于 [Github](https://github.com/riku/Markdown-Syntax-CN) 上，请通过 fork ＋ pull request 方式来帮忙改进本项目。
 
-# Markdown 语法说明 (简体中文版) / ([点击查看快速入门](https://www.appinn.com/markdown/basic.html))
+# Markdown 语法说明
+
+https://www.appinn.com/markdown/basic.html
 
 - 概述
   - [宗旨](https://www.appinn.com/markdown/#philosophy)

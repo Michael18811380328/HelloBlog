@@ -1,4 +1,10 @@
-# 可能是最详细的React组件库搭建总结
+# React组件库搭建总结
+
+2021-10
+
+原作者近三年没有更新代码，本案例仅供参考
+
+原始代码仓库地址：https://github.com/worldzhao/react-ui-library-tutorial
 
 
 ## 概览
@@ -1662,12 +1668,4 @@ main();
 
 - 配置文件：scripts/plopfile.ts
 - 模板文件：templates/component
-
-## 结语
-
-文章很长，也是我个人学习中的总结，如果本文帮助到了你请给仓库一颗 ✨✨ 和本文一个赞。
-
-如果有错误烦请在评论区指正交流，谢谢。
-
-仓库地址：https://github.com/worldzhao/react-ui-library-tutorial
 

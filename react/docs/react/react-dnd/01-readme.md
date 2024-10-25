@@ -1,5 +1,7 @@
 # React *DnD*
 
+注意版本！！！
+
 Drag and Drop for React.
 
 下面是教程和案例 http://react-dnd.github.io/react-dnd/

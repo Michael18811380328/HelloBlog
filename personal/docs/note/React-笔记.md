@@ -974,7 +974,7 @@ react 中强制更新组件，this.forceUpdate() 尽量避免使用，最好使�
 ## 0662 useImperativeHandle 有什么作用
 
 
-useImperativeHandle，结合 forwardRef，实现父组件调用子组件 dom 上某些属性和方法
+use Imperative Handle，结合 forwardRef，实现父组件调用子组件 dom 上某些属性和方法
 
 forwardRef 可用于函数式组件，父组件访问子组件内部的 dom
 
@@ -1056,9 +1056,5 @@ export default function Form() {
 [https://react.docschina.org/reference/react/useImperativeHandle](https://react.docschina.org/reference/react/useImperativeHandle "https://react.docschina.org/reference/react/useImperativeHandle")
 
 [https://juejin.cn/post/7074761729753743373](https://juejin.cn/post/7074761729753743373 "https://juejin.cn/post/7074761729753743373")
-
-​
-
-​
 
   

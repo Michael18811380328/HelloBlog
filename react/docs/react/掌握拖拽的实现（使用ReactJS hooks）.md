@@ -4,8 +4,6 @@
 
 我介绍了通用的开源拖拽库，例如React-dnd和React-beautiful-dnd，并使用React类组件的方式构建了一个可拖拽组件。现在我要使用React Hooks实现拖拽，并制作一个可排序列表。
 
-<iframe frameborder="0" allowfullscreen="" src="https://www.zhihu.com/video/1156580175243354112?autoplay=false&amp;useMSE=" style="display: block; width: 688px; height: 387px;"></iframe>
-
 使用React hook完成的可排序列表
 
 和以往一样，这里给出了完整的代码和用例。要使用这些示例代码，需安装[styled-components](https://link.zhihu.com/?target=https%3A//www.npmjs.com/package/styled-components)和[lodash](https://link.zhihu.com/?target=https%3A//www.npmjs.com/package/lodash)。
@@ -40,7 +38,7 @@ const Draggable = ({children, id, onDrag, onDragEnd}) => {
     origin: POSITION,
     translation: POSITION
   });
-    
+
   const handleMouseDown = useCallback(({clientX, clientY}) => {
     setState(state => ({
       ...state,
@@ -48,27 +46,27 @@ const Draggable = ({children, id, onDrag, onDragEnd}) => {
       origin: {x: clientX, y: clientY}
     }));
   }, []);
-    
+
   const handleMouseMove = useCallback(({clientX, clientY}) => {
     const translation = {x: clientX - state.origin.x, y: clientY - state.origin.y};
-        
+
     setState(state => ({
       ...state,
       translation
     }));
-        
+
     onDrag({translation, id});
   }, [state.origin, onDrag, id]);
-    
+
   const handleMouseUp = useCallback(() => {
     setState(state => ({
       ...state,
       isDragging: false
     }));
-        
+
     onDragEnd();
   }, [onDragEnd]);
-    
+
   useEffect(() => {
     if (state.isDragging) {
       window.addEventListener('mousemove', handleMouseMove);
@@ -80,7 +78,7 @@ const Draggable = ({children, id, onDrag, onDragEnd}) => {
       setState(state => ({...state, translation: {x: 0, y: 0}}));
     }
   }, [state.isDragging, handleMouseMove, handleMouseUp]);
-    
+
   const styles = useMemo(() => ({
     cursor: state.isDragging ? '-webkit-grabbing' : '-webkit-grab',
     transform: `translate(${state.translation.x}px, ${state.translation.y}px)`,
@@ -88,12 +86,12 @@ const Draggable = ({children, id, onDrag, onDragEnd}) => {
     zIndex: state.isDragging ? 2 : 1,
     position: state.isDragging ? 'absolute' : 'relative'
   }), [state.isDragging, state.translation]);
-    
+
   return (
     <div style={styles} onMouseDown={handleMouseDown}>
-      {children}
-    </div>
-  );
+    {children}
+</div>
+);
 };
 
 export default Draggable;
@@ -245,23 +243,23 @@ const order = [1, 0, 2, 3, 4];
 **dragOrder**—在拖拽过程中，除了被拖拽列表项，其余列表项使用它定位。
 
 ```js
-  const handleDrag = useCallback(({translation, id}) => {
-    const delta = Math.round(translation.y / HEIGHT);
-    const index = state.order.indexOf(id);
-    const dragOrder = state.order.filter(index => index !== id);
-  
-    if (!inRange(index + delta, 0, items.length)) {
-      return;
-    }
-  
-    dragOrder.splice(index + delta, 0, id);
-  
-    setState(state => ({
-      ...state,
-      draggedIndex: id,
-      dragOrder
-    }));
-  }, [state.order, items.length]);
+const handleDrag = useCallback(({translation, id}) => {
+  const delta = Math.round(translation.y / HEIGHT);
+  const index = state.order.indexOf(id);
+  const dragOrder = state.order.filter(index => index !== id);
+
+  if (!inRange(index + delta, 0, items.length)) {
+    return;
+  }
+
+  dragOrder.splice(index + delta, 0, id);
+
+  setState(state => ({
+    ...state,
+    draggedIndex: id,
+    dragOrder
+  }));
+}, [state.order, items.length]);
 ```
 
 可以看到在onDrag事件触发时，我们获取位移和列表项的id，这样我们可以计算下一步的dragOrder数组，并检查组件是否被放在合法的位置，即在0和列表项总数之间。
