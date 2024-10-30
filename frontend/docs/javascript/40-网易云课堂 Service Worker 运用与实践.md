@@ -2,8 +2,6 @@
 
 https://mp.weixin.qq.com/s/3Ep5pJULvP7WHJvVJNDV-g
 
-文章还没有整理，发布在微信公众号上
-
 **前言**
 
  本文首先会简单介绍下前端的常见缓存方式，再引入Service Worker的概念，针对其原理和如何运用进行介绍。然后基于google推出的第三方库Workbox，在产品中进行运用实践，并对其原理进行简要剖析。

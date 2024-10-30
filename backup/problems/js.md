@@ -1,11 +1,8 @@
-```js
 由于 immutable 中的数据转换时是哈希，List 对象的size = 1;(实际内存中应该是undefined 和 Text)。这里需要serialize就会出现错误。解决方案：转化成JSON对象，再进行serialize即可避免这个问题。
 
 哈希表：实际底层语言设计数据存储时，会分配较多内存进行存储。如果数据进行扩容，内存可以直接增加。所以底层的内存分配是。对于List等数据结构，可能实际的size和显示的size不是一样的。
 
 对于三个栏目，中间宽度固定，两侧宽度变化；
-```
-
 
 
 ##### 8.网络协议
@@ -26,35 +23,28 @@ chart.js 制作图表的 JS 插件
 
 react-select 制作下拉菜单
 
-```js
+
 lodash.js
 lodash是一套工具库，内部封装了很多字符串、数组、对象等常见数据类型的处理函数。
 现在用于比较两个数组或者对象是否相等。
 https://www.lodashjs.com/docs/4.17.5.html
 https://blog.csdn.net/qq_35414779/article/details/79077618
-```
 
-```js
 Immutable.JS
 JavaScript中的不可变集合
 Immutable.js提供了很多持久化不可变数据结构，包括： List, Stack, Map, OrderedMap, Set, OrderedSet以及Record。
-```
 
-```js
+
 https://github.com/gatsbyjs/gatsby
 这是一个 React 中在JS中编写CSS的仓库；
-```
 
 
-
-```js
 bug: ajax 发出 get 请求出现跨域问题：
 解决一：使用jquery 进行发送请求，使用 dataType:"jsonp",可以解决跨域的问题。请求返回的结果是json。出现语法错误。需要服务器端设置返回的结果。使用 jsonp 可以解决同源策略，但是服务器返回的结果仍然是json。需要使用函数类型包起来——前提是服务器和浏览器互相信任（不会发出错误的代码）。
-```
 
 ##### 11、待学习
 
-```
+
 前端常用工具 grunt fis 搭建工具
 https://www.cnblogs.com/chyingp/category/560724.html
 
@@ -91,9 +81,8 @@ Hybrid App 微信小程序
 
 bind(this)
 在ES5中不需要写 bind, 在 ES6 中需要加入bind；ES6中也可以使用箭头函数绑定this。
-```
 
-```js
+
 常用工具库
 
 chroma.js 工具库
@@ -109,4 +98,4 @@ MDX-based presentation decks https://jxnblk.com/mdx-deck
 Awesome macOS open source applications
 MAC 系统开源软件
 https://github.com/serhii-londar/open-source-mac-os-apps/blob/master/README.md
-```
+
